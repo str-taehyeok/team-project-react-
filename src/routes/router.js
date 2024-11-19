@@ -119,10 +119,6 @@ const router = createBrowserRouter( [
                         path: "passwordUpdate",
                         element: <PasswordUpdate />
                     },
-                    {
-                        path: "passwordUpdateComplete",
-                        element: <PasswordUpdateComplete />
-                    },
                 ]
             },
             {
@@ -270,14 +266,9 @@ const router = createBrowserRouter( [
                     {
                         index: true,
                         element: <Unsubscribe />
-                    },
-                    {
-                        path: "complete",
-                        element: <UnsubscribeComplete />
-                    },
+                    }
                 ]
             },
-
         ]
     },
     {
@@ -466,6 +457,14 @@ const router = createBrowserRouter( [
                 element: <FindPasswordComplete />,
             },
             ]
+    },
+    {
+        path: "/myhome/passwordUpdateComplete",
+        element: <PasswordUpdateComplete />
+    },
+    {
+        path: "/unsubscribe/complete",
+        element: <UnsubscribeComplete />
     },
     {
         path: '*',
