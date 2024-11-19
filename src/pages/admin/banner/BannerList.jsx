@@ -1,11 +1,11 @@
 import React from 'react';
 
-const PostList = () => {
+const BannerList = () => {
     return (
         <div>
-            
+            리스트
         </div>
     );
 };
 
-export default PostList;
+export default BannerList;

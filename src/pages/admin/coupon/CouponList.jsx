@@ -1,11 +1,11 @@
 import React from 'react';
 
-const AnnouncementUpdate = () => {
+const CouponList = () => {
     return (
         <div>
-
+            쿠폰리스트
         </div>
     );
 };
 
-export default AnnouncementUpdate;
+export default CouponList;

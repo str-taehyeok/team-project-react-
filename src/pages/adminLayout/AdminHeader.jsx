@@ -1,7 +1,7 @@
 import React from 'react';
 import S from "./style";
 
-const Header = () => {
+const AdminHeader = () => {
     return (
         <S.Header>
             어드민 헤더
@@ -9,4 +9,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default AdminHeader;

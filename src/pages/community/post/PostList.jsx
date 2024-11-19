@@ -1,11 +1,11 @@
 import React from 'react';
 
-const CouponList = () => {
+const PostList = () => {
     return (
         <div>
-
+            포스트 리스트
         </div>
     );
 };
 
-export default CouponList;
+export default PostList;

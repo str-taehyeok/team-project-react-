@@ -2,12 +2,12 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
 import S from "./style";
-import AdminHeader from './AdminHeader';
+import SellerHeader from './SellerHeader';
 
 const AdminLayout = () => {
     return (
-        <S.LayoutWrapper> 
-            <AdminHeader />
+        <S.LayoutWrapper>
+            <SellerHeader />
             <S.Main>
                 <Outlet />
             </S.Main>
