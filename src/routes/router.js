@@ -1,7 +1,7 @@
 /*라우팅*/
 import {createBrowserRouter} from "react-router-dom";
 import Layout from "../pages/layout/Layout";
-import Main from "../pages/main/Main";
+import MainContainer from "../pages/main/MainContainer";
 import Login from "../pages/login/Login";
 import NotFound from "../pages/NotFound";
 import LoginContainer from "../pages/login/LoginContainer";
@@ -11,6 +11,7 @@ import JoinPhone from "../pages/join/JoinPhone";
 import JoinComplete from "../pages/join/JoinComplete";
 import Join from "../pages/join/Join";
 import FindAccountContainer from "../pages/findAccount/FindAccountContainer";
+import SellerLayout from "../pages/sellerLayout/SellerLayout";
 import SellerProductContainer from "../pages/seller/sellerProduct/SellerProductContainer";
 import SellerProductList from "../pages/seller/sellerProduct/SellerProductList";
 import SellerProductWrite from "../pages/seller/sellerProduct/SellerProductWrite";
@@ -48,7 +49,6 @@ import StoreMain from "../pages/store/store/StoreMain";
 import StoreDog from "../pages/store/store/StoreDog";
 import StoreCat from "../pages/store/store/StoreCat";
 import Cart from "../pages/store/cart/Cart";
-import Purchase from "../pages/store/purchase/Purchase";
 import CommunityContainer from "../pages/community/community/CommunityContainer";
 import CommunityMain from "../pages/community/community/CommunityMain";
 import CommunityIntro from "../pages/community/community/CommunityIntro";
@@ -61,10 +61,6 @@ import OthersPostList from "../pages/community/post/OthersPostList";
 import PostUpdate from "../pages/community/post/PostUpdate";
 import PostWrite from "../pages/community/post/PostWrite";
 import AdminLogin from "../pages/admin/adminLogin/AdminLogin";
-import AnnouncementContainer from "../pages/admin/announcement/AnnouncementContainer";
-import AnnouncementList from "../pages/admin/announcement/AnnouncementList";
-import AnnouncementUpdate from "../pages/admin/announcement/AnnouncementUpdate";
-import AnnouncementWrite from "../pages/admin/announcement/AnnouncementWrite";
 import BannerContainer from "../pages/admin/banner/BannerContainer";
 import BannerList from "../pages/admin/banner/BannerList";
 import BannerWrite from "../pages/admin/banner/BannerWrite";
@@ -80,6 +76,15 @@ import UnsubscribeContainer from "../pages/unsubscribe/UnsubscribeContainer";
 import Unsubscribe from "../pages/unsubscribe/Unsubscribe";
 import UnsubscribeComplete from "../pages/unsubscribe/UnsubscribeComplete";
 import AdminLayout from "../pages/adminLayout/AdminLayout";
+import MyInfoContainer from "../pages/myhome/myInfo/MyInfoContainer";
+import PayContainer from "../pages/store/pay/PayContainer";
+import Pay from "../pages/store/pay/Pay";
+import PaySuccess from "../pages/store/pay/PaySuccess";
+import PayFailed from "../pages/store/pay/PayFailed";
+import NoticeContainer from "../pages/admin/notice/NoticeContainer";
+import NoticeList from "../pages/admin/notice/NoticeList";
+import NoticeUpdate from "../pages/admin/notice/NoticeUpdate";
+import NoticeWrite from "../pages/admin/notice/NoticeWrite";
 
 const router = createBrowserRouter( [
     {
@@ -88,70 +93,11 @@ const router = createBrowserRouter( [
         children: [
             {
                 path: '/',
-                element: <Main/>
-            },
-            {
-                path: '/login',
-                element: <LoginContainer />,
-                children : [
-                    {
-                        index : true,
-                        element: <Login />,
-                    }
-                ]
-            },
-            {
-                path: '/join',
-                element: <JoinContainer />,
-                children : [
-                    {
-                        index : true,
-                        element: <JoinType />,
-                    },
-                    {
-                        path : "phone",
-                        element: <JoinPhone />,
-                    },
-                    {
-                        path : "complete",
-                        element: <JoinComplete />,
-                    },
-                    {
-                        path : "register",
-                        element: <Join />,
-                    },
-
-                ]
-            },
-            {
-                path: '/findAccount',
-                element: <FindAccountContainer />,
-                children : [
-                    {
-                        index: true,
-                        element: <FindType />,
-                    },
-                    {
-                        path: "findId",
-                        element: <FindId />,
-                    },
-                    {
-                        path: "findIdComplete",
-                        element: <FindIdComplete />,
-                    },
-                    {
-                        path: "findPassword",
-                        element: <FindPassword />,
-                    },
-                    {
-                        path: "findPasswordComplete",
-                        element: <FindPasswordComplete />,
-                    },
-                    ]
+                element: <MainContainer />
             },
             {
                 path: '/myhome',
-                element: <FindAccountContainer />,
+                element: <MyInfoContainer />,
                 children : [
                     {
                         index: true,
@@ -177,7 +123,7 @@ const router = createBrowserRouter( [
                         path: "passwordUpdateComplete",
                         element: <PasswordUpdateComplete />
                     },
-                    ]
+                ]
             },
             {
                 path: '/myPet',
@@ -252,8 +198,22 @@ const router = createBrowserRouter( [
                 element: <Cart/>,
             },
             {
-                path: '/purchase',
-                element: <Purchase/>,
+                path: '/pay',
+                element: <PayContainer />,
+                children : [
+                    {
+                        index : true,
+                        element : <Pay />
+                    },
+                    {
+                        path : 'success',
+                        element : <PaySuccess />
+                    },
+                    {
+                        path : 'failed',
+                        element : <PayFailed />
+                    },
+                ]
             },
             {
                 path: '/community',
@@ -325,25 +285,25 @@ const router = createBrowserRouter( [
         element : <AdminLayout />,
         children : [
             {
-                path: '/announcement',
-                element: <AnnouncementContainer />,
+                path : '/admin',
+                element: <NoticeContainer />,
                 children : [
                     {
                         index: true,
-                        element: <AnnouncementList />
+                        element: <NoticeList />
                     },
                     {
-                        path: "AnnouncementWrite",
-                        element: <AnnouncementWrite />
+                        path : 'update',
+                        element: <NoticeUpdate />
                     },
                     {
-                        path: "AnnouncementUpdate",
-                        element: <AnnouncementUpdate />
+                        path : 'write',
+                        element: <NoticeWrite />
                     },
                 ]
             },
             {
-                path: '/banner',
+                path: 'banner',
                 element: <BannerContainer />,
                 children : [
                     {
@@ -361,7 +321,7 @@ const router = createBrowserRouter( [
                 ]
             },
             {
-                path: '/coupon',
+                path: 'coupon',
                 element: <CouponContainer />,
                 children : [
                     {
@@ -379,7 +339,7 @@ const router = createBrowserRouter( [
                 ]
             },
             {
-                path: '/member',
+                path: 'member',
                 element: <MemberContainer />,
                 children : [
                     {
@@ -392,8 +352,14 @@ const router = createBrowserRouter( [
                     },
                 ]
             },
+        ]
+    },
+    {
+        path: '/seller',
+        element : <SellerLayout />,
+        children : [
             {
-                path: '/sellerProduct',
+                path: '/seller',
                 element: <SellerProductContainer />,
                 children : [
                     {
@@ -411,7 +377,7 @@ const router = createBrowserRouter( [
                 ]
             },
             {
-                path: '/sellerInfo',
+                path: 'sellerInfo',
                 element: <SellerInfoContainer />,
                 children : [
                     {
@@ -425,15 +391,15 @@ const router = createBrowserRouter( [
                 ]
             },
             {
-                path: '/sellerAdjustment',
+                path: 'sellerAdjustment',
                 element: <Adjustment />,
             },
             {
-                path: '/sellerRevenue',
+                path: 'sellerRevenue',
                 element: <SellerRevenueList />,
             },
             {
-                path: '/sellerOrder',
+                path: 'sellerOrder',
                 element: <SellerOrderList />,
             },
         ]
@@ -441,6 +407,65 @@ const router = createBrowserRouter( [
     {
         path: '/adminLogin',
         element: <AdminLogin />
+    },
+    {
+        path: '/login',
+        element: <LoginContainer />,
+        children : [
+            {
+                index : true,
+                element: <Login />,
+            }
+        ]
+    },
+    {
+        path: '/join',
+        element: <JoinContainer />,
+        children : [
+            {
+                index : true,
+                element: <JoinType />,
+            },
+            {
+                path : "phone",
+                element: <JoinPhone />,
+            },
+            {
+                path : "complete",
+                element: <JoinComplete />,
+            },
+            {
+                path : "register",
+                element: <Join />,
+            },
+
+        ]
+    },
+    {
+        path: '/find',
+        element: <FindAccountContainer />,
+        children : [
+            {
+                index: true,
+                element: <FindType />,
+            },
+            {
+                path: "findId",
+                element: <FindId />,
+            },
+            {
+                path: "findIdComplete",
+                element: <FindIdComplete />,
+            },
+            {
+                path: "findPassword",
+                element: <FindPassword />,
+            },
+            {
+                path: "findPasswordComplete",
+                element: <FindPasswordComplete />,
+            },
+            ]
     },
     {
         path: '*',

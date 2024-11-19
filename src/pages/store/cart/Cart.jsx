@@ -1,11 +1,11 @@
 import React from 'react';
 
-const CommunityMain = () => {
+const Cart = () => {
     return (
         <div>
-            
+            카트
         </div>
     );
 };
 
-export default CommunityMain;
+export default Cart;
