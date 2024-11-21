@@ -7,7 +7,7 @@ import Header from "./Header";
 const Layout = () => {
     return (
         <S.LayoutWrapper>
-            <Header></Header>
+            <Header />
             <S.Main>
                 <Outlet />
             </S.Main>
