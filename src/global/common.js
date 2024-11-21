@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 // 공통 css
 export const flexRowCenter = css`
     display: flex;
-    flex-display: row;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 `
