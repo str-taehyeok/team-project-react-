@@ -21,9 +21,6 @@ const Header = () => {
         headerRef.current[1].style.opacity = 0;
     }
 
-    console.log(headerRef.current[0])
-    console.log(headerRef.current[1])
-
     return (
         <S.HeaderWrap ref={(el) => { headerRef.current[0] = el }} onMouseOut={handleMouseOut}>
             <S.Header>
