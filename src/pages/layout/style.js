@@ -28,12 +28,18 @@ const S = {}
         background-color: white;
         transition: all 0.4s ease-in;
         overflow: hidden;
+
+        &.active {
+            height : 240px;
+            background-color : #f8f9fa;
+        }
     `
     S.Header = styled.div`
         width : 1440px;
         margin : 0 auto;
         ${flexCenterRowSpaceBetween};
     `
+    
     S.LogoWrap = styled.div`
         width : 133px;
         height : 34px;
@@ -42,6 +48,7 @@ const S = {}
             width : 100%
         }
     `
+
     S.MenuWrap = styled.div`
         & > div {
             ${flexRowCenter};
@@ -74,6 +81,10 @@ const S = {}
         top : 60px;
         opacity: 0;
         transition: all 0.2s ease-in;
+
+        &.active {
+            opacity: 1;
+        }
     `
 
     S.SubMenu = styled.ul`
