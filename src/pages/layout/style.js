@@ -27,6 +27,7 @@ const S = {}
         z-index: 1000;
         background-color: white;
         transition: all 0.4s ease-in;
+        overflow: hidden;
     `
     S.Header = styled.div`
         width : 1440px;
