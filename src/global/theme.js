@@ -47,10 +47,10 @@ theme.FONT_SIZE = {
 }
 
 theme.FONT_WEIGHT = {
-    light: "100",
-    regular: "300",
-    medium: "400",
-    semiBold: "500",
+    thin: "100",
+    light: "300",
+    regular: "400",
+    medium: "500",
     bold: "700"
 }
 
