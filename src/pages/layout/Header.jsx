@@ -5,27 +5,17 @@ import { Link } from 'react-router-dom'
 const Header = () => {
 
     const member = "ksh1234";
-    const headerRef = useRef([]);
     const [isHover, setIsHover] = useState(false);
 
     const handleMouseOver = () => {
         setIsHover(true);
-        headerRef.current[0].style.height = "240px";
-        headerRef.current[0].style.backgroundColor = "#f8f9fa";
-        headerRef.current[1].style.opacity = 1;
     }
     const handleMouseOut = () => {
         setIsHover(false);
-        headerRef.current[0].style.height = "60px";
-        headerRef.current[0].style.backgroundColor = "#fff";
-        headerRef.current[1].style.opacity = 0;
     }
 
-    console.log(headerRef.current[0])
-    console.log(headerRef.current[1])
-
     return (
-        <S.HeaderWrap ref={(el) => { headerRef.current[0] = el }} onMouseOut={handleMouseOut}>
+        <S.HeaderWrap className={ isHover ? "active" : "" } onMouseOut={handleMouseOut}>
             <S.Header>
                 <S.LogoWrap>
                     <Link to={"/"}><img src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`} alt="로고" /></Link>
@@ -37,7 +27,7 @@ const Header = () => {
                         <li><Link to={""}>커뮤니티</Link></li>
                         <li><Link to={""}>마이홈</Link></li>
                     </S.MainMenu>
-                    <S.SubMenuWrap ref={(el) => { headerRef.current[1] = el }}>
+                    <S.SubMenuWrap className={ isHover ? "active" : "" } >
                         <S.SubMenu>
                             <li><Link to={""}>펫스널컬러테스트</Link></li>
                             <li></li>
