@@ -46,8 +46,6 @@ import ProductDetail from "../pages/store/product/ProductDetail";
 import SellerProductView from "../pages/store/product/SellerProductView";
 import StoreContainer from "../pages/store/store/StoreContainer";
 import StoreMain from "../pages/store/store/StoreMain";
-import StoreDog from "../pages/store/store/StoreDog";
-import StoreCat from "../pages/store/store/StoreCat";
 import Cart from "../pages/store/cart/Cart";
 import CommunityContainer from "../pages/community/community/CommunityContainer";
 import CommunityMain from "../pages/community/community/CommunityMain";
@@ -86,6 +84,12 @@ import NoticeList from "../pages/admin/notice/NoticeList";
 import NoticeUpdate from "../pages/admin/notice/NoticeUpdate";
 import NoticeWrite from "../pages/admin/notice/NoticeWrite";
 import SellerLogin from "../pages/login/SellerLogin";
+import StoreCat from "../pages/store/store/cat/StoreCat";
+import StoreDogContainer from "../pages/store/store/dog/StoreDogContainer";
+import Flushies from "../pages/store/store/dog/Flushies";
+import Treats from "../pages/store/store/dog/Treats";
+import Clothes from "../pages/store/store/dog/Clothes";
+import HealthCare from "../pages/store/store/dog/HealthCare";
 
 const router = createBrowserRouter( [
     {
@@ -180,15 +184,33 @@ const router = createBrowserRouter( [
                         index: true,
                         element: <StoreMain />
                     },
+                ]
+            },
+            {
+                path: '/storeDog',
+                element: <StoreDogContainer />,
+                children : [
                     {
-                        path: "dog",
-                        element: <StoreDog />
+                        index: true,
+                        element: <Flushies />
                     },
                     {
-                        path: "cat",
-                        element: <StoreCat />
+                        path: 'treats',
+                        element: <Treats />
+                    },
+                    {
+                        path: 'clothes',
+                        element: <Clothes />
+                    },
+                    {
+                        path: 'healthCare',
+                        element: <HealthCare />
                     },
                 ]
+            },
+            {
+                path: '/storeCat',
+                element: <StoreCat />,
             },
             {
                 path: '/cart',
