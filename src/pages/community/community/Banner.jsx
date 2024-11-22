@@ -7,13 +7,14 @@ import 'swiper/css/effect-cards';
 export default function Banner() {
   return (
     <>
+
       <Swiper
         effect={'cards'}
         grabCursor={true}
         modules={[EffectCards]}
         className="mySwiper"
       >
-      <banner>
+  
         <SwiperSlide>
           <img src="/assets/images/community/ordog.svg" alt="오랜지 강아지" />
         </SwiperSlide>
@@ -53,7 +54,7 @@ export default function Banner() {
         <SwiperSlide>
           <img src="/assets/images/community/dpcat.svg" alt="오랜지 강아지" />
         </SwiperSlide>
-        </banner>
+
       </Swiper>
     </>
   );
