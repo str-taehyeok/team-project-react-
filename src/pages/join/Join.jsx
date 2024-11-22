@@ -1,113 +1,104 @@
 import React from "react";
+import S from "./style";
+import { Link } from "react-router-dom";
 
 const Join = () => {
   return (
     <div>
-      <div className="SellerMain">
-        <div className="LogoBox">
-          <a href="../index.jsp">
-            <img id="Logo" src="../assets/images/member/logo.png" alt="로고" />
-          </a>
-        </div>
-        <div className="Input">
+      <S.SellerMain>
+        <S.LogoBox>
+          <S.LogoWrap>
+            <Link to={"/"}>
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`}
+                alt="로고"
+              />
+            </Link>
+          </S.LogoWrap>
+        </S.LogoBox>
+
+        <S.Input>
           <div>
-            <div className="TextBox">
-              <p id="Text">아이디</p>
-              <p id="Text" className="Red">*</p>
-            </div>
-            <div className="InputContainer">
-              <input
-                className="InputButton"
+            <S.TextBox>
+              <S.Red id="Text">아이디</S.Red>
+              <S.Red id="Text">*</S.Red>
+            </S.TextBox>
+            <S.InputContainer>
+              <S.InputButton
                 type="email"
                 id="Email"
                 name="buyerEmail"
                 placeholder="아이디(이메일)"
               />
-              <button className="AuthButton" id="EmailCheck">
-                확인
-              </button>
-              <p className="Result" id="EmailResult"></p>
-            </div>
+              <S.AuthButton id="EmailCheck">확인</S.AuthButton>
+              <p id="EmailResult"></p>
+            </S.InputContainer>
           </div>
 
           <div>
-            <div className="TextBox">
-              <p id="Text">비밀번호</p>
-              <p id="Text" className="Red">*</p>
-            </div>
-            <div className="InputContainer">
-              <input
-                className="InputButton"
+            <S.TextBox>
+              <S.Red id="Text">비밀번호</S.Red>
+              <S.Red id="Text">*</S.Red>
+            </S.TextBox>
+            <S.InputContainer>
+              <S.InputButton
                 type="password"
-                name="buyerPassword"
-                id="Password"
+                name="sellerPassword"
                 placeholder="비밀번호"
               />
-              <div className="Mark"></div>
-              <p className="Result" id="PasswordResult"></p>
-            </div>
+              <S.Mark></S.Mark>
+              <p id="PasswordResult"></p>
+            </S.InputContainer>
           </div>
 
           <div>
-            <div className="TextBox">
-              <p id="Text">비밀번호 확인</p>
-              <p id="Text" className="Red">*</p>
-            </div>
-            <div className="InputContainer">
-              <input
-                className="InputButton"
+            <S.TextBox>
+              <S.Red id="Text">비밀번호 확인</S.Red>
+              <S.Red id="Text">*</S.Red>
+            </S.TextBox>
+            <S.InputContainer>
+              <S.InputButton
                 type="password"
                 name="passwordConfirm"
                 id="PasswordConfirm"
                 placeholder="비밀번호 확인"
               />
               <p className="Result" id="PasswordConfirmResult"></p>
-            </div>
+            </S.InputContainer>
           </div>
 
           <div>
-            <div className="TextBox">
-              <p id="Text">닉네임</p>
-              <p id="Text" className="Red">*</p>
-            </div>
-            <div className="InputContainer">
-              <input
-                className="InputButton"
+            <S.TextBox>
+              <S.Red id="Text">닉네임</S.Red>
+              <S.Red id="Text">*</S.Red>
+            </S.TextBox>
+            <S.InputContainer>
+              <S.InputButton
                 type="name"
                 id="Name"
                 name="nickName"
                 placeholder="별명"
               />
-              <button className="AuthButton" id="NameCheck">
-                확인
-              </button>
-              <p className="Result" id="NameResult"></p>
-            </div>
+              <S.AuthButton id="NameCheck">확인</S.AuthButton>
+              <p id="NameResult"></p>
+            </S.InputContainer>
           </div>
 
           <div>
-            <div className="TextBox">
-              <p id="Text">이름</p>
-              <p id="Text" className="Red">*</p>
-            </div>
-            <div className="InputContainer">
-              <input
-                className="InputButton"
-                type="name"
-                id="Name"
-                name="name"
-                placeholder="이름"
-              />
-            </div>
+            <S.TextBox>
+              <S.Red id="Text">이름</S.Red>
+              <S.Red id="Text">*</S.Red>
+            </S.TextBox>
+            <S.InputButton type="text" name="name" placeholder="이름" />
+            <p id="NameResult"></p>
           </div>
 
           <div>
-            <div className="TextBox">
-              <p id="Text">휴대전화 번호</p>
-              <p id="Text" className="Red">*</p>
-            </div>
-            <input
-              className="InputButton"
+            <S.TextBox>
+              <S.Red id="Text">휴대전화 번호</S.Red>
+              <S.Red id="Text">*</S.Red>
+            </S.TextBox>
+            <S.InputButton
               type="string"
               name="phone"
               placeholder=""
@@ -116,89 +107,76 @@ const Join = () => {
           </div>
 
           <div>
-            <div className="TextBox">
-              <p id="Text">주소</p>
-              <p id="Text" className="Red">*</p>
-            </div>
-            <div className="InputContainer">
-              <input
-                className="InputButton"
+            <S.TextBox>
+              <S.Red id="Text">주소</S.Red>
+              <S.Red id="Text">*</S.Red>
+            </S.TextBox>
+            <S.InputContainer>
+              <S.InputButton
                 type="text"
                 id="Sample6Postcode"
                 placeholder="우편번호"
               />
               <p id="AddressResult"></p>
-              <input
-                className="InputButton1"
+              <S.InputButton1
                 type="text"
                 name="address"
                 id="Sample6Address"
                 placeholder="기본주소"
               />
-              <input
-                className="InputButton1"
+              <S.InputButton1
                 type="text"
                 name="address"
                 id="Sample6DetailAddress"
                 placeholder="상세주소"
               />
               <p id="DetailAddressResult"></p>
-              <button
-                className="AuthButton"
-                type="button"
-                onClick="sample6_execDaumPostcode()"
-              >
+              <S.AuthButton type="button" onClick="sample6_execDaumPostcode()">
                 우편번호
-              </button>
-            </div>
+              </S.AuthButton>
+            </S.InputContainer>
           </div>
 
-          <div className="Line"></div>
+          <S.Line></S.Line>
 
           <div>
-            <div className="TextBox1">
-              <p id="Text1">약관 및 개인정보수집 동의</p>
-              <p id="Text1" className="Red">*</p>
-            </div>
+            <S.TextBox1>
+              <S.Red id="Text1">약관 및 개인정보수집 동의</S.Red>
+              <S.Red id="Text1">*</S.Red>
+            </S.TextBox1>
 
-            <div className="AgreeBox">
+            <S.AgreeBox>
               <input type="hidden" name="smscheck" value="1" />
               <input type="hidden" name="emailcheck" value="1" />
-              <div className="AgreeAll">
+              <S.AgreeAll>
                 <label>
-                  <input type="checkbox" name="allagree" className="AllAgree" />
-                  <span className="Checkmark"></span>
+                  <S.AllAgree type="checkbox" name="allagree" />
                 </label>
                 <p className="Text2">모두 동의합니다.</p>
-              </div>
+              </S.AgreeAll>
 
-              <div className="Line2"></div>
+              <S.Line2></S.Line2>
 
               {["1", "2", "3", "4"].map((num) => (
-                <div className="Agree" key={num}>
+                <S.Agree key={num}>
                   <label>
-                    <input
-                      type="checkbox"
-                      name={`agree${num}`}
-                      className="AgreeInput"
-                    />
-                    <span className="Checkmark"></span>
+                    <input type="checkbox" name={`agree${num}`} />
                   </label>
-                  <div className="TextBox2">
+                  <S.TextBox2>
                     <p className="Text3">이용약관 동의 (필수)</p>
                     <p className="Text4">자세히보기</p>
-                  </div>
-                </div>
+                  </S.TextBox2>
+                </S.Agree>
               ))}
-            </div>
+            </S.AgreeBox>
             <p id="AgreeResult" style={{ color: "red" }}></p>
           </div>
-        </div>
+        </S.Input>
 
-        <button type="button" className="LoginButton">
+        <S.LoginButton type="button">
           회원가입
-        </button>
-      </div>
+        </S.LoginButton>
+      </S.SellerMain>
     </div>
   );
 };
