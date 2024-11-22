@@ -65,6 +65,7 @@ const S = {}
   justify-content: center;
   width: 464px;
   padding-bottom: 40px;
+
   &:img{
     width: 236px;
     height: 60px;
