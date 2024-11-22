@@ -66,7 +66,7 @@ const S = {}
   width: 464px;
   padding-bottom: 40px;
 
-  &:img{
+  & img{
     width: 236px;
     height: 60px;
     box-sizing: border-box;
