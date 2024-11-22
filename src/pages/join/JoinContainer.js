@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-
-
+import { JoinProvider } from "../../context/joinContext";
 
 const JoinContainer = () => {
 
-
-
   return (
-    <div>
-
+    <JoinProvider>
       <Outlet />
-    </div>
+    </JoinProvider>
   );
 };
 
