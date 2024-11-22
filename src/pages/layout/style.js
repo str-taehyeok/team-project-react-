@@ -6,7 +6,10 @@ import theme from "../../global/theme";
 
 const S = {}
 
-    S.LayoutWrapper = styled.div``;
+    S.LayoutWrapper = styled.div`
+        max-width: 1920px;
+        margin : 0 auto;
+    `;
     S.Main = styled.main`
         // 헤더 카테고리 영역 확보
         margin-top : 65px;
@@ -14,7 +17,7 @@ const S = {}
     `;
 
     S.Footer = styled.footer`
-        width: 100dvw;
+        width: 100%;
         height : 322px;   
         background-color: #F8F9FA;
         color: black;
