@@ -51,9 +51,15 @@ S.AdminBtn = styled.div`
     background-color:#828282;
     color: #ffffff;
   }
-
 `
-S.HeaderWrap = styled.div``
+
+S.LoginMain = styled.div`
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  width: 464px;
+  padding-bottom: 40px;
+`
 S.HeaderWrap = styled.div``
 S.HeaderWrap = styled.div``
 S.HeaderWrap = styled.div``
