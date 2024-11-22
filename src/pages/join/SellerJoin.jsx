@@ -22,16 +22,15 @@ const Join = () => {
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
             <S.InputContainer>
-              <input
-                className="InputButton"
+              <S.InputButton
                 type="text"
                 name="sellerEmail"
                 id="Email"
                 placeholder="아이디(이메일)"
               />
-              <button className="AuthButton" id="EmailCheck">
+              <S.AuthButton id="EmailCheck">
                 확인
-              </button>
+              </S.AuthButton>
               <p id="EmailResult"></p>
             </S.InputContainer>
           </div>
@@ -187,9 +186,9 @@ const Join = () => {
             </S.TextBox2>
           </S.Agree2>
         </S.AgreeBox>
-        <button type="button" className="LoginButton">
+        <S.LoginButton type="button">
           회원가입
-        </button>
+        </S.LoginButton>
       </S.SellerMain>
     </div>
   );
