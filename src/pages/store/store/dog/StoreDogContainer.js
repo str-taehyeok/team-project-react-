@@ -1,5 +1,7 @@
 import React from 'react';
+import S from "./style";
 import { Link, Outlet } from 'react-router-dom';
+import Footer from "../../../layout/Footer";
 
 const StoreDogContainer = () => {
 
@@ -28,22 +30,25 @@ const StoreDogContainer = () => {
 ]
  
 const categorys = categoryList.map(({name, location, src}, i) => (
-    <Link key={i} to={location}>
-        <img src={process.env.PUBLIC_URL + src} />
-        <span>{name}</span>
-    </Link>
+    <S.CategoriesWrap>
+        <Link key={i} to={location}>
+            <img src={process.env.PUBLIC_URL + src} />
+            <S.Category>{name}</S.Category>
+        </Link>
+    </S.CategoriesWrap>
 ))
 
   return (
-    <div>
+    <S.Content>
       <div>
-        <img src={process.env.PUBLIC_URL+ "/assets/images/store/dog-banner.png"} alt="dog banner" />
+        <S.Banner src={process.env.PUBLIC_URL+ "/assets/images/store/dog-banner.png"} alt="dog banner" />
       </div>
-      {categorys}
+        <S.CategoriesWrap>{categorys}</S.CategoriesWrap>
       <div>
         <Outlet />
       </div>
-    </div>
+        <Footer />
+    </S.Content>
   );
 };
 
