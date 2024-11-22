@@ -1,11 +1,20 @@
 import React from 'react';
+import ReactDOM from "react-dom";
+import Banner from "./Banner.jsx";
+
+
 
 const CommunityMain = () => {
     return (
-        <div>
-            커뮤니티 메인
+        <div className='banner'>
+ 
         </div>
     );
 };
 
 export default CommunityMain;
+
+
+
+
+

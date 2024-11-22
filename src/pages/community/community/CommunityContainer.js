@@ -1,10 +1,14 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
+import Banner from './Banner';
+import S from './style';
 
 const CommunityContainer = () => {
     return (
         <div>
-            community container
+            <S.BannerWrapper>
+                <Banner />
+            </S.BannerWrapper>
             <Outlet />
         </div>
     );
