@@ -1,25 +1,25 @@
 import React from "react";
 import S from "./style";
+import { Link } from "react-router-dom"
 
 const Footer = () => {
   return (
     <S.Footer>
         <S.FooterContainer>
             <S.FooterLogo>
-              <img src="assets/images/layout/powpow-logo.png"></img>
+              <img src={`${process.env.PUBLIC_URL}/assets/images/layout/powpow-logo.png`} alt="로고" />
             </S.FooterLogo>
             
               <S.FooterContent>
                <S.FooterInfo>
-                    <strong><a href="/notice">공지사항</a></strong>
+                    <Link to={""}><strong>공지사항</strong></Link>
                     <p>
-                      <strong>MON - FRI</strong><br />09:00 - 18:00 <br />
-                      매주 수요일 휴무
+                      <strong>MON - FRI</strong><br />09:00 - 18:00 <br />매주 수요일 휴무
                     </p>
                     <p>
                       <strong>(주)포포</strong> | 공동 제작 김세환 류재은 이진아 김태혁 문세연 이소연 최도윤 신민철<br />
                       서울 강남구 테헤란로 146 현익빌딩 3층, 4층<br />
-                      <a href="mailto:contact@powpow.com">contact@powpow.com</a>
+                      <Link to={"mailto:contact@powpow.com"}><strong>contact@powpow.com</strong></Link>
                     </p>
               </S.FooterInfo>
               <S.FooterDisclaimer>
