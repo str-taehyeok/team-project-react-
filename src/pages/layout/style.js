@@ -112,12 +112,12 @@ const S = {}
     `
 
 // Footer css
-S.FooterContainer = styled.div`
-    width: 1200px;
+    S.FooterContainer = styled.div`
+    width: 1440px;
 `
 
     S.FooterLogo = styled.div`
-    margin: 30px 0 17px 0;
+    margin: 17px 0 17px 0;
     img {
     width: 113px;
     height: 35px;
