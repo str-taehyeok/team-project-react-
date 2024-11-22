@@ -85,6 +85,7 @@ import NoticeContainer from "../pages/admin/notice/NoticeContainer";
 import NoticeList from "../pages/admin/notice/NoticeList";
 import NoticeUpdate from "../pages/admin/notice/NoticeUpdate";
 import NoticeWrite from "../pages/admin/notice/NoticeWrite";
+import SellerLogin from "../pages/login/SellerLogin";
 
 const router = createBrowserRouter( [
     {
@@ -406,6 +407,10 @@ const router = createBrowserRouter( [
             {
                 index : true,
                 element: <Login />,
+            },
+            {
+                path : 'seller',
+                element: <SellerLogin />,
             }
         ]
     },
@@ -473,7 +478,6 @@ const router = createBrowserRouter( [
 ],
 {
     future: {
-        v7_startTransition: true,
         v7_fetcherPersist : true,
         v7_normalizeFormMethod : true,
         v7_partialHydration : true,

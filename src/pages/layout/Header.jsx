@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom'
 
 const Header = () => {
 
-    const member = "ksh1234";
+    const member = "";
     const [isHover, setIsHover] = useState(false);
 
     const handleMouseOver = () => {
@@ -54,7 +54,7 @@ const Header = () => {
                     { member ? (
                         <Link to={""}>로그아웃</Link>
                     ) : (
-                        <Link to={""}>로그인</Link>
+                        <Link to={"/login"}>로그인</Link>
                     )}
                 </S.IconWrap>
             </S.Header>

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import { css } from "styled-components";
 
 // 공통 css
 export const flexRowCenter = css`
