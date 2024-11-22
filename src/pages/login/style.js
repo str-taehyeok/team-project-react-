@@ -57,7 +57,19 @@ const S = {}
     width: 464px;
     padding-bottom: 40px;
   `
-  S.HeaderWrap = styled.div``
-  S.LogoBox = styled.div``;
+  S.HeaderWrap = styled.div``;
+
+  S.LogoBox = styled.div`
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  width: 464px;
+  padding-bottom: 40px;
+  &:img{
+    width: 236px;
+    height: 60px;
+    box-sizing: border-box;
+  }
+  `
 
 export default S;
