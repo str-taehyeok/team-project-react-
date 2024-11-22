@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import {
+  flexCenterRowSpaceBetween, flexRowCenter, flexColumnCenter, h7Medium, h10Medium
+} from '../../global/common'
 
 const S = {}
 
@@ -10,6 +13,68 @@ height : 60px;
     width : 100%
 }
 `
+S.Text = styled.p`
+  margin-top: 55px;
+`
+
+S.JoinMain = styled.div`
+  width: 464px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  margin: 235px auto;
+`
+
+S.RadioBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  gap: 30px;
+
+  & input {
+    flex-shrink:0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #D9D9D9;
+    border-radius: 50%;
+    outline: none; 
+    cursor: pointer;
+    margin: 0;
+  }
+
+  & input :checked {
+    background-color: #113F8A;
+    border: 3px solid #fff; 
+    box-shadow: 0 0 0 1px #113F8A;
+  }
+
+  & label {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center; 
+    justify-content: center;
+    gap: 13px;
+  }
+
+`
+S.NextButton = styled.button`
+  width: 464px;
+  height: 55px;
+  background-color: #FFC303;
+  font-size: 16px;
+  font-weight: bold;
+  border-style: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  
+`
 
 S.SellerMain = styled.div`
   width: 464px;
@@ -17,7 +82,7 @@ S.SellerMain = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px auto;
+  margin: 235px auto;
 `
 
 S.Input = styled.div`
@@ -46,6 +111,9 @@ S.InputButton = styled.input`
   box-sizing: border-box;
   padding: 19px 26px;
   outline:none;
+`
+S.AuthNumberContainer = styled.div`
+ margin-top: 10px; 
 `
 
 S.AuthButton = styled.button`
@@ -178,6 +246,51 @@ S.InputButton1 = styled.input`
   padding: 19px 26px;
   outline:none;
   margin-top: 9px;
+`
+S.PhoneMain = styled.div`
+  width: 464px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+`
+
+S.CompletionMain = styled.div`
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  margin: 0 auto;
+  height: 80vh;
+`
+
+S.NextButton = styled.div`
+  width: 464px;
+  height: 55px;
+  background-color: #FFC303;
+  font-size: 16px;
+  font-weight: bold;
+  border-style: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin-top: 30px;
+
+`
+
+S.Box = styled.div`
+  width: 1280px;
+  height: 340px;
+  border-top: solid 1px #828282;
+  border-bottom: solid 1px #828282 ;
+  box-sizing: border-box; 
+  padding: 79px 0; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
 `
 
 export default S;
