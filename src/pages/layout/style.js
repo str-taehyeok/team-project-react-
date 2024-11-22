@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import {
-    flexCenterRowSpaceBetween, flexRowCenter, flexColumnCenter, h7Medium
+    flexCenterRowSpaceBetween, flexRowCenter, flexColumnCenter, h7Medium, h10Medium
 } from '../../global/common'
+import theme from "../../global/theme";
 
 const S = {}
 
@@ -11,11 +12,17 @@ const S = {}
         margin-top : 65px;
         flex: 1;    
     `;
+
     S.Footer = styled.footer`
         width: 100dvw;
-        height : 322px;
-        border : solid 1px #000;
-    `
+        height : 322px;   
+        background-color: #F8F9FA;
+        color: black;
+        opacity: 0.5;
+        ${flexRowCenter};
+        font-size: ${theme.FONT_SIZE.h10};
+    `;
+
 
 //     Header CSS
     S.HeaderWrap = styled.div`
@@ -103,5 +110,34 @@ const S = {}
             height : 20px;
         }
     `
+
+// Footer css
+S.FooterContainer = styled.div`
+    width: 1200px;
+`
+
+    S.FooterLogo = styled.div`
+    margin: 30px 0 17px 0;
+    img {
+    width: 113px;
+    height: 35px;
+  }
+`
+
+    S.FooterContent = styled.div`
+    margin: 0 auto;
+    margin-bottom: 17px;
+`
+
+   S.FooterInfo = styled.div`
+   display: flex;
+   flex-direction: column;
+   gap: 17px;
+   margin-bottom: 17px;
+`
+
+   S.FooterDisclaimer = styled.div`
+   margin-bottom: 17px;
+`
 
 export default S;
