@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import S from "./style";
 import { Link } from "react-router-dom";
+import { JoinContext } from "../../context/joinContext";
 
 const sms = "";
 
 const JoinPhone = () => {
+
+  const { state, action } = useContext(JoinContext)
+
   return (
     <div>
       <S.PhoneMain>
@@ -84,7 +88,12 @@ const JoinPhone = () => {
           </div>
         </S.Input>
         <input type="hidden" name="phone" value="${param.phone}" />
-        <S.LoginButton type="button">다음</S.LoginButton>
+        {state.member === "buyer" ? (
+          <Link to={"/join/buyer"}><S.LoginButton type="button">다음</S.LoginButton></Link>
+        ) : (
+          <Link to={"/join/seller"}><S.LoginButton type="button">다음</S.LoginButton></Link>
+        )}
+        
       </S.PhoneMain>
     </div>
   );

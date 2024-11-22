@@ -1,25 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import S from "./style";
+import { JoinContext } from "../../context/joinContext";
 
 const JoinType = () => {
-  const [userType, setUserType] = useState("");
-  const navigate = useNavigate();
 
-
-  const goToNext = () => {
-    if (!userType) {
-      alert("가입 유형을 선택해주세요.");
-      return;
-    }
-
-    if (userType === "A") {
-      navigate("/join/member");
-    } else if (userType === "B") {
-      navigate("/join/seller");
-    }
-  };
-
+  const { state, action } = useContext(JoinContext)
+  
   return (
     <div>
       <S.JoinMain>
@@ -40,9 +27,9 @@ const JoinType = () => {
               type="radio"
               name="user"
               id="UserA"
-              value="A"
+              value="buyer"
               required
-              onChange={(e) => setUserType(e.target.value)} // 값 설정
+              onChange={(e) => action.setMember(e.target.value)} // 값 설정
             />
             <p className="Text1">POWPOW 회원</p>
           </label>
@@ -51,14 +38,14 @@ const JoinType = () => {
               type="radio"
               name="user"
               id="UserB"
-              value="B"
+              value="seller"
               required
-              onChange={(e) => setUserType(e.target.value)} // 값 설정
+              onChange={(e) => action.setMember(e.target.value)} // 값 설정
             />
             <p className="Text1">POWPOW 판매자</p>
           </label>
         </S.RadioBox>
-        <S.NextButton onClick={goToNext}>다음</S.NextButton>
+        <Link to={"/join/phone"}><S.NextButton>다음</S.NextButton></Link>
       </S.JoinMain>
     </div>
   );
