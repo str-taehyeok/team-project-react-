@@ -1,4 +1,5 @@
 import React from 'react';
+import S from "./style";
 import { useForm } from 'react-hook-form';
 
 const Login = () => {
@@ -26,7 +27,7 @@ const Login = () => {
         <p>일반회원 로그인</p>
         <label>
         <p>이메일</p>
-        <input type="text" id='email' placeholder='아이디를 입력하세요.'
+        <S.Input type="text" id='email' placeholder='아이디를 입력하세요.'
             {...register("email", {
             required : true,
             pattern : {
@@ -45,7 +46,7 @@ const Login = () => {
         {/* 비밀번호 로직 만들기 */}
         <label>
         <p>비밀번호</p>
-        <input type="password" id='password' placeholder='비밀번호를 입력하세요.' 
+        <S.Input type="password" id='password' placeholder='비밀번호를 입력하세요.' 
             autoComplete='off'
             {...register("password", {
             required : true,
