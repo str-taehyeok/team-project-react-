@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 const AdminLogin = () => {
 
   const { 
-        register, handleSubmit, formState: {isSubmitting, errors}
+        register, handleSubmit, getValues, formState: {isSubmitting, isSubmitted, errors}
     } = useForm({mode:"onChange"});
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -45,7 +45,6 @@ const AdminLogin = () => {
       <label>
         <p>비밀번호</p>
         <input type="password" id='password' placeholder='비밀번호를 입력하세요.' 
-        autoComplete='off'
           {...register("password", {
             required : true,
             pattern : {
