@@ -4,7 +4,7 @@ import {Outlet} from "react-router-dom";
 const StoreContainer = () => {
     return (
         <div>
-            store container
+            <div>배너</div>
             <Outlet />
         </div>
     );

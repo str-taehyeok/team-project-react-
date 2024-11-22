@@ -1,4 +1,5 @@
 import { css } from "styled-components";
+import theme from "./theme";
 
 // 공통 css
 export const flexRowCenter = css`
@@ -19,6 +20,71 @@ export const flexCenterRowSpaceBetween = css`
     justify-content: space-between;
     align-items: center;
 `
+
+// color
+export const black = css`
+  color: ${theme.PALETTE.black};
+`
+export const white = css`
+  color: ${theme.PALETTE.white};
+`
+export const blue300 = css`
+  color: ${theme.PALETTE.main300};
+`
+export const blue200 = css`
+  color: ${theme.PALETTE.main200};
+`
+export const blue100 = css`
+  color: ${theme.PALETTE.main100};
+`
+export const yellow200 = css`
+  color: ${theme.PALETTE.secondaryYellow200};
+`
+export const yellow100 = css`
+  color: ${theme.PALETTE.secondaryYellow100};
+`
+export const orange = css`
+  color: ${theme.PALETTE.secondaryOrange};
+`
+export const red = css`
+  color: ${theme.PALETTE.secondaryRed};
+`
+export const gray500 = css`
+  color: ${theme.PALETTE.gray500};
+`
+export const gray400 = css`
+  color: ${theme.PALETTE.gray400};
+`
+export const gray300 = css`
+  color: ${theme.PALETTE.gray300};
+`
+export const gray200 = css`
+  color: ${theme.PALETTE.gray200};
+`
+export const gray100 = css`
+  color: ${theme.PALETTE.gray100};
+`
+export const footer = css`
+  color: ${theme.PALETTE.grayFooter};
+`
+export const petOrange = css`
+  color: ${theme.PALETTE.petsonalOrange};
+`
+export const petLightGold = css`
+  color: ${theme.PALETTE.petsonalLightGold};
+`
+export const petGradation = css`
+  color: ${theme.PALETTE.petsonalGradation};
+`
+export const petLightPurple = css`
+  color: ${theme.PALETTE.petsonalLightPurple};
+`
+export const petDeepPurple = css`
+  color: ${theme.PALETTE.petsonalDeepPurple};
+`
+
+
+
 // bold font
 export const h1Bold = css`
     font-size: 40px;
