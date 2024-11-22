@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-import theme from "/theme";
+import theme from "./theme";
 
 // 공통 css
 export const flexRowCenter = css`
