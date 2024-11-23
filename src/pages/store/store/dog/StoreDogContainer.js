@@ -32,7 +32,7 @@ const StoreDogContainer = () => {
 const categorys = categoryList.map(({name, location, src}, i) => (
     <S.CategoriesWrap>
         <Link key={i} to={location}>
-            <img src={process.env.PUBLIC_URL + src} />
+            <img src={process.env.PUBLIC_URL + src} alt={"상품사진"}/>
             <S.Category>{name}</S.Category>
         </Link>
     </S.CategoriesWrap>

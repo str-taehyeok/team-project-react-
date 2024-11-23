@@ -18,7 +18,6 @@ const FlushieColor = ({productList}) => {
 
   return (
     <>
-
       <S.ColorProducts>
           < S.Box>
               <S.BoxTitle>강아지 컬러 추천 상품</S.BoxTitle>
@@ -30,14 +29,9 @@ const FlushieColor = ({productList}) => {
       </S.ColorProducts>
 
       {/*<div>카테 고리별 필터 </div>*/}
-      {/*<S.ProductContainer>*/}
           <S.ProductWrap>
               {colorProducts}
           </S.ProductWrap>
-          <S.ProductWrap>
-              {colorProducts}
-          </S.ProductWrap>
-      {/*</S.ProductContainer>*/}
     </>
     );
 };

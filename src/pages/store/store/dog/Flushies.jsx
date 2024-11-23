@@ -6,6 +6,7 @@ import FlushieSpecial from './flushies/FlushieSpecial';
 import FlushieRecommend from './flushies/FlushieRecommend';
 
 // 더미데이터 확인용
+
 const productList = [
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
@@ -27,56 +28,58 @@ const productList = [
         productPrice : 4_000,
         src : "/assets/images/store/dental-dog.png"
     },
-    // {
-    //     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-    //     productPrice : 12_900,
-    //     src : "/assets/images/store/dental-dog.png"
-    // },
-    // {
-    //     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-    //     productPrice : 14_000,
-    //     src : "/assets/images/store/dental-dog.png"
-    // },
-    // {
-    //     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-    //     productPrice : 7_900,
-    //     src : "/assets/images/store/dental-dog.png"
-    // },
-    // {
-    //     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-    //     productPrice : 8_000,
-    //     src : "/assets/images/store/dental-dog.png"
-    // },
+    {
+        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
+        productPrice : 12_900,
+        src : "/assets/images/store/dental-dog.png"
+    },
+    {
+        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
+        productPrice : 14_000,
+        src : "/assets/images/store/dental-dog.png"
+    },
+    {
+        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
+        productPrice : 7_900,
+        src : "/assets/images/store/dental-dog.png"
+    },
+    {
+        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
+        productPrice : 8_000,
+        src : "/assets/images/store/dental-dog.png"
+    },
 ]
 
 
 const Flushies = () => {
 
     const bestProducts = productList.map(({productName, productPrice, src}, i) => (
+        <S.BestProduct key={i} >
+            <img src={src} alt={"상품" + (i + 1)} />
+            <span>{productName}</span>
+            <span style={{ fontWeight: 700 }}>{productPrice}</span>
+            <button>담기</button>
+        </S.BestProduct>
+    ))
+
+    const specialProducts = productList.map(({productName, productPrice, src}, i) => (
+        <>
+        <S.SpecialProduct key={i}>
+            <img src={src} alt={"상품" + (i + 1)}/>
+            <span>{productName}</span>
+            <span style={{ fontWeight: 700 }}>{productPrice}</span>
+            <button>담기</button>
+        </S.SpecialProduct >
+        </>
+    ))
+
+    const recommendProducts = productList.map(({productName, productPrice, src}, i) => (
         <S.Product key={i} >
             <img src={src} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
             <span style={{ fontWeight: 700 }}>{productPrice}</span>
             <button>담기</button>
         </S.Product>
-    ))
-
-    const specialProducts = productList.map(({productName, productPrice, src}, i) => (
-        <div key={i} >
-            <img src={src} alt={"상품" + (i + 1)} />
-            <span>{productName}</span>
-            <span style={{ fontWeight: 700 }}>{productPrice}</span>
-            <button>담기</button>
-        </div>
-    ))
-
-    const recommendProducts = productList.map(({productName, productPrice, src}, i) => (
-        <div key={i} >
-            <img src={src} alt={"상품" + (i + 1)} />
-            <span>{productName}</span>
-            <span style={{ fontWeight: 700 }}>{productPrice}</span>
-            <button>담기</button>
-        </div>
     ))
 
     return (

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { flexRowCenter, flexColumnCenter, h8Medium } from '../../../../global/common'
+import { flexRowCenter, flexColumnCenter, h8Medium, h1Bold } from '../../../../global/common'
 
 const S = {}
 
@@ -33,11 +33,19 @@ const S = {}
     // `;
 
     S.ProductWrap = styled.div`
-        display: flex;
-        flex-direction: row;
+        grid-template-columns: repeat(4, 1fr);
+        display: grid;
         justify-content: space-between;
         gap: 24px;
     `;
+
+    // S.ProductWrap2 = styled.div`
+    //     display: flex;
+    //     flex-direction: row;
+    //     justify-content: space-between;
+    //     gap: 24px;
+    //     margin-top: 39px;
+    // `;
 
     S.Product = styled.div`
         width: 342px;
@@ -62,7 +70,7 @@ const S = {}
         & img{
             width: 342px;
             height: 341px;
-            border-radius: 20px;
+            border-radius: 10px;
         }
     `;
 
@@ -77,10 +85,9 @@ const S = {}
             border-radius: 20px;
             width: 96px;
             height: 42px;
-            margin-bottom: 26px;
             background-color: #fff;
             border-color: #888888;
-
+            margin-bottom: 50px;
         }
     `;
 
@@ -89,5 +96,111 @@ const S = {}
         margin-right: 676px;
         font-weight: bold;
     `;
+
+    S.BestProducts = styled.div`
+        margin-top: 180px;
+        width: 1440px;
+    `;
+
+    S.BestProduct = styled.div`
+        margin-top: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        overflow: auto;
+        
+        & img{
+            width: 244px;
+            height: 250px;
+            border-radius: 10px;
+        }
+        
+        & span{
+            display: flex;
+            width: 244px;
+            margin-top: 5px;
+        }
+        
+        & button{
+            width: 244px;
+            height: 36px;
+            margin-top: 9px;
+            border-radius: 5px;
+            background-color: #fff;
+            border-color: #D9D9D9;
+        }
+    `;
+
+    S.BestProductWrap = styled.div`
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 55px;
+    `;
+
+    S.RecommendedProduct = styled.div`
+        margin-top: 150px;
+    `;
+    S.Title = styled.span`
+        ${h1Bold};
+        margin-bottom: 50px;
+    `;
+
+    S.RecommendedWrap = styled.div`
+        grid-template-columns: repeat(4, 1fr);
+        display: grid;
+        justify-content: space-between;
+        gap: 24px;
+        margin-top: 50px;
+    `;
+
+    S.SpecialProduct = styled.div`
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 244px;
+        height: 369px;
+        margin-top:50px;
+        
+        & img{
+            width: 244px;
+            height: 244px;
+            border-radius: 10px;
+        }
+
+        &:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        
+        
+        & button{
+            width: 244px;
+            height: 31px;
+            border-radius: 5px;
+            margin-top: 6px;
+            background-color: #fff;
+            border-color: #D9D9D9;
+        }
+        & span{
+            display: flex;
+            width: 244px;
+            margin-top: 10px;
+        }
+    `
+    S.SpecialProducts = styled.div`
+        display: flex;
+        flex-direction: row;
+        width: 1440px;
+        overflow: hidden;
+        gap: 50px;
+    `
+    S.SpecialWrap = styled.div`
+        margin-top: 150px;
+        grid-template-columns: repeat(4, 1fr);
+    `
+
 
 export default S;
