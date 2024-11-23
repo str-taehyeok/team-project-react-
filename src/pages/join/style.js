@@ -61,19 +61,19 @@ S.RadioBox = styled.div`
 
 `
 S.NextButton = styled.button`
-  width: 464px;
-  height: 55px;
-  background-color: #FFC303;
-  font-size: 16px;
-  font-weight: bold;
-  border-style: none;
-  border-radius: 20px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  
+    width: 464px;
+    height: 55px;
+    background-color: #FFC303;
+    font-size: 16px;
+    font-weight: bold;
+    border-style: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 S.SellerMain = styled.div`
@@ -208,16 +208,19 @@ S.AgreeBox = styled.div`
 `
 
 S.LoginButton = styled.div`
-  width: 464px;
-  height: 55px;
-  background-color: #FFC303;
-  font-size: 16px;
-  font-weight: bold;
-  border-style: none;
-  border-radius: 20px;
-  box-sizing: border-box;
-  cursor: pointer;
-  margin-top: 30px;
+    width: 464px;
+    height: 55px;
+    background-color: #FFC303;
+    font-size: 16px;
+    font-weight: bold;
+    border-style: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 S.Agree2 = styled.div`
