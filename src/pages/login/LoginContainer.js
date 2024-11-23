@@ -1,8 +1,12 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Link, Outlet } from "react-router-dom";
 import S from './style';
 
 const LoginContainer = () => {
+    const[activeBtn, setActiveButton] = useState("member");
+    const handleButtonClick = (button) => {
+        setActiveButton(button);
+    };
     return (
         <S.root>
             <S.LoginMain>
@@ -12,8 +16,13 @@ const LoginContainer = () => {
                     </Link>
                 </S.LogoBox>
                 <S.Tap>
-                    <S.MemberBtn><Link to={"/login"}>회원</Link></S.MemberBtn>
-                    <S.SellerBtn><Link to={"/login/seller"}>판매자</Link></S.SellerBtn>
+                    <S.MemberBtn isActive={activeBtn === "member"} 
+                        onClick={() => handleButtonClick("member")}>
+                        <Link to={"/login"}>회원</Link></S.MemberBtn>
+
+                    <S.SellerBtn  isActive={activeBtn === "seller"} 
+                        onClick={() => handleButtonClick("seller")}>
+                        <Link to={"/login/seller"}>판매자</Link></S.SellerBtn>
                 </S.Tap>
                 <div>
                     <Outlet />

@@ -83,11 +83,26 @@ const Login = () => {
                 </Link>
             </S.TextBox>
             <S.Text2>Or continue with</S.Text2>
-            {/* <S.ApiLogo>
-                <img alt=''></img>
-                <img alt=''></img>
-                <img alt=''></img>
-            </S.ApiLogo> */}
+            <S.ApiLogo>
+            <Link to={"/"}>
+                        <img src={`${process.env.PUBLIC_URL}/assets/images/login/kakao.svg`} alt="카카오 로그" />
+                    </Link>
+            <Link to={"/"}>
+                        <img src={`${process.env.PUBLIC_URL}/assets/images/login/naver.svg`} alt="네이버 로그" />
+                    </Link>
+            <Link to={"/"}>
+                        <img src={`${process.env.PUBLIC_URL}/assets/images/login/google.svg`} alt="구글 로그" />
+                    </Link>
+            </S.ApiLogo>
+            <S.BottonBox>
+            <S.BottonText>이용약관</S.BottonText>
+            <S.BottonText1>|</S.BottonText1>
+            <S.BottonText>개인정보처리방침</S.BottonText>
+            <S.BottonText1>|</S.BottonText1>
+            <S.BottonText>책임의 한계와 법적고지</S.BottonText>
+            <S.BottonText1>|</S.BottonText1>
+            <S.BottonText>회원정보 고객센터</S.BottonText>
+          </S.BottonBox>
         </form>
     );
 };

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { flexRowCenter } from '../../global/common';
 
 const S = {};
 
@@ -12,10 +11,9 @@ S.root = styled.div`
 
 // Login Main Section
 S.LoginMain = styled.div`
-  align-items: center; 
-  justify-content: center;
   width: 464px;
   padding-bottom: 40px;
+  margin: 50px auto;
 `;
 
 // Logo Box
@@ -42,18 +40,16 @@ S.MemberBtn = styled.div`
   margin-right: 24px;
   font-size: 16px;
   font-weight: bold;
-  color: #828282;
-  background-color: #ffffff;
+  background-color: ${({ isActive }) => (isActive ? "gray" : "#ffffff")};
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &:focus {
-    background-color: #828282;
-    color: #ffffff;
+  a{
+    color: ${({ isActive }) => (isActive ? "#ffffff" : "#828282")};
   }
 `;
+  
 
 S.SellerBtn = styled.div`
   width: 220px;
@@ -63,15 +59,13 @@ S.SellerBtn = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: #828282;
-  background-color: #ffffff;
+  background-color: ${({ isActive }) => (isActive ? "gray" : "#ffffff")};
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &:focus {
-    background-color: #828282;
-    color: #ffffff;
+  a{
+    color: ${({ isActive }) => (isActive ? "#ffffff" : "#828282")};
   }
 `;
 
@@ -218,6 +212,32 @@ S.Text2 = styled.p`
   width: 464px;
   padding-top: 20px;
 `
+S.ApiLogo = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 464px;
+  padding-top: 20px;
+  gap: 12px;
+  margin-bottom: 113px;
+`
+S.BottonBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`
+S.BottonText = styled.p`
+  font-size: 11px;
+  color: #828282;
+`
+S.BottonText1 = styled.p`
+  font-size: 8px;
+  color: #828282;
+  padding: 0px 18px;
+`
+
 
 
 export default S;
