@@ -84,7 +84,7 @@ const Flushies = () => {
 
     return (
         <div>
-            <div id="content">
+            <S.Content>
                 {/* 컬러 추천 상품 */}
                 <FlushieColor productList={productList} />
 
@@ -97,7 +97,7 @@ const Flushies = () => {
                 {/* 강아지 추천 상품 */}
                 <FlushieRecommend recommendProducts={recommendProducts} />
 
-            </div>
+            </S.Content>
         </div>
     );
 };

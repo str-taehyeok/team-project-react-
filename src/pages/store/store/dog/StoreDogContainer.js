@@ -3,6 +3,7 @@ import S from "./style";
 import { Link, Outlet } from 'react-router-dom';
 import Footer from "../../../layout/Footer";
 
+
 const StoreDogContainer = () => {
 
   // 카테고리
@@ -40,9 +41,10 @@ const categorys = categoryList.map(({name, location, src}, i) => (
 
   return (
     <S.Content>
-      <div>
+      <S.BannerContainer>
         <S.Banner src={process.env.PUBLIC_URL+ "/assets/images/store/dog-banner.png"} alt="dog banner" />
-      </div>
+          <S.BannerComent>반려동물의 성향을 체크할 수 있는 펫스널리티, <br/>지금 POWPOW에서 시작하세요 <br/><span>펫스널컬러 검사하기</span><button src={process.env.PUBLIC_URL+ "/login" }>바로가기<S.BannerButton src={process.env.PUBLIC_URL+ "/assets/images/store/icon-arrow.png"}/></button></S.BannerComent>
+      </S.BannerContainer>
         <S.CategoriesWrap>{categorys}</S.CategoriesWrap>
       <div>
         <Outlet />

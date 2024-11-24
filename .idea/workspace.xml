@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7bf4988-bd0a-4986-a2f0-4b7896a146dc" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/community/post/MyPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/community/post/MyPost.jsx" afterDir="false" />
+    <list default="true" id="4c71df09-01a9-4db1-bc5c-d60763da93a4" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/public/assets/images/store/icon-arrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/images/store/dog-banner.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/images/store/dog-banner.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/store/store/dog/Flushies.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/store/store/dog/Flushies.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/store/store/dog/StoreDogContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/store/store/dog/StoreDogContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/store/store/dog/flushies/FlushieColor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/store/store/dog/flushies/FlushieColor.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/store/store/dog/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/store/store/dog/style.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,30 +21,63 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;dev-jane99&quot;
+  }
 }</component>
-  <component name="ProjectId" id="2p3gAL0KNoNaTD7JOzGcmOvgezK" />
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/dev-jane99/react-powpow-jane.git&quot;,
+    &quot;accountId&quot;: &quot;ee4c7c27-e555-4fbc-a7bc-c8af7f586736&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2p3gAZ4Zh4cyPjmJuVBpjZwxSNX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.Header.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.MyPost.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;min&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/web_0900_smc/react/workspace/study&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.Login.jsx.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "store",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/web_0900_jane/spring-project/workspace/react-powpow/public/assets/images/store",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\web_0900_jane\spring-project\workspace\react-powpow\public\assets\images\store" />
+      <recent name="C:\web_0900_jane\spring-project\workspace\react-powpow\src\pages\store\store\cat" />
+      <recent name="C:\web_0900_jane\spring-project\workspace\react-powpow\src\pages\store\store\dog" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="powpow_front" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="powpow_front" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -50,16 +89,17 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
-      <changelist id="e7bf4988-bd0a-4986-a2f0-4b7896a146dc" name="변경" comment="" />
-      <created>1732000028909</created>
+      <changelist id="4c71df09-01a9-4db1-bc5c-d60763da93a4" name="변경" comment="" />
+      <created>1732000030084</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1732000028909</updated>
-      <workItem from="1732000029951" duration="938000" />
-      <workItem from="1732012147757" duration="4325000" />
-      <workItem from="1732089209629" duration="599000" />
-      <workItem from="1732147408996" duration="2888000" />
-      <workItem from="1732154574878" duration="507000" />
+      <updated>1732000030084</updated>
+      <workItem from="1732000031158" duration="593000" />
+      <workItem from="1732005652625" duration="24568000" />
+      <workItem from="1732240553666" duration="5667000" />
+      <workItem from="1732254726945" duration="875000" />
+      <workItem from="1732255617007" duration="38478000" />
+      <workItem from="1732426144768" duration="23717000" />
     </task>
     <servers />
   </component>
@@ -76,5 +116,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/pages/main/MainContainer.js</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/pages/community/community/CommunityContainer.js</url>
+          <line>9</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
