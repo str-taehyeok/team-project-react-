@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import {
-  flexRowCenter, flexColumnCenter
+  flexRowCenter, flexColumnCenter, h7Bold, h8Bold
 } from '../../global/common'
+ import theme from "../../global/theme";
 
 const S = {}
 
@@ -62,8 +63,7 @@ S.NextButton = styled.button`
     width: 464px;
     height: 55px;
     background-color: #FFC303;
-    font-size: 16px;
-    font-weight: bold;
+    ${h7Bold};
     border-style: none;
     border-radius: 20px;
     box-sizing: border-box;
@@ -101,7 +101,7 @@ S.InputButton = styled.input`
   width: 464px;
   height: 60px;
   border: 0.5px solid #828282;
-  font-size: 14px;
+  font-size: font-size: ${theme.FONT_SIZE.h8};
   color: #828282;
   border-radius: 20px;
   box-sizing: border-box;
@@ -123,9 +123,7 @@ S.AuthButton = styled.button`
   color: #C83F3F;
   border: none; 
   cursor: pointer; 
-  font-size: 14px;
-  line-height: 22px;
-  font-weight: bold;
+  ${h8Bold};
   ${flexRowCenter};
 `
 
@@ -209,8 +207,7 @@ S.LoginButton = styled.div`
     width: 464px;
     height: 55px;
     background-color: #FFC303;
-    font-size: 16px;
-    font-weight: bold;
+    ${h7Bold};
     border-style: none;
     border-radius: 20px;
     box-sizing: border-box;
@@ -270,8 +267,7 @@ S.NextButton = styled.div`
   width: 464px;
   height: 55px;
   background-color: #FFC303;
-  font-size: 16px;
-  font-weight: bold;
+  ${h7Bold}
   border-style: none;
   border-radius: 20px;
   box-sizing: border-box;

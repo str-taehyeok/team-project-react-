@@ -1,10 +1,30 @@
 import styled from "styled-components";
-import { flexColumnCenter, flexRowCenter } from '../../global/common'
+import { flexCenterRowSpaceBetween, flexColumnCenter, flexRowCenter,
+  h1Bold, h1Medium, h2Bold, h4Bold
+ } from '../../global/common'
+ import theme from "../../global/theme";
 
 const S = {}
 
+
+// 메인 페이지
+
 S.PetsonalContainer = styled.div`
   ${flexColumnCenter};
+  
+  & a {
+    width: 464px;
+    height: 55px;
+    border-radius: 20px;
+    border: solid 3px #000;
+    color: white;
+    background-color: #2298FF;
+    position: absolute;
+    top: 735px;
+    ${h4Bold}
+    cursor: pointer;
+    ${flexRowCenter}
+  }
 `
 
 S.StartImage = styled.div`
@@ -24,20 +44,6 @@ S.MainText = styled.p`
   font-size: 70px;
   font-weight: bold;
   position: absolute;
-`
-
-S.StartButton = styled.button`
-  width: 464px;
-  height: 55px;
-  border-radius: 20px;
-  border: solid 3px #000;
-  color: white;
-  background-color: #2298FF;
-  position: absolute;
-  top: 735px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
 `
 
 S.SecondImage = styled.div`
@@ -62,12 +68,11 @@ S.SecondTextWrap = styled.div`
 `
 
 S.SecondText = styled.p`
-  font-size: 40px;
-  font-weight: bold;
+  ${h1Bold}
 `
 
 S.SecondSubText = styled.p`
-  font-size: 24px;
+  font-size: ${theme.FONT_SIZE.h7};
 `
 
 S.BookWrap = styled.div`
@@ -85,8 +90,7 @@ S.Big = styled.span`
 `
 
 S.Small = styled.span`
-  font-size: 40px;
-  font-weight: medium;
+  ${h1Medium}
 `
 
 S.Medium = styled.p`
@@ -107,8 +111,7 @@ S.GoCommunity = styled.div`
   background-color: #9747FF;
   border: solid 3px black;
   border-radius: 20px;
-  font-size: 28px;
-  font-weight: bold;
+  ${h4Bold}
   ${flexRowCenter}
   cursor: pointer;
 `
@@ -138,6 +141,73 @@ S.ThirdImage = styled.div`
   height: 1080px;
   background: white;
   position: relative;
+`
+
+// test페이지 1
+
+S.Frame = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+`
+
+S.PetTestContainer = styled.div`
+	display: flex;
+  flex-direction: column;
+  gap: 175px;
+	margin: 350px 0;
+`
+
+S.Questions = styled.div`
+  ${flexColumnCenter};
+`
+
+S.Question = styled.p`
+	${h2Bold}
+`
+
+S.CirclesWrap = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 84px;
+	width: 1200px;
+`
+
+S.Circles = styled.div`
+  ${flexCenterRowSpaceBetween}
+  width: 708px;
+`
+
+S.BigCircle = styled.div`
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	border: solid 3px #828282;
+	cursor: pointer;
+`
+
+S.MiddleCircle = styled.div`
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	border: solid 3px #828282;
+	cursor: pointer;
+`
+
+S.SmallCircle = styled.div`
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	border: solid 3px #828282;
+	cursor: pointer;
+`
+
+S.Frame = styled.div`
+
 `
 
 

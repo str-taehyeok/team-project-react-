@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import S from "./style";
+import { Link } from "react-router-dom";
 
 const PetsonalMain = () => {
   return (
@@ -12,7 +13,9 @@ const PetsonalMain = () => {
           <S.MainFirst src= {`${process.env.PUBLIC_URL}/assets/images/petsonal/petsonal-main.png`} alt="메인" />
         </S.StartImage>
         <S.MainText>what’s your pet?</S.MainText>
-        <S.StartButton>TEST START</S.StartButton>
+        <Link to={"./petsonal/PetsonalTest"}>
+           TEST START
+        </Link>
         <S.SecondImage>
           <S.SecondTextWrap >
             <S.SecondText>New to Pet Personal color? ✨</S.SecondText>
