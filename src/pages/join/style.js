@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {
-  flexCenterRowSpaceBetween, flexRowCenter, flexColumnCenter, h7Medium, h10Medium
+  flexRowCenter, flexColumnCenter
 } from '../../global/common'
 
 const S = {}
@@ -20,9 +20,7 @@ S.Text = styled.p`
 S.JoinMain = styled.div`
   width: 464px;
   display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center;
+  ${flexColumnCenter};
   margin: 235px auto;
 `
 
@@ -71,9 +69,7 @@ S.NextButton = styled.button`
     box-sizing: border-box;
     cursor: pointer;
     margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${flexRowCenter};
 `
 
 S.SellerMain = styled.div`
@@ -111,6 +107,7 @@ S.InputButton = styled.input`
   box-sizing: border-box;
   padding: 19px 26px;
   outline:none;
+  ${flexRowCenter};
 `
 S.AuthNumberContainer = styled.div`
  margin-top: 10px; 
@@ -129,6 +126,7 @@ S.AuthButton = styled.button`
   font-size: 14px;
   line-height: 22px;
   font-weight: bold;
+  ${flexRowCenter};
 `
 
 S.InputContainer = styled.div`
@@ -218,9 +216,7 @@ S.LoginButton = styled.div`
     box-sizing: border-box;
     cursor: pointer;
     margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${flexRowCenter};
 `
 
 S.Agree2 = styled.div`
@@ -249,6 +245,7 @@ S.InputButton1 = styled.input`
   padding: 19px 26px;
   outline:none;
   margin-top: 9px;
+  ${flexRowCenter};
 `
 S.PhoneMain = styled.div`
   width: 464px;
@@ -256,7 +253,7 @@ S.PhoneMain = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px auto;
+  margin: 235px auto;
 `
 
 S.CompletionMain = styled.div`
@@ -280,7 +277,7 @@ S.NextButton = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   margin-top: 30px;
-
+  ${flexRowCenter};
 `
 
 S.Box = styled.div`
