@@ -70,16 +70,15 @@ const S = {}
       width:1440px
     }
     .text3 {
-        font-size: 24px;
-        line-height: 36px;
-        letter-spacing: -3%;
-        font-weight:bold;
-
+      font-size: 24px;
+      line-height: 36px;
+      letter-spacing: -3%;
+      font-weight:bold;
     }
     .text4 {
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: -3%;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -3%;
     }
     .text5{
       font-size: 16px;
@@ -87,7 +86,58 @@ const S = {}
       letter-spacing: -3%;
       text-align: right;
     }
-  
-  
+    .addPost{
+      width:220px;
+      height:300px;
+      border-radius: 20px;
+      border:1px solid #D9D9D9;
+      display: flex;
+      flex-direction:column;
+      align-items: center;
+      justify-content: center;
+
+    }
+    .plus{
+     width:20px;
+     height:20px;
+    }
+    .text6{
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -3%;
+      color:#828282;
+      text-align: center;
+    }
+    .click{
+      display: flex;
+      flex-direction:column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    & .mySwiper {
+      margin-top: 65px;
+      margin-bottom: 117px;
+   }
+
+   .text7{
+      font-size: 40px;
+      line-height: 54px;
+      letter-spacing: -3%;
+      font-weight:bold;
+      color:#000000;
+      text-align: center;
+      margin-bottom: 90px;
+    }
+
+    .orangeBox{
+      width: 1327px;
+      height:626px;
+      margin: 0px auto;
+      background: linear-gradient(#FFFFFF, #FFE181 75%,#FFC303 50%);
+    }
+
   `
+
+  
 export default S;
