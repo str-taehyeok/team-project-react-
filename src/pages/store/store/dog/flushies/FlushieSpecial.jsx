@@ -1,12 +1,16 @@
 import React from 'react';
+import S from "../style";
 
 const FlushieSpecial = ({specialProducts}) => {
   return (
-    <div className="special-price">
-        <div className="special-price-wrap">
+      <>
+        <S.SpecialWrap>
+            <S.Title>강아지 특가 상품</S.Title>
+            <S.SpecialProducts>
             {specialProducts}
-        </div>
-    </div>
+            </S.SpecialProducts>
+        </S.SpecialWrap>
+      </>
   );
 };
 
