@@ -1,12 +1,16 @@
 import React from 'react';
+import S from "../style";
 
 const FlushieRecommend = ({recommendProducts}) => {
   return (
-    <div className="product-container">
-        <div className="product-wrap">
+      <>
+          <S.RecommendedProduct>
+          <S.Title>강아지 추천 상품</S.Title>
+        <S.RecommendedWrap>
             {recommendProducts}
-        </div>
-    </div>
+        </S.RecommendedWrap>
+          </S.RecommendedProduct>
+      </>
   );
 };
 
