@@ -31,8 +31,17 @@ const CommunityContainer = () => {
                 <Slide />
 
                 <p className='text7'>COLOR’S PICK!</p>
-                <div className='orangeBox'>
-
+                <div className='colorBox'>
+                    <div className='orangeBox'>
+                    </div>
+                    <div className='goldBox'>
+                    </div>
+                    <div className='gradationBox'>
+                    </div>
+                    <div className='lightPurple'>
+                    </div>
+                    <div className='deepPurple'>
+                    </div>
                 </div>
             </S.Title>
 

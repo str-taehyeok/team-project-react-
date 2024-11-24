@@ -133,8 +133,39 @@ const S = {}
     .orangeBox{
       width: 1327px;
       height:626px;
-      margin: 0px auto;
-      background: linear-gradient(#FFFFFF, #FFE181 75%,#FFC303 50%);
+      background: linear-gradient( rgba(255, 255, 255, 0.9),rgba(255, 255, 129, 0.4), rgba(255, 195, 3, 0.3) );
+      /* background: linear-gradient(#FFFFFF, #FFE181 75%,#FFC303 50%); */
+    }
+
+    .goldBox{
+      width: 1327px;
+      height:626px;
+      background: linear-gradient( rgba(255, 195, 3, 0.3),rgba(218, 199, 138, 0.4), rgba(255, 255, 255, 0.6)  );
+    }
+
+    .gradationBox{
+      width: 1327px;
+      height:626px;
+      background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(218, 199, 138, 0.2),rgba(207, 165, 203, 0.4));
+    }
+
+    .lightPurple{
+      width: 1327px;
+      height:626px;
+      background: linear-gradient(rgba(207, 165, 203, 0.4), rgba(255, 255, 255, 0.6)  );
+    }
+
+    .deepPurple{
+      width: 1327px;
+      height:626px;
+      margin-bottom: 372px;
+      background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(101, 83, 125, 0.3)  );
+    }
+    .colorBox{
+      display: flex;
+      flex-direction:column;
+      align-items: center;
+      justify-content: center;
     }
 
   `
