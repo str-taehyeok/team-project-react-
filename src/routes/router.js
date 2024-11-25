@@ -40,7 +40,6 @@ import SellerOrderList from "../pages/seller/sellerOrder/SellerOrderList";
 import PetsonalContainer from "../pages/petsonal/PetsonalContainer";
 import PetsonalMain from "../pages/petsonal/PetsonalMain";
 import PetsonalTest from "../pages/petsonal/PetsonalTest";
-import PetsonalTest2 from "../pages/petsonal/PetsonalTest2";
 import PetsonalResult from "../pages/petsonal/PetsonalResult";
 import ProductContainer from "../pages/store/product/ProductContainer";
 import ProductDetail from "../pages/store/product/ProductDetail";
@@ -155,10 +154,6 @@ const router = createBrowserRouter( [
                     {
                         path: "test",
                         element: <PetsonalTest />,
-                    },
-                    {
-                        path: "test2",
-                        element: <PetsonalTest2 />,
                     },
                     {
                         path: "result",
