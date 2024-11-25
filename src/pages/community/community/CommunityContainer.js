@@ -33,14 +33,24 @@ const CommunityContainer = () => {
                 <p className='text7'>COLOR’S PICK!</p>
                 <div className='colorBox'>
                     <div className='orangeBox'>
+                        <p className='text8'>ORANGE</p>
+                        <p className='text9'>전체보기</p>
                     </div>
                     <div className='goldBox'>
+                      <p className='text8'>GOLD</p>
+                      <p className='text9'>전체보기</p>
                     </div>
                     <div className='gradationBox'>
+                      <p className='text8'>GRADATION</p>
+                      <p className='text9'>전체보기</p>
                     </div>
                     <div className='lightPurple'>
+                        <p className='text8'>LIGHT PURPLE</p>
+                        <p className='text9'>전체보기</p>
                     </div>
                     <div className='deepPurple'>
+                     <p className='text8'>DEEP PURPLE</p>
+                     <p className='text9'>전체보기</p>
                     </div>
                 </div>
             </S.Title>
