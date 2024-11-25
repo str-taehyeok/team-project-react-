@@ -183,7 +183,7 @@ S.Circles = styled.div`
   width: 708px;
 `
 
-S.BigCircle = styled.div`
+S.BigCircle = styled.input`
 	width: 70px;
 	height: 70px;
 	border-radius: 50%;
@@ -191,7 +191,7 @@ S.BigCircle = styled.div`
 	cursor: pointer;
 `
 
-S.MiddleCircle = styled.div`
+S.MiddleCircle = styled.input`
 	width: 45px;
 	height: 45px;
 	border-radius: 50%;
@@ -199,7 +199,7 @@ S.MiddleCircle = styled.div`
 	cursor: pointer;
 `
 
-S.SmallCircle = styled.div`
+S.SmallCircle = styled.input`
 	width: 35px;
 	height: 35px;
 	border-radius: 50%;

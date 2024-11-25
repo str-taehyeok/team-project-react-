@@ -40,14 +40,16 @@ S.MemberBtn = styled.div`
   margin-right: 24px;
   font-size: 16px;
   font-weight: bold;
-  background-color: ${({ isActive }) => (isActive ? "gray" : "#ffffff")};
+
+  background-color : #ffffff;
+  &.active {
+    background-color : gray;
+    color : #fff
+  }
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  a{
-    color: ${({ isActive }) => (isActive ? "#ffffff" : "#828282")};
-  }
 `;
   
 
@@ -59,14 +61,17 @@ S.SellerBtn = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: #828282;
-  background-color: ${({ isActive }) => (isActive ? "gray" : "#ffffff")};
+
+  background-color : #ffffff;
+  &.active {
+    background-color : gray;
+    color : #fff
+  }
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  a{
-    color: ${({ isActive }) => (isActive ? "#ffffff" : "#828282")};
-  }
+
 `;
 
 // Input & Tap

@@ -50,7 +50,6 @@ import StoreMain from "../pages/store/store/StoreMain";
 import Cart from "../pages/store/cart/Cart";
 import CommunityContainer from "../pages/community/community/CommunityContainer";
 import CommunityMain from "../pages/community/community/CommunityMain";
-import CommunityIntro from "../pages/community/community/CommunityIntro";
 import PostContainer from "../pages/community/post/PostContainer";
 import PostList from "../pages/community/post/PostList";
 import MyPost from "../pages/community/post/MyPost";
@@ -246,10 +245,6 @@ const router = createBrowserRouter( [
                     {
                         index: true,
                         element: <CommunityMain />,
-                    },
-                    {
-                        path: "intro",
-                        element: <CommunityIntro />,
                     }
                     ]
             },
