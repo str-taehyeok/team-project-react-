@@ -109,7 +109,7 @@ const router = createBrowserRouter( [
                         element: <ProfileList />,
                     },
                     {
-                        path: "profileUpdate",
+                        path: "profile-update",
                         element: <ProfileUpdate />
                     },
                     {
@@ -121,13 +121,13 @@ const router = createBrowserRouter( [
                         element: <LikeList />
                     },
                     {
-                        path: "passwordUpdate",
+                        path: "password-update",
                         element: <PasswordUpdate />
                     },
                 ]
             },
             {
-                path: '/myPet',
+                path: '/my-pet',
                 element: <MyPetContainer />,
                 children : [
                     {
@@ -135,13 +135,13 @@ const router = createBrowserRouter( [
                         element: <PetList />
                     },
                     {
-                        path: "petWrite",
+                        path: "pet-write",
                         element: <PetWrite />
                     },
                     ]
             },
             {
-                path:'/myShopping',
+                path:'/my-shopping',
                 element: <ShoppingList />
             },
             {
@@ -171,7 +171,7 @@ const router = createBrowserRouter( [
                         element: <ProductDetail />
                     },
                     {
-                        path: "sellerProductView",
+                        path: "seller-product-view",
                         element: <SellerProductView />
                     },
                 ]
@@ -187,7 +187,7 @@ const router = createBrowserRouter( [
                 ]
             },
             {
-                path: '/storeDog',
+                path: '/store-dog',
                 element: <StoreDogContainer />,
                 children : [
                     {
@@ -203,13 +203,13 @@ const router = createBrowserRouter( [
                         element: <Clothes />
                     },
                     {
-                        path: 'healthCare',
+                        path: 'health-care',
                         element: <HealthCare />
                     },
                 ]
             },
             {
-                path: '/storeCat',
+                path: '/store-cat',
                 element: <StoreCat />,
             },
             {
@@ -257,11 +257,11 @@ const router = createBrowserRouter( [
                         element: <PostList />,
                     },
                     {
-                        path: "myPost",
+                        path: "my-post",
                         element: <MyPost />,
                     },
                     {
-                        path: "myPostList",
+                        path: "my-post-list",
                         element: <MyPostList />,
                     },
                     {
@@ -273,11 +273,11 @@ const router = createBrowserRouter( [
                         element: <PostUpdate />,
                     },
                     {
-                        path: "othersPost",
+                        path: "others-post",
                         element: <OthersPost />,
                     },
                     {
-                        path: "othersPostList",
+                        path: "others-post-list",
                         element: <OthersPostList />,
                     },
                 ]
@@ -325,11 +325,11 @@ const router = createBrowserRouter( [
                         element: <BannerList />
                     },
                     {
-                        path: "bannerWrite",
+                        path: "banner-write",
                         element: <BannerWrite />
                     },
                     {
-                        path: "bannerUpdate",
+                        path: "banner-update",
                         element: <BannerUpdate />
                     },
                 ]
@@ -343,11 +343,11 @@ const router = createBrowserRouter( [
                         element: <CouponList />
                     },
                     {
-                        path: "couponWrite",
+                        path: "coupon-write",
                         element: <CouponWrite />
                     },
                     {
-                        path: "couponUpdate",
+                        path: "coupon-update",
                         element: <CouponUpdate />
                     },
                 ]
@@ -361,7 +361,7 @@ const router = createBrowserRouter( [
                         element: <BuyerList />
                     },
                     {
-                        path: "sellerList",
+                        path: "seller-list",
                         element: <SellerList />
                     },
                 ]
@@ -381,17 +381,17 @@ const router = createBrowserRouter( [
                         element: <SellerProductList />,
                     },
                     {
-                        path: "productWrite",
+                        path: "product-write",
                         element: <SellerProductWrite />,
                     },
                     {
-                        path: "productUpdate",
+                        path: "product-update",
                         element: <SellerProductUpdate />,
                     },
                 ]
             },
             {
-                path: 'sellerInfo',
+                path: 'seller-info',
                 element: <SellerInfoContainer />,
                 children : [
                     {
@@ -399,27 +399,27 @@ const router = createBrowserRouter( [
                         element: <SellerUpdate />,
                     },
                     {
-                        path: "businessUpdate",
+                        path: "business-update",
                         element: <BusinessUpdate />,
                     },
                 ]
             },
             {
-                path: 'sellerAdjustment',
+                path: 'seller-adjustment',
                 element: <Adjustment />,
             },
             {
-                path: 'sellerRevenue',
+                path: 'seller-revenue',
                 element: <SellerRevenueList />,
             },
             {
-                path: 'sellerOrder',
+                path: 'seller-order',
                 element: <SellerOrderList />,
             },
         ]
     },
     {
-        path: '/adminLogin',
+        path: '/admin-login',
         element: <AdminLogin />
     },
     {
@@ -468,25 +468,25 @@ const router = createBrowserRouter( [
                 element: <FindType />,
             },
             {
-                path: "findId",
+                path: "find-id",
                 element: <FindId />,
             },
             {
-                path: "findIdComplete",
+                path: "findId-complete",
                 element: <FindIdComplete />,
             },
             {
-                path: "findPassword",
+                path: "find-password",
                 element: <FindPassword />,
             },
             {
-                path: "findPasswordComplete",
+                path: "findPassword-complete",
                 element: <FindPasswordComplete />,
             },
             ]
     },
     {
-        path: "/myhome/passwordUpdateComplete",
+        path: "/myhome/password-update-complete",
         element: <PasswordUpdateComplete />
     },
     {
