@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import S from "./style";
 import { Link } from "react-router-dom";
+import { PetsonalContext } from "../../context/petsonalContext";
 
 const PetsonalTest2 = () => {
+
+  const {state, action} = useContext(PetsonalContext);
+  console.log("test2", state)
+
   return (
     <div>
       <S.Frame>
