@@ -69,6 +69,101 @@ const PetsonalProvider = ({children}) => {
       title : "Q6. 밥 시간이 되면 집사 옆에서 꼬리를 흔들며 재촉해요.",
       type : "petsonalActive"
     },
+    { 
+      id : 7,
+      title : "Q7. 간식을 받으면 신나서 간식 자리까지 달려가요!",
+      type : "petsonalActive"
+    },
+    { 
+      id : 8,
+      title : "Q8. 집사가 없으면 여기저기 돌아다니며 집안을 확인해요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 9,
+      title : "Q9. 새로운 물건이 보이면 바로 다가가 확인해요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 10,
+      title : "Q10. 친구들과 끝없이 놀고 싶어해요. ",
+      type : "petsonalActive"
+    },
+    { 
+      id : 11,
+      title : "Q11. 자리에 눕자마자 바로 꿀잠을 자요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 12,
+      title : "Q12. 낯선 환경에서도 여기저기 뛰어다니며 구경해요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 13,
+      title : "Q13. 집사가 부르면 달려가면서 꼬리를 흔들어요!",
+      type : "petsonalActive"
+    },
+    { 
+      id : 14,
+      title : "Q14. 잠을 많이 자거나 누워 있는 것을 좋아해요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 15,
+      title : "Q15. 산책을 가자고 먼저 조르는 편이에요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 16,
+      title : "Q16. 놀이에 적극적으로 참여해요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 17,
+      title : "Q17. 야외를 나가면 1시간 이상 걷는 편이에요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 18,
+      title : "Q18. 하루를 일찍 시작하는 편이에요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 19,
+      title : "Q19. 하루종일 누워만있어요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 20,
+      title : "Q20. 자기 마음 내킬 때만 내 말에 따라 주는 것 같아요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 21,
+      title : "Q21. 새로운 장소에 가도 숨거나 피하지 않아요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 22,
+      title : "Q22. 겁이 너무 많아서 친구 사귀기가 어려워요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 23,
+      title : "Q23. 집의 구석이 아니라 한 가운데로 걸어다녀요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 24,
+      title : "Q24. 익숙하지 않은 사람이 만지려고 해도 도망가지 않아요.",
+      type : "petsonalActive"
+    },
+    { 
+      id : 25,
+      title : "Q25. 부스럭 거리는 작은 소리에도 놀라요.",
+      type : "petsonalActive"
+    },
   ]
 
   const value = {
