@@ -10,7 +10,6 @@ const S = {}
    }
   `
   S.BannerWrapper = styled.div`
-
    padding-top: 101px;
    padding-left: 282px;
    width: 1920px;
@@ -62,12 +61,20 @@ const S = {}
   
 
   S.Title = styled.div`
-   padding-top: 198px;
-   padding-left: 240px;
-   padding-right: 240px;
 
     .title-box{
-      width:1440px
+      width:1440px;
+      margin-top:198px;
+      margin-left: 240px;
+      margin-right: 240px;
+      margin-bottom: 65px;
+    }
+
+    .text-box1 {
+      display: flex;
+      flex-direction: column;
+      width: 1440px;
+      margin-bottom: 15px;
     }
     .text3 {
       font-size: 24px;
@@ -95,11 +102,19 @@ const S = {}
       flex-direction:column;
       align-items: center;
       justify-content: center;
+    }
 
+    .addPostBox{
+      display: flex;
+      flex-direction:row;
+      gap:24px;
+      align-items: center;
+      justify-content: center;
     }
     .plus{
      width:20px;
      height:20px;
+     margin-bottom: 10px;
     }
     .text6{
       font-size: 16px;
@@ -116,11 +131,15 @@ const S = {}
     }
 
     & .mySwiper {
-      margin-top: 65px;
-      margin-bottom: 117px;
+      width: 1440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
    }
 
    .text7{
+    margin-top: 117px;
       font-size: 40px;
       line-height: 54px;
       letter-spacing: -3%;
@@ -134,7 +153,6 @@ const S = {}
       width: 1327px;
       height:626px;
       background: linear-gradient( rgba(255, 255, 255, 0.9),rgba(255, 255, 129, 0.4), rgba(255, 195, 3, 0.3) );
-      /* background: linear-gradient(#FFFFFF, #FFE181 75%,#FFC303 50%); */
     }
 
     .goldBox{
