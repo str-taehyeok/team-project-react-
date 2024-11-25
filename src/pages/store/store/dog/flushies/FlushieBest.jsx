@@ -18,11 +18,9 @@ const FlushieBest = ({bestProducts}) => {
         <S.BestProducts>
             {/*<div className="box">*/}
               <S.Title>강아지 BEST 상품</S.Title>
-              <S.BestProduct>
-                  <S.BestProductWrap>
-                      {bestProducts}
-                  </S.BestProductWrap>
-              </S.BestProduct>
+                <S.BestProductWrap>
+                    {bestProducts}
+                </S.BestProductWrap>
           </S.BestProducts>
       </>
   );

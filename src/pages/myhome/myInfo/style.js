@@ -31,7 +31,7 @@ const S = {}
                 font-weight: 700;
                 font-size: 40px;
             //    h1Bold
-                ${h1Bold};
+                ${h1Bold}
             }    
         
             & ul {
@@ -77,6 +77,7 @@ const S = {}
 
     S.ProfileBox = styled.div`
             display: flex;
+            gap : 28px;
             flex-direction: column;
             border: solid #888888 1px;
             box-sizing: border-box;
@@ -86,32 +87,36 @@ const S = {}
             margin-right: 48px;
             border-radius: 20px;
             box-shadow: 2px 16px 19px 0px rgba(0,0,0, 9%);
-    
-            & > img {
-                display: flex;
-                width: 120px;
-                height: 120px;
-                border-radius: 60px;
-                border: solid black 1px;
-                margin-top: 82px;
-                margin-bottom: 25px;
-            }
-                
-            &  > p {
-              display: flex;
-              margin-bottom: 38px;
-              font-size: 20px;
-              font-weight: 700;
-            }
-    
-            & > div {
-              display: flex;
-              width: 268px;
-              height: 1px;
-              background-color: #888888;
-              margin-bottom: 28px;
-            }
+          
     `;
+
+        S.ProfileImage = styled.div`
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-bottom: solid 1px #888;
+
+                & > img {
+                        display: flex;
+                        width: 120px;
+                        height: 120px;
+                        border-radius: 60px;
+                        border: solid black 1px;
+                        margin-top: 82px;
+                        margin-bottom: 25px;
+                }
+                        
+                & > p {
+                display: flex;
+                margin-bottom: 38px;
+                font-size: 20px;
+                font-weight: 700;
+                }
+
+        `
+
 
     S.ProfileBoxCouponWrap = styled.div`
             display: flex;

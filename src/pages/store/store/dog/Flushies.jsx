@@ -63,14 +63,12 @@ const Flushies = () => {
     ))
 
     const specialProducts = productList.map(({productName, productPrice, src}, i) => (
-        <>
         <S.SpecialProduct key={i}>
             <img src={src} alt={"상품" + (i + 1)}/>
             <span>{productName}</span>
             <span style={{ fontWeight: 700 }}>{productPrice}</span>
             <button>담기</button>
         </S.SpecialProduct >
-        </>
     ))
 
     const recommendProducts = productList.map(({productName, productPrice, src}, i) => (

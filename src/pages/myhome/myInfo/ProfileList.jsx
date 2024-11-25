@@ -29,13 +29,14 @@ const ProfileList = () => {
                         </ul>
                     </S.MyHomeLeft>
                     <S.UpdateButtonWrap>
-                        <button><p>수정하기</p></button>
+                        <Link to={""}><button><p>수정하기</p></button></Link>
                     </S.UpdateButtonWrap>
                     <S.ProfileBoxWrap>
                         <S.ProfileBox>
-                            <img src={"#"} alt="프로필사진"/>
-                            <p>Jane</p>
-                            <div></div>
+                            <S.ProfileImage>
+                                <img src={"#"} alt="프로필사진"/>
+                                <p>Jane</p>
+                            </S.ProfileImage>
                             <S.ProfileBoxCouponWrap>
                                 <Link to={"/"}><img src={`${process.env.PUBLIC_URL}/assets/images/myhome/coupon-icon.svg`} alt="쿠폰" /></Link>
                                 <p>쿠폰</p>
