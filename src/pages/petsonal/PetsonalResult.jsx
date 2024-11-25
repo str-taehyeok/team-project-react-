@@ -104,153 +104,143 @@ const PetsonalResult = () => {
                     <p>담기</p>
                   </S.CardCart>
                 </S.ProductCard>
-                <div className="ProductCard">
-                  <img
-                    className="CardImage"
+                <S.ProductCard>
+                  <S.CardImage
                     src="assets/images/test/9.png"
                     alt="상품이미지"
                   />
-                  <img
-                    className="CardHeartIcon"
+                  <S.CardHeartIcon
                     src="assets/images/test/white-heart-icon.png"
                     alt="하트"
                   />
-                  <div className="CardTextWrap">
+                  <S.CardTextWrap>
                     <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
                     <b>9,900원</b>
-                  </div>
-                  <div className="CardCart">
+                  </S.CardTextWrap>
+                  <S.CardCart>
                     <img src="assets/images/test/cart.png" alt="장바구니" />
                     <p>담기</p>
-                  </div>
-                </div>
-                <div className="ProductCard">
-                  <img
-                    className="CardImage"
+                  </S.CardCart>
+                </S.ProductCard>
+                <S.ProductCard >
+                  <S.CardImage
                     src="assets/images/test/8.png"
                     alt="상품이미지"
                   />
-                  <img
-                    className="CardHeartIcon"
+                  <S.CardHeartIcon
                     src="assets/images/test/white-heart-icon.png"
                     alt="하트"
                   />
-                  <div className="CardTextWrap">
+                  <S.CardTextWrap>
                     <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
                     <b>9,900원</b>
-                  </div>
-                  <div className="CardCart">
+                  </S.CardTextWrap>
+                  <S.CardCart>
                     <img src="assets/images/test/cart.png" alt="장바구니" />
                     <p>담기</p>
-                  </div>
-                </div>
-                <div className="ProductCard">
-                  <img
-                    className="CardImage"
+                  </S.CardCart>
+                </S.ProductCard>
+                <S.ProductCard>
+                  <S.CardImage
                     src="assets/images/test/7.png"
                     alt="상품이미지"
                   />
-                  <img
-                    className="CardHeartIcon"
+                  <S.CardHeartIcon
                     src="assets/images/test/white-heart-icon.png"
                     alt="하트"
                   />
-                  <div className="CardTextWrap">
+                  <S.CardTextWrap>
                     <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
                     <b>9,900원</b>
-                  </div>
-                  <div className="CardCart">
+                  </S.CardTextWrap>
+                  <S.CardCart>
                     <img src="assets/images/test/cart.png" alt="장바구니" />
                     <p>담기</p>
-                  </div>
-                </div>
+                  </S.CardCart>
+                </S.ProductCard>
+              </S.Products>
+            </S.ProductsWrap>
+            
+            <S.ProductsWrap>
+              <S.Matching>맞춤 추천 상품</S.Matching>
+              <S.Products>
+                <S.ProductCard>
+                  <S.CardImage
+                    src="./images/image.png"
+                    alt="상품이미지"
+                  />
+                  <S.CardHeartIcon
+                    src="assets/images/test/white-heart-icon.png"
+                    alt="하트"
+                  />
+                  <S.CardTextWrap>
+                    <S.ProductName>
+                      피시포독 그레인프리 참치+스피니치 + 캐롯 85g
+                    </S.ProductName>
+                    <b>9,900원</b>
+                  </S.CardTextWrap>
+                  <S.CardCart>
+                    <img src="assets/images/test/cart.png" alt="장바구니" />
+                    <p>담기</p>
+                  </S.CardCart>
+                </S.ProductCard>
+                <S.ProductCard>
+                  <S.CardImage
+                    src="assets/images/test/9.png"
+                    alt="상품이미지"
+                  />
+                  <S.CardHeartIcon
+                    src="assets/images/test/white-heart-icon.png"
+                    alt="하트"
+                  />
+                  <S.CardTextWrap>
+                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
+                    <b>9,900원</b>
+                  </S.CardTextWrap>
+                  <S.CardCart>
+                    <img src="assets/images/test/cart.png" alt="장바구니" />
+                    <p>담기</p>
+                  </S.CardCart>
+                </S.ProductCard>
+                <S.ProductCard >
+                  <S.CardImage
+                    src="assets/images/test/8.png"
+                    alt="상품이미지"
+                  />
+                  <S.CardHeartIcon
+                    src="assets/images/test/white-heart-icon.png"
+                    alt="하트"
+                  />
+                  <S.CardTextWrap>
+                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
+                    <b>9,900원</b>
+                  </S.CardTextWrap>
+                  <S.CardCart>
+                    <img src="assets/images/test/cart.png" alt="장바구니" />
+                    <p>담기</p>
+                  </S.CardCart>
+                </S.ProductCard>
+                <S.ProductCard>
+                  <S.CardImage
+                    src="assets/images/test/7.png"
+                    alt="상품이미지"
+                  />
+                  <S.CardHeartIcon
+                    src="assets/images/test/white-heart-icon.png"
+                    alt="하트"
+                  />
+                  <S.CardTextWrap>
+                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
+                    <b>9,900원</b>
+                  </S.CardTextWrap>
+                  <S.CardCart>
+                    <img src="assets/images/test/cart.png" alt="장바구니" />
+                    <p>담기</p>
+                  </S.CardCart>
+                </S.ProductCard>
               </S.Products>
             </S.ProductsWrap>
 
-            <div className="ProductsWrap">
-              <div className="Products">
-                <div className="ProductCard">
-                  <img
-                    className="CardImage"
-                    src="assets/images/test/5.png"
-                    alt="상품이미지"
-                  />
-                  <img
-                    className="CardHeartIcon"
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <div className="CardTextWrap">
-                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
-                    <b>9,900원</b>
-                  </div>
-                  <div className="CardCart">
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </div>
-                </div>
-                <div className="ProductCard">
-                  <img
-                    className="CardImage"
-                    src="assets/images/test/4.png"
-                    alt="상품이미지"
-                  />
-                  <img
-                    className="CardHeartIcon"
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <div className="CardTextWrap">
-                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
-                    <b>9,900원</b>
-                  </div>
-                  <div className="CardCart">
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </div>
-                </div>
-                <div className="ProductCard">
-                  <img
-                    className="CardImage"
-                    src="assets/images/test/3.png"
-                    alt="상품이미지"
-                  />
-                  <img
-                    className="CardHeartIcon"
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <div className="CardTextWrap">
-                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
-                    <b>9,900원</b>
-                  </div>
-                  <div className="CardCart">
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </div>
-                </div>
-                <div className="ProductCard">
-                  <img
-                    className="CardImage"
-                    src="assets/images/test/2.png"
-                    alt="상품이미지"
-                  />
-                  <img
-                    className="CardHeartIcon"
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <div className="CardTextWrap">
-                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
-                    <b>9,900원</b>
-                  </div>
-                  <div className="CardCart">
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </S.ProductContainer>
         </S.ResultContainer>
       </S.Frame>
