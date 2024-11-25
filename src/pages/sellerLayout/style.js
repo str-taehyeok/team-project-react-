@@ -25,4 +25,29 @@ const S = {}
         flex: 1;    
     `;
 
+
+    // header
+    
+    
+    S.MenuWrap = styled.div`
+            display: flex;
+            align-items: center;
+            width: 1440px;
+            margin: 28px 0;
+            gap: 72px;
+            padding-left: 28px;
+            position: relative;
+            
+            & span{
+                font-weight: bold;
+                font-size: 20px;
+                margin-top: 4px;
+            }
+            
+            & img{
+                cursor: pointer;
+            }
+        `;
+
+
 export default S;
