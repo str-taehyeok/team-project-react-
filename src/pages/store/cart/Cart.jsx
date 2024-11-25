@@ -1,10 +1,11 @@
 import React from 'react';
+import S from './style';
 
 const Cart = () => {
     return (
-        <div>
-            카트
-        </div>
+        <S.CartTitle>
+            <p>장바구니</p>
+        </S.CartTitle>
     );
 };
 

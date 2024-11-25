@@ -1,11 +1,13 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
+import { PetsonalProvider } from '../../context/petsonalContext';
 
 const PetsonalContainer = () => {
     return (
         <div>
-            petsonal container
-            <Outlet />
+            <PetsonalProvider >
+                <Outlet />
+            </PetsonalProvider>
         </div>
     );
 };
