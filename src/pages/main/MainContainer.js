@@ -10,13 +10,13 @@ const Main = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % 3);
-    }, 2000); 
+    }, 7000); 
 
     return () => clearInterval(interval); 
   }, []);
 
   return (
-    <div>
+    <>
       <Header />
       
       <S.Container>
@@ -47,7 +47,8 @@ const Main = () => {
             <S.Slides>
               {[ 
                 { src: "dentalgum1.png", coupon: "강아지 인기" },
-                { src: "shampoo3.png", coupon: "고양이 특가" }
+                { src: "shampoo3.png", coupon: "고양이 특가" },
+                { src: "shampoo3.png", coupon: "세일 특가" }
               ].map((item, index) => (
                 <S.ImageAndCart key={index}>
                   <S.HotImage>
@@ -65,6 +66,10 @@ const Main = () => {
           </S.HotImages>
         </S.HotProduct>
 
+        <S.TestWrap>
+          <img src={`${process.env.PUBLIC_URL}/assets/images/layout/main-test-image.png`} alt="테스트 배너" />
+        </S.TestWrap>
+
         {/* 커뮤니티 */}
         <S.RecommendSection>
             <S.CommunityPlusMore>
@@ -78,32 +83,37 @@ const Main = () => {
           <S.RecommendContainer>
             <S.LargePost>
               <S.PostImage>
-                <img src={`${process.env.PUBLIC_URL}/assets/images/community1.png`} alt="포스트" />
+                <img src={`${process.env.PUBLIC_URL}/assets/images/layout/community1.png`} alt="메인포스트" />
+              </S.PostImage>
                 <S.PostHeartIcon>
                   <img src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`} alt="하트" />
                 </S.PostHeartIcon>
-              </S.PostImage>
             </S.LargePost>
 
             <S.SmallWrap>
               <S.SmallPost>
-                {[ 
-                  { src: "community2.png", userId: "user_id_1" },
-                  { src: "community3.png", userId: "user_id_2" },
-                  { src: "community4.png", userId: "user_id_3" }
+                {
+                [ 
+                  { src: "community2.png", userId: "지나 안지나" },
+                  { src: "community3.png", userId: "철을 밀면 민철" },
+                  { src: "community4.png", userId: "재금이 다음 재은" },
+                  { src: "community5.png", userId: "작은 연 날리기 소연" },
+                  { src: "community6.png", userId: "연을 세우면 세연" },
+                  { src: "community7.png", userId: "찹쌀징어" }
                 ].map((item, index) => (
                   <S.Post key={index}>
-                    <img src={`${process.env.PUBLIC_URL}/assets/images/${item.src}`} alt={`게시물-${index + 1}`} />
+                    <S.SmallPostImage src={`${process.env.PUBLIC_URL}assets/images/layout/${item.src}`} alt={`게시물-${index + 1}`} />
                     <S.ProfileInfo>
-                      <img src={`${process.env.PUBLIC_URL}/assets/images/profile.png`} alt="프로필" />
+                      <img src={`${process.env.PUBLIC_URL}/assets/images/layout/profile.png`} alt="프로필" />
                       <span className="UserId">{item.userId}</span>
                     </S.ProfileInfo>
-                    <img src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`} alt="하트" />
+                    <S.HeartIcon src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`} alt="하트" />
                   </S.Post>
                 ))}
               </S.SmallPost>
             </S.SmallWrap>
           </S.RecommendContainer>
+
         </S.RecommendSection>
 
         {/* 서브 배너바 */}
@@ -113,34 +123,58 @@ const Main = () => {
 
         {/* 상품 나열 */}
         <S.ProductContainer>
-          <h2>POWPOW의 추천상품이에요!</h2>
-          <S.ProductsWrap>
+          <S.ProductHeader>
+            <h2>POWPOW의 추천상품이에요!</h2>
             <Link to={""}><strong>+ 더보기</strong></Link>
-            <S.Products>
-              {[ 
-                { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "9,900원", image: "product1.png" },
-                { name: "디팡 강아지 사료 500g", price: "8,500원", image: "product2.png" }
-              ].map((product, index) => (
+          </S.ProductHeader>
+
+          <S.ProductsWrap>
+          <S.Products>
+            {[
+              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "55% 9,900원", image: "product1.png" },
+              { name: "디팡 강아지 사료 500g", price: "10% 8,500원", image: "product2.png" },
+              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "10% 9,900원", image: "product3.png" },
+              { name: "디팡 강아지 사료 500g", price: "10% 8,500원", image: "product4.png" },
+              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "50% 9,900원", image: "product5.png" },
+              { name: "디팡 강아지 사료 500g", price: "55% 8,500원", image: "product6.png" },
+              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "35% 9,900원", image: "product1.png" },
+              { name: "디팡 강아지 사료 500g", price: "55% 8,500원", image: "product2.png" },
+              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "10% 9,900원", image: "product3.png" },
+              { name: "디팡 강아지 사료 500g", price: "35% 8,500원", image: "product4.png" },
+              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "20% 9,900원", image: "product5.png" },
+              { name: "디팡 강아지 사료 500g", price: "35% 8,500원", image: "product6.png" }
+            ].map((product, index) => {
+              const [discount, price] = product.price.split(' ');
+
+              return (
                 <S.ProductCard key={index}>
                   <img src={`${process.env.PUBLIC_URL}/assets/images/layout/${product.image}`} alt={product.name} />
-                  <img src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`} alt="하트" />
+                  <S.ProductHeartICon src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`} alt="하트" />
                   <S.CardTextWrap>
-                    <p className="ProductName">{product.name}</p>
-                    <b>{product.price}</b>
+                    <S.ProductName>{product.name}</S.ProductName>
+                    <S.DiscountText>   
+                      
+                      {discount && (
+                        <b><span style={{ color: '#C83F3F', fontWeight: 'bold', marginRight: '10px' }}>{discount}</span></b>
+                      )}
+                        <b><span>{price}</span></b>
+                      
+                    </S.DiscountText>
                   </S.CardTextWrap>
                   <S.CardCart>
-                    <img src={`${process.env.PUBLIC_URL}/assets/images/test/cart.png`} alt="장바구니" />
+                    <img src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`} alt="장바구니아이콘" />
                     <p>담기</p>
                   </S.CardCart>
                 </S.ProductCard>
-              ))}
-            </S.Products>
-          </S.ProductsWrap>
+              );
+            })}
+          </S.Products>
+        </S.ProductsWrap>
+
         </S.ProductContainer>
       </S.Container>
-      
       <Footer />
-    </div>
+    </>
   );
 }
 
