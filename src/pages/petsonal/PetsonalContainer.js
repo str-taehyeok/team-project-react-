@@ -4,7 +4,6 @@ import {Outlet} from "react-router-dom";
 const PetsonalContainer = () => {
     return (
         <div>
-            petsonal container
             <Outlet />
         </div>
     );
