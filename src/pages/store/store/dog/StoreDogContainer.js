@@ -31,7 +31,7 @@ const StoreDogContainer = () => {
 ]
  
 const categorys = categoryList.map(({name, location, src}, i) => (
-    <S.CategoriesWrap>
+    <S.CategoriesWrap key={i}>
         <Link key={i} to={location}>
             <img src={process.env.PUBLIC_URL + src} alt={"상품사진"}/>
             <S.Category>{name}</S.Category>
@@ -40,17 +40,20 @@ const categorys = categoryList.map(({name, location, src}, i) => (
 ))
 
   return (
-    <S.Content>
-      <S.BannerContainer>
-        <S.Banner src={process.env.PUBLIC_URL+ "/assets/images/store/dog-banner.png"} alt="dog banner" />
-          <S.BannerComent>반려동물의 성향을 체크할 수 있는 펫스널리티, <br/>지금 POWPOW에서 시작하세요 <br/><span>펫스널컬러 검사하기</span><button src={process.env.PUBLIC_URL+ "/login" }>바로가기<S.BannerButton src={process.env.PUBLIC_URL+ "/assets/images/store/icon-arrow.png"}/></button></S.BannerComent>
-      </S.BannerContainer>
-        <S.CategoriesWrap>{categorys}</S.CategoriesWrap>
-      <div>
-        <Outlet />
-      </div>
-        <Footer />
-    </S.Content>
+    <>
+      <S.Content>
+        <S.BannerContainer>
+          <S.Banner src={process.env.PUBLIC_URL+ "/assets/images/store/dog-banner.png"} alt="dog banner" />
+            <S.BannerComent>반려동물의 성향을 체크할 수 있는 펫스널리티, <br/>지금 POWPOW에서 시작하세요 <br/><span>펫스널컬러 검사하기</span><button src={process.env.PUBLIC_URL+ "/login" }>바로가기<S.BannerButton src={process.env.PUBLIC_URL+ "/assets/images/store/icon-arrow.png"}/></button></S.BannerComent>
+        </S.BannerContainer>
+          <S.CategoriesWrap>{categorys}</S.CategoriesWrap>
+        <div>
+          <Outlet />
+        </div>
+      </S.Content>
+      <Footer />
+    </>
+
   );
 };
 

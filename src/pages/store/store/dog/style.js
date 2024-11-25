@@ -188,7 +188,8 @@ const S = {}
             justify-content: center;
             flex-direction: column;
             overflow: auto;
-            
+            flex-shrink: 0;
+
             & img{
                 width: 244px;
                 height: 250px;
@@ -216,6 +217,7 @@ const S = {}
             flex-direction: row;
             justify-content: space-between;
             gap: 55px;
+            overflow-x: scroll;
         `;
 
     S.RecommendedProduct = styled.div`
