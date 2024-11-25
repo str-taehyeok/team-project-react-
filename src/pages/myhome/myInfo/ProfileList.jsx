@@ -52,12 +52,12 @@ const ProfileList = () => {
                                     <p>주소</p>
                                 </S.MemberInputTagWrap>
                                 <S.MemberInputWrap>
-                                    <input placeholder='이름'/>
-                                    <input placeholder='닉네임'/>
-                                    <input placeholder='아이디'/>
-                                    <input placeholder='휴대폰번호'/>
-                                    <input placeholder='주소1'/>
-                                    <input placeholder='주소2'/>
+                                    <p>이름</p>
+                                    <p>닉네임</p>
+                                    <p>아이디</p>
+                                    <p>휴대폰번호</p>
+                                    <p>주소1</p>
+                                    <p>주소2</p>
                                 </S.MemberInputWrap>
                             </S.MemberInputBoxWrap>
                         </S.MemberInputBoxContainer>
