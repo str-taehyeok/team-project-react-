@@ -168,6 +168,24 @@ const S = {}
       justify-content: center;
     }
 
+    .text8 {
+      font-size: 40px;
+      line-height: 54px;
+      letter-spacing: -3%;
+      font-weight:bold;
+      margin-top: 82px;
+      margin-left: 65px;
+    }
+
+    .text9{
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -3%;
+      text-align: right;
+      margin-right: 82px;
+      font-weight:bold;
+    }
+
   `
 
   
