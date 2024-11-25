@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import {
-  flexCenterRowSpaceBetween, flexRowCenter, flexColumnCenter, h7Medium, h10Medium
+  flexRowCenter, flexColumnCenter, h7Bold, h8Bold
 } from '../../global/common'
+ import theme from "../../global/theme";
 
 const S = {}
 
@@ -20,9 +21,7 @@ S.Text = styled.p`
 S.JoinMain = styled.div`
   width: 464px;
   display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center;
+  ${flexColumnCenter};
   margin: 235px auto;
 `
 
@@ -61,19 +60,16 @@ S.RadioBox = styled.div`
 
 `
 S.NextButton = styled.button`
-  width: 464px;
-  height: 55px;
-  background-color: #FFC303;
-  font-size: 16px;
-  font-weight: bold;
-  border-style: none;
-  border-radius: 20px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  
+    width: 464px;
+    height: 55px;
+    background-color: #FFC303;
+    ${h7Bold};
+    border-style: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-top: 30px;
+    ${flexRowCenter};
 `
 
 S.SellerMain = styled.div`
@@ -105,12 +101,13 @@ S.InputButton = styled.input`
   width: 464px;
   height: 60px;
   border: 0.5px solid #828282;
-  font-size: 14px;
+  font-size: font-size: ${theme.FONT_SIZE.h8};
   color: #828282;
   border-radius: 20px;
   box-sizing: border-box;
   padding: 19px 26px;
   outline:none;
+  ${flexRowCenter};
 `
 S.AuthNumberContainer = styled.div`
  margin-top: 10px; 
@@ -126,9 +123,8 @@ S.AuthButton = styled.button`
   color: #C83F3F;
   border: none; 
   cursor: pointer; 
-  font-size: 14px;
-  line-height: 22px;
-  font-weight: bold;
+  ${h8Bold};
+  ${flexRowCenter};
 `
 
 S.InputContainer = styled.div`
@@ -208,16 +204,16 @@ S.AgreeBox = styled.div`
 `
 
 S.LoginButton = styled.div`
-  width: 464px;
-  height: 55px;
-  background-color: #FFC303;
-  font-size: 16px;
-  font-weight: bold;
-  border-style: none;
-  border-radius: 20px;
-  box-sizing: border-box;
-  cursor: pointer;
-  margin-top: 30px;
+    width: 464px;
+    height: 55px;
+    background-color: #FFC303;
+    ${h7Bold};
+    border-style: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-top: 30px;
+    ${flexRowCenter};
 `
 
 S.Agree2 = styled.div`
@@ -246,6 +242,7 @@ S.InputButton1 = styled.input`
   padding: 19px 26px;
   outline:none;
   margin-top: 9px;
+  ${flexRowCenter};
 `
 S.PhoneMain = styled.div`
   width: 464px;
@@ -253,7 +250,7 @@ S.PhoneMain = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px auto;
+  margin: 235px auto;
 `
 
 S.CompletionMain = styled.div`
@@ -270,14 +267,13 @@ S.NextButton = styled.div`
   width: 464px;
   height: 55px;
   background-color: #FFC303;
-  font-size: 16px;
-  font-weight: bold;
+  ${h7Bold}
   border-style: none;
   border-radius: 20px;
   box-sizing: border-box;
   cursor: pointer;
   margin-top: 30px;
-
+  ${flexRowCenter};
 `
 
 S.Box = styled.div`
