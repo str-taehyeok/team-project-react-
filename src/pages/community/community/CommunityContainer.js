@@ -1,5 +1,5 @@
 import React from 'react';
-// import {Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import Banner from './Banner';
 import Slide from './Slide';
 import Footer from '../../layout/Footer';
@@ -74,8 +74,8 @@ const CommunityContainer = () => {
 
 
                     
+            <Outlet />
             <Footer />
-            {/* <Outlet /> */}
         </div>
     );
 };
