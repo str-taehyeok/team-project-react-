@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { flexCenterRowSpaceBetween, flexColumnCenter, flexRowCenter,
   h1Bold, h1Medium, h2Bold, h4Bold,
-  h6Medium
+  h6Medium,
+  h7Bold
  } from '../../global/common'
  import theme from "../../global/theme";
 
@@ -156,10 +157,9 @@ S.Frame = styled.div`
 `
 
 S.PetTestContainer = styled.div`
-	display: flex;
-  flex-direction: column;
+  ${flexColumnCenter}
   gap: 175px;
-	margin: 350px 0;
+	margin: 200px 0;
 `
 
 S.Questions = styled.div`
@@ -207,6 +207,18 @@ S.SmallCircle = styled.div`
 	cursor: pointer;
 `
 
+S.NextButton = styled.button`
+  width: 464px;
+  height: 55px;
+  background-color: #FFC303;
+  ${h7Bold};
+  border-style: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin-top: 30px;
+  ${flexRowCenter};
+`
 // 결과 페이지
 S.ResultContainer =styled.div`
   width: 1440px;
@@ -255,29 +267,29 @@ S.PetProfile =styled.div`
     color: white;
     font-weight: bold;
   }
-  `
+`
 
 S.PetImage =styled.img`
   width: 292px;
   height: 292px;
   border-radius: 50%;
-  `
+`
 
 S.RateWrap =styled.div`
   ${flexColumnCenter};
   width: 505px;
   gap: 60px;
-  `
+`
 
 S.ResultName =styled.p`
   ${h1Bold}
-  `
+`
 
 S.PercentageContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 70px;
-  `
+`
 
 S.AllRate = styled.div`
   width: 505px;
