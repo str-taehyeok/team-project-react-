@@ -57,45 +57,102 @@ S.Title = styled.h5`
 `
 S.PetName = styled.label`
   display: block;
-  padding-top: 30px;
+  label {
+  display: block;
+  width: 58px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+    }
+
 `
 S.PetKind = styled.label`
   display: block;
-  padding-top: 30px;
 `
 S.PetGender = styled.label`
   display: block;
-  padding-top: 30px;
 `
 S.PetBreed = styled.label`
   display: block;
-  padding-top: 30px;
 `
 S.PetBrith = styled.label`
   display: block;
-  padding-top: 30px;
 `
 S.PetBreed = styled.label`
   display: block;
-  padding-top: 30px;
 `
 S.PetNeuter = styled.label`
   display: block;
-  padding-top: 30px;
 `
 S.PetVet = styled.label`
   display: block;
-  padding-top: 30px;
 `
 S.InputWarp = styled.div`
   margin-top: 30px;
   margin-left: 58px;
-`
-S.PetInput = styled.input`
+
+  &input{
   border-radius: 20px;
 	height: 30px;
 	padding-left: 26px;
 	margin-top: 20px;
+  }
 `
+S.InputGroup = styled.div`
+    display: flex;
+    align-items: center;
+    width: 400px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+
+    input {
+    width: 285px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    }
+`;
+
+S.RadioGroup = styled.div`
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    width: 260px;
+    height: 32px;
+`;
+
+S.RadioGroupGender = styled.div`
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    width: 238px;
+    height: 32px;
+`;
+S.PetDogCat = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+
+`
+S.Gap = styled.div`
+  display: flex;
+`
+
+S.PetGender = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  width: 30px;
+  height: 32px;
+`;
+
+
+
 
 export default S;
