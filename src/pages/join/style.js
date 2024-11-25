@@ -60,16 +60,16 @@ S.RadioBox = styled.div`
 
 `
 S.NextButton = styled.button`
-    width: 464px;
-    height: 55px;
-    background-color: #FFC303;
-    ${h7Bold};
-    border-style: none;
-    border-radius: 20px;
-    box-sizing: border-box;
-    cursor: pointer;
-    margin-top: 30px;
-    ${flexRowCenter};
+  width: 464px;
+  height: 55px;
+  background-color: #FFC303;
+  ${h7Bold};
+  border-style: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin-top: 30px;
+  ${flexRowCenter};
 `
 
 S.SellerMain = styled.div`
@@ -101,7 +101,7 @@ S.InputButton = styled.input`
   width: 464px;
   height: 60px;
   border: 0.5px solid #828282;
-  font-size: font-size: ${theme.FONT_SIZE.h8};
+  font-size: ${theme.FONT_SIZE.h8};
   color: #828282;
   border-radius: 20px;
   box-sizing: border-box;
@@ -109,6 +109,7 @@ S.InputButton = styled.input`
   outline:none;
   ${flexRowCenter};
 `
+
 S.AuthNumberContainer = styled.div`
  margin-top: 10px; 
 `
