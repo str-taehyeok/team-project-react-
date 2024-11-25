@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { flexCenterRowSpaceBetween, flexColumnCenter, flexRowCenter,
-  h1Bold, h1Medium, h2Bold, h4Bold
+  h1Bold, h1Medium, h2Bold, h4Bold,
+  h6Medium,
+  h7Bold
  } from '../../global/common'
  import theme from "../../global/theme";
 
@@ -155,10 +157,9 @@ S.Frame = styled.div`
 `
 
 S.PetTestContainer = styled.div`
-	display: flex;
-  flex-direction: column;
+  ${flexColumnCenter}
   gap: 175px;
-	margin: 350px 0;
+	margin: 200px 0;
 `
 
 S.Questions = styled.div`
@@ -206,9 +207,211 @@ S.SmallCircle = styled.div`
 	cursor: pointer;
 `
 
-S.Frame = styled.div`
-
+S.NextButton = styled.button`
+  width: 464px;
+  height: 55px;
+  background-color: #FFC303;
+  ${h7Bold};
+  border-style: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin-top: 30px;
+  ${flexRowCenter};
 `
+// 결과 페이지
+S.ResultContainer =styled.div`
+  width: 1440px;
+  ${flexColumnCenter};
+  margin-top: 200px;
+  `
+
+S.ColorWrap =styled.div`
+  ${flexColumnCenter};
+`
+
+S.ColorText =styled.p`
+  font-size: 40px;
+  font-weight: bold;
+  color: #FAAF04;
+`
+
+S.OrangeResult =styled.ul`
+  display: flex;
+  flex-direction: column;
+  margin-top: 98px;
+  gap: 13px;
+
+    & li {
+      list-style-type: disc !important;
+      display: list-item;
+    }
+`
+
+S.ResultBox =styled.div`
+  margin-top: 144px;
+  width: 1440px;
+  height: 885px;
+  background: rgba(255, 204, 102, 0.7);
+  gap: 180px;
+  ${flexRowCenter};
+`
+
+S.PetProfile =styled.div`
+  gap: 34px;
+  width: 292px;
+  ${flexColumnCenter};
+  
+  &p {
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+  }
+`
+
+S.PetImage =styled.img`
+  width: 292px;
+  height: 292px;
+  border-radius: 50%;
+`
+
+S.RateWrap =styled.div`
+  ${flexColumnCenter};
+  width: 505px;
+  gap: 60px;
+`
+
+S.ResultName =styled.p`
+  ${h1Bold}
+`
+
+S.PercentageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+`
+
+S.AllRate = styled.div`
+  width: 505px;
+  ${flexColumnCenter};
+`
+
+S.ResultCategory = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 505px;
+
+    &span {
+      ${h6Medium}
+    }
+`
+
+S.PercentageWrap = styled.div`
+  width: 500px;
+  ${flexCenterRowSpaceBetween}
+`
+
+S.Percent = styled.div`
+  width: 408px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: white;
+`
+
+S.ProductContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 65px;
+`
+
+S.ProductsWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+`
+
+S.Matching = styled.p`
+  width: 1440px;
+  text-align: left;
+  margin-top: 150px;
+  font-size: 40px;
+  font-weight: 700;
+`
+
+S.Products = styled.div`
+  ${flexCenterRowSpaceBetween}
+  width: 1440px;
+`
+
+S.ProductCard = styled.div`
+  ${flexColumnCenter}
+  width: 342px;
+  height: 457px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  position: relative;
+`
+
+S.CardImage = styled.img`
+  margin-top: 21px;
+  border-radius: 10px;
+  width: 290px;
+  height: 290px;
+`
+
+S.CardHeartIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  position:absolute;
+  z-index: 10;
+  right: 29px;
+  top: 25px;
+`
+
+S.CardTextWrap = styled.div`
+  display: flex;
+  margin: 12px 0 20px 0;
+  flex-direction: column;
+  gap: 10px;
+
+    &b {
+      width: 290px;
+      text-align: left;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 26px;
+    }
+`
+
+S.ProductName = styled.p`
+  width: 290px;
+  text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 18px;
+`
+
+S.CardCart = styled.div`
+  width: 290px;
+  height: 36px;
+  ${flexRowCenter}
+  gap: 8px;
+  border-radius: 10px;
+  border: solid 1px #e0e0e0;
+  background-color: white;
+
+    & img {
+      width: 20px;
+      height: 20px;
+    }
+`
+
 
 
 export default S;
