@@ -1,5 +1,7 @@
 import React from "react";
 import S from "./style";
+import Footer from "../layout/Footer";
+import { Link } from "react-router-dom";
 
 const PetsonalTest = () => {
   return (
@@ -214,8 +216,11 @@ const PetsonalTest = () => {
               <span>그렇다</span>
             </S.CirclesWrap>
           </S.Questions>
+          <Link to={"/petsonal/test2"}><S.NextButton>다음</S.NextButton></Link>
         </S.PetTestContainer>
       </S.Frame>
+
+      <Footer />
     </div>
   );
 };
