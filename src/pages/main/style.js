@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import {
-  flexCenterRowSpaceBetween, flexRowCenter, flexColumnCenter, h7Medium, h4Medium
-} from '../../global/common'
 import theme from "../../global/theme";
 
 const S = {};
@@ -12,12 +9,6 @@ S.Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-`;
-
-S.LayoutWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 33px;
 `;
 
 S.Slider = styled.div`
@@ -32,9 +23,16 @@ S.Slider = styled.div`
 `;
 
 S.Slides = styled.div`
-  display: flex;
-  transition: transform 2s ease-in-out;
-  gap: 26px;
+    display: flex;
+    transition: transform 3s ease-in-out;
+    overflow: hidden;
+    gap: 26px;
+`;
+S.HotSlide = styled.div`
+    display: flex;
+    transition: transform 3s ease-in-out;
+    overflow: hidden;
+    gap: 26px;
 `;
 
 S.Slide = styled.div`
@@ -44,30 +42,20 @@ S.Slide = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2em;
-  color: white;
 `;
 
-S.Navigation = styled.div`
-  position: absolute;
-  bottom: 15px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
+//////////////////////////////////////핫한 상품
 
 S.HotProduct = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1440px;
-  margin-top: 135px;
-  gap: 26px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 10px;
-  }
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 135px;
+    
+  & h2 {
+    font-size: ${theme.FONT_SIZE.h4};
+    font-weight: ${theme.FONT_WEIGHT.bold};    
+    }
 `;
 
 S.HotImages = styled.div`
@@ -112,9 +100,30 @@ S.Cart = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
   font-weight: bold;
+  
+  & a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+   }
 `;
+
+////////////////////////////////////////// 태스트 배너
+
+S.TestWrap = styled.div`
+  margin: 150px 0;
+`;
+
+S.TestButton = styled.div`
+  position: absolute;
+  top: 1517px;  
+  left: 320px;  
+  bottom: 237px;
+`
+
+////////////////////////////////////////// 커뮤니티
 
 S.RecommendSection = styled.div`
 `;
@@ -137,6 +146,11 @@ S.TitleWrapper = styled.div`
   align-items: center; 
   width: 100%; 
   margin-bottom: 50px;
+
+  & h2 {
+    font-size: ${theme.FONT_SIZE.h4};
+    font-weight: ${theme.FONT_WEIGHT.bold};    
+    }
 `;
 
 S.LargePost = styled.div`
@@ -174,6 +188,7 @@ S.HeartIcon = styled.img`
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
 `;
 
 S.SmallWrap = styled.div`
@@ -213,18 +228,23 @@ S.ProfileInfo = styled.div`
     width: 40px;
     height: 40px;
   }
+
+    & a{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+       & span {
+        font-weight: 700;
+       }
+    }
+
 `;
 
 S.ProfileImage = styled.div`
   width: 40px;
   height: 34px;
 `;
-
-S.UserId = styled.span`
-  font-size: 14px;
-  font-weight: 600;
-`;
-
 
 
 /////////////////////////////////////////상품나열
@@ -246,6 +266,8 @@ S.ProductHeader = styled.div`
 
   h2 {
     text-align: left;
+    font-size: ${theme.FONT_SIZE.h4};
+    font-weight: ${theme.FONT_WEIGHT.bold};
   }
 
   a {
@@ -326,7 +348,9 @@ S.ProductName = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 18px;
-  height: 40px;
+  height: 35px;
+  font-size: ${theme.FONT_SIZE.h8};
+
 `
 
 
@@ -341,12 +365,17 @@ S.CardCart = styled.div`
   border-radius: 5px;
   border: solid 1px #e0e0e0;
   background-color: white;
-  cursor: pointer;
-  margin-top: 20px;
-  bottom: 5px;     
+  margin-top: 18px;
   width: 230px;
   height: 30px;
-  gap: 6px;
+  
+
+  & a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+   }
 `;
 
 S.CardCartIcon = styled.div`
@@ -358,13 +387,5 @@ S.SubBanner = styled.div`
   width: 100%;
   text-align: center;
 `;
-
-S.TestWrap = styled.div`
-  margin: 150px 0;
-`;
-
-
-
-
 
 export default S;

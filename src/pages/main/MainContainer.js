@@ -1,81 +1,69 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { Link } from "react-router-dom";
 import S from './style';
 
 const Main = () => {
-  const [currentSlide, setCurrentSlide] = useState(0); 
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % 3);
-    }, 7000); 
-
-    return () => clearInterval(interval); 
-  }, []);
-
   return (
     <>
       <Header />
       
       <S.Container>
         <S.Slider>
-          <S.Slides style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+          <S.Slides>
             <S.Slide>
-              <img src={`${process.env.PUBLIC_URL}/assets/images/layout/banner1-final.png`} alt="메인배너1" />
-            </S.Slide>
-            <S.Slide>
-              <img src={`${process.env.PUBLIC_URL}/assets/images/layout/banner2-final.png`} alt="메인배너2" />
-            </S.Slide>
-            <S.Slide>
-              <img src={`${process.env.PUBLIC_URL}/assets/images/layout/banner3-final.png`} alt="메인배너3" />
+              <img src={`${process.env.PUBLIC_URL}/assets/images/layout/banner1.png`} alt="메인배너1" />
             </S.Slide>
           </S.Slides>
-          
-          <S.Navigation>
-            <span className="Dot" onClick={() => setCurrentSlide(0)}></span>
-            <span className="Dot" onClick={() => setCurrentSlide(1)}></span>
-            <span className="Dot" onClick={() => setCurrentSlide(2)}></span>
-          </S.Navigation>
         </S.Slider>
 
         {/* 핫한 상품 이미지 */}
         <S.HotProduct>
           <h2>지금 제일 인기 있는 상품이에요.</h2>
           <S.HotImages>
-            <S.Slides>
+            <S.HotSlide>
               {[ 
                 { src: "dentalgum1.png", coupon: "강아지 인기" },
                 { src: "shampoo3.png", coupon: "고양이 특가" },
-                { src: "shampoo3.png", coupon: "세일 특가" }
+                { src: "feed.png", coupon: "세일 특가" }
               ].map((item, index) => (
                 <S.ImageAndCart key={index}>
                   <S.HotImage>
+                    <Link to={"/"}>
                     <img src={`${process.env.PUBLIC_URL}/assets/images/layout/${item.src}`} alt={`상품-${index + 1}`} />
+                    </Link>
                     <S.Coupon>{item.coupon}</S.Coupon>
                     <img src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`} alt="하트" />
                   </S.HotImage>
                   <S.Cart>
+                    <Link to={"/"}>
                     <img src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`} alt="장바구니아이콘" />
                     <p>담기</p>
+                    </Link>
                   </S.Cart>
                 </S.ImageAndCart>
               ))}
-            </S.Slides>
+            </S.HotSlide>
           </S.HotImages>
         </S.HotProduct>
 
-        <S.TestWrap>
+        <S.TestWrap style={{ position: 'relative' }}>
           <img src={`${process.env.PUBLIC_URL}/assets/images/layout/main-test-image.png`} alt="테스트 배너" />
+          <S.TestButton>
+          <a href="">
+            <img src={`${process.env.PUBLIC_URL}/assets/images/layout/testbutton.png`} alt="테스트 버튼" />
+          </a>
+          </S.TestButton>
         </S.TestWrap>
+
 
         {/* 커뮤니티 */}
         <S.RecommendSection>
             <S.CommunityPlusMore>
                 <S.TitleWrapper>
                 <h2>이런 게시물은 어때요?</h2>
-                <Link to="/product">+ 더보기</Link>
+                <Link to="/community">+ 더보기</Link>
                 </S.TitleWrapper>
             </S.CommunityPlusMore>
 
@@ -104,8 +92,10 @@ const Main = () => {
                   <S.Post key={index}>
                     <S.SmallPostImage src={`${process.env.PUBLIC_URL}assets/images/layout/${item.src}`} alt={`게시물-${index + 1}`} />
                     <S.ProfileInfo>
+                      <Link to={"/"}>
                       <img src={`${process.env.PUBLIC_URL}/assets/images/layout/profile.png`} alt="프로필" />
                       <span className="UserId">{item.userId}</span>
+                      </Link>
                     </S.ProfileInfo>
                     <S.HeartIcon src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`} alt="하트" />
                   </S.Post>
@@ -118,14 +108,16 @@ const Main = () => {
 
         {/* 서브 배너바 */}
         <S.SubBanner>
-          <img src={`${process.env.PUBLIC_URL}/assets/images/layout/main-sub-image.png`} alt="서브 배너" />
+          <Link to={"/"}>
+            <img src={`${process.env.PUBLIC_URL}/assets/images/layout/main-sub-image.png`} alt="서브 배너" />
+          </Link>
         </S.SubBanner>
 
         {/* 상품 나열 */}
         <S.ProductContainer>
           <S.ProductHeader>
             <h2>POWPOW의 추천상품이에요!</h2>
-            <Link to={""}><strong>+ 더보기</strong></Link>
+            <Link to={"/product"}><strong>+ 더보기</strong></Link>
           </S.ProductHeader>
 
           <S.ProductsWrap>
@@ -162,8 +154,10 @@ const Main = () => {
                     </S.DiscountText>
                   </S.CardTextWrap>
                   <S.CardCart>
+                    <Link to={"/"}>
                     <img src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`} alt="장바구니아이콘" />
                     <p>담기</p>
+                    </Link>
                   </S.CardCart>
                 </S.ProductCard>
               );
