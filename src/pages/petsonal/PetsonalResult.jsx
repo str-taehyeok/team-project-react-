@@ -61,7 +61,7 @@ const PetsonalResult = () => {
                   </S.ResultCategory>
                   <S.PercentageWrap>
                     <span>0</span>
-                    <div className="Percent"></div>
+                    <S.Percent></S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
                 </S.AllRate>
@@ -86,7 +86,7 @@ const PetsonalResult = () => {
               <S.Products>
                 <S.ProductCard>
                   <S.CardImage
-                    src="./images/image.png"
+                    src="assets/images/test/white-heart-icon.png"
                     alt="상품이미지"
                   />
                   <S.CardHeartIcon
@@ -160,7 +160,7 @@ const PetsonalResult = () => {
                 </S.ProductCard>
               </S.Products>
             </S.ProductsWrap>
-            
+
             <S.ProductsWrap>
               <S.Matching>맞춤 추천 상품</S.Matching>
               <S.Products>

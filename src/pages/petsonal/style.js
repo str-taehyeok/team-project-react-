@@ -360,8 +360,8 @@ S.CardImage = styled.img`
 `
 
 S.CardHeartIcon = styled.img`
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   position:absolute;
   z-index: 10;
   right: 29px;
@@ -412,10 +412,6 @@ S.CardCart = styled.div`
     }
 `
 
-S.ProductContainer = styled.img`
-  width: 20px;
-  height: 20px;
-`
 
 
 export default S;
