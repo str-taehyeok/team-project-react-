@@ -1,222 +1,132 @@
-import React from "react";
+import React, { useContext, useRef, useState } from "react";
 import S from "./style";
 import Footer from "../layout/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { PetsonalContext } from "../../context/petsonalContext";
 
 const PetsonalTest = () => {
+  const navigate = useNavigate();
+  const { state, action } = useContext(PetsonalContext)
+  
+  const { 
+    setPetsonalChic, setPetsonalCute, setPetsonalCalm, setPetsonalActive,
+    setPetsonalLazy, setPetsonalDiligent, setPetsonalCoward, setPetsonalBrave
+  } = action;
+  const { survey,
+    petsonalChic, petsonalCute, petsonalCalm, petsonalActive,
+    petsonalLazy, petsonalDiligent, petsonalCoward, petsonalBrave
+   } = state;
+
+  // 한페이지 문항의 개수
+  const [ inputScore, inputSetScore ] = useState(Array(6).fill(false)); 
+  // 클릭한 radio의 checked 상태로 변경
+  const handleRadioChecked = (i, checked) => {
+    inputSetScore((pevState) => {
+      const newState = [...pevState];
+      newState[i] = checked;
+      return newState;
+    })
+  }
+
+  // 전역 변수
+  let chic = 0;
+  let cute = 0;
+  let calm = 0;
+  let active = 0;
+  let lazy = 0;
+  let diligent = 0;
+  let coward = 0;
+  let brave = 0;
+
+  // 문항을 모두 선택했는지 검증 후 스코어 주입
+  const onClickToAddScoreAndNavigate = (e) => {
+    let selectLength = inputScore.filter((score) => score).length;
+
+    // 반복을 돌려서 각 type을 비교 후 합산
+    inputScore.map((score, i) => {
+      const type = survey[i].type;
+      console.log(type === "petsonalChic")
+      if(type === "petsonalChic"){
+        chic += score;
+      }else if(type === "petsonalCute"){
+        cute += score;
+      }else if(type === "petsonalCalm"){
+        calm += score;
+      }else if(type === "petsonalActive"){
+        active += score;
+      }else if(type === "petsonalLazy"){
+        lazy += score;
+      }else if(type === "petsonalDiligent"){
+        diligent += score;
+      }else if(type === "petsonalCoward"){
+        coward += score;
+      }else if(type === "petsonalBrave"){
+        brave += score;
+      }else{
+        return null;
+      }
+    })
+    // 점수 연산 후 전송
+    setPetsonalChic(petsonalChic + chic)
+    setPetsonalCute(petsonalCute + cute)
+    setPetsonalCalm(petsonalCalm + calm)
+    setPetsonalActive(petsonalActive + active)
+    setPetsonalLazy(petsonalLazy + lazy)
+    setPetsonalDiligent(petsonalDiligent + diligent)
+    setPetsonalCoward(petsonalCoward + coward)
+    setPetsonalBrave(petsonalBrave + brave)
+
+    navigate("/petsonal/test2")
+  }
+
+  const surveyList = survey.map(({title, type}, i) => {
+    return (
+      <S.Questions key={i}>
+        <S.Question>
+         {title}
+        </S.Question>
+        <S.CirclesWrap>
+          <span>그렇지 않다</span>
+          <S.Circles>
+            <S.BigCircle 
+              value={0} type="radio" name={type + i} 
+              checked={inputScore[i] === 0}
+              onChange={() => handleRadioChecked(i, 0)}
+              ></S.BigCircle>
+            <S.MiddleCircle 
+              value={1} type="radio" name={type + i} 
+              checked={inputScore[i] === 1}
+              onChange={() => handleRadioChecked(i, 1)}
+            ></S.MiddleCircle>
+            <S.SmallCircle 
+              value={2} type="radio" name={type + i} 
+              checked={inputScore[i] === 2}
+              onChange={() => handleRadioChecked(i, 2)}
+            ></S.SmallCircle>
+            <S.MiddleCircle 
+              value={3} type="radio" name={type + i} 
+              checked={inputScore[i] === 3}
+              onChange={() => handleRadioChecked(i, 3)}
+            ></S.MiddleCircle>
+            <S.BigCircle
+              value={4} type="radio" name={type + i} 
+              checked={inputScore[i] === 4}
+              onChange={() => handleRadioChecked(i, 4)}
+            ></S.BigCircle>
+          </S.Circles>
+          <span>그렇다</span>
+        </S.CirclesWrap>
+      </S.Questions>
+    )
+  })
+
+  
   return (
     <div>
       <S.Frame>
         <S.PetTestContainer>
-          <S.Questions>
-            <S.Question>
-              Q1. 집사가 간식을 들고 오면 신나서 방방 뛰어요!
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q2. 처음 만난 사람에게도 배를 보여주며 애교를 부려요.
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q3. 새로운 장난감이 생기면 하루 종일 그것만 가지고 놀아요.
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q4. 친구 강아지와 만나면 끝없이 따라다니며 놀아요.
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q5. 집사가 잠자리를 준비하면 그곳에 먼저 뛰어들어요.
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q6. 밥 시간이 되면 집사 옆에서 꼬리를 흔들며 재촉해요.
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q7. 간식을 받으면 신나서 간식 자리까지 달려가요!
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q8. 집사가 없으면 여기저기 돌아다니며 집안을 확인해요.
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q9. 새로운 물건이 보이면 바로 다가가 확인해요.
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q10. 친구들과 끝없이 놀고 싶어해요. 
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q11. 자리에 눕자마자 바로 꿀잠을 자요.
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q12. 낯선 환경에서도 여기저기 뛰어다니며 구경해요.
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <S.Questions>
-          <S.Question>
-          Q13. 집사가 부르면 달려가면서 꼬리를 흔들어요!
-            </S.Question>
-            <S.CirclesWrap>
-              <span>그렇지 않다</span>
-              <S.Circles>
-                <S.BigCircle></S.BigCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.SmallCircle></S.SmallCircle>
-                <S.MiddleCircle></S.MiddleCircle>
-                <S.BigCircle></S.BigCircle>
-              </S.Circles>
-              <span>그렇다</span>
-            </S.CirclesWrap>
-          </S.Questions>
-          <Link to={"/petsonal/test2"}><S.NextButton>다음</S.NextButton></Link>
+          {surveyList}
+          <S.NextButton onClick={onClickToAddScoreAndNavigate}>다음</S.NextButton>
         </S.PetTestContainer>
       </S.Frame>
 

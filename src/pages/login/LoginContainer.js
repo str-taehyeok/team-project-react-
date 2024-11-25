@@ -7,6 +7,8 @@ const LoginContainer = () => {
     const handleButtonClick = (button) => {
         setActiveButton(button);
     };
+
+    console.log(activeBtn)
     return (
         <S.root>
             <S.LoginMain>
@@ -16,13 +18,21 @@ const LoginContainer = () => {
                     </Link>
                 </S.LogoBox>
                 <S.Tap>
-                    <S.MemberBtn isActive={activeBtn === "member"} 
-                        onClick={() => handleButtonClick("member")}>
-                        <Link to={"/login"}>회원</Link></S.MemberBtn>
+                    <Link to={"/login"}>
+                        <S.MemberBtn 
+                            className={activeBtn === "member" ? "active" : ""}
+                            onClick={() => handleButtonClick("member")}>
+                            회원
+                        </S.MemberBtn>
+                    </Link>
 
-                    <S.SellerBtn  isActive={activeBtn === "seller"} 
-                        onClick={() => handleButtonClick("seller")}>
-                        <Link to={"/login/seller"}>판매자</Link></S.SellerBtn>
+                    <Link to={"/login/seller"}>
+                        <S.SellerBtn 
+                            className={activeBtn === "seller" ? "active" : ""}
+                            onClick={() => handleButtonClick("seller")}>
+                            판매자
+                        </S.SellerBtn>
+                    </Link>
                 </S.Tap>
                 <div>
                     <Outlet />
