@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 
 const ProfileList = () => {
 
-    const member = [
-        {
-            name : "김철수",
-            nickname : "닉네임",
-            email : "test123@gmail.com"
-        }
-    ]
+    // const member = [
+    //     {
+    //         name : "김철수",
+    //         nickname : "닉네임",
+    //         email : "test123@gmail.com"
+    //     }
+    // ]
     return (
         <div>
             <S.MyHomeContainer>

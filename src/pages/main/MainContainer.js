@@ -2,24 +2,84 @@ import React from 'react';
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import S from './style';
+import SwiperCore from 'swiper/core';
+SwiperCore.use([Pagination]);
 
 const Main = () => {
   return (
     <>
       <Header />
-      
-      <S.Container>
-        <S.Slider>
+      <S.SwiperContainer>
+        <Swiper className="mySwiper1"
+          slidesPerView={1} spaceBetween={30} loop={true} navigation={true} pagination={{ "dynamicBullets": true }}
+        >
+          <SwiperSlide>
+          <img src={`${process.env.PUBLIC_URL}/assets/images/layout/banner1.png`} alt="메인배너1" />
+          </SwiperSlide>
+          <SwiperSlide>
+          <img src={`${process.env.PUBLIC_URL}/assets/images/layout/banner2.png`} alt="메인배너1" />
+          </SwiperSlide>
+          <SwiperSlide>
+          <img src={`${process.env.PUBLIC_URL}/assets/images/layout/banner1.png`} alt="메인배너1" />
+          </SwiperSlide>
+          <SwiperSlide>
+          <img src={`${process.env.PUBLIC_URL}/assets/images/layout/banner2.png`} alt="메인배너1" />
+          </SwiperSlide>
+        </Swiper>
+      </S.SwiperContainer>
+        {/* <S.Slider>
           <S.Slides>
             <S.Slide>
               <img src={`${process.env.PUBLIC_URL}/assets/images/layout/banner1.png`} alt="메인배너1" />
             </S.Slide>
           </S.Slides>
-        </S.Slider>
+        </S.Slider> */}
 
+      <S.SwiperContainer>
+        <S.BannerTitle>
+          <h2>지금 제일 인기 있는 상품이에요.</h2>
+        </S.BannerTitle>
+        <Swiper className="mySwiper2" slidesPerView={"auto"} spaceBetween={20} >
+            {[ 
+                { src: "dentalgum1.png", coupon: "강아지 인기" },
+                { src: "shampoo3.png", coupon: "고양이 특가" },
+                { src: "feed.png", coupon: "세일 특가" },
+                { src: "dentalgum1.png", coupon: "강아지 인기" },
+                { src: "shampoo3.png", coupon: "고양이 특가" },
+                { src: "feed.png", coupon: "세일 특가" },
+                { src: "dentalgum1.png", coupon: "강아지 인기" },
+                { src: "shampoo3.png", coupon: "고양이 특가" },
+                { src: "feed.png", coupon: "세일 특가" },
+              ].map((item, index) => (
+                <SwiperSlide>
+                <S.ImageAndCart key={index}>
+                  <S.HotImage>
+                    <Link to={"/"}>
+                    <img src={`${process.env.PUBLIC_URL}/assets/images/layout/${item.src}`} alt={`상품-${index + 1}`} />
+                    </Link>
+                    <S.Coupon>{item.coupon}</S.Coupon>
+                    <img src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`} alt="하트" />
+                  </S.HotImage>
+                  <S.Cart>
+                    <Link to={"/"}>
+                    <img src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`} alt="장바구니아이콘" />
+                    <p>담기</p>
+                    </Link>
+                  </S.Cart>
+                </S.ImageAndCart>
+                </SwiperSlide>
+              ))}
+        </Swiper>
+      </S.SwiperContainer>
+
+      <S.Container>
         {/* 핫한 상품 이미지 */}
-        <S.HotProduct>
+        {/* <S.HotProduct>
           <h2>지금 제일 인기 있는 상품이에요.</h2>
           <S.HotImages>
             <S.HotSlide>
@@ -46,7 +106,7 @@ const Main = () => {
               ))}
             </S.HotSlide>
           </S.HotImages>
-        </S.HotProduct>
+        </S.HotProduct> */}
 
         <S.TestWrap style={{ position: 'relative' }}>
           <img src={`${process.env.PUBLIC_URL}/assets/images/layout/main-test-image.png`} alt="테스트 배너" />

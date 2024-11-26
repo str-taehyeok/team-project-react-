@@ -1,7 +1,7 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import S from "./style";
 import Footer from "../layout/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PetsonalContext } from "../../context/petsonalContext";
 
 const PetsonalTest = () => {
@@ -76,7 +76,7 @@ const PetsonalTest = () => {
     setPetsonalCoward(petsonalCoward + coward)
     setPetsonalBrave(petsonalBrave + brave)
 
-    navigate("/petsonal/test2")
+    navigate("/petsonal/result")
   }
 
   const surveyList = survey.map(({title, type}, i) => {
@@ -126,7 +126,7 @@ const PetsonalTest = () => {
       <S.Frame>
         <S.PetTestContainer>
           {surveyList}
-          <S.NextButton onClick={onClickToAddScoreAndNavigate}>다음</S.NextButton>
+          <S.NextButton onClick={onClickToAddScoreAndNavigate}>완료</S.NextButton>
         </S.PetTestContainer>
       </S.Frame>
 
