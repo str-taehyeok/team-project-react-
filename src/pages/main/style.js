@@ -11,6 +11,29 @@ S.Container = styled.div`
   width: 100%;
 `;
 
+// 배너
+S.SwiperContainer = styled.div`
+  
+  display: flex;
+  /* 배너 페이저 */
+  & span.swiper-pagination-bullet-active {
+    background: #fff;
+  }
+
+  .mySwiper2 .swiper-slide {
+    flex-shrink: 0;
+    width: 464px !important;
+  }
+  margin : 0 0 150px 0;
+  
+`
+
+S.BannerTitle = styled.div`
+  width: 489px;
+  flex-shrink: 0;
+`
+
+
 S.Slider = styled.div`
   position: relative;
   width: 1920px;
