@@ -1,5 +1,5 @@
 import React from 'react';
-// import {Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import Banner from './Banner';
 import Slide from './Slide';
 import Footer from '../../layout/Footer';
@@ -16,15 +16,31 @@ const CommunityContainer = () => {
 
             <S.Title>
                 <div className='title-box'>
-                    <p className='text3'>게시물 작성하기</p>
-                    <p className='text4'>지금 나만의 반려동물 일기를 작성해보세요!</p>
-                    <a href="http://naver.com"><p className='text5'>전체보기</p></a>
+                    <div className='text-box1'>
+                        <div>
+                            <p className='text3'>게시물 작성하기</p>
+                            <p className='text4'>지금 나만의 반려동물 일기를 작성해보세요!</p>
+                        </div>
+                        <a href="http://naver.com"><p className='text5'>전체보기</p></a>
+                    </div>
 
-                    <div className='addPost'>
-                    <a href="http://naver.com"><div className='click'>
-                         <img className='plus' src="/assets/images/community/plus.svg" alt="플러스아이콘" />
-                         <p className='text6'>내 게시물 추가하기</p>
-                     </div></a>
+                    <div className='addPostBox'>
+                        <div className='addPost'>
+                        <a href="http://naver.com"><div className='click'>
+                             <img className='plus' src="/assets/images/community/plus.svg" alt="플러스아이콘" />
+                             <p className='text6'>내 게시물 추가하기</p>
+                         </div></a>
+                        </div>
+                        <div className='addPost'>
+                        </div>
+                        <div className='addPost'>
+                        </div>
+                        <div className='addPost'>
+                        </div>
+                        <div className='addPost'>
+                        </div>
+                        <div className='addPost'>
+                        </div>
                     </div>
                 </div>
                 
@@ -58,8 +74,8 @@ const CommunityContainer = () => {
 
 
                     
+            <Outlet />
             <Footer />
-            {/* <Outlet /> */}
         </div>
     );
 };
