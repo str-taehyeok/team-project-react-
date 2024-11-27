@@ -13,7 +13,7 @@ S.root = styled.div`
 S.LoginMain = styled.div`
   width: 464px;
   padding-bottom: 40px;
-  margin: 50px auto;
+  margin: 100px auto;
 `;
 
 // Logo Box
