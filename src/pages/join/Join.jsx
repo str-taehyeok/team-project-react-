@@ -18,7 +18,7 @@ const Join = () => {
         </S.LogoBox>
 
         <S.Input>
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">아이디</S.Red>
               <S.Red id="Text">*</S.Red>
@@ -33,9 +33,9 @@ const Join = () => {
               <S.AuthButton id="EmailCheck">확인</S.AuthButton>
               <p id="EmailResult"></p>
             </S.InputContainer>
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">비밀번호</S.Red>
               <S.Red id="Text">*</S.Red>
@@ -49,9 +49,9 @@ const Join = () => {
               <S.Mark></S.Mark>
               <p id="PasswordResult"></p>
             </S.InputContainer>
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">비밀번호 확인</S.Red>
               <S.Red id="Text">*</S.Red>
@@ -65,9 +65,9 @@ const Join = () => {
               />
               <p className="Result" id="PasswordConfirmResult"></p>
             </S.InputContainer>
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">닉네임</S.Red>
               <S.Red id="Text">*</S.Red>
@@ -82,18 +82,18 @@ const Join = () => {
               <S.AuthButton id="NameCheck">확인</S.AuthButton>
               <p id="NameResult"></p>
             </S.InputContainer>
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">이름</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
             <S.InputButton type="text" name="name" placeholder="이름" />
             <p id="NameResult"></p>
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">휴대전화 번호</S.Red>
               <S.Red id="Text">*</S.Red>
@@ -104,9 +104,9 @@ const Join = () => {
               placeholder=""
               value="${param.phone}"
             />
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">주소</S.Red>
               <S.Red id="Text">*</S.Red>
@@ -135,11 +135,11 @@ const Join = () => {
                 우편번호
               </S.AuthButton>
             </S.InputContainer>
-          </div>
+          </S.InputText>
 
           <S.Line></S.Line>
 
-          <div>
+          <S.InputText>
             <S.TextBox1>
               <S.Red id="Text1">약관 및 개인정보수집 동의</S.Red>
               <S.Red id="Text1">*</S.Red>
@@ -152,7 +152,7 @@ const Join = () => {
                 <label>
                   <S.AllAgree type="checkbox" name="allagree" />
                 </label>
-                <p className="Text2">모두 동의합니다.</p>
+                <S.Text2>모두 동의합니다.</S.Text2>
               </S.AgreeAll>
 
               <S.Line2></S.Line2>
@@ -163,18 +163,20 @@ const Join = () => {
                     <input type="checkbox" name={`agree${num}`} />
                   </label>
                   <S.TextBox2>
-                    <p className="Text3">이용약관 동의 (필수)</p>
-                    <p className="Text4">자세히보기</p>
+                    <S.Text3>이용약관 동의 (필수)</S.Text3>
+                    <S.Text4>자세히보기</S.Text4>
                   </S.TextBox2>
                 </S.Agree>
               ))}
             </S.AgreeBox>
             <p id="AgreeResult" style={{ color: "red" }}></p>
-          </div>
+          </S.InputText>
         </S.Input>
 
         <S.LoginButton type="button">
-          회원가입
+          <Link to={"/join/complete"}>
+            회원가입
+          </Link>
         </S.LoginButton>
       </S.SellerMain>
     </div>

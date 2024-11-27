@@ -97,9 +97,15 @@ S.Input = styled.div`
   gap: 15px;
 `
 
+S.InputText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`
+
 S.TextBox = styled.div`
   display: flex;
-  flex-direction: row;
+  align-items: center;
 `
 
 S.Red = styled.p`
@@ -198,7 +204,7 @@ S.TextBox2 = styled.div`
   flex-direction: row;
   gap: 209px;
 `
-S.Agree1 = styled.div`
+S.Agree1 = styled.input`
   width: 14px;
   height: 14px;
 `
@@ -235,7 +241,7 @@ S.Agree2 = styled.div`
   align-items: center;
 `
 
-S.AllAgree = styled.div`
+S.AllAgree = styled.input`
   width: 16px;
   height: 16px;
 `
@@ -303,5 +309,23 @@ S.Box = styled.div`
   align-items: center; 
   justify-content: center;
 `
+
+S.Text1 = styled.p`
+  font-size: ${theme.FONT_SIZE.h8};
+`
+
+S.Text2 = styled.p`
+  font-size: ${theme.FONT_SIZE.h9};
+`
+
+S.Text3 = styled.p`
+  font-size: ${theme.FONT_SIZE.h10};
+`
+
+S.Text4 = styled.p`
+  font-size: ${theme.FONT_SIZE.h11};
+  color: #ACACA8;
+`
+
 
 export default S;

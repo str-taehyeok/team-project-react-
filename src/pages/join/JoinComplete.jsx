@@ -27,7 +27,11 @@ const JoinComplete = () => {
             <p className="Text1">
                 로그인하시면 더욱 다양한 서비스를 제공받으실 수 있습니다.
             </p>
-            <S.NextButton>로그인</S.NextButton>
+            <S.NextButton>
+              <Link to={"/login"}>
+                로그인
+              </Link>
+            </S.NextButton>
         </S.Box>
       </S.CompletionMain>
     </div>

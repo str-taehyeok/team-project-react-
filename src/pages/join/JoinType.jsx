@@ -1,12 +1,18 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import S from "./style";
 import { JoinContext } from "../../context/joinContext";
 
 const JoinType = () => {
+  const { state, action } = useContext(JoinContext);
 
-  const { state, action } = useContext(JoinContext)
-  
+
+  useEffect(() => {
+    if (!state.member) {
+      action.setMember("buyer"); 
+    }
+  }, [state.member, action]);
+
   return (
     <div>
       <S.JoinMain>
@@ -29,9 +35,10 @@ const JoinType = () => {
               id="UserA"
               value="buyer"
               required
+              defaultChecked={state.member === "buyer"} // 기본 선택 상태
               onChange={(e) => action.setMember(e.target.value)} // 값 설정
             />
-            <p className="Text1">POWPOW 회원</p>
+            <S.Text1>POWPOW 회원</S.Text1>
           </label>
           <label htmlFor="UserB">
             <input
@@ -40,12 +47,15 @@ const JoinType = () => {
               id="UserB"
               value="seller"
               required
+              defaultChecked={state.member === "seller"} // 기본 선택 상태
               onChange={(e) => action.setMember(e.target.value)} // 값 설정
             />
-            <p className="Text1">POWPOW 판매자</p>
+            <S.Text1>POWPOW 판매자</S.Text1>
           </label>
         </S.RadioBox>
-        <Link to={"/join/phone"}><S.NextButton>다음</S.NextButton></Link>
+        <Link to={"/join/phone"}>
+          <S.NextButton>다음</S.NextButton>
+        </Link>
       </S.JoinMain>
     </div>
   );
