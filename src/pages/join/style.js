@@ -10,19 +10,28 @@ S.LogoWrap = styled.div`
 width : 236px;
 height : 60px;
 
-& img {
-    width : 100%
-}
+  & img {
+    width : 100%;
+    height : 100%;
+    }
 `
+
+S.LogoBox = styled.div`
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  width: 464px;
+  padding-bottom: 40px;
+`
+
 S.Text = styled.p`
   margin-top: 55px;
 `
 
 S.JoinMain = styled.div`
   width: 464px;
-  display: flex;
   ${flexColumnCenter};
-  margin: 235px auto;
+  margin: 100px auto;
 `
 
 S.RadioBox = styled.div`
@@ -78,12 +87,13 @@ S.SellerMain = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 235px auto;
+  margin: 100px auto;
 `
 
 S.Input = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 15px;
 `
 
@@ -249,9 +259,13 @@ S.PhoneMain = styled.div`
   width: 464px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center;  
   align-items: center;
-  margin: 235px auto;
+  margin: 100px auto;
+
+    & .logo-margin{
+      margin-bottom: 55px;
+    }
 `
 
 S.CompletionMain = styled.div`

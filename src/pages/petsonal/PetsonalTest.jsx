@@ -18,7 +18,7 @@ const PetsonalTest = () => {
    } = state;
 
   // 한페이지 문항의 개수
-  const [ inputScore, inputSetScore ] = useState(Array(6).fill(false)); 
+  const [ inputScore, inputSetScore ] = useState(Array(25).fill(false)); 
   // 클릭한 radio의 checked 상태로 변경
   const handleRadioChecked = (i, checked) => {
     inputSetScore((pevState) => {
@@ -41,6 +41,9 @@ const PetsonalTest = () => {
   // 문항을 모두 선택했는지 검증 후 스코어 주입
   const onClickToAddScoreAndNavigate = (e) => {
     let selectLength = inputScore.filter((score) => score).length;
+    if(selectLength < 25){
+      return alert("모든 문항을 체크해주세요.")
+    }
 
     // 반복을 돌려서 각 type을 비교 후 합산
     inputScore.map((score, i) => {
@@ -65,6 +68,7 @@ const PetsonalTest = () => {
       }else{
         return null;
       }
+      console.log(type)
     })
     // 점수 연산 후 전송
     setPetsonalChic(petsonalChic + chic)

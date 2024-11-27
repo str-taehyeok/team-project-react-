@@ -14,7 +14,7 @@ const JoinPhone = () => {
       <S.PhoneMain>
         <S.Input>
           <Link to="/">
-            <S.LogoWrap>
+            <S.LogoWrap className="logo-margin">
               <img
                 src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`}
                 alt="로고"
@@ -23,11 +23,6 @@ const JoinPhone = () => {
           </Link>
 
           <div>
-            <p id="Text">
-              휴대폰 번호로
-              <br />
-              본인확인을 진행해주세요!
-            </p>
 
             {sms ? (
               <S.InputContainer>
@@ -46,12 +41,13 @@ const JoinPhone = () => {
                   name="phone"
                   placeholder="휴대폰 번호 입력 ('-'제외 11자리 입력)"
                 />
+                <S.AuthButton type="button" id="RequestAuth">
+                  인증요청
+                </S.AuthButton>
               </S.InputContainer>
             )}
 
-            <S.AuthButton type="button" id="RequestAuth">
-              인증요청
-            </S.AuthButton>
+            
 
             <S.AuthNumberContainer id="AuthNumberContainer">
               <S.InputContainer>
@@ -61,27 +57,6 @@ const JoinPhone = () => {
                   placeholder="인증번호 6자리 입력"
                 />
                 <S.AuthButton>확인</S.AuthButton>
-                <script>
-                  {`
-                    globalThis.isAuthentication = false;
-                    const confirmSubmitButton = document.querySelector(".ConfirmButton");
-                    const authenticationInput = document.querySelector("input[name='authNumber']");
-                    let authenticationCode = "";
-                    console.log(authenticationCode);
-                    
-                    confirmSubmitButton.addEventListener("click", () => {
-                      if (!(authenticationInput.value == authenticationCode)) {
-                        globalThis.isAuthentication = false;
-                        return alert("인증번호를 확인해주세요.");
-                      } else {
-                        globalThis.isAuthentication = true;
-                        confirmSubmitButton.style.display = "none";
-                        console.log(globalThis.isAuthentication);
-                        return alert("인증이 확인되었습니다.");
-                      }
-                    });
-                  `}
-                </script>
                 <p id="PhoneResult"></p>
               </S.InputContainer>
             </S.AuthNumberContainer>
@@ -89,9 +64,9 @@ const JoinPhone = () => {
         </S.Input>
         <input type="hidden" name="phone" value="${param.phone}" />
         {state.member === "buyer" ? (
-          <Link to={"/join/buyer"}><S.LoginButton type="button">다음</S.LoginButton></Link>
+          <Link to={"/join/buyer-join"}><S.LoginButton type="button">다음</S.LoginButton></Link>
         ) : (
-          <Link to={"/join/seller"}><S.LoginButton type="button">다음</S.LoginButton></Link>
+          <Link to={"/join/seller-join"}><S.LoginButton type="button">다음</S.LoginButton></Link>
         )}
         
       </S.PhoneMain>
@@ -100,3 +75,27 @@ const JoinPhone = () => {
 };
 
 export default JoinPhone;
+
+
+
+{/* <script>
+{`
+  globalThis.isAuthentication = false;
+  const confirmSubmitButton = document.querySelector(".ConfirmButton");
+  const authenticationInput = document.querySelector("input[name='authNumber']");
+  let authenticationCode = "";
+  console.log(authenticationCode);
+  
+  confirmSubmitButton.addEventListener("click", () => {
+    if (!(authenticationInput.value == authenticationCode)) {
+      globalThis.isAuthentication = false;
+      return alert("인증번호를 확인해주세요.");
+    } else {
+      globalThis.isAuthentication = true;
+      confirmSubmitButton.style.display = "none";
+      console.log(globalThis.isAuthentication);
+      return alert("인증이 확인되었습니다.");
+    }
+  });
+`}
+</script> */}

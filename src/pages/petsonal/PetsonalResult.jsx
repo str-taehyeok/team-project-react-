@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import S from "./style";
+import { Link } from "react-router-dom";
+import { PetsonalContext } from "../../context/petsonalContext";
 
 const PetsonalResult = () => {
+
+  const { state, action } = useContext(PetsonalContext)
+  
+
   return (
     <div>
       <S.Frame>
@@ -45,8 +51,8 @@ const PetsonalResult = () => {
                 </S.AllRate>
                 <S.AllRate>
                   <S.ResultCategory>
-                    <span>시크</span>
-                    <span>귀염</span>
+                    <span>차분</span>
+                    <span>발랄</span>
                   </S.ResultCategory>
                   <S.PercentageWrap>
                     <span>0</span>
@@ -56,8 +62,8 @@ const PetsonalResult = () => {
                 </S.AllRate>
                 <S.AllRate>
                   <S.ResultCategory>
-                    <span>시크</span>
-                    <span>귀염</span>
+                    <span>게으름</span>
+                    <span>부지런함</span>
                   </S.ResultCategory>
                   <S.PercentageWrap>
                     <span>0</span>
@@ -67,8 +73,8 @@ const PetsonalResult = () => {
                 </S.AllRate>
                 <S.AllRate>
                   <S.ResultCategory>
-                    <span>시크</span>
-                    <span>귀염</span>
+                    <span>겁쟁이</span>
+                    <span>용감함</span>
                   </S.ResultCategory>
                   <S.PercentageWrap >
                     <span>0</span>
@@ -81,167 +87,53 @@ const PetsonalResult = () => {
           </S.ResultBox>
 
           <S.ProductContainer>
-            <S.ProductsWrap>
-              <S.Matching>맞춤 추천 상품</S.Matching>
-              <S.Products>
-                <S.ProductCard>
-                  <S.CardImage
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="상품이미지"
-                  />
-                  <S.CardHeartIcon
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <S.CardTextWrap>
-                    <S.ProductName>
-                      피시포독 그레인프리 참치+스피니치 + 캐롯 85g
-                    </S.ProductName>
-                    <b>9,900원</b>
-                  </S.CardTextWrap>
-                  <S.CardCart>
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </S.CardCart>
-                </S.ProductCard>
-                <S.ProductCard>
-                  <S.CardImage
-                    src="assets/images/test/9.png"
-                    alt="상품이미지"
-                  />
-                  <S.CardHeartIcon
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <S.CardTextWrap>
-                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
-                    <b>9,900원</b>
-                  </S.CardTextWrap>
-                  <S.CardCart>
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </S.CardCart>
-                </S.ProductCard>
-                <S.ProductCard >
-                  <S.CardImage
-                    src="assets/images/test/8.png"
-                    alt="상품이미지"
-                  />
-                  <S.CardHeartIcon
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <S.CardTextWrap>
-                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
-                    <b>9,900원</b>
-                  </S.CardTextWrap>
-                  <S.CardCart>
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </S.CardCart>
-                </S.ProductCard>
-                <S.ProductCard>
-                  <S.CardImage
-                    src="assets/images/test/7.png"
-                    alt="상품이미지"
-                  />
-                  <S.CardHeartIcon
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <S.CardTextWrap>
-                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
-                    <b>9,900원</b>
-                  </S.CardTextWrap>
-                  <S.CardCart>
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </S.CardCart>
-                </S.ProductCard>
-              </S.Products>
-            </S.ProductsWrap>
+          <S.ProductHeader>
+            <h2>POWPOW의 추천상품이에요!</h2>
+            <Link to={"/product"}><strong>+ 더보기</strong></Link>
+          </S.ProductHeader>
 
-            <S.ProductsWrap>
-              <S.Matching>맞춤 추천 상품</S.Matching>
-              <S.Products>
-                <S.ProductCard>
-                  <S.CardImage
-                    src="./images/image.png"
-                    alt="상품이미지"
-                  />
-                  <S.CardHeartIcon
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <S.CardTextWrap>
-                    <S.ProductName>
-                      피시포독 그레인프리 참치+스피니치 + 캐롯 85g
-                    </S.ProductName>
-                    <b>9,900원</b>
-                  </S.CardTextWrap>
-                  <S.CardCart>
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </S.CardCart>
-                </S.ProductCard>
-                <S.ProductCard>
-                  <S.CardImage
-                    src="assets/images/test/9.png"
-                    alt="상품이미지"
-                  />
-                  <S.CardHeartIcon
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <S.CardTextWrap>
-                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
-                    <b>9,900원</b>
-                  </S.CardTextWrap>
-                  <S.CardCart>
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </S.CardCart>
-                </S.ProductCard>
-                <S.ProductCard >
-                  <S.CardImage
-                    src="assets/images/test/8.png"
-                    alt="상품이미지"
-                  />
-                  <S.CardHeartIcon
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <S.CardTextWrap>
-                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
-                    <b>9,900원</b>
-                  </S.CardTextWrap>
-                  <S.CardCart>
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </S.CardCart>
-                </S.ProductCard>
-                <S.ProductCard>
-                  <S.CardImage
-                    src="assets/images/test/7.png"
-                    alt="상품이미지"
-                  />
-                  <S.CardHeartIcon
-                    src="assets/images/test/white-heart-icon.png"
-                    alt="하트"
-                  />
-                  <S.CardTextWrap>
-                    <p>피시포독 그레인프리 참치+스피니치 + 캐롯 85g</p>
-                    <b>9,900원</b>
-                  </S.CardTextWrap>
-                  <S.CardCart>
-                    <img src="assets/images/test/cart.png" alt="장바구니" />
-                    <p>담기</p>
-                  </S.CardCart>
-                </S.ProductCard>
-              </S.Products>
-            </S.ProductsWrap>
+          <S.ProductsWrap>
+          <S.Products>
+            {[
+              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "55% 9,900원", image: "product1.png" },
+              { name: "디팡 강아지 사료 500g", price: "10% 8,500원", image: "product2.png" },
+              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "10% 9,900원", image: "product3.png" },
+              { name: "디팡 강아지 사료 500g", price: "10% 8,500원", image: "product4.png" },
+              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "35% 9,900원", image: "product1.png" },
+              { name: "디팡 강아지 사료 500g", price: "55% 8,500원", image: "product2.png" },
+              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "10% 9,900원", image: "product3.png" },
+              { name: "디팡 강아지 사료 500g", price: "35% 8,500원", image: "product4.png" }
+            ].map((product, index) => {
+              const [discount, price] = product.price.split(' ');
 
-          </S.ProductContainer>
+              return (
+                <S.ProductCard key={index}>
+                  <img className="productImage" src={`${process.env.PUBLIC_URL}/assets/images/layout/${product.image}`} alt={product.name} />
+                  <S.ProductHeartICon src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`} alt="하트" />
+                  <S.CardTextWrap>
+                    <S.ProductName>{product.name}</S.ProductName>
+                    <S.DiscountText>   
+                      
+                      {discount && (
+                        <b><span style={{ color: '#C83F3F', fontWeight: 'bold', marginRight: '10px' }}>{discount}</span></b>
+                      )}
+                        <b><span>{price}</span></b>
+                      
+                    </S.DiscountText>
+                  </S.CardTextWrap>
+                  <S.CardCart>
+                    <Link to={"/"}>
+                    <img src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`} alt="장바구니아이콘" />
+                    <p>담기</p>
+                    </Link>
+                  </S.CardCart>
+                </S.ProductCard>
+              );
+            })}
+          </S.Products>
+        </S.ProductsWrap>
+        </S.ProductContainer>
+
         </S.ResultContainer>
       </S.Frame>
     </div>
