@@ -318,76 +318,106 @@ S.Percent = styled.div`
   background-color: white;
 `
 
+
+// 상품나열
 S.ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 65px;
-`
+  margin-bottom: 200px;
+`;
+
+S.ProductHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 150px;
+
+  h2 {
+    text-align: left;
+    font-size: ${theme.FONT_SIZE.h4};
+    font-weight: ${theme.FONT_WEIGHT.bold};
+  }
+
+  a {
+    text-align: right;
+    margin-top: 0; 
+  }
+`;
 
 S.ProductsWrap = styled.div`
+  width: 1440px;
   display: flex;
   flex-direction: column;
-  gap: 44px;
-`
-
-S.Matching = styled.p`
-  width: 1440px;
-  text-align: left;
-  margin-top: 150px;
-  font-size: 40px;
-  font-weight: 700;
-`
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+`;
 
 S.Products = styled.div`
-  ${flexCenterRowSpaceBetween}
+  display: flex;
+  justify-content: space-between;
   width: 1440px;
-`
+  flex-wrap: wrap;
+  gap: 24px;
+`;
 
 S.ProductCard = styled.div`
-  ${flexColumnCenter}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 342px;
-  height: 457px;
+  height: 458px;
   border-radius: 10px;
+  position: relative; 
   background-color: #f8f9fa;
-  position: relative;
-`
+  
 
-S.CardImage = styled.img`
-  margin-top: 21px;
-  border-radius: 10px;
-  width: 290px;
-  height: 290px;
-`
+    & .productImage {
+      width: 290px;
+      height: 290px;
+      margin-top: 21px;
+    }
+`;
 
-S.CardHeartIcon = styled.img`
+S.ProductHeartICon = styled.img`
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 35px;
+    right: 45px;
+`;
+
+S.CardImage = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+`;
+
+S.CardHeartIcon = styled.div`
   width: 20px;
   height: 20px;
-  position:absolute;
-  z-index: 10;
+  position: absolute;
   right: 29px;
   top: 25px;
-`
+  z-index: 10;
+`;
 
 S.CardTextWrap = styled.div`
   display: flex;
-  margin: 12px 0 20px 0;
   flex-direction: column;
-  gap: 10px;
-
-    &b {
-      width: 290px;
-      text-align: left;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 26px;
-    }
-`
-
+  align-items: flex-start;
+  margin: 14px 0 6px 0;
+  width: 290px;  
+  gap: 6px;
+  
+   & b {
+    text-align: left;  
+  }
+`;
 S.ProductName = styled.p`
-  width: 290px;
+  width: 220px;
   text-align: left;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -395,22 +425,46 @@ S.ProductName = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 18px;
+  height: 35px;
+  font-size: ${theme.FONT_SIZE.h8};
+
+`
+
+
+S.DiscountText =  styled.div`
+  display: flex;
 `
 
 S.CardCart = styled.div`
-  width: 290px;
-  height: 36px;
-  ${flexRowCenter}
-  gap: 8px;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
   border: solid 1px #e0e0e0;
   background-color: white;
+  margin-top: 18px;
+  width: 290px;
+  height: 36px;
+  
 
-    & img {
-      width: 20px;
-      height: 20px;
-    }
-`
+  & a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+   }
+`;
+
+S.CardCartIcon = styled.div`
+  width: 16px;
+  height: 16px;
+`;
+
+S.SubBanner = styled.div`
+  width: 100%;
+  text-align: center;
+`;
+
 
 
 
