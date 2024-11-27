@@ -1,6 +1,8 @@
 import React from "react";
+import S from "./style";
+import { Link } from "react-router-dom";
 
-const Join = () => {
+const SellerJoin = () => {
   return (
     <div>
       <S.SellerMain>
@@ -87,7 +89,6 @@ const Join = () => {
               type="string"
               name="phone"
               placeholder=""
-              value="${param.phone}"
             />
           </div>
           <S.Line></S.Line>
@@ -194,4 +195,4 @@ const Join = () => {
   );
 };
 
-export default Join;
+export default SellerJoin;

@@ -9,6 +9,7 @@ import JoinContainer from "../pages/join/JoinContainer";
 import JoinType from "../pages/join/JoinType";
 import JoinPhone from "../pages/join/JoinPhone";
 import JoinComplete from "../pages/join/JoinComplete";
+import SellerJoin from "../pages/join/SellerJoin";
 import Join from "../pages/join/Join";
 import FindAccountContainer from "../pages/findAccount/FindAccountContainer";
 import SellerLayout from "../pages/sellerLayout/SellerLayout";
@@ -448,7 +449,11 @@ const router = createBrowserRouter( [
                 element: <JoinComplete />,
             },
             {
-                path : "register",
+                path : "seller-join",
+                element: <SellerJoin />,
+            },
+            {
+                path : "buyer-join",
                 element: <Join />,
             },
 
