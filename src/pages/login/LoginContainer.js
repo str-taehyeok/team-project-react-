@@ -13,9 +13,11 @@ const LoginContainer = () => {
         <S.root>
             <S.LoginMain>
                 <S.LogoBox>
-                    <Link to={"/"}>
-                        <img src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`} alt="로고" />
-                    </Link>
+                    <div>
+                        <Link to={"/"}>
+                            <img src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`} alt="로고" />
+                        </Link>
+                    </div>
                 </S.LogoBox>
                 <S.Tap>
                     <Link to={"/login"}>
