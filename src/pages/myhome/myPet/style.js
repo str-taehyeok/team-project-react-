@@ -6,9 +6,8 @@ const S = {}
 S.Mydog = styled.div`
   display: flex;
 	flex-direction: row;
-	align-items: start;
 	justify-content: center;
-	margin: 0 auto;
+  gap:60px;
 `
 S.Petanimal = styled.h1`
   display: flex;
@@ -26,10 +25,10 @@ S.PetCard = styled.div`
   border-radius: 15px;
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
   display: flex;
-  margin-bottom: 432px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 `
 S.Profilepic = styled.div`
   border-radius: 50%;
@@ -54,8 +53,8 @@ S.EditButton = styled.label`
 	padding-left: 11px;
 `
 S.Title = styled.h5`
-	margin-left: 60px;
 	font-weight: bold;
+  margin-bottom: 432px;
 `
 S.PetName = styled.label`
   display: block;
@@ -113,6 +112,7 @@ S.InputGroup = styled.div`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
+  height: 30px;
   }
 `;
 S.InputGroup2 = styled.div`
@@ -128,6 +128,7 @@ S.InputGroup2 = styled.div`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
+  height: 30px;
     }
 `;
 S.InputGroup3 = styled.div`
@@ -143,6 +144,7 @@ S.InputGroup3 = styled.div`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
+  height: 30px;
     }
 `;
 S.InputGroup4 = styled.div`
@@ -159,6 +161,7 @@ S.InputGroup4 = styled.div`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
+  height: 30px;
     }
 `;
 
@@ -175,6 +178,7 @@ S.InputGroup5 = styled.div`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
+  height: 30px;
     }
 `
 
@@ -186,6 +190,7 @@ S.RadioGroup = styled.div`
   align-items: center;
   width: 267px;
   height: 32px;
+  height: 30px;
 `;
 S.RadioGroupGender2 = styled.div`
   display: flex;
@@ -195,6 +200,7 @@ S.RadioGroupGender2 = styled.div`
   align-items: center;
   width: 275px;
   height: 32px;
+  height: 30px;
 `;
 
 S.RadioGroupGender = styled.div`
@@ -205,6 +211,7 @@ S.RadioGroupGender = styled.div`
   align-items: center;
   width: 238px;
   height: 32px;
+  height: 30px;
 `;
 S.PetDogCat = styled.div`
   display: flex;
@@ -227,23 +234,24 @@ S.PetGender = styled.div`
 `;
 S.Kg = styled.text`
   position: absolute;
-  right: 31px;
-  top: 7px;
+  right: 32px;
+  top: 3px;
 `
 S.Description = styled.h6`
   ${h9Medium};
 ` 
 S.Button = styled.button`
-  display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 67px;
-	width: 89px;
-	height: 42px;
-	background-color: #1c4da0;
-	border-radius: 20px;
-	color: white;
-	margin-left: 910px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 42px;
+    width: 89px;
+    height: 42px;
+    background-color: #1c4da0;
+    border-radius: 20px;
+    color: white;
+    margin-bottom: 25px;
+    margin-left: 1263px;
 `
 
 
