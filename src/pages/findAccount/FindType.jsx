@@ -45,7 +45,7 @@ const FindType = () => {
               <p className="Text1">POWPOW 판매자</p>
             </label>
           </S.RadioBox>
-          <Link to={"//phone"}><S.NextButton>다음</S.NextButton></Link>
+          <Link to={"/find/find-id"}><S.NextButton>다음</S.NextButton></Link>
         </S.FindMain>
       </div>
     );

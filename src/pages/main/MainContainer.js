@@ -71,7 +71,7 @@ const Main = () => {
         {/* 핫한 상품 이미지 */}
 
         <S.TestWrap style={{ position: 'relative' }}>
-          <img src={`${process.env.PUBLIC_URL}/assets/images/layout/testbanner03.png`} alt="테스트 배너" />
+          <img src={`${process.env.PUBLIC_URL}/assets/images/layout/testbanner05.png`} alt="테스트 배너" />
           <S.TestButton>
           <Link to={"/petsonal"}>
             <img src={`${process.env.PUBLIC_URL}/assets/images/layout/testbutton.png`} alt="테스트 버튼" />
