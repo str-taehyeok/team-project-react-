@@ -3,6 +3,8 @@ import S from "./style";
 import { Link } from "react-router-dom";
 
 const SellerJoin = () => {
+
+
   return (
     <div>
       <S.SellerMain>
@@ -18,7 +20,7 @@ const SellerJoin = () => {
         </S.LogoBox>
 
         <S.Input>
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">아이디</S.Red>
               <S.Red id="Text">*</S.Red>
@@ -35,9 +37,9 @@ const SellerJoin = () => {
               </S.AuthButton>
               <p id="EmailResult"></p>
             </S.InputContainer>
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">비밀번호</S.Red>
               <S.Red id="Text">*</S.Red>
@@ -51,9 +53,9 @@ const SellerJoin = () => {
               <S.Mark></S.Mark>
               <p id="PasswordResult"></p>
             </S.InputContainer>
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">비밀번호 확인</S.Red>
               <S.Red id="Text">*</S.Red>
@@ -67,18 +69,18 @@ const SellerJoin = () => {
               />
               <p className="Result" id="PasswordConfirmResult"></p>
             </S.InputContainer>
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">이름</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
             <S.InputButton type="text" name="name" placeholder="이름" />
             <p id="NameResult"></p>
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">휴대전화 번호</S.Red>
               <S.Red id="Text" className="Red">
@@ -90,9 +92,9 @@ const SellerJoin = () => {
               name="phone"
               placeholder=""
             />
-          </div>
+          </S.InputText>
           <S.Line></S.Line>
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">사업자 인증번호</S.Red>
               <S.Red id="Text">*</S.Red>
@@ -107,25 +109,25 @@ const SellerJoin = () => {
               <S.AuthButton>인증</S.AuthButton>
               <p id="NumberResult"></p>
             </S.InputContainer>
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">대표자명</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
-            <S.InputButton type="text" name="kingname" />
+            <S.InputButton type="text" name="kingname" placeholder="대표자명"/>
             <p id="KingNameResult"></p>
-          </div>
+          </S.InputText>
 
-          <div>
+          <S.InputText>
             <S.TextBox>
               <S.Red id="Text">업체명</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
-            <S.InputButton type="text" name="companyname" />
+            <S.InputButton type="text" name="companyname" placeholder="업체명"/>
             <p id="CompanyNameResult"></p>
-          </div>
+          </S.InputText>
           <S.Line></S.Line>
         </S.Input>
 
@@ -142,7 +144,7 @@ const SellerJoin = () => {
             <label>
               <S.AllAgree type="checkbox" name="allagree" />
             </label>
-            <p className="Text2">모두 동의합니다.</p>
+            <S.Text2>모두 동의합니다.</S.Text2>
           </S.AgreeAll>
 
           <S.Line2></S.Line2>
@@ -152,8 +154,8 @@ const SellerJoin = () => {
               <S.Agree1 type="checkbox" name="agree1" />
             </label>
             <S.TextBox2>
-              <p className="Text3">이용약관 동의 (필수)</p>
-              <p className="Text4">자세히보기</p>
+              <S.Text3>이용약관 동의 (필수)</S.Text3>
+              <S.Text4>자세히보기</S.Text4>
             </S.TextBox2>
           </S.Agree>
 
@@ -162,8 +164,8 @@ const SellerJoin = () => {
               <S.Agree1 type="checkbox" name="agree2" />
             </label>
             <S.TextBox2>
-              <p className="Text3">이용약관 동의 (필수)</p>
-              <p className="Text4">자세히보기</p>
+              <S.Text3>이용약관 동의 (필수)</S.Text3>
+              <S.Text4>자세히보기</S.Text4>
             </S.TextBox2>
           </S.Agree>
 
@@ -172,8 +174,8 @@ const SellerJoin = () => {
               <S.Agree1 type="checkbox" name="agree3" />
             </label>
             <S.TextBox2>
-              <p className="Text3">이용약관 동의 (필수)</p>
-              <p className="Text4">자세히보기</p>
+              <S.Text3>이용약관 동의 (필수)</S.Text3>
+              <S.Text4>자세히보기</S.Text4>
             </S.TextBox2>
           </S.Agree>
 
@@ -182,13 +184,15 @@ const SellerJoin = () => {
               <S.Agree1 type="checkbox" name="agree4" />
             </label>
             <S.TextBox2>
-              <p className="Text3">이용약관 동의 (필수)</p>
-              <p className="Text4">자세히보기</p>
+              <S.Text3>이용약관 동의 (필수)</S.Text3>
+              <S.Text4>자세히보기</S.Text4>
             </S.TextBox2>
           </S.Agree2>
         </S.AgreeBox>
         <S.LoginButton type="button">
-          회원가입
+          <Link to={"/join/complete"}>
+            회원가입
+          </Link>
         </S.LoginButton>
       </S.SellerMain>
     </div>

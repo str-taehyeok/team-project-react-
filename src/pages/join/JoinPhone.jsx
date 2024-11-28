@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext , useState} from "react";
 import S from "./style";
 import { Link } from "react-router-dom";
 import { JoinContext } from "../../context/joinContext";
@@ -8,6 +8,23 @@ const sms = "";
 const JoinPhone = () => {
 
   const { state, action } = useContext(JoinContext)
+  const [phone, setPhone] = useState(""); // 휴대폰 번호 상태
+  const [authNumber, setAuthNumber] = useState(""); // 인증 번호 상태
+
+  const handleNextClick = (e) => {
+    // 입력 값 확인
+    if (!phone) {
+      e.preventDefault(); 
+      return alert("휴대폰 번호를 입력해주세요.");
+    }
+    if (!authNumber) {
+      e.preventDefault();
+      return alert("인증번호를 입력해주세요.");
+    }
+
+  };
+  
+
 
   return (
     <div>
@@ -23,31 +40,18 @@ const JoinPhone = () => {
           </Link>
 
           <div>
-
-            {sms ? (
-              <S.InputContainer>
-                <input type="hidden" name="sms" value="true" />
-                <S.InputButton
-                  type="number"
-                  name="phone"
-                  value="${param.phone}"
-                  placeholder="휴대폰 번호 입력 ('-'제외 11자리 입력)"
-                />
-              </S.InputContainer>
-            ) : (
-              <S.InputContainer>
-                <S.InputButton
-                  type="number"
-                  name="phone"
-                  placeholder="휴대폰 번호 입력 ('-'제외 11자리 입력)"
-                />
-                <S.AuthButton type="button" id="RequestAuth">
-                  인증요청
-                </S.AuthButton>
-              </S.InputContainer>
-            )}
-
-            
+            <S.InputContainer>
+              <S.InputButton
+                type="number"
+                name="phone"
+                placeholder="휴대폰 번호 입력 ('-'제외 11자리 입력)"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)} 
+              />
+              <S.AuthButton type="button" id="RequestAuth">
+                인증요청
+              </S.AuthButton>
+            </S.InputContainer>
 
             <S.AuthNumberContainer id="AuthNumberContainer">
               <S.InputContainer>
@@ -55,6 +59,8 @@ const JoinPhone = () => {
                   type="text"
                   name="authNumber"
                   placeholder="인증번호 6자리 입력"
+                  value={authNumber}
+                  onChange={(e) => setAuthNumber(e.target.value)}
                 />
                 <S.AuthButton>확인</S.AuthButton>
                 <p id="PhoneResult"></p>
@@ -62,13 +68,22 @@ const JoinPhone = () => {
             </S.AuthNumberContainer>
           </div>
         </S.Input>
-        <input type="hidden" name="phone" value="${param.phone}" />
+        <input type="hidden" name="phone" value={phone} />
+
+        {/* "다음" 버튼 */}
         {state.member === "buyer" ? (
-          <Link to={"/join/buyer-join"}><S.LoginButton type="button">다음</S.LoginButton></Link>
+          <Link to={"/join/buyer-join"} onClick={handleNextClick}>
+            <S.LoginButton className="NextButton" type="button">
+              다음
+            </S.LoginButton>
+          </Link>
         ) : (
-          <Link to={"/join/seller-join"}><S.LoginButton type="button">다음</S.LoginButton></Link>
+          <Link to={"/join/seller-join"} onClick={handleNextClick}>
+            <S.LoginButton className="NextButton" type="button">
+              다음
+            </S.LoginButton>
+          </Link>
         )}
-        
       </S.PhoneMain>
     </div>
   );
