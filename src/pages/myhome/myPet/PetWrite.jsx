@@ -104,7 +104,7 @@ const PetWrite = () => {
             <input type="text" name="vet" placeholder="병원명을 입력하세요" value={formData.vet} onChange={handleChange} />
           </S.InputGroup5>
           {/* 안내문 */}
-          <S.Description as="h7">
+          <S.Description>
             *위 내용(몸무게, 중성화)을 사실과 다르게 기재한 경우, 약관에 따라 서비스 이용이 거부될 수 있습니다.
           </S.Description>
         </S.Title>
