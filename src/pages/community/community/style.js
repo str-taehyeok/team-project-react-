@@ -104,6 +104,13 @@ const S = {}
       justify-content: center;
     }
 
+    .myPost{
+      width:220px;
+      height:300px;
+      border-radius: 20px;
+      position: relative;
+    }
+
     .addPostBox{
       display: flex;
       flex-direction:row;
@@ -135,11 +142,13 @@ const S = {}
       display: flex;
       align-items: center;
       justify-content: center;
-      
+      margin-left: 240px;
+      margin-right: 240px;
    }
 
    .text7{
-    margin-top: 117px;
+      width:1440px;
+      margin-top: 117px;
       font-size: 40px;
       line-height: 54px;
       letter-spacing: -3%;
@@ -147,6 +156,8 @@ const S = {}
       color:#000000;
       text-align: center;
       margin-bottom: 90px;
+      margin-left: 240px;
+      margin-right: 240px;
     }
 
     .orangeBox{
@@ -184,6 +195,9 @@ const S = {}
       flex-direction:column;
       align-items: center;
       justify-content: center;
+      margin-left: 296.5px;
+      margin-right: 296.5px;
+
     }
 
     .text8 {
