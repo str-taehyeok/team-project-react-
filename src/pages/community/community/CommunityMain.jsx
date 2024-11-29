@@ -25,31 +25,31 @@ const CommunityMain = () => {
                             <p className='text3'>게시물 작성하기</p>
                             <p className='text4'>지금 나만의 반려동물 일기를 작성해보세요!</p>
                         </div>
-                        <Link to={"../post/myPostList"}><p className='text5'>전체보기</p></Link>
+                        <Link to={"../post/my-post-list"}><p className='text5'>전체보기</p></Link>
                     </div>
 
                     <div className='addPostBox'>
                         <div className='addPost'>
-                        <Link to={"../post/postWrite"}><div className='click'>
+                        <Link to={"../post/write"}><div className='click'>
                              <img className='plus' src="/assets/images/community/plus.svg" alt="플러스아이콘" />
                              <p className='text6'>내 게시물 추가하기</p>
                          </div></Link>
                         </div>
-                        <div className='myPost'>
+                        <Link to={"../post/my-post"}><div className='myPost'>
                             <img src="/assets/images/community/myPost1.svg" alt="나의 게시물1" />
-                        </div>
-                        <div className='myPost'>
+                        </div></Link>
+                        <Link to={"../post/my-post"}><div className='myPost'>
                             <img src="/assets/images/community/myPost2.svg" alt="나의 게시물2" />
-                        </div>
-                        <div className='myPost'>
+                        </div></Link>
+                        <Link to={"../post/my-post"}><div className='myPost'>
                             <img src="/assets/images/community/myPost3.svg" alt="나의 게시물3" />
-                        </div>
-                        <div className='myPost'>
+                        </div></Link>
+                        <Link to={"../post/my-post"}><div className='myPost'>
                             <img src="/assets/images/community/myPost1.svg" alt="나의 게시물1" />
-                        </div>
-                        <div className='myPost'>
+                        </div></Link>
+                        <Link to={"../post/my-post"}><div className='myPost'>
                             <img src="/assets/images/community/myPost1.svg" alt="나의 게시물1" />
-                        </div>
+                        </div></Link>
                     </div>
                 </div>
                 
@@ -59,23 +59,23 @@ const CommunityMain = () => {
                 <div className='colorBox'>
                     <div className='orangeBox'>
                         <p className='text8'>ORANGE</p>
-                        <Link to={"../post/postList"}><p className='text9'>전체보기</p></Link>
+                        <Link to={"../post"}><p className='text9'>전체보기</p></Link>
                     </div>
                     <div className='goldBox'>
                       <p className='text8'>GOLD</p>
-                      <Link to={"../post/postList"}><p className='text9'>전체보기</p></Link>
+                      <Link to={"../post"}><p className='text9'>전체보기</p></Link>
                     </div>
                     <div className='gradationBox'>
                       <p className='text8'>GRADATION</p>
-                      <Link to={"../post/postList"}><p className='text9'>전체보기</p></Link>
+                      <Link to={"../post"}><p className='text9'>전체보기</p></Link>
                     </div>
                     <div className='lightPurple'>
                         <p className='text8'>LIGHT PURPLE</p>
-                        <Link to={"../post/postList"}><p className='text9'>전체보기</p></Link>
+                        <Link to={"../post"}><p className='text9'>전체보기</p></Link>
                     </div>
                     <div className='deepPurple'>
                      <p className='text8'>DEEP PURPLE</p>
-                     <Link to={"../post/postList"}><p className='text9'>전체보기</p></Link>
+                     <Link to={"../post"}><p className='text9'>전체보기</p></Link>
                     </div>
                 </div>
             </S.Title>    

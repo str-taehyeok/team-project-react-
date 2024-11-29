@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const S = {}
 
+// 커뮤니티 메인 페이지 배너
   S.Banner = styled.div`
    & .banner{
     width: 100px;
@@ -60,6 +61,7 @@ const S = {}
   `
   
 
+  // 커뮤니티 메인 페이지  배너 아래 부분
   S.Title = styled.div`
 
     .title-box{
