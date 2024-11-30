@@ -2,6 +2,7 @@ import React from 'react';
 import S from './style.js';
 import Footer from "../../layout/Footer.jsx";
 import Slide from './Slide.jsx';
+import { Link } from 'react-router-dom';
 
 const MyPost = () => {
 
@@ -9,7 +10,7 @@ const MyPost = () => {
         
         <div>
             
-            <S.MyPost>
+            <S.Post>
                     <div className='my-post-box'>
                         <div className='my-post'>
                             <div className='my-profile'>
@@ -51,17 +52,17 @@ const MyPost = () => {
                         </div>
                     </div>
 
-            </S.MyPost>
+            </S.Post>
             <S.BestPost>
                 <div className='bestBox'>
                     <p className='text4'>유저들의 비슷한 공감 베스트</p>
                     <div className='best-post-box'>
-                        <img className='bestPost' src="/assets/images/community/bestPost1.svg" alt="베스트 게시물1" />
-                        <img className='bestPost' src="/assets/images/community/bestPost2.svg" alt="베스트 게시물2" />
-                        <img className='bestPost' src="/assets/images/community/bestPost3.svg" alt="베스트 게시물3" />
-                        <img className='bestPost' src="/assets/images/community/bestPost4.svg" alt="베스트 게시물4" />
-                        <img className='bestPost' src="/assets/images/community/bestPost3.svg" alt="베스트 게시물3" />
-                        <img className='bestPost' src="/assets/images/community/bestPost5.svg" alt="베스트 게시물5" />
+                    <Link to={"../others-post"}><img className='bestPost' src="/assets/images/community/bestPost1.svg" alt="베스트 게시물1" /></Link>
+                    <Link to={"../others-post"}><img className='bestPost' src="/assets/images/community/bestPost2.svg" alt="베스트 게시물2" /></Link>
+                    <Link to={"../others-post"}><img className='bestPost' src="/assets/images/community/bestPost3.svg" alt="베스트 게시물3" /></Link>
+                    <Link to={"../others-post"}><img className='bestPost' src="/assets/images/community/bestPost4.svg" alt="베스트 게시물4" /></Link>
+                    <Link to={"../others-post"}><img className='bestPost' src="/assets/images/community/bestPost3.svg" alt="베스트 게시물3" /></Link>
+                    <Link to={"../others-post"}><img className='bestPost' src="/assets/images/community/bestPost5.svg" alt="베스트 게시물5" /></Link>
                     </div>
                 </div>
             </S.BestPost>

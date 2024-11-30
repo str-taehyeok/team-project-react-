@@ -1,16 +1,92 @@
 import styled from "styled-components";
 
 const S = {}
+S.PostListAll = styled.div`
+    .oringe{
+      border-radius:50%;
+      border: none;
+      background-color: #D9D9D9;
+      width:30px;
+      height: 30px;
+    }
+    .oringe:focus{
+      background-color: #FFC303;
+    }
 
-// 나의 게시물
-S.MyPost = styled.div`
+    .gold{
+      border-radius:50%;
+      border: none;
+      background-color: #D9D9D9;
+      width:30px;
+      height: 30px;
+    }
+    .gold:focus{
+      background-color: #FFE599;
+    }
+
+    .gradation{
+      border-radius:50%;
+      border: none;
+      background-color: #D9D9D9;
+      width:30px;
+      height: 30px;
+    }
+    .gradation:focus{
+      background-image:linear-gradient(rgba(218, 199, 138, 0.5),rgba(207, 165, 203, 0.5));
+    }
+
+    .lightPurple{
+      border-radius:50%;
+      border: none;
+      background-color: #D9D9D9;
+      width:30px;
+      height: 30px;
+    }
+    .lightPurple:focus{
+      background-color: #C9B6E4;
+    }
+
+    .deepPurple{
+      border-radius:50%;
+      border: none;
+      background-color: #D9D9D9;
+      width:30px;
+      height: 30px;
+    }
+    .deepPurple:focus{
+      background-color: #8B6D9C;
+    }
+
+    .all{
+      border-radius:50%;
+      border: none;
+      background-color: #D9D9D9;
+      width:30px;
+      height: 30px;
+      color: #ffffff;
+    }
+    .all:focus{
+      background-color: #000000;
+    }
+
+    .button{
+      display:flex;
+      flex-direction: row;
+      gap:16px;
+    }
+`
+
+
+// 나의/다른 사용자 게시물
+S.Post = styled.div`
     input:focus {
       outline: none;
     }
 
   .profile{
     width:40px;
-    height:40px
+    height:40px;
+    margin-right: 10px;
   }
 
   .nick-name{
@@ -18,16 +94,59 @@ S.MyPost = styled.div`
     line-height: 22px;
     letter-spacing: -3%;
     font-weight: bold;
+    width: 100%;
   }
 
   .my-profile {
     display:flex;
     flex-direction: row;
     align-items:center;
-    gap:10px;
     margin-bottom: 5px;
     width:582px;
     justify-content:left;
+  }
+
+  .follow {
+    border-radius: 20px;
+    width:65px;
+    height:30px;
+    background-color:#113F8A;
+    border:none;
+  }
+
+  .follow-text {
+    font-size: 12px;
+    line-height: 18px;
+    color: #ffffff;
+    font-weight: bold;
+  }
+
+  .follow-box{
+    display:flex;
+    width:582px;
+    justify-content: right;
+  }
+
+  .following {
+    border-radius: 20px;
+    width:65px;
+    height:30px;
+    background-color:#ffffff;
+    border:solid 1px #828282;
+  }
+
+  .following-box{
+    display:flex;
+    width:582px;
+    justify-content: right;
+    display:none;
+  }
+
+  .following-text {
+    font-size: 12px;
+    line-height: 18px;
+    color: #828282;
+    font-weight: bold;
   }
 
   & .mySwiper {
@@ -39,23 +158,20 @@ S.MyPost = styled.div`
   .like {
     width: 40px;
     height:40px;
+    margin-right: 10px;
   }
   .like-number {
     font-size: 14px;
     line-height: 22px;
     letter-spacing: -3%;
     font-weight: bold;
-  }
-  .dot{
-    margin-left: 460px;
+    width: 100%;
   }
 
   .my-like{
     display:flex;
     flex-direction: row;
     align-items:center;
-    gap:10px;
-    margin-top: 19px;
   }
 
 
