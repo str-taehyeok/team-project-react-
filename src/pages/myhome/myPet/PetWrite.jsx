@@ -41,6 +41,7 @@ const PetWrite = () => {
             <input type="text" name="petName" placeholder="이름을 입력하세요" value={formData.petName} onChange={handleChange} />
           </S.InputGroup>
           {/* 반려 종류 */}
+          <S.Form>
           <S.RadioGroup>
             <S.PetKind>반려종류</S.PetKind>
             <S.PetDogCat>
@@ -54,17 +55,18 @@ const PetWrite = () => {
               </S.Gap>
             </S.PetDogCat>
           </S.RadioGroup>
+          </S.Form>
           {/* 성별 */}
           <S.RadioGroupGender>
             <S.PetGender>성별</S.PetGender>
             <S.PetDogCat>
               <S.Gap>
-                <input type="radio" name="gender" value="수컷" checked={formData.gender === "수컷"} onChange={handleChange} />
-                <label>수컷</label>
+                <input type="radio" id="male" name="gender" value="수컷" checked={formData.gender === "수컷"} onChange={handleChange} />
+                <label htmlFor="male">수컷</label>
               </S.Gap>
               <S.Gap>
-                <input type="radio" name="gender" value="암컷" checked={formData.gender === "암컷"} onChange={handleChange} />
-                <label>암컷</label>
+                <input type="radio" id="male" name="gender" value="암컷" checked={formData.gender === "암컷"} onChange={handleChange} />
+                <label htmlFor="male">암컷</label>
               </S.Gap>
             </S.PetDogCat>
           </S.RadioGroupGender>
