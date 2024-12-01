@@ -19,7 +19,7 @@ const FindType = () => {
             </S.LogoWrap>
           </Link>
   
-          <S.Text>찾고자하는 계정을 선택해주세요.</S.Text>
+          <S.Text>회원 아이디 / 비밀번호를 잊으셨습니까?</S.Text>
   
           <S.RadioBox>
             <label htmlFor="UserA">
@@ -31,7 +31,7 @@ const FindType = () => {
                 required
                 onChange={(e) => action.setMember(e.target.value)} // 값 설정
               />
-              <p className="Text1">POWPOW 회원</p>
+              <p className="Text1">아이디 찾기</p>
             </label>
             <label htmlFor="UserB">
               <input
@@ -42,7 +42,7 @@ const FindType = () => {
                 required
                 onChange={(e) => action.setMember(e.target.value)} // 값 설정
               />
-              <p className="Text1">POWPOW 판매자</p>
+              <p className="Text1">비밀번호 찾기</p>
             </label>
           </S.RadioBox>
           <Link to={"/find/find-id"}><S.NextButton>다음</S.NextButton></Link>

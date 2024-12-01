@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import { flexRowCenter,flexColumnCenter, h7Bold } from "../../global/common";
+import { flexRowCenter, flexColumnCenter, h7Bold, h4Bold, h8Bold } from "../../global/common";
 import theme from "../../global/theme";
 
 const S = {};
 
-/////////////////////////////FindType
+S.MainContent = styled.div`
+  // 스타일 정의
+`;
 
 S.LogoWrap = styled.div`
   width: 236px;
@@ -15,12 +17,19 @@ S.LogoWrap = styled.div`
   }
 `;
 
+S.LogoBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 464px;
+  margin-bottom: 40px;
+`;
+
 S.Text = styled.p`
   margin-top: 55px;
 `;
 
 S.FindMain = styled.div`
-  width: 464px;
   display: flex;
   ${flexColumnCenter};
   margin: 235px auto;
@@ -76,46 +85,38 @@ S.NextButton = styled.button`
 /////////////////////////////FindId
 
 
-S.Tap = styled.button`
+S.TapGroup = styled.div`
   display: flex;
-  flex-direction: row;
+  gap: 24px;
 `;
 
-S.IdBtn = styled.button`
-  width: 220px;
-  height: 44px;
-  border-radius: 20px;
-  border: solid 1px #828282;
-  margin-right: 24px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #828282;
-  background-color:#ffffff;
-  cursor: pointer;
-
-`;
-
-S.PasswordBtn = styled.button`
+S.Tab = styled.button`
   width: 220px;
   height: 44px;
   border-radius: 20px;
   border: solid 1px #828282;
   font-size: 16px;
   font-weight: bold;
-  color: #828282;
-  background-color:#ffffff;
+  color: ${(props) => (props.$isActive ? "#ffffff" : "#828282")};
+  background-color: ${(props) => (props.$isActive ? "#828282" : "#ffffff")};
   cursor: pointer;
 `;
 
-
-S.Input = styled.button`
+S.InputContainer = styled.div`
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 15px;
-  margin-top: 40px;
 `;
 
-S.InputButton = styled.input`
+S.InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
+S.Input = styled.input`
   background-color: #ffffff;
   width: 464px;
   height: 60px;
@@ -128,5 +129,72 @@ S.InputButton = styled.input`
   outline: none;
 `;
 
+S.FindCompleteWrapper = styled.div`
+  width: 80vw;
+  display: flex;
+`;
+
+S.Label = styled.label`
+  font-weight: 500;
+`;
+
+S.Hr = styled.hr`
+  width: 80vw;
+  border-bottom: 1px solid #828282;
+`;
+
+S.CompleteButton = styled.button`
+  background-color: #ffc303;
+  border: none;
+  width: 100px;
+  border-radius: 20px;
+`;
+
+/////////////////////////////FindIdComplete
+
+S.Box = styled.div`
+  width: 1280px;
+  height: 340px;
+  border-top: solid 1px #828282;
+  border-bottom: solid 1px #828282;
+  box-sizing: border-box;
+  padding: 79px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+S.BoldText = styled.p`
+  ${h4Bold}
+`
+
+S.Text1 = styled.p`
+  font-size: ${theme.FONT_SIZE.h8};
+  margin-top: 14px;
+`;
+
+S.CompletionMain = styled.div`
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 80vh;
+`;
+
+S.GoToLoginButton = styled.button`
+  width: 142px;
+  height: 32px;
+  background-color: #ffc303;
+  ${h8Bold};
+  border-style: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin-top: 30px;
+  ${flexRowCenter};
+`
 
 export default S;
