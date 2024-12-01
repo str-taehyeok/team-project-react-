@@ -52,6 +52,11 @@ import CommunityContainer from "../pages/community/community/CommunityContainer"
 import CommunityMain from "../pages/community/community/CommunityMain";
 import PostContainer from "../pages/community/post/PostContainer";
 import PostList from "../pages/community/post/PostList";
+import PostOrangeList from "../pages/community/post/PostOrangeList";
+import PostGoldList from "../pages/community/post/PostGoldList";
+import PostGradationList from "../pages/community/post/PostGradationList";
+import PostLightPurpleList from "../pages/community/post/PostLightPurpleList";
+import PostDeepPurPleList from "../pages/community/post/PostDeepPurPleList";
 import MyPost from "../pages/community/post/MyPost";
 import MyPostList from "../pages/community/post/MyPostList";
 import OthersPost from "../pages/community/post/OthersPost";
@@ -251,6 +256,26 @@ const router = createBrowserRouter( [
                     {
                         index: true,
                         element: <PostList />,
+                    },
+                    {
+                        path: "orange",
+                        element: <PostOrangeList />,
+                    },
+                    {
+                        path: "gold",
+                        element: <PostGoldList />,
+                    },
+                    {
+                        path: "gradation",
+                        element: <PostGradationList />,
+                    },
+                    {
+                        path: "light-purple",
+                        element: <PostLightPurpleList />,
+                    },
+                    {
+                        path: "deep-purple",
+                        element: <PostDeepPurPleList />,
                     },
                     {
                         path: "my-post",

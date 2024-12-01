@@ -3,7 +3,7 @@ import {Outlet} from "react-router-dom";
 
 const PostContainer = () => {
     return (
-        <div>  
+        <div>
             <Outlet />
         </div>
     );

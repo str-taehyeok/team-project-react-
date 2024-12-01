@@ -59,23 +59,23 @@ const CommunityMain = () => {
                 <div className='colorBox'>
                     <div className='orangeBox'>
                         <p className='text8'>ORANGE</p>
-                        <Link to={"../post"}><p className='text9'>전체보기</p></Link>
+                        <Link to={"../post/orange"}><p className='text9'>전체보기</p></Link>
                     </div>
                     <div className='goldBox'>
                       <p className='text8'>GOLD</p>
-                      <Link to={"../post"}><p className='text9'>전체보기</p></Link>
+                      <Link to={"../post/gold"}><p className='text9'>전체보기</p></Link>
                     </div>
                     <div className='gradationBox'>
                       <p className='text8'>GRADATION</p>
-                      <Link to={"../post"}><p className='text9'>전체보기</p></Link>
+                      <Link to={"../post/gradation"}><p className='text9'>전체보기</p></Link>
                     </div>
                     <div className='lightPurple'>
                         <p className='text8'>LIGHT PURPLE</p>
-                        <Link to={"../post"}><p className='text9'>전체보기</p></Link>
+                        <Link to={"../post/light-purple"}><p className='text9'>전체보기</p></Link>
                     </div>
                     <div className='deepPurple'>
                      <p className='text8'>DEEP PURPLE</p>
-                     <Link to={"../post"}><p className='text9'>전체보기</p></Link>
+                     <Link to={"../post/deep-purple"}><p className='text9'>전체보기</p></Link>
                     </div>
                 </div>
             </S.Title>    

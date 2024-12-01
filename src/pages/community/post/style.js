@@ -2,6 +2,12 @@ import styled from "styled-components";
 
 const S = {}
 S.PostListAll = styled.div`
+    .post-box{
+      display:flex;
+      flex-direction: column;
+      width:1196px;
+      margin: 0 auto;
+    }
     .oringe{
       border-radius:50%;
       border: none;
@@ -60,7 +66,7 @@ S.PostListAll = styled.div`
     .all{
       border-radius:50%;
       border: none;
-      background-color: #D9D9D9;
+      background-color: #000000;
       width:30px;
       height: 30px;
       color: #ffffff;
@@ -73,7 +79,45 @@ S.PostListAll = styled.div`
       display:flex;
       flex-direction: row;
       gap:16px;
+      margin-top: 120px;
     }
+
+    .AllPost{
+      width:220px;
+      height:300px;
+      border-radius: 20px;
+    }
+    .profile-box{
+      display:flex;
+      flex-direction: row;
+      width: 220px;
+      align-items:center;
+    }
+
+    .profile{
+      width:40px;
+      height:40px;
+      margin-right: 10px;
+    }
+    .nick-name{
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: -3%;
+      font-weight: bold;
+      width: 100%;
+  }
+  .All{
+    display:flex;
+    flex-direction: row;
+    gap:24px;
+    margin-top: 29px;
+  }
+  .all-text{
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: bold;
+    margin-top: 44px;
+  }
 `
 
 
