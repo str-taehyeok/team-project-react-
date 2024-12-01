@@ -37,6 +37,18 @@ const S = {}
     margin-top: 30px;
    }
 
+   .button{
+    width:240px;
+    height:60px;
+    background-color:rgba(255, 255, 255, 0.9);
+    color:#000000;
+    font-size: 28px;
+    line-height: 40px;
+    font-weight:bold;
+    border-radius: 20px;
+    margin-top: 24px;
+   }
+
    & .swiper {
     position: absolute;
     right : 0;
@@ -71,6 +83,7 @@ const S = {}
       margin-right: 240px;
       margin-bottom: 65px;
     }
+
 
     .text-box1 {
       display: flex;
@@ -112,6 +125,17 @@ const S = {}
       border-radius: 20px;
       position: relative;
     }
+
+    .heart{
+      position: absolute; 
+      right: 10px; 
+      top: 10px;
+   }
+
+  .post-container{
+    position: relative; 
+    width: 220px;
+  }
 
     .addPostBox{
       display: flex;
@@ -219,6 +243,40 @@ const S = {}
       margin-right: 82px;
       font-weight:bold;
     }
+
+    .AllPost{
+      width:220px;
+      height:300px;
+      border-radius: 20px;
+    }
+    .profile-box{
+      display:flex;
+      flex-direction: row;
+      width: 220px;
+      align-items:center;
+      margin-top: 5px;
+    }
+
+    .profile{
+      width:40px;
+      height:40px;
+      margin-right: 10px;
+    }
+    .nick-name{
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: -3%;
+      font-weight: bold;
+      width: 100%;
+  }
+  .All{
+    display:flex;
+    flex-direction: row;
+    gap:24px;
+    margin-top: 10px;
+    width:1327px;
+    justify-content:center;
+  }
 
   `
 
