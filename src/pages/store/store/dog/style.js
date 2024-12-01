@@ -17,7 +17,7 @@ const S = {}
         font-weight: bold;
         line-height: 58px;
         top: 150px;
-        left: 46%;
+        left: 42%;
         transform: translateX(-50%);
         text-align: left;
         width: 1440px;

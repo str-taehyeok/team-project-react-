@@ -33,7 +33,7 @@ S.BannerComent = styled.div`
             width: 182px;
             height: 51px;
             margin-left: 50px;
-            background-color: #FFE59A;
+            background-color: #C9B6E4;
             border: 1px solid #131313;
             font-weight: normal;
             font-size: 20px;
