@@ -1,26 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import S from './style';
 
-const FindId = ({ members }) => {
-    return (
-      <S.CompletionMain>
-        <S.LogoBox>
-            <img src={`${process.env.PUBLIC_URL}/assets/images/layout/powpow-logo.png`} alt="로고" />
-        </S.LogoBox>
-        <S.Box>
-          {/* <img id="check" src="../assets/images/member/complete-check.svg" alt="체크" /> */}
-          
-          {members && members.map((member, index) => (
-            <div key={index}>
-              <S.Text>{member.memberEmail}</S.Text>
-              <S.Text1>{`${member.memberName}님 아이디 찾기가 완료되었습니다!`}</S.Text1>
-            </div>
-          ))}
-          
-            <S.NextButton>로그인</S.NextButton>
-        </S.Box>
-      </S.CompletionMain>
-    );
+const FindId = () => {
+  const [currentScreen, setCurrentScreen] = useState('id');
+
+  const handleFindIdClick = () => {
+    setCurrentScreen('id');
   };
+
+  const handleFindPasswordClick = () => {
+    setCurrentScreen('password');
+  };
+
+  return (
+    <div>
+      <Link to="/">
+        <S.LogoWrap>
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`}
+            alt="로고"
+          />
+        </S.LogoWrap>
+      </Link>
+
+      <S.Tap>
+        <S.IdBtn
+          className={currentScreen === 'id' ? 'active' : ''}
+          onClick={handleFindIdClick}
+        >
+        </S.IdBtn>
+        <S.PasswordBtn
+          className={currentScreen === 'password' ? 'active' : ''}
+          onClick={handleFindPasswordClick}
+        >
+        </S.PasswordBtn>
+      </S.Tap>
+
+      {currentScreen === 'id' && (
+          <S.MainContent>
+            <S.Input>
+              <div>
+                <p>이름</p>
+                <S.InputButton
+                  type="text"
+                  name="name"
+                  placeholder="이름"
+                />
+              </div>
+              <div>
+                <p>휴대폰 번호</p>
+                <S.InputButton
+                  type="text"
+                  name="phone"
+                  placeholder="전화번호"
+                />
+              </div>
+            </S.Input>
+            <S.NextButton type="button">다음</S.NextButton>
+          </S.MainContent>
+      )}
+    </div>
+  );
+};
+
 
 export default FindId;
