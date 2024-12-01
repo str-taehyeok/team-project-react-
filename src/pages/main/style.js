@@ -31,6 +31,11 @@ S.SwiperContainer = styled.div`
 S.BannerTitle = styled.div`
   width: 489px;
   flex-shrink: 0;
+
+  & h2 {
+    font-size: ${theme.FONT_SIZE.h4};
+    font-weight: ${theme.FONT_WEIGHT.bold};    
+  }
 `
 
 
@@ -136,7 +141,7 @@ S.Cart = styled.div`
 ////////////////////////////////////////// 태스트 배너
 
 S.TestWrap = styled.div`
-  margin: 150px 0;
+  margin-bottom: 150px;
 `;
 
 S.TestButton = styled.div`
