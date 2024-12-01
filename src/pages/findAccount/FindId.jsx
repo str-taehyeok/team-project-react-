@@ -1,68 +1,64 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import S from './style';
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FindContext } from "../../context/findContext";
+import S from "./style";
 
 const FindId = () => {
-  const [currentScreen, setCurrentScreen] = useState('id');
+  const { state, action } = useContext(FindContext);
 
-  const handleFindIdClick = () => {
-    setCurrentScreen('id');
-  };
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
-  const handleFindPasswordClick = () => {
-    setCurrentScreen('password');
+  const navigate = useNavigate();
+
+  const onClickNext = () => {
+    navigate("/find/findId-complete");
   };
 
   return (
-    <div>
-      <Link to="/">
-        <S.LogoWrap>
-          <img
-            src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`}
-            alt="로고"
+    <>
+      <S.InputContainer>
+        <S.LogoBox>
+          <S.LogoWrap>
+            <Link to={"/"}>
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`}
+                alt="로고"
+              />
+            </Link>
+          </S.LogoWrap>
+        </S.LogoBox>
+
+
+        <S.InputWrapper>
+          <S.Label htmlFor="name">이름</S.Label>
+          <S.Input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="이름"
+            value={name}
+            onChange={(e) => setName(e.currentTarget.value)}
           />
-        </S.LogoWrap>
-      </Link>
+        </S.InputWrapper>
 
-      <S.Tap>
-        <S.IdBtn
-          className={currentScreen === 'id' ? 'active' : ''}
-          onClick={handleFindIdClick}
-        >
-        </S.IdBtn>
-        <S.PasswordBtn
-          className={currentScreen === 'password' ? 'active' : ''}
-          onClick={handleFindPasswordClick}
-        >
-        </S.PasswordBtn>
-      </S.Tap>
-
-      {currentScreen === 'id' && (
-          <S.MainContent>
-            <S.Input>
-              <div>
-                <p>이름</p>
-                <S.InputButton
-                  type="text"
-                  name="name"
-                  placeholder="이름"
-                />
-              </div>
-              <div>
-                <p>휴대폰 번호</p>
-                <S.InputButton
-                  type="text"
-                  name="phone"
-                  placeholder="전화번호"
-                />
-              </div>
-            </S.Input>
-            <S.NextButton type="button">다음</S.NextButton>
-          </S.MainContent>
-      )}
-    </div>
+        <S.InputWrapper>
+          <S.Label htmlFor="phone">휴대폰 번호</S.Label>
+          <S.Input
+            type="text"
+            id="phone"
+            name="phone"
+            placeholder="전화번호"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.currentTarget.value)}
+          />
+        </S.InputWrapper>
+        <S.NextButton type="button" onClick={onClickNext}>
+          다음
+        </S.NextButton>
+      </S.InputContainer>
+    </>
   );
 };
-
 
 export default FindId;
