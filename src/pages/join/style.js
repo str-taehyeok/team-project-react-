@@ -4,6 +4,7 @@ import {
   flexColumnCenter,
   h7Bold,
   h8Bold,
+  h4Bold,
 } from "../../global/common";
 import theme from "../../global/theme";
 
@@ -28,7 +29,7 @@ S.LogoBox = styled.div`
 `;
 
 S.Text = styled.p`
-  margin-top: 55px;
+  ${h4Bold}
 `;
 
 S.JoinMain = styled.div`
@@ -71,10 +72,10 @@ S.RadioBox = styled.div`
   }
 `;
 S.NextButton = styled.button`
-  width: 464px;
-  height: 55px;
+  width: 142px;
+  height: 32px;
   background-color: #ffc303;
-  ${h7Bold};
+  ${h8Bold};
   border-style: none;
   border-radius: 20px;
   box-sizing: border-box;
@@ -299,20 +300,9 @@ S.CompletionMain = styled.div`
   justify-content: center;
   margin: 0 auto;
   height: 80vh;
+
 `;
 
-S.NextButton = styled.div`
-  width: 464px;
-  height: 55px;
-  background-color: #ffc303;
-  ${h7Bold}
-  border-style: none;
-  border-radius: 20px;
-  box-sizing: border-box;
-  cursor: pointer;
-  margin-top: 30px;
-  ${flexRowCenter};
-`;
 
 S.Box = styled.div`
   width: 1280px;
@@ -325,10 +315,15 @@ S.Box = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+    &img {
+      margin-bottom: 7px;
+    }
 `;
 
 S.Text1 = styled.p`
   font-size: ${theme.FONT_SIZE.h8};
+  margin-top: 14px;
 `;
 
 S.Text2 = styled.p`

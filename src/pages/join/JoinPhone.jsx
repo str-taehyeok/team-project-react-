@@ -73,13 +73,13 @@ const JoinPhone = () => {
         {/* "다음" 버튼 */}
         {state.member === "buyer" ? (
           <Link to={"/join/buyer-join"} onClick={handleNextClick}>
-            <S.LoginButton className="NextButton" type="button">
+            <S.LoginButton type="button">
               다음
             </S.LoginButton>
           </Link>
         ) : (
           <Link to={"/join/seller-join"} onClick={handleNextClick}>
-            <S.LoginButton className="NextButton" type="button">
+            <S.LoginButton type="button">
               다음
             </S.LoginButton>
           </Link>

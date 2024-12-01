@@ -54,7 +54,7 @@ const JoinType = () => {
           </label>
         </S.RadioBox>
         <Link to={"/join/phone"}>
-          <S.NextButton>다음</S.NextButton>
+          <S.LoginButton>다음</S.LoginButton>
         </Link>
       </S.JoinMain>
     </div>
