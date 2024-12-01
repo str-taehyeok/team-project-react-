@@ -19,14 +19,15 @@ const JoinComplete = () => {
         <S.Box>
             <img
                 id="Check"
+                style={{ marginBottom: '7px'}}
                 src={`${process.env.PUBLIC_URL}/assets/images/join/complete-check.png`}
                 alt="체크"
             />
 
-            <p className="Text">POWPOW 회원가입이 완료되었습니다.</p>
-            <p className="Text1">
+            <S.Text>POWPOW 회원가입이 완료되었습니다.</S.Text>
+            <S.Text1>
                 로그인하시면 더욱 다양한 서비스를 제공받으실 수 있습니다.
-            </p>
+            </S.Text1>
             <S.NextButton>
               <Link to={"/login"}>
                 로그인
