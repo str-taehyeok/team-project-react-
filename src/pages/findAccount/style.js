@@ -1,10 +1,5 @@
 import styled from "styled-components";
-import {
-  flexRowCenter,
-  flexColumnCenter,
-  h7Bold,
-  h8Bold,
-} from "../../global/common";
+import { flexRowCenter,flexColumnCenter, h7Bold } from "../../global/common";
 import theme from "../../global/theme";
 
 const S = {};
@@ -19,6 +14,7 @@ S.LogoWrap = styled.div`
     width: 100%;
   }
 `;
+
 S.Text = styled.p`
   margin-top: 55px;
 `;
@@ -78,5 +74,59 @@ S.NextButton = styled.button`
 `;
 
 /////////////////////////////FindId
+
+
+S.Tap = styled.button`
+  display: flex;
+  flex-direction: row;
+`;
+
+S.IdBtn = styled.button`
+  width: 220px;
+  height: 44px;
+  border-radius: 20px;
+  border: solid 1px #828282;
+  margin-right: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #828282;
+  background-color:#ffffff;
+  cursor: pointer;
+
+`;
+
+S.PasswordBtn = styled.button`
+  width: 220px;
+  height: 44px;
+  border-radius: 20px;
+  border: solid 1px #828282;
+  font-size: 16px;
+  font-weight: bold;
+  color: #828282;
+  background-color:#ffffff;
+  cursor: pointer;
+`;
+
+
+S.Input = styled.button`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 40px;
+`;
+
+S.InputButton = styled.input`
+  background-color: #ffffff;
+  width: 464px;
+  height: 60px;
+  border: 0.5px solid #828282;
+  font-size: 14px;
+  color: #828282;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 19px 26px;
+  outline: none;
+`;
+
 
 export default S;

@@ -24,23 +24,19 @@ const FindId = () => {
         </S.LogoWrap>
       </Link>
 
-      탭 버튼
       <S.Tap>
         <S.IdBtn
           className={currentScreen === 'id' ? 'active' : ''}
           onClick={handleFindIdClick}
         >
-          아이디 찾기
         </S.IdBtn>
         <S.PasswordBtn
           className={currentScreen === 'password' ? 'active' : ''}
           onClick={handleFindPasswordClick}
         >
-          비밀번호 찾기
         </S.PasswordBtn>
       </S.Tap>
 
-      아이디 찾기
       {currentScreen === 'id' && (
           <S.MainContent>
             <S.Input>
