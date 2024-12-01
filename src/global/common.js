@@ -148,64 +148,229 @@ export const h11Bold = css`
 export const h1Medium = css`
     font-size: 40px;
     line-height: 54px;
-    font-weight: 400;
+    font-weight: 500;
 `
 export const h2Medium = css`
     font-size: 34px;
     line-height: 42px;
-    font-weight: 400;
+    font-weight: 500;
 `
 export const h3Medium = css`
     font-size: 30px;
     line-height: 38px;
-    font-weight: 400;
+    font-weight: 500;
 `
 export const h4Medium = css`
     font-size: 28px;
     line-height: 36px;
-    font-weight: 400;
+    font-weight: 500;
 `
 export const h5Medium = css`
     font-size: 24px;
     line-height: 30px;
-    font-weight: 400;
+    font-weight: 500;
 `
 export const h6Medium = css`
     font-size: 20px;
     line-height: 28px;
-    font-weight: 400;
+    font-weight: 500;
 `
 export const h7Medium = css`
     font-size: 16px;
     line-height: 24px;
-    font-weight: 400;
+    font-weight: 500;
 `
 export const h8Medium = css`
     font-size: 14px;
     line-height: 22px;
-    font-weight: 400;
+    font-weight: 500;
 `
 export const h9Medium = css`
     font-size: 12px;
     line-height: 20px;
-    font-weight: 400;
+    font-weight: 500;
 `
 export const h10Medium = css`
     font-size: 11px;
     line-height: 19px;
-    font-weight: 400;
+    font-weight: 500;
 `
 export const h11Medium = css`
+    font-size: 10px;
+    line-height: 18px;
+    font-weight: 500;
+`
+
+// regular font
+export const h1Regular = css`
+    font-size: 40px;
+    line-height: 54px;
+    font-weight: 400;
+`
+export const h2Regular = css`
+    font-size: 34px;
+    line-height: 42px;
+    font-weight: 400;
+`
+export const h3Regular = css`
+    font-size: 30px;
+    line-height: 38px;
+    font-weight: 400;
+`
+export const h4Regular = css`
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 400;
+`
+export const h5Regular = css`
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 400;
+`
+export const h6Regular = css`
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+`
+export const h7Regular = css`
     font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+`
+export const h8Regular = css`
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+`
+export const h9Regular = css`
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+`
+export const h10Regular = css`
+    font-size: 11px;
+    line-height: 19px;
+    font-weight: 400;
+`
+export const h11Regular = css`
+    font-size: 10px;
     line-height: 18px;
     font-weight: 400;
 `
 
+// light font
+export const h1Light = css`
+    font-size: 40px;
+    line-height: 54px;
+    font-weight: 300;
+`
+export const h2Light = css`
+    font-size: 34px;
+    line-height: 42px;
+    font-weight: 300;
+`
+export const h3Light = css`
+    font-size: 30px;
+    line-height: 38px;
+    font-weight: 300;
+`
+export const h4Light = css`
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 300;
+`
+export const h5Light = css`
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 300;
+`
+export const h6Light = css`
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 300;
+`
+export const h7Light = css`
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+`
+export const h8Light = css`
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 300;
+`
+export const h9Light = css`
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 300;
+`
+export const h10Light = css`
+    font-size: 11px;
+    line-height: 19px;
+    font-weight: 300;
+`
+export const h11Light = css`
+    font-size: 10px;
+    line-height: 18px;
+    font-weight: 300;
+`
 
-
-
-
-
+// thin font
+export const h1Thin = css`
+    font-size: 40px;
+    line-height: 54px;
+    font-weight: 100;
+`
+export const h2Thin = css`
+    font-size: 34px;
+    line-height: 42px;
+    font-weight: 100;
+`
+export const h3Thin = css`
+    font-size: 30px;
+    line-height: 38px;
+    font-weight: 100;
+`
+export const h4Thin = css`
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 100;
+`
+export const h5Thin = css`
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 100;
+`
+export const h6Thin = css`
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 100;
+`
+export const h7Thin = css`
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 100;
+`
+export const h8Thin = css`
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 100;
+`
+export const h9Thin = css`
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 100;
+`
+export const h10Thin = css`
+    font-size: 11px;
+    line-height: 19px;
+    font-weight: 100;
+`
+export const h11Thin = css`
+    font-size: 10px;
+    line-height: 18px;
+    font-weight: 100;
+`
 
 
 
