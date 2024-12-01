@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { flexCenterRowSpaceBetween, flexColumnCenter, flexRowCenter,
-  h1Bold, h1Medium, h2Bold, h4Bold,
-  h6Medium,
-  h7Bold
+  h1Bold, h1Medium, h2Bold, h4Bold, h5Medium, h6Medium, h7Bold
  } from '../../global/common'
  import theme from "../../global/theme";
 
@@ -176,6 +174,10 @@ S.CirclesWrap = styled.div`
 	justify-content: space-between;
 	margin-top: 84px;
 	width: 1200px;
+
+    & span {
+      ${h5Medium}
+    }
 `
 
 S.Circles = styled.div`
