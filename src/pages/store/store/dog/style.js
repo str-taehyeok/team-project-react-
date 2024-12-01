@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { flexRowCenter, flexColumnCenter, h4Medium, h8Medium, h1Bold, yellow200 } from '../../../../global/common'
+import { flexRowCenter, flexColumnCenter, h4Medium, h8Medium, h1Bold, yellow200, h8Regular } from '../../../../global/common'
 
 const S = {}
 
@@ -79,7 +79,6 @@ const S = {}
 
     // 드롭다운 필터링 버튼들
 
-// Styled Components에 새로운 래퍼 추가
 S.DropdownWrapper = styled.div`
     position: relative;
     display: inline-block;
@@ -324,12 +323,12 @@ S.DropdownWrapper = styled.div`
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            line-height: 1.2;
+            ${h8Regular};
         }
         
         & span:nth-of-type(2) {
             font-weight: 700;
-            margin-top: 4px;
+            margin-top: 5px;
         }
     `;
 
@@ -339,29 +338,30 @@ S.DropdownWrapper = styled.div`
         gap: 50px;
         width: 100%;
         min-width: 1440px;
-        max-height: 760px;
+        max-height: 790px;
         overflow: hidden;
         margin: 0 auto;
         margin-top: 50px;
         
         & > div:first-child {
             width: 538px; 
-            height: 760px; 
+            height: 790px; 
             margin-right: 72px;
             grid-row: span 2;
     
             & img {
                 height: 537px;
-                margin-bottom: 30px;
+                margin-bottom: 10px;
             }
     
             & button {
                 height: 70px;
-                margin-top: 32px;
+                margin-top: 25px;
             }
     
             & span {
                 ${h4Medium};
+                padding-bottom: 10px;
             }
         }
     `;

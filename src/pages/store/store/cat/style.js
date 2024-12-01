@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { flexRowCenter, flexColumnCenter, h4Medium, h8Medium, h1Bold, yellow200 } from '../../../../global/common'
+import { flexRowCenter, flexColumnCenter, h4Medium, h8Medium, h1Bold, yellow200, h8Regular } from '../../../../global/common'
 
 const S = {}
 
@@ -79,7 +79,6 @@ S.Category = styled.span`
 
 // 드롭다운 필터링 버튼들
 
-// Styled Components에 새로운 래퍼 추가
 S.DropdownWrapper = styled.div`
     position: relative;
     display: inline-block;
@@ -293,78 +292,78 @@ S.RecommendedWrap = styled.div`
             gap: 24px;
             margin-top: 50px;
         `;
-
 // 특가
 S.SpecialProduct = styled.div`
-        display: flex;
-        flex-direction: column;
-        width: 244px;
-        
-        & img {
-            width: 100%;
-            height: 244px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-        
-        & button {
-            width: 100%;
-            height: 31px;
-            border-radius: 5px;
-            margin-top: 6px;
-            background-color: #fff;
-            border: 1px solid #D9D9D9;
-        }
-    
-        & span {
-            width: 100%;
-            margin-top: 10px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            line-height: 1.2;
-        }
-        
-        & span:nth-of-type(2) {
-            font-weight: 700;
-            margin-top: 4px;
-        }
-    `;
+    display: flex;
+    flex-direction: column;
+    width: 244px;
+
+    & img {
+        width: 100%;
+        height: 244px;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+
+    & button {
+        width: 100%;
+        height: 31px;
+        border-radius: 5px;
+        margin-top: 6px;
+        background-color: #fff;
+        border: 1px solid #D9D9D9;
+    }
+
+    & span {
+        width: 100%;
+        margin-top: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        ${h8Regular};
+    }
+
+    & span:nth-of-type(2) {
+        font-weight: 700;
+        margin-top: 5px;
+    }
+`;
 
 S.SpecialProducts = styled.div`
-        display: grid;
-        grid-template-columns: 538px repeat(3, 1fr);
-        gap: 50px;
-        width: 100%;
-        min-width: 1440px;
-        max-height: 760px;
-        overflow: hidden;
-        margin: 0 auto;
-        margin-top: 50px;
-        
-        & > div:first-child {
-            width: 538px; 
-            height: 760px; 
-            margin-right: 72px;
-            grid-row: span 2;
-    
-            & img {
-                height: 537px;
-                margin-bottom: 30px;
-            }
-    
-            & button {
-                height: 70px;
-                margin-top: 32px;
-            }
-    
-            & span {
-                ${h4Medium};
-            }
+    display: grid;
+    grid-template-columns: 538px repeat(3, 1fr);
+    gap: 50px;
+    width: 100%;
+    min-width: 1440px;
+    max-height: 790px;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 50px;
+
+    & > div:first-child {
+        width: 538px;
+        height: 790px;
+        margin-right: 72px;
+        grid-row: span 2;
+
+        & img {
+            height: 537px;
+            margin-bottom: 10px;
         }
-    `;
+
+        & button {
+            height: 70px;
+            margin-top: 25px;
+        }
+
+        & span {
+            ${h4Medium};
+            padding-bottom: 10px;
+        }
+    }
+`;
 
 S.SpecialWrap = styled.div`
         margin-top: 150px;
