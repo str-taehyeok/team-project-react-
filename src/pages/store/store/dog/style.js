@@ -78,9 +78,10 @@ const S = {}
         & button{
             padding: 10px 15px;
             background: white;
-            border: 1px solid #ddd;
+            border: 1px solid #D9D9D9;
             border-radius: 4px;
             cursor: pointer;
+            margin-left: 10px;
         }
     `;
 
@@ -91,7 +92,7 @@ const S = {}
         left: 0;
         background: white;
         min-width: 160px;
-        border: 1px solid #ddd;
+        border: 1px solid #D9D9D9;
         border-radius: 4px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         display: ${props => props.isOpen ? 'block' : 'none'};
@@ -143,7 +144,7 @@ const S = {}
                 margin-top: 14px;
                 border-radius: 5px;
                 background-color: #fff;
-                border-color: #D9D9D9;
+                border: 1px solid #D9D9D9;
             }
             
             & img{
@@ -172,7 +173,7 @@ const S = {}
 
     S.BoxTitle = styled.span`
             font-size: 40px;
-            margin-right: 700px;
+            margin-right: 665px;
             font-weight: bold;
         `;
 
@@ -208,7 +209,7 @@ const S = {}
                 margin-top: 9px;
                 border-radius: 5px;
                 background-color: #fff;
-                border-color: #D9D9D9;
+                border: 1px solid #D9D9D9;
             }
         `;
 
