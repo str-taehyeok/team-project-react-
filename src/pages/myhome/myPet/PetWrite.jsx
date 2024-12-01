@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import S from "./style";
+import { Link } from 'react-router-dom';
 
 const PetWrite = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +26,9 @@ const PetWrite = () => {
 
   return (
     <div>
+      <Link to={"/my-pet"}>
       <S.Button id="submit-button" type="button" onClick={handleSubmit}>완료</S.Button>
+      </Link>
       <S.Mydog>
         <S.PetCard>
           <S.Profilepic>
