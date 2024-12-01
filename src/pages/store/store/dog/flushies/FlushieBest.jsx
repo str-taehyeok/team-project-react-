@@ -1,16 +1,5 @@
 import React from 'react';
 import S from "../style";
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import ReactDOM from "react-dom";
-//
-// import App from "./App.jsx";
-//
-// ReactDOM.render(<App />, document.getElementById("app"));
-//
-//
-// import 'swiper/css';
-// import 'swiper/css/pagination';
-// import { Pagination } from 'swiper/modules';
 
 const FlushieBest = ({bestProducts}) => {
   return (
