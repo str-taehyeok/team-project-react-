@@ -16,18 +16,6 @@ const ProfileList = () => {
         <div>
             <S.MyHomeContainer>
                 <S.MyHomeWrap>
-                    <S.MyHomeLeft>
-                        <p>나의 정보</p>
-                        <ul>
-                            <li>프로필</li>
-                            <li>|</li>
-                            <li>좋아요</li>
-                            <li>|</li>
-                            <li>알림설정</li>
-                            <li>|</li>
-                            <li>비밀번호 변경</li>
-                        </ul>
-                    </S.MyHomeLeft>
                     <S.UpdateButtonWrap>
                         <Link to={""}><button><p>수정하기</p></button></Link>
                     </S.UpdateButtonWrap>
@@ -45,21 +33,24 @@ const ProfileList = () => {
                         </S.ProfileBox>
                         <S.MemberInputBoxContainer>
                             <S.MemberInputBoxWrap>
-                                <S.MemberInputTagWrap>
-                                    <p>이름</p>
-                                    <p>닉네임</p>
-                                    <p>아이디(이메일)</p>
-                                    <p>휴대폰번호</p>
-                                    <p>주소</p>
-                                </S.MemberInputTagWrap>
-                                <S.MemberInputWrap>
-                                    <p>이름</p>
-                                    <p>닉네임</p>
-                                    <p>아이디</p>
-                                    <p>휴대폰번호</p>
-                                    <p>주소1</p>
-                                    <p>주소2</p>
-                                </S.MemberInputWrap>
+                                <S.MemberInputBoxName>
+                                    <h5>이름</h5><h6>Jane Ryo</h6>
+                                </S.MemberInputBoxName>
+                                <S.MemberInputBoxNickname>
+                                    <h5>닉네임</h5><h6>Jane</h6>
+                                </S.MemberInputBoxNickname>
+                                <S.MemberInputBoxEmail>
+                                    <h5>아이디(이메일)</h5><h6>example@gmail.com</h6>
+                                </S.MemberInputBoxEmail>
+                                <S.MemberInputBoxPhone>
+                                    <h5>휴대폰번호</h5><h6>01012345678</h6>
+                                </S.MemberInputBoxPhone>
+                                <S.MemberInputBoxAddress>
+                                    <h5>주소</h5>
+                                    <S.MemberInputAddress>
+                                        <h6>06544</h6><h6>Seoul 34th st.</h6>
+                                    </S.MemberInputAddress>
+                                </S.MemberInputBoxAddress>
                             </S.MemberInputBoxWrap>
                         </S.MemberInputBoxContainer>
                     </S.ProfileBoxWrap>
