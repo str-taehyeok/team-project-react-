@@ -89,7 +89,11 @@ import NoticeList from "../pages/admin/notice/NoticeList";
 import NoticeUpdate from "../pages/admin/notice/NoticeUpdate";
 import NoticeWrite from "../pages/admin/notice/NoticeWrite";
 import SellerLogin from "../pages/login/SellerLogin";
-import StoreCat from "../pages/store/store/cat/StoreCat";
+import StoreCatContainer from "../pages/store/store/cat/StoreCatContainer";
+import Flushie from "../pages/store/store/cat/Flushies";
+import Treat from "../pages/store/store/cat/Treats";
+import Cloth from "../pages/store/store/cat/Clothes";
+import HealthCares from "../pages/store/store/cat/HealthCare";
 import StoreDogContainer from "../pages/store/store/dog/StoreDogContainer";
 import Flushies from "../pages/store/store/dog/Flushies";
 import Treats from "../pages/store/store/dog/Treats";
@@ -215,7 +219,25 @@ const router = createBrowserRouter( [
             },
             {
                 path: '/store-cat',
-                element: <StoreCat />,
+                element: <StoreCatContainer />,
+                children : [
+                    {
+                        index: true,
+                        element: <Flushie />
+                    },
+                    {
+                        path: 'treats',
+                        element: <Treat />
+                    },
+                    {
+                        path: 'clothes',
+                        element: <Cloth />
+                    },
+                    {
+                        path: 'health-care',
+                        element: <HealthCares />
+                    },
+                ]
             },
             {
                 path: '/cart',

@@ -11,42 +11,83 @@ const productList = [
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 11_900,
-        src : "/assets/images/store/dental-dog.png"
+        src : "/assets/images/store/dental-dog.png",
+        productColor : "Orange",
+        productSize : "M",
+        reviewStar : 4.5,
+        soldCount : 100,
+        productDate : "2023-01-03"
+
     },
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 5_900,
-        src : "/assets/images/store/dental-dog.png"
+        src : "/assets/images/store/dental-dog.png",
+        productColor : "Orange",
+        productSize : "M",
+        reviewStar : 4.5,
+        soldCount : 100,
+        productDate : "2023-01-03"
     },
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 6_500,
-        src : "/assets/images/store/dental-dog.png"
+        src : "/assets/images/store/dental-dog.png",
+        productColor : "Orange",
+        productSize : "M",
+        reviewStar : 4.5,
+        soldCount : 100,
+        productDate : "2023-01-03"
     },
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 4_000,
-        src : "/assets/images/store/dental-dog.png"
+        src : "/assets/images/store/dental-dog.png",
+        productColor : "Orange",
+        productSize : "M",
+        reviewStar : 4.5,
+        soldCount : 100,
+        productDate : "2023-01-03"
     },
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 12_900,
-        src : "/assets/images/store/dental-dog.png"
+        src : "/assets/images/store/dental-dog.png",
+        productColor : "Orange",
+        productSize : "M",
+        reviewStar : 4.5,
+        soldCount : 100,
+        productDate : "2023-01-03"
     },
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 14_000,
-        src : "/assets/images/store/dental-dog.png"
+        src : "/assets/images/store/dental-dog.png",
+        productColor : "Orange",
+        productSize : "M",
+        reviewStar : 4.5,
+        soldCount : 100,
+        productDate : "2023-01-03"
     },
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 7_900,
-        src : "/assets/images/store/dental-dog.png"
+        src : "/assets/images/store/dental-dog.png",
+        productColor : "Orange",
+        productSize : "M",
+        reviewStar : 4.5,
+        soldCount : 100,
+        productDate : "2023-01-03"
     },
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 8_000,
-        src : "/assets/images/store/dental-dog.png"
+        src : "/assets/images/store/dental-dog.png",
+        productColor : "Orange",
+        productSize : "M",
+        reviewStar : 4.5,
+        soldCount : 100,
+        productDate : "2023-01-03"
     },
 ]
 
