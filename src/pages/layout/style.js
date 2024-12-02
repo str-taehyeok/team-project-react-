@@ -114,6 +114,31 @@ const S = {}
         }
     `
 
+    S.SearchWrap = styled.div`
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-bottom: solid 1px #000;
+        height: 30px;
+        width: 180px;
+
+        & .icon{
+            position: absolute;
+            right: -1px
+        }
+
+        & input{
+            border: none;
+            background: none;
+        }
+
+        & input:focus{
+            outline: none;
+            background: none;
+        }
+    `
+
+
 // Footer css
     S.FooterContainer = styled.div`
     width: 1440px;

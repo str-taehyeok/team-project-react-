@@ -49,26 +49,26 @@ const ProfileUpdate = () => {
                         </S.ProfileBox>
                         <S.MemberInputBoxContainer>
                             <S.MemberInputBoxWrap>
-                                <S.MemberInputBoxName>
+                                <S.MemberInputBox>
                                     <S.h7>이름</S.h7>
                                     <input type="text" name="userName" placeholder="이름을 입력하세요" value={formData.userName} onChange={handleChange}/>
-                                </S.MemberInputBoxName>
-                                <S.MemberInputBoxNickname>
+                                </S.MemberInputBox>
+                                <S.MemberInputBox>
                                     <S.h7>닉네임</S.h7>
                                     <input type="text" name="userNickName" placeholder="닉네임을 입력하세요" value={formData.userNickName}
                                            onChange={handleChange}/>
-                                </S.MemberInputBoxNickname>
-                                <S.MemberInputBoxEmail>
+                                </S.MemberInputBox>
+                                <S.MemberInputBox>
                                     <S.h7>아이디(이메일)</S.h7>
                                     <input type="text" name="userEmail" placeholder="이메일을 입력하세요" value={formData.userEmail}
                                            onChange={handleChange}/>
-                                </S.MemberInputBoxEmail>
-                                <S.MemberInputBoxPhone>
+                                </S.MemberInputBox>
+                                <S.MemberInputBox>
                                     <S.h7>휴대폰번호</S.h7>
                                     <input type="text" name="userPhone" placeholder="휴대폰 번호를 입력하세요" value={formData.userPhone}
                                            onChange={handleChange}/>
-                                </S.MemberInputBoxPhone>
-                                <S.MemberInputBoxAddress>
+                                </S.MemberInputBox>
+                                <S.MemberInputBox>
                                     <S.h7>주소</S.h7>
                                     <S.MemberInputAddress>
                                         <input type="text" name="userAdress1" placeholder="간편주소를 입력하세요"
@@ -76,7 +76,7 @@ const ProfileUpdate = () => {
                                         <input type="text" name="userAdress2" placeholder="상세주소를 입력하세요"
                                                value={formData.userAdress2} onChange={handleChange}/>
                                     </S.MemberInputAddress>
-                                </S.MemberInputBoxAddress>
+                                </S.MemberInputBox>
                             </S.MemberInputBoxWrap>
                         </S.MemberInputBoxContainer>
                     </S.ProfileBoxWrap>

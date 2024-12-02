@@ -6,6 +6,7 @@ const Header = () => {
 
     const member = "";
     const [isHover, setIsHover] = useState(false);
+    const [isSearch, setIsSearch] = useState(false);
 
     const handleMouseOver = () => {
         setIsHover(true);
@@ -13,7 +14,9 @@ const Header = () => {
     const handleMouseOut = () => {
         setIsHover(false);
     }
-
+    const handleShowSearch = () => {
+        setIsSearch(!isSearch)
+    }
     return (
         <S.HeaderWrap className={ isHover ? "active" : "" } onMouseOut={handleMouseOut}>
             <S.Header>
@@ -47,7 +50,21 @@ const Header = () => {
                     </S.SubMenuWrap>
                 </S.MenuWrap>
                 <S.IconWrap>
-                    <Link to={""} ><img src={`${process.env.PUBLIC_URL}/assets/images/layout/search.png`} alt="로고"/></Link>
+                    { isSearch ? (
+                        <S.SearchWrap>
+                             <input type="text" />
+                             <img
+                                className='icon' 
+                                src={`${process.env.PUBLIC_URL}/assets/images/layout/search.png`} alt="로고"
+                                onClick={handleShowSearch}
+                             />
+                        </S.SearchWrap>
+                    ) : (
+                        <img 
+                            src={`${process.env.PUBLIC_URL}/assets/images/layout/search.png`} alt="로고"
+                            onClick={handleShowSearch}
+                        />
+                    )}
                     <Link to={""} ><img src={`${process.env.PUBLIC_URL}/assets/images/layout/delivery.png`} alt="로고"/></Link>
                     <Link to={"/cart"} ><img src={`${process.env.PUBLIC_URL}/assets/images/layout/cart.png`} alt="로고"/></Link>
                     <p>|</p>

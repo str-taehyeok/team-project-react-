@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import theme from "../../../global/theme";
-import { h10Bold, h11Bold, h1Bold, h7Bold, h7Medium, red, h6Bold, gray400, gray100 } from "../../../global/common";
-import StoreCustom from "./StoreCustom";
+import { h1Bold, h7Bold, h7Medium, h6Bold } from "../../../global/common";
 
 const S = {}
 
@@ -41,8 +39,15 @@ S.CustomWrap = styled.div`
 S.CustomProduct = styled.div`
   width: 342px;
   height: 558px;
-
+  position: relative;
+  .like-icon{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 999;
+  }
 `
+
 S.CustomProductInfo = styled.div`
   margin-top: 21px;
 
@@ -156,7 +161,6 @@ S.btn = styled.div`
   }
 
 `
-
 
 S.GoShopping2 = styled.div`
   margin-top: 212px;
