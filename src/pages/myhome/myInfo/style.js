@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import {
-    h1Bold,h7Bold,h8Regular,gray500,blue300,h7Regular,h2Bold,h6Regular,blue100
+    h1Bold,h7Bold,h8Regular,gray500,h7Regular,h2Bold,h6Regular,blue100
 } from '../../../global/common'
+import theme from "../../../global/theme";
 
 // import theme from "../../global/theme";
 
@@ -16,9 +17,12 @@ const S = {}
 
     S.CouponBgWrap = styled.div`
         position: fixed;
-        width: 100%;
-        background-color: black;
+        width: 100dvw;
+        height : 100dvh;
+        background-color: rgba(0, 0, 0, 0.5);
         z-index: 999;
+        left: 0;
+        top: 0;
     `;
 
     S.CouponPopupContainer = styled.div`
@@ -26,21 +30,22 @@ const S = {}
         position: fixed;
         top : 50%;
         left: 50%;
+        transform: translate(-50%, -50%);
         flex-direction: column;
         border: solid black 1px;
         width: 656px;
         height: 685px;
         z-index: 1000;
-        
-        & > a {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 12px;
-            margin-bottom: 13px;
-            margin-right: 27px;
-        }
-        
+        background-color: #fff;
     `;
+
+    S.CloseIcon = styled.div`
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 12px;
+        margin-bottom: 13px;
+        margin-right: 27px;
+    `
 
     S.h7b = styled.div`
         ${h7Bold};
@@ -53,7 +58,6 @@ const S = {}
         margin-bottom: 27px;
         margin-left: 100px;
     `;
-
 
     S.CouponPopupInputWrap = styled.div`
         display: flex;
@@ -71,7 +75,7 @@ const S = {}
             width: 74px;
             height: 32px;
             border-radius: 20px;
-            background-color: ${blue300};
+            background-color: ${theme.PALETTE.main["300"]};
             color: white;
         }
     `;
@@ -229,78 +233,48 @@ const S = {}
         }
     `;
 
-
-
     S.MemberInputBoxContainer = styled.div`
         display: flex;
-        justify-content: center;
+        width: 438px;
         align-items: center;
     `;
 
     S.MemberInputBoxWrap = styled.div`
         display: flex;
         flex-direction: column;
-        gap: 30px;
-        
     `;
+
     S.h7 = styled.div`
         ${h7Bold};
+        width: 108px;
+        display: flex;
+        align-items: center;
     `
     S.h8 = styled.div` 
         ${h8Regular};
         ${gray500};
+        display: flex;
+        align-items: center;
+        padding: 4px 26px;
+        border: solid 1px #fff;
     `;
 
-    S.MemberInputBoxName = styled.div`
+    S.MemberInputBox = styled.div`
         display: flex;
-        gap : 150px;
-        
-        & input {
-            border: 1px solid ${gray500};
-            border-radius: 20px;
-            ${h8Regular};
-        }
-    ;`
-    S.MemberInputBoxNickname = styled.div`
-        display: flex;
-        gap : 136px;
+        gap : 44px;
+        height : 30px;
+        margin: 0 0 30px 0;
 
         & input {
-            border: 1px solid ${gray500};
+            width: 285px;
+            padding: 4px 26px;
+            border: 1px solid #acaca8;
             border-radius: 20px;
             ${h8Regular};
         }
-    ;`
-    S.MemberInputBoxEmail = styled.div`
-        display: flex;
-        gap : 82px;
+    `;
 
-        & input {
-            border: 1px solid ${gray500};
-            border-radius: 20px;
-            ${h8Regular};
-        }
-    ;`
-    S.MemberInputBoxPhone = styled.div`
-        display: flex;
-        gap : 108px;
 
-        & input {
-            border: 1px solid ${gray500};
-            border-radius: 20px;
-            ${h8Regular};
-        }
-    ;`
-    S.MemberInputBoxAddress = styled.div`
-        display: flex;
-        gap : 150px;
-
-        & input {
-            border: 1px solid ${gray500};
-            border-radius: 20px;
-            ${h8Regular};
-        }
-    ;`
     S.MemberInputAddress = styled.div`
         display: flex;
         flex-direction: column;
@@ -311,12 +285,7 @@ const S = {}
             border-radius: 20px;
             ${h8Regular};
         }
-    ;`
-
-
-
-
-
+    `;
 
 
 export default S;

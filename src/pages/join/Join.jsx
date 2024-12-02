@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import S from "./style";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -8,42 +8,50 @@ const Join = () => {
     register,
     handleSubmit,
     getValues,
+    setError,
     setValue,
-    watch,
     formState: { isSubmitting, errors },
   } = useForm({ mode: "onChange" });
 
-  const agrees = watch("agrees", []);
+  const [allAgree, setAllAgree] = useState(false);
   const handleAllAgree = (e) => {
-    const checked = e.target.checked;
-    setValue("agrees", checked ? ["1", "2", "3", "4"] : []);
+    const { agrees } = getValues();
+    if(e.target.checked){
+      setAllAgree(true);
+      setValue("agrees", ['1', '2', '3', '4'])
+      setError("agrees", {})
+    }else{
+      setValue("agrees", [])
+      setAllAgree(false)
+    }
   };
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
   return (
-    <form
-      onSubmit={handleSubmit(async (data) => {
-        await fetch("http://localhost:10000/join-complete", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: data.buyerEmail,
-            password: data.buyerPassword,
-            nickName: data.nickName,
-            name: data.name,
-            phone: data.phone,
-            address: {
-              postcode: data.postcode,
-              baseAddress: data.baseAddress,
-              detailAddress: data.detailAddress,
-            },
-            agrees: data.agrees,
-          }),
-        });
+    <form onSubmit={handleSubmit(async (data) => {
+
+        console.log(data)
+        // await fetch("http://localhost:10000/join-complete", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({
+        //     email: data.buyerEmail,
+        //     password: data.buyerPassword,
+        //     nickName: data.nickName,
+        //     name: data.name,
+        //     phone: data.phone,
+        //     address: {
+        //       postcode: data.postcode,
+        //       baseAddress: data.baseAddress,
+        //       detailAddress: data.detailAddress,
+        //     },
+        //     agrees: data.agrees,
+        //   }),
+        // });
       })}
     >
       <S.SellerMain>
@@ -94,25 +102,25 @@ const Join = () => {
                       return;
                     }
                     // 이메일 중복 확인 로직
-                    fetch("http://localhost:10000/check-email", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({ email }),
-                    })
-                      .then((res) => res.json())
-                      .then((data) => {
-                        if (data.isAvailable) {
-                          alert("사용 가능한 이메일입니다.");
-                        } else {
-                          alert("이미 사용 중인 이메일입니다.");
-                        }
-                      })
-                      .catch((err) => {
-                        console.error("이메일 중복 확인 에러:", err);
-                        alert("오류가 발생했습니다. 다시 시도해주세요.");
-                      });
+                    // fetch("http://localhost:10000/check-email", {
+                    //   method: "POST",
+                    //   headers: {
+                    //     "Content-Type": "application/json",
+                    //   },
+                    //   body: JSON.stringify({ email }),
+                    // })
+                    //   .then((res) => res.json())
+                    //   .then((data) => {
+                    //     if (data.isAvailable) {
+                    //       alert("사용 가능한 이메일입니다.");
+                    //     } else {
+                    //       alert("이미 사용 중인 이메일입니다.");
+                    //     }
+                    //   })
+                    //   .catch((err) => {
+                    //     console.error("이메일 중복 확인 에러:", err);
+                    //     alert("오류가 발생했습니다. 다시 시도해주세요.");
+                    //   });
                   }}
                 >
                   중복확인
@@ -245,7 +253,7 @@ const Join = () => {
                 placeholder="상세주소"
               />
               <p id="DetailAddressResult"></p>
-              <S.AuthButton type="button" onClick="sample6_execDaumPostcode()">
+              <S.AuthButton type="button" onClick={() => {}}>
                 우편번호
               </S.AuthButton>
             </S.InputContainer>
@@ -264,7 +272,8 @@ const Join = () => {
                 <label>
                   <S.AllAgree
                     type="checkbox"
-                    checked={agrees.length === 4}
+                    value="all"
+                    checked={allAgree}
                     onChange={handleAllAgree}
                   />
                 </label>
@@ -283,11 +292,21 @@ const Join = () => {
                   <label>
                     <input
                       type="checkbox"
+                      name="agrees"
                       value={item.id}
                       {...register("agrees", {
                         required: "필수 약관에 동의하셔야 합니다.",
-                        validate: (value) =>
-                          value.length >= 3 || "필수 약관에 모두 동의해주세요.",
+                        validate: {
+                          checkAgress : (value) => {
+                            const { agrees } = getValues();
+                            if(agrees.length <= 3){
+                              setAllAgree(false);
+                            }else if(agrees.length === 4){
+                              setAllAgree(true);
+                            }
+                            return agrees[0] && agrees[1] && !!agrees[2];
+                          }
+                        },
                       })}
                     />
                   </label>
@@ -307,7 +326,7 @@ const Join = () => {
           </S.InputText>
         </S.Input>
 
-        <S.LoginButton type="submit" disabled={isSubmitting}>
+        <S.LoginButton disabled={isSubmitting}>
           회원가입
         </S.LoginButton>
       </S.SellerMain>

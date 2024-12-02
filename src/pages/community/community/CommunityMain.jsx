@@ -7,15 +7,16 @@ import Slide from './Slide.jsx';
 import { Link } from 'react-router-dom';
 // import Banner from './Banner.jsx';
 
-
-
 const CommunityMain = () => {
+
+    const id = 1;
+
     return (
         <div>
             <S.BannerWrapper>
                     <p className='text1'>소중한 나의 반려동물과의 추억을 <br/>기록할 수 있어요!</p>
                     <p className='text2'>펫스널 컬러 별 포포 친구들 게시물 구경하러 와요</p>
-                    <Link to={"../post"}><button className='button'>게시물 보러가기</button></Link>
+                    <Link to={"/post/all"}><button className='button'>게시물 보러가기</button></Link>
                 <Banner />
             </S.BannerWrapper>
 
@@ -37,7 +38,7 @@ const CommunityMain = () => {
                          </div></Link>
                         </div>
                         <div className='post-container'>
-                            <Link to={"../post/my-post"}><div className='myPost'>
+                            <Link to={`/post/read?postId=${id}`}><div className='myPost'>
                                 <img src="/assets/images/community/myPost1.svg" alt="나의 게시물1" />
                             </div></Link>
                             <img className='heart' src="/assets/images/community/heart.svg" alt="빈하트" />

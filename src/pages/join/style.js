@@ -238,7 +238,7 @@ S.AgreeBox = styled.div`
   flex-shrink: 0;
 `;
 
-S.LoginButton = styled.div`
+S.LoginButton = styled.button`
   width: 464px;
   height: 55px;
   background-color: #ffc303;

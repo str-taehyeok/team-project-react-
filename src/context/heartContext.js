@@ -1,4 +1,4 @@
-import { act, createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 const HeartContext = createContext({
   state : { heart : "" },
@@ -9,7 +9,7 @@ const HeartProvider = ({children}) => {
   const [heart, setHeart] = useState("noHeart");
   const value = {
     state : { heart : heart },
-    action : { setHeart, setHeart }
+    action : { setHeart : setHeart }
   }
 
   return (

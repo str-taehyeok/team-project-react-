@@ -2,9 +2,13 @@ import React from 'react';
 import S from './style.js';
 import Footer from "../../layout/Footer.jsx";
 import Slide from './Slide.jsx';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 
 const MyPost = () => {
+
+    const [serachParams] = useSearchParams();
+    const id = serachParams.get("postId")
+    console.log(id)
 
     return (
         

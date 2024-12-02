@@ -99,6 +99,7 @@ import Flushies from "../pages/store/store/dog/Flushies";
 import Treats from "../pages/store/store/dog/Treats";
 import Clothes from "../pages/store/store/dog/Clothes";
 import HealthCare from "../pages/store/store/dog/HealthCare";
+import NoCart from "../pages/store/cart/NoCart";
 
 const router = createBrowserRouter( [
     {
@@ -244,6 +245,10 @@ const router = createBrowserRouter( [
                 element: <Cart/>,
             },
             {
+                path: '/no-cart',
+                element: <NoCart/>,
+            },
+            {
                 path: '/pay',
                 element: <PayContainer />,
                 children : [
@@ -276,7 +281,7 @@ const router = createBrowserRouter( [
                 element: <PostContainer />,
                 children : [
                     {
-                        index: true,
+                        path : "all",
                         element: <PostList />,
                     },
                     {
@@ -300,7 +305,7 @@ const router = createBrowserRouter( [
                         element: <PostDeepPurPleList />,
                     },
                     {
-                        path: "my-post",
+                        path: "read",
                         element: <MyPost />,
                     },
                     {
