@@ -524,7 +524,7 @@ const router = createBrowserRouter( [
                 element: <FindId />,
             },
             {
-                path: "findId-complete",
+                path: "find-complete",
                 element: <FindIdComplete />,
             },
             {
@@ -532,7 +532,7 @@ const router = createBrowserRouter( [
                 element: <FindPassword />,
             },
             {
-                path: "findPassword-complete",
+                path: "find-password-complete",
                 element: <FindPasswordComplete />,
             },
             ]
