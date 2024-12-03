@@ -62,8 +62,10 @@ const SellerHeader = () => {
     };
 
     const handleFrameLeave = () => {
-        setIsMenuOpen(false);
-        setActiveSubmenu(null);
+        setTimeout(() => {
+            setIsMenuOpen(false);
+            setActiveSubmenu(null);
+        }, 300);
     };
 
     const handleLogout = () => {

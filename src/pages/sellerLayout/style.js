@@ -29,7 +29,7 @@ const S = {}
     S.MenuWrap = styled.div`
         display: flex;
         align-items: center;
-        width: 1440px;
+        //width: 1440px;
         margin: 27px 0;
         gap: 72px;
         padding-left: 28px;
@@ -53,12 +53,12 @@ const S = {}
     S.MenuFrame = styled.div`
         display: none;
         flex-direction: column;
-        width: 1440px;
         align-items: start;
         animation: lift-detail 0.1s;
         position: absolute;
         top: 85px;
         left: 0px;
+    
     `;
 
     S.EntireMenu = styled.div`

@@ -1,124 +1,151 @@
 import styled from "styled-components";
 
 const S = {}
-S.PostListAll = styled.div`
-    .post-box{
-      display:flex;
-      flex-direction: column;
-      width:1196px;
-      margin: 0 auto;
-    }
-    .oringe{
-      border-radius:50%;
-      border: none;
-      background-color: #D9D9D9;
-      width:30px;
-      height: 30px;
-    }
-    .oringe:focus{
-      background-color: #FFC303;
-    }
 
-    .gold{
-      border-radius:50%;
-      border: none;
-      background-color: #D9D9D9;
-      width:30px;
-      height: 30px;
-    }
-    .gold:focus{
-      background-color: #FFE599;
-    }
+// 상단 공통 레이아웃 버튼 
+S.LayoutBox = styled.div`
+    display:flex;
+    flex-direction: column;
+    width:1196px;
+    margin: 0 auto;
+    margin-bottom: 400px;
+`
 
-    .gradation{
-      border-radius:50%;
-      border: none;
-      background-color: #D9D9D9;
-      width:30px;
-      height: 30px;
-    }
-    .gradation:focus{
-      background-image:linear-gradient(rgba(218, 199, 138, 0.5),rgba(207, 165, 203, 0.5));
-    }
-
-    .lightPurple{
-      border-radius:50%;
-      border: none;
-      background-color: #D9D9D9;
-      width:30px;
-      height: 30px;
-    }
-    .lightPurple:focus{
-      background-color: #C9B6E4;
-    }
-
-    .deepPurple{
-      border-radius:50%;
-      border: none;
-      background-color: #D9D9D9;
-      width:30px;
-      height: 30px;
-    }
-    .deepPurple:focus{
-      background-color: #8B6D9C;
-    }
-
-    .all{
-      border-radius:50%;
-      border: none;
-      background-color: #000000;
-      width:30px;
-      height: 30px;
-      color: #ffffff;
-    }
-    .all:focus{
-      background-color: #000000;
-    }
-
-    .button{
-      display:flex;
-      flex-direction: row;
-      gap:16px;
-      margin-top: 120px;
-    }
-
-    .AllPost{
-      width:220px;
-      height:300px;
-      border-radius: 20px;
-    }
-    .profile-box{
-      display:flex;
-      flex-direction: row;
-      width: 220px;
-      align-items:center;
-    }
-
-    .profile{
-      width:40px;
-      height:40px;
-      margin-right: 10px;
-    }
-    .nick-name{
-      font-size: 14px;
-      line-height: 22px;
-      letter-spacing: -3%;
-      font-weight: bold;
-      width: 100%;
-  }
-  .All{
+S.AllPostWrapper = styled.div`
     display:flex;
     flex-direction: row;
     gap:24px;
     margin-top: 29px;
+    flex-wrap :wrap ;
+`
+
+S.LayoutButton = styled.div`
+  .oringe{
+    border-radius:50%;
+    border: none;
+    background-color: #D9D9D9;
+    width:30px;
+    height: 30px;
   }
-  .all-text{
-    font-size: 24px;
+
+  .active .oringe{
+    background-color: #FFC303;
+  }
+
+  .gold{
+    border-radius:50%;
+    border: none;
+    background-color: #D9D9D9;
+    width:30px;
+    height: 30px;
+  }
+  .active .gold{
+    background-color: #FFE599;
+  }
+
+  .gradation{
+    border-radius:50%;
+    border: none;
+    background-color: #D9D9D9;
+    width:30px;
+    height: 30px;
+  }
+
+  .active .gradation{
+    background-image:linear-gradient(rgba(218, 199, 138, 0.5),rgba(207, 165, 203, 0.5));
+  }
+
+  .lightPurple{
+    border-radius:50%;
+    border: none;
+    background-color: #D9D9D9;
+    width:30px;
+    height: 30px;
+  }
+
+  .active .lightPurple{
+    background-color: #C9B6E4;
+  }
+
+  .deepPurple{
+    border-radius:50%;
+    border: none;
+    background-color: #D9D9D9;
+    width:30px;
+    height: 30px;
+  }
+  .active .deepPurple{
+    background-color: #8B6D9C;
+  }
+
+  .all{
+    border-radius:50%;
+    border: none;
+    background-color: #D9D9D9;
+    width:30px;
+    height: 30px;
+    color: #ffffff;
+  }
+
+  .active .all{
+    background-color: #000000;
+  }
+
+  .button{
+    display:flex;
+    flex-direction: row;
+    gap:16px;
+    margin-top: 120px;
+  }
+`;
+
+// 각각 리스트로 구현되는 이미지
+S.Profile = styled.img`
+  width:40px;
+  height:40px;
+  margin-right: 10px;
+`
+
+S.NickName = styled.p`
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -3%;
+  font-weight: bold;
+  width: 100%;
+`
+
+S.Title = styled.p`
+   font-size: 24px;
     line-height: 36px;
     font-weight: bold;
     margin-top: 44px;
-  }
 `
+
+S.PostImage = styled.img`
+  width:220px;
+  height:300px;
+  border-radius: 20px;
+`;
+
+S.CommunityPost = styled.div`
+  position: relative;
+  
+  .like-icon{
+    position: absolute;
+    right: 20px;
+    top : 20px;
+  }
+`;
+
+S.PropileBox = styled.div`
+  display:flex;
+  flex-direction: row;
+  width: 220px;
+  align-items:center;
+  margin-top: 5px;
+`
+ 
+// 마이페이지 커뮤니티
 
 
 // 나의/다른 사용자 게시물
