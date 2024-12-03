@@ -52,7 +52,7 @@ S.EditButton = styled.label`
 	padding-top: 5px;
 	padding-left: 11px;
 `
-S.Title = styled.h5`
+S.Title = styled.div`
 	font-weight: bold;
   margin-bottom: 432px;
 `
@@ -68,9 +68,6 @@ S.PetName = styled.label`
 
 `
 S.PetKind = styled.label`
-  display: block;
-`
-S.PetGender = styled.label`
   display: block;
 `
 S.PetBreed = styled.label`
@@ -232,12 +229,12 @@ S.PetGender = styled.div`
   width: 30px;
   height: 32px;
 `;
-S.Kg = styled.text`
+S.Kg = styled.span`
   position: absolute;
   right: 32px;
   top: 3px;
 `
-S.Description = styled.h6`
+S.Description = styled.div`
   ${h9Medium};
 ` 
 S.Button = styled.button`
@@ -253,6 +250,11 @@ S.Button = styled.button`
     margin-bottom: 25px;
     margin-left: 1263px;
 `
+S.Form = styled.div`
+  display: flex;
+`
+
+
 
 
 
