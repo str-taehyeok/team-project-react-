@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import S from "./style";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -10,29 +10,42 @@ const Join = () => {
     getValues,
     setError,
     setValue,
+    watch,
+    clearErrors,
     formState: { isSubmitting, errors },
   } = useForm({ mode: "onChange" });
 
   const [allAgree, setAllAgree] = useState(false);
   const handleAllAgree = (e) => {
-    const { agrees } = getValues();
-    if(e.target.checked){
+    if (e.target.checked) {
       setAllAgree(true);
-      setValue("agrees", ['1', '2', '3', '4'])
-      setError("agrees", {})
-    }else{
-      setValue("agrees", [])
-      setAllAgree(false)
+      setValue("agrees", ["1", "2", "3"]);
+      setValue("optionalAgree", "4");
+      setError("agrees", {});
+    } else {
+      setAllAgree(false);
+      setValue("agrees", []);
+      setValue("optionalAgree", "");
     }
   };
+
+  const agrees = watch("agrees") || [];
+  const optionalAgree = watch("optionalAgree") || [];
+
+  useEffect(() => {
+    const requiredIds = ["1", "2", "3"];
+    const allRequiredAgrees = requiredIds.every((id) => agrees.includes(id));
+    const allChecked = allRequiredAgrees && optionalAgree.length === 1;
+    setAllAgree(allChecked);
+  }, [agrees, optionalAgree]);
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
   return (
-    <form onSubmit={handleSubmit(async (data) => {
-
-        console.log(data)
+    <form
+      onSubmit={handleSubmit(async (data) => {
+        console.log(data);
         // await fetch("http://localhost:10000/join-complete", {
         //   method: "POST",
         //   headers: {
@@ -286,7 +299,6 @@ const Join = () => {
                 { id: "1", label: "이용약관 동의 (필수)" },
                 { id: "2", label: "개인정보 수집 및 이용 동의 (필수)" },
                 { id: "3", label: "위치정보 이용약관 동의 (필수)" },
-                { id: "4", label: "프로모션 정보 수신 동의 (선택)" },
               ].map((item) => (
                 <S.Agree key={item.id}>
                   <label>
@@ -295,17 +307,15 @@ const Join = () => {
                       name="agrees"
                       value={item.id}
                       {...register("agrees", {
-                        required: "필수 약관에 동의하셔야 합니다.",
                         validate: {
-                          checkAgress : (value) => {
+                          allRequired: () => {
                             const { agrees } = getValues();
-                            if(agrees.length <= 3){
-                              setAllAgree(false);
-                            }else if(agrees.length === 4){
-                              setAllAgree(true);
-                            }
-                            return agrees[0] && agrees[1] && !!agrees[2];
-                          }
+                            const requiredIds = ["1", "2", "3"];
+                            return (
+                              requiredIds.every((id) => agrees.includes(id)) ||
+                              "필수 약관에 모두 동의하셔야 합니다."
+                            );
+                          },
                         },
                       })}
                     />
@@ -316,6 +326,35 @@ const Join = () => {
                   </S.TextBox2>
                 </S.Agree>
               ))}
+              <S.Agree>
+                <label className="option-agree">
+                  <input
+                    type="checkbox"
+                    name="optionalAgree"
+                    value="4"
+                    {...register("optionalAgree")}
+                    onChange={() => {
+                      const agrees = getValues("agrees") || [];
+                      const requiredIds = ["1", "2", "3"];
+                      const isAllRequiredChecked = requiredIds.every((id) =>
+                        agrees.includes(id)
+                      );
+
+                      if (!isAllRequiredChecked) {
+                        setError("agrees", {
+                          message: "필수 약관에 모두 동의하셔야 합니다.",
+                        });
+                      } else {
+                        clearErrors("agrees");
+                      }
+                    }}
+                  />
+                  <S.TextBox2>
+                    <S.Text3>프로모션 정보 수신 동의 (선택)</S.Text3>
+                    <S.Text4>자세히보기</S.Text4>
+                  </S.TextBox2>
+                </label>
+              </S.Agree>
             </S.AgreeBox>
             {/* 에러 메시지 */}
             {errors.agrees && (
@@ -326,9 +365,7 @@ const Join = () => {
           </S.InputText>
         </S.Input>
 
-        <S.LoginButton disabled={isSubmitting}>
-          회원가입
-        </S.LoginButton>
+        <S.LoginButton disabled={isSubmitting}>회원가입</S.LoginButton>
       </S.SellerMain>
     </form>
   );

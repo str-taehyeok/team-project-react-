@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import S from "./style";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -8,16 +8,36 @@ const SellerJoin = () => {
     register,
     handleSubmit,
     getValues,
+    setError,
     setValue,
     watch,
+    clearErrors,
     formState: { isSubmitting, errors },
   } = useForm({ mode: "onChange" });
 
-  const agrees = watch("agrees", []);
+  const [allAgree, setAllAgree] = useState(false);
   const handleAllAgree = (e) => {
-    const checked = e.target.checked;
-    setValue("agrees", checked ? ["1", "2", "3", "4"] : []);
+    if (e.target.checked) {
+      setAllAgree(true);
+      setValue("agrees", ["1", "2", "3"]);
+      setValue("optionalAgree", "4");
+      setError("agrees", {});
+    } else {
+      setAllAgree(false);
+      setValue("agrees", []);
+      setValue("optionalAgree", "");
+    }
   };
+
+  const agrees = watch("agrees") || [];
+  const optionalAgree = watch("optionalAgree") || [];
+
+  useEffect(() => {
+    const requiredIds = ["1", "2", "3"];
+    const allRequiredAgrees = requiredIds.every((id) => agrees.includes(id));
+    const allChecked = allRequiredAgrees && optionalAgree.length === 1;
+    setAllAgree(allChecked);
+  }, [agrees, optionalAgree]);
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
@@ -25,25 +45,8 @@ const SellerJoin = () => {
   return (
     <form
       onSubmit={handleSubmit(async (data) => {
-        await fetch("http://localhost:10000/join-complete", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: data.buyerEmail,
-            password: data.buyerPassword,
-            nickName: data.nickName,
-            name: data.name,
-            phone: data.phone,
-            address: {
-              postcode: data.postcode,
-              baseAddress: data.baseAddress,
-              detailAddress: data.detailAddress,
-            },
-            agrees: data.agrees,
-          }),
-        });
+        console.log(data);
+
       })}
     >
       <S.SellerMain>
@@ -69,50 +72,50 @@ const SellerJoin = () => {
                 <S.InputButton
                   type="text"
                   id="email"
-                  name="buyerEmail"
+                  name="sellerEmail"
                   placeholder="아이디(이메일)"
-                  {...register("buyerEmail", {
+                  {...register("sellerEmail", {
                     required: true,
                     pattern: {
                       value: emailRegex,
                     },
                   })}
                 />
-                {errors && errors?.buyerEmail?.type === "required" && (
+                {errors && errors?.sellerEmail?.type === "required" && (
                   <S.P>이메일을 입력하세요</S.P>
                 )}
-                {errors && errors?.buyerEmail?.type === "pattern" && (
+                {errors && errors?.sellerEmail?.type === "pattern" && (
                   <S.P>이메일 양식에 맞게 입력해주세요.</S.P>
                 )}
                 <S.AuthButton
                   id="EmailCheck"
                   type="button"
                   onClick={() => {
-                    const email = getValues("buyerEmail");
+                    const email = getValues("sellerEmail");
                     if (!email) {
                       alert("이메일을 입력하세요.");
                       return;
                     }
                     // 이메일 중복 확인 로직
-                    fetch("http://localhost:10000/check-email", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({ email }),
-                    })
-                      .then((res) => res.json())
-                      .then((data) => {
-                        if (data.isAvailable) {
-                          alert("사용 가능한 이메일입니다.");
-                        } else {
-                          alert("이미 사용 중인 이메일입니다.");
-                        }
-                      })
-                      .catch((err) => {
-                        console.error("이메일 중복 확인 에러:", err);
-                        alert("오류가 발생했습니다. 다시 시도해주세요.");
-                      });
+                    // fetch("http://localhost:10000/check-email", {
+                    //   method: "POST",
+                    //   headers: {
+                    //     "Content-Type": "application/json",
+                    //   },
+                    //   body: JSON.stringify({ email }),
+                    // })
+                    //   .then((res) => res.json())
+                    //   .then((data) => {
+                    //     if (data.isAvailable) {
+                    //       alert("사용 가능한 이메일입니다.");
+                    //     } else {
+                    //       alert("이미 사용 중인 이메일입니다.");
+                    //     }
+                    //   })
+                    //   .catch((err) => {
+                    //     console.error("이메일 중복 확인 에러:", err);
+                    //     alert("오류가 발생했습니다. 다시 시도해주세요.");
+                    //   });
                   }}
                 >
                   중복확인
@@ -131,20 +134,20 @@ const SellerJoin = () => {
               <label>
                 <S.InputButton
                   type="password"
-                  name="buyerPassword"
+                  name="sellerPassword"
                   placeholder="비밀번호"
                   autoComplete="off"
-                  {...register("buyerPassword", {
+                  {...register("sellerPassword", {
                     required: true,
                     pattern: {
                       value: passwordRegex,
                     },
                   })}
                 />
-                {errors && errors?.buyerPassword?.type === "required" && (
+                {errors && errors?.sellerPassword?.type === "required" && (
                   <S.P>비밀번호를 입력하세요</S.P>
                 )}
-                {errors && errors?.buyerPassword?.type === "pattern" && (
+                {errors && errors?.sellerPassword?.type === "pattern" && (
                   <S.P>
                     소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야
                     합니다.
@@ -238,58 +241,96 @@ const SellerJoin = () => {
           <S.Line></S.Line>
         </S.Input>
 
-        <S.InputText>
-          <S.TextBox1>
-            <S.Red id="Text1">약관 및 개인정보수집 동의</S.Red>
-            <S.Red id="Text1">*</S.Red>
-          </S.TextBox1>
+          <S.InputText>
+            <S.TextBox1>
+              <S.Red id="Text1">약관 및 개인정보수집 동의</S.Red>
+              <S.Red id="Text1">*</S.Red>
+            </S.TextBox1>
 
-          <S.AgreeBox>
-            <S.AgreeAll>
-              <label>
-                <S.AllAgree
-                  type="checkbox"
-                  checked={agrees.length === 4}
-                  onChange={handleAllAgree}
-                />
-              </label>
-              <S.Text2>모두 동의합니다.</S.Text2>
-            </S.AgreeAll>
-
-            <S.Line2></S.Line2>
-
-            {[
-              { id: "1", label: "이용약관 동의 (필수)" },
-              { id: "2", label: "개인정보 수집 및 이용 동의 (필수)" },
-              { id: "3", label: "위치정보 이용약관 동의 (필수)" },
-              { id: "4", label: "프로모션 정보 수신 동의 (선택)" },
-            ].map((item) => (
-              <S.Agree key={item.id}>
+            <S.AgreeBox>
+              <S.AgreeAll>
                 <label>
-                  <input
+                  <S.AllAgree
                     type="checkbox"
-                    value={item.id}
-                    {...register("agrees", {
-                      required: "필수 약관에 동의하셔야 합니다.",
-                      validate: (value) =>
-                        value.length >= 3 || "필수 약관에 모두 동의해주세요.",
-                    })}
+                    value="all"
+                    checked={allAgree}
+                    onChange={handleAllAgree}
                   />
                 </label>
-                <S.TextBox2>
-                  <S.Text3>{item.label}</S.Text3>
-                  <S.Text4>자세히보기</S.Text4>
-                </S.TextBox2>
+                <S.Text2>모두 동의합니다.</S.Text2>
+              </S.AgreeAll>
+
+              <S.Line2></S.Line2>
+
+              {[
+                { id: "1", label: "이용약관 동의 (필수)" },
+                { id: "2", label: "개인정보 수집 및 이용 동의 (필수)" },
+                { id: "3", label: "위치정보 이용약관 동의 (필수)" },
+              ].map((item) => (
+                <S.Agree key={item.id}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="agrees"
+                      value={item.id}
+                      {...register("agrees", {
+                        validate: {
+                          allRequired: () => {
+                            const { agrees } = getValues();
+                            const requiredIds = ["1", "2", "3"];
+                            return (
+                              requiredIds.every((id) => agrees.includes(id)) ||
+                              "필수 약관에 모두 동의하셔야 합니다."
+                            );
+                          },
+                        },
+                      })}
+                    />
+                  </label>
+                  <S.TextBox2>
+                    <S.Text3>{item.label}</S.Text3>
+                    <S.Text4>자세히보기</S.Text4>
+                  </S.TextBox2>
+                </S.Agree>
+              ))}
+              <S.Agree>
+                <label className="option-agree">
+                  <input
+                    type="checkbox"
+                    name="optionalAgree"
+                    value="4"
+                    {...register("optionalAgree")}
+                    onChange={() => {
+                      const agrees = getValues("agrees") || [];
+                      const requiredIds = ["1", "2", "3"];
+                      const isAllRequiredChecked = requiredIds.every((id) =>
+                        agrees.includes(id)
+                      );
+
+                      if (!isAllRequiredChecked) {
+                        setError("agrees", {
+                          message: "필수 약관에 모두 동의하셔야 합니다.",
+                        });
+                      } else {
+                        clearErrors("agrees");
+                      }
+                    }}
+                  />
+                  <S.TextBox2>
+                    <S.Text3>프로모션 정보 수신 동의 (선택)</S.Text3>
+                    <S.Text4>자세히보기</S.Text4>
+                  </S.TextBox2>
+                </label>
               </S.Agree>
-            ))}
-          </S.AgreeBox>
-          {/* 에러 메시지 */}
-          {errors.agrees && (
-            <S.P id="AgreeResult" style={{ color: "red" }}>
-              {errors.agrees.message}
-            </S.P>
-          )}
-        </S.InputText>
+            </S.AgreeBox>
+            {/* 에러 메시지 */}
+            {errors.agrees && (
+              <S.P id="AgreeResult" style={{ color: "red" }}>
+                {errors.agrees.message}
+              </S.P>
+            )}
+          </S.InputText>
+        
         <S.LoginButton type="submit" disabled={isSubmitting}>
           회원가입
         </S.LoginButton>
