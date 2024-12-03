@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import S from "./style";
+import { Link } from 'react-router-dom';
 
 const PetWrite = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +26,9 @@ const PetWrite = () => {
 
   return (
     <div>
+      <Link to={"/my-pet"}>
       <S.Button id="submit-button" type="button" onClick={handleSubmit}>완료</S.Button>
+      </Link>
       <S.Mydog>
         <S.PetCard>
           <S.Profilepic>
@@ -41,6 +44,7 @@ const PetWrite = () => {
             <input type="text" name="petName" placeholder="이름을 입력하세요" value={formData.petName} onChange={handleChange} />
           </S.InputGroup>
           {/* 반려 종류 */}
+          <S.Form>
           <S.RadioGroup>
             <S.PetKind>반려종류</S.PetKind>
             <S.PetDogCat>
@@ -54,17 +58,18 @@ const PetWrite = () => {
               </S.Gap>
             </S.PetDogCat>
           </S.RadioGroup>
+          </S.Form>
           {/* 성별 */}
           <S.RadioGroupGender>
             <S.PetGender>성별</S.PetGender>
             <S.PetDogCat>
               <S.Gap>
-                <input type="radio" name="gender" value="수컷" checked={formData.gender === "수컷"} onChange={handleChange} />
-                <label>수컷</label>
+                <input type="radio" id="male" name="gender" value="수컷" checked={formData.gender === "수컷"} onChange={handleChange} />
+                <label htmlFor="male">수컷</label>
               </S.Gap>
               <S.Gap>
-                <input type="radio" name="gender" value="암컷" checked={formData.gender === "암컷"} onChange={handleChange} />
-                <label>암컷</label>
+                <input type="radio" id="male" name="gender" value="암컷" checked={formData.gender === "암컷"} onChange={handleChange} />
+                <label htmlFor="male">암컷</label>
               </S.Gap>
             </S.PetDogCat>
           </S.RadioGroupGender>
@@ -104,7 +109,7 @@ const PetWrite = () => {
             <input type="text" name="vet" placeholder="병원명을 입력하세요" value={formData.vet} onChange={handleChange} />
           </S.InputGroup5>
           {/* 안내문 */}
-          <S.Description as="h7">
+          <S.Description>
             *위 내용(몸무게, 중성화)을 사실과 다르게 기재한 경우, 약관에 따라 서비스 이용이 거부될 수 있습니다.
           </S.Description>
         </S.Title>
