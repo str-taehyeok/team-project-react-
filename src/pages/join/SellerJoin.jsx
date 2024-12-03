@@ -14,7 +14,7 @@ const SellerJoin = () => {
     clearErrors,
     formState: { isSubmitting, errors },
   } = useForm({ mode: "onChange" });
-
+  
   const [allAgree, setAllAgree] = useState(false);
   const handleAllAgree = (e) => {
     if (e.target.checked) {
@@ -28,20 +28,20 @@ const SellerJoin = () => {
       setValue("optionalAgree", "");
     }
   };
-
-  const agrees = watch("agrees") || [];
-  const optionalAgree = watch("optionalAgree") || [];
-
+  
   useEffect(() => {
+    const agrees = watch("agrees") || [];
+    const optionalAgree = watch("optionalAgree") || [];
+  
     const requiredIds = ["1", "2", "3"];
     const allRequiredAgrees = requiredIds.every((id) => agrees.includes(id));
     const allChecked = allRequiredAgrees && optionalAgree.length === 1;
     setAllAgree(allChecked);
-  }, [agrees, optionalAgree]);
-
+  }, [watch]);
+  
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
-
+  
   return (
     <form
       onSubmit={handleSubmit(async (data) => {
