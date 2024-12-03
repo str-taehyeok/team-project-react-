@@ -26,10 +26,10 @@ const PetWrite = () => {
 
   return (
     <div>
+      <S.Mydog>
       <Link to={"/my-pet"}>
       <S.Button id="submit-button" type="button" onClick={handleSubmit}>완료</S.Button>
       </Link>
-      <S.Mydog>
         <S.PetCard>
           <S.Profilepic>
             <img src="/assets/images/layout/petimg.png" alt="펫 이미지" />
