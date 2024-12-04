@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { h1Bold } from "../../../global/common";
 
 const S = {}
 
@@ -7,6 +8,17 @@ const S = {}
         flex-direction: column;
         align-items: center;
         width: 1440px;
+    `
+
+    S.Title = styled.div`
+        margin: 43px 0 80px 0;
+        display: flex;
+        justify-content: space-between;
+        width: 1191px;
+        
+        & span{
+            ${h1Bold}
+        }
     `
 
     S.Table = styled.table`

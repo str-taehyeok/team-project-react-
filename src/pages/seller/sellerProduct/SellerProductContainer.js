@@ -1,13 +1,13 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
+import S from "./style"
 
 const SellerProductContainer = () => {
     return (
         <div>
-            판매자 컨트롤러
-            {/*<div className="title">*/}
-            {/*    <h1 className="h1">상품조회</h1>*/}
-            {/*</div>*/}
+            <S.Title >
+                <span>상품조회</span>
+            </S.Title >
             {/*<section className="notice-search">*/}
             {/*    <div className="search-bar">*/}
             {/*        <input type="text" className="search" placeholder="상품명을 입력하세요"/>*/}

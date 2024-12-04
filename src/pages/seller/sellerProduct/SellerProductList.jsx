@@ -4,7 +4,6 @@ import S from './style'
 const SellerProductList = () => {
     return (
         <div>
-            제품 등록 리스트
             <S.NoticeSearch>
                 <S.Table>
                     <thead>
