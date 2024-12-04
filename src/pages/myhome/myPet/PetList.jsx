@@ -27,7 +27,7 @@ const PetList = ({ pets = [] }) => {
             </S.Profilepic>
             <S.Name>이름</S.Name>
             <a>2019년 08월 17일생</a>
-            <Link to={"/my-pet/my-update"}>
+            <Link to={"/my-pet/pet-update"}>
             <S.EditButton2 type="button">편집</S.EditButton2>
             </Link>
             <S.DeleteButton>삭제</S.DeleteButton>
