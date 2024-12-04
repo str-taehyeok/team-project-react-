@@ -7,13 +7,13 @@ const FindPassword = () => {
   const navigate = useNavigate();
 
   const onClickNext = () => {
-    navigate("/find/findPassword-complete");
+    navigate("/find/find-password");
   };
 
   return (
     <>
       <S.InputContainer>
-      <S.LogoBox>
+        <S.LogoBox>
           <S.LogoWrap>
             <Link to={"/"}>
               <img
@@ -23,7 +23,7 @@ const FindPassword = () => {
             </Link>
           </S.LogoWrap>
         </S.LogoBox>
-        
+
         <S.InputWrapper>
           <S.Label htmlFor="email">아이디</S.Label>
           <S.Input
@@ -35,9 +35,16 @@ const FindPassword = () => {
             onChange={(e) => setEmail(e.currentTarget.value)}
           />
         </S.InputWrapper>
-        <S.NextButton type="button" onClick={onClickNext}>
-          다음
-        </S.NextButton>
+
+        <S.Message>
+          *본인 확인(계정에 등록된 이메일)을 통해 비밀번호를 재설정 하실 수 있습니다.
+        </S.Message>
+
+        <Link to="/find-password-complete">
+          <S.NextButton type="button">
+            다음
+          </S.NextButton>
+        </Link>
       </S.InputContainer>
     </>
   );

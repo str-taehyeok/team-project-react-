@@ -148,6 +148,14 @@ const router = createBrowserRouter( [
                         path: "pet-write",
                         element: <PetWrite />
                     },
+                    {
+                        path: "pet-no",
+                        element: <PetNo />
+                    },
+                    {
+                        path: "pet-update",
+                        element: <PetUpdate />
+                    },
                     ]
             },
             {
@@ -524,7 +532,7 @@ const router = createBrowserRouter( [
                 element: <FindId />,
             },
             {
-                path: "findId-complete",
+                path: "find-complete",
                 element: <FindIdComplete />,
             },
             {
@@ -532,7 +540,7 @@ const router = createBrowserRouter( [
                 element: <FindPassword />,
             },
             {
-                path: "findPassword-complete",
+                path: "find-password-complete",
                 element: <FindPasswordComplete />,
             },
             ]

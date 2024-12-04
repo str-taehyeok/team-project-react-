@@ -84,6 +84,60 @@ S.NextButton = styled.button`
 
 /////////////////////////////FindId
 
+S.InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+`;
+
+S.Input = styled.input`
+  background-color: #ffffff;
+  width: 464px;
+  height: 60px;
+  border: 0.5px solid #828282;
+  font-size: 14px;
+  color: #828282;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 19px 26px;
+  outline: none;
+  padding-right: 50px; 
+`;
+
+S.AuthButton = styled.button`
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff0000;
+  cursor: pointer;
+  position: absolute;
+  right: 26px; 
+  top: 60%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+`;
+
+
+///////////////////////////////////////인증버튼 (위)
+
+
+S.AuthNumberContainer = styled.div`
+  position: relative;
+  width: 464px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 
 S.TapGroup = styled.div`
   display: flex;
@@ -196,5 +250,15 @@ S.GoToLoginButton = styled.button`
   margin-top: 30px;
   ${flexRowCenter};
 `
+
+S.Message = styled.p`
+  font-size: 14px;  
+  color: #828282; 
+  text-align: left;
+  line-height: 1; 
+  margin-bottom: 10px; 
+  margin-right: 35px;
+`;
+
 
 export default S;

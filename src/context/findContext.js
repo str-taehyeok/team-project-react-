@@ -1,15 +1,15 @@
 import { createContext, useState } from "react";
 
 const FindContext = createContext({
-  state : { member : ""},
-  action : { setMember : () => {}}
+  state : { select : ""},
+  action : { setSelect : () => {}}
 })
 
 const FindProvider = ({children}) => {
-  const [member, setMember] = useState("buyer");
+  const [select, setSelect] = useState("id");
   const value = {
-    state : { member : member },
-    action : { setMember : setMember }
+    state : { select : select },
+    action : { setSelect : setSelect }
   }
 
   return (

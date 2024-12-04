@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import S from './style';
 import { FindContext } from '../../context/findContext';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,12 @@ import { Link } from 'react-router-dom';
 const FindType = () => {
 
     const { state, action } = useContext(FindContext)
+
+    useEffect(() => {
+      if (!state.select) {
+        action.setSelect("id"); 
+      }
+    }, [state.select, action]);
   
     return (
       <div>
@@ -27,9 +33,10 @@ const FindType = () => {
                 type="radio"
                 name="user"
                 id="UserA"
-                value="buyer"
-                required
-                onChange={(e) => action.setMember(e.target.value)} // 값 설정
+                value="id"
+                required// 값 설정
+                defaultChecked={state.select === "id"}
+                onChange={(e) => action.setSelect(e.currentTarget.value)}
               />
               <p className="Text1">아이디 찾기</p>
             </label>
@@ -38,14 +45,29 @@ const FindType = () => {
                 type="radio"
                 name="user"
                 id="UserB"
-                value="seller"
-                required
-                onChange={(e) => action.setMember(e.target.value)} // 값 설정
+                value="password"
+                required// 값 설정
+                defaultChecked={state.select === "password"}
+                onChange={(e) => action.setSelect(e.currentTarget.value)}
               />
               <p className="Text1">비밀번호 찾기</p>
             </label>
           </S.RadioBox>
-          <Link to={"/find/find-id"}><S.NextButton>다음</S.NextButton></Link>
+
+          {state.select === "id" ? (
+          <Link to={"/find/find-id"}>
+            <S.NextButton type="button">
+              다음
+            </S.NextButton>
+          </Link>
+        ) : (
+          <Link to={"/find/find-password"}>
+            <S.NextButton type="button">
+              다음
+            </S.NextButton>
+          </Link>
+        )}
+
         </S.FindMain>
       </div>
     );
