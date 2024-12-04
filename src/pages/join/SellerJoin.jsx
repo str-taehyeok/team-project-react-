@@ -163,7 +163,7 @@ const SellerJoin = () => {
                     required: "비밀번호 확인을 입력하세요",
                     validate: {
                       matchPassword: (passWordConfirm) => {
-                        const password = getValues("buyerPassword");
+                        const password = getValues("sellerPassword");
                         return (
                           password === passWordConfirm ||
                           "비밀번호가 일치하지 않습니다."
@@ -267,7 +267,7 @@ const SellerJoin = () => {
                         validate: {
                           checkAgress : (value) => {
                             const { agrees, optionAgrees } = getValues();
-                            if(agrees.length === 3 && optionAgrees == 4){
+                            if(agrees.length === 3 && optionAgrees === "4"){
                               setAllAgree(true);
                             }else{
                               setAllAgree(false);
@@ -300,7 +300,7 @@ const SellerJoin = () => {
                         validate: {
                           checkAgress : (value) => {
                             const { agrees, optionAgrees } = getValues();
-                            if(agrees.length === 3 && optionAgrees == 4){
+                            if(agrees.length === 3 && optionAgrees === "4"){
                               setAllAgree(true);
                             }else{
                               setAllAgree(false);

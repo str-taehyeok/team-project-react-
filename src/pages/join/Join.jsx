@@ -191,7 +191,7 @@ const Join = () => {
                     },
                   })}
                 />
-                {errors?.passWordConfirm && (
+                {errors && errors?.passWordConfirm && (
                   <S.P>{errors.passWordConfirm.message}</S.P>
                 )}
               </S.InputContainer>
@@ -301,7 +301,7 @@ const Join = () => {
                         validate: {
                           checkAgress : (value) => {
                             const { agrees, optionAgrees } = getValues();
-                            if(agrees.length === 3 && optionAgrees == 4){
+                            if(agrees.length === 3 && optionAgrees === "4"){
                               setAllAgree(true);
                             }else{
                               setAllAgree(false);
@@ -333,7 +333,7 @@ const Join = () => {
                         validate: {
                           checkAgress : (value) => {
                             const { agrees, optionAgrees } = getValues();
-                            if(agrees.length === 3 && optionAgrees == 4){
+                            if(agrees.length === 3 && optionAgrees === "4"){
                               setAllAgree(true);
                             }else{
                               setAllAgree(false);
