@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import S from "./style";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -10,35 +10,24 @@ const SellerJoin = () => {
     getValues,
     setError,
     setValue,
-    watch,
-    clearErrors,
     formState: { isSubmitting, errors },
   } = useForm({ mode: "onChange" });
-  
+
   const [allAgree, setAllAgree] = useState(false);
   const handleAllAgree = (e) => {
-    if (e.target.checked) {
+
+    if(e.target.checked){
       setAllAgree(true);
-      setValue("agrees", ["1", "2", "3"]);
-      setValue("optionalAgree", "4");
-      setError("agrees", {});
-    } else {
-      setAllAgree(false);
-      setValue("agrees", []);
-      setValue("optionalAgree", "");
+      setValue("agrees", ['1', '2', '3'])
+      setValue("optionAgrees", '4')
+      setError("agrees", {})
+    }else{
+      setError("agrees", { message: "필수 약관에 동의하셔야 합니다." })
+      setValue("agrees", [])
+      setValue("optionAgrees", "")
+      setAllAgree(false)
     }
   };
-  
-  useEffect(() => {
-    const agrees = watch("agrees") || [];
-    const optionalAgree = watch("optionalAgree") || [];
-  
-    const requiredIds = ["1", "2", "3"];
-    const allRequiredAgrees = requiredIds.every((id) => agrees.includes(id));
-    const allChecked = allRequiredAgrees && optionalAgree.length === 1;
-    setAllAgree(allChecked);
-  }, [watch]);
-  
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
   
@@ -274,15 +263,21 @@ const SellerJoin = () => {
                       name="agrees"
                       value={item.id}
                       {...register("agrees", {
+                        required: "필수 약관에 동의하셔야 합니다.",
                         validate: {
-                          allRequired: () => {
-                            const { agrees } = getValues();
-                            const requiredIds = ["1", "2", "3"];
-                            return (
-                              requiredIds.every((id) => agrees.includes(id)) ||
-                              "필수 약관에 모두 동의하셔야 합니다."
-                            );
-                          },
+                          checkAgress : (value) => {
+                            const { agrees, optionAgrees } = getValues();
+                            if(agrees.length === 3 && optionAgrees == 4){
+                              setAllAgree(true);
+                            }else{
+                              setAllAgree(false);
+                            }
+
+                            if (agrees.length < 3) {
+                              return "필수 약관에 모두 동의하셔야 합니다.";
+                            }
+                            return agrees[0] && agrees[1] && !!agrees[2];
+                          }
                         },
                       })}
                     />
@@ -293,35 +288,36 @@ const SellerJoin = () => {
                   </S.TextBox2>
                 </S.Agree>
               ))}
-              <S.Agree>
-                <label className="option-agree">
-                  <input
-                    type="checkbox"
-                    name="optionalAgree"
-                    value="4"
-                    {...register("optionalAgree")}
-                    onChange={() => {
-                      const agrees = getValues("agrees") || [];
-                      const requiredIds = ["1", "2", "3"];
-                      const isAllRequiredChecked = requiredIds.every((id) =>
-                        agrees.includes(id)
-                      );
 
-                      if (!isAllRequiredChecked) {
-                        setError("agrees", {
-                          message: "필수 약관에 모두 동의하셔야 합니다.",
-                        });
-                      } else {
-                        clearErrors("agrees");
-                      }
-                    }}
-                  />
+                {/* 선택동의 */}
+                <S.Agree>
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="agrees"
+                      value={"4"}
+                      {...register("optionAgrees", {
+                        validate: {
+                          checkAgress : (value) => {
+                            const { agrees, optionAgrees } = getValues();
+                            if(agrees.length === 3 && optionAgrees == 4){
+                              setAllAgree(true);
+                            }else{
+                              setAllAgree(false);
+                            }
+                            
+                            return agrees[0] && agrees[1] && !!agrees[2];
+                          }
+                        },
+                      })}
+                    />
+                  </label>
                   <S.TextBox2>
                     <S.Text3>프로모션 정보 수신 동의 (선택)</S.Text3>
                     <S.Text4>자세히보기</S.Text4>
                   </S.TextBox2>
-                </label>
-              </S.Agree>
+                </S.Agree>
+
             </S.AgreeBox>
             {/* 에러 메시지 */}
             {errors.agrees && (

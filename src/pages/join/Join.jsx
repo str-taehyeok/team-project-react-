@@ -15,7 +15,7 @@ const Join = () => {
 
   const [allAgree, setAllAgree] = useState(false);
   const handleAllAgree = (e) => {
-    const { agrees, optionAgrees } = getValues();
+
     if(e.target.checked){
       setAllAgree(true);
       setValue("agrees", ['1', '2', '3'])
@@ -28,8 +28,6 @@ const Join = () => {
       setAllAgree(false)
     }
   };
-
-  console.log(errors)
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
@@ -307,6 +305,9 @@ const Join = () => {
                               setAllAgree(true);
                             }else{
                               setAllAgree(false);
+                            }
+                            if (agrees.length < 3) {
+                              return "필수 약관에 모두 동의하셔야 합니다.";
                             }
                             return agrees[0] && agrees[1] && !!agrees[2];
                           }
