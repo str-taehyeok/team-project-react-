@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom';
 
-const PetWrite = () => {
+const PetUpdate = () => {
   const [formData, setFormData] = useState({
     petName: "",
     kind: "",
@@ -116,4 +116,4 @@ const PetWrite = () => {
   );
 };
 
-export default PetWrite;
+export default PetUpdate;

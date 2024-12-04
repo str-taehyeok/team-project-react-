@@ -2,7 +2,7 @@ import React from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom';
 
-const NopetList = () => {
+const PetNo = () => {
   return (
     <div>
       <S.NoPetWrapper>
@@ -13,7 +13,8 @@ const NopetList = () => {
         </Link>
       </S.NoPetWrapper>
     </div>
+
   );
 };
 
-export default NopetList;
+export default PetNo;
