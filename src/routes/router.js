@@ -23,6 +23,7 @@ import SellerUpdate from "../pages/seller/sellerInfo/SellerUpdate";
 import FindType from "../pages/findAccount/FindType";
 import FindId from "../pages/findAccount/FindId";
 import FindIdComplete from "../pages/findAccount/FindIdComplete";
+import FindPasswordType from "../pages/findAccount/FindPasswordType";
 import FindPassword from "../pages/findAccount/FindPassword";
 import FindPasswordComplete from "../pages/findAccount/FindPasswordComplete";
 import ProfileList from "../pages/myhome/myInfo/ProfileList";
@@ -536,6 +537,10 @@ const router = createBrowserRouter([
             {
                 path: "find-complete",
                 element: <FindIdComplete />,
+            },
+            {
+                path: "find-password-type",
+                element: <FindPasswordType />,
             },
             {
                 path: "find-password",

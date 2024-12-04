@@ -17,7 +17,7 @@ const JoinType = () => {
     <div>
       <S.JoinMain>
         <Link to="/">
-          <S.LogoWrap>
+          <S.LogoWrap className="logo-margin">
             <img
               src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`}
               alt="로고"

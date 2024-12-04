@@ -4,7 +4,8 @@ import {
   flexColumnCenter,
   h7Bold,
   h8Bold,
-  h4Bold,
+  h6Bold,
+  h8Regular,
 } from "../../global/common";
 import theme from "../../global/theme";
 
@@ -29,13 +30,17 @@ S.LogoBox = styled.div`
 `;
 
 S.Text = styled.p`
-  ${h4Bold}
+  ${h6Bold}
 `;
 
 S.JoinMain = styled.div`
   width: 464px;
   ${flexColumnCenter};
   margin: 100px auto;
+
+  & .logo-margin {
+    margin-bottom: 55px;
+  }
 `;
 
 S.RadioBox = styled.div`
@@ -118,7 +123,7 @@ S.TextBox = styled.div`
 `;
 
 S.Red = styled.p`
-  color: #c83f3f;
+  color: #131313;
 `;
 
 S.InputButton = styled.input`
@@ -152,7 +157,7 @@ S.AuthButton = styled.button`
   right: 14px;
   top: 31px;
   transform: translateY(-50%);
-  background-color: #ffffff;
+  background-color: transparent;
   padding: 8px 15px;
   color: #c83f3f;
   border: none;
@@ -169,8 +174,7 @@ S.InputContainer = styled.div`
 S.Mark = styled.div`
   width: 22px;
   height: 22px;
-  flex-shrink: 0;
-  background-image: url("../../images/member/eye-off.svg");
+  background-image: url(${process.env.PUBLIC_URL}/assets/images/join/eye-off.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -215,12 +219,19 @@ S.Agree = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 8px;
+    
+  & .option-agree{
+      display: flex;
+      align-items: center;
+    }
 `;
+  
 S.TextBox2 = styled.div`
   display: flex;
   flex-direction: row;
   width: 350px;
   justify-content: space-between;
+
 `;
 S.Agree1 = styled.input`
   width: 14px;
@@ -322,8 +333,7 @@ S.Box = styled.div`
 `;
 
 S.Text1 = styled.p`
-  font-size: ${theme.FONT_SIZE.h8};
-  margin-top: 14px;
+  ${h8Regular};
 `;
 
 S.Text2 = styled.p`

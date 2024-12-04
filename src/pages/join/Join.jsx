@@ -15,29 +15,28 @@ const Join = () => {
 
   const [allAgree, setAllAgree] = useState(false);
   const handleAllAgree = (e) => {
-    const { agrees, optionAgrees } = getValues();
-    if(e.target.checked){
+    if (e.target.checked) {
       setAllAgree(true);
-      setValue("agrees", ['1', '2', '3'])
-      setValue("optionAgrees", '4')
-      setError("agrees", {})
-    }else{
-      setError("agrees", { message: "필수 약관에 동의하셔야 합니다." })
-      setValue("agrees", [])
-      setValue("optionAgrees", "")
-      setAllAgree(false)
+      setValue("agrees", ["1", "2", "3"]);
+      setValue("optionAgrees", "4");
+      setError("agrees", {});
+    } else {
+      setError("agrees", { message: "필수 약관에 동의하셔야 합니다." });
+      setValue("agrees", []);
+      setValue("optionAgrees", "");
+      setAllAgree(false);
     }
   };
 
-  console.log(errors)
+  const [mark, setMark] = useState(false);
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
   return (
-    <form onSubmit={handleSubmit(async (data) => {
-
-        console.log(data)
+    <form
+      onSubmit={handleSubmit(async (data) => {
+        console.log(data);
         // await fetch("http://localhost:10000/join-complete", {
         //   method: "POST",
         //   headers: {
@@ -143,7 +142,7 @@ const Join = () => {
             <S.InputContainer>
               <label>
                 <S.InputButton
-                  type="password"
+                  type={mark ? "text" : "password"}
                   name="buyerPassword"
                   placeholder="비밀번호"
                   autoComplete="off"
@@ -163,8 +162,18 @@ const Join = () => {
                     합니다.
                   </S.P>
                 )}
-                <S.Mark></S.Mark>
-                <p id="PasswordResult"></p>
+                <S.Mark
+                  onClick={() => setMark(!mark)}
+                  style={{
+                    backgroundImage: `url(${
+                      process.env.PUBLIC_URL
+                    }/assets/images/join/${
+                      mark ? "eye-on.png" : "eye-off.png"
+                    })`,
+                    cursor: "pointer",
+                  }}
+                >
+                </S.Mark>
               </label>
             </S.InputContainer>
           </S.InputText>
@@ -177,7 +186,7 @@ const Join = () => {
               </S.TextBox>
               <S.InputContainer>
                 <S.InputButton
-                  type="password"
+                  type={mark ? "text" : "password"}
                   id="passWordConfirm"
                   placeholder="비밀번호를 입력하세요"
                   {...register("passWordConfirm", {
@@ -193,7 +202,7 @@ const Join = () => {
                     },
                   })}
                 />
-                {errors?.passWordConfirm && (
+                {errors && errors?.passWordConfirm && (
                   <S.P>{errors.passWordConfirm.message}</S.P>
                 )}
               </S.InputContainer>
@@ -301,15 +310,18 @@ const Join = () => {
                       {...register("agrees", {
                         required: "필수 약관에 동의하셔야 합니다.",
                         validate: {
-                          checkAgress : (value) => {
+                          checkAgress: (value) => {
                             const { agrees, optionAgrees } = getValues();
-                            if(agrees.length === 3 && optionAgrees == 4){
+                            if (agrees.length === 3 && optionAgrees === "4") {
                               setAllAgree(true);
-                            }else{
+                            } else {
                               setAllAgree(false);
                             }
+                            if (agrees.length < 3) {
+                              return "필수 약관에 모두 동의하셔야 합니다.";
+                            }
                             return agrees[0] && agrees[1] && !!agrees[2];
-                          }
+                          },
                         },
                       })}
                     />
@@ -321,36 +333,35 @@ const Join = () => {
                 </S.Agree>
               ))}
 
-                {/* 선택동의 */}
-                <S.Agree>
-                  <label>
-                    <input
-                      type="checkbox"
-                      name="agrees"
-                      value={"4"}
-                      {...register("optionAgrees", {
-                        validate: {
-                          checkAgress : (value) => {
-                            const { agrees, optionAgrees } = getValues();
-                            if(agrees.length === 3 && optionAgrees == 4){
-                              setAllAgree(true);
-                            }else{
-                              setAllAgree(false);
-                            }
-                            return agrees[0] && agrees[1] && !!agrees[2];
+              {/* 선택동의 */}
+              <S.Agree>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="agrees"
+                    value={"4"}
+                    {...register("optionAgrees", {
+                      validate: {
+                        checkAgress: (value) => {
+                          const { agrees, optionAgrees } = getValues();
+                          if (agrees.length === 3 && optionAgrees === "4") {
+                            setAllAgree(true);
+                          } else {
+                            setAllAgree(false);
                           }
+                          return agrees[0] && agrees[1] && !!agrees[2];
                         },
-                      })}
-                    />
-                  </label>
-                  <S.TextBox2>
-                    <S.Text3>프로모션 정보 수신 동의 (선택)</S.Text3>
-                    <S.Text4>자세히보기</S.Text4>
-                  </S.TextBox2>
-                </S.Agree>
-
+                      },
+                    })}
+                  />
+                </label>
+                <S.TextBox2>
+                  <S.Text3>프로모션 정보 수신 동의 (선택)</S.Text3>
+                  <S.Text4>자세히보기</S.Text4>
+                </S.TextBox2>
+              </S.Agree>
             </S.AgreeBox>
-            
+
             {/* 에러 메시지 */}
             {errors.agrees && (
               <S.P id="AgreeResult" style={{ color: "red" }}>
@@ -360,9 +371,7 @@ const Join = () => {
           </S.InputText>
         </S.Input>
 
-        <S.LoginButton disabled={isSubmitting}>
-          회원가입
-        </S.LoginButton>
+        <S.LoginButton disabled={isSubmitting}>회원가입</S.LoginButton>
       </S.SellerMain>
     </form>
   );
