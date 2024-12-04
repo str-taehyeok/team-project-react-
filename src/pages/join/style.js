@@ -174,8 +174,7 @@ S.InputContainer = styled.div`
 S.Mark = styled.div`
   width: 22px;
   height: 22px;
-  flex-shrink: 0;
-  background-image: url("../../images/member/eye-off.svg");
+  background-image: url(${process.env.PUBLIC_URL}/assets/images/join/eye-off.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
