@@ -7,10 +7,10 @@ const PetList = ({ pets = [] }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // if (pets.length === 0) {
-    //   alert("펫을 등록해주세요");
-    //   navigate("/no-pet");
-    // }
+    if (pets.length === 0) {
+      alert("펫을 등록해주세요");
+      navigate("/my-pet/pet-not");
+    }
   }, [pets, navigate]);
 
   return (
