@@ -28,6 +28,9 @@ const SellerJoin = () => {
       setAllAgree(false)
     }
   };
+
+  const [mark, setMark] = useState(false);
+
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
   
@@ -122,7 +125,7 @@ const SellerJoin = () => {
             <S.InputContainer>
               <label>
                 <S.InputButton
-                  type="password"
+                  type={mark ? "text" : "password"}
                   name="sellerPassword"
                   placeholder="비밀번호"
                   autoComplete="off"
@@ -142,8 +145,18 @@ const SellerJoin = () => {
                     합니다.
                   </S.P>
                 )}
-                <S.Mark></S.Mark>
-                <p id="PasswordResult"></p>
+                <S.Mark
+                  onClick={() => setMark(!mark)}
+                  style={{
+                    backgroundImage: `url(${
+                      process.env.PUBLIC_URL
+                    }/assets/images/join/${
+                      mark ? "eye-on.png" : "eye-off.png"
+                    })`,
+                    cursor: "pointer",
+                  }}
+                >
+                </S.Mark>
               </label>
             </S.InputContainer>
           </S.InputText>
@@ -156,7 +169,7 @@ const SellerJoin = () => {
               </S.TextBox>
               <S.InputContainer>
                 <S.InputButton
-                  type="password"
+                  type={mark ? "text" : "password"}
                   id="passWordConfirm"
                   placeholder="비밀번호를 입력하세요"
                   {...register("passWordConfirm", {
