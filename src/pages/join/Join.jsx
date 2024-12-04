@@ -15,16 +15,21 @@ const Join = () => {
 
   const [allAgree, setAllAgree] = useState(false);
   const handleAllAgree = (e) => {
-    const { agrees } = getValues();
+    const { agrees, optionAgrees } = getValues();
     if(e.target.checked){
       setAllAgree(true);
-      setValue("agrees", ['1', '2', '3', '4'])
+      setValue("agrees", ['1', '2', '3'])
+      setValue("optionAgrees", '4')
       setError("agrees", {})
     }else{
+      setError("agrees", { message: "필수 약관에 동의하셔야 합니다." })
       setValue("agrees", [])
+      setValue("optionAgrees", "")
       setAllAgree(false)
     }
   };
+
+  console.log(errors)
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
@@ -286,7 +291,6 @@ const Join = () => {
                 { id: "1", label: "이용약관 동의 (필수)" },
                 { id: "2", label: "개인정보 수집 및 이용 동의 (필수)" },
                 { id: "3", label: "위치정보 이용약관 동의 (필수)" },
-                { id: "4", label: "프로모션 정보 수신 동의 (선택)" },
               ].map((item) => (
                 <S.Agree key={item.id}>
                   <label>
@@ -298,11 +302,11 @@ const Join = () => {
                         required: "필수 약관에 동의하셔야 합니다.",
                         validate: {
                           checkAgress : (value) => {
-                            const { agrees } = getValues();
-                            if(agrees.length <= 3){
-                              setAllAgree(false);
-                            }else if(agrees.length === 4){
+                            const { agrees, optionAgrees } = getValues();
+                            if(agrees.length === 3 && optionAgrees == 4){
                               setAllAgree(true);
+                            }else{
+                              setAllAgree(false);
                             }
                             return agrees[0] && agrees[1] && !!agrees[2];
                           }
@@ -316,7 +320,37 @@ const Join = () => {
                   </S.TextBox2>
                 </S.Agree>
               ))}
+
+                {/* 선택동의 */}
+                <S.Agree>
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="agrees"
+                      value={"4"}
+                      {...register("optionAgrees", {
+                        validate: {
+                          checkAgress : (value) => {
+                            const { agrees, optionAgrees } = getValues();
+                            if(agrees.length === 3 && optionAgrees == 4){
+                              setAllAgree(true);
+                            }else{
+                              setAllAgree(false);
+                            }
+                            return agrees[0] && agrees[1] && !!agrees[2];
+                          }
+                        },
+                      })}
+                    />
+                  </label>
+                  <S.TextBox2>
+                    <S.Text3>프로모션 정보 수신 동의 (선택)</S.Text3>
+                    <S.Text4>자세히보기</S.Text4>
+                  </S.TextBox2>
+                </S.Agree>
+
             </S.AgreeBox>
+            
             {/* 에러 메시지 */}
             {errors.agrees && (
               <S.P id="AgreeResult" style={{ color: "red" }}>
