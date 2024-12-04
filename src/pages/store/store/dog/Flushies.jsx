@@ -4,6 +4,7 @@ import FlushieColor from './flushies/FlushieColor';
 import FlushieBest from './flushies/FlushieBest';
 import FlushieSpecial from './flushies/FlushieSpecial';
 import FlushieRecommend from './flushies/FlushieRecommend';
+import { Link } from "react-router-dom";
 
 // 더미데이터 확인용
 
@@ -96,8 +97,10 @@ const Flushies = () => {
 
     const bestProducts = productList.map(({productName, productPrice, src}, i) => (
         <S.BestProduct key={i} >
+            <Link to={"/product"}>
             <img src={src} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
+            </Link>
             <span style={{ fontWeight: 700 }}>{productPrice}</span>
             <button>담기</button>
         </S.BestProduct>
@@ -105,8 +108,10 @@ const Flushies = () => {
 
     const specialProducts = productList.map(({productName, productPrice, src}, i) => (
         <S.SpecialProduct key={i}>
+            <Link to={"/product"}>
             <img src={src} alt={"상품" + (i + 1)}/>
             <span>{productName}</span>
+            </Link>
             <span style={{ fontWeight: 700 }}>{productPrice}</span>
             <button>담기</button>
         </S.SpecialProduct >
@@ -114,8 +119,10 @@ const Flushies = () => {
 
     const recommendProducts = productList.map(({productName, productPrice, src}, i) => (
         <S.Product key={i} >
+            <Link to={"/product"}>
             <img src={src} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
+            </Link>
             <span style={{ fontWeight: 700 }}>{productPrice}</span>
             <button>담기</button>
         </S.Product>
