@@ -7,20 +7,20 @@ const SellerProductList = () => {
             제품 등록 리스트
             <S.NoticeSearch>
                 <S.Table>
-            {/*        <thead>*/}
-            {/*        <tr>*/}
-            {/*            <th>No</th>*/}
-            {/*            <th>이미지</th>*/}
-            {/*            <th>상품명</th>*/}
-            {/*            <th>판매가</th>*/}
-            {/*            <th>분류</th>*/}
-            {/*            <th>상태</th>*/}
-            {/*            <th>재고</th>*/}
-            {/*            <th>등록일</th>*/}
-            {/*            <th>관리</th>*/}
-            {/*        </tr>*/}
-            {/*        </thead>*/}
-            {/*        <tbody>*/}
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>이미지</th>
+                        <th>상품명</th>
+                        <th>판매가</th>
+                        <th>분류</th>
+                        <th>상태</th>
+                        <th>재고</th>
+                        <th>등록일</th>
+                        <th>관리</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
             {/*        <c:forEach var="product" items="${products}" varStatus="status">*/}
             {/*            <tr>*/}
@@ -61,7 +61,7 @@ const SellerProductList = () => {
             {/*            </tr>*/}
             {/*        </c:forEach>*/}
 
-            {/*        </tbody>*/}
+                    </tbody>
                 </S.Table>
             </S.NoticeSearch>
 
