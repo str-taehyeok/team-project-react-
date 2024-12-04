@@ -148,6 +148,14 @@ const router = createBrowserRouter( [
                         path: "pet-write",
                         element: <PetWrite />
                     },
+                    {
+                        path: "pet-no",
+                        element: <PetNo />
+                    },
+                    {
+                        path: "pet-update",
+                        element: <PetUpdate />
+                    },
                     ]
             },
             {
