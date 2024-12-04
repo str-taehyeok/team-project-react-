@@ -4,6 +4,8 @@ import HealthCareColor from './healthCare/HealthCareColor';
 import HealthCareBest from './healthCare/HealthCareBest';
 import HealthCareSpecial from './healthCare/HealthCareSpecial';
 import HealthCareRecommend from './healthCare/HealthCareRecommend';
+import { Link } from "react-router-dom";
+
 
 // 더미데이터 확인용
 
@@ -96,27 +98,33 @@ const HealthCare = () => {
 
     const bestProducts = productList.map(({productName, productPrice, src}, i) => (
         <S.BestProduct key={i} >
+            <Link to={"/product"}>
             <img src={src} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
-            <span style={{ fontWeight: 700 }}>{productPrice}</span>
+            </Link>
+            <span style={{ fontWeight: 700 }}>{productPrice}<br/>원</span>
             <button>담기</button>
         </S.BestProduct>
     ))
 
     const specialProducts = productList.map(({productName, productPrice, src}, i) => (
         <S.SpecialProduct key={i}>
+            <Link to={"/product"}>
             <img src={src} alt={"상품" + (i + 1)}/>
             <span>{productName}</span>
-            <span style={{ fontWeight: 700 }}>{productPrice}</span>
+            </Link>
+            <span style={{ fontWeight: 700 }}>{productPrice}<br/>원</span>
             <button>담기</button>
         </S.SpecialProduct >
     ))
 
     const recommendProducts = productList.map(({productName, productPrice, src}, i) => (
         <S.Product key={i} >
+            <Link to={"/product"}>
             <img src={src} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
-            <span style={{ fontWeight: 700 }}>{productPrice}</span>
+            </Link>
+            <span style={{ fontWeight: 700 }}>{productPrice}<br/>원</span>
             <button>담기</button>
         </S.Product>
     ))

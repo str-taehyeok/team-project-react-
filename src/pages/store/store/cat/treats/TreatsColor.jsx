@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import S from "../style";
+import { Link } from "react-router-dom";
 
 const TreatsColor = ({productList}) => {
 
@@ -43,8 +44,10 @@ const TreatsColor = ({productList}) => {
 
     const colorProducts = filterdProducts.map(({productName, productPrice, src}, i) => (
         <S.Product key={i}>
+            <Link to={"/product"}>
             <img src={src} alt={"상품" + (i + 1)}/>
             <span>{productName}</span>
+            </Link>
             <span style={{fontWeight: 700}}>{productPrice}</span>
             <button>담기</button>
         </S.Product>
