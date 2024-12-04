@@ -1,5 +1,5 @@
 /*라우팅*/
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Layout from "../pages/layout/Layout";
 import MainContainer from "../pages/main/MainContainer";
 import Login from "../pages/login/Login";
@@ -100,11 +100,13 @@ import Treats from "../pages/store/store/dog/Treats";
 import Clothes from "../pages/store/store/dog/Clothes";
 import HealthCare from "../pages/store/store/dog/HealthCare";
 import NoCart from "../pages/store/cart/NoCart";
+import PetUpdate from "../pages/myhome/myPet/PetUpdate";
+import PetNo from "../pages/myhome/myPet/PetNo";
 
-const router = createBrowserRouter( [
+const router = createBrowserRouter([
     {
         path: '/',
-        element: <Layout/>,
+        element: <Layout />,
         children: [
             {
                 path: '/',
@@ -113,7 +115,7 @@ const router = createBrowserRouter( [
             {
                 path: '/myhome',
                 element: <MyInfoContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <ProfileList />,
@@ -139,7 +141,7 @@ const router = createBrowserRouter( [
             {
                 path: '/my-pet',
                 element: <MyPetContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <PetList />
@@ -148,16 +150,24 @@ const router = createBrowserRouter( [
                         path: "pet-write",
                         element: <PetWrite />
                     },
-                    ]
+                    {
+                        path: "pet-no",
+                        element: <PetNo />
+                    },
+                    {
+                        path: "pet-update",
+                        element: <PetUpdate />
+                    },
+                ]
             },
             {
-                path:'/my-shopping',
+                path: '/my-shopping',
                 element: <ShoppingList />
             },
             {
                 path: '/petsonal',
                 element: <PetsonalContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <PetsonalMain />,
@@ -170,12 +180,12 @@ const router = createBrowserRouter( [
                         path: "result",
                         element: <PetsonalResult />,
                     },
-                    ]
+                ]
             },
             {
                 path: '/product',
                 element: <ProductContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <ProductDetail />
@@ -189,7 +199,7 @@ const router = createBrowserRouter( [
             {
                 path: '/store',
                 element: <StoreContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <StoreMain />
@@ -199,7 +209,7 @@ const router = createBrowserRouter( [
             {
                 path: '/store-dog',
                 element: <StoreDogContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <Flushies />
@@ -221,7 +231,7 @@ const router = createBrowserRouter( [
             {
                 path: '/store-cat',
                 element: <StoreCatContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <Flushie />
@@ -242,46 +252,46 @@ const router = createBrowserRouter( [
             },
             {
                 path: '/cart',
-                element: <Cart/>,
+                element: <Cart />,
             },
             {
                 path: '/no-cart',
-                element: <NoCart/>,
+                element: <NoCart />,
             },
             {
                 path: '/pay',
                 element: <PayContainer />,
-                children : [
+                children: [
                     {
-                        index : true,
-                        element : <Pay />
+                        index: true,
+                        element: <Pay />
                     },
                     {
-                        path : 'success',
-                        element : <PaySuccess />
+                        path: 'success',
+                        element: <PaySuccess />
                     },
                     {
-                        path : 'failed',
-                        element : <PayFailed />
+                        path: 'failed',
+                        element: <PayFailed />
                     },
                 ]
             },
             {
                 path: '/community',
                 element: <CommunityContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <CommunityMain />,
                     }
-                    ]
+                ]
             },
             {
                 path: '/post',
                 element: <PostContainer />,
-                children : [
+                children: [
                     {
-                        path : "all",
+                        path: "all",
                         element: <PostList />,
                     },
                     {
@@ -333,7 +343,7 @@ const router = createBrowserRouter( [
             {
                 path: '/unsubscribe',
                 element: <UnsubscribeContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <Unsubscribe />
@@ -344,22 +354,22 @@ const router = createBrowserRouter( [
     },
     {
         path: '/admin',
-        element : <AdminLayout />,
-        children : [
+        element: <AdminLayout />,
+        children: [
             {
-                path : '/admin',
+                path: '/admin',
                 element: <NoticeContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <NoticeList />
                     },
                     {
-                        path : 'update',
+                        path: 'update',
                         element: <NoticeUpdate />
                     },
                     {
-                        path : 'write',
+                        path: 'write',
                         element: <NoticeWrite />
                     },
                 ]
@@ -367,7 +377,7 @@ const router = createBrowserRouter( [
             {
                 path: 'banner',
                 element: <BannerContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <BannerList />
@@ -385,7 +395,7 @@ const router = createBrowserRouter( [
             {
                 path: 'coupon',
                 element: <CouponContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <CouponList />
@@ -403,7 +413,7 @@ const router = createBrowserRouter( [
             {
                 path: 'member',
                 element: <MemberContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <BuyerList />
@@ -418,12 +428,12 @@ const router = createBrowserRouter( [
     },
     {
         path: '/seller',
-        element : <SellerLayout />,
-        children : [
+        element: <SellerLayout />,
+        children: [
             {
                 path: '/seller',
                 element: <SellerProductContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <SellerProductList />,
@@ -441,7 +451,7 @@ const router = createBrowserRouter( [
             {
                 path: 'seller-info',
                 element: <SellerInfoContainer />,
-                children : [
+                children: [
                     {
                         index: true,
                         element: <SellerUpdate />,
@@ -473,13 +483,13 @@ const router = createBrowserRouter( [
     {
         path: '/login',
         element: <LoginContainer />,
-        children : [
+        children: [
             {
-                index : true,
+                index: true,
                 element: <Login />,
             },
             {
-                path : 'seller',
+                path: 'seller',
                 element: <SellerLogin />,
             }
         ]
@@ -487,25 +497,25 @@ const router = createBrowserRouter( [
     {
         path: '/join',
         element: <JoinContainer />,
-        children : [
+        children: [
             {
-                index : true,
+                index: true,
                 element: <JoinType />,
             },
             {
-                path : "phone",
+                path: "phone",
                 element: <JoinPhone />,
             },
             {
-                path : "complete",
+                path: "complete",
                 element: <JoinComplete />,
             },
             {
-                path : "seller-join",
+                path: "seller-join",
                 element: <SellerJoin />,
             },
             {
-                path : "buyer-join",
+                path: "buyer-join",
                 element: <Join />,
             },
 
@@ -514,7 +524,7 @@ const router = createBrowserRouter( [
     {
         path: '/find',
         element: <FindAccountContainer />,
-        children : [
+        children: [
             {
                 index: true,
                 element: <FindType />,
@@ -524,7 +534,7 @@ const router = createBrowserRouter( [
                 element: <FindId />,
             },
             {
-                path: "findId-complete",
+                path: "find-complete",
                 element: <FindIdComplete />,
             },
             {
@@ -532,10 +542,10 @@ const router = createBrowserRouter( [
                 element: <FindPassword />,
             },
             {
-                path: "findPassword-complete",
+                path: "find-password-complete",
                 element: <FindPasswordComplete />,
             },
-            ]
+        ]
     },
     {
         path: "/myhome/password-update-complete",
@@ -547,19 +557,19 @@ const router = createBrowserRouter( [
     },
     {
         path: '*',
-        element: <NotFound/>
+        element: <NotFound />
     }
 ],
-{
-    future: {
-        v7_fetcherPersist : true,
-        v7_normalizeFormMethod : true,
-        v7_partialHydration : true,
-        v7_relativeSplatPath : true,
-        v7_skipActionErrorRevalidation : true,
-        v7_startTransition : true
-    },
-}
+    {
+        future: {
+            v7_fetcherPersist: true,
+            v7_normalizeFormMethod: true,
+            v7_partialHydration: true,
+            v7_relativeSplatPath: true,
+            v7_skipActionErrorRevalidation: true,
+            v7_startTransition: true
+        },
+    }
 )
 
 export default router

@@ -42,17 +42,18 @@ S.Name = styled.div`
 	margin-bottom: 20px;
 `
 S.EditButton = styled.label`
-  background-color: #1c4da0;
-	color: white;
-	border: none;
-	border-radius: 20px;
-	cursor: pointer;
-	width: 96px;
-	height: 32px;
-	padding-top: 5px;
-	padding-left: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border: solid 1px #888888;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 96px;
+  height: 32px;
 `
-S.Title = styled.h5`
+S.Title = styled.div`
 	font-weight: bold;
   margin-bottom: 432px;
 `
@@ -68,9 +69,6 @@ S.PetName = styled.label`
 
 `
 S.PetKind = styled.label`
-  display: block;
-`
-S.PetGender = styled.label`
   display: block;
 `
 S.PetBreed = styled.label`
@@ -232,14 +230,14 @@ S.PetGender = styled.div`
   width: 30px;
   height: 32px;
 `;
-S.Kg = styled.text`
+S.Kg = styled.span`
   position: absolute;
   right: 32px;
   top: 3px;
 `
-S.Description = styled.h6`
+S.Description = styled.div`
   ${h9Medium};
-` 
+`
 S.Button = styled.button`
     display: flex;
     align-items: center;
@@ -253,6 +251,82 @@ S.Button = styled.button`
     margin-bottom: 25px;
     margin-left: 1263px;
 `
+S.Form = styled.div`
+  display: flex;
+`
+// List
+
+S.PetCard2 = styled.div`
+  width: 270px;
+  height: 430px;
+  background-color: white;
+  border: solid 1px;
+  border-radius: 15px;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 406px;
+  
+  
+  `
+
+S.NoPetButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 42px;
+  width: 161px;
+  height: 42px;
+  background-color: #1c4da0;
+  border-radius: 20px;
+  color: white;
+  margin-top: 42px;
+  margin-bottom: 55px;
+  margin-left: 1244px;
+  &:hover {
+  background-color: #005bb5;
+  }
+`
+
+S.PetList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
+
+S.EditButton2 = styled.button`
+	color: black;
+	border: solid 1px #888888;
+	border-radius: 20px;
+	cursor: pointer;
+	width: 90px;
+	height: 30px;
+	margin-top: 18px;
+
+  &:hover {
+    background-color: #D9D9D9;
+  }
+`;
+
+S.DeleteButton = styled.button`
+  background-color: #113F8A;
+	color: white;
+	border: solid 1px #113F8A;
+	border-radius: 20px;
+	cursor: pointer;
+	width: 90px;
+	height: 30px;
+	margin-top: 18px;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+
 
 
 
