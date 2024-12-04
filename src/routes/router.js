@@ -101,7 +101,7 @@ import Clothes from "../pages/store/store/dog/Clothes";
 import HealthCare from "../pages/store/store/dog/HealthCare";
 import NoCart from "../pages/store/cart/NoCart";
 import PetUpdate from "../pages/myhome/myPet/PetUpdate";
-import PetNo from "../pages/myhome/myPet/PetNo";
+import PetNot from "../pages/myhome/myPet/PetNot";
 
 const router = createBrowserRouter([
     {
@@ -151,8 +151,8 @@ const router = createBrowserRouter([
                         element: <PetWrite />
                     },
                     {
-                        path: "pet-no",
-                        element: <PetNo />
+                        path: "pet-not",
+                        element: <PetNot />
                     },
                     {
                         path: "pet-update",

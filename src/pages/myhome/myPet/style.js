@@ -254,6 +254,31 @@ S.Button = styled.button`
 S.Form = styled.div`
   display: flex;
 `
+S.NoPetWrapper = styled.div`
+  display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 200px;
+	margin: 0 auto;
+`
+S.NoPet = styled.div`
+font-size: 20px;
+  align-self: center
+  
+`
+S.NoPetButtonSubmit = styled.button`
+  width: 118px;
+	height: 42px;
+	font-weight: bold;
+	border-radius: 20px;
+	background-color: #113f8a;
+	color: #FFFFFF;
+	margin-top: 52px;
+	margin-bottom: 187px;
+`
+
+
 // List
 
 S.PetCard2 = styled.div`
