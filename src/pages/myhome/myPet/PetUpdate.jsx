@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom';
 
-const PetWrite = () => {
+const PetUpdate = () => {
   const [formData, setFormData] = useState({
     petName: "",
     kind: "",
@@ -21,7 +21,7 @@ const PetWrite = () => {
 
   const handleSubmit = () => {
     console.log("input 데이터 전송: ", formData);
-    alert("데이터가 전송되었습니다!");
+    alert("수정이 완료되었습니다!");
   };
 
   return (
@@ -116,4 +116,4 @@ const PetWrite = () => {
   );
 };
 
-export default PetWrite;
+export default PetUpdate;

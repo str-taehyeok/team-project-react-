@@ -115,6 +115,10 @@ S.LoginButton = styled.button`
 // Texts
 S.P = styled.p`
   color: red;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 5px;
+  margin-left: 2px;
 `;
 
 S.IdSave = styled.p`
