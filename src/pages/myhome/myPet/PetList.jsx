@@ -9,7 +9,7 @@ const PetList = ({ pets = [] }) => {
   useEffect(() => {
     // if (pets.length === 0) {
     //   alert("펫을 등록해주세요");
-    //   navigate("/my-pet");
+    //   navigate("/no-pet");
     // }
   }, [pets, navigate]);
 
@@ -27,7 +27,9 @@ const PetList = ({ pets = [] }) => {
             </S.Profilepic>
             <S.Name>이름</S.Name>
             <a>2019년 08월 17일생</a>
-            <S.EditButton2>편집</S.EditButton2>
+            <Link to={"/my-pet/my-update"}>
+            <S.EditButton2 type="button">편집</S.EditButton2>
+            </Link>
             <S.DeleteButton>삭제</S.DeleteButton>
           </S.PetCard2>
       </S.PetList>
