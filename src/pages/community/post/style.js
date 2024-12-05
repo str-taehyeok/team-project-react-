@@ -167,6 +167,8 @@ S.CommunityPost = styled.div`
     position: absolute;
     right: 20px;
     top : 20px;
+    width: 20px;
+    height:20px;
   }
 `;
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import S from './style.js';
+import HeartBtn from './HeartBtn.jsx';
 
 const datas = [
     {
@@ -58,6 +59,7 @@ export const PostLightPurpleList = () => {
 
     const postList = datas.map((post, i) => (
         <S.Post key={i}>
+            <HeartBtn />
             <S.PostImage src={`${process.env.PUBLIC_URL}${post.postImage1}`} alt="게시물10" />
             <S.PropileBox>
                 <S.Profile src={`${process.env.PUBLIC_URL}${post.memberImage}`} alt="프로필" />
