@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import S from "./style";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { JoinContext } from "../../context/joinContext";
 
 const SellerJoin = () => {
+
+  const { state } = useContext(JoinContext);
   const {
     register,
     handleSubmit,
@@ -199,7 +202,7 @@ const SellerJoin = () => {
                 *
               </S.Red>
             </S.TextBox>
-            <S.InputButton type="string" name="phone" placeholder="" />
+            <S.InputButton type="string" name="phone" value={state.phone} readOnly/>
           </S.InputText>
           <S.Line></S.Line>
           <S.InputText>
