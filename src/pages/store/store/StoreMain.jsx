@@ -4,7 +4,6 @@ import StoreCustom from './StoreCustom';
 import StoreDogPick from './StoreDogPick';
 import StoreCatPick from './StoreCatPick';
 import S from './style';
-import { Link } from 'react-router-dom';
 import StoreBtn from './StoreCatBtn';
 import ToCommunityBtn from './ToCommunityBtn';
 import StoreCatBtn from './StoreCatBtn';
@@ -12,20 +11,12 @@ import StoreDogBtn from './StoreDogBtn';
 
 const StoreMain = () => {
 
-    let name = "";
-
     return (
         <S.StoreMainWrap>
-            <div>
-               <img src={`${process.env.PUBLIC_URL}/assets/images/store/banner.png`} alt='배너' />
-            </div>
             <S.StoreMain>
 
-                {/* <StoreBtn/> */}
-                <div style={{cursor:'pointer'}}>
-                    <StoreCustom />
-                </div>
-
+                <StoreCustom />
+                
                 <S.StoreToCommunityBanner>
                    <img src={`${process.env.PUBLIC_URL}/assets/images/store/to-community-banner.png`} alt="배너2" />
                    <ToCommunityBtn />
@@ -44,9 +35,8 @@ const StoreMain = () => {
                 <S.DogPickTitle>
                     <p>강아지 원픽</p>
                 </S.DogPickTitle>
-                <div style={{cursor:'pointer'}}>
-                    <StoreDogPick />
-                </div>
+                
+                <StoreDogPick />
 
                 <S.GoShopping2>
                     <S.GoShoppingTitle2>
@@ -57,16 +47,14 @@ const StoreMain = () => {
                     </S.GoShoppingTitle2>
                     <img src={`${process.env.PUBLIC_URL}/assets/images/store/toshopbanner2.png`}></img>
                 </S.GoShopping2>
-
                 
                 <S.CatPickTitle>
                     <p>고양이 원픽</p>
                 </S.CatPickTitle>
-                <div style={{cursor:'pointer'}}>
-                    <StoreCatPick />
-                </div>
+
+                <StoreCatPick />
+
             </S.StoreMain>
-           <Footer />
         </S.StoreMainWrap>
     );
 };
