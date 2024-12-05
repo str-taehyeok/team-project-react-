@@ -4,6 +4,17 @@ import { Link } from "react-router-dom";
 import Footer from "../layout/Footer";
 
 const Unsubscribe = () => {
+
+  const onClickToConfirm = () => {
+    const userConfirmed = window.confirm("정말로 탈퇴하시겠습니까?");
+    console.log(userConfirmed ? "확인" : "취소");
+    // fetch 코드 작성
+    
+
+  };
+
+
+
   return (
     <div>
       <S.Frame>
@@ -34,10 +45,10 @@ const Unsubscribe = () => {
             </S.InBoxWrap>
           </S.ListBox>
           <S.Buttons>
-            <Link to={"/"}>
+            <Link to={"/myhome"}>
                 <S.GoBackButton>이전으로</S.GoBackButton>
             </Link>
-            <S.GoUnscribeButton>탈퇴</S.GoUnscribeButton>
+            <S.GoUnscribeButton onClick={onClickToConfirm}>탈퇴</S.GoUnscribeButton>
           </S.Buttons>
         </S.UnsubscribeContainer>
       </S.Frame>
