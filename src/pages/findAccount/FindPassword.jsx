@@ -1,14 +1,35 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { FindContext } from "../../context/findContext";
 import S from "./style";
+import { useForm } from "react-hook-form";
 
 const FindPassword = () => {
-  const [email, setEmail] = useState("");
-  const navigate = useNavigate();
+  const { state, action } = useContext(FindContext);
 
-  const onClickNext = () => {
-    navigate("/find/find-password");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [authNumber, setAuthNumber] = useState("");
+  const {
+    register,
+    getValues,
+    formState: { isSubmitting, errors },
+  } = useForm({ mode: "onChange" });
+  const [mark, setMark] = useState(false);
+
+  const handlePasswordChange = () => {
+    if (!authNumber || !newPassword || !confirmNewPassword) {
+      return alert("인증번호와 새로운 비밀번호를 모두 입력해주세요.");
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      return alert("새로운 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+    }
+
+    alert("비밀번호가 변경되었습니다.");
   };
+
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
   return (
     <>
@@ -24,25 +45,101 @@ const FindPassword = () => {
           </S.LogoWrap>
         </S.LogoBox>
 
-        <S.InputWrapper>
-          <S.Label htmlFor="email">아이디</S.Label>
-          <S.Input
-            type="text"
-            id="email"
-            name="email"
-            placeholder="아이디(이메일)"
-            value={email}
-            onChange={(e) => setEmail(e.currentTarget.value)}
-          />
-        </S.InputWrapper>
+        <S.NewPasswordMessage>
+          <p>✔ 계정에 등록된 이메일로 인증번호를 발송하였습니다.</p>
+          <p>✔ 이메일로 전송된 인증번호와 새 비밀번호를 입력해주세요.</p>
+        </S.NewPasswordMessage>
 
-        <S.Message>
-          *본인 확인(계정에 등록된 이메일)을 통해 비밀번호를 재설정 하실 수 있습니다.
-        </S.Message>
+        <S.AuthNumberContainer>
+          <S.InputWrapper>
+            <S.Label htmlFor="authNumber">인증번호</S.Label>
+            <S.Input
+              type="text"
+              id="authNumber"
+              name="authNumber"
+              placeholder="인증번호"
+              value={authNumber}
+              onChange={(e) => setAuthNumber(e.target.value)}
+            />
+          </S.InputWrapper>
+        </S.AuthNumberContainer>
+
+        <S.AuthNumberContainer>
+          <S.InputWrapper>
+            <S.Label htmlFor="newPassword">새로운 비밀번호</S.Label>
+            <S.Input
+              type={mark ? "text" : "password"}
+              name="buyerPassword"
+              placeholder="새로운 비밀번호"
+              autoComplete="off"
+              {...register("password", {
+                required: true,
+                pattern: {
+                  value: passwordRegex,
+                },
+              })}
+            />
+            {errors && errors?.password?.type === "required" && (
+              <S.P>비밀번호를 입력하세요</S.P>
+            )}
+            {errors && errors?.password?.type === "pattern" && (
+              <S.P>
+                소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야 합니다.
+              </S.P>
+            )}
+            <S.Mark
+              onClick={() => setMark(!mark)}
+              style={{
+                backgroundImage: `url(${
+                  process.env.PUBLIC_URL
+                }/assets/images/join/${mark ? "eye-on.png" : "eye-off.png"})`,
+                cursor: "pointer",
+              }}
+            ></S.Mark>
+          </S.InputWrapper>
+        </S.AuthNumberContainer>
+
+        <S.AuthNumberContainer>
+          <S.InputWrapper>
+            <S.Label htmlFor="confirmNewPassword">새로운 비밀번호 확인</S.Label>
+            <S.Input
+              type={mark ? "text" : "password"}
+              id="passWordConfirm"
+              placeholder="비밀번호를 입력하세요"
+              {...register("passWordConfirm", {
+                required: "비밀번호를 확인하세요.",
+                validate: {
+                  matchPassword: (passWordConfirm) => {
+                    const password = getValues("password");
+                    return (
+                      password === passWordConfirm ||
+                      "비밀번호가 일치하지 않습니다."
+                    );
+                  },
+                },
+              })}
+            />
+            {errors && errors?.passWordConfirm && (
+              <S.P>{errors.passWordConfirm.message}</S.P>
+            )}
+
+            {/* 에러메세지 */}
+            {errors.agrees && (
+              <S.P id="AgreeResult" style={{ color: "red" }}>
+                {errors.agrees.message}
+              </S.P>
+            )}
+
+          </S.InputWrapper>
+        </S.AuthNumberContainer>
 
         <Link to="/find-password-complete">
-          <S.NextButton type="button">
-            다음
+          <S.NextButton
+            type="button"
+            onClick={handlePasswordChange}
+            disabled={!authNumber || !newPassword || !confirmNewPassword}
+          >
+            확인
           </S.NextButton>
         </Link>
       </S.InputContainer>

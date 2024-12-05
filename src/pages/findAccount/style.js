@@ -78,7 +78,7 @@ S.NextButton = styled.button`
   border-radius: 20px;
   box-sizing: border-box;
   cursor: pointer;
-  margin-top: 30px;
+  margin-top: 20px;
   ${flexRowCenter};
 `;
 
@@ -181,6 +181,7 @@ S.Input = styled.input`
   box-sizing: border-box;
   padding: 19px 26px;
   outline: none;
+  margin-bottom: 5px;
 `;
 
 S.FindCompleteWrapper = styled.div`
@@ -260,5 +261,35 @@ S.Message = styled.p`
   margin-right: 35px;
 `;
 
+S.NewPasswordMessage = styled.div`
+  font-size: 14px;  
+  color: #828282; 
+  text-align: left;
+  line-height: 1; 
+  margin-bottom: 10px; 
+  margin-right: 135px;
+`;
+
+S.Mark = styled.div`
+  width: 22px;
+  height: 22px;
+  background-image: url(${process.env.PUBLIC_URL}/assets/images/join/eye-off.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  position: absolute;
+  right: 29px;
+  top: 50px;
+  transform: translateY(-50%);
+`;
+
+S.P = styled.p`
+  color: red;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 5px;
+  margin-left: 2px;
+`;
 
 export default S;

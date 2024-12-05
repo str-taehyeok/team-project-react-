@@ -13,7 +13,6 @@ S.Container = styled.div`
 
 // 배너
 S.SwiperContainer = styled.div`
-  
   display: flex;
   /* 배너 페이저 */
   & span.swiper-pagination-bullet-active {
@@ -24,9 +23,8 @@ S.SwiperContainer = styled.div`
     flex-shrink: 0;
     width: 464px !important;
   }
-  margin : 0 0 150px 0;
-  
-`
+  margin: 0 0 150px 0;
+`;
 
 S.BannerTitle = styled.div`
   width: 489px;
@@ -34,10 +32,9 @@ S.BannerTitle = styled.div`
 
   & h2 {
     font-size: ${theme.FONT_SIZE.h4};
-    font-weight: ${theme.FONT_WEIGHT.bold};    
+    font-weight: ${theme.FONT_WEIGHT.bold};
   }
-`
-
+`;
 
 S.Slider = styled.div`
   position: relative;
@@ -51,16 +48,17 @@ S.Slider = styled.div`
 `;
 
 S.Slides = styled.div`
-    display: flex;
-    transition: transform 3s ease-in-out;
-    overflow: hidden;
-    gap: 26px;
+  display: flex;
+  transition: transform 3s ease-in-out;
+  overflow: hidden;
+  gap: 26px;
 `;
+
 S.HotSlide = styled.div`
-    display: flex;
-    transition: transform 3s ease-in-out;
-    overflow: hidden;
-    gap: 26px;
+  display: flex;
+  transition: transform 3s ease-in-out;
+  overflow: hidden;
+  gap: 26px;
 `;
 
 S.Slide = styled.div`
@@ -75,15 +73,15 @@ S.Slide = styled.div`
 //////////////////////////////////////핫한 상품
 
 S.HotProduct = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 135px;
-    
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 135px;
+
   & h2 {
     font-size: ${theme.FONT_SIZE.h4};
-    font-weight: ${theme.FONT_WEIGHT.bold};    
-    }
+    font-weight: ${theme.FONT_WEIGHT.bold};
+  }
 `;
 
 S.HotImages = styled.div`
@@ -114,7 +112,7 @@ S.Coupon = styled.div`
   width: 118px;
   height: 40px;
   color: #fff;
-  background-color: #113F8A;
+  background-color: #113f8a;
   border-radius: 5px;
   left: 9px;
   top: 9px;
@@ -129,16 +127,17 @@ S.Cart = styled.div`
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  
-  & a{
+
+  & a {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-   }
+  }
 `;
 
 ////////////////////////////////////////// 태스트 배너
+
 
 S.TestWrap = styled.div`
   margin-bottom: 150px;
@@ -146,15 +145,14 @@ S.TestWrap = styled.div`
 
 S.TestButton = styled.div`
   position: absolute;
-  top: 1517px;  
-  left: 320px;  
+  top: 1517px;
+  left: 320px;
   bottom: 237px;
-`
+`;
 
 ////////////////////////////////////////// 커뮤니티
 
-S.RecommendSection = styled.div`
-`;
+S.RecommendSection = styled.div``;
 
 S.RecommendContainer = styled.div`
   display: flex;
@@ -170,15 +168,15 @@ S.CommunityPlusMore = styled.div`
 
 S.TitleWrapper = styled.div`
   display: flex;
-  justify-content: space-between; 
-  align-items: center; 
-  width: 100%; 
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   margin-bottom: 50px;
 
   & h2 {
     font-size: ${theme.FONT_SIZE.h4};
-    font-weight: ${theme.FONT_WEIGHT.bold};    
-    }
+    font-weight: ${theme.FONT_WEIGHT.bold};
+  }
 `;
 
 S.LargePost = styled.div`
@@ -189,13 +187,12 @@ S.LargePost = styled.div`
   margin-bottom: 150px;
 `;
 
-
-S.PostHeartIcon = styled.div`
+S.HeartBtn = styled.button`
   width: 40px;
   height: 40px;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
 `;
 
 S.PostImage = styled.div`
@@ -203,20 +200,11 @@ S.PostImage = styled.div`
   height: 803px;
   border-radius: 10px;
 
-    & img {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-    }
-`;
- 
-S.HeartIcon = styled.img`
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
+  & img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
 `;
 
 S.SmallWrap = styled.div`
@@ -235,7 +223,7 @@ S.SmallPostImage = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 10px;
-`
+`;
 
 S.Post = styled.div`
   width: 220px;
@@ -243,7 +231,6 @@ S.Post = styled.div`
   margin-bottom: 145px;
   position: relative;
 `;
-
 
 S.ProfileInfo = styled.div`
   display: flex;
@@ -257,16 +244,15 @@ S.ProfileInfo = styled.div`
     height: 40px;
   }
 
-    & a{
-      display: flex;
-      align-items: center;
-      gap: 10px;
+  & a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-       & span {
-        font-weight: 700;
-       }
+    & span {
+      font-weight: 700;
     }
-
+  }
 `;
 
 S.ProfileImage = styled.div`
@@ -274,9 +260,7 @@ S.ProfileImage = styled.div`
   height: 34px;
 `;
 
-
 /////////////////////////////////////////상품나열
-
 
 S.ProductContainer = styled.div`
   display: flex;
@@ -300,7 +284,7 @@ S.ProductHeader = styled.div`
 
   a {
     text-align: right;
-    margin-top: 0; 
+    margin-top: 0;
   }
 `;
 
@@ -328,16 +312,8 @@ S.ProductCard = styled.div`
   width: 220px;
   height: 345px;
   border-radius: 10px;
-  position: relative; 
+  position: relative;
   background-color: #fff;
-`;
-
-S.ProductHeartICon = styled.img`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 10px;
-  right: 10px;
 `;
 
 S.CardImage = styled.div`
@@ -346,25 +322,16 @@ S.CardImage = styled.div`
   background-color: #f0f0f0;
 `;
 
-S.CardHeartIcon = styled.div`
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  right: 29px;
-  top: 25px;
-  z-index: 10;
-`;
-
 S.CardTextWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin: 14px 0 6px 0;
-  width: 100%;  
+  width: 100%;
   gap: 6px;
-  
-   & b {
-    text-align: left;  
+
+  & b {
+    text-align: left;
   }
 `;
 S.ProductName = styled.p`
@@ -378,13 +345,11 @@ S.ProductName = styled.p`
   line-height: 18px;
   height: 35px;
   font-size: ${theme.FONT_SIZE.h8};
+`;
 
-`
-
-
-S.DiscountText =  styled.div`
+S.DiscountText = styled.div`
   display: flex;
-`
+`;
 
 S.CardCart = styled.div`
   display: flex;
@@ -396,14 +361,13 @@ S.CardCart = styled.div`
   margin-top: 18px;
   width: 230px;
   height: 30px;
-  
 
-  & a{
+  & a {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-   }
+  }
 `;
 
 S.CardCartIcon = styled.div`
