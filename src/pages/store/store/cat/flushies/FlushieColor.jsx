@@ -42,10 +42,10 @@ const FlushieColor = ({productList}) => {
         setIsOpen(false);
     };
 
-    const colorProducts = filterdProducts.map(({productName, productPrice, src}, i) => (
+    const colorProducts = filterdProducts.map(({productName, productPrice, productImage1}, i) => (
         <S.Product key={i}>
             <Link to={"/product"}>
-            <img src={src} alt={"상품" + (i + 1)}/>
+            <img src={productImage1} alt={"상품" + (i + 1)}/>
             <span>{productName}</span>
             </Link>
             <span style={{fontWeight: 700}}>{productPrice}</span>
@@ -66,11 +66,6 @@ const FlushieColor = ({productList}) => {
         };
     }, []);
 
-
-    // const handleSelect = (option) => {
-    //     console.log('Selected:', option);
-    //     setIsOpen(false);
-    // };
 
     // 전체 필터
     const filterProducts = (color, price, size, sort) => {
@@ -126,9 +121,7 @@ const FlushieColor = ({productList}) => {
         };
     }, []);
 
-    // const toggleDropdown = () => {
-    //     setIsOpen(!isOpen);
-    // };
+
     const toggleDropdown = (dropdown) => {
         setOpenDropdown(openDropdown === dropdown ? null : dropdown);
         setIsOpen(!isOpen);

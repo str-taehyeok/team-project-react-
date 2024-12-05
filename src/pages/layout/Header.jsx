@@ -34,18 +34,22 @@ const Header = () => {
                         <S.SubMenu>
                             <li><Link to={"/petsonal"}>테스트</Link></li>
                             <li></li>
+                            <li></li>
                         </S.SubMenu>
                         <S.SubMenu>
                             <li><Link to={"/store-dog"}>강아지</Link></li>
                             <li><Link to={"/store-cat"}>고양이</Link></li>
+                            <li></li>
                         </S.SubMenu>
                         <S.SubMenu>
                             <li><Link to={"/post"}>추천 바구니</Link></li>
                             <li><Link to={"/my-post-list"}>내 게시물</Link></li>
+                            <li></li>
                         </S.SubMenu>
                         <S.SubMenu>
                             <li><Link to={"profile-update"}>나의 정보</Link></li>
                             <li><Link to={"/my-pet"}>반려동물 정보</Link></li>
+                            <li><Link to={""}>공지사항</Link></li>
                         </S.SubMenu>
                     </S.SubMenuWrap>
                 </S.MenuWrap>
