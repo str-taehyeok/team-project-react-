@@ -32,7 +32,21 @@ const ProfileList = () => {
             couponStart : "2024-10-04",
             couponEnd : "2024-10-30",
             couponQuantity : "11",
-        }
+        },
+        {
+            couponCode : "1111111111",
+            couponDiscountRate : "50",
+            couponStart : "2024-10-04",
+            couponEnd : "2024-10-30",
+            couponQuantity : "11",
+        },
+        {
+            couponCode : "1111111111",
+            couponDiscountRate : "50",
+            couponStart : "2024-10-04",
+            couponEnd : "2024-10-30",
+            couponQuantity : "11",
+        },
     ]);
 
     const onChangeInsertCoupon = (e) => {
@@ -65,7 +79,7 @@ const ProfileList = () => {
                             <S.ProfileBoxCouponWrap onClick={handleShowPopup}>
                                 <img src={`${process.env.PUBLIC_URL}/assets/images/myhome/coupon-icon.svg`} alt="쿠폰" />
                                 <p>쿠폰</p>
-                                <p>{couponData.couponQuantity}</p>
+                                <p>{couponData.length}</p>
                             </S.ProfileBoxCouponWrap>
                         </S.ProfileBox>
                         <S.MemberInputBoxContainer>
