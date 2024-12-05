@@ -12,7 +12,6 @@ const Footer = () => {
             
               <S.FooterContent>
                <S.FooterInfo>
-                    <Link to={""}><strong>공지사항</strong></Link>
                     <p>
                       <strong>MON - FRI</strong><br />09:00 - 18:00 <br />매주 수요일 휴무
                     </p>
