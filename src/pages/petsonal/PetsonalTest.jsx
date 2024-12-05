@@ -41,6 +41,7 @@ const PetsonalTest = () => {
   // 문항을 모두 선택했는지 검증 후 스코어 주입
   const onClickToAddScoreAndNavigate = (e) => {
     let selectLength = inputScore.filter((score) => score).length;
+    console.log(selectLength)
     if(selectLength < 25){
       return alert("모든 문항을 체크해주세요.")
     }
@@ -66,7 +67,7 @@ const PetsonalTest = () => {
       }else if(type === "petsonalBrave"){
         brave += score;
       }else{
-        return null;
+        return type;
       }
       console.log(type)
     })
@@ -93,29 +94,29 @@ const PetsonalTest = () => {
           <span>그렇지 않다</span>
           <S.Circles>
             <S.BigCircle 
-              value={0} type="radio" name={type + i} 
-              checked={inputScore[i] === 0}
-              onChange={() => handleRadioChecked(i, 0)}
-              ></S.BigCircle>
-            <S.MiddleCircle 
               value={1} type="radio" name={type + i} 
               checked={inputScore[i] === 1}
               onChange={() => handleRadioChecked(i, 1)}
-            ></S.MiddleCircle>
-            <S.SmallCircle 
+              ></S.BigCircle>
+            <S.MiddleCircle 
               value={2} type="radio" name={type + i} 
               checked={inputScore[i] === 2}
               onChange={() => handleRadioChecked(i, 2)}
-            ></S.SmallCircle>
-            <S.MiddleCircle 
+            ></S.MiddleCircle>
+            <S.SmallCircle 
               value={3} type="radio" name={type + i} 
               checked={inputScore[i] === 3}
               onChange={() => handleRadioChecked(i, 3)}
-            ></S.MiddleCircle>
-            <S.BigCircle
+            ></S.SmallCircle>
+            <S.MiddleCircle 
               value={4} type="radio" name={type + i} 
               checked={inputScore[i] === 4}
               onChange={() => handleRadioChecked(i, 4)}
+            ></S.MiddleCircle>
+            <S.BigCircle
+              value={5} type="radio" name={type + i} 
+              checked={inputScore[i] === 5}
+              onChange={() => handleRadioChecked(i, 5)}
             ></S.BigCircle>
           </S.Circles>
           <span>그렇다</span>
