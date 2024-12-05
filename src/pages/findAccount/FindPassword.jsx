@@ -7,7 +7,8 @@ const FindPassword = () => {
 
   const [newPassword] = useState("");
   const [confirmNewPassword] = useState("");
-  const [authNumber, setAuthNumber] = useState("");
+  const [email, setEmail] = useState(""); // 이메일을 위한 상태 추가
+  const [authNumber, setAuthNumber] = useState(""); // 인증번호 상태 그대로 유지
   const {
     register,
     getValues,
@@ -44,9 +45,23 @@ const FindPassword = () => {
         </S.LogoBox>
 
         <S.NewPasswordMessage>
-          <p>✔ 계정에 등록된 이메일로 인증번호를 발송하였습니다.</p>
-          <p>✔ 이메일로 전송된 인증번호와 새 비밀번호를 입력해주세요.</p>
+          <p>✔ 계정에 등록된 이메일로 전송된 인증번호와 새 비밀번호를 입력해주세요.</p>
         </S.NewPasswordMessage>
+
+        <S.AuthNumberContainer>
+          <S.InputWrapper>
+            <S.Label htmlFor="email">이메일</S.Label>
+            <S.Input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="회원아이디(이메일)를 입력해주세요."
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            
+          </S.InputWrapper>
+        </S.AuthNumberContainer>
 
         <S.AuthNumberContainer>
           <S.InputWrapper>
@@ -80,7 +95,7 @@ const FindPassword = () => {
             {errors && errors?.password?.type === "required" && (
               <S.P>비밀번호를 입력하세요</S.P>
             )}
-            {errors && errors?.buassword?.type === "pattern" && (
+            {errors && errors?.password?.type === "pattern" && (
               <S.P>
                 소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야 합니다.
               </S.P>
@@ -126,7 +141,6 @@ const FindPassword = () => {
                 {errors.agrees.message}
               </S.P>
             )}
-
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
