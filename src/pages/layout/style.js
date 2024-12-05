@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import {
-    flexCenterRowSpaceBetween, flexRowCenter, flexColumnCenter, h7Medium, h10Medium, h6Bold
-} from '../../global/common'
+import { flexCenterRowSpaceBetween, flexRowCenter, flexColumnCenter, h7Medium, h8Medium } from '../../global/common'
 import theme from "../../global/theme";
 
 const S = {}
@@ -101,6 +99,7 @@ const S = {}
         ${flexColumnCenter};
         & li a {
             font-weight: 300;
+            ${h8Medium};
         }
     `
 
