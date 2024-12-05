@@ -84,7 +84,8 @@ S.GoBackButton = styled.button`
   border-radius: 10px;
   font-size: 14px;
   font-weight: 500;
-`
+  cursor: pointer;
+  `
 
 S.GoUnscribeButton = styled.button`
   width: 90px;
@@ -95,7 +96,8 @@ S.GoUnscribeButton = styled.button`
   border-radius: 10px;
   font-size: 14px;
   font-weight: 500;
-`
+  cursor: pointer;
+  `
 
 
 // 탈퇴 완료

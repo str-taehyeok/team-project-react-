@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import S from "./style";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { JoinContext } from "../../context/joinContext";
 
 const Join = () => {
+
+  const { state } = useContext(JoinContext);
   const {
     register,
     handleSubmit,
@@ -29,6 +32,14 @@ const Join = () => {
   };
 
   const [mark, setMark] = useState(false);
+  const [name, setName] = useState("");
+
+  const handleNextClick = (e) => {
+    if (!name) {
+      e.preventDefault(); 
+      return alert("이름를 입력해주세요.");
+    }
+  };
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
@@ -230,7 +241,13 @@ const Join = () => {
               <S.Red id="Text">이름</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
-            <S.InputButton type="text" name="name" placeholder="이름" />
+            <S.InputButton 
+              type="text" 
+              name="name" 
+              placeholder="이름" 
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
             <p id="NameResult"></p>
           </S.InputText>
 
@@ -239,7 +256,7 @@ const Join = () => {
               <S.Red id="Text">휴대전화 번호</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
-            <S.InputButton type="string" name="phone" placeholder="" />
+            <S.InputButton type="string" name="phone" value={state.phone} readOnly/>
           </S.InputText>
 
           <S.InputText>
@@ -371,7 +388,7 @@ const Join = () => {
           </S.InputText>
         </S.Input>
 
-        <S.LoginButton disabled={isSubmitting}>회원가입</S.LoginButton>
+        <S.LoginButton onClick={handleNextClick} disabled={isSubmitting}>회원가입</S.LoginButton>
       </S.SellerMain>
     </form>
   );
