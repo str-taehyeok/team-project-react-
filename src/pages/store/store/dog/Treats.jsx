@@ -7,12 +7,13 @@ import TreatsRecommend from './treats/TreatsRecommend';
 import { Link } from "react-router-dom";
 
 // 더미데이터 확인용
-
 const productList = [
     {
+        id : 1,
+        productCategory : "사료",
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 11_900,
-        src : "/assets/images/store/dental-dog.png",
+        productImage1 : "/assets/images/store/dental-dog.png",
         productColor : "Orange",
         productSize : "M",
         reviewStar : 4.5,
@@ -21,9 +22,11 @@ const productList = [
 
     },
     {
+        id : 2,
+        productCategory : "사료",
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 5_900,
-        src : "/assets/images/store/product2.png",
+        productImage1 : "/assets/images/store/product2.png",
         productColor : "Gold",
         productSize : "S",
         reviewStar : 3,
@@ -31,9 +34,11 @@ const productList = [
         productDate : "2023-05-03"
     },
     {
+        id : 3,
+        productCategory : "사료",
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 6_500,
-        src : "/assets/images/store/product3.png",
+        productImage1 : "/assets/images/store/product3.png",
         productColor : "Gradation",
         productSize : "M",
         reviewStar : 2,
@@ -41,9 +46,11 @@ const productList = [
         productDate : "2023-07-03"
     },
     {
+        id : 4,
+        productCategory : "사료",
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 4_000,
-        src : "/assets/images/store/product4.png",
+        productImage1 : "/assets/images/store/product4.png",
         productColor : "Dark Purple",
         productSize : "L",
         reviewStar : 5,
@@ -51,9 +58,11 @@ const productList = [
         productDate : "2023-03-03"
     },
     {
+        id : 5,
+        productCategory : "사료",
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 12_900,
-        src : "/assets/images/store/product5.png",
+        productImage1 : "/assets/images/store/product5.png",
         productColor : "Light Purple",
         productSize : "L",
         reviewStar : 2,
@@ -61,9 +70,11 @@ const productList = [
         productDate : "2023-07-03"
     },
     {
+        id : 6,
+        productCategory : "사료",
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 14_000,
-        src : "/assets/images/store/product6.png",
+        productImage1 : "/assets/images/store/product6.png",
         productColor : "Gold",
         productSize : "S",
         reviewStar : 1,
@@ -71,9 +82,11 @@ const productList = [
         productDate : "2023-01-03"
     },
     {
+        id : 7,
+        productCategory : "사료",
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 7_900,
-        src : "/assets/images/store/dental-dog.png",
+        productImage1 : "/assets/images/store/dental-dog.png",
         productColor : "Orange",
         productSize : "M",
         reviewStar : 4.5,
@@ -81,9 +94,11 @@ const productList = [
         productDate : "2023-01-07"
     },
     {
+        id : 8,
+        productCategory : "사료",
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 8_000,
-        src : "/assets/images/store/product2.png",
+        productImage1 : "/assets/images/store/product2.png",
         productColor : "Gradation",
         productSize : "L",
         reviewStar : 4,
@@ -92,13 +107,12 @@ const productList = [
     },
 ]
 
-
 const Treats = () => {
 
-    const bestProducts = productList.map(({productName, productPrice, src}, i) => (
+    const bestProducts = productList.map(({productName, productPrice, productImage1}, i) => (
         <S.BestProduct key={i} >
             <Link to={"/product"}>
-            <img src={src} alt={"상품" + (i + 1)} />
+            <img src={productImage1} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
             </Link>
             <span style={{ fontWeight: 700 }}>{productPrice}</span>
@@ -106,10 +120,10 @@ const Treats = () => {
         </S.BestProduct>
     ))
 
-    const specialProducts = productList.map(({productName, productPrice, src}, i) => (
+    const specialProducts = productList.map(({productName, productPrice, productImage1}, i) => (
         <S.SpecialProduct key={i}>
             <Link to={"/product"}>
-            <img src={src} alt={"상품" + (i + 1)}/>
+            <img src={productImage1} alt={"상품" + (i + 1)}/>
             <span>{productName}</span>
             </Link>
             <span style={{ fontWeight: 700 }}>{productPrice}</span>
@@ -117,10 +131,10 @@ const Treats = () => {
         </S.SpecialProduct >
     ))
 
-    const recommendProducts = productList.map(({productName, productPrice, src}, i) => (
+    const recommendProducts = productList.map(({productName, productPrice, productImage1}, i) => (
         <S.Product key={i} >
             <Link to={"/product"}>
-            <img src={src} alt={"상품" + (i + 1)} />
+            <img src={productImage1} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
             </Link>
             <span style={{ fontWeight: 700 }}>{productPrice}</span>

@@ -8,7 +8,7 @@ const productList = [
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 11_900,
-        src : "/assets/images/store/dental-dog.png",
+        productImage1 : "/assets/images/store/dental-dog.png",
         productColor : "Orange",
         productSize : "M",
         reviewStar : 4.5,
@@ -19,7 +19,7 @@ const productList = [
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 5_900,
-        src : "/assets/images/store/product2.png",
+        productImage1 : "/assets/images/store/product2.png",
         productColor : "Gold",
         productSize : "S",
         reviewStar : 3,
@@ -29,7 +29,7 @@ const productList = [
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 6_500,
-        src : "/assets/images/store/product3.png",
+        productImage1 : "/assets/images/store/product3.png",
         productColor : "Gradation",
         productSize : "M",
         reviewStar : 2,
@@ -39,7 +39,7 @@ const productList = [
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 4_000,
-        src : "/assets/images/store/product4.png",
+        productImage1 : "/assets/images/store/product4.png",
         productColor : "Dark Purple",
         productSize : "L",
         reviewStar : 5,
@@ -49,7 +49,7 @@ const productList = [
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 12_900,
-        src : "/assets/images/store/product5.png",
+        productImage1 : "/assets/images/store/product5.png",
         productColor : "Light Purple",
         productSize : "L",
         reviewStar : 2,
@@ -59,7 +59,7 @@ const productList = [
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 14_000,
-        src : "/assets/images/store/product6.png",
+        productImage1 : "/assets/images/store/product6.png",
         productColor : "Gold",
         productSize : "S",
         reviewStar : 1,
@@ -69,7 +69,7 @@ const productList = [
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 7_900,
-        src : "/assets/images/store/dental-dog.png",
+        productImage1 : "/assets/images/store/dental-dog.png",
         productColor : "Orange",
         productSize : "M",
         reviewStar : 4.5,
@@ -79,7 +79,7 @@ const productList = [
     {
         productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
         productPrice : 8_000,
-        src : "/assets/images/store/product2.png",
+        productImage1 : "/assets/images/store/product2.png",
         productColor : "Gradation",
         productSize : "L",
         reviewStar : 4,
@@ -89,7 +89,7 @@ const productList = [
 ]
 
 
-const products = productList.map(({productName, productPrice, src}, i) => (
+const products = productList.map(({productName, productPrice, productImage1}, i) => (
     // <S.BestProduct key={i} >
     //     <Link to={"/product"}>
     //         <img src={src} alt={"상품" + (i + 1)} />
@@ -100,7 +100,7 @@ const products = productList.map(({productName, productPrice, src}, i) => (
     // </S.BestProduct>
 <div key={i} >
         <Link to={"/product"}>
-            <img src={src} alt={"상품" + (i + 1)} />
+            <img src={productImage1} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
         </Link>
         <span style={{ fontWeight: 700 }}>{productPrice}<br/>원</span>
