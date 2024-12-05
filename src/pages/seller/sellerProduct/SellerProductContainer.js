@@ -3,35 +3,30 @@ import S from "./style"
 import {Outlet, useLocation} from "react-router-dom";
 
 
-
-
 const SellerProductContainer = () => {
     const location = useLocation();
 
-// 경로에 따라 동적으로 제목 변경
     const pageTitle = () => {
         switch (location.pathname) {
             case '/seller/product':
                 return '상품조회';
-            case '/seller/product/register':
+            case '/seller/product-write':
                 return '신규 상품등록';
-            case '/seller/product/modify':
+            case '/seller/product-update':
                 return '상품수정';
             default:
                 return '상품조회';
         }
     };
 
-
-
     return (
         <div>
             <S.Content>
                 <S.Title >
-                    <span>{pageTitle}</span>
+                    <span>{pageTitle()}</span>
                 </S.Title >
-            </S.Content>
             <Outlet/>
+            </S.Content>
         </div>
     );
 };

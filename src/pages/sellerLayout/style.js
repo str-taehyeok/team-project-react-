@@ -8,7 +8,6 @@ const S = {}
         flex-direction: column;
         width: 100dvw;
         height : 100dvh;
-        //padding: 118px 0 0 0;
     `;
     S.Header = styled.header`
         border-bottom: solid 2px #828282;
@@ -139,6 +138,7 @@ const S = {}
             background-color: #fff;
             color: #131313;
             ${h7Medium};
+            padding: 5px 0 ;
         }
         
         & div{
