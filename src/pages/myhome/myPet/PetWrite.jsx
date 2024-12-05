@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Form, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import S from './style';
 
 const PetWrite = () => {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({ mode: 'onChange' });
+  const { register, handleSubmit, formState: { isSubmitting }} = useForm({ mode: 'onChange' });
   const [petName, setPetName] = useState(""); // 마이펫 이름
+  const [petKind, setPetKind] = useState(""); // 마이펫 종류
   const [petGender, setPetGender] = useState(""); // 마이펫 성별
   const [petBreed, setPetBreed] = useState(""); // 마이펫 품종
+  const [petNeuter, setPetNeuter] = useState(""); // 마이펫 중성화
   const navigate = useNavigate();
   const memberId = 23;
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setPetName(value); 
+  };
 
   const handleNextClick = (e) => {
     // 입력 값 확인
@@ -17,15 +24,20 @@ const PetWrite = () => {
       e.preventDefault();
       return alert("이름을 입력해주세요.");
     }
+    if (!petKind) {
+      e.preventDefault();
+      return alert("종류를 입력해주세요.");
+    }
     if (!petGender) {
       e.preventDefault();
       return alert("성별을 체크해주세요.");
     }
-    if (!petBreed) {
+    if (!petNeuter) {
       e.preventDefault();
-      return alert("품종을 입력해주세요.");
+      return alert("중성화 여부를 입력해주세요.");
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit(async (data) => {
@@ -72,7 +84,7 @@ const PetWrite = () => {
               <S.Profilepic>
                 <img src="/assets/images/layout/petimg.png" alt="펫 이미지" />
               </S.Profilepic>
-              <S.Name type="text">{Form.petName || "이름"}</S.Name>
+              <S.Name>{petName || "이름"}</S.Name>
               <S.EditButton>이미지 편집</S.EditButton>
             </S.PetCard>
             <S.Title as="h5">
@@ -85,7 +97,7 @@ const PetWrite = () => {
                   placeholder="이름을 입력하세요"
                   {...register("petName", { required: "이름은 필수 입력 항목입니다." })}
                   value={petName}
-                  onChange={(e) => setPetName(e.target.value)}
+                  onChange= {handleChange}
                 />
               </S.InputGroup>
               {/* 반려 종류 */}
@@ -93,11 +105,11 @@ const PetWrite = () => {
                 <S.PetKind>반려종류</S.PetKind>
                 <S.RadioWrap>
                   <S.Gap>
-                    <input type="radio" value="반려견" {...register("petKind", { required: true })} />
+                    <input type="radio" {...register("petKind", { required: true })} value="반려견"  onChange={(e) => setPetKind(e.target.value)} />
                     <label>반려견</label>
                   </S.Gap>
                   <S.Gap>
-                    <input type="radio" value="반려묘" {...register("petKind", { required: true })} />
+                    <input type="radio"  {...register("petKind", { required: true })} value="반려묘" onChange={(e) => setPetKind(e.target.value)} />
                     <label>반려묘</label>
                   </S.Gap>
                 </S.RadioWrap>
@@ -131,7 +143,6 @@ const PetWrite = () => {
               <S.InputGroup3>
                 <S.PetBrith>생일</S.PetBrith>
                 <input type="date" {...register("petBirth", { required: "생일을 선택하세요." })} />
-                {errors.petBirth && <p>{errors.petBirth.message}</p>}
               </S.InputGroup3>
               {/* 몸무게 */}
               <S.InputGroup4>
@@ -143,11 +154,11 @@ const PetWrite = () => {
                 <S.PetNeuter>중성화</S.PetNeuter>
                 <S.RadioWrap>
                   <S.Gap>
-                    <input type="radio" value="했어요" {...register("petNeuter")} />
+                    <input type="radio" value="했어요" {...register("petNeuter")} onChange={(e) => setPetNeuter(e.target.value)} />
                     <label>했어요</label>
                   </S.Gap>
                   <S.Gap>
-                    <input type="radio" value="안했어요" {...register("petNeuter")} />
+                    <input type="radio" value="안했어요" {...register("petNeuter")} onChange={(e) => setPetNeuter(e.target.value)} />
                     <label>안했어요</label>
                   </S.Gap>
                 </S.RadioWrap>
