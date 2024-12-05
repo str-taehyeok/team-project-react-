@@ -9,19 +9,20 @@ const HeartBtn = () => {
     setIsHeartClick(!isHeartClick)
   }
 
+
   return (
     <>
       {isHeartClick ? (
         <img 
           className="like-icon"
           onClick={onClickToChangeHeartCheck}
-          src={`${process.env.PUBLIC_URL}/assets/images/store/heart-click.png`} alt="하트버튼 눌림" 
+          src={`${process.env.PUBLIC_URL}/assets/images/store/liked.png`} alt="하트버튼 눌림" 
         />
       ) : (
         <img 
           className="like-icon"
           onClick={onClickToChangeHeartCheck}
-          src={`${process.env.PUBLIC_URL}/assets/images/store/heart-not-click.png`} alt="하트버튼" 
+          src={`${process.env.PUBLIC_URL}/assets/images/store/like.png`} alt="하트버튼" 
         />
       )}
     </>

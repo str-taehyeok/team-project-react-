@@ -1,15 +1,19 @@
 import styled from "styled-components";
-import { gray200, h1Bold, h2Bold, h4Medium, h6Medium, h7Bold, h7Medium, h8Medium, h9Medium } from "../../../global/common";
+import { gray200, h1Bold, h2Bold, h4Medium, h6Medium, h7Bold, h7Medium, h8Medium, h9Medium, h8Regular, h10Regular } from "../../../global/common";
 
 const S = {}
 
 S.NoCartWrap = styled.div`
   width: 1920px;
   margin: 0 auto;
+  
 `
 S.NoCart = styled.div`
   width: 1440px;
   margin: 0 auto;
+  display: block;
+  padding: 0 0 668px 0;
+
 `
 
 S.CartWrap = styled.div`
@@ -35,12 +39,28 @@ S.NoCartTitle = styled.div`
 `
 
 S.NoCartInfo = styled.div`
-  
-  & p {
+  width: 434px;
+  height: 220px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 
+  
+  & div {
     ${h7Medium}
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 28px;
+    justify-content: center;
+    align-items: center;
   }
+
+
 `
+
 
 S.CartTitle = styled.div`
   margin-top: 190px;
@@ -161,6 +181,60 @@ S.CartProductRadio = styled.div`
     color:#828282;
   }
 `
+
+// 추천 프로덕트 디자인
+
+S.RecommendProduct = styled.div`
+  
+  & img {
+    width: 220px;
+    height: 220px;
+  }
+
+`
+
+S.RecommendInfo = styled.div`
+
+  width: 220px;
+
+  & > p {
+    width: 220px;
+    height: 40px;
+    display: flex;
+    overflow: hidden;
+  }
+  
+  & span:nth-child(1) {
+    ${h8Regular}
+    display: flex;
+    overflow: hidden;
+  }
+
+  & span:nth-child(2) {
+    ${h7Bold}
+  }
+
+  & p {
+    ${h10Regular}
+  } 
+
+
+`
+
+
+S.RecommendStar = styled.div `
+  width: 100px;
+  height: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+
+  & p {
+    color: #828282;
+  }
+
+`
+ 
 
 
 
