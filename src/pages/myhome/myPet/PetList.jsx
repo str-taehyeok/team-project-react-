@@ -10,7 +10,7 @@ const PetList = () => {
   useEffect(() => {
     const getPets = async () => {
       try {
-        const response = await fetch("http://localhost:10000/api/pets"); // API URL 수정
+        const response = await fetch("http://localhost:10000/my-pet/write"); 
         if (!response.ok) {
           return console.error(`데이터가 없습니다.`)
         }
