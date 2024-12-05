@@ -1,17 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import S from "./style";
 import { Link } from "react-router-dom";
 
-const PetList = ({ pets = [] }) => {
+const PetList = () => {
+  const [pets, setPets] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // if (pets.length === 0) {
-    //   alert("펫을 등록해주세요");
-    //   navigate("/no-pet");
-    // }
+    const getPets = async () => {
+      try {
+        const response = await fetch("http://localhost:10000/api/pets"); // API URL 수정
+        if (!response.ok) {
+          return console.error(`데이터가 없습니다.`)
+        }
+        const data = await response.json();
+        setPets(data);
+      } catch (error) {
+        console.error(error);
+        alert("펫 데이터를 가져오는 중 오류가 발생했습니다.");
+      }
+    };
+
+    getPets();
+  }, []);
+
+  useEffect(() => {
+    if (pets.length === 0) {
+      alert("펫을 등록해주세요");
+      navigate("/my-pet/pet-not");
+    }
   }, [pets, navigate]);
+
 
   return (
     <div>
