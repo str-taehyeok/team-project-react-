@@ -45,7 +45,6 @@ import PetsonalTest from "../pages/petsonal/PetsonalTest";
 import PetsonalResult from "../pages/petsonal/PetsonalResult";
 import ProductContainer from "../pages/store/product/ProductContainer";
 import ProductDetail from "../pages/store/product/ProductDetail";
-import SellerProductView from "../pages/store/product/SellerProductView";
 import StoreContainer from "../pages/store/store/StoreContainer";
 import StoreMain from "../pages/store/store/StoreMain";
 import Cart from "../pages/store/cart/Cart";
@@ -190,11 +189,7 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <ProductDetail />
-                    },
-                    {
-                        path: "seller-product-view",
-                        element: <SellerProductView />
-                    },
+                    }
                 ]
             },
             {

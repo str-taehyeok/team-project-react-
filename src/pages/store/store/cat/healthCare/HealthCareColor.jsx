@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import S from "../style";
+import { Link } from "react-router-dom";
 
 const HealthCareColor = ({productList}) => {
 
@@ -41,10 +42,12 @@ const HealthCareColor = ({productList}) => {
         setIsOpen(false);
     };
 
-    const colorProducts = filterdProducts.map(({productName, productPrice, src}, i) => (
+    const colorProducts = filterdProducts.map(({productName, productPrice, productImage1}, i) => (
         <S.Product key={i}>
-            <img src={src} alt={"상품" + (i + 1)}/>
+            <Link to={"/product"}>
+            <img src={productImage1} alt={"상품" + (i + 1)}/>
             <span>{productName}</span>
+            </Link>
             <span style={{fontWeight: 700}}>{productPrice}</span>
             <button>담기</button>
         </S.Product>
@@ -63,11 +66,6 @@ const HealthCareColor = ({productList}) => {
         };
     }, []);
 
-
-    // const handleSelect = (option) => {
-    //     console.log('Selected:', option);
-    //     setIsOpen(false);
-    // };
 
     // 전체 필터
     const filterProducts = (color, price, size, sort) => {
@@ -123,9 +121,6 @@ const HealthCareColor = ({productList}) => {
         };
     }, []);
 
-    // const toggleDropdown = () => {
-    //     setIsOpen(!isOpen);
-    // };
     const toggleDropdown = (dropdown) => {
         setOpenDropdown(openDropdown === dropdown ? null : dropdown);
         setIsOpen(!isOpen);
