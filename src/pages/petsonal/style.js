@@ -12,7 +12,7 @@ const S = {}
 S.PetsonalContainer = styled.div`
   ${flexColumnCenter};
   
-  & a {
+  & .go-to-start {
     width: 464px;
     height: 55px;
     border-radius: 20px;
@@ -30,7 +30,7 @@ S.PetsonalContainer = styled.div`
 S.StartImage = styled.div`
   position: relative;
   width: 100%;
-  height: 1080px;
+  height: 962px;
   max-width: 2080px;
 `
 
@@ -104,7 +104,7 @@ S.TextButton = styled.div`
   gap: 40px;
 `
 
-S.GoCommunity = styled.div`
+S.GoCommunityButton = styled.button`
   width: 395px;
   height: 80px;
   color: white;
@@ -272,6 +272,7 @@ S.PetProfile =styled.div`
 `
 
 S.PetImage =styled.img`
+  background-color: white;
   width: 292px;
   height: 292px;
   border-radius: 50%;
@@ -296,6 +297,7 @@ S.PercentageContainer = styled.div`
 S.AllRate = styled.div`
   width: 505px;
   ${flexColumnCenter};
+  gap: 5px;
 `
 
 S.ResultCategory = styled.div`
@@ -318,6 +320,31 @@ S.Percent = styled.div`
   height: 20px;
   border-radius: 20px;
   background-color: white;
+`
+
+S.CuteAndChicGage = styled.div`
+  border-radius: 20px;
+  width: 10%;
+  height: 100%;
+  background-color: blue;
+`
+S.CalmAndActive = styled.div`
+  border-radius: 20px;
+  width: 60%;
+  height: 100%;
+  background-color: blue;
+`
+S.LazyAndDilight = styled.div`
+  border-radius: 20px;
+  width: 70%;
+  height: 100%;
+  background-color: blue;
+`
+S.CowardAndBrave = styled.div`
+  border-radius: 20px;
+  width: 50%;
+  height: 100%;
+  background-color: blue;
 `
 
 

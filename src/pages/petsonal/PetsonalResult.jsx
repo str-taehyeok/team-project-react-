@@ -45,7 +45,9 @@ const PetsonalResult = () => {
                   </S.ResultCategory>
                   <S.PercentageWrap>
                     <span>0</span>
-                    <S.Percent></S.Percent>
+                    <S.Percent>
+                      <S.CuteAndChicGage></S.CuteAndChicGage>
+                    </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
                 </S.AllRate>
@@ -56,7 +58,9 @@ const PetsonalResult = () => {
                   </S.ResultCategory>
                   <S.PercentageWrap>
                     <span>0</span>
-                    <S.Percent></S.Percent>
+                    <S.Percent>
+                      <S.CalmAndActive></S.CalmAndActive>
+                    </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
                 </S.AllRate>
@@ -67,7 +71,9 @@ const PetsonalResult = () => {
                   </S.ResultCategory>
                   <S.PercentageWrap>
                     <span>0</span>
-                    <S.Percent></S.Percent>
+                    <S.Percent>
+                      <S.LazyAndDilight></S.LazyAndDilight>
+                    </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
                 </S.AllRate>
@@ -78,7 +84,9 @@ const PetsonalResult = () => {
                   </S.ResultCategory>
                   <S.PercentageWrap >
                     <span>0</span>
-                    <S.Percent></S.Percent>
+                    <S.Percent>
+                      <S.CowardAndBrave></S.CowardAndBrave>
+                    </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
                 </S.AllRate>

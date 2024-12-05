@@ -13,7 +13,7 @@ const PetsonalMain = () => {
           <S.MainFirst src= {`${process.env.PUBLIC_URL}/assets/images/petsonal/petsonal-main.png`} alt="메인" />
         </S.StartImage>
         <S.MainText>what’s your pet?</S.MainText>
-        <Link to={"./test"}>
+        <Link className="go-to-start" to={"./test"}>
            TEST START
         </Link>
         <S.SecondImage>
@@ -36,9 +36,9 @@ const PetsonalMain = () => {
 
         <S.ThirdImage>
           <S.SecondTextWrap>
-            <S.SecondText>귀여운 리워드 뱃지들을 모아보세요 🔎</S.SecondText>
+            <S.SecondText>색깔별 포스트를 구경해보세요 🔎</S.SecondText>
             <S.SecondSubText>
-              수집한 내 뱃지들은 커뮤니티 메인 홈페이지에서 확인 가능해요.
+              다양한 소식들은 커뮤니티 메인 홈페이지에서 확인 가능해요.
             </S.SecondSubText>
           </S.SecondTextWrap>
           <S.BookWrap>
@@ -50,7 +50,9 @@ const PetsonalMain = () => {
                   를 <br /> 더 완벽하게 즐기는 방법
                 </S.Small>
               </div>
-              <S.GoCommunity >POW POW 커뮤니티</S.GoCommunity >
+              <Link to={"/community"}>
+                <S.GoCommunityButton>POW POW 커뮤니티</S.GoCommunityButton >
+              </Link>            
             </S.TextButton>
           </S.BookWrap>
         </S.ThirdImage>
