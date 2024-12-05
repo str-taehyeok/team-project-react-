@@ -10,9 +10,10 @@ const PetList = () => {
   useEffect(() => {
     const getPets = async () => {
       try {
-        const response = await fetch("http://localhost:10000/my-pet/write"); 
+        const response = await fetch("http://localhost:10000/my-pet/List"); 
         if (!response.ok) {
-          return console.error(`데이터가 없습니다.`)
+          console.error("데이터가 없습니다.");
+          return;
         }
         const data = await response.json();
         setPets(data);
@@ -26,12 +27,11 @@ const PetList = () => {
   }, []);
 
   useEffect(() => {
-    if (pets.length === 0) {
+    if (pets.length === 1) {
       alert("펫을 등록해주세요");
       navigate("/my-pet/pet-not");
     }
   }, [pets, navigate]);
-
 
   return (
     <div>
@@ -41,17 +41,22 @@ const PetList = () => {
         </S.NoPetButton>
       </Link>
       <S.PetList>
-          <S.PetCard2>
+        {pets.map(({ id, petName, petImage, petBirth }) => (
+          <S.PetCard2 key={id}>
             <S.Profilepic>
-              <img src="/assets/images/layout/petimg.png" alt="펫 이미지" />
+              <img
+                src={petImage || "/assets/images/layout/petimg.png"}
+                alt={`${petName} 이미지`}
+              />
             </S.Profilepic>
-            <S.Name>이름</S.Name>
-            <a>2019년 08월 17일생</a>
-            <Link to={"/my-pet/pet-update"}>
-            <S.EditButton2 type="button">편집</S.EditButton2>
+            <S.Name>{petName}</S.Name>
+            <a>{petBirth}</a>
+            <Link to={`/my-pet/pet-update/`}>
+              <S.EditButton2 type="button">편집</S.EditButton2>
             </Link>
             <S.DeleteButton>삭제</S.DeleteButton>
           </S.PetCard2>
+        ))}
       </S.PetList>
     </div>
   );
