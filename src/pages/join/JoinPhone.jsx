@@ -3,11 +3,9 @@ import S from "./style";
 import { Link } from "react-router-dom";
 import { JoinContext } from "../../context/joinContext";
 
-const sms = "";
-
 const JoinPhone = () => {
 
-  const { state, action } = useContext(JoinContext)
+  const { state} = useContext(JoinContext)
   const [phone, setPhone] = useState(""); // 휴대폰 번호 상태
   const [authNumber, setAuthNumber] = useState(""); // 인증 번호 상태
 
@@ -93,24 +91,4 @@ export default JoinPhone;
 
 
 
-{/* <script>
-{`
-  globalThis.isAuthentication = false;
-  const confirmSubmitButton = document.querySelector(".ConfirmButton");
-  const authenticationInput = document.querySelector("input[name='authNumber']");
-  let authenticationCode = "";
-  console.log(authenticationCode);
-  
-  confirmSubmitButton.addEventListener("click", () => {
-    if (!(authenticationInput.value == authenticationCode)) {
-      globalThis.isAuthentication = false;
-      return alert("인증번호를 확인해주세요.");
-    } else {
-      globalThis.isAuthentication = true;
-      confirmSubmitButton.style.display = "none";
-      console.log(globalThis.isAuthentication);
-      return alert("인증이 확인되었습니다.");
-    }
-  });
-`}
-</script> */}
+

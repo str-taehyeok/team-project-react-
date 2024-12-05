@@ -28,7 +28,7 @@ const TreatsBest = ({bestProducts}) => {
                 {bestProducts.map((product, index) => (
                     <SwiperSlide key={index}>
                         <S.BestProductWrap>
-                            {product}
+                                {product}
                         </S.BestProductWrap>
                     </SwiperSlide>
                 ))}
