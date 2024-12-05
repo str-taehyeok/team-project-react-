@@ -68,7 +68,7 @@ export const PostLightPurpleList = () => {
 
     return (
         <>
-            <S.Title>#LightPurple</S.Title>
+            <S.Title>#Light Purple</S.Title>
             <S.AllPostWrapper>
                 {postList}
             </S.AllPostWrapper>
