@@ -54,7 +54,7 @@ const CommunityMain = () => {
     ))
 
     const orangePosts = orangePostList.map(({postImage1, memberImage, memberNickname}, i) => (
-        <S.OrangePostBox key={i} >
+        <S.OrangePostBox key={i}>
             <S.OrangePost>
                 <S.PostImage>
                     <Link to={`/post/read?postId=${id}`}>
@@ -63,7 +63,7 @@ const CommunityMain = () => {
                 </S.PostImage>
                 <S.ProfileBox>
                     <S.Profile>
-                        <Link to={"../post/others-post-list"}>
+                        <Link to={`/post/list?postId=${id}`}>
                             <img src={memberImage} alt={"게시글 리스트" + (i + 1)} />
                         </Link>
                     </S.Profile>
