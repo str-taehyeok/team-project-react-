@@ -9,21 +9,31 @@ const ProfileList = () => {
     const [isOpenPopup, setIsOpenPopup] = useState(false);
 
     const [formData, setFormData] = useState({
-        userProfileImg: "",
-        userName: "Jane Ryo",
-        userNickName: "Jane",
-        userEmail: "example@gmail.com",
-        userPhone: "01012345678",
-        userAdress1: "06544",
-        userAdress2: "Seoul 34th st."
+        memberImage : "",
+        memberName : "Jane Ryo",
+        memberNickName : "Jane",
+        memberEmail : "example@gmail.com",
+        memberPhone : "01012345678",
+        memberAdress : "06544",
+        memberAdressDetail : "Seoul 34th st."
     });
 
-    const [couponData, setCouponData] = useState({
-        couponCode: "1111111111",
-        couponDiscount: "50",
-        couponDate: "2024-10-04",
-        couponCount: "11",
-    });
+    const [couponData, setCouponData] = useState([
+        {
+            couponCode : "1111111111",
+            couponDiscountRate : "50",
+            couponStart : "2024-10-04",
+            couponEnd : "2024-10-30",
+            couponQuantity : "11",
+        },
+        {
+            couponCode : "1111111111",
+            couponDiscountRate : "50",
+            couponStart : "2024-10-04",
+            couponEnd : "2024-10-30",
+            couponQuantity : "11",
+        }
+    ]);
 
     const onChangeInsertCoupon = (e) => {
         const { name, value } = e.target;
@@ -50,37 +60,40 @@ const ProfileList = () => {
                         <S.ProfileBox>
                             <S.ProfileImage>
                                 <img src={`${process.env.PUBLIC_URL}/assets/images/myhome/default-userImg.png`} alt="프로필사진"/>
-                                <p>{formData.userNickName}</p>
+                                <p>{formData.memberNickName}</p>
                             </S.ProfileImage>
                             <S.ProfileBoxCouponWrap onClick={handleShowPopup}>
                                 <img src={`${process.env.PUBLIC_URL}/assets/images/myhome/coupon-icon.svg`} alt="쿠폰" />
                                 <p>쿠폰</p>
-                                <p>{couponData.couponCount}</p>
+                                <p>{couponData.couponQuantity}</p>
                             </S.ProfileBoxCouponWrap>
                         </S.ProfileBox>
                         <S.MemberInputBoxContainer>
                             <S.MemberInputBoxWrap>
                                 <S.MemberInputBox>
-                                    <S.h7>이름</S.h7><S.h8>{formData.userName}</S.h8>
+                                    <S.h7>이름</S.h7><S.h8>{formData.memberName}</S.h8>
                                 </S.MemberInputBox>
                                 <S.MemberInputBox>
-                                    <S.h7>닉네임</S.h7><S.h8>{formData.userNickName}</S.h8>
+                                    <S.h7>닉네임</S.h7><S.h8>{formData.memberNickName}</S.h8>
                                 </S.MemberInputBox>
                                 <S.MemberInputBox>
-                                    <S.h7>아이디(이메일)</S.h7><S.h8>{formData.userEmail}</S.h8>
+                                    <S.h7>아이디(이메일)</S.h7><S.h8>{formData.memberEmail}</S.h8>
                                 </S.MemberInputBox>
                                 <S.MemberInputBox>
-                                    <S.h7>휴대폰번호</S.h7><S.h8>{formData.userPhone}</S.h8>
+                                    <S.h7>휴대폰번호</S.h7><S.h8>{formData.memberPhone}</S.h8>
                                 </S.MemberInputBox>
-
                                 <S.MemberInputBox>
-                                    <S.h7>주소</S.h7>
+                                    <S.h7Address>주소</S.h7Address>
                                     <S.MemberInputAddress>
-                                        <S.h8>{formData.userAdress1}</S.h8><S.h8>{formData.userAdress2}</S.h8>
+                                        <S.h8>{formData.memberAdress}</S.h8>
+                                        <S.h8>{formData.memberAdress}</S.h8>
+                                        <S.h8>{formData.memberAdressDetail}</S.h8>
                                     </S.MemberInputAddress>
                                 </S.MemberInputBox>
-
                             </S.MemberInputBoxWrap>
+                            <S.MemeberUnsubscribe>
+                                <Link to={"/unsubscribe"}>*즉시탈퇴 > POWPOW 탈퇴하기</Link>
+                            </S.MemeberUnsubscribe>
                         </S.MemberInputBoxContainer>
                     </S.ProfileBoxWrap>
                 </S.MyHomeWrap>
@@ -88,17 +101,17 @@ const ProfileList = () => {
 
             {/* 팝업 */}
             {isOpenPopup ? (
-                <CouponPopup 
-                couponData={couponData} 
-                onChangeInsertCoupon={onChangeInsertCoupon} 
-                handleShowPopup={handleShowPopup} 
-                isOpenPopup={isOpenPopup}
-                setIsOpenPopup={setIsOpenPopup}
+                <CouponPopup
+                    couponData={couponData}
+                    onChangeInsertCoupon={onChangeInsertCoupon}
+                    handleShowPopup={handleShowPopup}
+                    isOpenPopup={isOpenPopup}
+                    setIsOpenPopup={setIsOpenPopup}
                 />
             ) : (
                 <></>
             )}
-            
+
         </div>
     );
 };
