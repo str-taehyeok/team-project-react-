@@ -102,6 +102,15 @@ S.HotImage = styled.div`
   border-radius: 10px;
   position: relative;
   overflow: hidden;
+
+    .like-icon {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
 `;
 
 S.Coupon = styled.div`
@@ -185,14 +194,14 @@ S.LargePost = styled.div`
   background-color: #f0f0f0;
   position: relative;
   margin-bottom: 150px;
-`;
 
-S.HeartBtn = styled.button`
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  .like-icon {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
 `;
 
 S.PostImage = styled.div`
@@ -230,6 +239,15 @@ S.Post = styled.div`
   height: 300px;
   margin-bottom: 145px;
   position: relative;
+
+  .like-icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
 `;
 
 S.ProfileInfo = styled.div`
@@ -314,6 +332,14 @@ S.ProductCard = styled.div`
   border-radius: 10px;
   position: relative;
   background-color: #fff;
+
+  .like-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
 `;
 
 S.CardImage = styled.div`

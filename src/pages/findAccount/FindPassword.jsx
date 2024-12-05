@@ -1,19 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FindContext } from "../../context/findContext";
 import S from "./style";
 import { useForm } from "react-hook-form";
 
 const FindPassword = () => {
-  const { state, action } = useContext(FindContext);
 
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [newPassword] = useState("");
+  const [confirmNewPassword] = useState("");
   const [authNumber, setAuthNumber] = useState("");
   const {
     register,
     getValues,
-    formState: { isSubmitting, errors },
+    formState: { errors },
   } = useForm({ mode: "onChange" });
   const [mark, setMark] = useState(false);
 
@@ -82,7 +80,7 @@ const FindPassword = () => {
             {errors && errors?.password?.type === "required" && (
               <S.P>비밀번호를 입력하세요</S.P>
             )}
-            {errors && errors?.password?.type === "pattern" && (
+            {errors && errors?.buassword?.type === "pattern" && (
               <S.P>
                 소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야 합니다.
               </S.P>
@@ -123,7 +121,6 @@ const FindPassword = () => {
               <S.P>{errors.passWordConfirm.message}</S.P>
             )}
 
-            {/* 에러메세지 */}
             {errors.agrees && (
               <S.P id="AgreeResult" style={{ color: "red" }}>
                 {errors.agrees.message}
