@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import S from './style';
-import { Link } from 'react-router-dom';
+
+
 
 const CouponPopup = ({couponData, onChangeInsertCoupon, handleShowPopup}) => {
-
-    console.log(couponData)
 
     const couponList = couponData.map((coupon, i) => (
         <S.CouponPopupBoxWrap key={i}>
@@ -28,7 +27,9 @@ const CouponPopup = ({couponData, onChangeInsertCoupon, handleShowPopup}) => {
                 </S.CouponPopupInputWrap>
                 <S.CouponP1>받으신 쿠폰을 등록하고 간편하게 사용하세요</S.CouponP1>
                 <S.CouponP2>*등록된 쿠폰중 유효기간이 만료된 쿠폰은 자동 소멸됩니다</S.CouponP2>
-                {couponList}
+                {/*<S.couponList>*/}
+                    {couponList}
+                {/*</S.couponList>*/}
             </S.CouponPopupContainer>
         </S.CouponBgWrap>
     );

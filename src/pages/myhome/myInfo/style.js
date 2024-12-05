@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import {
-    h1Bold,h7Bold,h8Regular,gray500,h7Regular,h2Bold,h6Regular,blue100,h9Regular
+    h1Bold,h7Bold,h8Regular,gray500,h7Regular,h2Bold,h6Regular,h9Regular
 } from '../../../global/common'
 import theme from "../../../global/theme";
-
+import { Link } from 'react-router-dom'
 // import theme from "../../global/theme";
 
 const S = {}
@@ -150,9 +150,10 @@ S.MyHomeLeft = styled.div`
               font-weight: 400;
                 
                 & a {
-                    color: red;
+                    color: black;
                 }
-                & a.linkActive{
+                
+                & .active {
                     color: yellow;
                 }
             }
@@ -313,7 +314,7 @@ S.MemberInputAddress = styled.div`
         }
     `;
 
-S.MemeberUnsubscribe = styled.a`
+S.MemeberUnsubscribe = styled(Link)`
         display: flex;
         width: 336px;
     `;

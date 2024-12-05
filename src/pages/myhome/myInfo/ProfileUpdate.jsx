@@ -15,14 +15,6 @@ const ProfileUpdate = () => {
         memberAdressDetail : "Seoul 34th st."
     });
 
-    const [couponData, setCouponData] = useState({
-        couponCode : "1111111111",
-        couponDiscountRate : "50",
-        couponStart : "2024-10-04",
-        couponEnd : "2024-10-30",
-        couponQuantity : "11",
-    });
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -38,7 +30,7 @@ const ProfileUpdate = () => {
             <S.MyHomeContainer>
                 <S.MyHomeWrap>
                     <S.UpdateButtonWrap>
-                        <button><Link to={"/myhome"}>완료</Link></button>
+                        <button onClick={handleSubmit}><Link to={"/myhome"}>완료</Link></button>
                     </S.UpdateButtonWrap>
                     <S.ProfileBoxWrap>
                         <S.ProfileBox>
