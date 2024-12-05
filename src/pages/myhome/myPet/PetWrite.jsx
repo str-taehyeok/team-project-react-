@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {useNavigate } from 'react-router-dom';
 import S from './style';
@@ -38,7 +38,6 @@ const PetWrite = () => {
     }
   };
 
-
   return (
     <form onSubmit={handleSubmit(async (data) => {
       console.log(data)
@@ -50,6 +49,7 @@ const PetWrite = () => {
         body: JSON.stringify({
           petName: data.petName,
           petKind: data.petKind,
+          petImage : "1234",
           petGender: data.petGender,
           petBreed: data.petBreed,
           petBirth: data.petBirth,
