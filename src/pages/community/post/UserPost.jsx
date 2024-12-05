@@ -2,9 +2,9 @@ import React from 'react';
 import S from './style.js';
 import Footer from "../../layout/Footer.jsx";
 import Slide from './Slide.jsx';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
-const MyPost = () => {
+const UserPost = () => {
 
     const [serachParams] = useSearchParams();
     const id = serachParams.get("postId")
@@ -77,4 +77,4 @@ const MyPost = () => {
     );
 };
 
-export default MyPost;                 
+export default UserPost;                 

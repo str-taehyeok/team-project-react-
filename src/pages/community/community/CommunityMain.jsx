@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from "react-dom";
 import Banner from "./Banner.jsx";
 import S from './style.js';
 import Slide from './Slide.jsx';

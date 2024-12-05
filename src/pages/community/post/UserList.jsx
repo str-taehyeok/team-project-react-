@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OthersPostList = () => {
+const UserList = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const OthersPostList = () => {
     );
 };
 
-export default OthersPostList;
+export default UserList;

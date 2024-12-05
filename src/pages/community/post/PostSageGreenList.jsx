@@ -54,7 +54,7 @@ const datas = [
     }
 ]
 
-export const PostLightPurpleList = () => {
+export const PostSageGreenList = () => {
 
     const postList = datas.map((post, i) => (
         <S.Post key={i}>
@@ -68,7 +68,7 @@ export const PostLightPurpleList = () => {
 
     return (
         <>
-            <S.Title>#Light Purple</S.Title>
+            <S.Title>#Sage Green</S.Title>
             <S.AllPostWrapper>
                 {postList}
             </S.AllPostWrapper>
@@ -76,4 +76,4 @@ export const PostLightPurpleList = () => {
     );
 };
 
-export default PostLightPurpleList;
+export default PostSageGreenList;
