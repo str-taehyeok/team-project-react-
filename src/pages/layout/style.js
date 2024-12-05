@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { flexCenterRowSpaceBetween, flexRowCenter, flexColumnCenter, h7Medium, h8Medium } from '../../global/common'
+import {
+    flexCenterRowSpaceBetween, flexRowCenter, flexColumnCenter, h7Medium, h8Medium
+} from '../../global/common'
 import theme from "../../global/theme";
 
 const S = {}
@@ -167,18 +169,4 @@ const S = {}
    margin-bottom: 17px;
 `
 
-// 장바구니 추천 상품
-
-S.RecommendTitle = styled.div`
-    ${h6Bold};
-
-
-
-`
-S.RecommendProducts = styled.div`
-    max-width: 1440px;
-    display: flex;
-    flex-direction: row;
-
-`
 export default S;
