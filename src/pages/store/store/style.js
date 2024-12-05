@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { h1Bold, h7Bold, h7Medium, h6Bold, h6Medium, flexRowCenter, h8Regular, h4Medium } from "../../../global/common";
+import { h1Bold, h7Bold, h7Medium, h6Bold, h6Medium, flexRowCenter, h8Regular, h4Medium, gray500 } from "../../../global/common";
 import { Link } from "react-router-dom";
+import theme from "../../../global/theme";
 
 const S = {}
 
@@ -13,7 +14,6 @@ S.StoreMain = styled.div`
   width: 1440px;
   margin: 0 auto;
 `
-
 
 S.StoreCustomTitle = styled.div`
   width: 1440px;
@@ -37,15 +37,27 @@ S.CustomWrap = styled.div`
 
 `
 
+S.CustomProductWrap = styled.div`
+  display: flex;
+  column-gap: 26px;
+  row-gap: 40px;
+  width: 1440px;
+  flex-wrap: wrap;
+  margin: 0 0 227px 0;
+`
+
 S.CustomProduct = styled.div`
-  width: 342px;
-  height: 558px;
+  width: 340px;
   position: relative;
   .like-icon{
     position: absolute;
     right: 20px;
     top: 20px;
     z-index: 999;
+  }
+
+  .thumb {
+    width: 100%;
   }
 `
 
@@ -77,6 +89,88 @@ S.CustomProductInfo = styled.div`
   }
 
 `
+
+S.CustomProductMessage = styled.p`
+  width: 100%;
+  text-align: center;
+`
+
+
+// 버튼 정렬 스타일
+
+S.SortButtonWrapper = styled.div`
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  margin: 176px 0 60px auto;
+  
+  & > div {
+    position: relative;
+  }
+`
+
+S.SortButtonWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 96px;
+  height: 42px;
+  border-radius: 20px;
+  border: solid 1px ${theme.PALETTE.gray500};
+
+  img { 
+    position: absolute; 
+    top: 50%;
+    right: 6px;
+    transform: translate(0, -50%);
+    width: 12px;
+  }
+`
+
+S.SortModal = styled.div`
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  left: 0;
+  min-width: 114px;
+  top: 50px;
+  z-index: 1000;
+  gap: 12px;
+  border: solid 1px #d9d9d9;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  p {
+    white-space: nowrap;
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  &.active {
+    display: flex;
+  }
+  
+  & input {
+    border : none;
+  }
+`
+
+S.ColorCircle = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: ${({subtitle}) => subtitle};
+`
+
+
+
+
+
 
 S.GoShopping = styled.div`
   margin-top: 298px;
