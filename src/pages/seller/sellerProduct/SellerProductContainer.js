@@ -1,25 +1,36 @@
 import React from 'react';
-import {Outlet} from "react-router-dom";
 import S from "./style"
+import {Outlet, useLocation} from "react-router-dom";
+
+
+
 
 const SellerProductContainer = () => {
+    const location = useLocation();
+
+// 경로에 따라 동적으로 제목 변경
+    const pageTitle = () => {
+        switch (location.pathname) {
+            case '/seller/product':
+                return '상품조회';
+            case '/seller/product/register':
+                return '신규 상품등록';
+            case '/seller/product/modify':
+                return '상품수정';
+            default:
+                return '상품조회';
+        }
+    };
+
+
+
     return (
         <div>
-            <S.Title >
-                <span>상품조회</span>
-            </S.Title >
-            {/*<section className="notice-search">*/}
-            {/*    <div className="search-bar">*/}
-            {/*        <input type="text" className="search" placeholder="상품명을 입력하세요"/>*/}
-            {/*    </div>*/}
-            {/*    <div className="buttons">*/}
-            {/*        <button className="search-btn">검색</button>*/}
-            {/*        <button className="reset-btn">초기화</button>*/}
-            {/*        <button className="new-add-btn"*/}
-            {/*                onClick="location.href='seller-write.seller'">상품등록*/}
-            {/*        </button>*/}
-            {/*    </div>*/}
-            {/*</section>*/}
+            <S.Content>
+                <S.Title >
+                    <span>{pageTitle}</span>
+                </S.Title >
+            </S.Content>
             <Outlet/>
         </div>
     );

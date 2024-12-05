@@ -1,9 +1,21 @@
 import React from 'react';
 import S from './style'
+import {Link, Outlet} from "react-router-dom";
 
 const SellerProductList = () => {
     return (
         <div>
+                <S.NoticeSearch>
+                    <S.Search>
+                        <input type="text" placeholder="상품명을 입력하세요"/>
+                    </S.Search>
+                    <S.Buttons>
+                        <S.SearchButton>검색</S.SearchButton>
+                        <S.ResetButton>초기화</S.ResetButton>
+                        <Link to={"/seller/product-write"}><S.NewButton>상품등록</S.NewButton></Link>
+                    </S.Buttons>
+                </S.NoticeSearch>
+                <Outlet/>
             <S.NoticeSearch>
                 <S.Table>
                     <thead>
