@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import S from "./style";
 const CouponList = () => {
 
@@ -20,6 +20,60 @@ const CouponList = () => {
             adminCouponCode : '쿠폰코드',
         },
     ];
+
+    const [couponData, setCouponData] = useState([
+        {
+            couponCode : "1111111111",
+            couponDiscountRate : "50",
+            couponStart : "2024-10-04",
+            couponEnd : "2024-10-30",
+            couponQuantity : "11",
+        },
+        {
+            couponCode : "1111111111",
+            couponDiscountRate : "50",
+            couponStart : "2024-10-04",
+            couponEnd : "2024-10-30",
+            couponQuantity : "11",
+        },
+        {
+            couponCode : "1111111111",
+            couponDiscountRate : "50",
+            couponStart : "2024-10-04",
+            couponEnd : "2024-10-30",
+            couponQuantity : "11",
+        },
+        {
+            couponCode : "1111111111",
+            couponDiscountRate : "50",
+            couponStart : "2024-10-04",
+            couponEnd : "2024-10-30",
+            couponQuantity : "11",
+        },
+    ]);
+
+    const couponList = couponData.map((coupon, i) => (
+        <S.CouponPopupBoxWrap key={coupon.couponCode}>
+            <S.h2b>첫 구매 최대 {coupon.couponDiscountRate}%할인</S.h2b>
+            <S.h6>유효기간 : {coupon.couponStart} ~ {coupon.couponEnd}까지</S.h6>
+        </S.CouponPopupBoxWrap>
+    ))
+
+    const couponList = couponData.map((coupon, i) => (
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+
+        </table>
+    ))
+
+
 
     return (
         <div>
