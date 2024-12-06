@@ -51,7 +51,7 @@ const PetList = () => {
             </S.Profilepic>
             <S.Name>{petName}</S.Name>
             <a>{petBirth}</a>
-            <Link to={`/my-pet/pet-update/`}>
+            <Link to={`/my-pet/pet-update/${id}`}>
               <S.EditButton2 type="button">편집</S.EditButton2>
             </Link>
             <S.DeleteButton>삭제</S.DeleteButton>
