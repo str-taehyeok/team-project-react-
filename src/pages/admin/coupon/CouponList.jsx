@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import S from "./style";
+import { Link } from 'react-router-dom';
 const CouponList = () => {
 
     // const startdateInput = document.querySelector("#start-date");
@@ -50,58 +51,55 @@ const CouponList = () => {
 
     const couponList = couponData.map((coupon, i) => (
         <S.TableRow key={i}>
-            <S.TableCell>{i}</S.TableCell>
+            <S.TableCell>{i + 1}</S.TableCell>
             <S.TableCell>{coupon.couponTitle}</S.TableCell>
             <S.TableCell>{coupon.couponStart}</S.TableCell>
             <S.TableCell>{coupon.couponEnd}</S.TableCell>
             <S.TableCell>{coupon.couponCode}</S.TableCell>
-            <S.CouponEdit>수정</S.CouponEdit>
-            <S.CouponDelete>삭제</S.CouponDelete>
+            <S.TableCell>
+                <S.CouponEdit><Link to={"/admin/coupon/coupon-update"}>수정</Link></S.CouponEdit>
+                <S.CouponDelete><Link to={"/"}>삭제</Link></S.CouponDelete>
+            </S.TableCell>
         </S.TableRow>
     ));
 
     return (
         <div>
-            <S.CouponListTitle>
-                <S.h1>쿠폰 조회</S.h1>
-            </S.CouponListTitle>
+            <S.CouponListWrap>
+                <S.CouponListTitleWrap>
+                    <S.CouponListTitle>
+                        <S.h1>쿠폰 조회</S.h1>
+                    </S.CouponListTitle>
 
-            <S.NoticeSearch>
-                <S.SearchBar>
-                    <S.Search type="text" placeholder="쿠폰명을 입력하세요"/>
-                </S.SearchBar>
-                <S.Buttons>
-                    <S.SearchBtn type="button">검색</S.SearchBtn>
-                    <S.ResetBtn type="button" onClick="location.reload();">초기화</S.ResetBtn>
-                    <S.NewAddBtn type="button" >신규 추가</S.NewAddBtn>
-                </S.Buttons>
-            </S.NoticeSearch>
-
-            <S.NoticeList>
-                <S.Table>
-                    <S.TableRow>
-                        <S.TableCellTh>No</S.TableCellTh>
-                        <S.TableCellTh>쿠폰명</S.TableCellTh>
-                        <S.TableCellTh>시작일</S.TableCellTh>
-                        <S.TableCellTh>종료일</S.TableCellTh>
-                        <S.TableCellTh>쿠폰코드</S.TableCellTh>
-                        <S.TableCellTh>관리</S.TableCellTh>
-                    </S.TableRow>
-                        {/*<tr>*/}
+                    <S.NoticeSearch>
+                        <S.SearchBar>
+                            <S.Search type="text" placeholder="쿠폰명을 입력하세요"/>
+                        </S.SearchBar>
+                        <S.Buttons>
+                            <S.SearchBtn type="button">검색</S.SearchBtn>
+                            <S.ResetBtn type="button" onClick={() => window.location.reload()}>초기화</S.ResetBtn>
+                            <S.NewAddBtn type="button">신규 추가</S.NewAddBtn>
+                        </S.Buttons>
+                    </S.NoticeSearch>
+                </S.CouponListTitleWrap>
+                <S.NoticeList>
+                    <S.Table>
+                        <thead>
+                            <S.TableRow>
+                                <S.TableCellTh>No</S.TableCellTh>
+                                <S.TableCellTh>쿠폰명</S.TableCellTh>
+                                <S.TableCellTh>시작일</S.TableCellTh>
+                                <S.TableCellTh>종료일</S.TableCellTh>
+                                <S.TableCellTh>쿠폰코드</S.TableCellTh>
+                                <S.TableCellTh>관리</S.TableCellTh>
+                            </S.TableRow>
+                        </thead>
+                        <tbody>
                             {couponList}
-                        {/*    <td>*/}
-                        {/*        /!*<div className="change-buttons">*!/*/}
-                        {/*        /!*    /!*<button type="button" className="edit-btn"*!/*!/*/}
-                        {/*        /!*    /!*        onClick="location.href='admin-coupon-update.admin?id=${adminCoupon.id}'">수정*!/*!/*/}
-                        {/*        /!*    /!*</button>*!/*!/*/}
-                        {/*        /!*    <button type="button" className="delete-btn"*!/*/}
-                        {/*        /!*            data-id="${adminCoupon.id}">삭제*!/*/}
-                        {/*        /!*    </button>*!/*/}
-                        {/*        /!*</div>*!/*/}
-                        {/*    </td>*/}
-                        {/*</tr>*/}
-                </S.Table>
-            </S.NoticeList>
+                        </tbody>
+                    </S.Table>
+                </S.NoticeList>
+            </S.CouponListWrap>
         </div>
     );
 };

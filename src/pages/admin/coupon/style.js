@@ -1,11 +1,19 @@
 import styled from "styled-components";
 import {
-    h6Bold,h6Regular
+    h6Bold,h6Regular,h11Regular
 } from '../../../global/common'
 // import theme from "../../../global/theme";
 const S = {}
 
 /*****상세내용*******/
+
+
+S.CouponListWrap = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+`
 
 S.CouponListTitle = styled.div`
     margin: 42px 0 35px 0;
@@ -14,24 +22,16 @@ S.CouponListTitle = styled.div`
     width: 1191px;
 `
 
+S.CouponListTitleWrap = styled.div`
+    margin: 0 auto;
+
+`
+
 S.h1 = styled.p`
     font-size: 40px;
     font-weight: bold;
 `
 
-// .new-add-btn {
-//     width: 120px;
-//     height: 30px;
-//     border: none;
-//     border-radius: 10px;
-//     color: white;
-//     cursor: pointer;
-//     background-color: #113F8A;
-//     left: 1082px;
-//     top: 134px;
-// }
-//
-//
 S.NoticeSearch = styled.div`
     display: flex;
     flex-direction: column;
@@ -51,6 +51,7 @@ S.Search = styled.input`
     height: 60px;
     border-radius: 20px;
     padding: 17px;
+    border: solid 1px #828282;
 `
 
 S.Buttons = styled.div`
@@ -129,9 +130,13 @@ S.CouponEdit = styled.button`
     height: 24px;
     border-radius: 20px;
     background-color: #888888;
-    color: white;
     border: none;
     margin-right: 5px;
+    
+    & > a {
+        color: white;
+        ${h11Regular};
+    }
 `
 
 S.CouponDelete = styled.button`
@@ -139,8 +144,12 @@ S.CouponDelete = styled.button`
     height: 24px;
     border-radius: 20px;
     background-color: white;
-    color: #131313;
     border: 1px solid #131313;
+
+    & > a {
+        color: #131313;
+        ${h11Regular};
+    }
 `
 
 
