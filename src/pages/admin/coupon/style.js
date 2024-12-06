@@ -24,7 +24,6 @@ S.CouponListTitle = styled.div`
 
 S.CouponListTitleWrap = styled.div`
     margin: 0 auto;
-
 `
 
 S.h1 = styled.p`
@@ -114,7 +113,7 @@ S.TableCellTh = styled.th`
 `
 
 S.TableRow = styled.tr`
-    
+    display: block;
 `
 
 S.TableCell = styled.td`
@@ -145,12 +144,206 @@ S.CouponDelete = styled.button`
     border-radius: 20px;
     background-color: white;
     border: 1px solid #131313;
-
-    & > a {
-        color: #131313;
-        ${h11Regular};
-    }
+    color: #131313;
+    ${h11Regular};
 `
+
+S.Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    justify-content: center;
+    margin: 0 auto;
+`
+
+S.Box1 = styled.div`
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`
+
+S.Input = styled.input`
+    width: 464px;
+    height: 55px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-top: 15px;
+`
+
+S.label = styled.label`
+    display: flex;
+    align-items: center;
+    width: 230px;
+    text-align: left;
+    font-weight: bold;
+    align-items: flex-start;
+`
+
+S.DateInput = styled.input`
+    border-radius: 20px;
+    width: 218px;
+    height: 55px;
+    border: 0.5px solid #ccc;
+    margin-right: 10px;
+    padding: 10px;
+    color: #828282;
+`
+    //     width: 464px;
+    //     height: 55px;
+    //     padding: 10px;
+    //     border: 1px solid #ccc;
+    //     border-radius: 20px;
+    //     box-sizing: border-box;
+
+S.Span = styled.span`
+    font-size: 10px;
+`
+
+
+
+//
+// .coupon-form {
+//     display: flex;
+//     align-items: center;
+// }
+//
+
+//
+
+//
+
+//
+// textarea {
+//     height: 80px;
+// }
+//
+// .change-buttons {
+//     width: 100%;
+//     display: flex;
+//     justify-content: flex-end;
+//     justify-content: center;
+//     margin-top: 100px;
+// }
+//
+// .button-submit, .button-edit {
+//     width: 90px;
+//     height: 30px;
+//     border: none;
+//     border-radius: 20px;
+//     color: white;
+//     cursor: pointer;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     margin-top: 6px;
+// }
+//
+// .button-submit {
+//     background-color: #113F8A;
+//     margin-right: 10px;
+// }
+//
+// .button-edit {
+//     background-color: #FFC303;
+// }
+//
+// .form-group {
+//     margin-bottom: 20px;
+// }
+//
+
+
+//
+
+//
+// .box1 input[type="number"],
+// .custom-discount {
+//     width: 464px;
+//     height: 55px;
+//     padding: 10px;
+//     border: 1px solid #ccc;
+//     border-radius: 20px;
+//     box-sizing: border-box;
+// }
+//
+// textarea {
+//     box-sizing: border-box;
+//     resize: vertical;
+//     width: 464px;
+//     min-height: 150px;
+//     padding: 10px;
+//     border: 1px solid #ccc;
+//     border-radius: 10px;
+//     margin-top: 15px;
+//     font-family: 'Spoqa Han Sans Neo', sans-serif !important;
+// }
+//
+// .discount-type {
+//     display: flex;
+//     align-items: flex-start;
+//     margin-top: 30px;
+// }
+//
+// .discount-type label {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     margin-top: 5px;
+//     margin-right: 10px;
+// }
+//
+// .discount-type .box2 label {
+//     display: flex;
+//     align-items: center;
+// }
+//
+// .custom-discount {
+//     width: 90px;
+//     height: 30px;
+//     border: 1px solid #ccc;
+//     padding: 5px;
+// }
+//
+// .result {
+//     margin-top: 20px;
+// }
+//
+// .box2 {
+//     display: flex;
+//     flex-direction: row;
+//     gap: 10px;
+// }
+//
+// .box2 label {
+//     display: flex;
+//     align-items: center;
+// }
+//
+// .box2 > div {
+//     display: flex;
+//     align-items: center;
+// }
+//
+// .custom-discount {
+//     width: 100px;
+// }
+//
+// .box3 {
+//     display: flex;
+//     flex-direction: column;
+//     gap:5px;
+// }
+//
+// button {
+//     padding: 10px 20px;
+//     border: none;
+//     background-color: #ccc;
+//     border-radius: 20px;
+//     cursor: pointer;
+// }
+
 
 
 

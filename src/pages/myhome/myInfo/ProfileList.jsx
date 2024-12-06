@@ -103,7 +103,7 @@ const ProfileList = () => {
                                 </S.MemberInputBox>
                             </S.MemberInputBoxWrap>
                             <S.MemeberUnsubscribe to={"/unsubscribe"}>
-                               *즉시탈퇴 > POWPOW 탈퇴하기
+                               *즉시탈퇴 &gt; POWPOW 탈퇴하기
                             </S.MemeberUnsubscribe>
                         </S.MemberInputBoxContainer>
                     </S.ProfileBoxWrap>
