@@ -76,6 +76,22 @@ const AdminHeader = () => {
         window.location.href = '/admin-login';
     };
 
+
+    const menus = menuItems.map((item, index) => (
+        <li key={index} onMouseEnter={() => handleMenuItemHover(index)} onMouseLeave={handleMenuLeave}>
+            <Link to={item.title[0].path} onClick={() => handleMenuItemClick(item.title[0].name)}>
+                <p>{item.title[0].name}</p>
+            </Link>
+            <div style={{height: activeSubmenu === index ? `${item.submenu.length * 30}px` : '0'}}>
+                {item.submenu.map((subItem, subIndex) => (
+                    <Link key={subIndex} to={subItem.path} style={{color: 'white'}} onClick={() => handleMenuItemClick(item.title[0].name)}>
+                        <span>{subItem.name}</span>
+                    </Link>
+                ))}
+            </div>
+        </li>
+    ));
+
     return (
         <S.Header>
             <S.MenuWrap>
@@ -91,20 +107,7 @@ const AdminHeader = () => {
                         </S.MenuHeader>
                         <S.MenuForm>
                             <ul>
-                                {menuItems.map((item, index) => (
-                                    <li key={index.title} onMouseEnter={() => handleMenuItemHover(index)} onMouseLeave={handleMenuLeave}>
-                                        <Link to={item.title[0].path} onClick={() => handleMenuItemClick(item.title[0].name)}>
-                                            <p>{item.title[0].name}</p>
-                                        </Link>
-                                        <div style={{height: activeSubmenu === index ? `${item.submenu.length * 30}px` : '0'}}>
-                                            {item.submenu.map((subItem, subIndex) => (
-                                                <Link key={subIndex} to={subItem.path} style={{color: 'white'}} onClick={() => handleMenuItemClick(item.title[0].name)}>
-                                                    <span>{subItem.name}</span>
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </li>
-                                ))}
+                                {menus}
                             </ul>
                         </S.MenuForm>
                     </S.MenuFrame>
