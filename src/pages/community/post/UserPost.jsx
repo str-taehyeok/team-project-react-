@@ -3,7 +3,7 @@ import S from './style.js';
 import Slide from './Slide.jsx';
 import { Link, useSearchParams } from 'react-router-dom';
 import FollowBtn from './FollowBtn.jsx';
-import HeartBtn from './HeartBtn.jsx';
+import HeartBlackBtn from './HeartBlacktBtn.jsx';
 
 const myPost = [
     { 
@@ -14,9 +14,11 @@ const myPost = [
                         "# 태그를 이용해서 연관 검색어에 걸리도록 작성가능합니다." +
                         "아무거나 적어주세요." +
                         "당신의 반려동물에 관한건 뭐든지요." +
-                        "사진은 필참이기에 게시글만 올라올 가능성은 없습니다."
+                        "사진은 필참이기에 게시글만 올라올 가능성은 없습니다.",
+        likeCount : "0"
     }
 ]
+
 
 const UserPost = () => {
 
@@ -24,7 +26,7 @@ const UserPost = () => {
     const id = serachParams.get("postId")
     console.log(id)
 
-    const myPostPage = myPost.map(({memberImage, memberNickname, postTitle, postContent}, i) => (
+    const myPostPage = myPost.map(({memberImage, memberNickname, postTitle, postContent, likeCount}, i) => (
         <S.MyPostPage key={i}>
             <S.MyPostBox>
                 <S.ProfileBox>
@@ -37,10 +39,12 @@ const UserPost = () => {
                     <FollowBtn />
                 </S.ProfileBox>
                 <Slide />
-
-                <HeartBtn />
-                <S.PostTitle>{postTitle}</S.PostTitle>
-                <S.PostContent>{postContent}</S.PostContent>
+                <div>
+                    <HeartBlackBtn/>
+                    {likeCount}
+                    <S.PostTitle>{postTitle}</S.PostTitle>
+                    <S.PostContent>{postContent}</S.PostContent>
+                </div>
             </S.MyPostBox>
         </S.MyPostPage>
     ))  

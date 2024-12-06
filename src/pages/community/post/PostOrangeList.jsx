@@ -5,54 +5,54 @@ import { Link } from 'react-router-dom';
 
 const datas = [
     {
-        postImage1 : "/assets/images/community/post1.svg",
+        postImage1 : "/assets/images/community/myPost1.png",
         memberNickName : "고기고기냠냠냠",
-        memberImage : "/assets/images/community/profile.svg",
+        memberImage : "/assets/images/community/default-profile.png"
     },
     {
-        postImage1 : "/assets/images/community/post2.svg",
+        postImage1 : "/assets/images/community/myPost2.png",
         memberNickName : "지나 안지나",
-        memberImage : "/assets/images/community/profile.svg",
+        memberImage : "/assets/images/community/default-profile.png"
     },
     {
-        postImage1 : "/assets/images/community/post3.svg",
+        postImage1 : "/assets/images/community/myPost3.png",
         memberNickName : "철을 밀면 민철",
-        memberImage : "/assets/images/community/profile.svg",
+        memberImage : "/assets/images/community/default-profile.png"
     },
     {
-        postImage1 : "/assets/images/community/post4.svg",
+        postImage1 : "/assets/images/community/myPost4.png",
         memberNickName : "재금이 다음 재은",
-        memberImage : "/assets/images/community/profile.svg",
+        memberImage : "/assets/images/community/default-profile.png"
     },
     {
-        postImage1 : "/assets/images/community/post5.svg",
+        postImage1 : "/assets/images/community/myPost5.png",
         memberNickName : "소연이짱짱",
-        memberImage : "/assets/images/community/profile.svg",
+        memberImage : "/assets/images/community/default-profile.png"
     },
     {
-        postImage1 : "/assets/images/community/post6.svg",
+        postImage1 : "/assets/images/community/myPost1.png",
         memberNickName : "꿔바로우 먹는 징어",
-        memberImage : "/assets/images/community/profile.svg",
+        memberImage : "/assets/images/community/default-profile.png"
     },
     {
-        postImage1 : "/assets/images/community/post7.svg",
+        postImage1 : "/assets/images/community/myPost2.png",
         memberNickName : "찹쌀징어 약 끊음",
-        memberImage : "/assets/images/community/profile.svg",
+        memberImage : "/assets/images/community/default-profile.png"
     },
     {
-        postImage1 : "/assets/images/community/post8.svg",
+        postImage1 : "/assets/images/community/myPost3.png",
         memberNickName : "군대로 끌려가는 민처리",
-        memberImage : "/assets/images/community/profile.svg",
+        memberImage : "/assets/images/community/default-profile.png"
     },
     {
-        postImage1 : "/assets/images/community/post9.svg",
+        postImage1 : "/assets/images/community/myPost4.png",
         memberNickName : "소세지 먹는 도윤이",
-        memberImage : "/assets/images/community/profile.svg",
+        memberImage : "/assets/images/community/default-profile.png"
     },
     {
-        postImage1 : "/assets/images/community/post10.svg",
+        postImage1 : "/assets/images/community/myPost5.png",
         memberNickName : "태혁이 열일함",
-        memberImage : "/assets/images/community/profile.svg",
+        memberImage : "/assets/images/community/default-profile.png"
     }
 ]
 
@@ -60,18 +60,18 @@ export const PostOrangeList = () => {
     const id = 1;
 
     const postList = datas.map((post, i) => (
-        <S.Post key={i}>
+        <S.CommunityPost key={i}>
             <HeartBtn />
             <Link to={`/post/read?postId=${id}`}>
                 <S.PostImage src={`${process.env.PUBLIC_URL}${post.postImage1}`} alt="게시물10" />
             </Link>
             <S.PropileBox>
-            <Link to={`/post/list?postId=${id}`}>
-                <S.Profile src={`${process.env.PUBLIC_URL}${post.memberImage}`} alt="프로필" />
-            </Link>
-            <S.NickName>{post.memberNickName}</S.NickName>
+                <Link to={`/post/list?postId=${id}`}>
+                    <S.Profile><img src={`${process.env.PUBLIC_URL}${post.memberImage}`} alt="프로필" /></S.Profile>
+                </Link>
+                <S.NickName>{post.memberNickName}</S.NickName>
             </S.PropileBox>
-        </S.Post>
+        </S.CommunityPost>
     ))
 
     return (

@@ -138,7 +138,6 @@ S.Profile = styled.img`
   height:40px;
   margin-right: 10px;
 `
-
 S.NickName = styled.p`
   font-size: 14px;
   line-height: 22px;
@@ -184,7 +183,7 @@ S.PropileBox = styled.div`
 
 
 
-// // 나의/다른 사용자 게시물
+// 컬러별 게시물
 // S.Post = styled.div`
 //   position: relative;
   
@@ -200,41 +199,12 @@ S.PropileBox = styled.div`
 //       outline: none;
 //     }
 
-//   .profile{
-//     width:40px;
-//     height:40px;
-//     margin-right: 10px;
-//   }
-
-//   .nick-name{
-//     font-size: 14px;
-//     line-height: 22px;
-//     letter-spacing: -3%;
-//     font-weight: bold;
-//     width: 100%;
-//   }
-
-//   .my-profile {
-//     display:flex;
-//     flex-direction: row;
-//     align-items:center;
-//     margin-bottom: 5px;
-//     width:582px;
-//     justify-content:left;
-//   }
-
-
 //   & .mySwiper {
 //       width: 586px;
 //       height:586px;
 //       border-radius:20px;
 //    }
-
-//   .like {
-//     width: 40px;
-//     height:40px;
-//     margin-right: 10px;
-//   }
+   
 //   .like-number {
 //     font-size: 14px;
 //     line-height: 22px;
@@ -470,8 +440,8 @@ S.MyPostBox = styled.div`
 `
 S.MyPostPage = styled.div`
   margin-top: 152px;
-
 `
+
 
 
 export default S;
