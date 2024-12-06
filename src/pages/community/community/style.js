@@ -47,6 +47,7 @@ const S = {}
     font-weight:bold;
     border-radius: 20px;
     margin-top: 24px;
+    cursor: pointer;
    }
 
    & .swiper {
@@ -151,6 +152,14 @@ const S = {}
     align-items: center;
    `
   S.MyPost = styled.div`
+  position: relative;
+    .like-icon{
+      position: absolute;
+      width: 20px;
+      height:20px;
+      right: 20px;
+      top : 20px;
+    }
     & img{
       width: 220px;
       height: 300px;
@@ -253,6 +262,14 @@ const S = {}
     width:220px;
     height:300px;
     border-radius: 20px; 
+    position: relative;
+    .like-icon{
+      position: absolute;
+      width: 20px;
+      height:20px;
+      right: 20px;
+      top : 20px;
+    }
   `
   S.ProfileBox = styled.div`
     display:flex;
@@ -273,7 +290,6 @@ const S = {}
     width:1327px;
     justify-content:center;
   `
-
 
 
 
