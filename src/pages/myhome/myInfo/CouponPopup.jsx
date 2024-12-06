@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import S from './style';
 
 
 
-const CouponPopup = ({couponData, onChangeInsertCoupon, handleShowPopup}) => {
+const CouponPopup = ({couponData, handleShowPopup, onChangeInsertCoupon}) => {
 
     const couponList = couponData.map((coupon, i) => (
         <S.CouponPopupBoxWrap key={coupon.couponCode}>
