@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import S from './style.js';
 
 const FollowBtn = () => {
 
@@ -6,31 +7,27 @@ const FollowBtn = () => {
 
   const onClickToChangeFollowClick = () => {
     // insert쿼리
-    setIsFollowClick(!isFollowClick)
+    setisFollowClick(!isFollowClick)
   }
 
   return (
     <>
       {isFollowClick ? (
-        <S.FollowBtn>
-          <div className='follow-box' onClick={onClickToChangeFollowClick}>
-            <button type='button' className='follow'>
-              <p className='follow-text'>팔로우</p>
-            </button>
-          </div>   
+        <S.FollowBtn className='follow-box' onClick={onClickToChangeFollowClick}>
+            <button>
+              <p>팔로우</p>
+            </button>   
         </S.FollowBtn>     
 
       ) : (
-        <S.FollowingBtn>
-          <div className='following-box' onClick={onClickToChangeFollowClick}>
-            <button type='button' className='following'>
-                <p className='following-text'>팔로잉</p>
+        <S.FollowingBtn className='following-box' onClick={onClickToChangeFollowClick}>
+            <button>
+                <p>팔로잉</p>
             </button>
-          </div>
         </S.FollowingBtn>
       )}
     </>
   );
 };
 
-export default HeartBtn;
+export default FollowBtn;
