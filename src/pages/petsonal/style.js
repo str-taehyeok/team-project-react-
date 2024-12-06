@@ -244,11 +244,6 @@ S.ColorWrap = styled.div`
   ${flexColumnCenter};
 `;
 
-S.ColorText = styled.p`
-  font-size: 40px;
-  font-weight: bold;
-  color: #faaf04;
-`;
 
 S.OrangeResult = styled.ul`
   display: flex;
@@ -336,25 +331,22 @@ S.Percent = styled.div`
 
 S.CuteAndChicGage = styled.div`
   border-radius: 20px;
-  width: 10%;
   height: 100%;
   background-color: blue;
 `;
+
 S.CalmAndActive = styled.div`
   border-radius: 20px;
-  width: 60%;
   height: 100%;
   background-color: blue;
 `;
 S.LazyAndDilight = styled.div`
   border-radius: 20px;
-  width: 70%;
   height: 100%;
   background-color: blue;
 `;
 S.CowardAndBrave = styled.div`
   border-radius: 20px;
-  width: 50%;
   height: 100%;
   background-color: blue;
 `;

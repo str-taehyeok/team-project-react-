@@ -1,20 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import S from "./style";
 import { Link } from "react-router-dom";
 import { PetsonalContext } from "../../context/petsonalContext";
 
 const PetsonalResult = () => {
 
-  const { state, action } = useContext(PetsonalContext)
-  
+  const { state} = useContext(PetsonalContext)
+
+  console.log(state.petsonalCute)
+  console.log(state.petsonalChic)
+  console.log(state.petsonalActive)
+  console.log(state.petsonalCalm)
+  console.log(state.petsonalDiligent)
+  console.log(state.petsonalLazy)
+  console.log(state.petsonalBrave)
+  console.log(state.petsonalCoward)
+
 
   return (
     <div>
       <S.Frame>
         <S.ResultContainer>
           <S.ColorWrap>
-            <img src="./images/orange-result.png" alt="오렌지" />
-            <S.ColorText>Orange</S.ColorText>
+            <img src={`${process.env.PUBLIC_URL}/assets/images/petsonal/orange-result.png`} alt="오렌지" />
           </S.ColorWrap>
 
           <S.OrangeResult>
@@ -30,7 +38,7 @@ const PetsonalResult = () => {
           <S.ResultBox>
             <S.PetProfile>
               <S.PetImage
-                src="./images/dog.png"
+                src={`${process.env.PUBLIC_URL}/assets/images/petsonal/dog-img.png`}
                 alt="강아지사진"
               />
               <p>반려동물 이름</p>
@@ -46,7 +54,7 @@ const PetsonalResult = () => {
                   <S.PercentageWrap>
                     <span>0</span>
                     <S.Percent>
-                      <S.CuteAndChicGage></S.CuteAndChicGage>
+                      <S.CuteAndChicGage style={{ width: `${state.petsonalCute}%` }}></S.CuteAndChicGage>
                     </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
@@ -59,7 +67,7 @@ const PetsonalResult = () => {
                   <S.PercentageWrap>
                     <span>0</span>
                     <S.Percent>
-                      <S.CalmAndActive></S.CalmAndActive>
+                      <S.CalmAndActive style={{ width: `${state.petsonalActive}%` }}></S.CalmAndActive>
                     </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
@@ -72,7 +80,7 @@ const PetsonalResult = () => {
                   <S.PercentageWrap>
                     <span>0</span>
                     <S.Percent>
-                      <S.LazyAndDilight></S.LazyAndDilight>
+                      <S.LazyAndDilight style={{ width: `${state.petsonalDiligent}%` }}></S.LazyAndDilight>
                     </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
@@ -85,7 +93,7 @@ const PetsonalResult = () => {
                   <S.PercentageWrap >
                     <span>0</span>
                     <S.Percent>
-                      <S.CowardAndBrave></S.CowardAndBrave>
+                      <S.CowardAndBrave style={{ width: `${state.petsonalBrave}%` }}></S.CowardAndBrave>
                     </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
