@@ -59,8 +59,6 @@ const S = {}
         left: 0px;
         z-index: 1000; // z-index 추가
         background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // 그림자 효과 추가 (선택사항)
-    
     `;
 
     S.EntireMenu = styled.div`
@@ -78,14 +76,15 @@ const S = {}
         background-color: #fff;
         
         & button{
-            fontSize: 10px;
+            font-size: 10px;
             color: #ffc303;
             background-color: white;
             border: none;
-            marginLeft: auto;
-            fontWeight: bold;
+            margin-left: auto;
+            font-weight: bold;
             cursor: pointer;
-            marginRight: 24px;
+            margin-right: 20px;
+            margin-top: 2px;
         }
     `;
 
@@ -94,6 +93,7 @@ const S = {}
         text-align: left;
         vertical-align: bottom;
         background-color: #fff;
+        margin-left: 20px;
     `;
 
 
