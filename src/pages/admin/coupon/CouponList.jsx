@@ -13,9 +13,9 @@ const CouponList = () => {
     // endDate = endDate.split(" ")[0];
     // endDateInput.value = endDate;
 
-
     const [couponData, setCouponData] = useState([
         {
+            id : 1,
             couponTitle : "이것은 쿠폰타이틀",
             couponCode : "1111111111",
             couponDiscountRate : "50",
@@ -24,6 +24,7 @@ const CouponList = () => {
             couponQuantity : "11",
         },
         {
+            id : 2,
             couponTitle : "이것은 쿠폰타이틀",
             couponCode : "1111111111",
             couponDiscountRate : "50",
@@ -32,6 +33,7 @@ const CouponList = () => {
             couponQuantity : "11",
         },
         {
+            id : 3,
             couponTitle : "이것은 쿠폰타이틀",
             couponCode : "1111111111",
             couponDiscountRate : "50",
@@ -40,6 +42,7 @@ const CouponList = () => {
             couponQuantity : "11",
         },
         {
+            id : 4,
             couponTitle : "이것은 쿠폰타이틀",
             couponCode : "1111111111",
             couponDiscountRate : "50",
@@ -48,6 +51,54 @@ const CouponList = () => {
             couponQuantity : "11",
         },
     ]);
+
+    // 검색 상태 관리
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredProducts, setFilteredProducts] = useState(couponData);
+
+    // 삭제 관련 상태 관리
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
+    const [productToDelete, setProductToDelete] = useState(null);
+
+    // 검색 핸들러
+    const handleSearch = () => {
+        const filtered = productList.filter(product =>
+            product.productName.includes(searchTerm)
+        );
+        setFilteredProducts(filtered);
+    };
+
+    // 검색어 입력 핸들러
+    const handleSearchInput = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    // 검색 초기화
+    const resetSearch = () => {
+        setSearchTerm('');
+        setFilteredProducts(productList);
+    };
+
+    // 삭제 팝업 열기
+    const openDeletePopup = (productId) => {
+        setProductToDelete(productId);
+        setIsPopupVisible(true);
+    };
+
+    // 삭제 확인
+    const confirmDelete = () => {
+        const updatedProductList = productList.filter(product => product.id !== productToDelete);
+        setProductList(updatedProductList);
+        setFilteredProducts(updatedProductList);
+        setIsPopupVisible(false);
+        setProductToDelete(null);
+    };
+
+    // 삭제 취소
+    const cancelDelete = () => {
+        setIsPopupVisible(false);
+        setProductToDelete(null);
+    };
 
     const couponList = couponData.map((coupon, i) => (
         <S.TableRow key={i}>
@@ -58,7 +109,7 @@ const CouponList = () => {
             <S.TableCell>{coupon.couponCode}</S.TableCell>
             <S.TableCell>
                 <S.CouponEdit><Link to={"/admin/coupon/coupon-update"}>수정</Link></S.CouponEdit>
-                <S.CouponDelete><Link to={"/"}>삭제</Link></S.CouponDelete>
+                <S.CouponDelete onClick={() => openDeletePopup(coupon.id)}>삭제</S.CouponDelete>
             </S.TableCell>
         </S.TableRow>
     ));
@@ -76,9 +127,9 @@ const CouponList = () => {
                             <S.Search type="text" placeholder="쿠폰명을 입력하세요"/>
                         </S.SearchBar>
                         <S.Buttons>
-                            <S.SearchBtn type="button">검색</S.SearchBtn>
-                            <S.ResetBtn type="button" onClick={() => window.location.reload()}>초기화</S.ResetBtn>
-                            <S.NewAddBtn type="button">신규 추가</S.NewAddBtn>
+                            <S.SearchBtn onClick={handleSearch}>검색</S.SearchBtn>
+                            <S.ResetBtn onClick={resetSearch}>초기화</S.ResetBtn>
+                            <Link to={"/coupon/coupon-write"}><S.NewAddBtn type="button">신규 추가</S.NewAddBtn></Link>
                         </S.Buttons>
                     </S.NoticeSearch>
                 </S.CouponListTitleWrap>
@@ -99,6 +150,19 @@ const CouponList = () => {
                         </tbody>
                     </S.Table>
                 </S.NoticeList>
+                {isPopupVisible && (
+                    <>
+                        <S.Popup isVisible={isPopupVisible}>
+                            <p>삭제하시겠습니까?</p>
+                            <S.CheckButton>
+                                <S.DeleteButton onClick={confirmDelete}>삭제</S.DeleteButton>
+                                <S.CancelButton onClick={cancelDelete}>취소</S.CancelButton>
+                            </S.CheckButton>
+                        </S.Popup>
+
+                        <S.PopupBackground isVisible={isPopupVisible}  onClick={cancelDelete}></S.PopupBackground>
+                    </>
+                )}
             </S.CouponListWrap>
         </div>
     );
