@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const PetList = () => {
   const [pets, setPets] = useState([]);
+  const [loading, setLoading] = useState(true); // 로딩 상태 추가
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,18 +21,39 @@ const PetList = () => {
       } catch (error) {
         console.error(error);
         alert("펫 데이터를 가져오는 중 오류가 발생했습니다.");
+      }finally{
+        setLoading(false); 
       }
     };
 
     getPets();
   }, []);
+  
+  const getDelete = async (id) => {  
+    try {
+      const response = await fetch(`http://localhost:10000/my-pet/pet/${id}`, {  
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("삭제 실패");
+      }
+      setPets(pets.filter(pet => pet.id !== id));
+      alert("삭제되었습니다.");
+    } catch (error) {
+      console.error(error.message);
+      alert("삭제 중 오류가 발생했습니다.");
+    }
+  };
+  
 
   useEffect(() => {
-    if (pets.length === 1) {
+    console.log("Pets updated:", pets);
+    if (!loading && pets.length === 0) {
       alert("펫을 등록해주세요");
       navigate("/my-pet/pet-not");
     }
-  }, [pets, navigate]);
+  }, [pets, navigate, loading]);
+
 
   return (
     <div>
@@ -50,11 +72,11 @@ const PetList = () => {
               />
             </S.Profilepic>
             <S.Name>{petName}</S.Name>
-            <a>{petBirth}</a>
+            <span>{petBirth}</span>
             <Link to={`/my-pet/pet-update/${id}`}>
               <S.EditButton2 type="button">편집</S.EditButton2>
             </Link>
-            <S.DeleteButton>삭제</S.DeleteButton>
+            <S.DeleteButton type="button" onClick={() => getDelete(id)}>삭제</S.DeleteButton>
           </S.PetCard2>
         ))}
       </S.PetList>

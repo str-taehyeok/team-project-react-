@@ -4,9 +4,10 @@ import S from './style';
 
 const PetUpdate = () => {
   const navigate = useNavigate();
-  const [pet, setPet] = useState({ petName: '', petKind: '', petImage: '', petGender: '', petBreed: '', petBirth: '', petWeight: '', petNeuter: '', petVet: '' });
+  const [pet, setPet] = useState({ petName: '', petKind: '', petImage: '/assets/images/layout/petimg.png',  petGender: '', petBreed: '',  petBirth: '', petWeight: '', petNeuter: '', petVet: '' });
   const { id } = useParams();
   const memberId = 23;
+
 
   useEffect(() => {
     const getPet = async () => {
@@ -14,7 +15,10 @@ const PetUpdate = () => {
         const response = await fetch(`http://localhost:10000/my-pet/${id}`);
         if (!response.ok) return console.error('데이터가 없습니다.');
         const petData = await response.json();
-        setPet(petData);
+        console.log(petData);
+        const formattedDate = new Date(petData.petBirth).toLocaleDateString('en-CA'); // 'yyyy-MM-dd' 형식
+        console.log(formattedDate)
+        setPet({ ...petData, petBirth: formattedDate });
       } catch (error) {
         console.error('데이터 로드 중 오류 발생:', error);
       }
@@ -90,7 +94,7 @@ const PetUpdate = () => {
             </S.InputGroup2>
             <S.InputGroup3>
               <S.PetBrith>생일</S.PetBrith>
-              <input type="date" name="petBirth" value={pet.petBirth} onChange={handleChange} />
+              <input type="date" name="petBirth"  value={pet.petBirth}  onChange={handleChange} />
             </S.InputGroup3>
             <S.InputGroup4>
               <S.PetBreed>몸무게(kg)</S.PetBreed>
