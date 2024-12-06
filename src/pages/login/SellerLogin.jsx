@@ -69,7 +69,7 @@ const SellerLogin = () => {
             <S.SaveEmail type='checkbox'></S.SaveEmail>
             <S.IdSave>아이디 저장</S.IdSave>
           </S.SaveBox>
-          <Link to={"/findAccount"}>
+          <Link to={"/find"}>
             <S.Forgot>아이디 혹은 비밀번호를 잊어버리셨나요?</S.Forgot>
           </Link>
         </S.Box3>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, NavLink, Outlet, useLocation, useParams, useSearchParams} from "react-router-dom";
+import {NavLink, Outlet, useLocation} from "react-router-dom";
 import S from './style';
 import Footer from '../../layout/Footer';
 
@@ -16,7 +16,10 @@ const PostContainer = () => {
                             <NavLink to={"gold"}><button className='gold'></button></NavLink>
                             <NavLink to={"gradation"}><button className='gradation'></button></NavLink>
                             <NavLink to={"light-purple"}><button className='lightPurple'></button></NavLink>
-                            <NavLink to={"deep-purple"}><button className='deepPurple'></button></NavLink>
+                            <NavLink to={"sky-blue"}><button className='skyBlue'></button></NavLink>
+                            <NavLink to={"sage-green"}><button className='dageGreen'></button></NavLink>
+                            <NavLink to={"ice-blue"}><button className='iceBlue'></button></NavLink>
+                            <NavLink to={"dusty-silver"}><button className='dustySilver'></button></NavLink>
                             <NavLink to={"all"}> <button className='all'>All</button></NavLink>
                         </div>
                         ) : (

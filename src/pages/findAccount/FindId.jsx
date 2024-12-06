@@ -10,6 +10,7 @@ const FindId = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [authNumber, setAuthNumber] = useState("");
   const [generatedAuthNumber, setGeneratedAuthNumber] = useState(""); // 인증번호 생성 상태
+  const [isVerified, setIsVerified] = useState(false); // 인증 여부 상태
 
   const handleAuthRequest = () => {
     if (!phoneNumber) {
@@ -24,8 +25,10 @@ const FindId = () => {
   const handleAuthVerify = () => {
     if (authNumber === String(generatedAuthNumber)) {
       alert("인증이 확인되었습니다.");
+      setIsVerified(true);  
     } else {
       alert("인증번호를 확인해주세요.");
+      setIsVerified(false);
     }
   };
 
@@ -56,20 +59,20 @@ const FindId = () => {
         </S.InputWrapper>
 
         <S.AuthNumberContainer>
-        <S.InputWrapper>
-          <S.Label htmlFor="phone">휴대폰 번호</S.Label>
-          <S.Input
-            type="text"
-            id="phone"
-            name="phone"
-            placeholder="전화번호"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-          <S.AuthButton type="button" onClick={handleAuthRequest}>
-            인증요청
-          </S.AuthButton>
-        </S.InputWrapper>
+          <S.InputWrapper>
+            <S.Label htmlFor="phone">휴대폰 번호</S.Label>
+            <S.Input
+              type="text"
+              id="phone"
+              name="phone"
+              placeholder="전화번호"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+            <S.AuthButton type="button" onClick={handleAuthRequest}>
+              인증요청
+            </S.AuthButton>
+          </S.InputWrapper>
         </S.AuthNumberContainer>
 
         <S.AuthNumberContainer>
@@ -89,8 +92,9 @@ const FindId = () => {
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
+        {/* Disable the "Next" button if the phone number is not verified */}
         <Link to="/find/find-complete">
-          <S.NextButton type="button">
+          <S.NextButton type="button" disabled={!isVerified}>
             다음
           </S.NextButton>
         </Link>

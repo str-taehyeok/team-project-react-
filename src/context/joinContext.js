@@ -1,15 +1,16 @@
 import { createContext, useState } from "react";
 
 const JoinContext = createContext({
-  state : { member : ""},
-  action : { setMember : () => {}}
+  state : { member : "", phone : ""},
+  action : { setMember : () => {}, setPhone : () => {}}
 })
 
 const JoinProvider = ({children}) => {
   const [member, setMember] = useState("buyer");
+  const [phone, setPhone] = useState("buyer");
   const value = {
-    state : { member : member },
-    action : { setMember : setMember }
+    state : { member : member, phone : phone },
+    action : { setMember : setMember, setPhone : setPhone }
   }
 
   return (
