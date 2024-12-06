@@ -10,7 +10,7 @@ const PostContainer = () => {
             <S.LayoutBox>
                 <S.LayoutButton>
                     {
-                        path !== "/post/read" ? (
+                        path !== "/post/read" & "/post/list" ? (
                             <div className='button'>
                             <NavLink to={"orange"}><button className='oringe'></button></NavLink>
                             <NavLink to={"gold"}><button className='gold'></button></NavLink>
