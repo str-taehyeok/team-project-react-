@@ -21,7 +21,7 @@ const PetsonalTest = () => {
   const { survey } = state;
 
   // 한페이지 문항의 개수
-  const [inputScore, inputSetScore] = useState(Array(25).fill(false));
+  const [inputScore, inputSetScore] = useState(Array(25).fill(0));
 
   const handleRadioChecked = (i, value) => {
     inputSetScore((pevState) => {
@@ -47,10 +47,12 @@ const PetsonalTest = () => {
     };
 
     inputScore.forEach((score, i) => {
-      const group = survey[i].group;
-      if (group) {
+      const surveyItem = survey[i];
+      if (surveyItem && surveyItem.group !== undefined) {
+        const group = surveyItem.group;
         groupScores[group] += score;
-      }
+      } 
+      
     });
 
     const cute = groupScores[1];
@@ -78,7 +80,7 @@ const PetsonalTest = () => {
     navigate("/petsonal/result");
   };
 
-  const surveyList = survey.map(({ title, type }, i) => {
+  const surveyList = survey.map(({ title, group }, i) => {
     return (
       <S.Questions key={i}>
         <S.Question>{title}</S.Question>
@@ -88,35 +90,35 @@ const PetsonalTest = () => {
             <S.BigCircle
               value={3}
               type="radio"
-              name={type + i}
+              name={group + i}
               checked={inputScore[i] === 3}
               onChange={() => handleRadioChecked(i, 3)}
             ></S.BigCircle>
             <S.MiddleCircle
               value={6}
               type="radio"
-              name={type + i}
+              name={group + i}
               checked={inputScore[i] === 6}
               onChange={() => handleRadioChecked(i, 6)}
             ></S.MiddleCircle>
             <S.SmallCircle
               value={9}
               type="radio"
-              name={type + i}
+              name={group + i}
               checked={inputScore[i] === 9}
               onChange={() => handleRadioChecked(i, 9)}
             ></S.SmallCircle>
             <S.MiddleCircle
               value={12}
               type="radio"
-              name={type + i}
+              name={group + i}
               checked={inputScore[i] === 12}
               onChange={() => handleRadioChecked(i, 12)}
             ></S.MiddleCircle>
             <S.BigCircle
               value={16.6}
               type="radio"
-              name={type + i}
+              name={group + i}
               checked={inputScore[i] === 16.6}
               onChange={() => handleRadioChecked(i, 16.6)}
             ></S.BigCircle>
