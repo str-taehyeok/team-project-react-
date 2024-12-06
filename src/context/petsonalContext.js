@@ -113,61 +113,61 @@ const PetsonalProvider = ({children}) => {
     },
     { 
       id : 13,
-      title : "Q14. 잠이 많이 없고 잘 누워있지 않아요.",
+      title : "Q13. 잠이 많이 없고 잘 누워있지 않아요.",
       type : "petsonalDiligent",
       group : 3
     },
     { 
       id : 14,
-      title : "Q15. 산책을 가자고 먼저 조르는 편이에요.",
+      title : "Q14. 산책을 가자고 먼저 조르는 편이에요.",
       type : "petsonalDiligent",
       group : 3
     },
     { 
       id : 15,
-      title : "Q16. 놀이에 적극적으로 참여해요.",
+      title : "Q15. 놀이에 적극적으로 참여해요.",
       type : "petsonalDiligent",
       group : 3
     },
     { 
       id : 16,
-      title : "Q17. 야외를 나가면 1시간 이상 걷는 편이에요.",
+      title : "Q16. 야외를 나가면 1시간 이상 걷는 편이에요.",
       type : "petsonalDiligent",
       group : 3
     },
     { 
       id : 17,
-      title : "Q18. 하루를 일찍 시작하는 편이에요.",
+      title : "Q17. 하루를 일찍 시작하는 편이에요.",
       type : "petsonalDiligent",
       group : 3
     },
     { 
       id : 18,
-      title : "Q19. 하루종일 돌아다녀요.",
+      title : "Q18. 하루종일 돌아다녀요.",
       type : "petsonalDiligent",
       group : 3
     },
     { 
       id : 19,
-      title : "Q20. 낯선 사람을 보아도 기가 죽지 않아요.",
+      title : "Q19. 낯선 사람을 보아도 기가 죽지 않아요.",
       type : "petsonalBrave",
       group : 4
     },
     { 
       id : 20,
-      title : "Q21. 새로운 장소에 가도 숨거나 피하지 않아요.",
+      title : "Q20. 새로운 장소에 가도 숨거나 피하지 않아요.",
       type : "petsonalBrave",
       group : 4
     },
     { 
       id : 21,
-      title : "Q22. 겁이 많이 없어 친구 사귀기가 어렵지 않아요.",
+      title : "Q21. 겁이 많이 없어 친구 사귀기가 어렵지 않아요.",
       type : "petsonalBrave",
       group : 4
     },
     { 
       id : 22,
-      title : "Q23. 집의 구석이 아니라 한 가운데로 걸어다녀요.",
+      title : "Q22. 집의 구석이 아니라 한 가운데로 걸어다녀요.",
       type : "petsonalBrave",
       group : 4
     },
