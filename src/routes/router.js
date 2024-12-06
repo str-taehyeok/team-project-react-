@@ -56,11 +56,12 @@ import PostOrangeList from "../pages/community/post/PostOrangeList";
 import PostGoldList from "../pages/community/post/PostGoldList";
 import PostGradationList from "../pages/community/post/PostGradationList";
 import PostLightPurpleList from "../pages/community/post/PostLightPurpleList";
-import PostDeepPurPleList from "../pages/community/post/PostDeepPurPleList";
-import MyPost from "../pages/community/post/MyPost";
-import MyPostList from "../pages/community/post/MyPostList";
-import OthersPost from "../pages/community/post/OthersPost";
-import OthersPostList from "../pages/community/post/OthersPostList";
+import PostSkyBlueList from "../pages/community/post/PostSkyBlueList";
+import PostSageGreenList from "../pages/community/post/PostSageGreenList";
+import PostIceBlueList from "../pages/community/post/PostIceBlueList";
+import PostDustySilverList from "../pages/community/post/PostDustySilverList";
+import UserPost from "../pages/community/post/UserPost";
+import UserList from "../pages/community/post/UserList";
 import PostUpdate from "../pages/community/post/PostUpdate";
 import PostWrite from "../pages/community/post/PostWrite";
 import AdminLogin from "../pages/admin/adminLogin/AdminLogin";
@@ -155,7 +156,7 @@ const router = createBrowserRouter([
                         element: <PetNot />
                     },
                     {
-                        path: "pet-update",
+                        path: "pet-update/:id",
                         element: <PetUpdate />
                     },
                 ]
@@ -307,16 +308,28 @@ const router = createBrowserRouter([
                         element: <PostLightPurpleList />,
                     },
                     {
-                        path: "deep-purple",
-                        element: <PostDeepPurPleList />,
+                        path: "sky-blue",
+                        element: <PostSkyBlueList />,
+                    },
+                    {
+                        path: "sage-green",
+                        element: <PostSageGreenList />,
+                    },
+                    {
+                        path: "ice-blue",
+                        element: <PostIceBlueList />,
+                    },
+                    {
+                        path: "dusty-silver",
+                        element: <PostDustySilverList />,
                     },
                     {
                         path: "read",
-                        element: <MyPost />,
+                        element: <UserPost />,
                     },
                     {
-                        path: "my-post-list",
-                        element: <MyPostList />,
+                        path: "list",
+                        element: <UserList />,
                     },
                     {
                         path: "write",
@@ -325,14 +338,6 @@ const router = createBrowserRouter([
                     {
                         path: "update",
                         element: <PostUpdate />,
-                    },
-                    {
-                        path: "others-post",
-                        element: <OthersPost />,
-                    },
-                    {
-                        path: "others-post-list",
-                        element: <OthersPostList />,
                     },
                 ]
             },

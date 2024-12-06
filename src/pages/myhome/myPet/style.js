@@ -3,6 +3,20 @@ import { h9Medium } from '../../../global/common'
 
 const S = {}
 
+S.PetWapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-direction: column;
+
+  & .button-postion{
+    display: flex;
+    justify-content: end;
+    width: 1100px;
+  }
+`
+
 S.Mydog = styled.div`
   display: flex;
 	flex-direction: row;
@@ -105,6 +119,7 @@ S.InputGroup = styled.div`
   margin-bottom: 21px;
 
 
+
   input {
   width: 285px;
   padding: 10px;
@@ -113,6 +128,20 @@ S.InputGroup = styled.div`
   height: 30px;
   }
 `;
+
+S.RadioWrap = styled.div`
+  display: flex;
+  gap: 20px;
+`
+
+S.P = styled.p`
+  color: red;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 5px;
+  margin-left: 2px;
+`
+
 S.InputGroup2 = styled.div`
   display: flex;
   align-items: center;
@@ -242,18 +271,13 @@ S.Button = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 42px;
     width: 89px;
     height: 42px;
     background-color: #1c4da0;
     border-radius: 20px;
     color: white;
-    margin-bottom: 25px;
-    margin-left: 1263px;
 `
-S.Form = styled.div`
-  display: flex;
-`
+
 S.NoPetWrapper = styled.div`
   display: flex;
 	flex-direction: column;
@@ -318,8 +342,9 @@ S.NoPetButton = styled.button`
 
 S.PetList = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 `;
 
 S.EditButton2 = styled.button`

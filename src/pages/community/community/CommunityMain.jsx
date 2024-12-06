@@ -1,285 +1,202 @@
 import React from 'react';
-import ReactDOM from "react-dom";
 import Banner from "./Banner.jsx";
-import Footer from "../../layout/Footer.jsx";
 import S from './style.js';
 import Slide from './Slide.jsx';
 import { Link } from 'react-router-dom';
-// import Banner from './Banner.jsx';
+import HeartBtn from './HeartBtn.jsx';
+
+const myPostList = [
+    { postImage1 : "/assets/images/community/myPost1.png" },
+    { postImage1 : "/assets/images/community/myPost2.png" },
+    { postImage1 : "/assets/images/community/myPost3.png" },
+    { postImage1 : "/assets/images/community/myPost4.png" },
+    { postImage1 : "/assets/images/community/myPost5.png" }
+  ]
+
+const orangePostList = [
+    {
+        postImage1 : "/assets/images/community/myPost1.png",
+        memberNickname : "고기고기냠냠냠",
+        memberImage : "/assets/images/community/default-profile.png "
+    },
+    {
+        postImage1 : "/assets/images/community/myPost2.png",
+        memberNickname : "지나 안지나",
+        memberImage : "/assets/images/community/default-profile.png "
+    },
+    {
+        postImage1 : "/assets/images/community/myPost3.png",
+        memberNickname : "철을 밀면 민철",
+        memberImage : "/assets/images/community/default-profile.png "
+    },
+    {
+        postImage1 : "/assets/images/community/myPost4.png",
+        memberNickname : "재금이 다음 재은",
+        memberImage : "/assets/images/community/default-profile.png "
+    },
+    {
+        postImage1 : "/assets/images/community/myPost5.png",
+        memberNickname : "연을 세우면 세연",
+        memberImage : "/assets/images/community/default-profile.png "
+    }
+]
 
 const CommunityMain = () => {
 
     const id = 1;
 
+    const myPosts = myPostList.map(({postImage1}, i) => (
+        <S.MyPost key={i} >
+            <HeartBtn />
+            <Link to={`/post/read?postId=${id}`}>
+                <img src={postImage1} alt={"나의 게시글" + (i + 1)} />
+            </Link>
+        </S.MyPost>
+    ))
+
+    const orangePosts = orangePostList.map(({postImage1, memberImage, memberNickname}, i) => (
+        <S.OrangePostBox key={i}>
+            <S.OrangePost>
+                <S.PostImage>
+                    <HeartBtn />
+                    <Link to={`/post/read?postId=${id}`}>
+                        <img src={postImage1} alt={"게시글" + (i + 1)} />
+                    </Link>
+                </S.PostImage>
+                <S.ProfileBox>
+                    <S.Profile>
+                        <Link to={`/post/list?postId=${id}`}>
+                            <img src={memberImage} alt={"게시글 리스트" + (i + 1)} />
+                        </Link>
+                    </S.Profile>
+                    <S.NickName>{memberNickname}</S.NickName>
+                </S.ProfileBox>
+            </S.OrangePost>
+        </S.OrangePostBox>
+    ))  
+
+
+
     return (
         <div>
+            {/* 커뮤니티 메인 배너 */}
             <S.BannerWrapper>
                     <p className='text1'>소중한 나의 반려동물과의 추억을 <br/>기록할 수 있어요!</p>
                     <p className='text2'>펫스널 컬러 별 포포 친구들 게시물 구경하러 와요</p>
-                    <Link to={"/post/all"}><button className='button'>게시물 보러가기</button></Link>
+                    <Link to={"/post/all"}>
+                        <button>게시물 보러가기</button>
+                    </Link>
+
+                {/* 게시물 스와이퍼 */}
                 <Banner />
             </S.BannerWrapper>
 
             <S.Title>
-                <div className='title-box'>
-                    <div className='text-box1'>
+                {/* 나의 게시글 전체 박스 */}
+                <S.MyPostBox>
+                
+                {/* 커뮤니티 나의 게시글 타이틀 */}
+                    <S.MyTitle>
                         <div>
                             <p className='text3'>게시물 작성하기</p>
                             <p className='text4'>지금 나만의 반려동물 일기를 작성해보세요!</p>
                         </div>
-                        <Link to={"../post/my-post-list"}><p className='text5'>전체보기</p></Link>
-                    </div>
+                        <Link to={`/post/list?postId=${id}`}>
+                            <p className='text5'>전체보기</p>
+                        </Link>
+                    </S.MyTitle>
 
-                    <div className='addPostBox'>
-                        <div className='addPost'>
-                        <Link to={"../post/write"}><div className='click'>
-                             <img className='plus' src="/assets/images/community/plus.svg" alt="플러스아이콘" />
-                             <p className='text6'>내 게시물 추가하기</p>
-                         </div></Link>
-                        </div>
-                        <div className='post-container'>
-                            <Link to={`/post/read?postId=${id}`}><div className='myPost'>
-                                <img src="/assets/images/community/myPost1.svg" alt="나의 게시물1" />
-                            </div></Link>
-                            <img className='heart' src="/assets/images/community/heart.svg" alt="빈하트" />
-                        </div>
+                {/* 커뮤니티 게시글 작성 */}
+                    <S.MyCommunityPost>
+                        <S.AddPost>
+                            <Link to={"../post/write"}>
+                                <div>
+                                    <img src="/assets/images/community/plus.svg" alt="플러스아이콘" />
+                                    <p>내 게시물 추가하기</p>
+                                </div>
+                            </Link>
+                        </S.AddPost>
 
-                        <Link to={"../post/my-post"}><div className='myPost'>
-                            <img src="/assets/images/community/myPost2.svg" alt="나의 게시물2" />
-                        </div></Link>
-                        <Link to={"../post/my-post"}><div className='myPost'>
-                            <img src="/assets/images/community/myPost3.svg" alt="나의 게시물3" />
-                        </div></Link>
-                        <Link to={"../post/my-post"}><div className='myPost'>
-                            <img src="/assets/images/community/myPost1.svg" alt="나의 게시물1" />
-                        </div></Link>
-                        <Link to={"../post/my-post"}><div className='myPost'>
-                            <img src="/assets/images/community/myPost1.svg" alt="나의 게시물1" />
-                        </div></Link>
-                    </div>
-                </div>
-                
+                {/* 커뮤니티 나의 게시글 */}
+                    
+                        {myPosts}
+                    
+                    </S.MyCommunityPost>
+                </S.MyPostBox>
+
+                {/* 슬라이드 배너 */}
                 <Slide />
 
-                <p className='text7'>COLOR’S PICK!</p>
-                <div className='colorBox'>
-                    <div className='orangeBox'>
-                        <p className='text8'>ORANGE</p>
-                        <Link to={"../post/orange"}><p className='text9'>전체보기</p></Link>
+                <S.ColorTitle>COLOR’S PICK!</S.ColorTitle>
 
-                        <div className="All">
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post10.svg" alt="게시물10" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>고기고기냠냠냠</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post2.svg" alt="게시물2" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>지나 안지나</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post7.svg" alt="게시물7" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>철을 밀면 민철</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post4.svg" alt="게시물4" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>재금이 다음 재은</p>
-                                </div>
-                            </div>
+                <S.ColorBox>
+                    <S.OrangeBox>
+                        <S.ColorName>ORANGE</S.ColorName>
+                        <Link to={"/post/orange"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <S.PostBox>
+                            {orangePosts}
+                        </S.PostBox>
+                    </S.OrangeBox>
 
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post5.svg" alt="게시물5" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>연을 세우면 세연</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='goldBox'>
-                      <p className='text8'>GOLD</p>
-                      <Link to={"../post/gold"}><p className='text9'>전체보기</p></Link>
-                        <div className="All">
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post8.svg" alt="게시물8" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>고기고기냠냠냠</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post2.svg" alt="게시물2" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>지나 안지나</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post3.svg" alt="게시물3" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>철을 밀면 민철</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post6.svg" alt="게시물6" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>재금이 다음 재은</p>
-                                </div>
-                            </div>
+                    <S.GoldBox>
+                        <S.ColorName>GOLD</S.ColorName>
+                        <Link to={"/post/gold"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <S.PostBox>
+                            {orangePosts}
+                        </S.PostBox>
+                    </S.GoldBox>
 
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post5.svg" alt="게시물5" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>연을 세우면 세연</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='gradationBox'>
-                      <p className='text8'>GRADATION</p>
-                      <Link to={"../post/gradation"}><p className='text9'>전체보기</p></Link>
-                        <div className="All">
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post1.svg" alt="게시물1" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>고기고기냠냠냠</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post8.svg" alt="게시물8" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>지나 안지나</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post3.svg" alt="게시물3" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>철을 밀면 민철</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post4.svg" alt="게시물4" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>재금이 다음 재은</p>
-                                </div>
-                            </div>
+                    <S.GradationBox>
+                        <S.ColorName>GRADATION</S.ColorName>
+                        <Link to={"/post/gradation"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <S.PostBox>
+                            {orangePosts}
+                        </S.PostBox>
+                    </S.GradationBox>
 
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post5.svg" alt="게시물5" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>연을 세우면 세연</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='lightPurple'>
-                        <p className='text8'>LIGHT PURPLE</p>
-                        <Link to={"../post/light-purple"}><p className='text9'>전체보기</p></Link>
-                            <div className="All">
-                                <div className='post'>
-                                    <img className='AllPost' src="/assets/images/community/post6.svg" alt="게시물6" />
-                                    <div className='profile-box'>
-                                        <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                        <p className='nick-name'>고기고기냠냠냠</p>
-                                    </div>
-                                </div>
-                                <div className='post'>
-                                    <img className='AllPost' src="/assets/images/community/post2.svg" alt="게시물2" />
-                                    <div className='profile-box'>
-                                        <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                        <p className='nick-name'>지나 안지나</p>
-                                    </div>
-                                </div>
-                                <div className='post'>
-                                    <img className='AllPost' src="/assets/images/community/post3.svg" alt="게시물3" />
-                                    <div className='profile-box'>
-                                        <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                        <p className='nick-name'>철을 밀면 민철</p>
-                                    </div>
-                                </div>
-                                <div className='post'>
-                                    <img className='AllPost' src="/assets/images/community/post7.svg" alt="게시물7" />
-                                    <div className='profile-box'>
-                                        <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                        <p className='nick-name'>재금이 다음 재은</p>
-                                    </div>
-                                </div>
+                    <S.LightPurpleBox>
+                        <S.ColorName>LIGHT PURPLE</S.ColorName>
+                        <Link to={"/post/light-purple"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <S.PostBox>
+                            {orangePosts}
+                        </S.PostBox>
+                    </S.LightPurpleBox>
 
-                                <div className='post'>
-                                    <img className='AllPost' src="/assets/images/community/post5.svg" alt="게시물5" />
-                                    <div className='profile-box'>
-                                        <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                        <p className='nick-name'>연을 세우면 세연</p>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div className='deepPurple'>
-                     <p className='text8'>DEEP PURPLE</p>
-                     <Link to={"../post/deep-purple"}><p className='text9'>전체보기</p></Link>
-                        <div className="All">
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post1.svg" alt="게시물1" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>고기고기냠냠냠</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post7.svg" alt="게시물7" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>지나 안지나</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post3.svg" alt="게시물3" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>철을 밀면 민철</p>
-                                </div>
-                            </div>
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post9.svg" alt="게시물9" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>재금이 다음 재은</p>
-                                </div>
-                            </div>
+                    <S.SkyBlueBox>
+                        <S.ColorName>SKY BLUE</S.ColorName>
+                        <Link to={"/post/sky-blue"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <S.PostBox>
+                            {orangePosts}
+                        </S.PostBox>
+                    </S.SkyBlueBox>
 
-                            <div className='post'>
-                                <img className='AllPost' src="/assets/images/community/post5.svg" alt="게시물5" />
-                                <div className='profile-box'>
-                                    <img className='profile' src="/assets/images/community/profile.svg" alt="프로필" />
-                                    <p className='nick-name'>연을 세우면 세연</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <S.SageGreenBox>
+                        <S.ColorName>SAGE GREEN</S.ColorName>
+                        <Link to={"/post/sage-green"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <S.PostBox>
+                            {orangePosts}
+                        </S.PostBox>
+                    </S.SageGreenBox>
+
+                    <S.IceBlueBox>
+                        <S.ColorName>ICE BLUE</S.ColorName>
+                        <Link to={"/post/ice-blue"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <S.PostBox>
+                            {orangePosts}
+                        </S.PostBox>
+                    </S.IceBlueBox>
+
+                    <S.DustySilverBox>
+                        <S.ColorName>DUSTY SILVER</S.ColorName>
+                        <Link to={"/post/dusty-silver"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <S.PostBox>
+                            {orangePosts}
+                        </S.PostBox>
+                    </S.DustySilverBox>
+
+                </S.ColorBox>
             </S.Title>    
-            <Footer />
         </div>
-        
-
     );
 };
 

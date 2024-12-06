@@ -67,15 +67,48 @@ S.LayoutButton = styled.div`
     background-color: #C9B6E4;
   }
 
-  .deepPurple{
+  .skyBlue{
     border-radius:50%;
     border: none;
     background-color: #D9D9D9;
     width:30px;
     height: 30px;
   }
-  .active .deepPurple{
-    background-color: #8B6D9C;
+  .active .skyBlue{
+    background-color: #87CEEB;
+  }
+
+  .dageGreen{
+    border-radius:50%;
+    border: none;
+    background-color: #D9D9D9;
+    width:30px;
+    height: 30px;
+  }
+  .active .dageGreen{
+    background-color: #BCE2D6;
+  }
+
+  .iceBlue{
+    border-radius:50%;
+    border: none;
+    background-color: #D9D9D9;
+    width:30px;
+    height: 30px;
+  }
+  .active .iceBlue{
+    background-color: #D1F2F2;
+  }
+
+  .dustySilver{
+    border-radius:50%;
+    border: none;
+    background-color: #D9D9D9;
+    width:30px;
+    height: 30px;
+  }
+  .active .dustySilver{
+    background-image:linear-gradient(rgba(137, 169, 196, 0.5),rgba(66, 85, 94, 0.5));
   }
 
   .all{
@@ -134,6 +167,8 @@ S.CommunityPost = styled.div`
     position: absolute;
     right: 20px;
     top : 20px;
+    width: 20px;
+    height:20px;
   }
 `;
 
@@ -150,6 +185,16 @@ S.PropileBox = styled.div`
 
 // 나의/다른 사용자 게시물
 S.Post = styled.div`
+  position: relative;
+  
+  .like-icon{
+    position: absolute;
+    right: 20px;
+    top : 20px;
+    width: 20px;
+    height:20px;
+  }
+  
     input:focus {
       outline: none;
     }

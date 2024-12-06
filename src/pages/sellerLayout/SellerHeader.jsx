@@ -9,33 +9,43 @@ const SellerHeader = () => {
 
     const menuItems = [
         {
-            title: "상품 관리",
+            title: [
+                {name: "상품 관리", path: "/seller"}
+            ],
             submenu: [
                 { name: "상품조회", path: "/seller" },
                 { name: "상품 등록", path: "/seller/product-write" }
             ]
         },
         {
-            title: "주문 관리",
+            title: [
+                    {name: "주문 관리", path: "/seller/seller-order"}
+            ],
             submenu: [
                 { name: "주문조회", path: "/seller/seller-order" }
             ]
         },
         {
-            title: "정산 관리",
+            title: [
+                {name: "정산 관리", path: "/seller/seller-adjustment"}
+            ],
             submenu: [
                 { name: "정산내역조회", path: "/seller/seller-adjustment" }
             ]
         },
         {
-            title: "판매자 관리",
+            title: [
+                {name: "판매자 관리", path: "/seller/seller-info"}
+            ],
             submenu: [
                 { name: "판매자정보 관리", path: "/seller/seller-info" },
-                { name: "사업자정보 관리", path: "/seller/business-update" }
+                { name: "사업자정보 관리", path: "/seller/seller-info/business-update" }
             ]
         },
         {
-            title: "매출 관리",
+            title: [
+                {name: "매출 관리", path: "/seller/seller-revenue"}
+            ],
             submenu: [
                 { name: "매출 조회", path: "/seller/seller-revenue" }
             ]
@@ -88,11 +98,14 @@ const SellerHeader = () => {
                     <S.MenuForm>
                         <ul>
                             {menuItems.map((item, index) => (
-                                <li key={index} onMouseEnter={() => handleMenuItemHover(index)} onMouseLeave={handleMenuLeave}>
-                                    <p onClick={() => handleMenuItemClick(item.title)}>{item.title}</p>
+                                <li key={index.title} onMouseEnter={() => handleMenuItemHover(index)} onMouseLeave={handleMenuLeave}>
+                                    {/*<p onClick={() => handleMenuItemClick(item.title)}>{item.title}</p>*/}
+                                    <Link to={item.title[0].path} onClick={() => handleMenuItemClick(item.title[0].name)}>
+                                        <p>{item.title[0].name}</p>
+                                    </Link>
                                     <div style={{height: activeSubmenu === index ? `${item.submenu.length * 30}px` : '0'}}>
                                         {item.submenu.map((subItem, subIndex) => (
-                                            <Link key={subIndex} to={subItem.path} style={{ color: 'white' }} onClick={() => handleMenuItemClick(item.title)}>
+                                            <Link key={subIndex} to={subItem.path} style={{color: 'white'}} onClick={() => handleMenuItemClick(item.title[0].name)}>
                                                 <span>{subItem.name}</span>
                                             </Link>
                                         ))}

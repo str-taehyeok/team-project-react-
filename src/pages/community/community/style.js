@@ -37,7 +37,7 @@ const S = {}
     margin-top: 30px;
    }
 
-   .button{
+   & button{
     width:240px;
     height:60px;
     background-color:rgba(255, 255, 255, 0.9);
@@ -47,6 +47,7 @@ const S = {}
     font-weight:bold;
     border-radius: 20px;
     margin-top: 24px;
+    cursor: pointer;
    }
 
    & .swiper {
@@ -66,103 +67,13 @@ const S = {}
     font-size: 22px;
     font-weight: bold;
     color: #fff;
-
-    & img {
-    }
    }
   `
   
 
   // 커뮤니티 메인 페이지  배너 아래 부분
   S.Title = styled.div`
-
-    .title-box{
-      width:1440px;
-      margin-top:198px;
-      margin-left: 240px;
-      margin-right: 240px;
-      margin-bottom: 65px;
-    }
-
-
-    .text-box1 {
-      display: flex;
-      flex-direction: column;
-      width: 1440px;
-      margin-bottom: 15px;
-    }
-    .text3 {
-      font-size: 24px;
-      line-height: 36px;
-      letter-spacing: -3%;
-      font-weight:bold;
-    }
-    .text4 {
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: -3%;
-    }
-    .text5{
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: -3%;
-      text-align: right;
-    }
-    .addPost{
-      width:220px;
-      height:300px;
-      border-radius: 20px;
-      border:1px solid #D9D9D9;
-      display: flex;
-      flex-direction:column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .myPost{
-      width:220px;
-      height:300px;
-      border-radius: 20px;
-      position: relative;
-    }
-
-    .heart{
-      position: absolute; 
-      right: 10px; 
-      top: 10px;
-   }
-
-  .post-container{
-    position: relative; 
-    width: 220px;
-  }
-
-    .addPostBox{
-      display: flex;
-      flex-direction:row;
-      gap:24px;
-      align-items: center;
-      justify-content: center;
-    }
-    .plus{
-     width:20px;
-     height:20px;
-     margin-bottom: 10px;
-    }
-    .text6{
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: -3%;
-      color:#828282;
-      text-align: center;
-    }
-    .click{
-      display: flex;
-      flex-direction:column;
-      align-items: center;
-      justify-content: center;
-    }
-
+    margin-bottom: 226px;
     & .mySwiper {
       width: 1440px;
       display: flex;
@@ -172,113 +83,214 @@ const S = {}
       margin-right: 240px;
    }
 
-   .text7{
-      width:1440px;
-      margin-top: 117px;
-      font-size: 40px;
-      line-height: 54px;
-      letter-spacing: -3%;
-      font-weight:bold;
-      color:#000000;
-      text-align: center;
-      margin-bottom: 90px;
-      margin-left: 240px;
-      margin-right: 240px;
-    }
+  `
 
-    .orangeBox{
-      width: 1327px;
-      height:626px;
-      background: linear-gradient( rgba(255, 255, 255, 0.9),rgba(255, 255, 129, 0.4), rgba(255, 195, 3, 0.3) );
-    }
+  S.MyPostBox = styled.div`
+    width:1440px;
+    margin-top:198px;
+    margin-left: 240px;
+    margin-right: 240px;
+    margin-bottom: 65px;
+  `
+  S.MyTitle = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1440px;
+    margin-bottom: 15px;
+      .text3 {
+        font-size: 24px;
+        line-height: 36px;
+        letter-spacing: -3%;
+        font-weight:bold;
+      }
+      .text4 {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -3%;
+      }
+      .text5{
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -3%;
+        text-align: right;
+      }
+  `
+  S.AddPost = styled.div`
+    width:220px;
+    height:300px;
+    border-radius: 20px;
+    border:1px solid #D9D9D9;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+      & div {
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content: center;
+      }
 
-    .goldBox{
-      width: 1327px;
-      height:626px;
-      background: linear-gradient( rgba(255, 195, 3, 0.3),rgba(218, 199, 138, 0.4), rgba(255, 255, 255, 0.6)  );
-    }
+      & img{
+        width:20px;
+        height:20px;
+        margin-bottom: 10px;
+      }
 
-    .gradationBox{
-      width: 1327px;
-      height:626px;
-      background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(218, 199, 138, 0.2),rgba(207, 165, 203, 0.4));
-    }
+      & p{
+        font-size: 16px;
+        line-height: 24px;
+        color:#828282;
+        text-align: center;
+      }
+  `
 
-    .lightPurple{
-      width: 1327px;
-      height:626px;
-      background: linear-gradient(rgba(207, 165, 203, 0.4), rgba(255, 255, 255, 0.6)  );
+  S.MyCommunityPost = styled.div`
+    display: flex;
+    flex-direction:row;
+    gap:24px;
+    align-items: center;
+   `
+  S.MyPost = styled.div`
+  position: relative;
+    .like-icon{
+      position: absolute;
+      width: 20px;
+      height:20px;
+      right: 20px;
+      top : 20px;
     }
-
-    .deepPurple{
-      width: 1327px;
-      height:626px;
-      margin-bottom: 372px;
-      background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(101, 83, 125, 0.3)  );
-    }
-    .colorBox{
-      display: flex;
-      flex-direction:column;
-      align-items: center;
-      justify-content: center;
-      margin-left: 296.5px;
-      margin-right: 296.5px;
-
-    }
-
-    .text8 {
-      font-size: 40px;
-      line-height: 54px;
-      letter-spacing: -3%;
-      font-weight:bold;
-      margin-top: 82px;
-      margin-left: 65px;
-    }
-
-    .text9{
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: -3%;
-      text-align: right;
-      margin-right: 82px;
-      font-weight:bold;
-    }
-
-    .AllPost{
-      width:220px;
-      height:300px;
-      border-radius: 20px;
-    }
-    .profile-box{
-      display:flex;
-      flex-direction: row;
+    & img{
       width: 220px;
-      align-items:center;
-      margin-top: 5px;
+      height: 300px;
     }
+   `
+  S.ColorTitle = styled.div`
+    width:1440px;
+    margin-top: 117px;
+    font-size: 40px;
+    line-height: 54px;
+    letter-spacing: -3%;
+    font-weight:bold;
+    color:#000000;
+    text-align: center;
+    margin-bottom: 90px;
+    margin-left: 240px;
+    margin-right: 240px;
+   `
 
-    .profile{
-      width:40px;
-      height:40px;
-      margin-right: 10px;
+  S.ColorBox = styled.div`
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 296.5px;
+    margin-right: 296.5px;
+  `
+
+  S.OrangeBox = styled.div`
+    width: 1327px;
+    height:626px;
+    background: linear-gradient( rgba(255, 255, 255, 0.9),rgba(255, 255, 129, 0.4), rgba(255, 195, 3, 0.3) );
+  `
+  S.GoldBox = styled.div`
+    width: 1327px;
+    height:626px;
+    background: linear-gradient( rgba(255, 195, 3, 0.3),rgba(218, 199, 138, 0.4), rgba(255, 255, 255, 0.6));
+  `
+  S.GradationBox = styled.div`
+    width: 1327px;
+    height:626px;
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(218, 199, 138, 0.2),rgba(207, 165, 203, 0.4));
+  `
+  S.LightPurpleBox = styled.div`
+    width: 1327px;
+    height:626px;
+    background: linear-gradient(rgba(207, 165, 203, 0.4), rgba(255, 255, 255, 0.6));
+  `
+  S.SkyBlueBox = styled.div`
+    width: 1327px;
+    height:626px;
+    background: linear-gradient( rgba(255, 255, 255, 0.6), rgba(135, 260, 235, 0.3) );
+  `
+  S.SageGreenBox = styled.div`
+    width: 1327px;
+    height:626px;
+    background: linear-gradient( rgba(135, 260, 235, 0.3),rgba(188, 226, 214, 0.7), rgba(255, 255, 255, 0.3) );
+  `
+  S.IceBlueBox = styled.div`
+    width: 1327px;
+    height:626px;
+    background: linear-gradient( rgba(255, 255, 255, 0.3),rgba(209, 242, 242, 0.4));
+  `
+  S.DustySilverBox = styled.div`
+    width: 1327px;
+    height:626px;
+    background: linear-gradient( rgba(209, 242, 242, 0.4),rgba(66, 85, 94, 0.4), rgba(255, 255, 255, 0.9) );
+  ` 
+  S.ColorName = styled.div`
+    font-size: 40px;
+    line-height: 54px;
+    letter-spacing: -3%;
+    font-weight:bold;
+    margin-top: 82px;
+    margin-left: 65px;
+  `
+  S.AllToGo = styled.div`
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -3%;
+    text-align: right;
+    margin-right: 82px;
+    font-weight:bold;
+  `
+  S.OrangePostBox = styled.div`
+  `
+  S.OrangePost = styled.div`
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+  `
+  S.NickName = styled.div`
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -3%;
+    font-weight: bold;
+    width: 100%;
+  `
+  S.PostImage = styled.div`
+    width:220px;
+    height:300px;
+    border-radius: 20px; 
+    position: relative;
+    .like-icon{
+      position: absolute;
+      width: 20px;
+      height:20px;
+      right: 20px;
+      top : 20px;
     }
-    .nick-name{
-      font-size: 14px;
-      line-height: 22px;
-      letter-spacing: -3%;
-      font-weight: bold;
-      width: 100%;
-  }
-  .All{
+  `
+  S.ProfileBox = styled.div`
+    display:flex;
+    flex-direction: row;
+    width: 220px;
+    align-items:center;
+  `
+  S.Profile = styled.div`
+    width:40px;
+    height:40px;
+    margin-right: 10px;
+  `
+  S.PostBox = styled.div`
     display:flex;
     flex-direction: row;
     gap:24px;
     margin-top: 10px;
     width:1327px;
     justify-content:center;
-  }
-
   `
 
-  
+
+
 export default S;

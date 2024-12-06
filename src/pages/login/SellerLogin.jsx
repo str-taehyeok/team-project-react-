@@ -45,7 +45,7 @@ const SellerLogin = () => {
 
       {/* 비밀번호 로직 만들기 */}
       <label>
-        <S.Input type="password" id='password' placeholder='비밀번호를 입력하세요.'
+        <S.Input type="password" id='password' placeholder='판매자 비밀번호를 입력하세요.'
           autoComplete='off'
           {...register("password", {
             required: true,
@@ -69,7 +69,7 @@ const SellerLogin = () => {
             <S.SaveEmail type='checkbox'></S.SaveEmail>
             <S.IdSave>아이디 저장</S.IdSave>
           </S.SaveBox>
-          <Link to={"/findAccount"}>
+          <Link to={"/find"}>
             <S.Forgot>아이디 혹은 비밀번호를 잊어버리셨나요?</S.Forgot>
           </Link>
         </S.Box3>
