@@ -1,41 +1,59 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PetsonalContext } from "../../context/petsonalContext";
 
 const PetsonalResult = () => {
 
-  const { state} = useContext(PetsonalContext)
-
-  console.log(state.petsonalCute)
-  console.log(state.petsonalChic)
-  console.log(state.petsonalActive)
-  console.log(state.petsonalCalm)
-  console.log(state.petsonalDiligent)
-  console.log(state.petsonalLazy)
-  console.log(state.petsonalBrave)
-  console.log(state.petsonalCoward)
-
+  const { state, result } = useContext(PetsonalContext)
+  const [ scoreResult, setScoreResult ] = useState({ petColor : "", petsonalChic : 0, petsonalCute : 0, petsonalCalm : 0, petsonalActive : 0, petsonalLazy : 0, petsonalDiligent : 0, petsonalCoward : 0, petsonalBrave : 0 })
+  const [ colorResult, setColorResult ] = useState({ imageSrc : "", message : [], boxColor : ""});
+  const { imageSrc, message, boxColor } = colorResult;
+  const navigate = useNavigate();
+  
+  console.log("state.petColor", state.petColor)
+  useEffect(() => {
+    if(localStorage.getItem("colorResult") !== null){
+      // 있을 때 다시 검사한사람인지, 처음 검사한사람인지
+      if(state.petColor){
+        // 기존에 로컬스토리지를 삭제
+        localStorage.clear()
+        localStorage.setItem("colorResult", JSON.stringify(result[state.petColor]))
+        localStorage.setItem("scoreResult", JSON.stringify(state))
+        setColorResult(JSON.parse(localStorage.getItem("colorResult")))
+        setScoreResult(JSON.parse(localStorage.getItem("scoreResult")))
+      }else {
+        setColorResult(JSON.parse(localStorage.getItem("colorResult")))
+        setScoreResult(JSON.parse(localStorage.getItem("scoreResult")))
+      }
+    } else {
+      // 없으면 검사했는지 안넣은사람인지 진짜 검사 안한사람
+      if(state.petColor !== ""){
+        // 검사 했는데 안넣은 사람
+        localStorage.setItem("colorResult", JSON.stringify(result[state.petColor]))
+        localStorage.setItem("scoreResult", JSON.stringify(state))
+      }else{
+        // 진짜 검사 안한사람
+        navigate("/petsonal/test")
+      }
+    }
+  }, [])
 
   return (
     <div>
       <S.Frame>
         <S.ResultContainer>
           <S.ColorWrap>
-            <img src={`${process.env.PUBLIC_URL}/assets/images/petsonal/orange-result.png`} alt="오렌지" />
+            <img src={`${process.env.PUBLIC_URL}${imageSrc}`} alt="오렌지" />
           </S.ColorWrap>
 
           <S.OrangeResult>
-            <li>신이 많고 재밌는 성격이에요.</li>
-            <li>자유분방하고, 자신감이 넘치며 주변 사람들을 웃게 만들어요.</li>
-            <li>에너지가 넘치고, 정이 많아 사람들과 쉽게 어울려요.</li>
-            <li>
-              혼자 있는 것보다는 다른 사람들이랑 함께 있으면서 사랑을 베푸는
-              것을 더 좋아해요.
-            </li>
+            {message.map((m, i) => (
+              <p key={i}>{m}</p>
+            ))}
           </S.OrangeResult>
 
-          <S.ResultBox>
+          <S.ResultBox color={boxColor} >
             <S.PetProfile>
               <S.PetImage
                 src={`${process.env.PUBLIC_URL}/assets/images/petsonal/dog-img.png`}
@@ -54,7 +72,7 @@ const PetsonalResult = () => {
                   <S.PercentageWrap>
                     <span>0</span>
                     <S.Percent>
-                      <S.CuteAndChicGage style={{ width: `${state.petsonalCute}%` }}></S.CuteAndChicGage>
+                      <S.CuteAndChicGage style={{ width: `${scoreResult.petsonalCute}%` }}></S.CuteAndChicGage>
                     </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
@@ -67,7 +85,7 @@ const PetsonalResult = () => {
                   <S.PercentageWrap>
                     <span>0</span>
                     <S.Percent>
-                      <S.CalmAndActive style={{ width: `${state.petsonalActive}%` }}></S.CalmAndActive>
+                      <S.CalmAndActive style={{ width: `${scoreResult.petsonalActive}%` }}></S.CalmAndActive>
                     </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
@@ -80,7 +98,7 @@ const PetsonalResult = () => {
                   <S.PercentageWrap>
                     <span>0</span>
                     <S.Percent>
-                      <S.LazyAndDilight style={{ width: `${state.petsonalDiligent}%` }}></S.LazyAndDilight>
+                      <S.LazyAndDilight style={{ width: `${scoreResult.petsonalDiligent}%` }}></S.LazyAndDilight>
                     </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>
@@ -93,7 +111,7 @@ const PetsonalResult = () => {
                   <S.PercentageWrap >
                     <span>0</span>
                     <S.Percent>
-                      <S.CowardAndBrave style={{ width: `${state.petsonalBrave}%` }}></S.CowardAndBrave>
+                      <S.CowardAndBrave style={{ width: `${scoreResult.petsonalBrave}%` }}></S.CowardAndBrave>
                     </S.Percent>
                     <span>100</span>
                   </S.PercentageWrap>

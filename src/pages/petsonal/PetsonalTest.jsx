@@ -9,6 +9,7 @@ const PetsonalTest = () => {
   const { state, action } = useContext(PetsonalContext);
 
   const {
+    setPetColor,
     setPetsonalChic,
     setPetsonalCute,
     setPetsonalCalm,
@@ -77,6 +78,27 @@ const PetsonalTest = () => {
     setPetsonalCoward(coward);
     setPetsonalBrave(brave);
 
+    console.log("cute", cute)
+    console.log("chic", chic)
+    console.log("active", active)
+    console.log("calm", calm)
+    console.log("diligent", diligent)
+    console.log("lazy", lazy)
+    console.log("brave", brave)
+    console.log("coward", coward)
+
+    let result = "";
+    result += chic > cute ? "E" : "I";
+    result += active > calm ? "S" : "N";
+    result += diligent > lazy ? "F" : "T";
+    result += brave > coward ? "P" : "J";
+
+    // if(result === "ENFJ" || result === "ENFJ"){
+      //   setPetColor("Orange")
+    // }
+    setPetColor("Orange")
+
+    // fetch로 insert
     navigate("/petsonal/result");
   };
 
