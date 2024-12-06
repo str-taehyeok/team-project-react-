@@ -12,18 +12,22 @@ const FollowBtn = () => {
   return (
     <>
       {isFollowClick ? (
-        <div className='follow-box'>
-          <button type='button' className='follow'>
-            <p className='follow-text'>팔로우</p>
-          </button>
-        </div>      
+        <S.FollowBtn>
+          <div className='follow-box' onClick={onClickToChangeFollowClick}>
+            <button type='button' className='follow'>
+              <p className='follow-text'>팔로우</p>
+            </button>
+          </div>   
+        </S.FollowBtn>     
 
       ) : (
-        <div className='following-box' onClick={onClickToChangeFollowClick}>
-          <button type='button' className='following'>
-              <p className='following-text'>팔로잉</p>
-          </button>
-        </div>
+        <S.FollowingBtn>
+          <div className='following-box' onClick={onClickToChangeFollowClick}>
+            <button type='button' className='following'>
+                <p className='following-text'>팔로잉</p>
+            </button>
+          </div>
+        </S.FollowingBtn>
       )}
     </>
   );

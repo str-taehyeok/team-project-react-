@@ -1,6 +1,7 @@
 import React from 'react';
 import S from './style.js';
 import HeartBtn from './HeartBtn.jsx';
+import { Link } from 'react-router-dom';
 
 const datas = [
     {
@@ -57,13 +58,19 @@ const datas = [
 
 export const PostIceBlueList = () => {
 
+    const id = 1;
+
     const postList = datas.map((post, i) => (
         <S.Post key={i}>
             <HeartBtn />
-            <S.PostImage src={`${process.env.PUBLIC_URL}${post.postImage1}`} alt="게시물10" />
+            <Link to={`/post/read?postId=${id}`}>
+                <S.PostImage src={`${process.env.PUBLIC_URL}${post.postImage1}`} alt="게시물10" />
+            </Link>
             <S.PropileBox>
+            <Link to={`/post/list?postId=${id}`}>
                 <S.Profile src={`${process.env.PUBLIC_URL}${post.memberImage}`} alt="프로필" />
-                <S.NickName>{post.memberNickName}</S.NickName>
+            </Link>
+            <S.NickName>{post.memberNickName}</S.NickName>
             </S.PropileBox>
         </S.Post>
     ))

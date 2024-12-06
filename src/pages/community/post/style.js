@@ -20,7 +20,7 @@ S.AllPostWrapper = styled.div`
 `
 
 S.LayoutButton = styled.div`
-  .oringe{
+  .orange{
     border-radius:50%;
     border: none;
     background-color: #D9D9D9;
@@ -28,7 +28,7 @@ S.LayoutButton = styled.div`
     height: 30px;
   }
 
-  .active .oringe{
+  .active .orange{
     background-color: #FFC303;
   }
 
