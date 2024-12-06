@@ -261,7 +261,7 @@ S.ResultBox = styled.div`
   margin-top: 144px;
   width: 1440px;
   height: 885px;
-  background: rgba(255, 204, 102, 0.7);
+  background: ${({color}) => color};
   gap: 180px;
   ${flexRowCenter};
 `;

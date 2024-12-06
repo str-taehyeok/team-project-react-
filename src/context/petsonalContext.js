@@ -23,7 +23,15 @@ const PetsonalContext = createContext({
     setPetsonalDiligent : () => {},
     setPetsonalCoward : () => {},
     setPetsonalBrave : () => {}
-  }}
+  },
+  result : {
+    orange : {
+      message : "",
+      boxColor : "",
+      image : ""
+    }
+  }
+}
 )
 
 const PetsonalProvider = ({children}) => {
@@ -208,6 +216,13 @@ const PetsonalProvider = ({children}) => {
       setPetsonalDiligent : setPetsonalDiligent,
       setPetsonalCoward : setPetsonalCoward,
       setPetsonalBrave : setPetsonalBrave,
+    },
+    result : {
+      Orange : {
+        message : ["신이 많고 재밌는 성격이에요", "자유분방하고, 자신감이 넘치며 주변 사람들을 웃게 만들어요.", "에너지가 넘치고, 정이 많아 사람들과 쉽게 어울려요.", "혼자 있는 것보다는 다른 사람들이랑 함께 있으면서 사랑을 베푸는 것을 더 좋아해요."],
+        boxColor : "rgba(255, 204, 102, 0.7)",
+        imageSrc : "/assets/images/petsonal/orange-result.png"
+      }
     }
   }
 
