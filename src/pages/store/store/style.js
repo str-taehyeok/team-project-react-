@@ -5,6 +5,7 @@ import theme from "../../../global/theme";
 
 const S = {}
 
+<<<<<<< Updated upstream
 S.StoreMainWrap = styled.div`
   width: 1920px;
   margin: 0 auto;
@@ -541,3 +542,17 @@ S.ProductWrap = styled.div`
 
 
 export default S;
+=======
+  S.Banner = styled.banner`
+      width: 100dvw;
+      height: 694px;
+      position: fixed;
+      left: 0;
+      top: 0;
+  
+  `
+    
+
+export default S;
+
+>>>>>>> Stashed changes
