@@ -150,6 +150,29 @@ const SellerProductList = () => {
         return stock > 0 ? '판매중' : '품절';
     };
 
+
+    const product = filteredProducts.map((product, index) => (
+        <tr key={product.id}>
+            <td>{index + 1}</td>
+            <td>
+                <S.Image>
+                    <img src={product.productImage1} alt={`상품 ${index + 1}`}/>
+                </S.Image>
+            </td>
+            <td><S.Name>{product.productName}</S.Name></td>
+            <td>{product.productPrice.toLocaleString()}원</td>
+            <td>{product.productCategory}</td>
+            <td>{getStockStatus(product.productStock)}</td>
+            <td>{product.productDate}</td>
+            <td>
+                <S.ManageButtons>
+                    <S.EditButton><Link to={"/seller/product-update"}>수정</Link></S.EditButton>
+                    <S.DeleteButton onClick={() => openDeletePopup(product.id)}>삭제</S.DeleteButton>
+                </S.ManageButtons>
+            </td>
+        </tr>
+    ));
+
         return (
             <div>
                 <Outlet/>
@@ -163,7 +186,6 @@ const SellerProductList = () => {
                         <Link to={"/seller/product-write"}><S.NewButton>상품등록</S.NewButton></Link>
                     </S.Buttons>
                 </S.NoticeSearch>
-                {/*<Outlet/>*/}
                 <S.NoticeSearch>
                     <S.Table>
                         <thead>
@@ -180,27 +202,7 @@ const SellerProductList = () => {
                         <S.Line></S.Line>
                         </thead>
                         <tbody>
-                        {filteredProducts.map((product, index) => (
-                            <tr key={product.id}>
-                                <td>{index + 1}</td>
-                                <td>
-                                    <S.Image>
-                                        <img src={product.productImage1} alt={`상품 ${index + 1}`}/>
-                                    </S.Image>
-                                </td>
-                                <td><S.Name>{product.productName}</S.Name></td>
-                                <td>{product.productPrice.toLocaleString()}원</td>
-                                <td>{product.productCategory}</td>
-                                <td>{getStockStatus(product.productStock)}</td>
-                                <td>{product.productDate}</td>
-                                <td>
-                                    <S.ManageButtons>
-                                        <S.EditButton><Link to={"/seller/product-update"}>수정</Link></S.EditButton>
-                                        <S.DeleteButton onClick={() => openDeletePopup(product.id)}>삭제</S.DeleteButton>
-                                    </S.ManageButtons>
-                                </td>
-                            </tr>
-                        ))}
+                            {product}
                         </tbody>
                     </S.Table>
                 </S.NoticeSearch>
