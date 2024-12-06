@@ -4,7 +4,6 @@ import { FindContext } from "../../context/findContext";
 import S from "./style";
 
 const FindId = () => {
-  const { state, action } = useContext(FindContext);
 
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
