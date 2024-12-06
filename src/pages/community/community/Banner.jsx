@@ -16,43 +16,43 @@ export default function Banner() {
       >
   
         <SwiperSlide>
-          <img src="/assets/images/community/orangeDog.svg" alt="오렌지 강아지" />
+          <img src="/assets/images/community/dog1.png" alt="오렌지 강아지" />
         </SwiperSlide>
         
         <SwiperSlide>
-          <img src="/assets/images/community/goldDog.svg" alt="골드 강아지" />
+          <img src="/assets/images/community/dog2.png" alt="골드 강아지" />
         </SwiperSlide>
         
         <SwiperSlide>
-          <img src="/assets/images/community/gradationDog.svg" alt="그라데이션 강아지" />
+          <img src="/assets/images/community/dog3.png" alt="그라데이션 강아지" />
         </SwiperSlide>
         
         <SwiperSlide>
-          <img src="/assets/images/community/lightPurpleDog.svg" alt="연한 보라 강아지" />
+          <img src="/assets/images/community/dog4.png" alt="연한 보라 강아지" />
         </SwiperSlide>
         
         <SwiperSlide>
-          <img src="/assets/images/community/deepPurpleDog.svg" alt="찐보라 강아지" />
+          <img src="/assets/images/community/dog5.png" alt="찐보라 강아지" />
         </SwiperSlide>
         
         <SwiperSlide>
-          <img src="/assets/images/community/orangeCat.svg" alt="오렌지 고양이" />
+          <img src="/assets/images/community/cat1.png" alt="오렌지 고양이" />
         </SwiperSlide>
 
         <SwiperSlide>
-          <img src="/assets/images/community/goldCat.svg" alt="골드 고양이" />
+          <img src="/assets/images/community/cat2.png" alt="골드 고양이" />
         </SwiperSlide>
         
         <SwiperSlide>
-          <img src="/assets/images/community/gradationCat.svg" alt="그라데이션 고양이" />
+          <img src="/assets/images/community/cat3.png" alt="그라데이션 고양이" />
         </SwiperSlide>
         
         <SwiperSlide>
-          <img src="/assets/images/community/lightPurpleCat.svg" alt="연한 고양이" />
+          <img src="/assets/images/community/cat4.png" alt="연한 고양이" />
         </SwiperSlide>
       
         <SwiperSlide>
-          <img src="/assets/images/community/deepPurpleCat.svg" alt="찐보라 고양이" />
+          <img src="/assets/images/community/cat5.png" alt="찐보라 고양이" />
         </SwiperSlide>
 
       </Swiper>
