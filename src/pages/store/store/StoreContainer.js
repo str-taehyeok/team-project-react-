@@ -1,11 +1,8 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
-<<<<<<< Updated upstream
+import StoreCat from './StoreCat';
 import S from './style';
 import Footer from '../../layout/Footer';
-=======
-import StoreCat from './StoreCat';
->>>>>>> Stashed changes
 
 const StoreContainer = () => {
 
@@ -17,11 +14,7 @@ const StoreContainer = () => {
                 </div>
             </S.StoreMainWrap>
             <Outlet />
-<<<<<<< Updated upstream
             <Footer />
-=======
-            <StoreCat/>
->>>>>>> Stashed changes
         </div>
     );
 };

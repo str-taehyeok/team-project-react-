@@ -12,7 +12,6 @@ import StoreDogBtn from './StoreDogBtn';
 const StoreMain = () => {
 
     return (
-<<<<<<< Updated upstream
         <S.StoreMainWrap>
             <S.StoreMain>
 
@@ -57,11 +56,6 @@ const StoreMain = () => {
 
             </S.StoreMain>
         </S.StoreMainWrap>
-=======
-        <div>
-           <></>
-        </div>
->>>>>>> Stashed changes
     );
 };
 
