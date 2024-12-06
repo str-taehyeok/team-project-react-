@@ -5,14 +5,17 @@ import Footer from '../../layout/Footer';
 
 const PostContainer = () => {
     const path = useLocation().pathname;
+
+    console.log(path);
+
     return (
         <>
             <S.LayoutBox>
                 <S.LayoutButton>
                     {
                         path !== "/post/read" & "/post/list" ? (
-                            <div className='button'>
-                            <NavLink to={"orange"}><button className='oringe'></button></NavLink>
+                        <div className='button'>
+                            <NavLink to={"orange"}><button className='orange'></button></NavLink>
                             <NavLink to={"gold"}><button className='gold'></button></NavLink>
                             <NavLink to={"gradation"}><button className='gradation'></button></NavLink>
                             <NavLink to={"light-purple"}><button className='lightPurple'></button></NavLink>

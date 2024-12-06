@@ -140,7 +140,7 @@ const CommunityMain = () => {
 
                     <S.GoldBox>
                         <S.ColorName>GOLD</S.ColorName>
-                        <Link to={"/post/orange"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <Link to={"/post/gold"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
                             {orangePosts}
                         </S.PostBox>
@@ -148,7 +148,7 @@ const CommunityMain = () => {
 
                     <S.GradationBox>
                         <S.ColorName>GRADATION</S.ColorName>
-                        <Link to={"/post/orange"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <Link to={"/post/gradation"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
                             {orangePosts}
                         </S.PostBox>
@@ -156,7 +156,7 @@ const CommunityMain = () => {
 
                     <S.LightPurpleBox>
                         <S.ColorName>LIGHT PURPLE</S.ColorName>
-                        <Link to={"/post/orange"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <Link to={"/post/light-purple"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
                             {orangePosts}
                         </S.PostBox>

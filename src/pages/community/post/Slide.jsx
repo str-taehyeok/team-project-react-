@@ -18,7 +18,7 @@ const datas = [
 export default function Slide() {
 
   const postImage = datas.map((post, i) => (
-    <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+    <Swiper pagination={true} modules={[Pagination]} className="mySwiper" key={i}>
       <SwiperSlide><img src={`${process.env.PUBLIC_URL}${post.postImage1}`} alt="내 이미지1" /></SwiperSlide>
       <SwiperSlide><img src={`${process.env.PUBLIC_URL}${post.postImage2}`} alt="내 이미지1" /></SwiperSlide>
       <SwiperSlide><img src={`${process.env.PUBLIC_URL}${post.postImage3}`} alt="내 이미지1" /></SwiperSlide>

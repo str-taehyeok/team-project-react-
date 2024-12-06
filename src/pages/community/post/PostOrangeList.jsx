@@ -58,14 +58,15 @@ const datas = [
 export const PostOrangeList = () => {
 
     const postList = datas.map((post, i) => (
-        <S.CommunityPost key={i}>
+
+        <S.Post key={i}>
             <HeartBtn />
             <S.PostImage src={`${process.env.PUBLIC_URL}${post.postImage1}`} alt="게시물10" />
             <S.PropileBox>
                 <S.Profile src={`${process.env.PUBLIC_URL}${post.memberImage}`} alt="프로필" />
                 <S.NickName>{post.memberNickName}</S.NickName>
             </S.PropileBox>
-        </S.CommunityPost>
+        </S.Post>
     ))
 
     return (

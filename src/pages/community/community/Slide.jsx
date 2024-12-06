@@ -16,7 +16,7 @@ const datas = [
 export default function Slide() {
 
   const slideImage = datas.map((slide, i) => (
-    <Swiper
+    <Swiper key={i}
     spaceBetween={30}
     centeredSlides={true}
     autoplay={{

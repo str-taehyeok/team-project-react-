@@ -185,6 +185,16 @@ S.PropileBox = styled.div`
 
 // 나의/다른 사용자 게시물
 S.Post = styled.div`
+  position: relative;
+  
+  .like-icon{
+    position: absolute;
+    right: 20px;
+    top : 20px;
+    width: 20px;
+    height:20px;
+  }
+  
     input:focus {
       outline: none;
     }
