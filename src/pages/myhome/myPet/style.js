@@ -342,8 +342,9 @@ S.NoPetButton = styled.button`
 
 S.PetList = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 `;
 
 S.EditButton2 = styled.button`
