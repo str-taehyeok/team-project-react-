@@ -3,7 +3,7 @@ import S from './style';
 
 
 
-const CouponPopup = ({couponData}) => {
+const CouponPopup = ({couponData, handleShowPopup, onChangeInsertCoupon}) => {
 
     const couponList = couponData.map((coupon, i) => (
         <S.CouponPopupBoxWrap key={coupon.couponCode}>

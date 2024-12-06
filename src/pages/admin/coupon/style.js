@@ -1,5 +1,8 @@
 import styled from "styled-components";
-
+import {
+    h6Bold,h6Regular
+} from '../../../global/common'
+// import theme from "../../../global/theme";
 const S = {}
 
 /*****상세내용*******/
@@ -65,6 +68,7 @@ S.SearchBtn = styled.button`
     cursor: pointer;
     background-color: #fff;
 `
+
 S.ResetBtn = styled.button`
     width: 90px;
     height: 30px;
@@ -94,138 +98,51 @@ S.NoticeList = styled.div`
     margin: 0 auto;
 `;
 
-//
-// label {
-//     display: block;
-//     text-align: center;
-//     font-weight: bold;
-// }
-//
-// table {
-//     width: 100%;
-//     text-align: center;
-//     table-layout: fixed;
-// }
-//
-// table tr {
-//     display: flex;
-// }
-//
-// table tr > th {
-//     width: 100%;
-//     border-bottom: solid 0.1px #828282;
-//     justify-content: center;
-//     padding-bottom: 28px;
-// }
-//
-// table tr > td {
-//     width: 100%;
-//     justify-content: center;
-//     padding: 20px 0;
-//     gap: 5px;
-// }
-//
-// table tr > th:nth-child(1){
-//     width: 122px;
-//     flex-shrink: 0;
-//     display: flex;
-//     align-items: center;
-// }
-// table tr > th:nth-child(2){
-//     width: 366px;
-//     flex-shrink: 0;
-//     display: flex;
-//     align-items: center;
-// }
-// table tr > th:nth-child(3){
-//     width: 244px;
-//     flex-shrink: 0;
-//     display: flex;
-//     align-items: center;
-// }
-// table tr > th:nth-child(4){
-//     width: 244px;
-//     flex-shrink: 0;
-//     display: flex;
-//     align-items: center;
-// }
-// table tr > th:nth-child(5){
-//     width: 366px;
-//     flex-shrink: 0;
-//     display: flex;
-//     align-items: center;
-// }
-// table tr > th:nth-child(6){
-//     width: 98px;
-//     flex-shrink: 0;
-//     display: flex;
-//     align-items: center;
-// }
-//
-// table tr > td:nth-child(1){
-//     width: 122px;
-//     flex-shrink: 0;
-//     display: flex;
-//     align-items: center;
-// }
-//
-// table tr > td:nth-child(2){
-//     width: 366px;
-//     flex-shrink: 0;
-//     display: flex;
-//     align-items: center;
-// }
-//
-// table tr > td:nth-child(3){
-//     width: 244px;
-//     flex-shrink: 0;
-//     display: flex;
-//     align-items: center;
-// }
-// table tr > td:nth-child(4){
-//     display: flex;
-//     width: 244px;
-//     flex-shrink: 0;
-//     align-items: center;
-// }
-// table tr > td:nth-child(5){
-//     width: 366px;
-//     flex-shrink: 0;
-//     display: flex;
-//     align-items: center;
-// }
-// table tr > td:nth-child(6){
-//     width: 98px;
-//     flex-shrink: 0;
-//     display: flex;
-//     align-items: center;
-// }
-//
-// .change-buttons {
-//     display: flex;
-//     gap: 10px;
-//
-// }
-//
-// .edit-btn {
-//     background-color: #888888;
-//     color: white;
-//     border: none;
-//     border-radius: 10px;
-//     cursor: pointer;
-//     width: 45px;
-//     height: 25px;
-// }
-//
-// .delete-btn {
-//     color: #131313;
-//     border: solid 1px #888888;
-//     background-color: #fff;
-//     border-radius: 10px;
-//     cursor: pointer;
-//     width: 45px;
-//     height: 25px;
-// }
+S.Table = styled.table`
+    width: 100%;
+    text-align: center;
+    table-layout: fixed;
+`
+
+S.TableCellTh = styled.th`
+    width: 100%;
+    border-bottom: solid 1px #828282;
+    justify-content: center;
+    padding-bottom: 38px;
+    ${h6Bold};
+`
+
+S.TableRow = styled.tr`
+    
+`
+
+S.TableCell = styled.td`
+    width: 100%;
+    justify-content: center;
+    padding: 25px 0;
+    gap: 5px;
+    ${h6Regular};
+`
+
+S.CouponEdit = styled.button`
+    width: 46px;
+    height: 24px;
+    border-radius: 20px;
+    background-color: #888888;
+    color: white;
+    border: none;
+    margin-right: 5px;
+`
+
+S.CouponDelete = styled.button`
+    width: 46px;
+    height: 24px;
+    border-radius: 20px;
+    background-color: white;
+    color: #131313;
+    border: 1px solid #131313;
+`
+
 
 
 
