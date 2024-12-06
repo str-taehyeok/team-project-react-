@@ -57,6 +57,9 @@ const S = {}
         position: absolute;
         top: 85px;
         left: 0px;
+        z-index: 1000; // z-index 추가
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // 그림자 효과 추가 (선택사항)
     
     `;
 
@@ -138,7 +141,7 @@ const S = {}
             background-color: #fff;
             color: #131313;
             ${h7Medium};
-            padding: 5px 0 ;
+            //padding: 5px 0 ;
         }
         
         & div{
@@ -146,6 +149,7 @@ const S = {}
             overflow: hidden;
             transition: height 0.3s ease;
             padding-left: 15px;
+            background-color: #fff;
         }
         
         }
