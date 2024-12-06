@@ -45,7 +45,7 @@ const SellerLogin = () => {
 
       {/* 비밀번호 로직 만들기 */}
       <label>
-        <S.Input type="password" id='password' placeholder='비밀번호를 입력하세요.'
+        <S.Input type="password" id='password' placeholder='판매자 비밀번호를 입력하세요.'
           autoComplete='off'
           {...register("password", {
             required: true,

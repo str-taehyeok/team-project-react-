@@ -14,6 +14,7 @@ S.LoginMain = styled.div`
   width: 464px;
   padding-bottom: 40px;
   margin: 100px auto;
+  position: fixed;
 `;
 
 // Logo Box
@@ -37,6 +38,7 @@ S.MemberBtn = styled.div`
   height: 44px;
   border-radius: 20px;
   border: solid 1px #828282;
+  color: #828282;
   margin-right: 24px;
   font-size: 16px;
   font-weight: bold;
