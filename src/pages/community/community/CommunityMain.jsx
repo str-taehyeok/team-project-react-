@@ -3,6 +3,7 @@ import Banner from "./Banner.jsx";
 import S from './style.js';
 import Slide from './Slide.jsx';
 import { Link } from 'react-router-dom';
+import HeartBtn from './HeartBtn.jsx';
 
 const myPostList = [
     { postImage1 : "/assets/images/community/myPost1.png" },
@@ -46,6 +47,7 @@ const CommunityMain = () => {
 
     const myPosts = myPostList.map(({postImage1}, i) => (
         <S.MyPost key={i} >
+            <HeartBtn />
             <Link to={`/post/read?postId=${id}`}>
                 <img src={postImage1} alt={"나의 게시글" + (i + 1)} />
             </Link>
@@ -56,6 +58,7 @@ const CommunityMain = () => {
         <S.OrangePostBox key={i}>
             <S.OrangePost>
                 <S.PostImage>
+                    <HeartBtn />
                     <Link to={`/post/read?postId=${id}`}>
                         <img src={postImage1} alt={"게시글" + (i + 1)} />
                     </Link>
@@ -98,7 +101,7 @@ const CommunityMain = () => {
                             <p className='text3'>게시물 작성하기</p>
                             <p className='text4'>지금 나만의 반려동물 일기를 작성해보세요!</p>
                         </div>
-                        <Link to={"../post/my-post-list"}>
+                        <Link to={`/post/list?postId=${id}`}>
                             <p className='text5'>전체보기</p>
                         </Link>
                     </S.MyTitle>
@@ -137,7 +140,7 @@ const CommunityMain = () => {
 
                     <S.GoldBox>
                         <S.ColorName>GOLD</S.ColorName>
-                        <Link to={"/post/orange"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <Link to={"/post/gold"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
                             {orangePosts}
                         </S.PostBox>
@@ -145,7 +148,7 @@ const CommunityMain = () => {
 
                     <S.GradationBox>
                         <S.ColorName>GRADATION</S.ColorName>
-                        <Link to={"/post/orange"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <Link to={"/post/gradation"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
                             {orangePosts}
                         </S.PostBox>
@@ -153,7 +156,7 @@ const CommunityMain = () => {
 
                     <S.LightPurpleBox>
                         <S.ColorName>LIGHT PURPLE</S.ColorName>
-                        <Link to={"/post/orange"}><S.AllToGo>전체보기</S.AllToGo></Link>
+                        <Link to={"/post/light-purple"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
                             {orangePosts}
                         </S.PostBox>
