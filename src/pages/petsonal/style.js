@@ -318,8 +318,9 @@ S.ResultCategory = styled.div`
 `;
 
 S.PercentageWrap = styled.div`
-  width: 500px;
+  width: 505px;
   ${flexCenterRowSpaceBetween}
+  
 `;
 
 S.Percent = styled.div`
@@ -328,6 +329,10 @@ S.Percent = styled.div`
   border-radius: 20px;
   background-color: white;
 `;
+
+S.Percentage = styled.span`
+  font-size: ${theme.FONT_SIZE.h10};
+`
 
 S.CuteAndChicGage = styled.div`
   border-radius: 20px;
