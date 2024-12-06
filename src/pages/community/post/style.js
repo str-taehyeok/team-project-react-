@@ -417,7 +417,7 @@ S.FollowBtn = styled.div`
   display:flex;
   width:582px;
   justify-content: right;
-
+  margin-top: 9px;
 `
 // 팔로잉 버튼
 S.FollowingBtn = styled.div`
@@ -431,6 +431,7 @@ S.FollowingBtn = styled.div`
   display:flex;
   width:582px;
   justify-content: right;
+  margin-top: 9px;
 
   & p {
   font-size: 12px;
