@@ -4,17 +4,16 @@ import S from "./style";
 import { useForm } from "react-hook-form";
 
 const FindPassword = () => {
-
-  const [newPassword] = useState("");
-  const [confirmNewPassword] = useState("");
-  const [email, setEmail] = useState(""); // 이메일을 위한 상태 추가
-  const [authNumber, setAuthNumber] = useState(""); // 인증번호 상태 그대로 유지
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [email, setEmail] = useState(""); 
+  const [authNumber, setAuthNumber] = useState(""); 
+  const [mark, setMark] = useState(false);
   const {
     register,
     getValues,
     formState: { errors },
   } = useForm({ mode: "onChange" });
-  const [mark, setMark] = useState(false);
 
   const handlePasswordChange = () => {
     if (!authNumber || !newPassword || !confirmNewPassword) {
@@ -26,6 +25,41 @@ const FindPassword = () => {
     }
 
     alert("비밀번호가 변경되었습니다.");
+  };
+
+  // 이메일로 인증번호 전송 API 요청
+  const handleAuthRequest = async () => {
+    if (!email) {
+      return alert("이메일을 입력해주세요.");
+    }
+
+    try {
+      const response = await fetch("/api/send-auth-code", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("인증번호가 이메일로 전송되었습니다.");
+      } else {
+        alert(result.message || "인증번호 전송에 실패했습니다.");
+      }
+    } catch (error) {
+      alert("서버에 문제가 발생했습니다. 다시 시도해주세요.");
+    }
+  };
+
+  const handleAuthVerify = () => {
+    if (authNumber === "입력된 인증번호") { 
+      alert("인증이 확인되었습니다.");
+    } else {
+      alert("인증번호를 확인해주세요.");
+    }
   };
 
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
@@ -59,7 +93,9 @@ const FindPassword = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            
+            <S.AuthButton type="button" onClick={handleAuthRequest}>
+              인증요청
+            </S.AuthButton>
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
@@ -74,6 +110,9 @@ const FindPassword = () => {
               value={authNumber}
               onChange={(e) => setAuthNumber(e.target.value)}
             />
+            <S.AuthButton type="button" onClick={handleAuthVerify}>
+              확인
+            </S.AuthButton>
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
@@ -91,6 +130,8 @@ const FindPassword = () => {
                   value: passwordRegex,
                 },
               })}
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
             />
             {errors && errors?.password?.type === "required" && (
               <S.P>비밀번호를 입력하세요</S.P>
@@ -118,9 +159,9 @@ const FindPassword = () => {
             <S.Input
               type={mark ? "text" : "password"}
               id="passWordConfirm"
-              placeholder="비밀번호를 입력하세요"
+              placeholder="새로운 비밀번호 확인"
               {...register("passWordConfirm", {
-                required: "비밀번호를 확인하세요.",
+                required: "새로운 비밀번호 확인",
                 validate: {
                   matchPassword: (passWordConfirm) => {
                     const password = getValues("password");
@@ -131,20 +172,16 @@ const FindPassword = () => {
                   },
                 },
               })}
+              value={confirmNewPassword}
+              onChange={(e) => setConfirmNewPassword(e.target.value)}
             />
             {errors && errors?.passWordConfirm && (
               <S.P>{errors.passWordConfirm.message}</S.P>
             )}
-
-            {errors.agrees && (
-              <S.P id="AgreeResult" style={{ color: "red" }}>
-                {errors.agrees.message}
-              </S.P>
-            )}
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
-        <Link to="/find-password-complete">
+        <Link to="/find/find-password-complete">
           <S.NextButton
             type="button"
             onClick={handlePasswordChange}
