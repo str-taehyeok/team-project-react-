@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { gray200, h1Bold, h2Bold, h4Medium, h6Medium, h7Bold, h7Medium, h8Medium, h9Medium, h8Regular, h10Regular } from "../../../global/common";
+import { h4Bold, gray200, h1Bold, h2Bold, h4Medium, h6Medium, h7Bold, h7Medium, h8Medium, h9Medium, h8Regular, h10Regular, h9Regular } from "../../../global/common";
 
 const S = {}
 
@@ -60,126 +60,147 @@ S.NoCartInfo = styled.div`
 
 
 `
-
+// 장바구니 있는 버전
 
 S.CartTitle = styled.div`
   margin-top: 190px;
-  margin-bottom: 167px;
+  margin-bottom: 50px;
+    
+  ${h4Bold}
+
+ 
+`
+
+S.CartAllCheck = styled.div`
+  width: 1175px;
+  height: 85px;
+  border: solid 1px #828282;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+
+  & > input {
+    width: 28px;
+    height: 28px;
+    accent-color: #113F8A;
+    margin-left: 39px;
+    margin-right: 154px;
+  }
+
+`
+
+S.CartAllNames = styled.div`
+  width: 854px;
+  height: 22px;
+  display: flex;
+
+  ${h7Bold}
 
   & p {
-    
-    ${h2Bold}
-
+    display: flex;
+    justify-content: center;
   }
-`
-S.CartProduct = styled.div`
-  width: 978px;
-  height: 136px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-
-  & img {
-    width: 132px;
-    height: 132px;
-  }
-
-`
-
-S.CartProductInfo = styled.div`
-  width: 814px;
-  height: 61px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
 
   & p:nth-child(1) {
-    ${h8Medium}
-    width: 254px;
-    height: 61px;
-    display: flex;
-    overflow: hidden;
-    margin-right: 55px;
+    width: 213px;
+    height: 22px;
   }
-
   & p:nth-child(2) {
-    ${h9Medium}
-    width: 80px;
-    background-color: #D9D9D9;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    margin-right: 113px;
+    width: 304px;
+    height: 22px;
   }
-
   & p:nth-child(3) {
-    ${h6Medium}
-    width: 74px;
-    
+    width: 133px;
+    height: 22px;
   }
-  
   & p:nth-child(4) {
-    ${h8Medium}
-    width: 62px;
-    color: #828282;
-    text-decoration: line-through;
-    height: 18px;
-
+    width: 198px;
+    height: 22px;
   }
-
-
-  & p:nth-child(5) {
-    width: 145px;
-    height: 17px;
-    box-sizing: border-box;
-    border: solid 0.5px #828282;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    ${h9Medium}
-
-  }
-
 
 `
+// 개별 제품 체크박스 디자인
 
 S.CartProductBox = styled.div`
   width: 1175px;
-  height: 372px;
+  height: 286px;
   box-sizing: border-box;
   border: solid 1px #828282;
-  border-radius: 20px;
+  border-radius: 12px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  justify-content: space-between;
-  margin: 0 auto;
+  align-items: center;
+  margin-top: 22px;
 
-  & button {
-  width: 40px;
-  height: 40px;
-  background-color: transparent;
-  border: none;
+  & > input {
+    width: 28px;
+    height: 28px;
+    accent-color: #113F8A;
+    margin-top: 32px;
+    margin-left: 32px;
+    margin-right: 1096px;
+    display: block;
+  }
 
-}
+
 `
-S.CartProductRadio = styled.div`
-  width: 1054px;
-  height: 37px;
-  margin-top: 36px;
+S.CartProductInfo = styled.div`
+  width: 1006px;
+  height: 135px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  ${h7Bold}
+  margin-top: 20px;
 
-  & hr {
-    width:11124px;
-    color:#828282;
+  & > img {
+    width: 136px;
+    height: 136px;
   }
+
+`
+
+S.ProductName = styled.div`
+      width: 262px;
+      height: 50px;
+      display: flex;
+      overflow: hidden;
+      ${h8Regular}
+      margin-left: 34px;
+
+`
+S.productCount = styled.div`
+  cursor: pointer;
+  margin-left: 30px;
+  width: 80px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 12px;
+  background-color: #888888;
+  ${h8Regular}
+
+`
+
+S.productPrice = styled.div`
+  width: 138px;
+  height: 24px;
+  display: flex;
+  align-items: baseline;
+  margin-left: 118px;
+
+  & p:nth-child(1) {
+    ${h6Medium}
+  }
+
+  & p:nth-child(2) {
+    ${h8Medium}
+    margin-left: 4px;
+    color: #828282;
+    text-decoration: line-through;
+  }
+
 `
 
 // 추천 프로덕트 디자인
@@ -222,7 +243,7 @@ S.RecommendInfo = styled.div`
 `
 
 
-S.RecommendStar = styled.div `
+S.RecommendStar = styled.div`
   width: 100px;
   height: 20px;
   display: flex;
@@ -234,7 +255,45 @@ S.RecommendStar = styled.div `
   }
 
 `
+
+S.CouponBtnWrap = styled.div`
+  position: relative;
+
+`
+
+S.CouponBtn = styled.div`
+  width: 150px;
+  height: 18px;
+  box-sizing: border-box;
+  border: solid 1px #828282;
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  color: #828282;
+  margin-left: 32px;
+  align-items: center;
+  justify-content: space-around;
+  ${h9Regular}
+  cursor: pointer;
  
+`
+S.CouponWrap = styled.div`
+  position: absolute;
+  margin-top: 6px;
+  right: 0px;
+  border: solid 1px #828282;
+  width: 150px;
+  height: 80px;
+  display: none;
+
+  &.active {
+    display: flex;
+    ${h9Regular}
+    align-items: center;
+    flex-direction: column;
+  }
+
+`
 
 
 

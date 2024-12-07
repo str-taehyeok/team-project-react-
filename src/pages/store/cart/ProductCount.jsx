@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
+import S from './style';
 
-const ProductCount = ({products}) => {
 
-  const [product, setProduct] = useState(product.ProductCount)
+
+const ProductCount = ({product}) => {
+
+  const [count, setCount] = useState(product.productCount)
   const increase = () => {
-    setProduct(product + 1)
+    setCount(count + 1)
+  }
+
+  const decrease = () => {
+    setCount(count - 1)
   }
 
   return (
-    <div>
-      <p>{product.productCount}</p>
-      <button>-</button><span></span><button>+</button>
-    </div>
+    <S.productCount>
+      <div onClick={decrease}>-</div><span>{count}</span><div onClick={increase}>+</div>
+    </S.productCount>
   );
 };
 
