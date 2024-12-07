@@ -8,14 +8,15 @@ import HeartBlackBtn from './HeartBlacktBtn.jsx';
 const myPost = [
     { 
         memberNickname : "쏘오연",
-        memberImage : "/assets/images/community/default-profile.png ",
+        memberImage : "/assets/images/community/default-myProfile.png ",
         postTitle : "반려동물 게시물",
         postContent :   "게시물에 적은 본문 내용이 여기에 적힙니다." + 
                         "# 태그를 이용해서 연관 검색어에 걸리도록 작성가능합니다." +
                         "아무거나 적어주세요." +
                         "당신의 반려동물에 관한건 뭐든지요." +
                         "사진은 필참이기에 게시글만 올라올 가능성은 없습니다.",
-        likeCount : "0"
+        likeCount : "0",
+        commentCount : "0"
     }
 ]
 
@@ -26,26 +27,41 @@ const UserPost = () => {
     const id = serachParams.get("postId")
     console.log(id)
 
-    const myPostPage = myPost.map(({memberImage, memberNickname, postTitle, postContent, likeCount}, i) => (
+    const myPostPage = myPost.map(({memberImage, memberNickname, postTitle, postContent, likeCount, commentCount}, i) => (
         <S.MyPostPage key={i}>
             <S.MyPostBox>
                 <S.ProfileBox>
-                    <S.Profile>
+                    <S.MyProfile>
                         <Link to={`/post/list?postId=${id}`}>
-                            <img src={memberImage} alt={"게시글 리스트" + (i + 1)} />
+                            <img src={memberImage} alt="프로필" />
                         </Link>
-                    </S.Profile>
+                    </S.MyProfile>
                         <S.NickName>{memberNickname}</S.NickName>
                     <FollowBtn />
                 </S.ProfileBox>
                 <Slide />
-                <div>
-                    <HeartBlackBtn/>
-                    {likeCount}
+                <S.MyPostUnderBox>
+                    <S.PostUnder>
+                        <HeartBlackBtn/>
+                        <S.LikeNumber>{likeCount}</S.LikeNumber>
+                        <S.DotBtn><button><img src="/assets/images/community/dots.png" alt="삼점메뉴" /></button></S.DotBtn>
+                    </S.PostUnder>
                     <S.PostTitle>{postTitle}</S.PostTitle>
                     <S.PostContent>{postContent}</S.PostContent>
-                </div>
+                </S.MyPostUnderBox>
             </S.MyPostBox>
+
+            <S.CommentNumber>
+                <S.Comment>댓글</S.Comment>
+                <S.Comment>{commentCount}</S.Comment>
+            </S.CommentNumber>
+            <S.InputContainer>
+                <S.MyProfile>
+                    <img src={memberImage} alt="프로필" />
+                </S.MyProfile>
+                <input placeholder='댓글을 입력해주세요.'></input>
+                <button>완료</button>
+            </S.InputContainer>
         </S.MyPostPage>
     ))  
 

@@ -185,16 +185,7 @@ S.PropileBox = styled.div`
 
 // 컬러별 게시물
 // S.Post = styled.div`
-//   position: relative;
-  
-//   .like-icon{
-//     position: absolute;
-//     right: 20px;
-//     top : 20px;
-//     width: 20px;
-//     height:20px;
-//   }
-  
+
 //     input:focus {
 //       outline: none;
 //     }
@@ -240,35 +231,35 @@ S.PropileBox = styled.div`
 //   }
 
 //   .text2 {
-//     font-size: 20px;
-//     line-height: 30px;
-//     letter-spacing: -3%;
-//     font-weight: bold;
+    // font-size: 20px;
+    // line-height: 30px;
+    // letter-spacing: -3%;
+    // font-weight: bold;
 //   }
 //   .comment-number{
-//     display:flex;
-//     flex-direction: row;
-//     align-items:center;
-//     margin-bottom: 5px;
-//     width:559px;
-//     justify-content:left;
-//     gap:10px;
+    // display:flex;
+    // flex-direction: row;
+    // align-items:center;
+    // margin-bottom: 5px;
+    // width:559px;
+    // justify-content:left;
+    // gap:10px;
 //   }
 //   .profile2{
 //     width:44px;
 //     height:44px
 //   }
 //   .input{
-//     border-radius: 20px;
-//     border-style: none;
-//     border: solid 1px #828282;
-//     width:469px;
-//     height:56px;
-//     padding: 19px 26px;
-//     font-size: 12px;
-//     line-height: 18px;
-//     letter-spacing: -3%;
-//     color:#828282;
+    // border-radius: 20px;
+    // border-style: none;
+    // border: solid 1px #828282;
+    // width:469px;
+    // height:56px;
+    // padding: 19px 26px;
+    // font-size: 12px;
+    // line-height: 18px;
+    // letter-spacing: -3%;
+    // color:#828282;
 //   }
 //   .button{
 //     border:none;
@@ -369,6 +360,11 @@ S.PropileBox = styled.div`
     height:40px;
     margin-right: 10px;
   `
+  S.MyProfile = styled.div`
+    width:44px;
+    height:44px;
+    margin-right: 10px;
+  `
   // 팔로우 버튼튼
 S.FollowBtn = styled.div`
 & button {
@@ -413,9 +409,10 @@ S.FollowingBtn = styled.div`
 
 // 게시물 제목
 S.PostTitle = styled.div`
-  margin-top: 25px;
-  font-size: 14px;
-  line-height: 22px;
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: bold;
 `
 // 게시물 내용용
 S.PostContent = styled.div`
@@ -442,6 +439,81 @@ S.MyPostPage = styled.div`
   margin-top: 152px;
 `
 
+S.PostUnder = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center
+    
+`
+S.DotBtn = styled.div`
+  & button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+  }
+`
+S.LikeNumber = styled.div`
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -3%;
+  font-weight: bold;
+  width: 100%;
+  margin-left: 10px;
+`
+S.MyPostUnderBox = styled.div`
+  width:586px;
+  padding: 19px 26px;
+`
+
+S.Comment = styled.div`
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -3%;
+  font-weight: bold;
+`
+
+S.CommentNumber = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+  margin-bottom: 5px;
+  width:559px;
+  justify-content:left;
+  gap:10px;
+`
+
+S.InputContainer = styled.div`
+  & input {
+    border-radius: 20px;
+    border-style: none;
+    border: solid 1px #828282;
+    width:469px;
+    height:56px;
+    padding: 19px 26px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -3%;
+    color:#828282;
+    outline:none;
+  }
+  & button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    color: #113F8A;
+    font-size: 12px;
+    font-weight: bold;
+    /* position: absolute;  */
+    /* right: 20px; 
+    top: 18px; */
+  }
+  & img{
+    position: absolute; 
+    right: 20px; 
+    top: 18px;
+  }
+`
 
 
 export default S;
