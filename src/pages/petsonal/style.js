@@ -28,30 +28,37 @@ S.PetsonalContainer = styled.div`
     color: white;
     background-color: #2298ff;
     position: absolute;
-    top: 735px;
+    bottom: 240px;
     ${h4Bold}
     cursor: pointer;
     ${flexRowCenter}
   }
 `;
+S.FirstImage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1920px;
+  height: 962px;
+  position: relative;
+`
 
 S.StartImage = styled.div`
-  position: relative;
   width: 100%;
-  height: 962px;
-  max-width: 2080px;
+  height: 100%;
 `;
 
 S.MainFirst = styled.img`
   width: 100%;
-  height: 1080px;
+  height: 100%;
 `;
 
 S.MainText = styled.p`
-  top: 198px;
+  position: absolute;
   font-size: 70px;
   font-weight: bold;
-  position: absolute;
+      top: 150px;
 `;
 
 S.SecondImage = styled.div`
@@ -59,7 +66,7 @@ S.SecondImage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 1920px;
   height: 1080px;
   background: #fff5d0;
   position: relative;
@@ -131,6 +138,7 @@ S.FinalImage = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 68px;
+  width: 1920px;
 
   & img {
     margin-bottom: 250px;
@@ -148,7 +156,7 @@ S.ThirdImage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 1920px;
   height: 1080px;
   background: white;
   position: relative;
