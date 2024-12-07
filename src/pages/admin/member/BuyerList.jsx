@@ -78,6 +78,7 @@ const BuyerList = () => {
                             <th>SMS 수신여부</th>
                             <th>메일 수신여부</th>
                         </tr>
+                        <S.Line></S.Line>
                         </thead>
                         <tbody id="user-list">
                         {eachMember}

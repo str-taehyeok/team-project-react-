@@ -146,9 +146,9 @@ const SellerProductList = () => {
     };
 
     // 재고 상태 표시
-    const getStockStatus = (stock) => {
-        return stock > 0 ? '판매중' : '품절';
-    };
+    // const getStockStatus = (stock) => {
+    //     return stock > 0 ? '판매중' : '품절';
+    // };
 
 
     const product = filteredProducts.map((product, index) => (
@@ -162,7 +162,7 @@ const SellerProductList = () => {
             <td><S.Name>{product.productName}</S.Name></td>
             <td>{product.productPrice.toLocaleString()}원</td>
             <td>{product.productCategory}</td>
-            <td>{getStockStatus(product.productStock)}</td>
+            <td>{product.productStock}</td>
             <td>{product.productDate}</td>
             <td>
                 <S.ManageButtons>
