@@ -111,7 +111,7 @@ const CommunityMain = () => {
                         <S.AddPost>
                             <Link to={"../post/write"}>
                                 <div>
-                                    <img src="/assets/images/community/plus.svg" alt="플러스아이콘" />
+                                    <img src="/assets/images/community/plus.png" alt="플러스아이콘" />
                                     <p>내 게시물 추가하기</p>
                                 </div>
                             </Link>
