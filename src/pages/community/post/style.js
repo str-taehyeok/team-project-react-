@@ -20,7 +20,7 @@ S.AllPostWrapper = styled.div`
 `
 
 S.LayoutButton = styled.div`
-  .oringe{
+  .orange{
     border-radius:50%;
     border: none;
     background-color: #D9D9D9;
@@ -28,7 +28,7 @@ S.LayoutButton = styled.div`
     height: 30px;
   }
 
-  .active .oringe{
+  .active .orange{
     background-color: #FFC303;
   }
 
@@ -138,7 +138,6 @@ S.Profile = styled.img`
   height:40px;
   margin-right: 10px;
 `
-
 S.NickName = styled.p`
   font-size: 14px;
   line-height: 22px;
@@ -179,14 +178,207 @@ S.PropileBox = styled.div`
   align-items:center;
   margin-top: 5px;
 `
- 
-// 마이페이지 커뮤니티
 
+  S.NickName = styled.div`
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -3%;
+    font-weight: bold;
+    width: 100%;
+  `
+  S.ProfileBox = styled.div`
+    display:flex;
+    flex-direction: row;
+    width: 586px;
+    align-items:center;
+    margin-bottom: 5px;
+  `
+  S.Profile = styled.div`
+    width:40px;
+    height:40px;
+    margin-right: 10px;
+  `
+  S.MyProfile = styled.div`
+    width:44px;
+    height:44px;
+    margin-right: 10px;
+  `
+  // 팔로우 버튼튼
+S.FollowBtn = styled.div`
+& button {
+  border-radius: 20px;
+  width:65px;
+  height:30px;
+  background-color:#113F8A;
+  border:none;
+}
+& p {
+  font-size: 12px;
+  line-height: 18px;
+  color: #ffffff;
+  font-weight: bold;
+}
+  display:flex;
+  width:582px;
+  justify-content: right;
+  margin-top: 9px;
+`
+// 팔로잉 버튼
+S.FollowingBtn = styled.div`
+& button {
+  border-radius: 20px;
+  width:65px;
+  height:30px;
+  background-color:#ffffff;
+  border:solid 1px #828282;
+}
+  display:flex;
+  width:582px;
+  justify-content: right;
+  margin-top: 9px;
 
-// 나의/다른 사용자 게시물
-S.Post = styled.div`
-  position: relative;
-  
+  & p {
+  font-size: 12px;
+  line-height: 18px;
+  color: #828282;
+  font-weight: bold;
+}
+`
+
+// 게시물 제목
+S.PostTitle = styled.div`
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: bold;
+`
+// 게시물 내용용
+S.PostContent = styled.div`
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 22px;
+`
+
+// 게시물 전체 박스
+S.MyPostBox = styled.div`
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  width:586px;
+
+ & .mySwiper {
+  width: 586px;
+  height:586px;
+  border-radius:20px;
+ }
+`
+S.MyPostPage = styled.div`
+  margin-top: 152px;
+`
+
+S.PostUnder = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center
+    
+`
+S.DotBtn = styled.div`
+  & button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+  }
+`
+S.LikeNumber = styled.div`
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -3%;
+  font-weight: bold;
+  width: 100%;
+  margin-left: 10px;
+`
+S.MyPostUnderBox = styled.div`
+  width:586px;
+  padding: 19px 26px;
+`
+
+S.Comment = styled.div`
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -3%;
+  font-weight: bold;
+`
+
+S.CommentNumber = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+  margin-bottom: 5px;
+  width:559px;
+  justify-content:left;
+  gap:10px;
+`
+
+S.InputContainer = styled.div`
+  position: relative; 
+  width: 469px;
+  & input {
+    border-radius: 20px;
+    border-style: none;
+    border: solid 1px #828282;
+    width:469px;
+    height:56px;
+    padding: 19px 59px 19px 26px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -3%;
+    color:#828282;
+    outline:none;
+    margin-left: 10px;
+  }
+  & button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    color: #113F8A;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute; 
+    right: 15px; 
+    top: 19px;
+  }
+
+`
+S.MyComment = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+`
+S.CommentBox = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 32px;
+`
+S.CommentText = styled.div`
+  display:flex;
+  flex-direction: column;
+  margin-left: 10px;
+  width: 100%;
+`
+S.CommentDiv = styled.div`
+  width: 561px;
+
+`
+S.MyPostPageBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 52px;
+`
+S.BestPostBox = styled.div`
+position: relative;
   .like-icon{
     position: absolute;
     right: 20px;
@@ -194,232 +386,13 @@ S.Post = styled.div`
     width: 20px;
     height:20px;
   }
-  
-    input:focus {
-      outline: none;
-    }
-
-  .profile{
-    width:40px;
-    height:40px;
-    margin-right: 10px;
-  }
-
-  .nick-name{
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -3%;
-    font-weight: bold;
-    width: 100%;
-  }
-
-  .my-profile {
-    display:flex;
-    flex-direction: row;
-    align-items:center;
-    margin-bottom: 5px;
-    width:582px;
-    justify-content:left;
-  }
-
-  .follow {
-    border-radius: 20px;
-    width:65px;
-    height:30px;
-    background-color:#113F8A;
-    border:none;
-  }
-
-  .follow-text {
-    font-size: 12px;
-    line-height: 18px;
-    color: #ffffff;
-    font-weight: bold;
-  }
-
-  .follow-box{
-    display:flex;
-    width:582px;
-    justify-content: right;
-  }
-
-  .following {
-    border-radius: 20px;
-    width:65px;
-    height:30px;
-    background-color:#ffffff;
-    border:solid 1px #828282;
-  }
-
-  .following-box{
-    display:flex;
-    width:582px;
-    justify-content: right;
-    display:none;
-  }
-
-  .following-text {
-    font-size: 12px;
-    line-height: 18px;
-    color: #828282;
-    font-weight: bold;
-  }
-
-  & .mySwiper {
-      width: 586px;
-      height:586px;
-      border-radius:20px;
-   }
-
-  .like {
-    width: 40px;
-    height:40px;
-    margin-right: 10px;
-  }
-  .like-number {
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -3%;
-    font-weight: bold;
-    width: 100%;
-  }
-
-  .my-like{
-    display:flex;
-    flex-direction: row;
-    align-items:center;
-  }
-
-
-  .text1{
-    margin-top: 25px;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -3%;
-  }
-  .box{
-    width:586px;
-    padding: 19px 26px;
-  }
-
-  .my-post{
-    display:flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items:center;
-    width:586px;
-  }
-
-  .text2 {
-    font-size: 20px;
-    line-height: 30px;
-    letter-spacing: -3%;
-    font-weight: bold;
-  }
-  .comment-number{
-    display:flex;
-    flex-direction: row;
-    align-items:center;
-    margin-bottom: 5px;
-    width:559px;
-    justify-content:left;
-    gap:10px;
-  }
-  .profile2{
-    width:44px;
-    height:44px
-  }
-  .input{
-    border-radius: 20px;
-    border-style: none;
-    border: solid 1px #828282;
-    width:469px;
-    height:56px;
-    padding: 19px 26px;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: -3%;
-    color:#828282;
-  }
-  .button{
-    border:none;
-    color: #113F8A;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: -3%;
-    background-color: white;
-    position: absolute; 
-    right: 20px; 
-    top: 18px;
-  }
-
-  .input-container{
-    position: relative; 
-    width: 469px;
-  }
-
-  .box1 {
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    gap:28px;
-    margin-top: 53px;
-  }
-  .comment-box{
-    width: 559px;
-    height: 681px;
-    margin-top: 5px;
-  }
-  .text3{
-    font-size: 14px;
-    line-height: 22px;
-    text-align: center;
-   padding-top: 66px;
-  }
-
-  .my-comment{
-    display:flex;
-    flex-direction: column;
-    width: 559px;
-  }
-
-  .my-post-box{
-    display:flex;
-    flex-direction: row;
-    width:1178px;
-    gap: 50px;
-    margin: 0 auto;
-    margin-top: 152px;
-  }
+`
+S.BestText = styled.div`
+  margin-top: 18px;
+  font-size: 24px;
+  line-height: 36px;
+  font-weight:bold;
 `
 
-// 베스트 게시물
-S.BestPost = styled.div`
-
-  .text4{
-    font-size: 20px;
-    line-height: 30px;
-    font-weight:bold;
-  }
-  .bestPost{
-    width: 170px;
-    height: 170px;
-    border-radius: 20px;
-  }
-  .best-post-box{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    margin-top: 39px;
-  }
-  .bestBox{
-    display:flex;
-    flex-direction: column;
-    width:1132px;
-    margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: 221px;
-  }
-`
 
 export default S;
