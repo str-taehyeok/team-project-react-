@@ -116,7 +116,7 @@ const Flushies = () => {
             <img src={productImage1} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
             </Link>
-            <span style={{ fontWeight: 700 }}>{productPrice}</span>
+            <span style={{ fontWeight: 700 }}>{productPrice}&nbsp;원</span>
             <button>담기</button>
         </S.BestProduct>
     ))
@@ -127,7 +127,7 @@ const Flushies = () => {
             <img src={productImage1} alt={"상품" + (i + 1)}/>
             <span>{productName}</span>
             </Link>
-            <span style={{ fontWeight: 700 }}>{productPrice}</span>
+            <span style={{ fontWeight: 700 }}>{productPrice}&nbsp;원</span>
             <button>담기</button>
         </S.SpecialProduct >
     ))
@@ -138,7 +138,7 @@ const Flushies = () => {
             <img src={productImage1} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
             </Link>
-            <span style={{ fontWeight: 700 }}>{productPrice}</span>
+            <span style={{ fontWeight: 700 }}>{productPrice}&nbsp;원</span>
             <button>담기</button>
         </S.Product>
     ))

@@ -16,6 +16,7 @@ const PetsonalMain = () => {
         <Link className="go-to-start" to={"./test"}>
            TEST START
         </Link>
+
         <S.SecondImage>
           <S.SecondTextWrap >
             <S.SecondText>New to Pet Personal color? ✨</S.SecondText>
@@ -35,6 +36,17 @@ const PetsonalMain = () => {
         </S.SecondImage>
 
         <S.ThirdImage>
+          <S.SecondTextWrap >
+            <S.SecondText> 반려동물을 8가지 색상으로 표현해본다면?</S.SecondText>
+            <S.SecondSubText>
+             당신의 반려동물은 어떤 색깔을 가졌을까요? POWPOW에서 특별한 탐구를 시작해보세요! 
+            </S.SecondSubText>
+            <img src={`${process.env.PUBLIC_URL}/assets/images/petsonal/petsonal-image.jpg`} alt="" />
+          </S.SecondTextWrap >
+         
+        </S.ThirdImage>
+
+        <S.SecondImage>
           <S.SecondTextWrap>
             <S.SecondText>색깔별 포스트를 구경해보세요 🔎</S.SecondText>
             <S.SecondSubText>
@@ -55,7 +67,7 @@ const PetsonalMain = () => {
               </Link>            
             </S.TextButton>
           </S.BookWrap>
-        </S.ThirdImage>
+        </S.SecondImage>
         <S.FinalImage>
           <S.FinalText>지금 바로 POW POW에서 만나보세요!✨</S.FinalText>
           <img src={`${process.env.PUBLIC_URL}/assets/images/petsonal/qr-code.png`} alt="qr" />

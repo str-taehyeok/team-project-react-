@@ -156,7 +156,7 @@ const router = createBrowserRouter([
                         element: <PetNot />
                     },
                     {
-                        path: "pet-update",
+                        path: "pet-update/:id",
                         element: <PetUpdate />
                     },
                 ]

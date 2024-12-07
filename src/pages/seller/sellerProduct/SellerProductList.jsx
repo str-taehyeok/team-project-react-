@@ -1,146 +1,191 @@
-import React from 'react';
+import React, { useState } from 'react';
 import S from './style'
 import {Link, Outlet} from "react-router-dom";
 
-const productList = [
-    {
-        id : 1,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 11_900,
-        productImage1 : "/assets/images/store/dental-dog.png",
-        productColor : "Orange",
-        productSize : "M",
-        productStock : 100,
-        productDate : "2023-01-03"
-
-    },
-    {
-        id : 2,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 5_900,
-        productImage1 : "/assets/images/store/product2.png",
-        productColor : "Gold",
-        productSize : "S",
-        productStock : 200,
-        productDate : "2023-05-03"
-    },
-    {
-        id : 3,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 6_500,
-        productImage1 : "/assets/images/store/product3.png",
-        productColor : "Gradation",
-        productSize : "M",
-        productStock: 300,
-        productDate : "2023-07-03"
-    },
-    {
-        id : 4,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 4_000,
-        productImage1 : "/assets/images/store/product4.png",
-        productColor : "Dark Purple",
-        productSize : "L",
-        productStock : 50,
-        productDate : "2023-03-03"
-    },
-    {
-        id : 5,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 12_900,
-        productImage1 : "/assets/images/store/product5.png",
-        productColor : "Light Purple",
-        productSize : "L",
-        productStock : 600,
-        productDate : "2023-07-03"
-    },
-    {
-        id : 6,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 14_000,
-        productImage1 : "/assets/images/store/product6.png",
-        productColor : "Gold",
-        productSize : "S",
-        productStock : 100,
-        productDate : "2023-01-03"
-    },
-    {
-        id : 7,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 7_900,
-        productImage1 : "/assets/images/store/dental-dog.png",
-        productColor : "Orange",
-        productSize : "M",
-        productStock : 130,
-        productDate : "2023-01-07"
-    },
-    {
-        id : 8,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 8_000,
-        productImage1 : "/assets/images/store/product2.png",
-        productColor : "Gradation",
-        productSize : "L",
-        productStock : 170,
-        productDate : "2023-09-03"
-    },
-]
-
-
-const products = productList.map(({productName, productPrice, productImage1}, i) => (
-    // <S.BestProduct key={i} >
-    //     <Link to={"/product"}>
-    //         <img src={productImage1} alt={"상품" + (i + 1)} />
-    //         <span>{productName}</span>
-    //     </Link>
-    //     <span style={{ fontWeight: 700 }}>{productPrice}<br/>원</span>
-    //     <button>담기</button>
-    // </S.BestProduct>
-    <div key={i} >
-        <Link to={"/product"}>
-            <img src={productImage1} alt={"상품" + (i + 1)} />
-            <span>{productName}</span>
-        </Link>
-        <span style={{ fontWeight: 700 }}>{productPrice}<br/>원</span>
-        <button>담기</button>
-    </div>
-))
 
 const SellerProductList = () => {
 
-    // const [products, setProducts] = useState(productList);
-    //
-    // // 상품 수정
-    // const handleEdit = (productId) => {
-    //     console.log(`상품 수정: ${productId}`);
-    // };
-    //
-    // // 상품 삭제
-    // const handleDelete = (productId) => {
-    //     setProducts(products.filter(product => product.id !== productId));
+    const [productList, setProductList] = useState([
+        {
+            id : 1,
+            productCategory : "헬스케어",
+            productName : "강아지 전용 치약 + 칫솔 기획 세트 (트레이 / 칫솔핸들러 포함)",
+            productPrice : 11_900,
+            productImage1 : "/assets/images/store/dental-dog.png",
+            productColor : "Orange",
+            productSize : "M",
+            productStock : 100,
+            productDate : "2023-01-03"
 
+        },
+        {
+            id : 2,
+            productCategory : "헬스케어",
+            productName : "덴탈케어 분말형",
+            productPrice : 5_900,
+            productImage1 : "/assets/images/store/product2.png",
+            productColor : "Gold",
+            productSize : "S",
+            productStock : 200,
+            productDate : "2023-05-03"
+        },
+        {
+            id : 3,
+            productCategory : "사료",
+            productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
+            productPrice : 6_500,
+            productImage1 : "/assets/images/store/product3.png",
+            productColor : "Gradation",
+            productSize : "M",
+            productStock: 300,
+            productDate : "2023-07-03"
+        },
+        {
+            id : 4,
+            productCategory : "간식",
+            productName : "동결건조 치킨) 어린 견종을 위한 건강 간식 85g ,1통",
+            productPrice : 4_000,
+            productImage1 : "/assets/images/store/product4.png",
+            productColor : "Dark Purple",
+            productSize : "L",
+            productStock : 50,
+            productDate : "2023-03-03"
+        },
+        {
+            id : 5,
+            productCategory : "간식",
+            productName : "저염 황태채",
+            productPrice : 12_900,
+            productImage1 : "/assets/images/store/product5.png",
+            productColor : "Light Purple",
+            productSize : "L",
+            productStock : 600,
+            productDate : "2023-07-03"
+        },
+        {
+            id : 6,
+            productCategory : "헬스케어",
+            productName : "미네랄 분무기형 소독제품 (리필 2팩 포함)",
+            productPrice : 14_000,
+            productImage1 : "/assets/images/store/product6.png",
+            productColor : "Gold",
+            productSize : "S",
+            productStock : 100,
+            productDate : "2023-01-03"
+        },
+        {
+            id : 7,
+            productCategory : "사료",
+            productName : "스피루리나 구강 건강 도움 (메디몰) 고체형 100g",
+            productPrice : 7_900,
+            productImage1 : "/assets/images/store/dental-dog.png",
+            productColor : "Orange",
+            productSize : "M",
+            productStock : 130,
+            productDate : "2023-01-07"
+        },
+        {
+            id : 8,
+            productCategory : "사료",
+            productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
+            productPrice : 8_000,
+            productImage1 : "/assets/images/store/product2.png",
+            productColor : "Gradation",
+            productSize : "L",
+            productStock : 170,
+            productDate : "2023-09-03"
+        },
+    ]);
+
+    // 검색 상태 관리
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredProducts, setFilteredProducts] = useState(productList);
+
+    // 삭제 관련 상태 관리
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
+    const [productToDelete, setProductToDelete] = useState(null);
+
+    // 검색 핸들러
+    const handleSearch = () => {
+        const filtered = productList.filter(product =>
+            product.productName.includes(searchTerm)
+        );
+        setFilteredProducts(filtered);
+    };
+
+    // 검색어 입력 핸들러
+    const handleSearchInput = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    // 검색 초기화
+    const resetSearch = () => {
+        setSearchTerm('');
+        setFilteredProducts(productList);
+    };
+
+    // 삭제 팝업 열기
+    const openDeletePopup = (productId) => {
+        setProductToDelete(productId);
+        setIsPopupVisible(true);
+    };
+
+    // 삭제 확인
+    const confirmDelete = () => {
+        const updatedProductList = productList.filter(product => product.id !== productToDelete);
+        setProductList(updatedProductList);
+        setFilteredProducts(updatedProductList);
+        setIsPopupVisible(false);
+        setProductToDelete(null);
+    };
+
+    // 삭제 취소
+    const cancelDelete = () => {
+        setIsPopupVisible(false);
+        setProductToDelete(null);
+    };
+
+    // 재고 상태 표시
+    const getStockStatus = (stock) => {
+        return stock > 0 ? '판매중' : '품절';
+    };
+
+
+    const product = filteredProducts.map((product, index) => (
+        <tr key={product.id}>
+            <td>{index + 1}</td>
+            <td>
+                <S.Image>
+                    <img src={product.productImage1} alt={`상품 ${index + 1}`}/>
+                </S.Image>
+            </td>
+            <td><S.Name>{product.productName}</S.Name></td>
+            <td>{product.productPrice.toLocaleString()}원</td>
+            <td>{product.productCategory}</td>
+            <td>{getStockStatus(product.productStock)}</td>
+            <td>{product.productDate}</td>
+            <td>
+                <S.ManageButtons>
+                    <S.EditButton><Link to={"/seller/product-update"}>수정</Link></S.EditButton>
+                    <S.DeleteButton onClick={() => openDeletePopup(product.id)}>삭제</S.DeleteButton>
+                </S.ManageButtons>
+            </td>
+        </tr>
+    ));
 
         return (
             <div>
+                <Outlet/>
                 <S.NoticeSearch>
                     <S.Search>
-                        <input type="text" placeholder="상품명을 입력하세요"/>
+                        <input type="text" placeholder="상품명을 입력하세요" value={searchTerm}  onChange={handleSearchInput}/>
                     </S.Search>
                     <S.Buttons>
-                        <S.SearchButton>검색</S.SearchButton>
-                        <S.ResetButton>초기화</S.ResetButton>
+                        <S.SearchButton onClick={handleSearch}>검색</S.SearchButton>
+                        <S.ResetButton onClick={resetSearch}>초기화</S.ResetButton>
                         <Link to={"/seller/product-write"}><S.NewButton>상품등록</S.NewButton></Link>
                     </S.Buttons>
                 </S.NoticeSearch>
-                <Outlet/>
                 <S.NoticeSearch>
                     <S.Table>
                         <thead>
@@ -154,60 +199,26 @@ const SellerProductList = () => {
                             <th>등록일</th>
                             <th>관리</th>
                         </tr>
+                        <S.Line></S.Line>
                         </thead>
                         <tbody>
-
-                        {/*            <tr>*/}
-                        {/*                <td>${status.index + 1}</td>*/}
-                        {/*                <!-- 행 번호 출력 -->*/}
-                        {/*                <td>*/}
-                        {/*                    <div className="image">*/}
-                        {/*                        <img src="../assets/images/product/${product.productImage}"*/}
-                        {/*                             alt="이미지"/>*/}
-                        <h1>{products}</h1>
-                        {/*                    </div>*/}
-                        {/*                </td>*/}
-                        {/*                <td>*/}
-                        {/*                    <c:out value="${product.productName}"/>*/}
-                        {/*                </td>*/}
-                        {/*                <td>*/}
-                        {/*                    <c:out value="${product.productPrice}원"/>*/}
-                        {/*                </td>*/}
-                        {/*                <td>*/}
-                        {/*                    <c:out value="${product.productType}"/>*/}
-                        {/*                </td>*/}
-                        {/*                <td className="product-status" data-stock="${product.productStock}"></td>*/}
-                        {/*                <td>*/}
-                        {/*                    <c:out value="${product.productStock}"/>*/}
-                        {/*                </td>*/}
-                        {/*                <td>*/}
-                        {/*                    <c:out value="${product.productDate}"/>*/}
-                        {/*                </td>*/}
-                        {/*                <td>*/}
-                        {/*                    <div className="change-buttons">*/}
-                        {/*                        <button type="button" className="edit-btn"*/}
-                        {/*                                onClick="location.href='seller-update.seller?id=${product.id}'">수정*/}
-                        {/*                        </button>*/}
-                        {/*                        <button type="button" className="delete-btn"*/}
-                        {/*                                data-productid="${product.id}">삭제*/}
-                        {/*                        </button>*/}
-                        {/*                    </div>*/}
-                        {/*                </td>*/}
-                        {/*            </tr>*/}
-
+                            {product}
                         </tbody>
                     </S.Table>
                 </S.NoticeSearch>
+                {isPopupVisible && (
+                    <>
+                        <S.Popup isVisible={isPopupVisible}>
+                            <p>삭제하시겠습니까?</p>
+                            <S.CheckButton>
+                                <S.DeleteButton onClick={confirmDelete}>삭제</S.DeleteButton>
+                                <S.CancelButton onClick={cancelDelete}>취소</S.CancelButton>
+                            </S.CheckButton>
+                        </S.Popup>
 
-                {/*<div className="pop-up">*/}
-                {/*    <p>삭제하시겠습니까?</p>*/}
-                {/*    <div className="check-buttons">*/}
-                {/*        <button type="button" className="delete-btn confirm-btn">확인</button>*/}
-                {/*        <button className="cancel-btn">취소</button>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-
-                {/*<div className="popup-bg"></div>*/}
+                        <S.PopupBackground isVisible={isPopupVisible}  onClick={cancelDelete}></S.PopupBackground>
+                    </>
+                )}
             </div>
         );
     };

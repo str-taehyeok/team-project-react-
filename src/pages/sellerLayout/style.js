@@ -57,7 +57,8 @@ const S = {}
         position: absolute;
         top: 85px;
         left: 0px;
-    
+        z-index: 1000; // z-index 추가
+        background-color: #fff;
     `;
 
     S.EntireMenu = styled.div`
@@ -75,14 +76,15 @@ const S = {}
         background-color: #fff;
         
         & button{
-            fontSize: 10px;
+            font-size: 10px;
             color: #ffc303;
             background-color: white;
             border: none;
-            marginLeft: auto;
-            fontWeight: bold;
+            margin-left: auto;
+            font-weight: bold;
             cursor: pointer;
-            marginRight: 24px;
+            margin-right: 20px;
+            margin-top: 2px;
         }
     `;
 
@@ -91,6 +93,7 @@ const S = {}
         text-align: left;
         vertical-align: bottom;
         background-color: #fff;
+        margin-left: 20px;
     `;
 
 
@@ -138,7 +141,7 @@ const S = {}
             background-color: #fff;
             color: #131313;
             ${h7Medium};
-            padding: 5px 0 ;
+            //padding: 5px 0 ;
         }
         
         & div{
@@ -146,6 +149,7 @@ const S = {}
             overflow: hidden;
             transition: height 0.3s ease;
             padding-left: 15px;
+            background-color: #fff;
         }
         
         }
