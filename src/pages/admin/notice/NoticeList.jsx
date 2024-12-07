@@ -1,10 +1,10 @@
 import React from 'react';
+import S from "./style";
+
 
 const NoticeList = () => {
   return (
-    <div>
-      리스트
-    </div>
+<></>
   );
 };
 
