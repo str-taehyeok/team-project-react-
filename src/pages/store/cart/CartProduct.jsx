@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const products = [
   {
-    src : "/assets/images/cart/cart-product.png",
+    productImage : "/assets/images/cart/cart-product.png",
     productName : "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
     productStock : 1,
     productPrice : 4_500,
@@ -15,7 +15,7 @@ const products = [
     productCount: 1
   },
   {
-    src : "/assets/images/cart/cart-product-2.png",
+    productImage : "/assets/images/cart/cart-product-2.png",
     productName : "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
     productStock : 1,
     productPrice : 4_500,
@@ -26,7 +26,7 @@ const products = [
     productCount: 13
   },
   {
-    src : "/assets/images/cart/cart-product-3.png",
+    productImage : "/assets/images/cart/cart-product-3.png",
     productName : "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
     productStock : 1,
     productPrice : 4_500,
@@ -37,7 +37,7 @@ const products = [
     productCount: 17
   },
   {
-    src : "/assets/images/cart/cart-product-4.png",
+    productImage : "/assets/images/cart/cart-product-4.png",
     productName : "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
     productStock : 1,
     productPrice : 4_500,
@@ -48,7 +48,7 @@ const products = [
     productCount: 11
   },
   {
-    src : "/assets/images/cart/cart-product-5.png",
+    productImage : "/assets/images/cart/cart-product-5.png",
     productName : "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
     productStock : 1,
     productPrice : 4_500,
@@ -85,18 +85,21 @@ const CartProduct = () => {
    }
 
 
-   const [products, setProducts] = useState([])
-   const productList = products.map(() => (
+  //  const [products, setProducts] = useState((products))
+   const productList = products.map((product, i) => (
+    <div key={i}>
+      <img className='thumb' src={`${process.env.PUBLIC_URL}${product.productImage}`} alt={"상품" + (i + 1)} />
+      <div>{product.productName}</div>
 
-    <ArrayItem key={i} product = {product}></ArrayItem>
+
+    </div>
 
    ))
 
   return (
  
       <S.CartWrap>
-       
-        
+       {productList}
       </S.CartWrap>
       
 
