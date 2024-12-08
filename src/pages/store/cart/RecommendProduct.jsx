@@ -1,16 +1,18 @@
 // import React from 'react';
-// import S from "../style";
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import 'swiper/css';
 // import 'swiper/css/pagination';
 // import { Pagination } from 'swiper/modules';
 
-// const RecommendProduct = ({recommendProductList}) => {
+
+// const RecommendProduct = (products) => {
+
+//   console.log(products)
 
 //   return (
 //     <>
-//     <S.RecommendTitle>함께보면 좋은 상품</S.RecommendTitle>
-//     <S.RecommendProducts>
+//     <div>함께보면 좋은 상품</div>
+//     <div>
 //         <Swiper
 //             slidesPerView={4}
 //             spaceBetween={24}
@@ -26,15 +28,15 @@
 //                 '--swiper-pagination-bullet-inactive-color': '#888888'
 //             }}
 //         >
-//             {recommendProductList.map((product, index) => (
+//             {products.map((product, index) => (
 //                 <SwiperSlide key={index}>
-//                     <S.RecommendProductWrap>
+//                     <div>
 //                         {product}
-//                     </S.RecommendProductWrap>
+//                     </div>
 //                 </SwiperSlide>
 //             ))}
 //         </Swiper>
-//     </S.RecommendProducts>
+//     </div>
 //     </>
 //   );
 // };

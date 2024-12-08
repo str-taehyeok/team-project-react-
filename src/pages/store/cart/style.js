@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { h4Bold, gray200, h1Bold, h2Bold, h4Medium, h6Medium, h7Bold, h7Medium, h8Medium, h9Medium, h8Regular, h10Regular, h9Regular } from "../../../global/common";
+import { h4Bold, h2Bold, h6Medium, h7Bold, h7Medium, h8Medium, h8Regular, h10Regular, h9Regular, h8Bold } from "../../../global/common";
+import { Link } from "react-router-dom";
 
 const S = {}
 
@@ -295,6 +296,100 @@ S.CouponWrap = styled.div`
 
 `
 
+// 카트 결제
 
+S.CartPayWrap = styled.div`
+  width: 1175px;
+  height: 480px;
+  display: block;
+`
+
+S.CartPayTitle = styled.div`
+  width: 1175px;
+  height: 34px;
+  margin-top: 86px;
+  margin-bottom: 50px;
+  ${h4Bold}
+
+`
+
+S.CartPay = styled.div`
+  width: 1175px;
+  height: 294px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  border: solid 1px #828282;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+`
+S.AllDeliveryBox = styled.div`
+  width: 920px;
+  height: 222px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+`
+S.AllDeliveryFee = styled.div`
+    width: 920px;
+    height: 50px;
+    align-items: first baseline;
+    justify-content: space-between;
+    ${h7Bold}
+    color: #888888;
+`
+
+S.PurchasePrice= styled.div`
+    width: 920px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    ${h7Bold}
+    color: #888888;
+    border-top: solid 1px #888888;
+    border-bottom: solid 1px #888888;
+
+`
+
+S.DiscountPrice = styled.div`
+  width: 920px;
+  height: 60px;
+  box-sizing: border-box;
+  ${h7Bold}
+  color: #888888;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px #888888;
+
+`
+
+S.AllPurchaseFee = styled.div`
+  width: 920px;
+  height: 50px;
+  box-sizing: border-box;
+  ${h7Bold}
+  display: flex;
+  align-items: center;
+
+`
+
+// cartBtn
+
+S.Link = styled(Link)`
+  margin-left: 1094px;
+  width: 177px;
+  height: 36px;
+  border-radius: 12px;
+  background-color: #113F8A;
+  color: #FFFFFF;
+  ${h8Bold}
+
+` 
 
 export default S;

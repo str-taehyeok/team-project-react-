@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import S from "./style";
-import { Link } from 'react-router-dom';
 import ProductCount from './ProductCount';
 import Coupon from './Coupon';
+import CartBtn from './CartBtn';
+// import RecommendProduct from './RecommendProduct';
 
 const products = [
   {
@@ -89,8 +90,8 @@ const CartProduct = () => {
    const onChangeChecked = (e) => {
        // current index
        let value = e.target.value;
-       let check = e.target.checked;
-       setChecked(checked.map((c, i) => { return i == value ? !c : c }))
+      //  let check = e.target.checked;
+       setChecked(checked.map((c, i) => { return i === value ? !c : c }))
    }
 
 
@@ -114,18 +115,30 @@ const CartProduct = () => {
 
    
    const productPay = (
-    <div>
-      <p>총 배송비</p><p>{products.deliveryFee}</p>
-      <p>결제금액</p><p>{products.productPrice}</p>
-      <p>할인</p><p>{products.productDiscountPrice}</p>
-      <p>총 주문금액</p><p>{products.deliveryFee}</p>
-    </div>
-    
+    <S.CartPay>
+      <S.AllDeliveryBox>
+      <S.AllDeliveryFee>
+        <p>총 배송비</p><p>{products.deliveryFee}</p>
+      </S.AllDeliveryFee>
+      <S.PurchasePrice>
+        <p>결제금액</p><p>{products.productPrice}</p>
+      </S.PurchasePrice>
+      <S.DiscountPrice>
+        <p>할인</p><p>{products.productDiscountPrice}</p>
+      </S.DiscountPrice>
+      <S.AllPurchaseFee>
+        <p>총 주문금액</p><p>{products.deliveryFee}</p>
+      </S.AllPurchaseFee>
+      </S.AllDeliveryBox>
+    </S.CartPay>
    )
 
 
+
   return (
- 
+
+    <>
+    <form>
       <S.CartWrap>
         <S.Cart>
           <S.CartTitle>장바구니</S.CartTitle>
@@ -143,16 +156,17 @@ const CartProduct = () => {
           </S.CartAllNames>
           </S.CartAllCheck>
             {productList}
-          <div>
-           <div>결제정보</div>
+          <S.CartPayWrap>
+           <S.CartPayTitle>결제정보</S.CartPayTitle>
            {productPay}
-          </div>
-
+           <CartBtn />
+          </S.CartPayWrap>
         </S.Cart>
-        
       </S.CartWrap>
       
-
+    </form>
+    {/* <RecommendProduct /> */}
+    </>
   );
 };
 

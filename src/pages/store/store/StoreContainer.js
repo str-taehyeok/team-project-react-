@@ -1,6 +1,5 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
-import StoreCat from './StoreCat';
 import S from './style';
 import Footer from '../../layout/Footer';
 
