@@ -4,11 +4,6 @@ import S from "./style";
 
 const FindPasswordType = () => {
   const [email, setEmail] = useState("");
-  const navigate = useNavigate();
-
-  const onClickNext = () => {
-    navigate("/find/find-password");
-  };
 
   return (
     <>
