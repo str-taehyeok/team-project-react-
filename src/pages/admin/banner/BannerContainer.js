@@ -4,7 +4,6 @@ import {Outlet} from "react-router-dom";
 const BannerContainer = () => {
     return (
         <div>
-            banner container
             <Outlet />
         </div>
     );

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const NoticeList = () => {
 
 
-  const [memberList] = useState([
+  const [noticeList] = useState([
     {
         id : 1,
         noticeTitle : "공지사항 제목1",
@@ -21,7 +21,7 @@ const NoticeList = () => {
     },
 ]);
 
-const noticeLists = memberList.map((notice, index) => (
+const noticeLists = noticeList.map((notice, index) => (
   <tr key={notice.id}>
       <td className='number'>{index + 1}</td>
       <td className='title'>{notice.noticeTitle}</td>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {h6Regular} from "../../../global/common";
 import { Link } from 'react-router-dom';
 const S = {}
 
@@ -208,31 +207,37 @@ S.Table = styled.table`
         width: 108px;
         text-align: center;
         padding: 15px 10px;
-        ${h6Regular}
+        font-size: 16px;
+        line-height: 24px;
     }
     & td.title {
         width: 300px;
         text-align: center;
         padding: 15px 10px;
-        ${h6Regular}
+        font-size: 16px;
+        line-height: 24px;
     }
     & td.content {
         width: 650px;
         text-align: left;
         padding: 15px 10px;
-        ${h6Regular}
+        font-size: 16px;
+        line-height: 24px;
     }
     & td.date {
         width: 191px;
         text-align: center;
         padding: 15px 10px;
-        ${h6Regular}
+        font-size: 16px;
+        line-height: 24px;
     }
     & td.button {
         width: 191px;
         text-align: center;
         padding: 15px 10px;
-        ${h6Regular}
+        font-size: 16px;
+        line-height: 24px;
+        
     }
 
     & th {
@@ -257,6 +262,7 @@ S.Button = styled.div`
   justify-content: center;
   align-items: center;
   gap: 5px;
+  
   & button.delete {
       width: 46px;
       height: 24px;

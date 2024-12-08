@@ -37,7 +37,7 @@ const orangePostList = [
     {
         postImage1 : "/assets/images/community/myPost5.png",
         memberNickname : "연을 세우면 세연",
-        memberImage : "/assets/images/community/default-profile.png "
+        memberImage : "/assets/images/community/default-profile.png"
     }
 ]
 
