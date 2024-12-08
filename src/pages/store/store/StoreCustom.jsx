@@ -1,8 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom'
 import HeartBtn from './HeartBtn';
-import DogPickColor from './customs/DogPickColor';
 import theme from '../../../global/theme';
 
 
@@ -126,13 +125,13 @@ const StoreCustom = () => {
   // 정렬함수
   const onChangeToSort = (e, index) => {
     let value = e.target.value;
-    if(index == 0){
+    if(index === 0){
       // 색상
       setProductSort({...productSort, color : value})
-    }else if(index == 1){
+    }else if(index === 1){
       // 가격
       setProductSort({...productSort, price : value})
-      if(value == 0){
+      if(value === 0){
         // 낮은 가격순
         setSortedProduct(sortedProduct.sort((currentProduct, nextProduct) => {
           return currentProduct.productPrice - nextProduct.productPrice;
@@ -143,25 +142,25 @@ const StoreCustom = () => {
           return nextProduct.productPrice - currentProduct.productPrice;
         }))
       }
-    }else if(index == 2){
+    }else if(index === 2){
        // 사이즈
       setProductSort({...productSort, size : value})
     }else {
       // 정렬 카테고리
       setProductSort({...productSort, sort : value})
-      if(value == 0){
+      if(value === 0){
         // 최신등록순
         setSortedProduct(sortedProduct.sort((currentProduct, nextProduct) => {
           let currentDate = currentProduct.productDate.split("-").join("")
           let nextDate = nextProduct.productDate.split("-").join("")
           return nextDate - currentDate;
         }))
-      }else if(value == 1){
+      }else if(value === 1){
         // 별점순
         setSortedProduct(sortedProduct.sort((currentProduct, nextProduct) => {
           return nextProduct.productReviewStart - currentProduct.productReviewStart;
         }))
-      }else if(value == 2){
+      }else if(value === 2){
         // 판매순
         setSortedProduct(sortedProduct.sort((currentProduct, nextProduct) => {
           return nextProduct.productSoldCount - currentProduct.productSoldCount;
@@ -174,26 +173,26 @@ const StoreCustom = () => {
 
   // 상품 리스트 색상, 가격 filter
   const sortedProductList = sortedProduct.filter((product) => {
-    if(productSort.color == 0){
+    if(productSort.color === 0){
       return product.productColor === "Orange"
-    }else if(productSort.color == 1){
+    }else if(productSort.color === 1){
       return product.productColor === "LigthGold"
-    }else if(productSort.color == 2){
+    }else if(productSort.color === 2){
       return product.productColor === "Gradation"
-    }else if(productSort.color == 3){
+    }else if(productSort.color === 3){
       return product.productColor === "Lavender"
-    }else if(productSort.color == 4){
+    }else if(productSort.color === 4){
       return product.productColor === "DarkPurple"
     }else {
       return product;
     }
   })
   .filter((product) => {
-    if(productSort.size == 0){
+    if(productSort.size === 0){
       return product.productSize === "S"
-    }else if(productSort.size == 1){
+    }else if(productSort.size === 1){
       return product.productSize === "M"
-    }else if(productSort.size == 2){
+    }else if(productSort.size === 2){
       return product.productSize === "L"
     }else {
       return product;
@@ -201,7 +200,7 @@ const StoreCustom = () => {
   })
 
   // 상품 반복문
-  const productList = sortedProductList.length != 0 ? sortedProductList.map((product, i) => (
+  const productList = sortedProductList.length !== 0 ? sortedProductList.map((product, i) => (
     <S.CustomProduct key={i}>
       <HeartBtn />
       <Link to={`read/${i}`}>
@@ -225,7 +224,7 @@ const StoreCustom = () => {
             sortInfo.map((sortInfo, index) => (
               <div key={index}>
                 <S.SortButtonWrap  onClick={() => onClickToActive(index)}>
-                  <p>{sortInfo.title}</p><img src={`${process.env.PUBLIC_URL}/assets/images/store/down-arrow.svg`} />
+                  <p>{sortInfo.title}</p><img src={`${process.env.PUBLIC_URL}/assets/images/store/down-arrow.svg`} alt='아래 아이콘'/>
                 </S.SortButtonWrap>
                 <S.SortModal className={isActive === index ? "active" : ""}>
                   {sortInfo.sub.map((subTitle, i) => (
@@ -233,14 +232,14 @@ const StoreCustom = () => {
                       <input 
                         value={i} type='checkbox' name={"sort" + index} 
                         checked={ 
-                            index == 0 ? productSort["color"] == i : 
-                              index == 1 ? productSort["price"] == i : 
-                                index == 2 ? productSort["size"] == i : 
-                                  productSort["sort"] == i 
+                            index === 0 ? productSort["color"] === i : 
+                              index === 1 ? productSort["price"] === i : 
+                                index === 2 ? productSort["size"] === i : 
+                                  productSort["sort"] === i 
                         }
                         onChange={(e) => { onChangeToSort(e, index) }}
                       />
-                      { index == 0 ? <S.ColorCircle subtitle={subTitle}></S.ColorCircle> : <p>{subTitle}</p>}
+                      { index === 0 ? <S.ColorCircle subtitle={subTitle}></S.ColorCircle> : <p>{subTitle}</p>}
                     </div>
                   ))}
                 </S.SortModal>
