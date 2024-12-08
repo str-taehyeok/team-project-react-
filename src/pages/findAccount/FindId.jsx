@@ -1,16 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { FindContext } from "../../context/findContext";
 import S from "./style";
 
 const FindId = () => {
-  const { state, action } = useContext(FindContext);
 
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [authNumber, setAuthNumber] = useState("");
-  const [generatedAuthNumber, setGeneratedAuthNumber] = useState(""); // 인증번호 생성 상태
-  const [isVerified, setIsVerified] = useState(false); // 인증 여부 상태
+  const [generatedAuthNumber, setGeneratedAuthNumber] = useState(""); 
+  const [isVerified, setIsVerified] = useState(false); 
 
   const handleAuthRequest = () => {
     if (!phoneNumber) {
@@ -92,7 +90,6 @@ const FindId = () => {
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
-        {/* Disable the "Next" button if the phone number is not verified */}
         <Link to="/find/find-complete">
           <S.NextButton type="button" disabled={!isVerified}>
             다음
