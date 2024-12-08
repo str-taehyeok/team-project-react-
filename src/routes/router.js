@@ -103,6 +103,8 @@ import HealthCare from "../pages/store/store/dog/HealthCare";
 import NoCart from "../pages/store/cart/NoCart";
 import PetUpdate from "../pages/myhome/myPet/PetUpdate";
 import PetNot from "../pages/myhome/myPet/PetNot";
+import NoticeListPage from "../pages/myhome/notice/NoticeListPage";
+import Notice from "../pages/myhome/notice/Notice";
 
 const router = createBrowserRouter([
     {
@@ -136,6 +138,20 @@ const router = createBrowserRouter([
                     {
                         path: "password-update",
                         element: <PasswordUpdate />
+                    },
+                ]
+            },
+            {
+                path: '/notice',
+                element: <NoticeContainer />,
+                children: [
+                    {
+                        index: true,
+                        element: <NoticeListPage />,
+                    },
+                    {
+                        path: "list",
+                        element: <Notice />
                     },
                 ]
             },
