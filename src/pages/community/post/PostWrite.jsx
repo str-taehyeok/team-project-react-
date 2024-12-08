@@ -21,7 +21,7 @@ const PostWrite = () => {
                                 </label>
                             </S.MainImageDumy>
                             <S.SubImagesWrap>
-                                <S.SubImg><img src="/assets/images/community/plus.svg" alt="플러스아이콘" /></S.SubImg>
+                                <S.SubImg><img src="/assets/images/community/plus.png" alt="플러스아이콘" /></S.SubImg>
                                 <S.SubImg></S.SubImg>
                                 <S.SubImg></S.SubImg>
                                 <S.SubImg></S.SubImg>

@@ -600,4 +600,46 @@ S.Title = styled.div`
   margin-bottom: 17px;
 `
 
+S.PopupAreaFollowing = styled.div`
+  width: 400px;
+  height: 534px;
+  border-radius: 20px;
+  border: solid 1px #828282;
+  box-shadow: 2px 4px 4px rgb(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  bottom: 473px;
+  right: 54px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+`
+
+S.MenuFollowing = styled.div`
+  width: 200px;
+  height: 50px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #d9d9d9;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+`
+S.myFollowingList = styled.div`
+  width: 400px;
+  height: 484px;
+  box-sizing: border-box;
+  border: solid 1px #888888;
+`
+
+S.Following1 = styled.div`
+  display: flex;
+  >img{
+    width: 40px;
+  }
+`
+
 export default S;
