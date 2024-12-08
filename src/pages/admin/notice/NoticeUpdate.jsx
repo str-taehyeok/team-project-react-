@@ -11,6 +11,7 @@ const datas = [
 
 
 const NoticeUpdate = () => {
+  
   const onDelete = () => {
     if (window.confirm("정말 취소하시나요??")) {
       window.location.href = '/admin';
