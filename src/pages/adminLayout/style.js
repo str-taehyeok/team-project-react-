@@ -152,7 +152,6 @@ const S = {}
                 background-color: #fff;
             }
             
-            }
         `;
 
 

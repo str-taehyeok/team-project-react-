@@ -1,6 +1,5 @@
 import React from 'react';
 import S from "./style";
-import { Link } from "react-router-dom"
 
 const StoreDogBtn = () => {
   return (

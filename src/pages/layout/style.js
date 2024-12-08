@@ -100,6 +100,7 @@ const S = {}
     S.SubMenu = styled.ul`
         ${flexColumnCenter};
         & li a {
+            color: gray;
             font-weight: 300;
             ${h8Medium};
         }

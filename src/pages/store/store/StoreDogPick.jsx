@@ -7,56 +7,56 @@ const products = [
   {
     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
     productPrice : 129_000,
-    productImage : "custom1.png",
+    productImage : "/assets/images/store/custom-1.png",
     productDiscount : 35,
     productReviewStart : 5,
   },
   {
     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
     productPrice : 129_000,
-    productImage : "custom2.png",
+    productImage : "/assets/images/store/custom-2.png",
     productDiscount : 35,
     productReviewStart : 5,
   },
   {
     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
     productPrice : 129_000,
-    productImage : "custom3.png",
+    productImage : "/assets/images/store/custom-3.png",
     productDiscount : 35,
     productReviewStart : 5,
   },
   {
     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
     productPrice : 129_000,
-    productImage : "custom4.png",
+    productImage : "/assets/images/store/custom-4.png",
     productDiscount : 35,
     productReviewStart : 5,
   },
   {
     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
     productPrice : 129_000,
-    productImage : "custom1.png",
+    productImage : "/assets/images/store/custom-1.png",
     productDiscount : 35,
     productReviewStart : 5,
   },
   {
     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
     productPrice : 129_000,
-    productImage : "custom2.png",
+    productImage : "/assets/images/store/custom-2.png",
     productDiscount : 35,
     productReviewStart : 5,
   },
   {
     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
     productPrice : 129_000,
-    productImage : "custom3.png",
+    productImage : "/assets/images/store/custom-3.png",
     productDiscount : 35,
     productReviewStart : 5,
   },
   {
     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
     productPrice : 129_000,
-    productImage : "custom4.png",
+    productImage : "/assets/images/store/custom-4.png",
     productDiscount : 35,
     productReviewStart : 5,
   },
@@ -68,7 +68,7 @@ const StoreDogPick = () => {
     <S.DogPickProduct key={i}>
         <HeartBtn />
       <Link to={`read/${i}`}>
-        <img src={`${process.env.PUBLIC_URL}/assets/images/store/custom1.png`} alt="." />
+        <img src={`${process.env.PUBLIC_URL}${product.productImage}`} alt={"상품" + (i + 1)} />
         <S.DogPickProductInfo>
           <p>{product.productName}</p>
           <p>{product.productPrice}</p>

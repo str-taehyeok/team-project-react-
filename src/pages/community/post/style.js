@@ -8,7 +8,7 @@ S.LayoutBox = styled.div`
     flex-direction: column;
     width:1196px;
     margin: 0 auto;
-    margin-bottom: 400px;
+    margin-bottom: 300px;
 `
 
 S.AllPostWrapper = styled.div`
@@ -393,6 +393,211 @@ S.BestText = styled.div`
   line-height: 36px;
   font-weight:bold;
 `
+/* postWrite */
 
+S.MainImageDumy = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 366px;
+  height: 345px;
+  border-radius: 20px;
+  background-color: #d9d9d9;
+  background-size: cover;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 24px;
+`
+S.PostContents = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 19px;
+  width: 900px;
+  flex-wrap: wrap;
+`
+
+
+S.SubImagesWrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+`
+
+S.SubImg = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+`
+S.WriterBox = styled.div`
+  width: 457px;
+  height: 429px;
+  border-radius: 20px;
+  border: solid 1px #828282;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+S.Textarea = styled.textarea`
+  padding: 26px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  resize: none;
+  background-color: transparent;
+  font-size: 17px;
+  line-height: 22px;
+  color: #818181;
+  outline: none;
+  &::placeholder{
+  color: #818181; 
+  font-size: 14px; 
+  line-height: 22px; 
+  text-align: left; 
+  }
+`
+S.UploadButton = styled.button`
+  width: 120px;
+  height: 30px;
+  border-radius: 20px;
+  color: #FFFFFF;
+  background-color: #113F8A;
+  cursor: pointer;
+  margin: 0 0 33px auto;
+`
+
+S.PostWarpper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 139px;
+`
+/* UserList */
+
+S.UserCommunity = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 166px;
+`
+
+S.MyProfileCardWapper = styled.div`
+  width: 270px;
+  height: 430px;
+  box-sizing: border-box;
+  border: solid 1px #828282;
+  border-radius: 20px;
+  box-shadow: 0 4px 4px #C0C0C0;
+`
+S.MyProfileCard = styled.div`
+  height: 244px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+`
+
+S.MyProfileImage = styled.div`
+  width: 120px;
+  height: 154px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  > img{
+    width: 120px;
+    height: 120px;
+  }
+  > p{
+  font-weight: 600;
+  margin-top: 10px;
+  }
+`
+
+S.MyProfilelineStyle = styled.div`
+  width: 206px;
+  display: flex;
+  margin-inline: auto;
+  margin-top: -15px;
+  margin-bottom: 29px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: solid 1px #676767;
+`
+
+S.MyProfileButton = styled.button`
+  background-color: #FFFFFF;
+  border: 1px solid #000000;
+  width: 115px;
+  height: 43px;
+  border-radius: 20px;
+  font-size: 16px;
+`
+S.ButtonCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+S.MyprofileCardInformation = styled.div`
+  margin-top: 28px;
+`
+S.MyFollwer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+>button {
+  border: none;
+  height: 22px;
+  background: none;
+  cursor: pointer;
+  color: #828282;
+}
+`
+S.MyPost = styled.div`
+  display: flex;
+  margin-top: 33px;
+  flex-direction: column;
+  margin-left: 59px;
+`
+S.MyPostItem = styled.div`
+  max-width: 190px;
+  display: flex;
+`
+
+S.MyPostList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  width: 820px;
+  height: 445px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+`
+
+S.MyPosts = styled.ul`
+  list-style: none;
+  width: 820px;
+  height: 445px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  >img{
+    width: 190px;
+    height: 190px;
+  }
+`
+S.Title = styled.div`
+  margin-bottom: 17px;
+`
 
 export default S;
