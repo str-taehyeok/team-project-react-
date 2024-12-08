@@ -165,7 +165,7 @@ const S = {}
         ${h8Medium}
     `;
 
-    S.NoticeList = styled.section`
+    S.List = styled.section`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -178,323 +178,352 @@ const S = {}
         width: 1440px;
     `
 
-    // S.Table = styled.table`
-    //     width: 100%;
-    //     border-collapse: separate;
-    //     border-spacing: 0;
-    //     display: flex;
-    //     align-items: center;
-    //     flex-direction: column;
-    //     align-content: center;
-    //
-    //
-    //     & thead tr {
-    //         border-bottom: 1px solid #828282;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-    //
-    //     & tr {
-    //         display: flex;
-    //         justify-content: space-between;
-    //         align-items: center;
-    //         width: 100%;
-    //     }
-    //
-    //     & td:nth-child(1) {
-    //         flex: 1;
-    //         text-align: center;
-    //         padding-left: 44px;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         ${h6Regular};
-    //         width: 100px;
-    //         flex-shrink: 0;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-    //
-    //     & td:nth-child(2) {
-    //         flex: 1;
-    //         text-align: center;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         ${h6Regular};
-    //         width: 366px;
-    //         flex-shrink: 0;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-    //
-    //     & td:nth-child(3) {
-    //         flex: 1;
-    //         text-align: center;
-    //         padding: 15px 0;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         max-width: 500px;
-    //         display: -webkit-box;
-    //         -webkit-line-clamp: 1;
-    //         -webkit-box-orient: vertical;
-    //         ${h6Regular};
-    //         width: 512px;
-    //         flex-shrink: 0;
-    //         //display: flex;
-    //         align-items: center;
-    //     }
-    //     & td:nth-child(4) {
-    //         flex: 1;
-    //         text-align: center;
-    //         padding: 15px 0;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         ${h6Regular};
-    //         width: 244px;
-    //         flex-shrink: 0;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-    //     & td:nth-child(5) {
-    //         flex: 1;
-    //         text-align: center;
-    //         padding: 15px 0;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         ${h6Regular};
-    //         width: 98px;
-    //         flex-shrink: 0;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-    //     & td:nth-child(6) {
-    //         flex: 1;
-    //         text-align: center;
-    //         padding: 15px 0;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         ${h6Regular};
-    //         width: 122px;
-    //         flex-shrink: 0;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-    //
-    //     & th:nth-child(1) {
-    //         flex: 1;
-    //         text-align: center;
-    //         padding-left: 44px;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         ${h6Bold};
-    //         width: 98px;
-    //         flex-shrink: 0;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-    //     & th:nth-child(2) {
-    //         flex: 1;
-    //         text-align: center;
-    //         padding: 15px 0;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         ${h6Bold};
-    //         width: 366px;
-    //         flex-shrink: 0;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-    //
-    //     & th:nth-child(3) {
-    //         flex: 1;
-    //         text-align: center;
-    //         padding: 15px 0;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         ${h6Bold};
-    //         width: 512px;
-    //         flex-shrink: 0;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-    //     & th:nth-child(4) {
-    //         flex: 1;
-    //         text-align: center;
-    //         padding: 15px 0;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         ${h6Bold};
-    //         width: 244px;
-    //         flex-shrink: 0;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-    //     & th:nth-child(5) {
-    //         flex: 1;
-    //         text-align: center;
-    //         padding: 15px 0;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         ${h6Bold};
-    //         width: 98px;
-    //         flex-shrink: 0;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-    //     & th:nth-child(6) {
-    //         flex: 1;
-    //         text-align: center;
-    //         padding-right: 44px;
-    //         white-space: nowrap;
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //         ${h6Bold};
-    //         width: 122px;
-    //         flex-shrink: 0;
-    //         display: flex;
-    //         align-items: center;
-    //     }
-
-S.Table = styled.table`
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    align-content: center;
-
-    & thead tr, & tbody tr {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    S.Table = styled.table`
         width: 100%;
-    }
-
-    & th:nth-child(1), & td:nth-child(1) {
-        width: 98px;
-        padding-left: 44px;
-        justify-content: center;
-        text-align: center;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 500px;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-    }
-
-    & th:nth-child(2), & td:nth-child(2) {
-        width: 366px;
-        //padding-left: 100px;
-        text-align: center;
-        padding: 15px 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 500px;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-    }
-
-    & th:nth-child(3), & td:nth-child(3) {
-        width: 400px;
-        text-align: center;
-                 padding: 15px 0;
-                 white-space: nowrap;
-                 overflow: hidden;
-                 text-overflow: ellipsis;
-                 max-width: 500px;
-                 display: -webkit-box;
-                 -webkit-line-clamp: 1;
-                 -webkit-box-orient: vertical;
-    }
-
-    & th:nth-child(4), & td:nth-child(4) {
-        width: 200px;
-        padding-left: 20px;
-        //padding: 15px 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 500px;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-    }
-
-    & th:nth-child(5), & td:nth-child(5) {
-        width: 98px;
-        padding: 15px 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 500px;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-    }
-
-    & th:nth-child(6), & td:nth-child(6) {
-        width: 122px;
-        padding-right: 10px;
-        //padding: 15px 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 500px;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-    }
-
-    & th, & td {
+        border-collapse: separate;
+        border-spacing: 0;
         display: flex;
         align-items: center;
-        text-align: left;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        ${h6Regular};
-        flex-shrink: 0;
-    }
-
-    & th {
-        ${h6Bold};
-    }
-
-    & thead tr {
-        border-bottom: 1px solid #828282;
-    }
-`;
-        
-        
-        
+        flex-direction: column;
+        align-content: center;
     
-        // & th:nth-child(1) {
-        //     //font-weight: bold;
-        //     //color: #333;
-        //     //flex: 1;
-        //     //text-align: center;
-        //     //padding: 15px 10px;
-        //     //white-space: nowrap;
-        //     //overflow: hidden;
-        //     //text-overflow: ellipsis;
-        //     ${h6Bold};
-        // }
+        & thead tr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            ${h6Bold}
+        }
 
+        & tbody tr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            ${h6Regular}
+        }
+        
+        & tr > th,
+        & tr > td {
+            justify-content: center;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        & tr > th {
+            //border-bottom: solid 0.1px #828282;
+            padding-bottom: 28px;
+        }
+        
+        & tr > th:nth-child(1),
+        & tr > td:nth-child(1) {
+            width: 120px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        & tr > th:nth-child(2),
+        & tr > td:nth-child(2) {
+            width: 366px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        & tr > th:nth-child(3) {
+            width: 512px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        & tr > td:nth-child(3) {
+            width: 512px;
+            flex-shrink: 0;
+            display: block;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 512px;
+            text-align: center;
+        }
+        
+        & tr > th:nth-child(4),
+        & tr > td:nth-child(4) {
+            width: 244px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+    
+        & tr > th:nth-child(5),
+        & tr > td:nth-child(5) {
+            width: 98px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: normal; 
+            text-align: center;
+            word-break: keep-all; 
+            overflow: visible; 
+        }
+    
+        & tr > th:nth-child(6),
+        & tr > td:nth-child(6) {
+            width: 100px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: normal; 
+            text-align: center;
+            word-break: keep-all; 
+            overflow: visible;
+        }
+    
+        & tr > th,
+        & tr > td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    `;
+
+
+    S.SellerTable = styled.table`
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        align-content: center;
+    
+        & thead tr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            ${h6Bold}
+        }
+    
+        & tbody tr {
+            display: flex;
+            //justify-content: space-between;
+            align-items: center;
+            width: 1440px;
+            ${h6Regular}
+        }
+        
+        & tr > th,
+        & tr > td {
+            justify-content: center;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        & tr > th {
+            padding-bottom: 28px;
+        }
+        
+        & tr > th:nth-child(1),
+        & tr > td:nth-child(1) {
+            width: 98px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 98px;
+            text-align: center;
+        }
+        
+        
+        & tr > th:nth-child(2){
+            width: 188px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 188px;
+            text-align: center;
+        }
+
+        & tr > td:nth-child(2) {
+            width: 188px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 188px;
+            text-align: center;
+            margin-left: 50px;
+        }
+        
+        & tr > th:nth-child(3){
+            width: 140px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 188px;
+            text-align: center;
+            
+        }
+
+        & tr > td:nth-child(3) {
+            width: 188px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 188px;
+            text-align: center;
+            margin-left: 20px;
+        }
+    
+        & tr > th:nth-child(4){
+            width: 200px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        & tr > td:nth-child(4) {
+            width: 200px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+            text-align: center;
+            margin-left: 15px;
+        }
+    
+        & tr > th:nth-child(5){
+            width: 100px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100px;
+            text-align: center;
+        }
+
+        & tr > td:nth-child(5) {
+            width: 100px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100px;
+            text-align: center;
+            margin-left: 38px;
+        }
+        
+        & tr > th:nth-child(6) {
+            width: 220px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 220px;
+            text-align: center;
+        }
+    
+        & tr > td:nth-child(6){
+            width: 146px;
+            flex-shrink: 0;
+            display: block;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 146px;
+            text-align: center;
+            margin-left: 82px;
+        }
+        
+        & tr > th:nth-child(7) {
+            width: 98px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: normal;
+            text-align: center;
+            word-break: keep-all;
+            overflow: visible;
+        }
+
+        & tr > td:nth-child(7) {
+            width: 98px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: normal;
+            text-align: center;
+            word-break: keep-all;
+            overflow: visible;
+            margin-left: 80px;
+        }
+        
+        & tr > th:nth-child(8){
+            width: 98px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: normal;
+            text-align: center;
+            word-break: keep-all;
+            overflow: visible;
+        }
+
+        & tr > td:nth-child(8) {
+            width: 98px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            white-space: normal;
+            text-align: center;
+            word-break: keep-all;
+            overflow: visible;
+            margin-left: 42px;
+        }
+    
+        & tr > th,
+        & tr > td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    `;
 
 
 
