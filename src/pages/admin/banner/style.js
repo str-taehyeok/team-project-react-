@@ -219,4 +219,227 @@ S.LinkButton = styled(Link)`
       justify-content: center;
 ` 
 
+S.ButtonBox = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 100px;
+    & button.done {
+      width: 90px;
+      height: 30px;
+      border-radius: 20px;
+      background-color: #113F8A;
+      border:none;
+      color: #ffffff;
+      font-size: 14px;
+      line-height: 22px;
+      cursor: pointer;
+    }
+    & button.cancel {
+      width: 90px;
+      height: 30px;
+      border-radius: 20px;
+      background-color: #FFC303;
+      border:none;
+      color: #ffffff;
+      font-size: 14px;
+      line-height: 22px;
+      cursor: pointer;
+    }
+`
+S.TextInputBox = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 100px;
+`
+S.TextInput = styled.div  `
+  & input {
+    border-radius: 20px;
+    border-style: none;
+    border: solid 1px #828282;
+    width: 763px;
+    height: 55px;
+    padding: 19px 26px;
+    font-size: 14px;
+    line-height: 22px;
+    color:#828282;
+    outline:none;
+  }
+`
+S.TitleText = styled.div  `
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    width: 100px;
+    text-align: left;
+    margin-right: 50px;
+`
+S.LinkInputBox = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
+`
+S.LinkInput = styled.div  `
+  & input {
+    border-radius: 20px;
+    border-style: none;
+    border: solid 1px #828282;
+    width: 763px;
+    height: 55px;
+    padding: 19px 26px;
+    font-size: 14px;
+    line-height: 22px;
+    color:#828282;
+    outline:none;
+  }
+`
+S.LinkText = styled.div  `
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    width: 100px;
+    text-align: left;
+    margin-right: 50px;
+`
+
+S.ImgInputBox = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
+`
+S.ImgInput = styled.div  `
+  & input {
+    border-radius: 20px;
+    border-style: none;
+    border: solid 1px #828282;
+    width: 763px;
+    height: 55px;
+    padding: 15px 26px;
+    font-size: 14px;
+    line-height:22px;
+    color:#828282;
+    outline:none;
+    text-align: center;
+  }
+`
+S.ImgText = styled.div  `
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    width: 100px;
+    text-align: left;
+    margin-right: 50px;
+`
+
+S.DateBox = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
+`
+S.DatButton = styled.div  `
+  & input {
+    border-radius: 20px;
+    border-style: none;
+    border: solid 1px #828282;
+    width: 763px;
+    height: 55px;
+    padding: 19px 26px;
+    font-size: 14px;
+    line-height: 22px;
+    color:#828282;
+    outline:none;
+  }
+`
+S.DateText = styled.div  `
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    width: 100px;
+    text-align: left;
+    margin-right: 50px;
+`
+
+S.UseBox = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
+`
+S.UseButton = styled.div  `
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  & input {
+    border-style: none;
+    border: solid 1px #828282;
+    width: 20px;
+    height: 20px;
+    padding: 19px 26px;
+    font-size: 14px;
+    line-height: 22px;
+    color:#828282;
+    outline:none;
+  }
+
+
+`
+S.Radio = styled.div`
+    display: flex;
+    flex-direction: row;
+    
+    width: 763px;
+     & input.date1 {
+      border-radius: 20px;
+      border-style: none;
+      border: solid 1px #828282;
+      width: 180px;
+      height: 55px;
+      padding: 19px 26px;
+      font-size: 16px;
+      line-height: 24px;
+      color:#828282;
+      outline:none;
+      margin-left: 270px;
+     }
+     & input.date {
+      border-radius: 20px;
+      border-style: none;
+      border: solid 1px #828282;
+      width: 180px;
+      height: 55px;
+      padding: 19px 26px;
+      font-size: 16px;
+      line-height: 24px;
+      color:#828282;
+      outline:none;
+     }
+    & span { 
+      text-align: center;
+      line-height: 55px;
+      font-size: 40px;
+      margin-left: 21px;
+      margin-right: 21px;
+    }
+    & input.no {
+      margin-left: 270px;
+    }
+
+
+`
+S.UseText = styled.div  `
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    width: 100px;
+    text-align: left;
+    margin-right: 50px;
+`
+
 export default S;

@@ -27,7 +27,7 @@ const BannerList = () => {
             <td className='start'>{banner.bannerStart}</td>
             <td className='end'>{banner.bannerEnd}</td>
             <td className='name'>{banner.bannerTitle}</td>
-            <td className='look' src={banner.bannerImage}></td>
+            <td className='look'>{/*<img src={banner.bannerImage} />*/}</td>
             <td className='button'>      
               <S.Button>
               <S.LinkButton to="/admin/banner/banner-update"> 수정</S.LinkButton>
