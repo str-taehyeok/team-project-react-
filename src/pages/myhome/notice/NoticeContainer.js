@@ -1,12 +1,14 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
+import Footer from '../../layout/Footer';
 
-const BannerContainer = () => {
+const NoticeContainer = () => {
     return (
         <div>
             <Outlet />
+            <Footer />
         </div>
     );
 };
 
-export default BannerContainer;
+export default NoticeContainer;
