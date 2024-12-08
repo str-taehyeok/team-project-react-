@@ -55,7 +55,7 @@ const S = {}
     S.Content = styled.div`
             margin-bottom: 100px;
             ${flexColumnCenter};
-        //width: 100%;
+        width: 100%;
     `;
 
     S.Banner = styled.img`
@@ -201,15 +201,16 @@ S.DropdownWrapper = styled.div`
     // 컬러 제품들 타이틀부터 제품까지 묶임
     S.Box = styled.div`
         display: flex;
-            & button{
-                font-size: 14px;
-                border-radius: 20px;
-                width: 96px;
-                height: 42px;
-                background-color: #fff;
-                border-color: #888888;
-                margin-bottom: 50px;
-            }
+            
+        & button{
+            font-size: 14px;
+            border-radius: 20px;
+            width: 96px;
+            height: 42px;
+            background-color: #fff;
+            border-color: #888888;
+            margin-bottom: 50px;
+        }
     `;
 
     S.BoxTitle = styled.span`
