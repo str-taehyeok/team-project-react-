@@ -428,6 +428,7 @@ S.SubImagesWrap = styled.div`
 S.SubImg = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 60px;
   height: 60px;
   border-radius: 10px;
@@ -476,6 +477,127 @@ S.PostWarpper = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 139px;
+`
+/* UserList */
+
+S.UserCommunity = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 166px;
+`
+
+S.MyProfileCardWapper = styled.div`
+  width: 270px;
+  height: 430px;
+  box-sizing: border-box;
+  border: solid 1px #828282;
+  border-radius: 20px;
+  box-shadow: 0 4px 4px #C0C0C0;
+`
+S.MyProfileCard = styled.div`
+  height: 244px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+`
+
+S.MyProfileImage = styled.div`
+  width: 120px;
+  height: 154px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  > img{
+    width: 120px;
+    height: 120px;
+  }
+  > p{
+  font-weight: 600;
+  margin-top: 10px;
+  }
+`
+
+S.MyProfilelineStyle = styled.div`
+  width: 206px;
+  display: flex;
+  margin-inline: auto;
+  margin-top: -15px;
+  margin-bottom: 29px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: solid 1px #676767;
+`
+
+S.MyProfileButton = styled.button`
+  background-color: #FFFFFF;
+  border: 1px solid #000000;
+  width: 115px;
+  height: 43px;
+  border-radius: 20px;
+  font-size: 16px;
+`
+S.ButtonCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+S.MyprofileCardInformation = styled.div`
+  margin-top: 28px;
+`
+S.MyFollwer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+>button {
+  border: none;
+  height: 22px;
+  background: none;
+  cursor: pointer;
+  color: #828282;
+}
+`
+S.MyPost = styled.div`
+  display: flex;
+  margin-top: 33px;
+  flex-direction: column;
+  margin-left: 59px;
+`
+S.MyPostItem = styled.div`
+  max-width: 190px;
+  display: flex;
+`
+
+S.MyPostList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  width: 820px;
+  height: 445px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+`
+
+S.MyPosts = styled.ul`
+  list-style: none;
+  width: 820px;
+  height: 445px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  >img{
+    width: 190px;
+    height: 190px;
+  }
+`
+S.Title = styled.div`
+  margin-bottom: 17px;
 `
 
 export default S;
