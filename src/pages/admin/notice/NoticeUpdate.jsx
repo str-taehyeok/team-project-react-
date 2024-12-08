@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const datas = [
   {
-    noticeTile : "공지사항 제목 작성 TEST",
+    noticeTitle : "공지사항 제목 작성 TEST",
     noticeContent : "공지사항 내용 작성 TEST 하하하하하ㅏ하ㅏ하하핳ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ핳하하하ㅏ하ㅏ하하ㅏ하하ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ하ㅏ하ㅏ하하하ㅏ"
   }
 ]
@@ -20,14 +20,14 @@ const NoticeUpdate = () => {
     }
 };
 
-  const updates = datas.map(({noticeTile,noticeContent }, i) => (
+  const updates = datas.map(({noticeTitle,noticeContent }, i) => (
     <S.WriteBox key={i}>
       <S.Title>
         공지사항 수정
       </S.Title>
       <S.TextInputBox>
         <S.TitleText>제목</S.TitleText>
-        <S.TextInput><input placeholder='제목을 입력해주세요' value={noticeTile}></input></S.TextInput>
+        <S.TextInput><input placeholder='제목을 입력해주세요' value={noticeTitle}></input></S.TextInput>
       </S.TextInputBox>
       <S.InputBox>
         <S.ContentText>내용</S.ContentText>

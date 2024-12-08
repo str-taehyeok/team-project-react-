@@ -34,9 +34,9 @@ const noticeLists = noticeList.map((notice, index) => (
 
   return (
     <S.NoticeBox>
-      <S.Title>
+      <S.T>
         공지사항
-      </S.Title>
+      </S.T>
       {noticeLists}
     </S.NoticeBox>
     
