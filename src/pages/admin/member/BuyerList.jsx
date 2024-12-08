@@ -1,62 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import S from "./style";
+import {useOutletContext} from "react-router-dom";
 
 const BuyerList = () => {
 
-    const [memberList] = useState([
-        {
-            id : 1,
-            memberEmail : "jane@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01012345678",
-            memberSmscheck : "1",
-            memberEmailcheck : "1"
-        },
-        {
-            id : 2,
-            memberEmail : "chapssal@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01034566768",
-            memberSmscheck : "0",
-            memberEmailcheck : "0"
-        },
-        {
-            id : 3,
-            memberEmail : "hong@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01011111111",
-            memberSmscheck : "1",
-            memberEmailcheck : "1"
-        },
-        {
-            id : 4,
-            memberEmail : "kim@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01036363773",
-            memberSmscheck : "0",
-            memberEmailcheck : "0"
-        },
-        {
-            id : 5,
-            memberEmail : "king@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01023455674",
-            memberSmscheck : "0",
-            memberEmailcheck : "1"
-        },
-        {
-            id : 6,
-            memberEmail : "queen@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01056479389",
-            memberSmscheck : "1",
-            memberEmailcheck : "0"
-        },
-    ]);
 
-    const eachMember = memberList.map((member, index) => (
+    const { filteredMembers } = useOutletContext();
+
+    const eachMember = filteredMembers.map((member, i) => (
         <tr key={member.id}>
-            <td>{index + 1}</td>
+            <td>{i + 1}</td>
             <td>{member.memberEmail}</td>
             <td>{member.memberAddressDetail}</td>
             <td>{member.memberPhone}</td>
@@ -67,7 +20,7 @@ const BuyerList = () => {
 
     return (
         <div>
-                <S.NoticeList>
+                <S.List>
                     <S.Table>
                         <thead>
                         <tr>
@@ -76,14 +29,15 @@ const BuyerList = () => {
                             <th>상세주소</th>
                             <th>휴대폰</th>
                             <th>SMS 수신여부</th>
-                            <th>메일 수신여부</th>
+                            <th>이메일 수신여부</th>
                         </tr>
+                        <S.Line></S.Line>
                         </thead>
                         <tbody id="user-list">
-                        {eachMember}
+                            {eachMember}
                         </tbody>
                     </S.Table>
-                </S.NoticeList>
+                </S.List>
         </div>
     );
 };
