@@ -8,7 +8,7 @@ S.LayoutBox = styled.div`
     flex-direction: column;
     width:1196px;
     margin: 0 auto;
-    margin-bottom: 400px;
+    margin-bottom: 300px;
 `
 
 S.AllPostWrapper = styled.div`
@@ -393,6 +393,89 @@ S.BestText = styled.div`
   line-height: 36px;
   font-weight:bold;
 `
+/* postWrite */
 
+S.MainImageDumy = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 366px;
+  height: 345px;
+  border-radius: 20px;
+  background-color: #d9d9d9;
+  background-size: cover;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 24px;
+`
+S.PostContents = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 19px;
+  width: 900px;
+  flex-wrap: wrap;
+`
+
+
+S.SubImagesWrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+`
+
+S.SubImg = styled.div`
+  display: flex;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+`
+S.WriterBox = styled.div`
+  width: 457px;
+  height: 429px;
+  border-radius: 20px;
+  border: solid 1px #828282;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+S.Textarea = styled.textarea`
+  padding: 26px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  resize: none;
+  background-color: transparent;
+  font-size: 17px;
+  line-height: 22px;
+  color: #818181;
+  outline: none;
+  &::placeholder{
+  color: #818181; 
+  font-size: 14px; 
+  line-height: 22px; 
+  text-align: left; 
+  }
+`
+S.UploadButton = styled.button`
+  width: 120px;
+  height: 30px;
+  border-radius: 20px;
+  color: #FFFFFF;
+  background-color: #113F8A;
+  cursor: pointer;
+  margin: 0 0 33px auto;
+`
+
+S.PostWarpper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 139px;
+`
 
 export default S;
