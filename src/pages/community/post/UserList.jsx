@@ -6,13 +6,22 @@ const UserList = () => {
     const [isFollowerPopupOpen, setIsFollowerPopupOpen] = useState(false);
     const [isFollowingPopupOpen, setIsFollowingPopupOpen] = useState(false);
 
+    const followerPopupOpen = () => {
+        setIsFollowerPopupOpen(true)
+        setIsFollowingPopupOpen(false)
+    }
+    const followingPopupOpen = () => {
+        setIsFollowerPopupOpen(false)
+        setIsFollowingPopupOpen(true)
+    }
+
     const posts = [
         { id: 1, image: "/assets/images/community/mycat1.png", alt: "고양이 사진1" },
-        { id: 3, image: "/assets/images/community/mycat3.png", alt: "고양이 사진2" },
-        { id: 4, image: "/assets/images/community/mycat4.png", alt: "고양이 사진3" },
-        { id: 5, image: "/assets/images/community/mycat5.png", alt: "고양이 사진4" },
-        { id: 6, image: "/assets/images/community/mycat6.png", alt: "고양이 사진5" },
-        { id: 2, image: "/assets/images/community/mycat2.png", alt: "고양이 사진6" },
+        { id: 2, image: "/assets/images/community/mycat3.png", alt: "고양이 사진2" },
+        { id: 3, image: "/assets/images/community/mycat4.png", alt: "고양이 사진3" },
+        { id: 4, image: "/assets/images/community/mycat5.png", alt: "고양이 사진4" },
+        { id: 5, image: "/assets/images/community/mycat6.png", alt: "고양이 사진5" },
+        { id: 6, image: "/assets/images/community/mycat2.png", alt: "고양이 사진6" },
         { id: 7, image: "/assets/images/community/mycat7.png", alt: "고양이 사진7" },
         { id: 8, image: "/assets/images/community/mycat4.png", alt: "고양이 사진8" },
     ];
@@ -38,10 +47,10 @@ const UserList = () => {
                             <button>
                                 게시물 8
                             </button>
-                            <button type="button" onClick={() => setIsFollowerPopupOpen(true)}>
+                            <button type="button" onClick={followerPopupOpen}>
                                 팔로워 304
                             </button>
-                            <button type="button" onClick={() => setIsFollowingPopupOpen(true)}>
+                            <button type="button" onClick={followingPopupOpen}>
                                 팔로잉 40
                             </button>
                         </S.MyFollwer>
