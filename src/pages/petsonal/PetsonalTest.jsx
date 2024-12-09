@@ -88,15 +88,27 @@ const PetsonalTest = () => {
     console.log("coward", coward)
 
     let result = "";
-    result += chic > cute ? "E" : "I";
-    result += active > calm ? "S" : "N";
-    result += diligent > lazy ? "F" : "T";
-    result += brave > coward ? "P" : "J";
+    result += active > calm ? "A" : "C";
+    result += diligent > lazy ? "D" : "L";
+    result += brave > coward ? "B" : "C";
 
-    // if(result === "ENFJ" || result === "ENFJ"){
-      //   setPetColor("Orange")
-    // }
-    setPetColor("Orange")
+    if(result === "ADC"){
+      setPetColor("Orange")
+    }else if(result === "ADB"){
+      setPetColor("Gold")
+    }else if(result === "ALB"){
+      setPetColor("Gradation")
+    }else if(result === "ALC"){
+      setPetColor("LightPurple") 
+    }else if(result === "CDC"){
+      setPetColor("SkyBlue")
+    }else if(result === "CDB"){
+      setPetColor("SageGreen")
+    }else if(result === "CLB"){
+      setPetColor("IceBlue")
+    }else if(result === "CLC"){
+      setPetColor("DustySilver")
+    }
 
     // fetch로 insert
     navigate("/petsonal/result");
@@ -138,11 +150,11 @@ const PetsonalTest = () => {
               onChange={() => handleRadioChecked(i, 12)}
             ></S.MiddleCircle>
             <S.BigCircle
-              value={16.6}
+              value={16}
               type="radio"
               name={group + i}
-              checked={inputScore[i] === 16.6}
-              onChange={() => handleRadioChecked(i, 16.6)}
+              checked={inputScore[i] === 16}
+              onChange={() => handleRadioChecked(i, 16)}
             ></S.BigCircle>
           </S.Circles>
           <span>그렇다</span>
