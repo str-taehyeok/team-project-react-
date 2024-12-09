@@ -11,10 +11,29 @@ S.Container = styled.div`
   width: 100%;
 `;
 
-// 배너
 S.SwiperContainer = styled.div`
   display: flex;
-  /* 배너 페이저 */
+  position: relative;
+
+  .swiper-button-next, .swiper-button-prev {
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+
+  .swiper-button-next {
+    right: 20px;
+  }
+
+  .swiper-button-prev {
+    left: 20px;
+  }
+
   & span.swiper-pagination-bullet-active {
     background: #fff;
   }
@@ -29,6 +48,7 @@ S.SwiperContainer = styled.div`
 S.BannerTitle = styled.div`
   width: 489px;
   flex-shrink: 0;
+  margin-left: 238px;
 
   & h2 {
     font-size: ${theme.FONT_SIZE.h4};
@@ -54,6 +74,8 @@ S.Slides = styled.div`
   gap: 26px;
 `;
 
+//////////////////////////////////////////메인배너
+
 S.HotSlide = styled.div`
   display: flex;
   transition: transform 3s ease-in-out;
@@ -69,6 +91,8 @@ S.Slide = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+
 
 //////////////////////////////////////핫한 상품
 
@@ -185,6 +209,27 @@ S.TitleWrapper = styled.div`
   & h2 {
     font-size: ${theme.FONT_SIZE.h4};
     font-weight: ${theme.FONT_WEIGHT.bold};
+  }
+`;
+
+S.MainProfileInfo = styled.div`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2; 
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .UserId {
+    font-size: 20px;
+    color: white;
   }
 `;
 

@@ -28,9 +28,11 @@ const FindIdComplete = () => {
           <S.Text1>
           아이디 찾기가 완료되었습니다.
           </S.Text1>
+          <Link to={"/login"}>
           <S.GoToLoginButton>
-            <Link to={"/login"}>로그인</Link>
+            로그인
           </S.GoToLoginButton>
+          </Link>
         </S.Box>
       </S.CompletionMain>
       <footer />
