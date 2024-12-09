@@ -8,15 +8,17 @@ const ProfileList = () => {
 
     const [isOpenPopup, setIsOpenPopup] = useState(false);
 
-    const [formData, setFormData] = useState({
-        memberImage : "",
-        memberName : "Jane Ryo",
-        memberNickName : "Jane",
-        memberEmail : "example@gmail.com",
-        memberPhone : "01012345678",
-        memberAdress : "06544",
-        memberAdressDetail : "Seoul 34th st."
-    });
+    const formData = [
+        {
+            memberImage : "",
+            memberName : "Jane Ryo",
+            memberNickName : "Jane",
+            memberEmail : "example@gmail.com",
+            memberPhone : "01012345678",
+            memberAdress : "06544",
+            memberAdressDetail : "Seoul 34th st."
+        },
+    ];
 
     const [couponData, setCouponData] = useState([
         {
@@ -57,11 +59,6 @@ const ProfileList = () => {
     const handleShowPopup = () => {
         setIsOpenPopup(!isOpenPopup)
     }
-
-    const handleSubmit = () => {
-        console.log("input 데이터 전송: ", couponData);
-        alert("데이터가 전송되었습니다!");
-    };
 
     return (
         <div>
@@ -106,7 +103,7 @@ const ProfileList = () => {
                                 </S.MemberInputBox>
                             </S.MemberInputBoxWrap>
                             <S.MemeberUnsubscribe to={"/unsubscribe"}>
-                               *즉시탈퇴 > POWPOW 탈퇴하기
+                               *즉시탈퇴 &gt; POWPOW 탈퇴하기
                             </S.MemeberUnsubscribe>
                         </S.MemberInputBoxContainer>
                     </S.ProfileBoxWrap>
