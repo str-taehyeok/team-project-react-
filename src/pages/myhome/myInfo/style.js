@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom'
 
 const S = {}
 
-
 S.MyHomeContainer = styled.div`
     display: flex;
     width: 100vwh;
@@ -51,13 +50,12 @@ S.CouponP2 = styled.div`
     margin-bottom: 27px;
     margin-left: 100px;
 `;
+
 S.CouponList = styled.div`
     display: flex;
     flex-direction: column;
     gap: 23px;
 `;
-
-
 
 S.CloseIcon = styled.div`
     display: flex;
@@ -96,7 +94,6 @@ S.CouponPopupInputWrap = styled.div`
         border: 1px solid #828282;
         outline: none;
     }
-    
     & > button {
         width: 74px;
         height: 32px;
@@ -311,7 +308,6 @@ S.MemberInputBox = styled.div`
         border-radius: 20px;
         ${h8Regular};
         color: #828282;
-        
     }
 `;
 
@@ -413,5 +409,81 @@ S.MemberCertification = styled.div`
         ${h9Regular};
     }
 `;
+
+S.CompletionMain = styled.div`
+    width: 1280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    height: 80vh;
+`;
+
+S.LogoBox = styled.div`
+    display: flex;
+    align-items: center; /* 수직 정렬 */
+    justify-content: center;
+    width: 464px;
+    padding-bottom: 40px;
+    
+    & a {
+        
+        & img {
+            width: 236px;
+            height: 60px;
+            box-sizing: border-box;
+        }
+    }
+`
+
+S.Box = styled.div`
+    width: 1280px;
+    height: 340px;
+    border-top: solid 1px #828282;
+    border-bottom: solid 1px #828282 ;
+    box-sizing: border-box;
+    padding: 79px 0; /* 위아래에 20px, 좌우는 0 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    & img {
+        width: 45px;
+        height: 45px;
+        padding-bottom: 7px;
+    }
+`
+S.NextButton = styled.button`
+    width: 142px;
+    height: 32px;
+    background-color: #FFC303;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: bold;
+    border-style: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+`
+
+S.Text1 = styled.p`
+    font-size: 28px;
+    line-height: 40px;
+    font-weight: bold;
+`
+S.Text = styled.p`
+    font-size: 28px;
+    line-height: 40px;
+    font-weight: bold;
+`
+
+
+
+
+
+
+
 
 export default S;
