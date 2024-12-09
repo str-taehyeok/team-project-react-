@@ -8,10 +8,14 @@ const PetsonalResult = () => {
   const { state, result } = useContext(PetsonalContext)
   const [ scoreResult, setScoreResult ] = useState({ petColor : "", petsonalChic : 0, petsonalCute : 0, petsonalCalm : 0, petsonalActive : 0, petsonalLazy : 0, petsonalDiligent : 0, petsonalCoward : 0, petsonalBrave : 0 })
   const [ colorResult, setColorResult ] = useState({ imageSrc : "", message : [], boxColor : ""});
+  const [ isResultUpdate, setIsResultUpdate ] = useState(false);
   const { imageSrc, message, boxColor, title } = colorResult;
+
   const navigate = useNavigate();
+  const handleResultUpdate = () => {
+    setIsResultUpdate(!isResultUpdate);
+  }
   
-  console.log("state.petColor", state.petColor)
   useEffect(() => {
     if(localStorage.getItem("colorResult") !== null){
       // 있을 때 다시 검사한사람인지, 처음 검사한사람인지
@@ -32,12 +36,13 @@ const PetsonalResult = () => {
         // 검사 했는데 안넣은 사람
         localStorage.setItem("colorResult", JSON.stringify(result[state.petColor]))
         localStorage.setItem("scoreResult", JSON.stringify(state))
+        handleResultUpdate()
       }else{
         // 진짜 검사 안한사람
         navigate("/petsonal/test")
       }
     }
-  }, [])
+  }, [isResultUpdate])
 
 
   return (
