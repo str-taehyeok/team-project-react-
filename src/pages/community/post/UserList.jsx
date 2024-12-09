@@ -68,7 +68,7 @@ const UserList = () => {
             {/* 팔로워 팝업 */}
             {isFollowerPopupOpen && (
                 <S.PopupAreaFollowing>
-                    <img className="popup-following-close" src="/assets/images/community/cancel.png" alt="팝업 닫기"
+                    <S.PopupFollowingClose src="/assets/images/community/cancel.png" alt="팝업 닫기"
                         onClick={() => setIsFollowerPopupOpen(false)} />
                     <div className="following-popup">
                         <S.MenuFollowing>
@@ -78,8 +78,10 @@ const UserList = () => {
                             <ul>
                                 <li>
                                     <S.Following1>
-                                        <img src="/assets/images/community/userprofile.png" alt="프로필 사진" />
-                                        <p>아이디1</p>
+                                        <S.PimageWarpper>
+                                            <img src="/assets/images/community/userprofile.png" alt="프로필 사진" />
+                                            <p>아이디1</p>
+                                        </S.PimageWarpper>
                                         <button className="following-button">팔로우</button>
                                     </S.Following1>
                                 </li>
@@ -92,24 +94,25 @@ const UserList = () => {
             {/* 팔로잉 팝업 */}
             {isFollowingPopupOpen && (
                 <S.PopupAreaFollowing>
-                    <img className="popup-following-close" src="/assets/images/community/cancel.png" alt="팝업 닫기"
-                        onClick={() => setIsFollowingPopupOpen(false)}
-                    />
+                    <S.PopupFollowingClose src="/assets/images/community/cancel.png" alt="팝업 닫기"
+                        onClick={() => setIsFollowingPopupOpen(false)}/>
                     <div className="following-popup">
-                        <div className="menu-following">
+                        <S.MenuFollowing>
                             <p>내가 팔로우한 사람들</p>
-                        </div>
-                        <div className="my-following-list">
+                        </S.MenuFollowing>
+                        <S.myFollowingList>
                             <ul>
                                 <li>
                                     <S.Following1>
-                                        <img src="/assets/images/community/userprofile.png" alt="프로필 사진" />
-                                        <p>아이디2</p>
+                                        <S.PimageWarpper>
+                                            <img src="/assets/images/community/userprofile.png" alt="프로필 사진" />
+                                            <p>아이디2</p>
+                                        </S.PimageWarpper>
                                         <button className="following-button">팔로잉</button>
                                     </S.Following1>
                                 </li>
                             </ul>
-                        </div>
+                        </S.myFollowingList>
                     </div>
                 </S.PopupAreaFollowing>
             )}
