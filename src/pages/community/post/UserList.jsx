@@ -35,7 +35,7 @@ const UserList = () => {
                     </S.ButtonCenter>
                     <S.MyprofileCardInformation>
                         <S.MyFollwer>
-                            <button type="button" onClick={() => setIsFollowerPopupOpen(true)}>
+                            <button>
                                 게시물 8
                             </button>
                             <button type="button" onClick={() => setIsFollowerPopupOpen(true)}>
