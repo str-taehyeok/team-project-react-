@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { h1Bold, h7Bold, h7Medium, h6Bold, h6Medium, flexRowCenter, h8Regular, h4Medium, gray500 } from "../../../global/common";
+import { h1Bold, h7Bold, h7Medium, h6Bold, h6Medium, flexRowCenter } from "../../../global/common";
 import { Link } from "react-router-dom";
 import theme from "../../../global/theme";
 

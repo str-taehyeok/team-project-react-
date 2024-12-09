@@ -1,10 +1,8 @@
 import React from 'react';
-import Footer from '../../layout/Footer';
 import StoreCustom from './StoreCustom';
 import StoreDogPick from './StoreDogPick';
 import StoreCatPick from './StoreCatPick';
 import S from './style';
-import StoreBtn from './StoreCatBtn';
 import ToCommunityBtn from './ToCommunityBtn';
 import StoreCatBtn from './StoreCatBtn';
 import StoreDogBtn from './StoreDogBtn';
@@ -45,7 +43,7 @@ const StoreMain = () => {
                         <span>powpow 강아지 기획전 보러가기</span>
                         <StoreDogBtn />
                     </S.GoShoppingTitle2>
-                    <img src={`${process.env.PUBLIC_URL}/assets/images/store/toshopbanner2.png`}></img>
+                    <img src={`${process.env.PUBLIC_URL}/assets/images/store/toshopbanner2.png`} alt='배너2'></img>
                 </S.GoShopping2>
                 
                 <S.CatPickTitle>

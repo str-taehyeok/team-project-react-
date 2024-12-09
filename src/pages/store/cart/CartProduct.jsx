@@ -1,108 +1,172 @@
-import React from 'react';
+import React, { useState } from 'react';
 import S from "./style";
-import { Link } from 'react-router-dom';
-import RecommendProduct from './RecommendProduct';
-import PurchaseProduct from './PurchaseProduct';
+import ProductCount from './ProductCount';
+import Coupon from './Coupon';
+import CartBtn from './CartBtn';
+// import RecommendProduct from './RecommendProduct';
 
 const products = [
   {
-    src : "/assets/images/cart/cart-product.png",
+    productImage : "/assets/images/cart/cart-product.png",
     productName : "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
     productStock : 1,
     productPrice : 4_500,
     productDiscountPrice : 4_050,
     productCoupon : 0,
     reviewStar: "⭐⭐⭐⭐⭐",
-    reviewCount: 25
+    reviewCount: 25,
+    productCount: 1,
+    deliveryFee : 0
   },
   {
-    src : "/assets/images/cart/cart-product-2.png",
+    productImage : "/assets/images/cart/cart-product-2.png",
     productName : "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
     productStock : 1,
     productPrice : 4_500,
     productDiscountPrice : 4_050,
     productCoupon : 0,
     reviewStar: "⭐⭐⭐⭐⭐",
-    reviewCount: 25
+    reviewCount: 25,
+    productCount: 13,
+    deliveryFee : 0
   },
   {
-    src : "/assets/images/cart/cart-product-3.png",
+    productImage : "/assets/images/cart/cart-product-3.png",
     productName : "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
     productStock : 1,
     productPrice : 4_500,
     productDiscountPrice : 4_050,
     productCoupon : 0,
     reviewStar: "⭐⭐⭐⭐⭐",
-    reviewCount: 25
+    reviewCount: 25,
+    productCount: 17,
+    deliveryFee : 0
   },
   {
-    src : "/assets/images/cart/cart-product-4.png",
+    productImage : "/assets/images/cart/cart-product-4.png",
     productName : "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
     productStock : 1,
     productPrice : 4_500,
     productDiscountPrice : 4_050,
     productCoupon : 0,
     reviewStar: "⭐⭐⭐⭐⭐",
-    reviewCount: 25
+    reviewCount: 25,
+    productCount: 11,
+    deliveryFee : 0
   },
   {
-    src : "/assets/images/cart/cart-product-5.png",
+    productImage : "/assets/images/cart/cart-product-5.png",
     productName : "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
     productStock : 1,
     productPrice : 4_500,
     productDiscountPrice : 4_050,
     productCoupon : 0,
     reviewStar: "⭐⭐⭐⭐⭐",
-    reviewCount: 25
+    reviewCount: 25,
+    productCount: 5,
+    deliveryFee : 0
   }
 ]
 
+console.log(products.length);
+
 const CartProduct = () => {
 
-  const productList = products.map((product, i) => (
-    <S.CartProduct key={i}>
-      <img src={product.src} alt={"상품" + (i + 1)} />
+   // 체크박스 로직
+
+   const [checkedAll, setCheckedAll] = useState(false);
+   const [checked, setChecked] = useState(new Array(products.length).fill(false));
+
+   const onChangeCheckedAll = (e) => {
+       if (e.target.checked) {
+           setCheckedAll(!checkedAll)
+           setChecked(new Array(checked.length).fill(true))
+       } else {
+           setCheckedAll(!checkedAll)
+           setChecked(new Array(checked.length).fill(false))
+       }
+   }
+
+   const onChangeChecked = (e) => {
+       // current index
+       let value = e.target.value;
+      //  let check = e.target.checked;
+       setChecked(checked.map((c, i) => { return i === value ? !c : c }))
+   }
+
+
+  //  const [products, setProducts] = useState((products))
+   const productList = products.map((product, i) => (
+    <S.CartProductBox key={i}>
+      <input type="checkbox" onChange={onChangeChecked} value={i} checked={checked[i]} />
       <S.CartProductInfo>
-        <p>{product.productName}</p>
-        <p>{product.productStock}</p>
-    
-          <p>{product.productPrice} 원</p>
+        <img className='thumb' src={`${process.env.PUBLIC_URL}${product.productImage}`} alt={"상품" + (i + 1)} />
+        <S.ProductName>{product.productName}</S.ProductName>
+        <ProductCount key={i} product = {product} />
+        <S.productPrice>
           <p>{product.productDiscountPrice} 원</p>
-    
-        <p>{product.productCoupon}</p>
+          <p>{product.productPrice} 원</p>
+        </S.productPrice>
+        <Coupon />
       </S.CartProductInfo>
-    </S.CartProduct>
-      
-  ))
+    </S.CartProductBox>
 
-  const recommendProductList = products.map((product, i) => (
-    <S.RecommendProduct key={i}>
-      <img src={product.src} alt={"상품" + (i + 1)} />
-      <S.RecommendInfo>
-        <p>{product.productName}</p>
-          <span>{product.productPrice} 원</span>
-          <S.RecommendStar>
-            <p>{product.reviewStar}</p> <p>({product.reviewCount})</p>
-          </S.RecommendStar>
-      </S.RecommendInfo>
-    </S.RecommendProduct>
-      
-  ))
+   ))
 
-  console.log(recommendProductList)
+   
+   const productPay = (
+    <S.CartPay>
+      <S.AllDeliveryBox>
+      <S.AllDeliveryFee>
+        <p>총 배송비</p><p>{products.deliveryFee}</p>
+      </S.AllDeliveryFee>
+      <S.PurchasePrice>
+        <p>결제금액</p><p>{products.productPrice}</p>
+      </S.PurchasePrice>
+      <S.DiscountPrice>
+        <p>할인</p><p>{products.productDiscountPrice}</p>
+      </S.DiscountPrice>
+      <S.AllPurchaseFee>
+        <p>총 주문금액</p><p>{products.deliveryFee}</p>
+      </S.AllPurchaseFee>
+      </S.AllDeliveryBox>
+    </S.CartPay>
+   )
+
 
 
   return (
- 
+
+    <>
+    <form>
       <S.CartWrap>
-        {/* 구매예정 상품 */}
-        <PurchaseProduct productList ={productList} />
-        {/* 장바구니 추천 상품 */}
-        <RecommendProduct recommendList = {recommendProductList}/>
-        
+        <S.Cart>
+          <S.CartTitle>장바구니</S.CartTitle>
+          <S.CartAllCheck>
+          <input
+            type="checkbox" onChange={onChangeCheckedAll}
+            value="all"
+            checked={checked.filter((c) => c).length === checked.length}
+          />
+          <S.CartAllNames>
+            <p>상품정보</p>
+            <p>상품수량</p>
+            <p>판매가격</p>
+            <p>적용할 쿠폰</p>
+          </S.CartAllNames>
+          </S.CartAllCheck>
+            {productList}
+          <S.CartPayWrap>
+           <S.CartPayTitle>결제정보</S.CartPayTitle>
+           {productPay}
+           <CartBtn />
+          </S.CartPayWrap>
+        </S.Cart>
       </S.CartWrap>
       
-
+    </form>
+    {/* <RecommendProduct /> */}
+    </>
   );
 };
 

@@ -4,7 +4,7 @@ import {Outlet} from "react-router-dom";
 const SellerInfoContainer = () => {
     return (
         <div>
-            sellerInfo container
+
             <Outlet />
         </div>
     );

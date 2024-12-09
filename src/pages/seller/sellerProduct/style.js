@@ -28,6 +28,7 @@ const S = {}
             height: 60px;
             border-radius: 20px;
             padding: 17px;
+            border: 1px solid #ddd;
         }
     `;
 

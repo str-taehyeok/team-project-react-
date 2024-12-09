@@ -49,7 +49,7 @@ const Header = () => {
                         <S.SubMenu>
                             <li><Link to={"profile-update"}>나의 정보</Link></li>
                             <li><Link to={"/my-pet"}>반려동물 정보</Link></li>
-                            <li><Link to={""}>공지사항</Link></li>
+                            <li><Link to={"/notice"}>공지사항</Link></li>
                         </S.SubMenu>
                     </S.SubMenuWrap>
                 </S.MenuWrap>
