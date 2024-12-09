@@ -42,12 +42,12 @@ const Header = () => {
                             <li></li>
                         </S.SubMenu>
                         <S.SubMenu>
-                            <li><Link to={"/post"}>추천 바구니</Link></li>
-                            <li><Link to={"/my-post-list"}>내 게시물</Link></li>
+                            <li><Link to={"/post/all"}>추천 바구니</Link></li>
+                            <li><Link to={"/post/list?postId=${id}"}>내 게시물</Link></li>
                             <li></li>
                         </S.SubMenu>
                         <S.SubMenu>
-                            <li><Link to={"profile-update"}>나의 정보</Link></li>
+                            <li><Link to={"/myhome"}>나의 정보</Link></li>
                             <li><Link to={"/my-pet"}>반려동물 정보</Link></li>
                             <li><Link to={"/notice"}>공지사항</Link></li>
                         </S.SubMenu>
