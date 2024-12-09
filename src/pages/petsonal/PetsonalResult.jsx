@@ -8,7 +8,7 @@ const PetsonalResult = () => {
   const { state, result } = useContext(PetsonalContext)
   const [ scoreResult, setScoreResult ] = useState({ petColor : "", petsonalChic : 0, petsonalCute : 0, petsonalCalm : 0, petsonalActive : 0, petsonalLazy : 0, petsonalDiligent : 0, petsonalCoward : 0, petsonalBrave : 0 })
   const [ colorResult, setColorResult ] = useState({ imageSrc : "", message : [], boxColor : ""});
-  const { imageSrc, message, boxColor } = colorResult;
+  const { imageSrc, message, boxColor, title } = colorResult;
   const navigate = useNavigate();
   
   console.log("state.petColor", state.petColor)
@@ -39,6 +39,7 @@ const PetsonalResult = () => {
     }
   }, [])
 
+
   return (
     <div>
       <S.Frame>
@@ -49,7 +50,7 @@ const PetsonalResult = () => {
 
           <S.OrangeResult>
             {message.map((m, i) => (
-              <p key={i}>{m}</p>
+              <li key={i}>{m}</li>
             ))}
           </S.OrangeResult>
 
@@ -62,7 +63,7 @@ const PetsonalResult = () => {
               <p>반려동물 이름</p>
             </S.PetProfile>
             <S.RateWrap>
-              <S.ResultName>똥꼬발랄 사랑둥이</S.ResultName>
+              <S.ResultName>{title}</S.ResultName>
               <S.PercentageContainer>
                 <S.AllRate>
                   <S.ResultCategory>
@@ -70,11 +71,11 @@ const PetsonalResult = () => {
                     <span>귀염</span>
                   </S.ResultCategory>
                   <S.PercentageWrap>
-                    <span>0</span>
+                  <span>{scoreResult.petsonalChic}<S.Percentage>(%)</S.Percentage></span>
                     <S.Percent>
                       <S.CuteAndChicGage style={{ width: `${scoreResult.petsonalCute}%` }}></S.CuteAndChicGage>
                     </S.Percent>
-                    <span>100</span>
+                    <span>{scoreResult.petsonalCute}<S.Percentage>(%)</S.Percentage></span>
                   </S.PercentageWrap>
                 </S.AllRate>
                 <S.AllRate>
@@ -83,11 +84,11 @@ const PetsonalResult = () => {
                     <span>발랄</span>
                   </S.ResultCategory>
                   <S.PercentageWrap>
-                    <span>0</span>
+                  <span>{scoreResult.petsonalCalm}<S.Percentage>(%)</S.Percentage></span>
                     <S.Percent>
                       <S.CalmAndActive style={{ width: `${scoreResult.petsonalActive}%` }}></S.CalmAndActive>
                     </S.Percent>
-                    <span>100</span>
+                    <span>{scoreResult.petsonalActive}<S.Percentage>(%)</S.Percentage></span>
                   </S.PercentageWrap>
                 </S.AllRate>
                 <S.AllRate>
@@ -96,11 +97,11 @@ const PetsonalResult = () => {
                     <span>부지런함</span>
                   </S.ResultCategory>
                   <S.PercentageWrap>
-                    <span>0</span>
+                  <span>{scoreResult.petsonalLazy}<S.Percentage>(%)</S.Percentage></span>
                     <S.Percent>
                       <S.LazyAndDilight style={{ width: `${scoreResult.petsonalDiligent}%` }}></S.LazyAndDilight>
                     </S.Percent>
-                    <span>100</span>
+                    <span>{scoreResult.petsonalDiligent}<S.Percentage>(%)</S.Percentage></span>
                   </S.PercentageWrap>
                 </S.AllRate>
                 <S.AllRate>
@@ -109,11 +110,11 @@ const PetsonalResult = () => {
                     <span>용감함</span>
                   </S.ResultCategory>
                   <S.PercentageWrap >
-                    <span>0</span>
+                  <span>{scoreResult.petsonalCoward}<S.Percentage>(%)</S.Percentage></span>
                     <S.Percent>
                       <S.CowardAndBrave style={{ width: `${scoreResult.petsonalBrave}%` }}></S.CowardAndBrave>
                     </S.Percent>
-                    <span>100</span>
+                    <span>{scoreResult.petsonalBrave}<S.Percentage>(%)</S.Percentage></span>
                   </S.PercentageWrap>
                 </S.AllRate>
               </S.PercentageContainer>

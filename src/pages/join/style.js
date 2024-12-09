@@ -138,6 +138,10 @@ S.InputButton = styled.input`
   padding: 19px 26px;
   outline: none;
   ${flexRowCenter};
+    &::-webkit-inner-spin-button{
+      -webkit-appearance: none;
+      margin: 0;
+    }
 `;
 
 S.AuthNumberContainer = styled.div`
