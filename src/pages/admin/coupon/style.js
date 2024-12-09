@@ -201,6 +201,14 @@ S.Span = styled.span`
     font-size: 10px;
 `
 
+S.CouponWriteBtn = styled.button`
+    padding: 10px 20px;
+    border: none;
+    background-color: #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+`
+
 
 
 //
