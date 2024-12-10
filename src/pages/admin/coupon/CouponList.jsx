@@ -13,7 +13,7 @@ const CouponList = () => {
     // endDate = endDate.split(" ")[0];
     // endDateInput.value = endDate;
 
-    const [couponData, setCouponData] = useState([
+    const [couponData] = useState([
         {
             id : 1,
             couponTitle : "이것은 쿠폰타이틀",
