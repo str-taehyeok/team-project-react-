@@ -6,7 +6,7 @@ const PetUpdate = () => {
   const navigate = useNavigate();
   const [pet, setPet] = useState({ petName: '', petKind: '', petImage: '/assets/images/layout/petimg.png',  petGender: '', petBreed: '',  petBirth: '', petWeight: '', petNeuter: '', petVet: '' });
   const { id } = useParams();
-  const memberId = 23;
+  const memberId = 1;
 
 
   useEffect(() => {
