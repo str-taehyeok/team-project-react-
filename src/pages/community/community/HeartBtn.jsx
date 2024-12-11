@@ -1,69 +1,69 @@
 import React, { useEffect, useState } from 'react';
 
-const HeartBtn = ({id}) => {
+const HeartBtn = ({ id }) => {
 
-  const memberId = 1;
-
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState([]);
   const [like, setLike] = useState([]);
   const [isUpdate, setIsUpdate] = useState(false);
-  const isLike = like.some(like => like.postId === id)
 
- const handleLike = async (postId, isLike) => {
-    
-    let fetchPath = isLike ? "removeLike" : "addLike";
-    let fetchData = isLike ? postId : (
-      {
-        postId : postId,
-        userId : memberId
-      }
-    ) ;
-    console.log(fetchData)
+  const isLike = like.some((like) => like.postId === id);
 
-    await fetch(`http://localhost:10000/likes/api/like`, {
-      method : "POST",
-      headers : {
-        "Content-Type" : "application/json"
+  const handleLike = async (postId, isLike) => {
+    const fetchPath = isLike ? "cancelLike" : "like";
+    const fetchData = isLike ? { postId } : { postId, id };
+
+    console.log(fetchData);
+
+    await fetch(`http://localhost:10000/likes/like`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      body : JSON.stringify(fetchData)
+      body: JSON.stringify(fetchData),
     })
-    .then((res) => {
-      setIsUpdate(!isUpdate)
-    })
-  }
+      .then(() => setIsUpdate(!isUpdate)) 
+      .catch(console.error); 
+  };
 
-  useEffect(()=> {
-    
+  useEffect(() => {
+    // 좋아요 전체 조회
     const getLists = async () => {
-      const resposne = await fetch("http://localhost:10000/likes/api/allLikes")
-      const datas = await resposne.json();
-      return datas;
-    }
+      const response = await fetch("http://localhost:10000/likes/allLikes");
+      const data = await response.json();
+      return data;
+    };
 
-    getLists().then(setPosts).catch(console.error)
+    getLists().then(setPosts).catch(console.error);
 
+    // 특정 사용자가 좋아요한 게시물 조회
     const getLikes = async () => {
-      const resposne = await fetch("http://localhost:10000/likes/api/likedPosts", {
-        method : "GET",
-        headers : {
-          "Content-Type" : "application/json"
+      const response = await fetch(`http://localhost:10000/likes/likedPosts/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
         },
-        body : JSON.stringify(1)
-      })
-      const datas = await resposne.json();
-      return datas;
-    }
+      });
+      const data = await response.json();
+      return data;
+    };
 
-    getLikes().then(setLike)
-
-  }, [isUpdate])
+    getLikes().then(setLike).catch(console.error);
+  }, [isUpdate, id]);
 
   return (
     <>
-      { isLike ? ( 
-        <img onClick={() => { handleLike(id, isLike) }} src={process.env.PUBLIC_URL + "/assets/images/store/liked.png"} />
-      ) : ( 
-        <img onClick={() => { handleLike(id, isLike) }} src={process.env.PUBLIC_URL + "/assets/images/store/like.png"} />
+      {isLike ? (
+        <img
+          onClick={() => handleLike(id, isLike)}
+          src={process.env.PUBLIC_URL + "/assets/images/store/heart-not-click.png"}
+          alt="Liked"
+        />
+      ) : (
+        <img
+          onClick={() => handleLike(id, isLike)}
+          src={process.env.PUBLIC_URL + "/assets/images/store/heart-click.png"}
+          alt="Not Liked"
+        />
       )}
     </>
   );
