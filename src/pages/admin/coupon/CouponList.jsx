@@ -13,7 +13,7 @@ const CouponList = () => {
     // endDate = endDate.split(" ")[0];
     // endDateInput.value = endDate;
 
-    const [couponData, setCouponData] = useState([
+    const [couponData] = useState([
         {
             id : 1,
             couponTitle : "이것은 쿠폰타이틀",
@@ -80,7 +80,7 @@ const CouponList = () => {
                         <S.Buttons>
                             <S.SearchBtn>검색</S.SearchBtn>
                             <S.ResetBtn>초기화</S.ResetBtn>
-                            <Link to={"/coupon/coupon-write"}><S.NewAddBtn type="button">신규 추가</S.NewAddBtn></Link>
+                            <Link to={"/admin/coupon/coupon-write"}><S.NewAddBtn type="button">신규 추가</S.NewAddBtn></Link>
                         </S.Buttons>
                     </S.NoticeSearch>
                 </S.CouponListTitleWrap>
