@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, Outlet} from "react-router-dom";
+import {Link} from "react-router-dom";
 import S from "./style"
 import { StarRating } from '../../../context/starContext';
 import HeartBtn from '../store/HeartBtn';
@@ -7,6 +7,10 @@ import {Pagination} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/pagination';
+import ProductDetail from "./ProductDetail";
+import ProductReview from "./ProductReview";
+import ProductRefundPolicy from "./ProductRefundPolicy";
+import ProductDelivery from "./ProductDelivery";
 
 
 // 더미데이터 확인용
@@ -190,6 +194,23 @@ const productList = [
         </S.Product>
     ));
 
+    const [activeTab, setActiveTab] = useState('info');
+
+    const renderTabContent = () => {
+        switch(activeTab) {
+            case 'info':
+                return <ProductDetail />;
+            case 'review':
+                return <ProductReview />;
+            case 'delivery':
+                return <ProductDelivery />;
+            case 'change':
+                return <ProductRefundPolicy />;
+            default:
+                return <ProductRefundPolicy />;
+        }
+    };
+
     return (
         <div>
             <div className="body-container">
@@ -272,8 +293,8 @@ const productList = [
                                 '--swiper-pagination-color': '#131313',
                                 '--swiper-pagination-bullet-inactive-color': '#888888'
                             }}>
-                            {products.map((product, index) => (
-                                <SwiperSlide  key={index}>
+                            {products.map((product, i) => (
+                                <SwiperSlide  key={i}>
                                     <S.SwiperDirection>
                                     {product}
                                     </S.SwiperDirection>
@@ -282,7 +303,17 @@ const productList = [
                         </Swiper>
                     </S.ProductWrap>
             </div>
-            <Outlet/>
+            <S.Container3>
+                <S.InfoWrap>
+                    <S.TabWrap>
+                        <button className={`info-btn ${activeTab === 'info' ? 'active' : ''}`} onClick={() => setActiveTab('info')}>상품정보</button>
+                        <button className={`review-btn ${activeTab === 'review' ? 'active' : ''}`} onClick={() => setActiveTab('review')}>상품평</button>
+                        <button className={`delivery-btn ${activeTab === 'delivery' ? 'active' : ''}`} onClick={() => setActiveTab('delivery')}>주문/배송안내</button>
+                        <button className={`refund-btn ${activeTab === 'refund' ? 'active' : ''}`} onClick={() => setActiveTab('refund')}>교환/반품안내</button>
+                    </S.TabWrap>
+                    {renderTabContent()}
+                </S.InfoWrap>
+            </S.Container3>
         </div>
     );
 };
