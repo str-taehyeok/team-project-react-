@@ -11,18 +11,14 @@ S.Frame = styled.div`
     margin-bottom: 100px;
 `;
 
-S.DivisionLine = styled.div`
-    border: solid 0.1px #828282;
-    width: 1440px;
-`;
 
 S.Title = styled.div`
     margin: 43px 0 80px 0;
     display: flex;
     justify-content: space-between;
     width: 1191px;
-
-    h1 {
+    
+    & p {
         font-size: 40px;
         font-weight: bold;
     }
@@ -33,51 +29,51 @@ S.NoticeSearch = styled.div`
     flex-direction: column;
     align-items: center;
     width: 1440px;
+`;
 
-    .input-group {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-
-        input[type="text"],
-        input[type="date"],
-        select {
-            width: 342px;
-            height: 48px;
-            padding: 17px;
-            border-radius: 20px;
-            border: 1px solid #ccc;
-        }
-
+S.InputGroup = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    
+    & input[type="date"] {
+         width: 342px;
+         height: 48px;
+         padding: 17px;
+         border-radius: 20px;
+         border: 1px solid #ccc;
+    }
+    
+    & span {
         font-size: 20px;
     }
+`
 
-    .buttons {
-        display: flex;
-        margin: 35px 0 80px 0;
-        gap: 10px;
+S.Buttons = styled.div`
+    display: flex;
+    margin: 35px 0 80px 0;
+    gap: 10px;
+`
 
-        .search-btn {
-            width: 90px;
-            height: 30px;
-            border: none;
-            border-radius: 20px;
-            color: #fff;
-            cursor: pointer;
-            background-color: #113f8a;
-        }
+S.SearchBtn = styled.button`
+    width: 90px;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #113f8a;
+`
 
-        .reset-btn {
-            width: 90px;
-            height: 30px;
-            border: solid 1px #888888;
-            border-radius: 20px;
-            color: #888888;
-            cursor: pointer;
-            background-color: #fff;
-        }
-    }
-`;
+S.ResetBtn = styled.button`
+    width: 90px;
+    height: 30px;
+    border: solid 1px #888888;
+    border-radius: 20px;
+    color: #888888;
+    cursor: pointer;
+    background-color: #fff;
+`
 
 S.NoticeList = styled.div`
     display: flex;
@@ -87,79 +83,58 @@ S.NoticeList = styled.div`
     width: 1440px;
     margin: 0 auto;
 
-    table {
-        width: 1440px;
-        text-align: center;
-        border-collapse: collapse;
-    }
 `;
 
-S.Table = styled.table``;
+S.Table = styled.table`
+    width: 1440px;
+    text-align: center;
+    border-collapse: collapse;
+`
 
 S.TableHeader = styled.thead``;
 
 S.TableRow = styled.tr`
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
+`;
 
-  &.tr-border {
-    border-top: solid 0.1px #828282;
-    height: 70px;
-
-    td:first-child {
-      font-weight: bold;
-    }
-  }
+S.TableHeaderRow = styled.tr`
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    border-bottom: 1px solid #828282;
 `;
 
 S.TableHeaderCell = styled.th`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+    width: 220px;
 `;
 
 S.TableCell = styled.td`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 0;
+    width: 220px;
+`;
+
+S.TableFooterCell = styled.td`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 0;
+    width: 220px;
 `;
 
 S.TableFooter = styled.tr`
-  font-weight: bold;
+    display: flex;
+    font-weight: bold;
+    justify-content: space-between;
 `;
 
-S.Button = styled.button`
-  width: 90px;
-  height: 30px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
 
-  &.search-btn {
-    background-color: #113f8a;
-    color: #fff;
-  }
-
-  &.reset-btn {
-    background-color: #fff;
-    border: solid 1px #888888;
-    color: #888888;
-  }
-`;
-
-S.DateInput = styled.input`
-  width: 342px;
-  height: 48px;
-  padding: 17px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-`;
-
-S.Span = styled.span`
-  font-size: 20px;
-  margin: 0 10px;
-`;
 
 export default S;
