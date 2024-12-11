@@ -7,7 +7,6 @@ const S = {}
 
 /*****상세내용*******/
 
-
 S.CouponListWrap = styled.div`
     width: 100%;
     display: flex;
@@ -15,8 +14,16 @@ S.CouponListWrap = styled.div`
     margin: 0 auto;
 `
 
+S.CouponForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+`
+
 S.CouponListTitle = styled.div`
-    margin: 42px 0 35px 0;
+    margin: 0 auto;
+    margin-bottom: 120px;
+    margin-top: 61px;
     display: flex;
     justify-content: space-between;
     width: 1191px;
@@ -113,7 +120,7 @@ S.TableCellTh = styled.th`
 `
 
 S.TableRow = styled.tr`
-    display: block;
+    display: flex;
 `
 
 S.TableCell = styled.td`
@@ -164,193 +171,144 @@ S.Box1 = styled.div`
 `
 
 S.Input = styled.input`
-    width: 464px;
-    height: 55px;
-    padding: 10px;
+    width: 708px;
+    height: 60px;
+    padding: 26px;
     border: 1px solid #ccc;
     border-radius: 20px;
     margin-top: 15px;
+
+    //::-webkit-inner-spin-button {
+    //    -webkit-appearance: none;
+    //    margin: 0;
+    //}
+    //
+    //::-webkit-outer-spin-button {
+    //    -webkit-appearance: none;
+    //    margin: 0;
+    //}
 `
 
-S.label = styled.label`
+S.Label = styled.label`
     display: flex;
     align-items: center;
     width: 230px;
     text-align: left;
     font-weight: bold;
     align-items: flex-start;
+`;
+
+S.DateInputWrap = styled.div`
+    display: flex;
+    gap: 45px;
+    align-items: center;
 `
 
 S.DateInput = styled.input`
     border-radius: 20px;
-    width: 218px;
-    height: 55px;
+    width: 296px;
+    height: 60px;
     border: 0.5px solid #ccc;
-    margin-right: 10px;
-    padding: 10px;
+    padding: 10px;  
     color: #828282;
 `
-    //     width: 464px;
-    //     height: 55px;
-    //     padding: 10px;
-    //     border: 1px solid #ccc;
-    //     border-radius: 20px;
-    //     box-sizing: border-box;
 
 S.Span = styled.span`
-    font-size: 10px;
+    font-size: 50px;
 `
 
 S.CouponWriteBtn = styled.button`
-    padding: 10px 20px;
     border: none;
-    background-color: #ccc;
     border-radius: 20px;
     cursor: pointer;
+    width: 90px;
+    height: 30px;
+    background-color: #113F8A;
+    color: white;
+`
+
+S.CouponCancelBtn = styled.button`
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 90px;
+    height: 30px;
+    background-color: #FFC303;
+    color: white;
+`
+
+S.CouponBtnWrap = styled.div`
+    display: flex;
+    gap : 10px;
+    justify-content: center;
+    margin-top: 140px;
+    height: 30px;
+`
+
+S.CouponCategory = styled.select`
+    width: 708px;
+    height: 60px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-top: 15px;
+    
+    & option {
+        color: red;
+    }
+`
+
+S.DiscountType = styled.div`
+    display: flex;
+    align-items: flex-start;
+    margin-top: 30px;
+`
+
+S.Box3 = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+`
+
+S.Box2 = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 708px;
+`
+
+S.Textarea = styled.textarea`
+    display: flex;
+    width: 708px;
+    height: 100px;
+`
+
+S.LabelRadio = styled.label`
+    display: flex;
+    width: 55px;
+    align-items: center;
+`
+
+S.LabelRadioWrap = styled.div`
+    display: flex;
+    gap : 21px;
+    align-items: center;
+
+    & > input {
+        width: 98px;
+        height: 43px;
+        border-radius: 20px;
+        text-align: center;
+    }
+`
+
+S.LabelRadioCustom = styled.div`
+    display: flex;
 `
 
 
 
-//
-// .coupon-form {
-//     display: flex;
-//     align-items: center;
-// }
-//
 
-//
-
-//
-
-//
-// textarea {
-//     height: 80px;
-// }
-//
-// .change-buttons {
-//     width: 100%;
-//     display: flex;
-//     justify-content: flex-end;
-//     justify-content: center;
-//     margin-top: 100px;
-// }
-//
-// .button-submit, .button-edit {
-//     width: 90px;
-//     height: 30px;
-//     border: none;
-//     border-radius: 20px;
-//     color: white;
-//     cursor: pointer;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     margin-top: 6px;
-// }
-//
-// .button-submit {
-//     background-color: #113F8A;
-//     margin-right: 10px;
-// }
-//
-// .button-edit {
-//     background-color: #FFC303;
-// }
-//
-// .form-group {
-//     margin-bottom: 20px;
-// }
-//
-
-
-//
-
-//
-// .box1 input[type="number"],
-// .custom-discount {
-//     width: 464px;
-//     height: 55px;
-//     padding: 10px;
-//     border: 1px solid #ccc;
-//     border-radius: 20px;
-//     box-sizing: border-box;
-// }
-//
-// textarea {
-//     box-sizing: border-box;
-//     resize: vertical;
-//     width: 464px;
-//     min-height: 150px;
-//     padding: 10px;
-//     border: 1px solid #ccc;
-//     border-radius: 10px;
-//     margin-top: 15px;
-//     font-family: 'Spoqa Han Sans Neo', sans-serif !important;
-// }
-//
-// .discount-type {
-//     display: flex;
-//     align-items: flex-start;
-//     margin-top: 30px;
-// }
-//
-// .discount-type label {
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     margin-top: 5px;
-//     margin-right: 10px;
-// }
-//
-// .discount-type .box2 label {
-//     display: flex;
-//     align-items: center;
-// }
-//
-// .custom-discount {
-//     width: 90px;
-//     height: 30px;
-//     border: 1px solid #ccc;
-//     padding: 5px;
-// }
-//
-// .result {
-//     margin-top: 20px;
-// }
-//
-// .box2 {
-//     display: flex;
-//     flex-direction: row;
-//     gap: 10px;
-// }
-//
-// .box2 label {
-//     display: flex;
-//     align-items: center;
-// }
-//
-// .box2 > div {
-//     display: flex;
-//     align-items: center;
-// }
-//
-// .custom-discount {
-//     width: 100px;
-// }
-//
-// .box3 {
-//     display: flex;
-//     flex-direction: column;
-//     gap:5px;
-// }
-//
-// button {
-//     padding: 10px 20px;
-//     border: none;
-//     background-color: #ccc;
-//     border-radius: 20px;
-//     cursor: pointer;
-// }
 
 
 
