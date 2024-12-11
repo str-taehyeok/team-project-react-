@@ -600,4 +600,96 @@ S.Title = styled.div`
   margin-bottom: 17px;
 `
 
+S.PopupAreaFollowing = styled.div`
+  width: 400px;
+  height: 534px;
+  border-radius: 20px;
+  border: solid 1px #828282;
+  box-shadow: 2px 4px 4px rgb(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  bottom: 473px;
+  right: 54px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+`
+
+S.PopupFollowingClose = styled.img`
+  position: relative;
+  width: 30px;
+  height: 30px;
+  left: 171px;
+  top: 13px;
+`
+
+S.MenuFollowing = styled.div`
+  width: 200px;
+  height: 50px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #d9d9d9;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+`
+S.myFollowingList = styled.div`
+  width: 400px;
+  height: 453px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-sizing: border-box;
+  border: solid 1px #888888;
+  >ul>li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  `
+
+S.Following1 = styled.div`
+    width: 350px;
+    height: 70px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+  >img{
+    width: 40px;
+  }
+  >p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  >button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    height: 30px;
+    width: 63px;
+    border: solid 1px #828282;
+    color: #828282;
+    cursor: pointer;
+    background-color: #FFFFFF;
+  }
+`
+
+S.PimageWarpper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    margin-right: 170px;
+  >img{
+    width: 40px;
+    height: 40px;
+  }
+`
+
 export default S;

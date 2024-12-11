@@ -9,6 +9,7 @@ const PetsonalMain = () => {
     <div>
       <Header />
       <S.PetsonalContainer>
+        <S.FirstImage>
         <S.StartImage>
           <S.MainFirst src= {`${process.env.PUBLIC_URL}/assets/images/petsonal/petsonal-main.png`} alt="메인" />
         </S.StartImage>
@@ -16,6 +17,7 @@ const PetsonalMain = () => {
         <Link className="go-to-start" to={"./test"}>
            TEST START
         </Link>
+        </S.FirstImage>
 
         <S.SecondImage>
           <S.SecondTextWrap >

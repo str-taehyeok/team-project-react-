@@ -41,14 +41,13 @@ const PayCoupon = () => {
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
-      setIsActive(true);
-  }
-
+    isActive ? setIsActive(false) : setIsActive(true);
+}
 
   const couponList = coupons.map((coupon, i) => (
-    <div key={i}>
-      <div>{coupon.couponTitle}</div>
-    </div>
+    <S.CouponList key={i}>
+      <p>{coupon.couponTitle}</p>
+    </S.CouponList>
   ))
 
   return (
