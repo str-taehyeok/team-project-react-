@@ -1,5 +1,16 @@
 import styled from "styled-components";
-import {h4Medium, h5Bold, h5Medium, h6Medium, h7Bold, h7Medium, h9Medium, h8Regular, h6Bold} from "../../../global/common";
+import {
+    h4Medium,
+    h5Bold,
+    h5Medium,
+    h6Medium,
+    h7Bold,
+    h7Medium,
+    h9Medium,
+    h8Regular,
+    h6Bold,
+    h6Regular, h10Regular, h8Bold, h7Regular
+} from "../../../global/common";
 
 const S = {}
 
@@ -35,7 +46,7 @@ const S = {}
         width: 464px;
         display: flex;
         gap : 31px;
-        justify-content: center;
+        justify-content: left;
         padding-bottom: 50px;
         
         & img{
@@ -49,7 +60,7 @@ const S = {}
 
 S.InfoSeller = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: left;
     gap: 15px;
 
     & p{
@@ -250,7 +261,7 @@ S.InfoSeller = styled.div`
         display: flex;
         gap: 10px;
         align-items: center;
-        justify-content: right;
+        justify-content: center;
         font-weight: bold;
         ${h7Medium}
     `;
@@ -293,14 +304,6 @@ S.InfoSeller = styled.div`
         margin-bottom: 87px;
     `;
 
-    // }
-    // .product-wrap .sort {
-    //     display: flex;
-    //     flex-direction: column;
-    //     margin-left: 8px;
-    //     gap:12px;
-    // }
-    //
     S.Product = styled.div`
         display: flex;
         flex-direction: column;
@@ -359,288 +362,263 @@ S.InfoSeller = styled.div`
         font-weight: bold;
         margin-bottom: 5px;
     `;
-// }
-//
-// .product .product-info .product-star {
-//     display: flex;
-//     font-size: 11px;
-// }
-// .product .product-info #product-star {
-//     color: #FFC303;
-// }
-// .product .product-info #product-star-count {
-//     font-size: 11px;
-// }
-//
-// .product .product-info .delivery-info {
-//     display: flex;
-//     gap : 6px;
-// }
-//
-// .product .product-info .delivery-info #product-start {
-//     font-size: 14px;
-//     color: #113F8A;
-// }
-// .product .product-info .delivery-info #product-limit {
-//     font-size: 12px;
-// }
-// .product .product-info .delivery-info #product-free {
-//     font-size: 12px;
-// }
-//
-/* 리뷰창 */
-S.Container3 = styled.div`
-    display: flex;
-    width: 935px;
-    height: 887px;
-    border: solid 1px #D9D9D9;
-    margin: 0 auto;
-    margin-bottom: 70px;
-`;
-//
-// .review-wrap {
-//     display: flex;
-//     flex-direction: column;
-//     width: 100%;
-//     /* display: none; */
-// }
-//
-// .container3 .reveiw-title {
-//     display: flex;
-//     margin-bottom: 30px;
-//     gap:39px;
-// }
-//
-// .container3 .review-wrap .sector {
-//     display: flex;
-//     width: 935px;
-//     height: 1px;
-//     background-color: black;
-// }
-//
-// .container3 > div {
-//     flex: 1;
-// }
-//
-// .container3 .nav{
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
-//
-// .container3 .images-wrap {
-//     display: none;
-// }
-//
-S.InfoWrap = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: top;
-`;
+
+    /* 리뷰창 */
+    S.Container3 = styled.div`
+        display: flex;
+        width: 935px;
+        height: 887px;
+        margin: 0 auto;
+        margin-bottom: 70px;
+        border-radius: 10px;
+    `;
+
+    S.InfoWrap = styled.div`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    `;
 
 
 
-S.TabWrap = styled.div`
-    display: flex;
-    width: 100%;
-    height: 70px;
-    margin-bottom: 36px;
-`;
+    S.TabWrap = styled.div`
+        display: flex;
+        width: 100%;
+        height: 70px;
+        margin-bottom: 36px;
+    
+        & button {
+            flex: 1;
+            padding: 15px 10px;
+            border: 1px solid #d9d9d9;
+            background-color: #f5f5f5;
+            color: #000;
+            transition: all 0.3s ease;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            ${h6Bold};
+        }
+    
+        & button.active { 
+            background-color: #131313;
+            color: #fff;
+        }
+    
+        & button:hover {
+            background-color: #131313;
+            color: #fff;
+        }
+    `;
 
 
-//
-// .container3 .tab-wrap > a {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     flex: 1;
-//     border-bottom: solid 1px #D9D9D9;
-// }
-//
-// .product-detail {
-//     display: flex;
-// }
-//
-// .product-detail .user-info-wrap {
-//     display: flex;
-//     flex-direction: column;
-//     gap:26px;
-//     margin-right: 24px;
-//     width: 216px;
-//     height: 216px;
-//     justify-content: center;
-//     align-items: center;
-// }
-//
-// .product-detail .product-review {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     /* align-items: center; */
-//     text-align: left;
-// }
-//
-// .product-detail .product-review .p1 {
-//     display: flex;
-//     flex-shrink: 0;
-//     justify-content: left;
-// }
-//
-// .product-detail .product-review .p2 {
-//     display: flex;
-//     flex-shrink: 0;
-//     justify-content: right;
-//     margin-bottom: 12px;
-// }
-//
-// .product-detail .product-review .p3 {
-//     display: flex;
-//     flex-shrink: 0;
-//     justify-content: left;
-// }
-//
-//
-// .product-detail .user-info-wrap .user-info {
-//     display: flex;
-//     gap: 10px;
-// }
-//
-// .product-detail .user-info-wrap img{
-//     display: flex;
-//     width: 70px;
-//     height: 70px;
-// }
-//
-// /* 배송 */
-// .info-wrap .btn3 {
-//     display: flex;
-//     flex-direction: column;
-//     width: 100%;
-//     height: 46%;
-//     /* border: solid black 1px; */
-//     gap: 20px;
-//     padding: 15px;
-//     display: none;
-// }
-//
-// .btn3 .h6{
-//     font-size: 25px;
-// }
-//
-// .info-wrap .btn3 .btn3-info p{
-//     margin-bottom: 18px;
-// }
-//
-// .info-wrap .btn3 .btn3-info ul li{
-//     font-size: 15px;
-//     color: #ACACA8;
-//     list-style-type: circle;
-//     list-style-position:inside;
-// }
-//
-// /* 교환/반품 */
-// .info-wrap .btn4 {
-//     display: flex;
-//     flex-direction: column;
-//     width: 100%;
-//     height: 46%;
-//     /* border: solid black 1px; */
-//     gap: 15px;
-//     padding: 15px;
-//     display: none;
-// }
-//
-// .info-wrap .btn4 .h6 {
-//     font-size: 18px;
-// }
-//
-// .info-wrap .btn4 .btn4-info p{
-//     margin-bottom: 15px;
-// }
-//
-// .info-wrap .btn4 .btn4-info ul li{
-//     font-size: 15px;
-//     color: #ACACA8;
-//     list-style-type: circle;
-//     list-style-position:inside;
-// }
-//
-//
-//
-// .banner-bottom {
-//     display: flex;
-//     flex-direction: column;
-//     margin: 0 auto;
-//     justify-content: center;
-//     width: 935px;
-// }
-//
-// .container {
-//     width: 80%;
-//     height: 80%;
-//     margin: 0 auto;
-//     background-color: white;
-//     border-radius: 8px;
-//     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-//     padding: 20px;
-//     display: none;
-// }
-//
-// .product-info2 {
-//     width: 100%;
-//     border-collapse: collapse;
-// }
-//
-// .product-info2 th, .product-info2 td {
-//     border: 1px solid #ddd;
-//     padding: 10px;
-//     text-align: left;
-// }
-//
-// .product-info2 th {
-//     background-color: #f2f2f2;
-//     font-size: 18px;
-// }
-//
-// .product-info2 td {
-//     font-size: 16px;
-// }
-//
-// .product-info2 tr:nth-child(even) {
-//     background-color: #f9f9f9;
-// }
-//
-// .quantity-control {
-//     display: flex;
-//     border-radius: 20px;
-//     align-items: center;
-//     background-color: #888888;
-//     width: 118px;
-//     height: 35px;
-//     border: solid 1px #333;
-//     justify-content: space-between;
-// }
-// .quantity-control button{
-//     width: 30px;
-//     height: 30px;
-//     border: none;
-//     background: none;
-//     inline-size: auto;
-//     font-size: 25px;
-//     color: #FFFFFF
-// }
-//
-// .quantity-input {
-//     text-align: center;
-//     width: 50px;
-//     margin: 0 5px;
-//     padding: 5px;
-//     border: none;
-//     background: none;
-//     border-radius: 20px;
-//     color: #FFFFFF;
-// }
+    S.ProductDetail = styled.div`
+        display: flex;
+    `;
+
+
+
+    S.ReviewContainer = styled.div`
+    `;
+
+    S.ReviewCount = styled.div`
+        margin-bottom: 35px;
+        & span{
+            ${h7Bold};
+            margin-right: 50px;
+        }
+    `;
+
+
+    S.ProductReview = styled.div`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        width: 900px;
+        height: 600px;
+        //margin-top: 20px;
+    `;
+
+    S.ProductReviewDetail = styled.div`
+        overflow-y: auto;
+        width: 933px;
+        height: 600px;
+    
+        // 스크롤바 전체 트랙
+        &::-webkit-scrollbar {
+            width: 6px; // 스크롤바 너비
+        }
+    
+        // 스크롤바 핸들 (움직이는 부분)
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.3); // 반투명 회색
+            border-radius: 3px; // 둥근 모서리
+            transition: background-color 0.3s ease;
+        }
+    
+        // 스크롤바 핸들에 마우스 올렸을 때
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0, 0, 0, 0.5); // 좀 더 진한 색상
+        }
+    
+        // 스크롤바 트랙 (배경)
+        &::-webkit-scrollbar-track {
+            background-color: rgba(0, 0, 0, 0.1); // 매우 연한 회색
+        }
+        
+        & img{
+            width: 70px;
+            height: 70px;
+        }
+    `;
+
+    S.NickName = styled.div`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        & img{
+            width: 70px;
+            height: 70px;
+            margin-top: 45px;
+        }
+    `;
+
+    S.ReviewContent = styled.div`
+        margin-left: 100px;
+        margin-right: 50px;
+    `;
+
+    S.HugReview = styled.div`
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 20px;
+    `;
+
+
+    S.LinePer = styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #d9d9d9;
+        margin-bottom: 31px;
+        margin-top: 31px;
+        width: 800px;
+    `;
+
+    S.UserInfo = styled.div`
+        display: flex;
+        & p{
+            ${h7Regular};
+            margin-bottom: 24px;
+            justify-content: space-between;
+        }
+        
+        & span{
+            ${h7Regular};
+            margin-bottom: 24px;
+        }
+    `;
+
+    S.ReviewTitle = styled.div`
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    `;
+
+    S.ReviewInput = styled.div`
+        display: flex;
+        flex-direction: row;
+        margin-left: 100px;
+        justify-content: center;
+        align-items: center;
+        
+        
+        & input{
+            width: 563px;
+            height: 90px;
+            border-radius: 20px;
+            padding: 5px 20px;
+        }
+        
+        & button{
+            width: 64px;
+            height: 33px;
+            background-color: #113f8a;
+            color: #fff;
+            border-radius: 50px;
+            margin-left: 60px;
+        }
+    `;
+
+    S.NewReview = styled.div`
+        display: flex;
+        flex-direction: row;
+        margin-top: 43px;
+        justify-content: center;
+        align-items: center;
+    `;
+
+
+    // /* 배송 */
+    S.Btn3 = styled.div` 
+        //display: flex;
+        flex-direction: column;
+        //justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 46%;
+        gap: 20px;
+        padding: 15px;
+        margin-left: 150px;
+        
+        & p{
+            ${h8Bold};
+            margin-bottom: 18px;
+        }
+        
+        & ul li{
+            ${h10Regular};
+            color: #ACACA8;
+            list-style-type: circle;
+            list-style-position:inside;
+        }
+    `;
+
+
+
+    S.Btn4 = styled.div`
+        ${h6Regular}
+    `;
+
+    S.Btn4Info = styled.div`
+        & p{
+            ${h8Bold};
+            margin-bottom: 15px;
+        }
+        
+        & ul li{
+            ${h10Regular};
+            color: #ACACA8;
+            list-style-type: circle;
+            list-style-position:inside;
+        }
+    `;
+
+    S.Container = styled.div`
+        width: 80%;
+        height: 80%;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        display: none;
+    `;
 
 
 export default S;
