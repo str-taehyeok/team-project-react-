@@ -1,14 +1,25 @@
 import styled from "styled-components";
-import { h4Bold, h2Bold, h6Medium, h7Bold, h7Medium, h8Medium, h8Regular, h10Regular, h9Regular, h8Bold } from "../../../global/common";
+import { h4Bold, h2Bold, h6Medium, h7Bold, h7Medium, h8Regular, h10Regular, h9Regular, h8Bold } from "../../../global/common";
 import { Link } from "react-router-dom";
 
 const S = {}
+
+S.Decrease = styled.div`
+  width: 6px;
+  height: 20px;
+`
+
+S.Increase = styled.div`
+  width: 6px;
+  height: 20px;
+`
 
 S.NoCartWrap = styled.div`
   width: 1920px;
   margin: 0 auto;
   
 `
+
 S.NoCart = styled.div`
   width: 1440px;
   margin: 0 auto;
@@ -85,7 +96,7 @@ S.CartAllCheck = styled.div`
     height: 28px;
     accent-color: #113F8A;
     margin-left: 39px;
-    margin-right: 154px;
+    margin-right: 185px;
   }
 
 `
@@ -103,19 +114,19 @@ S.CartAllNames = styled.div`
   }
 
   & p:nth-child(1) {
-    width: 213px;
+    width: 244px;
     height: 22px;
   }
   & p:nth-child(2) {
-    width: 304px;
+    width: 220px;
     height: 22px;
   }
   & p:nth-child(3) {
-    width: 133px;
+    width: 242px;
     height: 22px;
   }
   & p:nth-child(4) {
-    width: 198px;
+    width: 120px;
     height: 22px;
   }
 
@@ -164,28 +175,30 @@ S.CartProductInfo = styled.div`
 S.ProductName = styled.div`
       width: 262px;
       height: 50px;
-      display: flex;
       overflow: hidden;
       ${h8Regular}
       margin-left: 34px;
+      text-overflow: ellipsis;
+      
 
 `
 S.productCount = styled.div`
   cursor: pointer;
-  margin-left: 30px;
+  margin-left: 53px;
   width: 80px;
-  height: 20px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-radius: 12px;
-  background-color: #888888;
+  border-radius: 20px;
+  border: solid 1px #828282;
+  background-color: #FFFFFF;
   ${h8Regular}
 
 `
 
 S.productPrice = styled.div`
-  width: 138px;
+  width: 150px;
   height: 24px;
   display: flex;
   align-items: baseline;
@@ -196,7 +209,7 @@ S.productPrice = styled.div`
   }
 
   & p:nth-child(2) {
-    ${h8Medium}
+    ${h6Medium}
     margin-left: 4px;
     color: #828282;
     text-decoration: line-through;
@@ -263,11 +276,11 @@ S.CouponBtnWrap = styled.div`
 `
 
 S.CouponBtn = styled.div`
-  width: 150px;
-  height: 18px;
+  width: 140px;
+  height: 30px;
   box-sizing: border-box;
   border: solid 1px #828282;
-  border-radius: 12px;
+  border-radius: 20px;
   display: flex;
   flex-wrap: wrap;
   color: #828282;
@@ -276,25 +289,50 @@ S.CouponBtn = styled.div`
   justify-content: space-around;
   ${h9Regular}
   cursor: pointer;
+
+  & img {
+    width: 8px;
+    height: 6px;
+    
+  }
  
 `
 S.CouponWrap = styled.div`
   position: absolute;
+  padding: 10px 10px 0px 16px;
   margin-top: 6px;
   right: 0px;
   border: solid 1px #828282;
-  width: 150px;
-  height: 80px;
+  width: 140px;
+  height: 100px;
+  background: white;
+        /* min-width: 120%; */
+        border: 1px solid #D9D9D9;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   display: none;
 
   &.active {
     display: flex;
     ${h9Regular}
-    align-items: center;
     flex-direction: column;
+    overflow-y: scroll;
   }
 
+  &.active::-webkit-scrollbar {
+    width: 6px;  /* 스크롤바의 너비 */
+}
+
+    &.active::-webkit-scrollbar-thumb {
+    height: 10%; /* 스크롤바의 길이 */
+    background: #888888; /* 스크롤바의 색상 */
+    border-radius: 10px;
+    }
+    
+
+  
 `
+
 
 // 카트 결제
 
@@ -391,5 +429,14 @@ S.Link = styled(Link)`
   ${h8Bold}
 
 ` 
+
+S.CouponList = styled.div`
+
+  & > p {
+    
+    margin-bottom: 10px;
+
+  } 
+`
 
 export default S;

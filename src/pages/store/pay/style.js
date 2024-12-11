@@ -19,6 +19,16 @@ S.Delivery = styled.div`
 
 // 배송 메모 컴포넌트 스타일
 
+S.payMemoList = styled.div`
+
+ & > p {
+  ${h9Regular}
+  padding-bottom: 10px;
+ }
+
+`
+
+
 S.PayMemoWrap = styled.div`
   position: relative;
 `
@@ -33,25 +43,48 @@ S.MemoBtn = styled.div`
   flex-wrap: wrap;
   color: #888888;
   align-items: center;
-  justify-content: space-around;
+  padding: 13px 17px 13px 17px;
+  justify-content: space-between;
   ${h9Regular}
   cursor: pointer;
+
+  & > img {
+    width: 20px;
+    height: 20px;
+
+  }
 `
 
 S.BtnWrap = styled.div`
   position: absolute;
   margin-top: 6px;
+  padding: 10px 10px 0px 18px;
   border: solid 1px #828282;
   width: 545px;
-  height: 80px;
+  height: 100px;
+  background: white;
+        /* min-width: 120%; */
+        border: 1px solid #D9D9D9;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   display: none;
 
   &.active {
     display: flex;
-    ${h9Regular}
-    align-items: center;
+    /* align-items: center; */
     flex-direction: column;
+    overflow-y: scroll;
   }
+
+  &.active::-webkit-scrollbar {
+    width: 6px;  /* 스크롤바의 너비 */
+}
+
+    &.active::-webkit-scrollbar-thumb {
+    height: 10%; /* 스크롤바의 길이 */
+    background: #888888; /* 스크롤바의 색상 */
+    border-radius: 10px;
+    }
 
 
 
@@ -82,7 +115,7 @@ S.DeliveryInfoBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  & p {
+  & > p {
     ${h7Regular}
   }
 
@@ -113,6 +146,9 @@ S.AnnonimusPhone = styled.div`
 S.Checkingbox = styled.div`
   width: 20px;
   height: 20px;
+  cursor: pointer;
+
+  
 `
 
 S.MemberAddress = styled.div`
@@ -259,6 +295,13 @@ S.CouponBtnWrap = styled.div`
 
 `
 
+S.CouponList = styled.div`
+
+  & > p {
+    margin-bottom: 10px;
+  }
+`
+
 S.CouponBtn = styled.div`
   width: 425px;
   height: 55px;
@@ -285,18 +328,35 @@ S.CouponBtn = styled.div`
 S.CouponWrap = styled.div`
   position: absolute;
   margin-top: 6px;
-  left: 0px;
+  right: 10px;
   border: solid 1px #828282;
   width: 425px;
   height: 80px;
+  overflow: hidden;
+  background: white;
+        /* min-width: 120%; */
+        border: 1px solid #D9D9D9;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 10px 10px 0px 18px;
   display: none;
 
   &.active {
     display: flex;
     ${h9Regular}
-    align-items: center;
     flex-direction: column;
+    overflow-y: scroll;
   }
+
+  &.active::-webkit-scrollbar {
+    width: 6px;  /* 스크롤바의 너비 */
+}
+
+    &.active::-webkit-scrollbar-thumb {
+    height: 10%; /* 스크롤바의 길이 */
+    background: #888888; /* 스크롤바의 색상 */
+    border-radius: 10px;
+    }
 
 `
 

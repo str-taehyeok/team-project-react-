@@ -11,22 +11,28 @@ const payMemos = [
   },
   {
      payMent : "문 앞에 두고 가주세요"
+  },
+  {
+    payMent : "부재중이면 전화 주세요"
+  },
+  {
+    payMent : "집 앞에 높고 문자 주세요"
   }
+  
 ]
 
 const PayMemo = () => {
 
   const [isActive, setIsActive] = useState(false);
-
+ 
   const handleClick = () => {
-      setIsActive(true);
-  }
-
+    isActive ? setIsActive(false) : setIsActive(true);
+}
 
   const payMemoList = payMemos.map((payMemo, i) => (
-    <div key={i}>
-      <div>{payMemo.payMent}</div>
-    </div>
+    <S.payMemoList key={i}>
+      <p>{payMemo.payMent}</p>
+    </S.payMemoList>
   ))
 
   return (
