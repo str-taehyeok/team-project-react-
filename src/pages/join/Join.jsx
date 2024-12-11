@@ -3,9 +3,9 @@ import S from "./style";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { JoinContext } from "../../context/joinContext";
+import DaumPostcode from "react-daum-postcode";
 
 const Join = () => {
-
   const { state } = useContext(JoinContext);
   const {
     register,
@@ -33,16 +33,31 @@ const Join = () => {
 
   const [mark, setMark] = useState(false);
   const [name, setName] = useState("");
-
+  const [isPostcodeOpen, setIsPostcodeOpen] = useState(false);
+  const [address, setAddress] = useState({
+    postcode: "",
+    baseAddress: "",
+    detailAddress: "",
+  });
+  
   const handleNextClick = (e) => {
     if (!name) {
-      e.preventDefault(); 
+      e.preventDefault();
       return alert("이름를 입력해주세요.");
     }
   };
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
+
+  const handleComplete = (data) => {
+    setAddress((prev) => ({
+      ...prev,
+      postcode: data.zonecode,
+      baseAddress: data.address,
+    }));
+    setIsPostcodeOpen(false);
+  };
 
   return (
     <form
@@ -183,8 +198,7 @@ const Join = () => {
                     })`,
                     cursor: "pointer",
                   }}
-                >
-                </S.Mark>
+                ></S.Mark>
               </label>
             </S.InputContainer>
           </S.InputText>
@@ -241,10 +255,10 @@ const Join = () => {
               <S.Red id="Text">이름</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
-            <S.InputButton 
-              type="text" 
-              name="name" 
-              placeholder="이름" 
+            <S.InputButton
+              type="text"
+              name="name"
+              placeholder="이름"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -256,39 +270,72 @@ const Join = () => {
               <S.Red id="Text">휴대전화 번호</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
-            <S.InputButton type="string" name="phone" value={state.phone} readOnly/>
+            <S.InputButton
+              type="string"
+              name="phone"
+              value={state.phone}
+              readOnly
+            />
           </S.InputText>
 
           <S.InputText>
-            <S.TextBox>
-              <S.Red id="Text">주소</S.Red>
-              <S.Red id="Text">*</S.Red>
-            </S.TextBox>
-            <S.InputContainer>
-              <S.InputButton
-                type="text"
-                id="Sample6Postcode"
-                placeholder="우편번호"
-              />
-              <p id="AddressResult"></p>
-              <S.InputButton1
-                type="text"
-                name="address"
-                id="Sample6Address"
-                placeholder="기본주소"
-              />
-              <S.InputButton1
-                type="text"
-                name="address"
-                id="Sample6DetailAddress"
-                placeholder="상세주소"
-              />
-              <p id="DetailAddressResult"></p>
-              <S.AuthButton type="button" onClick={() => {}}>
-                우편번호
-              </S.AuthButton>
-            </S.InputContainer>
-          </S.InputText>
+          <S.TextBox>
+            <S.Red id="Text">주소</S.Red>
+            <S.Red id="Text">*</S.Red>
+          </S.TextBox>
+          <S.InputContainer>
+            <S.InputButton
+              type="text"
+              id="Sample6Postcode"
+              placeholder="우편번호"
+              value={address.postcode}
+              readOnly
+            />
+            <S.AuthButton
+              type="button"
+              onClick={() => setIsPostcodeOpen(true)}
+            >
+              우편번호
+            </S.AuthButton>
+            {isPostcodeOpen && (
+              <S.ModalBackground>
+                <S.ModalContent>
+                  <S.CloseAddressBtn
+                    type="button"
+                    onClick={() => setIsPostcodeOpen(false)}
+                  >
+                    닫기
+                  </S.CloseAddressBtn>
+                  <DaumPostcode
+                    onComplete={handleComplete}
+                    style={{ width: "100%", height: "400px" }}
+                  />
+                </S.ModalContent>
+              </S.ModalBackground>
+            )}
+            <S.InputButton1
+              type="text"
+              name="address"
+              id="Sample6Address"
+              placeholder="기본주소"
+              value={address.baseAddress}
+              readOnly
+            />
+            <S.InputButton1
+              type="text"
+              name="detailAddress"
+              id="Sample6DetailAddress"
+              placeholder="상세주소"
+              value={address.detailAddress}
+              onChange={(e) =>
+                setAddress((prev) => ({
+                  ...prev,
+                  detailAddress: e.target.value,
+                }))
+              }
+            />
+          </S.InputContainer>
+        </S.InputText>
 
           <S.Line></S.Line>
 
@@ -388,7 +435,9 @@ const Join = () => {
           </S.InputText>
         </S.Input>
 
-        <S.LoginButton onClick={handleNextClick} disabled={isSubmitting}>회원가입</S.LoginButton>
+        <S.LoginButton onClick={handleNextClick} disabled={isSubmitting}>
+          회원가입
+        </S.LoginButton>
       </S.SellerMain>
     </form>
   );

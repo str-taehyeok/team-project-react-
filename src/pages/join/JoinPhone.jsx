@@ -20,7 +20,31 @@ const JoinPhone = () => {
     }
 
   };
-  
+  const memberPhone = state.phone;
+  const transferSms = async () => {
+
+    if(!memberPhone){
+      
+      return alert("휴대폰 번호를 입력해주세요.");
+    }
+
+    await fetch("http://localhost:10000/member/sms", {
+      method: "POST",
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify(memberPhone)
+    })    
+    .then((res) => res.json())
+    .catch((error) => { console.error("Error:", error) });
+
+
+    return alert("인증번호를 발송했습니다.")
+  }
+
+
+
+
 
 
   return (
@@ -45,7 +69,7 @@ const JoinPhone = () => {
                 value={state.phone}
                 onChange={(e) => action.setPhone(e.target.value)} 
               />
-              <S.AuthButton type="button" id="RequestAuth">
+              <S.AuthButton type="button" id="RequestAuth" onClick={transferSms}>
                 인증요청
               </S.AuthButton>
             </S.InputContainer>
