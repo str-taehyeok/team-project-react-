@@ -15,26 +15,31 @@ const myPostList = [
 
 const orangePostList = [
     {
+        id : 1,
         postImage1 : "/assets/images/community/myPost1.png",
         memberNickname : "고기고기냠냠냠",
         memberImage : "/assets/images/community/default-profile.png "
     },
     {
+        id : 2,
         postImage1 : "/assets/images/community/myPost2.png",
         memberNickname : "지나 안지나",
         memberImage : "/assets/images/community/default-profile.png "
     },
     {
+        id : 3,
         postImage1 : "/assets/images/community/myPost3.png",
         memberNickname : "철을 밀면 민철",
         memberImage : "/assets/images/community/default-profile.png "
     },
     {
+        id : 4,
         postImage1 : "/assets/images/community/myPost4.png",
         memberNickname : "재금이 다음 재은",
         memberImage : "/assets/images/community/default-profile.png "
     },
     {
+        id : 5,
         postImage1 : "/assets/images/community/myPost5.png",
         memberNickname : "연을 세우면 세연",
         memberImage : "/assets/images/community/default-profile.png"
@@ -45,9 +50,9 @@ const CommunityMain = () => {
 
     const id = 1;
 
-    const myPosts = myPostList.map(({postImage1}, i) => (
+    const myPosts = myPostList.map(({postImage1, id}, i) => (
         <S.MyPost key={i} >
-            <HeartBtn />
+            <HeartBtn id={id} />
             <Link to={`/post/read?postId=${id}`}>
                 <img src={postImage1} alt={"나의 게시글" + (i + 1)} />
             </Link>
