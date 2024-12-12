@@ -8,7 +8,7 @@ S.Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 1880px;
 `;
 
 S.SwiperContainer = styled.div`
@@ -77,7 +77,7 @@ S.BannerTitle = styled.div`
 
 S.Slider = styled.div`
   position: relative;
-  width: 1920px;
+  width: 100%;
   height: 570px;
   overflow: hidden;
   margin: auto;
