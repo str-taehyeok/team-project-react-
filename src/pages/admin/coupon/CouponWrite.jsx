@@ -11,24 +11,29 @@ const navigate = useNavigate();
 
     return (
         <S.CouponListWrap>
-            <S.CouponForm onSubmit={handleSubmit(async (data) => {
+            <S.CouponForm
+                onSubmit={handleSubmit(async (data) => {
+                console.log(data)
+                const coupon = {
+                    memberId,
+                    couponTitle : data.couponTitle,
+                    couponCategory : data.couponCategory,
+                    couponCategoryAnimal : data.couponCategoryAnimal,
+                    couponCode : data.couponCode,
+                    couponStart : data.couponStart,
+                    couponEnd : data.couponEnd,
+                    couponContent : data.couponContent,
+                    couponQuantity : data.couponQuantity,
+                    couponDiscountRate: data.couponDiscountRate === 'custom' ? data.couponDiscountRateCustom : data.couponDiscountRate,
+                };
+
+                console.log("쿠폰", coupon)
                 await fetch("http://localhost:10000/coupon/write",{
                     method : "POST",
                     headers : {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({
-                        memberId : memberId,
-                        couponTitle : data.couponTitle,
-                        couponCategory : data.couponCategory,
-                        couponCategoryAnimal : data.couponCategoryAnimal,
-                        couponCode : data.couponCode,
-                        couponStart : data.couponStart,
-                        couponEnd : data.couponEnd,
-                        couponContent : data.couponContent,
-                        couponQuantity : data.couponQuantity,
-                        couponDiscountRate : data.couponDiscountRate
-                    })
+                    body: JSON.stringify(coupon)
                 })
                     .then((res) => res.json())
                     .then((res) => {
@@ -39,10 +44,7 @@ const navigate = useNavigate();
                         console.error('에러발생 :', error);
                         alert('데이터 전송 중 오류가 발생하였습니다.');
                     })
-
         })}>
-
-
                 <S.CouponListTitle>
                     <S.h1>쿠폰 신규등록</S.h1>
                 </S.CouponListTitle>
