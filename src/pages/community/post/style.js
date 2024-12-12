@@ -146,7 +146,7 @@ S.NickName = styled.p`
   width: 100%;
 `
 
-S.Title = styled.p`
+S.ColorTitle = styled.p`
    font-size: 24px;
     line-height: 36px;
     font-weight: bold;
