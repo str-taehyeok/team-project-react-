@@ -33,7 +33,7 @@ const Main = () => {
             {[1, 2, 3].map((num, i) => (
               <SwiperSlide key={i}>
                 <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/layout/banner${num}.jpg`}
+                  src={`${process.env.PUBLIC_URL}/assets/images/layout/banner${num}.png`}
                   alt={`메인배너$${num}`}
                 />
               </SwiperSlide>

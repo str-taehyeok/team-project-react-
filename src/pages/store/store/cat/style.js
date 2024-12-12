@@ -6,7 +6,7 @@ const S = {}
 // 배너
 S.BannerContainer = styled.div`
       position: relative;
-      width: 100%;
+      /* width: 100%; */
       height: 603px;
       margin-bottom: 139px;
     `;
@@ -59,7 +59,7 @@ S.Content = styled.div`
     `;
 
 S.Banner = styled.img`
-            width: 1920px;
+            width: 1880px;
     `;
 
 
@@ -299,10 +299,10 @@ S.SpecialProduct = styled.div`
     width: 244px;
 
     & img {
-        width: 100%;
-        height: 244px;
-        border-radius: 10px;
-        object-fit: cover;
+        /* width: 100%; */
+        /* height: 244px; */
+        /* border-radius: 10px; */
+        /* object-fit: cover; */
     }
 
     & button {
@@ -313,7 +313,7 @@ S.SpecialProduct = styled.div`
         background-color: #fff;
         border: 1px solid #D9D9D9;
     }
-
+/* 
     & span {
         width: 100%;
         margin-top: 10px;
@@ -323,7 +323,7 @@ S.SpecialProduct = styled.div`
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         ${h8Regular};
-    }
+    } */
 
     & span:nth-of-type(2) {
         font-weight: 700;
@@ -335,7 +335,7 @@ S.SpecialProducts = styled.div`
     display: grid;
     grid-template-columns: 538px repeat(3, 1fr);
     gap: 50px;
-    width: 100%;
+    /* width: 100%; */
     min-width: 1440px;
     max-height: 790px;
     overflow: hidden;

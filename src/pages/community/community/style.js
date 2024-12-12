@@ -26,7 +26,7 @@ const S = {}
   S.BannerWrapper = styled.div`
    padding-top: 101px;
    padding-left: 282px;
-   width: 1920px;
+   width: 1880px;
    height: 767px;
    position: relative;
    background-color: rgba(0, 0, 0, 0.9);

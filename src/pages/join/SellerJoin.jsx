@@ -50,14 +50,23 @@ const SellerJoin = () => {
     <form
       onSubmit={handleSubmit(async (data) => {
 
-        const { passwordConfirm, ...memberSeller } = data;
+        const member = {
+          memberEmail: data.memberEmail,
+          memberPassword: data.memberPassword,
+          memberName: data.memberName,
+          memberPhone: data.memberPhone,
+          memberProvier: "판매자",
+          memberSmsCheck: data.optionAgrees === "4" ? "1" : "0",
+          memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
+        };
 
+        console.log(member)
         await fetch("http://localhost:10000/member/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(memberSeller),
+          body: JSON.stringify(member),
         })
           .then((res) => {
             if (!res.ok) {
@@ -99,53 +108,53 @@ const SellerJoin = () => {
             </S.TextBox>
             <S.InputContainer>
               <label>
-                <S.InputButton
-                  type="text"
-                  id="email"
-                  name="sellerEmail"
-                  placeholder="아이디(이메일)"
-                  {...register("sellerEmail", {
-                    required: true,
-                    pattern: {
-                      value: emailRegex,
-                    },
-                  })}
-                />
-                {errors && errors?.sellerEmail?.type === "required" && (
-                  <S.P>이메일을 입력하세요</S.P>
-                )}
-                {errors && errors?.sellerEmail?.type === "pattern" && (
-                  <S.P>이메일 양식에 맞게 입력해주세요.</S.P>
-                )}
+                <S.InputField
+                 type="text"
+                 id="email"
+                 placeholder="아이디(이메일)"
+                 {...register("memberEmail", {
+                   required: true,
+                   pattern: {
+                     value: emailRegex,
+                   },
+                 })}
+               />
+               {errors && errors?.memberEmail?.type === "required" && (
+                 <S.P>이메일을 입력하세요</S.P>
+               )}
+               {errors && errors?.memberEmail?.type === "pattern" && (
+                 <S.P>이메일 양식에 맞게 입력해주세요.</S.P>
+               )}
                 <S.AuthButton
                   id="EmailCheck"
                   type="button"
                   onClick={() => {
-                    const memberEmail = getValues("sellerEmail");
+                    const memberEmail = getValues("memberEmail");
                     if (!memberEmail) {
                       alert("이메일을 입력하세요.");
                       return;
                     }
-                    fetch("http://localhost:10000/member/check-email", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({ memberEmail }),
+                   // 이메일 중복 확인 로직
+                   fetch("http://localhost:10000/member/check-email", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ memberEmail }),
+                  })
+                    .then((res) => res.json())
+                    .then((data) => {
+                      if (data.isValid) {
+                        alert("사용 가능한 이메일입니다.");
+                      } else {
+                        return alert(data.message);
+                      }
                     })
-                      .then((res) => res.json())
-                      .then((data) => {
-                        if (data.isValid) {
-                          alert("사용 가능한 이메일입니다.");
-                        } else {
-                          return alert(data.message);
-                        }
-                      })
-                      .catch((err) => {
-                        console.error("이메일 중복 확인 에러:", err);
-                      });
-                  }}
-                >
+                    .catch((err) => {
+                      console.error("이메일 중복 확인 에러:", err);
+                    });
+                }}
+              >
                   중복확인
                 </S.AuthButton>
                 <p id="EmailResult"></p>
@@ -160,22 +169,21 @@ const SellerJoin = () => {
             </S.TextBox>
             <S.InputContainer>
               <label>
-                <S.InputButton
+              <S.InputField
                   type={mark ? "text" : "password"}
-                  name="sellerPassword"
                   placeholder="비밀번호"
                   autoComplete="off"
-                  {...register("sellerPassword", {
+                  {...register("memberPassword", {
                     required: true,
                     pattern: {
                       value: passwordRegex,
                     },
                   })}
                 />
-                {errors && errors?.sellerPassword?.type === "required" && (
+                {errors && errors?.memberPassword?.type === "required" && (
                   <S.P>비밀번호를 입력하세요</S.P>
                 )}
-                {errors && errors?.sellerPassword?.type === "pattern" && (
+                {errors && errors?.memberPassword?.type === "pattern" && (
                   <S.P>
                     소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야
                     합니다.
@@ -204,7 +212,7 @@ const SellerJoin = () => {
                 <S.Red id="Text">*</S.Red>
               </S.TextBox>
               <S.InputContainer>
-                <S.InputButton
+                <S.InputField
                   type={mark ? "text" : "password"}
                   id="passWordConfirm"
                   placeholder="비밀번호를 입력하세요"
@@ -212,7 +220,7 @@ const SellerJoin = () => {
                     required: "비밀번호 확인을 입력하세요",
                     validate: {
                       matchPassword: (passWordConfirm) => {
-                        const password = getValues("sellerPassword");
+                        const password = getValues("memberPassword");
                         return (
                           password === passWordConfirm ||
                           "비밀번호가 일치하지 않습니다."
@@ -235,8 +243,11 @@ const SellerJoin = () => {
                 *
               </S.Red>
             </S.TextBox>
-            <S.InputButton type="string" name="phone" value={state.phone} readOnly/>
-          </S.InputText>
+            <S.InputField
+              {...register("memberPhone")}
+              value={state.phone}
+              readOnly
+            /></S.InputText>
           <S.Line></S.Line>
           <S.InputText>
             <S.TextBox>
@@ -244,7 +255,7 @@ const SellerJoin = () => {
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
             <S.InputContainer>
-              <S.InputButton
+              <S.InputField
                 type="number"
                 name="number"
                 id="Number"
@@ -260,7 +271,10 @@ const SellerJoin = () => {
               <S.Red id="Text">대표자명</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
-            <S.InputButton type="text" name="kingname" placeholder="대표자명" />
+            <S.InputField
+                placeholder="대표자명"
+                {...register("memberName")}
+              />
             <p id="KingNameResult"></p>
           </S.InputText>
 
@@ -269,9 +283,9 @@ const SellerJoin = () => {
               <S.Red id="Text">업체명</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
-            <S.InputButton
+            <S.InputField
               type="text"
-              name="companyname"
+              {...register("memberNickName")}
               placeholder="업체명"
             />
             <p id="CompanyNameResult"></p>
