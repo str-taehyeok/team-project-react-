@@ -241,6 +241,7 @@ S.ProductInsert = styled.div`
 S.ListWrap = styled.div`
     display: flex;
     align-items: center;
+    
     & p{
         width: 125px;
         flex-shrink: 0;
@@ -262,7 +263,7 @@ S.ListWrap = styled.div`
         border: solid 1px #888;
     }
     
-    & input::placeholder {
+    & input::placeholder{
         text-align: right;
         padding: 17px;
     }
@@ -274,11 +275,12 @@ S.ListWrap = styled.div`
         border-radius: 20px;
         padding: 20px;}
     }
+
 `;
 
 
 S.Division = styled.p`
-    ${h8Bold}
+    ${h8Bold};
 `;
 
 // #product-insert .radio-wrap{

@@ -155,9 +155,14 @@ const SellerProductWrite = () => {
                         <S.ListWrap>
                             <S.Division>펫스널컬러</S.Division>
                             <select name="productAge">
-                                <option value="퍼피">퍼피</option>
-                                <option value="어덜트">어덜트</option>
-                                <option value="시니어">시니어</option>
+                                <option value="퍼피">오렌지</option>
+                                <option value="어덜트">골드</option>
+                                <option value="시니어">그라데이션</option>
+                                <option value="시니어">라이트 퍼플</option>
+                                <option value="시니어">스카이 블루</option>
+                                <option value="시니어">세이지 그린</option>
+                                <option value="시니어">아이스 블루</option>
+                                <option value="시니어">더스티 실버</option>
                             </select>
                         </S.ListWrap>
                         <S.ListWrap>
