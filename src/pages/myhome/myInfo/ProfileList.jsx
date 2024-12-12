@@ -8,8 +8,7 @@ const ProfileList = () => {
 
     const [isOpenPopup, setIsOpenPopup] = useState(false);
 
-    const formData = [
-        {
+    const formData = {
             memberImage : "",
             memberName : "Jane Ryo",
             memberNickName : "Jane",
@@ -17,8 +16,7 @@ const ProfileList = () => {
             memberPhone : "01012345678",
             memberAdress : "06544",
             memberAdressDetail : "Seoul 34th st."
-        },
-    ];
+        };
 
     const [couponData, setCouponData] = useState([
         {
