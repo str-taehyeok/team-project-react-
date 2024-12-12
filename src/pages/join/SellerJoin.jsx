@@ -55,6 +55,7 @@ const SellerJoin = () => {
           memberPassword: data.memberPassword,
           memberName: data.memberName,
           memberPhone: data.memberPhone,
+          memberProvier: "판매자",
           memberSmsCheck: data.optionAgrees === "4" ? "1" : "0",
           memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
         };
