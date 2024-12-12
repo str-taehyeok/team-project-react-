@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const HeartBtn = ({ id }) => {
 
-  const [posts, setPosts] = useState([]);
+  const [ setPosts ] = useState([]);
   const [like, setLike] = useState([]);
   const [isUpdate, setIsUpdate] = useState(false);
 
@@ -55,13 +55,13 @@ const HeartBtn = ({ id }) => {
       {isLike ? (
         <img
           onClick={() => handleLike(id, isLike)}
-          src={process.env.PUBLIC_URL + "/assets/images/store/heart-not-click.png"}
+          src={process.env.PUBLIC_URL + "/assets/images/store/heart-click.png"}
           alt="Liked"
         />
       ) : (
         <img
           onClick={() => handleLike(id, isLike)}
-          src={process.env.PUBLIC_URL + "/assets/images/store/heart-click.png"}
+          src={process.env.PUBLIC_URL + "/assets/images/store/heart-not-click.png"}
           alt="Not Liked"
         />
       )}
