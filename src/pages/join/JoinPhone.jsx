@@ -97,7 +97,7 @@ const JoinPhone = () => {
 
           <div>
             <S.InputContainer>
-              <S.InputButton
+              <S.InputField
                 type="number"
                 name="phone"
                 placeholder="휴대폰 번호 입력 ('-'제외 11자리 입력)"
@@ -115,7 +115,7 @@ const JoinPhone = () => {
 
             <S.AuthNumberContainer id="AuthNumberContainer">
               <S.InputContainer>
-                <S.InputButton
+                <S.InputField
                   type="text"
                   name="authNumber"
                   placeholder="인증번호 6자리 입력"
