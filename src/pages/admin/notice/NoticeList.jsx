@@ -42,7 +42,11 @@ const NoticeList = () => {
     ));
     return (
         <S.NoticeBox>
-            <S.Title>공지사항</S.Title>
+                <S.Title>공지사항</S.Title>
+                <S.Buttons>
+                    <button className={"update"}>수정</button>
+                    <button className={"delete"}>삭제</button>
+                </S.Buttons>
             {noticeLists}
         </S.NoticeBox>
 

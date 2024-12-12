@@ -256,24 +256,41 @@ S.Table = styled.table`
     }
 `;
 
+S.Buttons = styled.div`
+ display: flex;
+ flex-direction: row;
+ width: 1200px;
+ justify-content: right;
+ gap: 5px;
+ 
+  & button.delete {
+   width: 46px;
+   height: 24px;
+   border-radius: 20px;
+   background-color: #ffffff;
+   border:1px solid #131313;
+   color: #131313;
+   font-size: 10px;
+   line-height: 16px;
+   cursor: pointer;
+  }
+  & button.update {
+   width: 46px;
+   height: 24px;
+   border-radius: 20px;
+   background-color: #ffffff;
+   border:1px solid #131313;
+   color: #131313;
+   font-size: 10px;
+   line-height: 16px;
+   cursor: pointer;
+  }
+`
 S.Button = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-  
-  & button.delete {
-      width: 46px;
-      height: 24px;
-      border-radius: 20px;
-      background-color: #ffffff;
-      border:1px solid #131313;
-      color: #131313;
-      font-size: 10px;
-      line-height: 16px;
-      cursor: pointer;
-    }  
  
  & button.listButton {
      font-size: 16px;
@@ -288,6 +305,7 @@ S.Button = styled.div`
      margin-top: 30px;
     }
  `
+
 S.LinkButton = styled(Link)`
       width: 46px;
       height: 24px;
@@ -305,9 +323,8 @@ S.LinkButton = styled(Link)`
 S.TitleBox = styled.div`
  padding: 25px 30px 0px 30px;
  border-top: 3px solid #131313;
- margin-top: 27px;
  width: 1200px;
- margin: 27px auto;
+ margin: 5px auto;
 `
 
 S.ListTitle = styled.div`
@@ -317,9 +334,8 @@ S.ListTitle = styled.div`
  line-height: 36px;
  text-align: left;
  font-weight: bold;
-
-
 `
+
 S.Count = styled.div`
   font-size: 16px;
   line-height: 24px;
@@ -362,7 +378,7 @@ S.Date = styled.div`
 `
 S.Content = styled.div`
     width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
    padding: 30px 30px;
    border-bottom: 1px solid #D9D9D9;
    border-top: 1px solid #D9D9D9;

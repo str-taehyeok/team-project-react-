@@ -1,38 +1,32 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom';
 
 
 const NoticeListAll = () => {
 
+    const[posts, setPosts] = useState([])
 
-  const [noticeList] = useState([
-    {
-        id : 1,
-        noticeTitle : "공지사항 제목1",
-        noticeContent : "공지사항 내용1",
-        noticeDate : "2024-12-08",
-        noticeName : "관리자",
-        noticeCount : "0"
-    },
-    {
-      id : 2,
-      noticeTitle : "공지사항 제목2",
-      noticeContent : "공지사항 내용2",
-      noticeDate : "2024-12-24",
-      noticeName : "관리자",
-      noticeCount : "0"
+    useEffect(() => {
+        const getPosts = async() => {
+            const response = await fetch(`http://localhost:10000/notice/list-all`);
+            if(!response.ok) return console.error(`데이터가 없습니다`)
+            const posts = await response.json();
+            return posts;
+        }
 
-    },
-]);
+        getPosts().then(setPosts).catch(console.error);
+    }, []);
 
-const noticeLists = noticeList.map((notice, index) => (
+    console.log(posts)
+
+const noticeLists = posts.map((notice, index) => (
   <tr key={notice.id}>
       <td className='number'>{index + 1}</td>
       <Link to={`/admin/list`}>
         <td className='title'>{notice.noticeTitle}</td>
       </Link>
-      <td className='content'>{notice.noticeName}</td>
+      <td className='content'>{notice.memberId}</td>
       <td className='date'>{notice.noticeDate}</td>
       <td className='button'>{notice.noticeCount}</td>
   </tr>
