@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, setUserStatus } from '../../modules/user';
 
 const Header = () => {
 
-    const member = "";
+    const currentUser = useSelector((state) => state.user?.currentUser || {}); 
+    const isLogin = useSelector(state => state.user?.isLogin || false); 
+    console.log("Redux currentUser:", currentUser);
+    console.log("Redux isLogin:", isLogin);
     const [isHover, setIsHover] = useState(false);
     const [isSearch, setIsSearch] = useState(false);
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        localStorage.removeItem("jwtToken");
+        dispatch(setUser({}));
+        dispatch(setUserStatus(false));
+        window.location.href = "http://localhost:10000/logout";
+    };
+
+
 
     const handleMouseOver = () => {
         setIsHover(true);
@@ -18,7 +33,7 @@ const Header = () => {
         setIsSearch(!isSearch)
     }
     return (
-        <S.HeaderWrap className={ isHover ? "active" : "" } onMouseOut={handleMouseOut}>
+        <S.HeaderWrap className={isHover ? "active" : ""} onMouseOut={handleMouseOut}>
             <S.Header>
                 <S.LogoWrap>
                     <Link to={"/"}><img src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`} alt="로고" /></Link>
@@ -30,7 +45,7 @@ const Header = () => {
                         <li><Link to={"/community"}>커뮤니티</Link></li>
                         <li><Link to={"/myhome"}>마이홈</Link></li>
                     </S.MainMenu>
-                    <S.SubMenuWrap className={ isHover ? "active" : "" } >
+                    <S.SubMenuWrap className={isHover ? "active" : ""} >
                         <S.SubMenu>
                             <li><Link to={"/petsonal"}>테스트</Link></li>
                             <li></li>
@@ -54,28 +69,28 @@ const Header = () => {
                     </S.SubMenuWrap>
                 </S.MenuWrap>
                 <S.IconWrap>
-                    { isSearch ? (
+                    {isSearch ? (
                         <S.SearchWrap>
-                             <input type="text" />
-                             <img
-                                className='icon' 
+                            <input type="text" />
+                            <img
+                                className='icon'
                                 src={`${process.env.PUBLIC_URL}/assets/images/layout/search.png`} alt="로고"
                                 onClick={handleShowSearch}
-                             />
+                            />
                         </S.SearchWrap>
                     ) : (
-                        <img 
+                        <img
                             src={`${process.env.PUBLIC_URL}/assets/images/layout/search.png`} alt="로고"
                             onClick={handleShowSearch}
                         />
                     )}
-                    <Link to={""} ><img src={`${process.env.PUBLIC_URL}/assets/images/layout/delivery.png`} alt="로고"/></Link>
-                    <Link to={"/cart"} ><img src={`${process.env.PUBLIC_URL}/assets/images/layout/cart.png`} alt="로고"/></Link>
+                    <Link to={""} ><img src={`${process.env.PUBLIC_URL}/assets/images/layout/delivery.png`} alt="로고" /></Link>
+                    <Link to={"/cart"} ><img src={`${process.env.PUBLIC_URL}/assets/images/layout/cart.png`} alt="로고" /></Link>
                     <p>|</p>
-                    { member ? (
-                        <Link to={"/logout"}>로그아웃</Link>
+                    {isLogin ? (
+                        <button onClick={handleLogout}>로그아웃</button> 
                     ) : (
-                        <Link to={"/login"}>로그인</Link>
+                        <Link to={"/login"}>로그인</Link> 
                     )}
                 </S.IconWrap>
             </S.Header>

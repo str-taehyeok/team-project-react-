@@ -7,7 +7,6 @@ const CommunityContainer = () => {
     return (
         <>     
             <Outlet />
-            <></>
             <Footer />
         </>
     );

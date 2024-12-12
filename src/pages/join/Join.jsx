@@ -36,7 +36,6 @@ const Join = () => {
   };
 
   const [mark, setMark] = useState(false);
-  const [name, setName] = useState("");
   const [isPostcodeOpen, setIsPostcodeOpen] = useState(false);
   const [address, setAddress] = useState({
     postcode: "",
@@ -77,8 +76,8 @@ if(provider){
           memberZipcode: data.postcode,
           memberAddress: data.baseAddress,
           memberAddressDetail: data.detailAddress,
-          memberSmsCheck: data.agrees.sms ? "1" : "0",
-          memberEmailCheck: data.agrees.email ? "1" : "0",
+          memberSmsCheck: data.optionAgrees === "4" ? "1" : "0",
+          memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
         };
 
         await fetch("http://localhost:10000/member/register", {
@@ -307,11 +306,10 @@ if(provider){
   return (
     <form onSubmit={handleSubmit(async (data) => {
 
-      if(!name){
+      if(!data.memberName){
         return alert("이름을 입력해주세요")
       }
 
-      console.log(data);
       const { passwordConfirm, ...member } = data;
       console.log("memberVO", member);
         await fetch("http://localhost:10000/member/register", {
@@ -365,26 +363,25 @@ if(provider){
                 <S.InputButton
                   type="text"
                   id="email"
-                  name="buyerEmail"
                   placeholder="아이디(이메일)"
-                  {...register("buyerEmail", {
+                  {...register("memberEmail", {
                     required: true,
                     pattern: {
                       value: emailRegex,
                     },
                   })}
                 />
-                {errors && errors?.buyerEmail?.type === "required" && (
+                {errors && errors?.memberEmail?.type === "required" && (
                   <S.P>이메일을 입력하세요</S.P>
                 )}
-                {errors && errors?.buyerEmail?.type === "pattern" && (
+                {errors && errors?.memberEmail?.type === "pattern" && (
                   <S.P>이메일 양식에 맞게 입력해주세요.</S.P>
                 )}
                 <S.AuthButton
                   id="EmailCheck"
                   type="button"
                   onClick={() => {
-                    const memberEmail = getValues("buyerEmail");
+                    const memberEmail = getValues("memberEmail");
                     if (!memberEmail) {
                       alert("이메일을 입력하세요.");
                       return;
@@ -426,20 +423,19 @@ if(provider){
               <label>
                 <S.InputButton
                   type={mark ? "text" : "password"}
-                  name="buyerPassword"
                   placeholder="비밀번호"
                   autoComplete="off"
-                  {...register("buyerPassword", {
+                  {...register("memberPassword", {
                     required: true,
                     pattern: {
                       value: passwordRegex,
                     },
                   })}
                 />
-                {errors && errors?.buyerPassword?.type === "required" && (
+                {errors && errors?.memberPassword?.type === "required" && (
                   <S.P>비밀번호를 입력하세요</S.P>
                 )}
-                {errors && errors?.buyerPassword?.type === "pattern" && (
+                {errors && errors?.memberPassword?.type === "pattern" && (
                   <S.P>
                     소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야
                     합니다.
@@ -475,7 +471,7 @@ if(provider){
                     required: "비밀번호 확인을 입력하세요",
                     validate: {
                       matchPassword: (passWordConfirm) => {
-                        const password = getValues("buyerPassword");
+                        const password = getValues("memberPassword");
                         return (
                           password === passWordConfirm ||
                           "비밀번호가 일치하지 않습니다."
@@ -498,10 +494,8 @@ if(provider){
             </S.TextBox>
             <S.InputContainer>
               <S.InputButton
-                type="name"
-                id="Name"
-                name="nickName"
                 placeholder="별명"
+                {...register("memberNickName")}
               />
               <p id="NameResult"></p>
             </S.InputContainer>
@@ -513,11 +507,8 @@ if(provider){
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
             <S.InputButton
-              type="text"
-              name="name"
               placeholder="이름"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              {...register("memberName")}
             />
             <p id="NameResult"></p>
           </S.InputText>
@@ -528,8 +519,7 @@ if(provider){
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
             <S.InputButton
-              type="string"
-              name="phone"
+              {...register("memberPhone")}
               value={state.phone}
               readOnly
             />
@@ -542,9 +532,8 @@ if(provider){
             </S.TextBox>
             <S.InputContainer>
               <S.InputButton
-                type="text"
-                id="Sample6Postcode"
                 placeholder="우편번호"
+                {...register("memberZipcode")}
                 value={address.postcode}
                 readOnly
               />
@@ -571,25 +560,16 @@ if(provider){
                 </S.ModalBackground>
               )}
               <S.InputButton1
-                type="text"
-                name="address"
-                id="Sample6Address"
                 placeholder="기본주소"
+                id="Sample6Address"
+                {...register("memberAddress")}
                 value={address.baseAddress}
                 readOnly
               />
               <S.InputButton1
-                type="text"
-                name="detailAddress"
-                id="Sample6DetailAddress"
                 placeholder="상세주소"
-                value={address.detailAddress}
-                onChange={(e) =>
-                  setAddress((prev) => ({
-                    ...prev,
-                    detailAddress: e.target.value,
-                  }))
-                }
+                id="Sample6DetailAddress"
+                {...register("memberAddressDetail")}
               />
             </S.InputContainer>
           </S.InputText>

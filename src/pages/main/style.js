@@ -45,6 +45,25 @@ S.SwiperContainer = styled.div`
   margin: 0 0 150px 0;
 `;
 
+S.SwiperPager = styled.div`
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+  width: 150px;
+  height: 50px;
+  background-color: rgba(217, 217, 217, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  & p {
+    font-size: 18px;
+    color: white;
+  }
+`
+
+
 S.BannerTitle = styled.div`
   width: 489px;
   flex-shrink: 0;
