@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, setUserStatus } from '../../modules/user';
 
 const Header = () => {
-
-    const currentUser = useSelector((state) => state.user?.currentUser || {}); 
-    const isLogin = useSelector(state => state.user?.isLogin || false); 
-    console.log("Redux currentUser:", currentUser);
-    console.log("Redux isLogin:", isLogin);
+    const { isLogin } = useSelector((state) => state.user);
     const [isHover, setIsHover] = useState(false);
     const [isSearch, setIsSearch] = useState(false);
     const dispatch = useDispatch();
@@ -21,8 +17,6 @@ const Header = () => {
         window.location.href = "http://localhost:10000/logout";
     };
 
-
-
     const handleMouseOver = () => {
         setIsHover(true);
     }
@@ -32,6 +26,11 @@ const Header = () => {
     const handleShowSearch = () => {
         setIsSearch(!isSearch)
     }
+
+    useEffect(() => {
+
+    }, [])
+
     return (
         <S.HeaderWrap className={isHover ? "active" : ""} onMouseOut={handleMouseOut}>
             <S.Header>
@@ -87,7 +86,7 @@ const Header = () => {
                     <Link to={""} ><img src={`${process.env.PUBLIC_URL}/assets/images/layout/delivery.png`} alt="로고" /></Link>
                     <Link to={"/cart"} ><img src={`${process.env.PUBLIC_URL}/assets/images/layout/cart.png`} alt="로고" /></Link>
                     <p>|</p>
-                    {isLogin ? (
+                    { isLogin ? (
                         <button onClick={handleLogout}>로그아웃</button> 
                     ) : (
                         <Link to={"/login"}>로그인</Link> 

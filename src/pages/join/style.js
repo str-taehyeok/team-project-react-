@@ -126,7 +126,7 @@ S.Red = styled.p`
   color: #131313;
 `;
 
-S.InputButton = styled.input`
+S.InputField = styled.input`
   background-color: #ffffff;
   width: 464px;
   height: 60px;
@@ -280,7 +280,7 @@ S.AllAgree = styled.input`
 `;
 // 일반회원 추가
 
-S.InputButton1 = styled.input`
+S.InputField1 = styled.input`
   background-color: #ffffff;
   width: 464px;
   height: 60px;
