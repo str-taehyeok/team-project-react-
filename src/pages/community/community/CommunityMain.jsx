@@ -6,11 +6,26 @@ import { Link } from 'react-router-dom';
 import HeartBtn from './HeartBtn.jsx';
 
 const myPostList = [
-    { postImage1 : "/assets/images/community/myPost1.png" },
-    { postImage1 : "/assets/images/community/myPost2.png" },
-    { postImage1 : "/assets/images/community/myPost3.png" },
-    { postImage1 : "/assets/images/community/myPost4.png" },
-    { postImage1 : "/assets/images/community/myPost5.png" }
+    { 
+        id : 1,
+        postImage1 : "/assets/images/community/myPost1.png" 
+    },
+    { 
+        id : 2,
+        postImage1 : "/assets/images/community/myPost2.png" 
+    },
+    { 
+        id : 3,
+        postImage1 : "/assets/images/community/myPost3.png" 
+    },
+    { 
+        id : 4,
+        postImage1 : "/assets/images/community/myPost4.png" 
+    },
+    { 
+        id : 5,
+        postImage1 : "/assets/images/community/myPost5.png" 
+    }
   ]
 
 const orangePostList = [
@@ -48,22 +63,24 @@ const orangePostList = [
 
 const CommunityMain = () => {
 
-    const id = 1;
-
     const myPosts = myPostList.map(({postImage1, id}, i) => (
         <S.MyPost key={i} >
-            <HeartBtn id={id} />
+            <S.Heart>
+                <HeartBtn id={id} />
+            </S.Heart>
             <Link to={`/post/read?postId=${id}`}>
                 <img src={postImage1} alt={"나의 게시글" + (i + 1)} />
             </Link>
         </S.MyPost>
     ))
 
-    const orangePosts = orangePostList.map(({postImage1, memberImage, memberNickname}, i) => (
+    const orangePosts = orangePostList.map(({id, postImage1, memberImage, memberNickname}, i) => (
         <S.OrangePostBox key={i}>
             <S.OrangePost>
                 <S.PostImage>
-                    <HeartBtn />
+                    <S.Heart>
+                        <HeartBtn postId={id} type={"community"} />
+                    </S.Heart>
                     <Link to={`/post/read?postId=${id}`}>
                         <img src={postImage1} alt={"게시글" + (i + 1)} />
                     </Link>
@@ -106,7 +123,7 @@ const CommunityMain = () => {
                             <p className='text3'>게시물 작성하기</p>
                             <p className='text4'>지금 나만의 반려동물 일기를 작성해보세요!</p>
                         </div>
-                        <Link to={`/post/list?postId=${id}`}>
+                        <Link to={`/post/list?postId=${1}`}>
                             <p className='text5'>전체보기</p>
                         </Link>
                     </S.MyTitle>
@@ -116,7 +133,7 @@ const CommunityMain = () => {
                         <S.AddPost>
                             <Link to={"../post/write"}>
                                 <div>
-                                    <img src="/assets/images/community/plus.png" alt="플러스아이콘" />
+                                    <img className='thumb' src="/assets/images/community/plus.png" alt="플러스아이콘" />
                                     <p>내 게시물 추가하기</p>
                                 </div>
                             </Link>

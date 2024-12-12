@@ -254,7 +254,6 @@ S.CouponCategory = styled.select`
     margin-top: 15px;
     
     & option {
-        color: red;
     }
 `
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { Link } from "react-router-dom";
@@ -12,36 +12,36 @@ import HeartBtn from "../store/store/HeartBtn";
 SwiperCore.use([Pagination]);
 
 const Main = () => {
+
+  const bannerCount = [1, 2, 3];
+  const bannerLength = bannerCount.length;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const onChangeIndex = (index) => { setActiveIndex(index + 1) } 
+  
   return (
     <>
       <Header />
         <S.SwiperContainer>
-          <Swiper
+          <Swiper 
+            onSlideChange={(e) => onChangeIndex(e.realIndex) }
             className="mySwiper1"
             slidesPerView={1}
             spaceBetween={30}
             loop={true}
             pagination={{ dynamicBullets: true }}
           >
-            <SwiperSlide>
-              <img
-                src={`${process.env.PUBLIC_URL}/assets/images/layout/banner1.jpg`}
-                alt="메인배너1"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src={`${process.env.PUBLIC_URL}/assets/images/layout/banner2.jpg`}
-                alt="메인배너2"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src={`${process.env.PUBLIC_URL}/assets/images/layout/banner3.jpg`}
-                alt="메인배너3"
-              />
-            </SwiperSlide>
+            {[1, 2, 3].map((num, i) => (
+              <SwiperSlide key={i}>
+                <img
+                  src={`${process.env.PUBLIC_URL}/assets/images/layout/banner${num}.jpg`}
+                  alt={`메인배너$${num}`}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
+          <S.SwiperPager>
+            <p>{`${activeIndex} / ${bannerLength}`}</p>
+          </S.SwiperPager>
         </S.SwiperContainer>
 
         <S.SwiperContainer>
