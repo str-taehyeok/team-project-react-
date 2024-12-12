@@ -2,6 +2,19 @@ import styled from "styled-components";
 
 const S = {}
 
+// 공용 하트
+  S.Heart = styled.div`
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+
+    & > img {
+      width: 100%;
+    }
+  `
+
 // 커뮤니티 메인 페이지 배너
   S.Banner = styled.div`
    & .banner{
@@ -160,7 +173,7 @@ const S = {}
       right: 20px;
       top : 20px;
     }
-    & img{
+    & .thumb{
       width: 220px;
       height: 300px;
     }
