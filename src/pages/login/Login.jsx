@@ -1,69 +1,83 @@
 import React from 'react';
 import S from "./style";
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
     const {
         register, handleSubmit, formState: { isSubmitting, errors }
     } = useForm({ mode: "onChange" });
+    const navigate = useNavigate();
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
-    return (
-        <form onSubmit={handleSubmit(async (data) => {
-            await fetch("http://localhost:10000/login", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    // 로그인 데이터
-                })
-            })
-        })}>
+    // 소셜 로그인 버튼
+    const socialAuth = (provider) => {
+        window.location.href = `http://localhost:10000/oauth2/authorization/${provider}`;
+    };
 
+    const onSubmit = async (data) => {
+        try {
+            const response = await fetch("http://localhost:10000/member/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+            console.log("Response Status:", response.status); 
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert(errorData.message);
+                return;
+            }
+
+            const result = await response.json();
+            if (result && result.jwtToken) {
+                navigate(`/?jwtToken=${result.jwtToken}`);
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            alert("로그인에 실패했습니다. 다시 시도해주세요.");
+        }
+    };
+
+    return (
+        <form onSubmit={handleSubmit(onSubmit)}>
             <S.InputBox>
                 <label>
-                    <S.Input type="text" id='email' placeholder='회원 아이디(이메일)를 입력해주세요'
-                        {...register("email", {
-                            required: true,
+                    <S.Input type="text" placeholder='회원 아이디(이메일)를 입력해주세요'
+                        {...register("memberEmail", {
+                            required: "이메일을 입력하세요.",
                             pattern: {
                                 value: emailRegex,
+                                message: "이메일 양식에 맞게 입력해주세요."
                             }
                         })}
                     />
-                    {errors && errors?.email?.type === "required" && (
-                        <S.P>이메일을 입력하세요</S.P>
-                    )}
-                    {errors && errors?.email?.type === "pattern" && (
-                        <S.P>이메일 양식에 맞게 입력해주세요.</S.P>
-                    )}
+                    {errors.email && <S.P>{errors.email.message}</S.P>}
                 </label>
             </S.InputBox>
 
-            {/* 비밀번호 로직 만들기 */}
             <label>
-                <S.Input type="password" id='password' placeholder='회원 비밀번호를 입력해주세요'
+                <S.Input type="password" placeholder='회원 비밀번호를 입력해주세요'
                     autoComplete='off'
-                    {...register("password", {
-                        required: true,
+                    {...register("memberPassword", {
+                        required: "비밀번호를 입력하세요.",
                         pattern: {
                             value: passwordRegex,
+                            message: "소문자, 숫자, 특수문자를 포함한 8자리 이상이어야 합니다."
                         }
                     })}
                 />
-                {errors && errors?.password?.type === "required" && (
-                    <S.P>비밀번호를 입력하세요</S.P>
-                )}
-                {errors && errors?.password?.type === "pattern" && (
-                    <S.P>소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야 합니다.</S.P>
-                )}
+                {errors.password && <S.P>{errors.password.message}</S.P>}
             </label>
 
             <S.LoginButton disabled={isSubmitting}>로그인</S.LoginButton>
+
             <S.Box4>
                 <S.Box3>
                     <S.SaveBox>
@@ -75,6 +89,7 @@ const Login = () => {
                     </Link>
                 </S.Box3>
             </S.Box4>
+
             <S.TextBox>
                 <S.Text>계정이 없으신가요?</S.Text>
                 <S.TextDivider>|</S.TextDivider>
@@ -82,27 +97,23 @@ const Login = () => {
                     <S.JoinButton name="action" value="join">회원가입</S.JoinButton>
                 </Link>
             </S.TextBox>
+
             <S.Text2>Or continue with</S.Text2>
             <S.ApiLogo>
-            <Link to={"/"}>
-                        <img src={`${process.env.PUBLIC_URL}/assets/images/login/kakao.svg`} alt="카카오 로그" />
-                    </Link>
-            <Link to={"/"}>
-                        <img src={`${process.env.PUBLIC_URL}/assets/images/login/naver.svg`} alt="네이버 로그" />
-                    </Link>
-            <Link to={"/"}>
-                        <img src={`${process.env.PUBLIC_URL}/assets/images/login/google.svg`} alt="구글 로그" />
-                    </Link>
+                <img src={`${process.env.PUBLIC_URL}/assets/images/login/kakao.svg`} onClick={() => socialAuth("kakao")} style={{ cursor: "pointer" }} alt="카카오 로그" />
+                <img src={`${process.env.PUBLIC_URL}/assets/images/login/naver.svg`} onClick={() => socialAuth("naver")} style={{ cursor: "pointer" }} alt="네이버 로그" />
+                <img src={`${process.env.PUBLIC_URL}/assets/images/login/google.svg`} onClick={() => socialAuth("google")} style={{ cursor: "pointer" }} alt="구글 로그" />
             </S.ApiLogo>
+
             <S.BottonBox>
-            <S.BottonText>이용약관</S.BottonText>
-            <S.BottonText1>|</S.BottonText1>
-            <S.BottonText>개인정보처리방침</S.BottonText>
-            <S.BottonText1>|</S.BottonText1>
-            <S.BottonText>책임의 한계와 법적고지</S.BottonText>
-            <S.BottonText1>|</S.BottonText1>
-            <S.BottonText>회원정보 고객센터</S.BottonText>
-          </S.BottonBox>
+                <S.BottonText>이용약관</S.BottonText>
+                <S.BottonText1>|</S.BottonText1>
+                <S.BottonText>개인정보처리방침</S.BottonText>
+                <S.BottonText1>|</S.BottonText1>
+                <S.BottonText>책임의 한계와 법적고지</S.BottonText>
+                <S.BottonText1>|</S.BottonText1>
+                <S.BottonText>회원정보 고객센터</S.BottonText>
+            </S.BottonBox>
         </form>
     );
 };
