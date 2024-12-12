@@ -6,7 +6,7 @@ import theme from "../../../global/theme";
 const S = {}
 
 S.StoreMainWrap = styled.div`
-  width: 1920px;
+  /* width: 1920px; */
   margin: 0 auto;
 
 `
