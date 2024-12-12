@@ -77,7 +77,7 @@ export const PostGoldList = () => {
 
     return (
         <>
-            <S.Title>#Gold</S.Title>
+            <S.ColorTitle>#Gold</S.ColorTitle>
             <S.AllPostWrapper>
                 {postList}
             </S.AllPostWrapper>
