@@ -81,15 +81,12 @@ const SellerProductWrite = () => {
         mode: 'onChange'
     });
 
-    // 이미지 미리보기 상태 관리
     const [mainImage, setMainImage] = useState(null);
     const [subImages, setSubImages] = useState([null, null, null]);
 
-    // 이미지 업로드 참조
     const mainImageRef = useRef(null);
     const subImageRefs = [useRef(null), useRef(null), useRef(null)];
 
-    // 이미지 미리보기 핸들러
     const handleImagePreview = (e, type, index = 0) => {
         const file = e.target.files[0];
         const reader = new FileReader();
@@ -109,48 +106,46 @@ const SellerProductWrite = () => {
         }
     };
 
-    // 폼 제출 핸들러
-    const onSubmit = async (data) => {
-        // FormData 객체 생성
-        const formData = new FormData();
 
-        // 이미지 파일 추가
-        if (mainImageRef.current.files[0]) {
-            formData.append('productImage', mainImageRef.current.files[0]);
-        }
-
-        subImageRefs.forEach((ref, index) => {
-            if (ref.current.files[0]) {
-                formData.append(`productSubImage${index + 1}`, ref.current.files[0]);
-            }
-        });
-
-        // 텍스트 데이터 추가
-        Object.keys(data).forEach(key => {
-            formData.append(key, data[key]);
-        });
-
-        // 추가 데이터
-        formData.append('memberId', 1); // 임시 회원 ID
-
-        try {
-            const response = await fetch("http://localhost:10000/product/write", {
-                method: "POST",
-                body: formData  // FormData 사용
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                alert('상품이 성공적으로 등록되었습니다!');
-                navigate('/seller');
-            } else {
-                throw new Error('상품 등록 실패');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('상품 등록 중 오류가 발생했습니다.');
-        }
-    };
+    // const onSubmit = async (data) => {
+    //     const formData = new FormData();
+    //
+    //     if (mainImageRef.current.files[0]) {
+    //         formData.append('productImage', mainImageRef.current.files[0]);
+    //     }
+    //
+    //     subImageRefs.forEach((ref, index) => {
+    //         if (ref.current.files[0]) {
+    //             formData.append(`productSubImage${index + 1}`, ref.current.files[0]);
+    //         }
+    //     });
+    //
+    //
+    //     Object.keys(data).forEach(key => {
+    //         formData.append(key, data[key]);
+    //     });
+    //
+    //
+    //     formData.append('memberId', 1); // 임시 회원 ID
+    //
+    //     try {
+    //         const response = await fetch("http://localhost:10000/product/write", {
+    //             method: "POST",
+    //             body: formData
+    //         });
+    //
+    //         if (response.ok) {
+    //             const result = await response.json();
+    //             alert('상품이 성공적으로 등록되었습니다!');
+    //             navigate('/seller');
+    //         } else {
+    //             throw new Error('상품 등록 실패');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //         alert('상품 등록 중 오류가 발생했습니다.');
+    //     }
+    // };
 
 
     // const handleImagePreview = (event, previewId) => {
@@ -168,255 +163,293 @@ const SellerProductWrite = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                {/*<form onSubmit={handleSubmit(async (data) => {*/}
-                {/*    console.log(data)*/}
-                {/*    await fetch("http://localhost:10000/product/write", {*/}
-                {/*        method: "POST",*/}
-                {/*        headers: {*/}
-                {/*            "Content-Type": "application/json"*/}
-                {/*        },*/}
-                {/*        body: JSON.stringify({*/}
-                {/*            productName: data.productName,*/}
-                {/*            productPrice: data.productPrice,*/}
-                {/*            productCode: data.productCode,*/}
-                {/*            productDate: data.productDate,*/}
-                {/*            productStock: data.productStock,*/}
-                {/*            productEditDate: data.productEditDate,*/}
-                {/*            productDetail: data.productDetail,*/}
-                {/*            productImage1: data.productImage1,*/}
-                {/*            productImage2: data.productImage2,*/}
-                {/*            productImage3: data.productImage3,*/}
-                {/*            productImage4: data.productImage4,*/}
-                {/*            productAnimal: data.productAnimal,*/}
-                {/*            productCategory: data.productCategory,*/}
-                {/*            productColor: data.productColor,*/}
-                {/*            productSize: data.productSize,*/}
-                {/*            deliveryFee: data.deliveryFee,*/}
-                {/*            deliveryFeeKind: data.deliveryFeeKind,*/}
-                {/*            deliveryFeeFree: data.deliveryFeeFree,*/}
-                {/*            deliveryHow: data.deliveryHow,*/}
-                {/*            deliveryPayWhen: data.deliveryPayWhen,*/}
-                {/*            deliveryCompany: data.deliveryCompany,*/}
-                {/*            memberId: memberId*/}
-                {/*        })*/}
-                {/*    })*/}
-                {/*        .then((res) => res.json())*/}
-                {/*        .then((res) => {*/}
-                {/*            alert('데이터가 성공적으로 전송되었습니다!');*/}
-                {/*            navigate(`/seller`)*/}
-                {/*        })*/}
-                {/*        .catch((error) => {*/}
-                {/*            console.error('에러발생 :', error);*/}
-                {/*            alert('데이터 저장중 오류가 발생하였습니다.');*/}
-                {/*        })*/}
-                {/*})}>*/}
+            {/*<form onSubmit={handleSubmit(onSubmit)}>*/}
+            {/*<form onSubmit={handleSubmit(async (data) => {*/}
+            {/*    console.log(data)*/}
+            {/*    await fetch("http://localhost:10000/product/write", {*/}
+            {/*        method: "POST",*/}
+            {/*        headers: {*/}
+            {/*            "Content-Type": "application/json"*/}
+            {/*        },*/}
+            {/*        body: JSON.stringify({*/}
+            {/*            productName: data.productName,*/}
+            {/*            productPrice: data.productPrice,*/}
+            {/*            productCode: data.productCode,*/}
+            {/*            productDate: data.productDate,*/}
+            {/*            productStock: data.productStock,*/}
+            {/*            productEditDate: data.productEditDate,*/}
+            {/*            productDetail: data.productDetail,*/}
+            {/*            productImage1: data.productImage1,*/}
+            {/*            productImage2: data.productImage2,*/}
+            {/*            productImage3: data.productImage3,*/}
+            {/*            productImage4: data.productImage4,*/}
+            {/*            productAnimal: data.productAnimal,*/}
+            {/*            productCategory: data.productCategory,*/}
+            {/*            productColor: data.productColor,*/}
+            {/*            productSize: data.productSize,*/}
+            {/*            deliveryFee: data.deliveryFee,*/}
+            {/*            deliveryFeeKind: data.deliveryFeeKind,*/}
+            {/*            deliveryFeeFree: data.deliveryFeeFree,*/}
+            {/*            deliveryHow: data.deliveryHow,*/}
+            {/*            deliveryPayWhen: data.deliveryPayWhen,*/}
+            {/*            deliveryCompany: data.deliveryCompany,*/}
+            {/*            memberId: memberId*/}
+            {/*        })*/}
+            {/*    })*/}
+            {/*        .then((res) => res.json())*/}
+            {/*        .then((res) => {*/}
+            {/*            alert('데이터가 성공적으로 전송되었습니다!');*/}
+            {/*            navigate(`/seller`)*/}
+            {/*        })*/}
+            {/*        .catch((error) => {*/}
+            {/*            console.error('에러발생 :', error);*/}
+            {/*            alert('데이터 저장중 오류가 발생하였습니다.');*/}
+            {/*        })*/}
+            {/*})}>*/}
+            <form onSubmit={handleSubmit(async (data) => {
+                console.log(data)
+                await fetch("http://localhost:10000/product/write", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        productName: data.productName,
+                        productPrice: data.productPrice,
+                        productCode: new Date().getTime().toString(), // 임시 상품 코드 생성
+                        productDate: new Date().toISOString(), // 현재 날짜 추가
+                        productStock: data.productStock,
+                        productEditDate: new Date().toISOString(),
+                        productDetail: data.productDetail,
+                        productAnimal: data.productAnimal,
+                        productCategory: data.productCategory,
+                        petsonalColor: data.petsonalColor,
+                        productSize: data.productSize,
+                        deliveryFeeKind: data.deliveryFeeKind,
+                        deliveryFee: data.deliveryFee,
+                        deliveryFeeFree: data.deliveryFeeFree,
+                        deliveryHow: data.deliveryHow,
+                        deliveryPayHow: data.deliveryPayHow,
+                        // memberId는 임시로 1로 고정
+                        memberId: 1
+                    })
+                })
+                    .then((res) => res.json())
+                    .then((res) => {
+                        alert('데이터가 성공적으로 전송되었습니다!');
+                        navigate(`/seller`)
+                    })
+                    .catch((error) => {
+                        console.error('에러발생 :', error);
+                        alert('데이터 저장중 오류가 발생하였습니다.');
+                    })
+            })}>
 
-                    <S.ProductInsert>
-                        <p>상품 정보 입력</p>
-                        <div>
-                            <S.ListWrap>
-                                <S.Division>상품명</S.Division>
-                                <input className="require-value" type="text" name="productName"/>
-                            </S.ListWrap>
-                            <S.ListWrap>
-                                <S.Division>상품가격</S.Division>
-                                <input className="require-value" type="text" name="productPrice" placeholder="원(원)"/>
-                            </S.ListWrap>
-                            <S.ListWrap>
-                                <S.Division>상품재고</S.Division>
-                                <input className="require-value" type="text" name="productStock" placeholder="개"/>
-                            </S.ListWrap>
-                            <S.ListWrap>
-                                <S.Division>대분류</S.Division>
-                                <S.RatioWrap>
-                                    <S.Ratio>
-                                        <input type="radio" name="productAnimal" value="dog" checked/>
-                                        <span>반려견</span>
-                                    </S.Ratio>
-                                    <S.Ratio>
-                                        <input type="radio" name="productAnimal" value="cat"/>
-                                        <span>반려묘</span>
-                                    </S.Ratio>
-                                </S.RatioWrap>
-                            </S.ListWrap>
-                            <S.ListWrap>
-                                <S.Division>카테고리</S.Division>
-                                <select name="productCategory">
-                                    <option value="헬스케어">헬스케어</option>
-                                    <option value="사료/간식">사료/간식</option>
-                                    <option value="의류">의류</option>
-                                    <option value="장난감">장난감</option>
-                                </select>
-                            </S.ListWrap>
-                            <S.ListWrap>
-                                <S.Division>펫스널컬러</S.Division>
-                                <select name="petsonalColor">
-                                    <option value="orange">오렌지</option>
-                                    <option value="gold">골드</option>
-                                    <option value="gradation">그라데이션</option>
-                                    <option value="lightPurple">라이트 퍼플</option>
-                                    <option value="skyBlue">스카이 블루</option>
-                                    <option value="sageGreen">세이지 그린</option>
-                                    <option value="iceBlue">아이스 블루</option>
-                                    <option value="dustySilver">더스티 실버</option>
-                                </select>
-                            </S.ListWrap>
-                            <S.ListWrap>
-                                <S.Division>사이즈</S.Division>
-                                <select name="productSize">
-                                    <option value="S">S</option>
-                                    <option value="M">M</option>
-                                    <option value="L">L</option>
-                                </select>
-                            </S.ListWrap>
+                <S.ProductInsert>
+                    <p>상품 정보 입력</p>
+                    <div>
+                        <S.ListWrap>
+                            <S.Division>상품명</S.Division>
+                            <input className="require-value" type="text" name="productName"/>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>상품가격</S.Division>
+                            <input className="require-value" type="text" name="productPrice" placeholder="원(원)"/>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>상품재고</S.Division>
+                            <input className="require-value" type="text" name="productStock" placeholder="개"/>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>대분류</S.Division>
+                            <S.RatioWrap>
+                                <S.Ratio>
+                                    <input type="radio" name="productAnimal" value="dog" checked/>
+                                    <span>반려견</span>
+                                </S.Ratio>
+                                <S.Ratio>
+                                    <input type="radio" name="productAnimal" value="cat"/>
+                                    <span>반려묘</span>
+                                </S.Ratio>
+                            </S.RatioWrap>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>카테고리</S.Division>
+                            <select name="productCategory">
+                                <option value="헬스케어">헬스케어</option>
+                                <option value="사료/간식">사료/간식</option>
+                                <option value="의류">의류</option>
+                                <option value="장난감">장난감</option>
+                            </select>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>펫스널컬러</S.Division>
+                            <select name="petsonalColor">
+                                <option value="orange">오렌지</option>
+                                <option value="gold">골드</option>
+                                <option value="gradation">그라데이션</option>
+                                <option value="lightPurple">라이트 퍼플</option>
+                                <option value="skyBlue">스카이 블루</option>
+                                <option value="sageGreen">세이지 그린</option>
+                                <option value="iceBlue">아이스 블루</option>
+                                <option value="dustySilver">더스티 실버</option>
+                            </select>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>사이즈</S.Division>
+                            <select name="productSize">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                            </select>
+                        </S.ListWrap>
 
-                            <S.ListWrap>
-                                <S.Division>상품 상세 설명</S.Division>
-                                <textarea className="description require-value" type="text" name="productDetail"
-                                          placeholder="제품의 상세 정보를 입력해주세요."></textarea>
-                            </S.ListWrap>
-                        </div>
-                        <div className="line">
-                            <hr/>
-                        </div>
-                        <S.ShippingWrap>
-                            <p>배송정보 입력</p>
-                            <S.ListWrap>
-                                <S.Division>배송비 종류</S.Division>
-                                <S.RatioWrap>
-                                    <S.Ratio>
-                                        <input type="radio" name="deliveryFeeKind" value="무료" checked/>
-                                        <span>무료</span>
-                                    </S.Ratio>
-                                    <S.Ratio>
-                                        <input type="radio" name="deliveryFeeKind" value="유료"/>
-                                        <span>유료</span>
-                                    </S.Ratio>
-                                    <S.Ratio>
-                                        <input type="radio" name="deliveryFeeKind" value="조건부 무료"/>
-                                        <span>조건부 무료</span>
-                                    </S.Ratio>
-                                </S.RatioWrap>
-                            </S.ListWrap>
-                            <S.ListWrap>
-                                <S.Division>배송비 금액</S.Division>
-                                <input name="deliveryFee" type="text" placeholder="원(원)"/>
-                            </S.ListWrap>
-                            <S.ListWrap>
-                                <S.Division>무료배송 금액</S.Division>
-                                <input name="deliveryFeeFree" type="text" placeholder="원 이상 구매시 무료"/>
-                            </S.ListWrap>
-                            <S.ListWrap>
-                                <S.Division>배송사 선택</S.Division>
-                                <S.RatioWrap>
-                                    <S.Ratio>
-                                        <input type="radio" name="deliveryHow" checked/>
-                                        <span>일반택배배송</span>
-                                    </S.Ratio>
-                                    <S.Ratio>
-                                        <input type="radio" name="deliveryHow"/>
-                                        <span>자체배송</span>
-                                    </S.Ratio>
-                                </S.RatioWrap>
-                            </S.ListWrap>
-                            <S.ListWrap>
-                                <S.Division>착불 여부 선택</S.Division>
-                                <S.RatioWrap>
-                                    <S.Ratio>
-                                        <input type="radio" name="deliveryPayHow" checked/>
-                                        <span>선결제</span>
-                                    </S.Ratio>
-                                    <S.Ratio>
-                                        <input type="radio" name="deliveryPayHow"/>
-                                        <span>착불</span>
-                                    </S.Ratio>
-                                </S.RatioWrap>
-                            </S.ListWrap>
-                            <S.ListWrap>
-                                <S.Division>택배사 선택</S.Division>
-                                <S.Shipping>
-                                    <select>
-                                        <option value="우체국 택배">우체국 택배</option>
-                                        <option value="CJ 택배">CJ 택배</option>
-                                        <option value="롯데 택배">롯데 택배</option>
-                                    </select>
-                                </S.Shipping>
-                            </S.ListWrap>
-                            <S.Explain>
-                                <span>* 판매자가 직접 발송하는 일반택배 택배사를 선택하시면 됩니다.</span>
-                                <span>*’자체배송’ 선택시, 구매자에게는 배송비 ‘무료’로 안내됩니다. </span>
-                                <span>‘자체배송’ 설정 후 구매자에게 별도로 배송비를 요구하는 행위는 자제 부탁드립니다.</span>
-                            </S.Explain>
-                        </S.ShippingWrap>
-                        <S.Line></S.Line>
-                        <S.ImageWrap>
-                            <S.ImageInfo>이미지정보</S.ImageInfo>
-                            <S.imageContent>
-                                <S.Main>
-                                    <S.Division>메인 이미지</S.Division>
-                                    <label htmlFor="main" style={{cursor: 'pointer'}}>
-                                        <S.MainImage>
-                                            <img
-                                                src={mainImage || "#"}
-                                                alt="메인 이미지"
-                                                style={{
-                                                    objectFit: 'cover'
-                                                }}
-                                            />
-                                        </S.MainImage>
-                                    </label>
-                                    <input
-                                        type="file"
-                                        id="main"
-                                        {...register('productImage', {
-                                            required: '메인 이미지는 필수입니다.'
-                                        })}
-                                        ref={mainImageRef}
-                                        accept="image/*"
-                                        style={{display: 'none'}}
-                                        onChange={(e) => handleImagePreview(e, 'main')}
-                                    />
-                                    {errors.productImage && <p style={{color: 'red'}}>{errors.productImage.message}</p>}
-                                </S.Main>
-                                {/* 서브 이미지들 */}
-                                <S.SubWrap>
-                                    {[0, 1, 2].map((index) => (
-                                        <S.Subs key={index}>
-                                            <S.Division>서브이미지{index + 1}</S.Division>
-                                            <label htmlFor={`sub${index + 1}`} style={{cursor: 'pointer'}}>
-                                                <S.SubImage>
-                                                    <img
-                                                        src={subImages[index] || "/assets/images/seller/plus.png"}
-                                                        alt={`서브 이미지 ${index + 1}`}
-                                                        style={{
-                                                            objectFit: 'cover'
-                                                        }}
-                                                    />
-                                                </S.SubImage>
-                                            </label>
-                                            <input
-                                                type="file"
-                                                id={`sub${index + 1}`}
-                                                ref={subImageRefs[index]}
-                                                accept="image/*"
-                                                style={{display: 'none'}}
-                                                onChange={(e) => handleImagePreview(e, 'sub', index)}
-                                            />
-                                        </S.Subs>
-                                    ))}
-                                </S.SubWrap>
-                            </S.imageContent>
-                        </S.ImageWrap>
-                        <S.ButtonWrap>
-                            <button type="button" className="register-btn h6">상품 등록</button>
-                            <button type="button" className="cancel-btn h6" onClick={() => navigate('/seller')}>취소
-                            </button>
-                        </S.ButtonWrap>
-                    </S.ProductInsert>
-                </form>
+                        <S.ListWrap>
+                            <S.Division>상품 상세 설명</S.Division>
+                            <textarea className="description require-value" type="text" name="productDetail"
+                                      placeholder="제품의 상세 정보를 입력해주세요."></textarea>
+                        </S.ListWrap>
+                    </div>
+                    <div className="line">
+                        <hr/>
+                    </div>
+                    <S.ShippingWrap>
+                        <p>배송정보 입력</p>
+                        <S.ListWrap>
+                            <S.Division>배송비 종류</S.Division>
+                            <S.RatioWrap>
+                                <S.Ratio>
+                                    <input type="radio" name="deliveryFeeKind" value="무료" checked/>
+                                    <span>무료</span>
+                                </S.Ratio>
+                                <S.Ratio>
+                                    <input type="radio" name="deliveryFeeKind" value="유료"/>
+                                    <span>유료</span>
+                                </S.Ratio>
+                                <S.Ratio>
+                                    <input type="radio" name="deliveryFeeKind" value="조건부 무료"/>
+                                    <span>조건부 무료</span>
+                                </S.Ratio>
+                            </S.RatioWrap>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>배송비 금액</S.Division>
+                            <input name="deliveryFee" type="text" placeholder="원(원)"/>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>무료배송 금액</S.Division>
+                            <input name="deliveryFeeFree" type="text" placeholder="원 이상 구매시 무료"/>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>배송사 선택</S.Division>
+                            <S.RatioWrap>
+                                <S.Ratio>
+                                    <input type="radio" name="deliveryHow" checked/>
+                                    <span>일반택배배송</span>
+                                </S.Ratio>
+                                <S.Ratio>
+                                    <input type="radio" name="deliveryHow"/>
+                                    <span>자체배송</span>
+                                </S.Ratio>
+                            </S.RatioWrap>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>착불 여부 선택</S.Division>
+                            <S.RatioWrap>
+                                <S.Ratio>
+                                    <input type="radio" name="deliveryPayHow" checked/>
+                                    <span>선결제</span>
+                                </S.Ratio>
+                                <S.Ratio>
+                                    <input type="radio" name="deliveryPayHow"/>
+                                    <span>착불</span>
+                                </S.Ratio>
+                            </S.RatioWrap>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>택배사 선택</S.Division>
+                            <S.Shipping>
+                                <select>
+                                    <option value="우체국 택배">우체국 택배</option>
+                                    <option value="CJ 택배">CJ 택배</option>
+                                    <option value="롯데 택배">롯데 택배</option>
+                                </select>
+                            </S.Shipping>
+                        </S.ListWrap>
+                        <S.Explain>
+                            <span>* 판매자가 직접 발송하는 일반택배 택배사를 선택하시면 됩니다.</span>
+                            <span>*’자체배송’ 선택시, 구매자에게는 배송비 ‘무료’로 안내됩니다. </span>
+                            <span>‘자체배송’ 설정 후 구매자에게 별도로 배송비를 요구하는 행위는 자제 부탁드립니다.</span>
+                        </S.Explain>
+                    </S.ShippingWrap>
+                    <S.Line></S.Line>
+                    <S.ImageWrap>
+                        <S.ImageInfo>이미지정보</S.ImageInfo>
+                        <S.imageContent>
+                            <S.Main>
+                                <S.Division>메인 이미지</S.Division>
+                                <label htmlFor="main" style={{cursor: 'pointer'}}>
+                                    <S.MainImage>
+                                        <img
+                                            src={mainImage || "/assets/images/seller/sub-default-plus.png"}
+                                            alt="메인 이미지"
+                                            style={{
+                                                objectFit: 'cover'
+                                            }}
+                                        />
+                                    </S.MainImage>
+                                </label>
+                                <input
+                                    type="file"
+                                    id="main"
+                                    {...register('productImage', {
+                                        required: '메인 이미지는 필수입니다.'
+                                    })}
+                                    ref={mainImageRef}
+                                    accept="image/*"
+                                    style={{display: 'none'}}
+                                    onChange={(e) => handleImagePreview(e, 'main')}
+                                />
+                                {errors.productImage && <p style={{color: 'red'}}>{errors.productImage.message}</p>}
+                            </S.Main>
+                            {/* 서브 이미지들 */}
+                            <S.SubWrap>
+                                {[0, 1, 2].map((index) => (
+                                    <S.Subs key={index}>
+                                        <S.Division>서브이미지{index + 1}</S.Division>
+                                        <label htmlFor={`sub${index + 1}`} style={{cursor: 'pointer'}}>
+                                            <S.SubImage>
+                                                <img
+                                                    src={subImages[index] || "/assets/images/seller/sub-default-plus.png"}
+                                                    alt={`서브 이미지 ${index + 1}`}
+                                                    style={{
+                                                        objectFit: 'cover'
+                                                    }}
+                                                />
+                                            </S.SubImage>
+                                        </label>
+                                        <input
+                                            type="file"
+                                            id={`sub${index + 1}`}
+                                            ref={subImageRefs[index]}
+                                            accept="image/*"
+                                            style={{display: 'none'}}
+                                            onChange={(e) => handleImagePreview(e, 'sub', index)}
+                                        />
+                                    </S.Subs>
+                                ))}
+                            </S.SubWrap>
+                        </S.imageContent>
+                    </S.ImageWrap>
+                    <S.ButtonWrap>
+                        <button type="button" className="register-btn h6">상품 등록</button>
+                        <button type="button" className="cancel-btn h6" onClick={() => navigate('/seller')}>취소
+                        </button>
+                    </S.ButtonWrap>
+                </S.ProductInsert>
+            </form>
         </div>
-);
+    );
 };
 
 export default SellerProductWrite;
