@@ -10,7 +10,6 @@ const Header = () => {
     const isLogin = useSelector(state => state.user?.isLogin || false); 
     console.log("Redux currentUser:", currentUser);
     console.log("Redux isLogin:", isLogin);
-    
     const [isHover, setIsHover] = useState(false);
     const [isSearch, setIsSearch] = useState(false);
     const dispatch = useDispatch();
