@@ -19,7 +19,7 @@ S.CouponBgWrap = styled.div`
     width: 100dvw;
     height : 100dvh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 1999;
     left: 0;
     top: 0;
 `;
@@ -242,6 +242,7 @@ S.ProfileBoxCouponWrap = styled.div`
 
     & > img {
       display: flex;
+      cursor: pointer;  
     }
     & > p {
       font-size: 12px;

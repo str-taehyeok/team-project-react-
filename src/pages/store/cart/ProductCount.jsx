@@ -16,7 +16,7 @@ const ProductCount = ({product}) => {
 
   return (
     <S.productCount>
-      <div onClick={decrease}>-</div><span>{count}</span><div onClick={increase}>+</div>
+      <S.Decrease onClick={decrease}>-</S.Decrease><span>{count}</span><S.Increase onClick={increase}>+</S.Increase>
     </S.productCount>
   );
 };

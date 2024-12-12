@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { JoinContext } from "../../context/joinContext";
 
 const SellerJoin = () => {
 
+  const navigate = useNavigate();
   const { state } = useContext(JoinContext);
   const {
     register,
@@ -37,11 +38,45 @@ const SellerJoin = () => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
   
+  const memberPhone = state.phone;
+  useEffect(() => {
+    // 휴대폰 없으면 휴대폰 인증페이지로 되돌리기
+    if(!memberPhone){
+      navigate("/join/phone")
+    }
+  }, [navigate, memberPhone])
+
   return (
     <form
       onSubmit={handleSubmit(async (data) => {
-        console.log(data);
 
+        const { passwordConfirm, ...memberSeller } = data;
+
+        await fetch("http://localhost:10000/member/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(memberSeller),
+        })
+          .then((res) => {
+            if (!res.ok) {
+              return res.json().then((res) => {
+                alert(res.message);
+              });
+            }
+            return res.json();
+          })
+          .then((res) => {
+            console.log(res);
+            console.log(res && res.jwtToken);
+            if (res && res.jwtToken) {
+              const { jwtToken } = res;
+              localStorage.setItem("jwtToken", jwtToken);
+              navigate("/join/complete");
+            }
+          })
+          .catch(console.err);
       })}
     >
       <S.SellerMain>
@@ -86,31 +121,29 @@ const SellerJoin = () => {
                   id="EmailCheck"
                   type="button"
                   onClick={() => {
-                    const email = getValues("sellerEmail");
-                    if (!email) {
+                    const memberEmail = getValues("sellerEmail");
+                    if (!memberEmail) {
                       alert("이메일을 입력하세요.");
                       return;
                     }
-                    // 이메일 중복 확인 로직
-                    // fetch("http://localhost:10000/check-email", {
-                    //   method: "POST",
-                    //   headers: {
-                    //     "Content-Type": "application/json",
-                    //   },
-                    //   body: JSON.stringify({ email }),
-                    // })
-                    //   .then((res) => res.json())
-                    //   .then((data) => {
-                    //     if (data.isAvailable) {
-                    //       alert("사용 가능한 이메일입니다.");
-                    //     } else {
-                    //       alert("이미 사용 중인 이메일입니다.");
-                    //     }
-                    //   })
-                    //   .catch((err) => {
-                    //     console.error("이메일 중복 확인 에러:", err);
-                    //     alert("오류가 발생했습니다. 다시 시도해주세요.");
-                    //   });
+                    fetch("http://localhost:10000/member/check-email", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ memberEmail }),
+                    })
+                      .then((res) => res.json())
+                      .then((data) => {
+                        if (data.isValid) {
+                          alert("사용 가능한 이메일입니다.");
+                        } else {
+                          return alert(data.message);
+                        }
+                      })
+                      .catch((err) => {
+                        console.error("이메일 중복 확인 에러:", err);
+                      });
                   }}
                 >
                   중복확인
@@ -343,7 +376,7 @@ const SellerJoin = () => {
             )}
           </S.InputText>
         
-        <S.LoginButton type="submit" disabled={isSubmitting}>
+        <S.LoginButton disabled={isSubmitting}>
           회원가입
         </S.LoginButton>
       </S.SellerMain>

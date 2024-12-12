@@ -30,6 +30,20 @@ const coupons = [
     couponCode: "illdjfi",
     couponContent: "15퍼센트 할인해줄게요⭐",
     couponDiscountRate: 15
+  },
+  {
+    couponTitle: "5% 할인!",
+    couponCategory: "음식",
+    couponCode: "illdjfi",
+    couponContent: "15퍼센트 할인해줄게요⭐",
+    couponDiscountRate: 15
+  },
+  {
+    couponTitle: "5% 할인!",
+    couponCategory: "음식",
+    couponCode: "illdjfi",
+    couponContent: "15퍼센트 할인해줄게요⭐",
+    couponDiscountRate: 15
   }
 ]
 
@@ -38,14 +52,14 @@ const Coupon = () => {
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
-      setIsActive(true);
+      isActive ? setIsActive(false) : setIsActive(true);
   }
 
 
   const couponList = coupons.map((coupon, i) => (
-    <div key={i}>
-      <div>{coupon.couponTitle}</div>
-    </div>
+    <S.CouponList key={i}>
+      <p>{coupon.couponTitle}</p>
+    </S.CouponList>
   ))
 
   return (
