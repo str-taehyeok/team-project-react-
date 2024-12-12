@@ -175,64 +175,64 @@ S.Table = styled.table`
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 108px;
+        width: 110px;
     }
     & tr.title {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 300px;
+        width: 780px;
     }
     & tr.content {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 650px;
+        width: 200px;
     }
     & tr.date {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 1910px;
+        width: 200px;
     }
     & tr.button {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 191px;
+        width: 150px;
     }
 
 
     & td.number {
-        width: 108px;
+        width: 110px;
         text-align: center;
         padding: 15px 10px;
         font-size: 16px;
         line-height: 24px;
     }
     & td.title {
-        width: 300px;
-        text-align: center;
-        padding: 15px 10px;
-        font-size: 16px;
-        line-height: 24px;
-    }
-    & td.content {
-        width: 650px;
+        width: 780px;
         text-align: left;
         padding: 15px 10px;
         font-size: 16px;
         line-height: 24px;
     }
+    & td.content {
+        width: 200px;
+        text-align: center;
+        padding: 15px 10px;
+        font-size: 16px;
+        line-height: 24px;
+    }
     & td.date {
-        width: 191px;
+        width: 200px;
         text-align: center;
         padding: 15px 10px;
         font-size: 16px;
         line-height: 24px;
     }
     & td.button {
-        width: 191px;
+        width: 150px;
         text-align: center;
         padding: 15px 10px;
         font-size: 16px;
@@ -273,6 +273,19 @@ S.Button = styled.div`
       font-size: 10px;
       line-height: 16px;
       cursor: pointer;
+    }  
+ 
+ & button.listButton {
+     font-size: 16px;
+     line-height: 24px;
+     color: #ffffff;
+     border: none;
+     background-color: #113F8A;
+     border-radius: 20px;
+     width: 180px;
+     height: 42px;
+     cursor: pointer;
+     margin-top: 30px;
     }
  `
 S.LinkButton = styled(Link)`
@@ -289,12 +302,69 @@ S.LinkButton = styled(Link)`
       justify-content: center;
 ` 
 
+S.TitleBox = styled.div`
+ padding: 25px 30px 0px 30px;
+ border-top: 3px solid #131313;
+ margin-top: 27px;
+ width: 1200px;
+ margin: 27px auto;
+`
+
+S.ListTitle = styled.div`
+ width: 100%;
+ margin-bottom: 8px;
+ font-size: 24px;
+ line-height: 36px;
+ text-align: left;
+ font-weight: bold;
 
 
+`
+S.Count = styled.div`
+  font-size: 16px;
+  line-height: 24px;
+  color: #828282;
+  font-weight: bold;
+  text-align: left;
+  margin-right: 9px;
+    & span {
+      color: #131313;
+    }
+`
+S.Span = styled.div`
+  display: flex;
+  flex-direction: row;
+
+`
 S.WriteBox = styled.div`
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`
+
+S.NoticeBox = styled.div`
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+S.Date = styled.div`
+  font-size: 16px;
+  line-height: 24px;
+  color: #828282;
+  font-weight: bold;
+  text-align: left;
+   margin-right: 9px;
+   & span {
+      color: #131313;
+    }
+`
+S.Content = styled.div`
+    width: 1200px;
+    margin: 0 auto;
+   padding: 30px 30px;
+   border-bottom: 1px solid #D9D9D9;
+   border-top: 1px solid #D9D9D9;
 `
 export default S;

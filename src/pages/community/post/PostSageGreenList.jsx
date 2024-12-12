@@ -77,7 +77,7 @@ export const PostSageGreenList = () => {
 
     return (
         <>
-            <S.Title>#Sage Green</S.Title>
+            <S.ColorTitle>#Sage Green</S.ColorTitle>
             <S.AllPostWrapper>
                 {postList}
             </S.AllPostWrapper>
