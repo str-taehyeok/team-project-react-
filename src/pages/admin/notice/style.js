@@ -273,6 +273,18 @@ S.Button = styled.div`
       font-size: 10px;
       line-height: 16px;
       cursor: pointer;
+    }  
+ 
+ & button.listButton {
+     font-size: 16px;
+     line-height: 24px;
+     color: #ffffff;
+     border: none;
+     background-color: #113F8A;
+     border-radius: 20px;
+     width: 180px;
+     height: 42px;
+     cursor: pointer;
     }
  `
 S.LinkButton = styled(Link)`
@@ -290,11 +302,41 @@ S.LinkButton = styled(Link)`
 ` 
 
 
+S.ListTitle = styled.div`
+ width: 100%;
+ margin-bottom: 8px;
+ font-size: 40px;
+ line-height: 54px;
+ text-align: center;
+ font-weight: bold;
+ margin-top: 46px;
+`
 
 S.WriteBox = styled.div`
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`
+
+S.NoticeBox = styled.div`
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+S.Date = styled.div`
+  width: 100%;
+  font-size: 16px;
+  line-height: 24px;
+  color: #828282;
+  font-weight: bold;
+ text-align: left;
+`
+S.Content = styled.div`
+   margin: 30px 0px;
+   padding: 30px 0px;
+   border-bottom: 1px solid #D9D9D9;
+   border-top: 1px solid #D9D9D9;
 `
 export default S;
