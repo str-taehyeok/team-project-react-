@@ -12,6 +12,7 @@ const NoticeListAll = () => {
         noticeTitle : "공지사항 제목1",
         noticeContent : "공지사항 내용1",
         noticeDate : "2024-12-08",
+        noticeName : "관리자",
         noticeCount : "0"
     },
     {
@@ -19,6 +20,7 @@ const NoticeListAll = () => {
       noticeTitle : "공지사항 제목2",
       noticeContent : "공지사항 내용2",
       noticeDate : "2024-12-24",
+      noticeName : "관리자",
       noticeCount : "0"
 
     },
@@ -27,24 +29,19 @@ const NoticeListAll = () => {
 const noticeLists = noticeList.map((notice, index) => (
   <tr key={notice.id}>
       <td className='number'>{index + 1}</td>
-      <td className='title'>{notice.noticeTitle}</td>
       <Link to={`/admin/list`}>
-        <td className='content'>{notice.noticeContent}</td>
+        <td className='title'>{notice.noticeTitle}</td>
       </Link>
+      <td className='content'>{notice.noticeName}</td>
       <td className='date'>{notice.noticeDate}</td>
-      <td className='button'>
-        <S.Button>
-        <S.LinkButton to="/admin/update"> 수정</S.LinkButton>
-          <button className="delete">삭제</button>
-        </S.Button>
-      </td>
+      <td className='button'>{notice.noticeCount}</td>
   </tr>
 ));
 
   return (
     <S.WriteBox>
       <S.Title>
-        공지사항 조회
+        공지사항
       </S.Title>
       <S.SearchInput>
         <input placeholder='검색어를 입력해주세요' />
