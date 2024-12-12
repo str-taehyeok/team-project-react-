@@ -1,68 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { HeartContext } from '../../../context/heartContext';
 
-const HeartBtn = ({ id }) => {
+// Heart는 클릭했을 때 
+// 1) product인지 community인지 확인해야 하므로 type을 받는다.
+// 2) 클릭한 상품의 id를 받는다.
+// 3) id와 like한 상품을 비교한다.
 
-  const [ setPosts ] = useState([]);
-  const [like, setLike] = useState([]);
-  const [isUpdate, setIsUpdate] = useState(false);
+const HeartBtn = ({ postId, type }) => {
 
-  const isLike = like.some((like) => like.postId === id);
+  // 리덕스에 로그인한 유저의 id
+  const memberId = 1;
+  const { commLikes, isUpdate } = useContext(HeartContext).state;
+  const { setIsUpdate } = useContext(HeartContext).action;
+  // 좋아요인지 아닌지 비교
+  const isLike = commLikes.some((comm) => comm.id === postId);
 
-  const handleLike = async (postId, isLike) => {
-    const fetchPath = isLike ? "cancelLike" : "like";
-    const fetchData = isLike ? { postId } : { postId, id };
+  // 타입 비교
+  let fetchType = type === "community" ? "commLikes" : "productLikes";
+  let fetchPath = isLike ? "cancelLike" : "like";
+  let fetchMethodType = isLike ? "DELETE" : "POST";
+  let fetchData = { 
+      memberId : memberId,
+      postId : postId
+  }
+  
+  const handleLike = async () => {
 
-    console.log(fetchData);
-
-    await fetch(`http://localhost:10000/likes/like`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    await fetch(`http://localhost:10000/${fetchType}/${fetchPath}`, {
+      method : `${fetchMethodType}`,
+      headers : {
+        "Content-Type" : "application/json"
       },
-      body: JSON.stringify(fetchData),
+      body : JSON.stringify(fetchData)
     })
-      .then(() => setIsUpdate(!isUpdate)) 
-      .catch(console.error); 
+    .then((res) => { setIsUpdate(!isUpdate) })
+    .catch(console.error);
+
   };
-
-  useEffect(() => {
-    // 좋아요 전체 조회
-    const getLists = async () => {
-      const response = await fetch("http://localhost:10000/likes/allLikes");
-      const data = await response.json();
-      return data;
-    };
-
-
-
-    getLists().then(setPosts).catch(console.error);
-
-    // 특정 사용자가 좋아요한 게시물 조회
-    const getLikes = async () => {
-      const response = await fetch(`http://localhost:10000/likes/likedPosts/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      return data;
-    };
-
-    getLikes().then(setLike).catch(console.error);
-  }, [isUpdate, id]);
 
   return (
     <>
       {isLike ? (
         <img
-          onClick={() => handleLike(id, isLike)}
+          onClick={handleLike}
           src={process.env.PUBLIC_URL + "/assets/images/store/heart-click.png"}
           alt="Liked"
         />
       ) : (
         <img
-          onClick={() => handleLike(id, isLike)}
+          onClick={handleLike}
           src={process.env.PUBLIC_URL + "/assets/images/store/heart-not-click.png"}
           alt="Not Liked"
         />
