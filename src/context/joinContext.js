@@ -7,7 +7,7 @@ const JoinContext = createContext({
 
 const JoinProvider = ({children}) => {
   const [member, setMember] = useState("buyer");
-  const [phone, setPhone] = useState("buyer");
+  const [phone, setPhone] = useState("");
   const value = {
     state : { member : member, phone : phone },
     action : { setMember : setMember, setPhone : setPhone }
