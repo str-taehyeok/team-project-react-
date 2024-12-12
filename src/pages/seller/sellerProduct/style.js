@@ -261,6 +261,7 @@ S.ListWrap = styled.div`
         border-radius: 20px;
         border: solid 1px #888;
         //padding: 20px;
+        padding: 0 17px 0 17px;
     }
     
     & select{
