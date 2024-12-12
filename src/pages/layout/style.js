@@ -169,7 +169,7 @@ S.SearchWrap = styled.div`
 
 // 상단으로 이동하기 버튼 추가
 S.GoTopButton = styled.button`
-    display: ${props => (props.show ? 'block' : 'none')};
+    display: ${(props) => Boolean(props.$show) ? 'block' : 'none'};
     position: fixed;
     bottom: 30px;
     right: 30px;
