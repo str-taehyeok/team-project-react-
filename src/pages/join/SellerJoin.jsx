@@ -50,14 +50,22 @@ const SellerJoin = () => {
     <form
       onSubmit={handleSubmit(async (data) => {
 
-        const { passwordConfirm, ...memberSeller } = data;
+        const member = {
+          memberEmail: data.memberEmail,
+          memberPassword: data.memberPassword,
+          memberName: data.memberName,
+          memberPhone: data.memberPhone,
+          memberSmsCheck: data.optionAgrees === "4" ? "1" : "0",
+          memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
+        };
 
+        console.log(member)
         await fetch("http://localhost:10000/member/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(memberSeller),
+          body: JSON.stringify(member),
         })
           .then((res) => {
             if (!res.ok) {
@@ -262,7 +270,10 @@ const SellerJoin = () => {
               <S.Red id="Text">대표자명</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
-            <S.InputField type="text" name="kingname" placeholder="대표자명" />
+            <S.InputField
+                placeholder="대표자명"
+                {...register("memberName")}
+              />
             <p id="KingNameResult"></p>
           </S.InputText>
 
@@ -273,7 +284,7 @@ const SellerJoin = () => {
             </S.TextBox>
             <S.InputField
               type="text"
-              name="companyname"
+              {...register("memberNickName")}
               placeholder="업체명"
             />
             <p id="CompanyNameResult"></p>

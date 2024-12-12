@@ -297,8 +297,10 @@ const Join = () => {
 
         const member = {
           memberEmail: data.memberEmail,
+          memberPassword: data.memberPassword,
           memberNickname: data.memberNickName,
           memberName: data.memberName,
+          memberPhone: data.memberPhone,
           memberZipcode: address.postcode,
           memberAddress: address.baseAddress,
           memberAddressDetail: data.memberAddressDetail,
