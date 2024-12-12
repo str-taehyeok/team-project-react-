@@ -33,6 +33,8 @@ const HeartBtn = ({ id }) => {
       return data;
     };
 
+
+
     getLists().then(setPosts).catch(console.error);
 
     // 특정 사용자가 좋아요한 게시물 조회
