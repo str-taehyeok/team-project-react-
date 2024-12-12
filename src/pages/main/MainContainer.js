@@ -30,8 +30,8 @@ const Main = () => {
             loop={true}
             pagination={{ dynamicBullets: true }}
           >
-            {[1, 2, 3].map((num) => (
-              <SwiperSlide>
+            {[1, 2, 3].map((num, i) => (
+              <SwiperSlide key={i}>
                 <img
                   src={`${process.env.PUBLIC_URL}/assets/images/layout/banner${num}.jpg`}
                   alt={`메인배너$${num}`}

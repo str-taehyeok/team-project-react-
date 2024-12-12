@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import S from "./style";
 
 const Footer = () => {
-  const [showGoTop, setShowGoTop] = useState(false);
+  const [showGoTop, setShowGoTop] = useState("false");
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 300) {
-        setShowGoTop(true);
+        setShowGoTop("true");
       } else {
-        setShowGoTop(false);
+        setShowGoTop("false");
       }
     };
 
@@ -66,7 +66,7 @@ const Footer = () => {
       </S.FooterContainer>
 
       {/* 상단으로 이동하기 버튼 */}
-      <S.GoTopButton show={showGoTop} onClick={goTop}>
+      <S.GoTopButton $show={showGoTop} onClick={goTop}>
         ↑
       </S.GoTopButton>
     </S.Footer>

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setPreviousUrl, setUser, setUserStatus } from '../../modules/user';
 import S from "./style";
 import Header from "./Header";
@@ -8,16 +8,12 @@ import Header from "./Header";
 const Layout = () => {
     const dispatch = useDispatch();
     const uri = useLocation().pathname;
-    const currentUser = useSelector(state => state.yourReducer?.user || {});
     const [searchParams] = useSearchParams();
     const jwtToken = searchParams.get("jwtToken");
     const localJwtToken = localStorage.getItem("jwtToken");
 
     const navigate = useNavigate();
-
     useEffect(() => {
-        // Redux 상태 로그로 확인
-        console.log("Redux 상태 확인:", currentUser);
 
         // 쿼리스트링 토큰이 있으면
         if (jwtToken) {
@@ -51,16 +47,18 @@ const Layout = () => {
 
                 // 정상 응답
                 const datas = await response.json();
-                console.log("정상적으로 가져온 유저 데이터:", datas);
                 dispatch(setUser(datas.currentUser));
                 dispatch(setUserStatus(true));
             };
 
             getUserDatas();
+        }else{
+            dispatch(setUser({}));
+            dispatch(setUserStatus(false));
         }
 
         dispatch(setPreviousUrl(uri));
-    }, [dispatch, uri, localJwtToken, navigate, jwtToken, currentUser]);
+    }, [dispatch, uri, jwtToken, localJwtToken, navigate]);
 
 
     return (
