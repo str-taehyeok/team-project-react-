@@ -43,17 +43,16 @@ const Join = () => {
     detailAddress: "",
   });
 
-
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
   const memberPhone = state.phone;
   useEffect(() => {
     // 휴대폰 없으면 휴대폰 인증페이지로 되돌리기
-    if(!memberPhone){
-      navigate("/join/phone")
+    if (!memberPhone) {
+      navigate("/join/phone");
     }
-  }, [navigate, memberPhone])
+  }, [navigate, memberPhone]);
 
   const handleComplete = (data) => {
     setAddress((prev) => ({
@@ -64,174 +63,194 @@ const Join = () => {
     setIsPostcodeOpen(false);
   };
 
-if(provider){
-  return (
-    <form onSubmit={handleSubmit(async (data) => {
+  if (provider) {
+    return (
+      <form
+        onSubmit={handleSubmit(async (data) => {
+          const member = {
+            memberEmail: email,
+            memberNickname: data.memberNickName,
+            memberName: data.memberName,
+            memberProvider: provider,
+            memberZipcode: data.postcode,
+            memberAddress: data.baseAddress,
+            memberAddressDetail: data.detailAddress,
+            memberSmsCheck: data.optionAgrees === "4" ? "1" : "0",
+            memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
+          };
 
-        const memberBuyer = {
-          memberEmail: email,
-          memberNickname: data.memberNickName,
-          memberName: data.memberName,
-          memberProvider: provider,
-          memberZipcode: data.postcode,
-          memberAddress: data.baseAddress,
-          memberAddressDetail: data.detailAddress,
-          memberSmsCheck: data.optionAgrees === "4" ? "1" : "0",
-          memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
-        };
-
-        await fetch("http://localhost:10000/member/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(memberBuyer),
-        })
-          .then((res) => {
-            if (!res.ok) {
-              return res.json().then((res) => {
-                alert(res.message);
-              });
-            }
-            return res.json();
+          console.log(member);
+          await fetch("http://localhost:10000/member/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(member),
           })
-          .then((res) => {
-            console.log(res);
-            console.log(res && res.jwtToken);
-            if (res && res.jwtToken) {
-              const { jwtToken } = res;
-              localStorage.setItem("jwtToken", jwtToken);
-              navigate("/join/complete");
-            }
-          })
-          .catch(console.err);
-      })}
-    >
+            .then((res) => {
+              if (!res.ok) {
+                return res.json().then((res) => {
+                  alert(res.message);
+                });
+              }
+              return res.json();
+            })
+            .then((res) => {
+              console.log(res);
+              console.log(res && res.jwtToken);
+              if (res && res.jwtToken) {
+                const { jwtToken } = res;
+                localStorage.setItem("jwtToken", jwtToken);
+                navigate("/join/complete");
+              }
+            })
+            .catch(console.err);
+        })}
+      >
+        <S.SellerMain>
+          <S.LogoBox>
+            <S.LogoWrap>
+              <Link to={"/"}>
+                <img
+                  src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`}
+                  alt="로고"
+                />
+              </Link>
+            </S.LogoWrap>
+          </S.LogoBox>
 
-      <S.SellerMain>
-        <S.LogoBox>
-          <S.LogoWrap>
-            <Link to={"/"}>
-              <img
-                src={`${process.env.PUBLIC_URL}/assets/images/layout/logo.png`}
-                alt="로고"
-              />
-            </Link>
-          </S.LogoWrap>
-        </S.LogoBox>
+          <S.Input>
+            <S.InputText>
+              <S.TextBox>
+                <S.Red id="Text">닉네임</S.Red>
+                <S.Red id="Text">*</S.Red>
+              </S.TextBox>
+              <S.InputContainer>
+                <S.InputField
+                  placeholder="별명"
+                  {...register("memberNickName")}
+                />
+                <p id="NameResult"></p>
+              </S.InputContainer>
+            </S.InputText>
 
-        <S.Input>
-          <S.InputText>
-            <S.TextBox>
-              <S.Red id="Text">닉네임</S.Red>
-              <S.Red id="Text">*</S.Red>
-            </S.TextBox>
-            <S.InputContainer>
-              <S.InputButton
-                type="name"
-                id="Name"
-                name="nickName"
-                placeholder="별명"
-              />
-              <p id="NameResult"></p>
-            </S.InputContainer>
-          </S.InputText>
+            <S.InputText>
+              <S.TextBox>
+                <S.Red id="Text">주소</S.Red>
+                <S.Red id="Text">*</S.Red>
+              </S.TextBox>
+              <S.InputContainer>
+                <S.InputField
+                  placeholder="우편번호"
+                  {...register("memberZipcode")}
+                  value={address.postcode}
+                  readOnly
+                />
+                <S.AuthButton
+                  type="button"
+                  onClick={() => setIsPostcodeOpen(true)}
+                >
+                  우편번호
+                </S.AuthButton>
+                {isPostcodeOpen && (
+                  <S.ModalBackground>
+                    <S.ModalContent>
+                      <S.CloseAddressBtn
+                        type="button"
+                        onClick={() => setIsPostcodeOpen(false)}
+                      >
+                        닫기
+                      </S.CloseAddressBtn>
+                      <DaumPostcode
+                        onComplete={handleComplete}
+                        style={{ width: "100%", height: "400px" }}
+                      />
+                    </S.ModalContent>
+                  </S.ModalBackground>
+                )}
+                <S.InputField1
+                  placeholder="기본주소"
+                  id="Sample6Address"
+                  {...register("memberAddress")}
+                  value={address.baseAddress}
+                  readOnly
+                />
+                <S.InputField1
+                  placeholder="상세주소"
+                  id="Sample6DetailAddress"
+                  {...register("memberAddressDetail")}
+                />
+              </S.InputContainer>
+            </S.InputText>
 
-          <S.InputText>
-            <S.TextBox>
-              <S.Red id="Text">주소</S.Red>
-              <S.Red id="Text">*</S.Red>
-            </S.TextBox>
-            <S.InputContainer>
-              <S.InputButton
-                type="text"
-                id="Sample6Postcode"
-                placeholder="우편번호"
-                value={address.postcode}
-                readOnly
-              />
-              <S.AuthButton
-                type="button"
-                onClick={() => setIsPostcodeOpen(true)}
-              >
-                우편번호
-              </S.AuthButton>
-              {isPostcodeOpen && (
-                <S.ModalBackground>
-                  <S.ModalContent>
-                    <S.CloseAddressBtn
-                      type="button"
-                      onClick={() => setIsPostcodeOpen(false)}
-                    >
-                      닫기
-                    </S.CloseAddressBtn>
-                    <DaumPostcode
-                      onComplete={handleComplete}
-                      style={{ width: "100%", height: "400px" }}
+            <S.Line></S.Line>
+
+            <S.InputText>
+              <S.TextBox1>
+                <S.Red id="Text1">약관 및 개인정보수집 동의</S.Red>
+                <S.Red id="Text1">*</S.Red>
+              </S.TextBox1>
+
+              <S.AgreeBox>
+                <S.AgreeAll>
+                  <label>
+                    <S.AllAgree
+                      type="checkbox"
+                      value="all"
+                      checked={allAgree}
+                      onChange={handleAllAgree}
                     />
-                  </S.ModalContent>
-                </S.ModalBackground>
-              )}
-              <S.InputButton1
-                type="text"
-                name="address"
-                id="Sample6Address"
-                placeholder="기본주소"
-                value={address.baseAddress}
-                readOnly
-              />
-              <S.InputButton1
-                type="text"
-                name="detailAddress"
-                id="Sample6DetailAddress"
-                placeholder="상세주소"
-                value={address.detailAddress}
-                onChange={(e) =>
-                  setAddress((prev) => ({
-                    ...prev,
-                    detailAddress: e.target.value,
-                  }))
-                }
-              />
-            </S.InputContainer>
-          </S.InputText>
+                  </label>
+                  <S.Text2>모두 동의합니다.</S.Text2>
+                </S.AgreeAll>
 
-          <S.Line></S.Line>
+                <S.Line2></S.Line2>
 
-          <S.InputText>
-            <S.TextBox1>
-              <S.Red id="Text1">약관 및 개인정보수집 동의</S.Red>
-              <S.Red id="Text1">*</S.Red>
-            </S.TextBox1>
+                {[
+                  { id: "1", label: "이용약관 동의 (필수)" },
+                  { id: "2", label: "개인정보 수집 및 이용 동의 (필수)" },
+                  { id: "3", label: "위치정보 이용약관 동의 (필수)" },
+                ].map((item) => (
+                  <S.Agree key={item.id}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="agrees"
+                        value={item.id}
+                        {...register("agrees", {
+                          required: "필수 약관에 동의하셔야 합니다.",
+                          validate: {
+                            checkAgress: (value) => {
+                              const { agrees, optionAgrees } = getValues();
+                              if (agrees.length === 3 && optionAgrees === "4") {
+                                setAllAgree(true);
+                              } else {
+                                setAllAgree(false);
+                              }
+                              if (agrees.length < 3) {
+                                return "필수 약관에 모두 동의하셔야 합니다.";
+                              }
+                              return agrees[0] && agrees[1] && !!agrees[2];
+                            },
+                          },
+                        })}
+                      />
+                    </label>
+                    <S.TextBox2>
+                      <S.Text3>{item.label}</S.Text3>
+                      <S.Text4>자세히보기</S.Text4>
+                    </S.TextBox2>
+                  </S.Agree>
+                ))}
 
-            <S.AgreeBox>
-              <S.AgreeAll>
-                <label>
-                  <S.AllAgree
-                    type="checkbox"
-                    value="all"
-                    checked={allAgree}
-                    onChange={handleAllAgree}
-                  />
-                </label>
-                <S.Text2>모두 동의합니다.</S.Text2>
-              </S.AgreeAll>
-
-              <S.Line2></S.Line2>
-
-              {[
-                { id: "1", label: "이용약관 동의 (필수)" },
-                { id: "2", label: "개인정보 수집 및 이용 동의 (필수)" },
-                { id: "3", label: "위치정보 이용약관 동의 (필수)" },
-              ].map((item) => (
-                <S.Agree key={item.id}>
+                {/* 선택동의 */}
+                <S.Agree>
                   <label>
                     <input
                       type="checkbox"
                       name="agrees"
-                      value={item.id}
-                      {...register("agrees", {
-                        required: "필수 약관에 동의하셔야 합니다.",
+                      value={"4"}
+                      {...register("optionAgrees", {
                         validate: {
                           checkAgress: (value) => {
                             const { agrees, optionAgrees } = getValues();
@@ -240,9 +259,6 @@ if(provider){
                             } else {
                               setAllAgree(false);
                             }
-                            if (agrees.length < 3) {
-                              return "필수 약관에 모두 동의하셔야 합니다.";
-                            }
                             return agrees[0] && agrees[1] && !!agrees[2];
                           },
                         },
@@ -250,68 +266,47 @@ if(provider){
                     />
                   </label>
                   <S.TextBox2>
-                    <S.Text3>{item.label}</S.Text3>
+                    <S.Text3>프로모션 정보 수신 동의 (선택)</S.Text3>
                     <S.Text4>자세히보기</S.Text4>
                   </S.TextBox2>
                 </S.Agree>
-              ))}
+              </S.AgreeBox>
 
-              {/* 선택동의 */}
-              <S.Agree>
-                <label>
-                  <input
-                    type="checkbox"
-                    name="agrees"
-                    value={"4"}
-                    {...register("optionAgrees", {
-                      validate: {
-                        checkAgress: (value) => {
-                          const { agrees, optionAgrees } = getValues();
-                          if (agrees.length === 3 && optionAgrees === "4") {
-                            setAllAgree(true);
-                          } else {
-                            setAllAgree(false);
-                          }
-                          return agrees[0] && agrees[1] && !!agrees[2];
-                        },
-                      },
-                    })}
-                  />
-                </label>
-                <S.TextBox2>
-                  <S.Text3>프로모션 정보 수신 동의 (선택)</S.Text3>
-                  <S.Text4>자세히보기</S.Text4>
-                </S.TextBox2>
-              </S.Agree>
-            </S.AgreeBox>
+              {/* 에러 메시지 */}
+              {errors.agrees && (
+                <S.P id="AgreeResult" style={{ color: "red" }}>
+                  {errors.agrees.message}
+                </S.P>
+              )}
+            </S.InputText>
+          </S.Input>
 
-            {/* 에러 메시지 */}
-            {errors.agrees && (
-              <S.P id="AgreeResult" style={{ color: "red" }}>
-                {errors.agrees.message}
-              </S.P>
-            )}
-          </S.InputText>
-        </S.Input>
+          <S.LoginButton disabled={isSubmitting}>회원가입</S.LoginButton>
+        </S.SellerMain>
+      </form>
+    );
+  }
 
-        <S.LoginButton disabled={isSubmitting}>
-          회원가입
-        </S.LoginButton>
-      </S.SellerMain>
-    </form>
-  );
-}
-
-//  일반 로그인
+  //  일반 로그인
   return (
-    <form onSubmit={handleSubmit(async (data) => {
+    <form
+      onSubmit={handleSubmit(async (data) => {
+        if (!data.memberName) {
+          return alert("이름을 입력해주세요");
+        }
 
-      if(!data.memberName){
-        return alert("이름을 입력해주세요")
-      }
+        const member = {
+          memberEmail: data.memberEmail,
+          memberNickname: data.memberNickName,
+          memberName: data.memberName,
+          memberZipcode: address.postcode,
+          memberAddress: address.baseAddress,
+          memberAddressDetail: data.memberAddressDetail,
+          memberSmsCheck: data.optionAgrees === "4" ? "1" : "0",
+          memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
+        };
+        console.log(member);
 
-      const { passwordConfirm, ...member } = data;
-      console.log("memberVO", member);
         await fetch("http://localhost:10000/member/register", {
           method: "POST",
           headers: {
@@ -339,7 +334,6 @@ if(provider){
           .catch(console.err);
       })}
     >
-
       <S.SellerMain>
         <S.LogoBox>
           <S.LogoWrap>
@@ -360,7 +354,7 @@ if(provider){
             </S.TextBox>
             <S.InputContainer>
               <label>
-                <S.InputButton
+                <S.InputField
                   type="text"
                   id="email"
                   placeholder="아이디(이메일)"
@@ -421,7 +415,7 @@ if(provider){
             </S.TextBox>
             <S.InputContainer>
               <label>
-                <S.InputButton
+                <S.InputField
                   type={mark ? "text" : "password"}
                   placeholder="비밀번호"
                   autoComplete="off"
@@ -463,7 +457,7 @@ if(provider){
                 <S.Red id="Text">*</S.Red>
               </S.TextBox>
               <S.InputContainer>
-                <S.InputButton
+                <S.InputField
                   type={mark ? "text" : "password"}
                   id="passWordConfirm"
                   placeholder="비밀번호를 입력하세요"
@@ -493,7 +487,7 @@ if(provider){
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
             <S.InputContainer>
-              <S.InputButton
+              <S.InputField
                 placeholder="별명"
                 {...register("memberNickName")}
               />
@@ -506,10 +500,7 @@ if(provider){
               <S.Red id="Text">이름</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
-            <S.InputButton
-              placeholder="이름"
-              {...register("memberName")}
-            />
+            <S.InputField placeholder="이름" {...register("memberName")} />
             <p id="NameResult"></p>
           </S.InputText>
 
@@ -518,7 +509,7 @@ if(provider){
               <S.Red id="Text">휴대전화 번호</S.Red>
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
-            <S.InputButton
+            <S.InputField
               {...register("memberPhone")}
               value={state.phone}
               readOnly
@@ -531,10 +522,17 @@ if(provider){
               <S.Red id="Text">*</S.Red>
             </S.TextBox>
             <S.InputContainer>
-              <S.InputButton
+              <S.InputField
                 placeholder="우편번호"
                 {...register("memberZipcode")}
-                value={address.postcode}
+                value={address.postcode} // 상태값을 반영
+                onChange={
+                  (e) =>
+                    setAddress((prev) => ({
+                      ...prev,
+                      postcode: e.target.value,
+                    })) // postcode만 업데이트
+                }
                 readOnly
               />
               <S.AuthButton
@@ -553,20 +551,35 @@ if(provider){
                       닫기
                     </S.CloseAddressBtn>
                     <DaumPostcode
-                      onComplete={handleComplete}
+                      onComplete={(data) => {
+                        // DaumPostcode 결과 반영
+                        setAddress({
+                          postcode: data.zonecode,
+                          baseAddress: data.address,
+                          detailAddress: "",
+                        });
+                        setIsPostcodeOpen(false); // 모달 닫기
+                      }}
                       style={{ width: "100%", height: "400px" }}
                     />
                   </S.ModalContent>
                 </S.ModalBackground>
               )}
-              <S.InputButton1
+              <S.InputField1
                 placeholder="기본주소"
                 id="Sample6Address"
                 {...register("memberAddress")}
-                value={address.baseAddress}
+                value={address.baseAddress} // 상태값을 반영
+                onChange={
+                  (e) =>
+                    setAddress((prev) => ({
+                      ...prev,
+                      baseAddress: e.target.value,
+                    })) // baseAddress만 업데이트
+                }
                 readOnly
               />
-              <S.InputButton1
+              <S.InputField1
                 placeholder="상세주소"
                 id="Sample6DetailAddress"
                 {...register("memberAddressDetail")}
@@ -672,9 +685,7 @@ if(provider){
           </S.InputText>
         </S.Input>
 
-        <S.LoginButton disabled={isSubmitting}>
-          회원가입
-        </S.LoginButton>
+        <S.LoginButton disabled={isSubmitting}>회원가입</S.LoginButton>
       </S.SellerMain>
     </form>
   );
