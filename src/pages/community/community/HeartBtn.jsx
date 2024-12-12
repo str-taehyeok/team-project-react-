@@ -58,4 +58,3 @@ const HeartBtn = ({ postId, type }) => {
 };
 
 export default HeartBtn;
-
