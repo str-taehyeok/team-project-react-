@@ -44,7 +44,7 @@ const SellerJoin = () => {
     if(!memberPhone){
       navigate("/join/phone")
     }
-  }, [navigate])
+  }, [navigate, memberPhone])
 
   return (
     <form
@@ -121,31 +121,29 @@ const SellerJoin = () => {
                   id="EmailCheck"
                   type="button"
                   onClick={() => {
-                    const email = getValues("sellerEmail");
-                    if (!email) {
+                    const memberEmail = getValues("sellerEmail");
+                    if (!memberEmail) {
                       alert("이메일을 입력하세요.");
                       return;
                     }
-                    // 이메일 중복 확인 로직
-                    // fetch("http://localhost:10000/check-email", {
-                    //   method: "POST",
-                    //   headers: {
-                    //     "Content-Type": "application/json",
-                    //   },
-                    //   body: JSON.stringify({ email }),
-                    // })
-                    //   .then((res) => res.json())
-                    //   .then((data) => {
-                    //     if (data.isAvailable) {
-                    //       alert("사용 가능한 이메일입니다.");
-                    //     } else {
-                    //       alert("이미 사용 중인 이메일입니다.");
-                    //     }
-                    //   })
-                    //   .catch((err) => {
-                    //     console.error("이메일 중복 확인 에러:", err);
-                    //     alert("오류가 발생했습니다. 다시 시도해주세요.");
-                    //   });
+                    fetch("http://localhost:10000/member/check-email", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ memberEmail }),
+                    })
+                      .then((res) => res.json())
+                      .then((data) => {
+                        if (data.isValid) {
+                          alert("사용 가능한 이메일입니다.");
+                        } else {
+                          return alert(data.message);
+                        }
+                      })
+                      .catch((err) => {
+                        console.error("이메일 중복 확인 에러:", err);
+                      });
                   }}
                 >
                   중복확인

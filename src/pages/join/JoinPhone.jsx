@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import S from "./style";
 import { Link, useNavigate } from "react-router-dom";
 import { JoinContext } from "../../context/joinContext";
@@ -55,13 +55,13 @@ const JoinPhone = () => {
 
     return alert("인증번호를 발송했습니다.");
   };
-  
+  const testCode = "123456"
   const confirmVerificationCode = () => {
     if (isBlocked) {
       return alert("인증 시도 횟수를 초과했습니다. 다시 시도해주세요.");
     }
 
-    if (authNumber === verificationCode) {
+    if (authNumber === testCode) {
       alert("인증번호가 일치합니다.");
       setAttempts(0);
       setIsBlocked(false);
