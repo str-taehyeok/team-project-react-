@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setPreviousUrl, setUser, setUserStatus } from '../../modules/user';
 import S from "./style";
 import Header from "./Header";
+import LinkToTop from '../../routes/LinkToTop';
 
 const Layout = () => {
     const dispatch = useDispatch();
@@ -62,12 +63,14 @@ const Layout = () => {
 
 
     return (
-        <S.LayoutWrapper>
-            <Header />
-            <S.Main>
-                <Outlet />
-            </S.Main>
-        </S.LayoutWrapper>
+        <LinkToTop>
+            <S.LayoutWrapper>
+                <Header />
+                <S.Main>
+                    <Outlet />
+                </S.Main>
+            </S.LayoutWrapper>
+        </LinkToTop>
     );
 };
 
