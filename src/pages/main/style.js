@@ -3,12 +3,25 @@ import theme from "../../global/theme";
 
 const S = {};
 
+// 공용 하트
+S.Heart = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+
+  & > img {
+    width: 100%;
+  }
+`
+
 S.Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 1880px;
 `;
 
 S.SwiperContainer = styled.div`
@@ -77,7 +90,7 @@ S.BannerTitle = styled.div`
 
 S.Slider = styled.div`
   position: relative;
-  width: 1920px;
+  width: 100%;
   height: 570px;
   overflow: hidden;
   margin: auto;
@@ -403,6 +416,10 @@ S.ProductCard = styled.div`
     position: absolute;
     top: 10px;
     right: 10px;
+  }
+
+  img {
+    width: 100%;
   }
 `;
 

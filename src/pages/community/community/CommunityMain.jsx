@@ -66,7 +66,7 @@ const CommunityMain = () => {
     const myPosts = myPostList.map(({postImage1, id}, i) => (
         <S.MyPost key={i} >
             <S.Heart>
-                <HeartBtn id={id} />
+                 <HeartBtn id={id} type={"community"} />
             </S.Heart>
             <Link to={`/post/read?postId=${id}`}>
                 <img src={postImage1} alt={"나의 게시글" + (i + 1)} />
@@ -79,7 +79,7 @@ const CommunityMain = () => {
             <S.OrangePost>
                 <S.PostImage>
                     <S.Heart>
-                        <HeartBtn postId={id} type={"community"} />
+                        <HeartBtn id={id} type={"community"} />
                     </S.Heart>
                     <Link to={`/post/read?postId=${id}`}>
                         <img src={postImage1} alt={"게시글" + (i + 1)} />

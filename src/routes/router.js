@@ -105,6 +105,7 @@ import PetUpdate from "../pages/myhome/myPet/PetUpdate";
 import PetNot from "../pages/myhome/myPet/PetNot";
 import NoticeListPage from "../pages/myhome/notice/NoticeListPage";
 import Notice from "../pages/myhome/notice/Notice";
+import NoticeListAll from "../pages/admin/notice/NoticeListAll";
 
 const router = createBrowserRouter([
     {
@@ -150,7 +151,7 @@ const router = createBrowserRouter([
                         element: <NoticeListPage />,
                     },
                     {
-                        path: "list",
+                        path: "list/:id",
                         element: <Notice />
                     },
                 ]
@@ -379,10 +380,14 @@ const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
+                        element: <NoticeListAll />
+                    },
+                    {
+                        path: `list/:id`,
                         element: <NoticeList />
                     },
                     {
-                        path: 'update',
+                        path: 'update/:id',
                         element: <NoticeUpdate />
                     },
                     {

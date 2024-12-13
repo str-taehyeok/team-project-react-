@@ -1,5 +1,12 @@
 import styled from "styled-components";
-import { h1Bold, flexColumnCenter, h11Regular } from "../../../global/common";
+import {
+    h1Bold,
+    flexColumnCenter,
+    h11Regular,
+    h8Medium,
+    h9Medium,
+    h5Bold, h11Medium
+} from "../../../global/common";
 
 
 
@@ -224,19 +231,276 @@ S.PopupBackground = styled.div`
 
 
 
-    // const fadeIn = keyframes`
-    //   0% {
-    //     opacity: 0;
-    //   }
-    //   100% {
-    //     opacity: 1;
-    //   }
-    // `;
-    //
+//     제품 등록
 
-    // S.PopupContainer = styled.div`
-    //   animation: ${fadeIn} 0.3s ease-in-out;
-    // `;
+S.ProductInsert = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 708px;
+    margin: 0 auto;
+    
+    & p{
+        margin: 0 0 30px 0;
+        ${h5Bold}
+    }
+`;
+
+S.ListWrap = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    & p{
+        width: 125px;
+        flex-shrink: 0;
+    }
+    
+    & input{
+        width: 100%;
+        height: 40px;
+        border-radius: 20px;
+        border: solid 1px #888;
+        //padding: 20px;
+        padding: 0 17px 0 17px;
+    }
+    
+    & select{
+        width: 100%;
+        height: 40px;
+        //padding: 17px;
+        padding-left: 17px;
+        ${h9Medium};
+        border-radius: 20px;
+        border: solid 1px #888;
+    }
+    
+    & input::placeholder{
+        text-align: right;
+        padding: 17px;
+    }
+    
+    & textarea{
+        resize:none;
+        height: 150px;
+        width: 100%;
+        border-radius: 20px;
+        padding: 20px;
+    }
+
+`;
+
+
+S.Division = styled.span`
+    ${h9Medium};
+    width: 100px;
+    margin-right: 15px;
+`;
+
+S.Ratio = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    align-items: center;
+    
+    
+    & input{
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        justify-content: center;
+    }
+    
+    & span{
+        flex: 1;
+        ${h9Medium};
+        margin-right: 50px;
+    }
+`;
+
+S.RatioWrap = styled.div`
+    display: flex;
+`;
+
+S.H7 = styled.div`
+    ${h9Medium}
+`;
+
+
+
+// shipping 배송
+
+S.ShippingWrap = styled.div`
+    margin-top: 60px;
+`;
+
+S.Shipping = styled.div`
+    width: 100%;
+    & select{
+        width: 100%;
+        height: 40px;
+        //padding: 17px;
+        padding-left: 17px;
+        ${h9Medium};
+        border-radius: 20px;
+        border: solid 1px #888;
+    }
+
+    & input::placeholder{
+        text-align: right;
+        padding: 17px;
+    }
+`;
+
+S.Explain = styled.div`
+    margin-bottom: 10px;
+    & span{
+        display: block;
+        color: #828282;
+        font-weight: lighter;
+        ${h11Medium};
+        margin-left: 100px;
+    }
+`;
+
+
+
+// 이미지 image
+
+S.ImageWrap = styled.div`
+    margin-top: 60px;
+`;
+
+S.imageContent = styled.div`
+    display: flex;
+    max-width: 1440px;
+    //position: relative;
+    //justify-content: space-between;
+    
+    & input{
+        display: none;
+        cursor: pointer;
+    }
+    
+    & label{
+        //position: absolute;
+        //top: 50%;
+        //left: 50%;
+        //transform: translate(-50%, -50%);
+        //background-color: rgba(255, 255, 255, 0.7);
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+`;
+
+
+S.MainImage = styled.div`
+    display: flex;
+    width: 220px;
+    height: 220px;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    //position: relative;
+    
+    & label{
+        //width: 220px;
+        //height: 220px;
+    }
+    
+    & img{
+        margin: 0 auto;
+        //position: absolute;
+        //left: 95px;
+        //top: 95px;
+        object-fit: contain;
+        border-radius: 20px;
+    }
+`;
+
+S.Main = styled.div`
+    width: 270px;
+
+    & span{
+        width: 200px;
+    }
+    
+    & input{
+        width: 200px;
+    }
+`;
+
+S.ImageInfo = styled.div`
+    ${h5Bold};
+    margin-bottom: 30px;
+`;
+
+S.SubImage = styled.div`
+    display: block;
+    width: 148px;
+    height: 148px;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    position: relative;
+    
+    & img{
+        //position: absolute;
+        //left: 60px;
+        //top: 60px;
+        width: 148px;
+        height: 148px;
+        margin: 0 auto;
+        object-fit: contain;
+        border-radius: 20px;
+    }
+`;
+
+
+S.SubWrap = styled.div`
+    width: 464px;
+    display: flex;
+    justify-content: space-between;
+`;
+
+
+S.Subs = styled.div`
+    width: 160px;
+    & label{
+        width: 100px;
+    }
+`;
+
+
+S.ButtonWrap = styled.div` 
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    margin-top: 100px;
+    gap: 10px;
+    margin-bottom: 156px;
+    
+    & button:nth-child(1){
+        width: 90px;
+        height: 30px;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 20px;
+        background-color: #113F8A;
+        ${h8Medium};
+    }
+    
+    & button:nth-child(2){
+        width: 90px;
+        height: 30px;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 20px;
+        background-color: #828282;
+        ${h8Medium};
+    }
+`;
 
 
 

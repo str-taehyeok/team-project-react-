@@ -168,7 +168,8 @@ const ClothesColor = ({productList}) => {
                                 </S.DropdownContent>
                             </S.DropdownWrapper>
                             <S.DropdownWrapper>
-                                <button onClick={() => toggleDropdown('price')} type="button" >가격</button>
+                                <button onClick={() => toggleDropdown('price')} type="button" >가격
+                                    <S.Arrow src={`${process.env.PUBLIC_URL}/assets/images/store/down-arrow.svg`} alt="icon"/></button>
                                 <S.DropdownContent isOpen={openDropdown === 'price'}>
                                     <S.DropdownItem  onClick={() => handlePriceSelect('Low')} isSelected={selectedPrice === 'Low'}>
                                         <input type="checkbox" checked={selectedPrice === 'Low'}/>낮은 가격순</S.DropdownItem >
@@ -178,7 +179,8 @@ const ClothesColor = ({productList}) => {
                             </S.DropdownWrapper>
 
                             <S.DropdownWrapper>
-                                <button onClick={() => toggleDropdown('size')} type="button">사이즈</button>
+                                <button onClick={() => toggleDropdown('size')} type="button">사이즈
+                                    <S.Arrow src={`${process.env.PUBLIC_URL}/assets/images/store/down-arrow.svg`} alt="icon"/></button>
                                 <S.DropdownContent isOpen={openDropdown === 'size'}>
                                     <S.DropdownItem onClick={() => handleSizeSelect('S')} isSelected={selectedSize === 'S'}>
                                         <input type="checkbox" checked={selectedSize === 'S'}/>S</S.DropdownItem>
@@ -190,7 +192,8 @@ const ClothesColor = ({productList}) => {
                             </S.DropdownWrapper>
 
                             <S.DropdownWrapper>
-                                <button onClick={() => toggleDropdown('sort')} type="button"> 정렬</button>
+                                <button onClick={() => toggleDropdown('sort')} type="button"> 정렬
+                                    <S.Arrow src={`${process.env.PUBLIC_URL}/assets/images/store/down-arrow.svg`} alt="icon"/></button>
                                 <S.DropdownContent isOpen={openDropdown === 'sort'}>
                                     <S.DropdownItem onClick={() => handleSortSelect('Recent')} isSelected={selectedSort === 'Recent'}>
                                         <input type="checkbox" checked={selectedSort === 'Recent'}/>최신 등록순</S.DropdownItem>

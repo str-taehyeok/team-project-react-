@@ -76,7 +76,7 @@ export const PostList = () => {
 
     return (
         <>
-            <S.Title>#All</S.Title>
+            <S.ColorTitle>#All</S.ColorTitle>
             <S.AllPostWrapper>
                 {postList}
             </S.AllPostWrapper>
