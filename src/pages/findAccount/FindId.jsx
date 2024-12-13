@@ -1,32 +1,66 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import S from "./style";
 
 const FindId = () => {
 
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [authNumber, setAuthNumber] = useState("");
-  const [generatedAuthNumber, setGeneratedAuthNumber] = useState(""); 
-  const [isVerified, setIsVerified] = useState(false); 
+  const [name, setName] = useState(""); // 이름 상태
+  const [phoneNumber, setPhoneNumber] = useState(""); // 전화번호 상태
+  const [authNumber, setAuthNumber] = useState(""); // 인증번호 상태
+  const [generatedAuthNumber, setGeneratedAuthNumber] = useState(""); // 서버에서 받은 인증번호
+  const [attempts, setAttempts] = useState(0); // 인증 시도 횟수
+  const [isBlocked, setIsBlocked] = useState(false); // 인증 횟수 초과 여부
+  const [allCheck, setAllCheck] = useState(false); // 전체 확인 여부
 
-  const handleAuthRequest = () => {
+
+  const transferSms = async () => {
     if (!phoneNumber) {
       return alert("휴대폰 번호를 입력해주세요.");
     }
-    // 인증번호 생성
-    const generatedAuth = Math.floor(100000 + Math.random() * 900000);
-    setGeneratedAuthNumber(generatedAuth);
-    alert(`인증번호: ${generatedAuth}`);
+
+    await fetch("http://localhost:10000/member/sms/find-id", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ memberPhone: phoneNumber }), 
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setGeneratedAuthNumber(data.verificationCode);
+        alert("인증번호를 발송했습니다.");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("인증번호 전송 실패");
+      });
   };
 
-  const handleAuthVerify = () => {
-    if (authNumber === String(generatedAuthNumber)) {
-      alert("인증이 확인되었습니다.");
-      setIsVerified(true);  
+  // 인증번호 확인
+  const testCode = "123456";
+  const confirmVerificationCode = () => {
+    if (isBlocked) {
+      return alert("인증 시도 횟수를 초과했습니다. 다시 시도해주세요.");
+    }
+
+    if (authNumber === testCode) {
+      alert("인증번호가 일치합니다.");
+      setAttempts(0);
+      setIsBlocked(false);
+      setAllCheck(true);
     } else {
-      alert("인증번호를 확인해주세요.");
-      setIsVerified(false);
+      const newAttempts = attempts + 1;
+      setAttempts(newAttempts);
+
+      if (newAttempts >= 3) {
+        alert("인증횟수를 초과했습니다. 다시 입력해주세요.");
+        setAuthNumber("");
+        setAttempts(0);
+        setIsBlocked(true);
+      } else {
+        setAllCheck(false);
+        alert(`인증번호가 일치하지 않습니다. (${newAttempts}/3)`);
+      }
     }
   };
 
@@ -67,7 +101,7 @@ const FindId = () => {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
-            <S.AuthButton type="button" onClick={handleAuthRequest}>
+            <S.AuthButton type="button" onClick={transferSms}>
               인증요청
             </S.AuthButton>
           </S.InputWrapper>
@@ -84,14 +118,14 @@ const FindId = () => {
               value={authNumber}
               onChange={(e) => setAuthNumber(e.target.value)}
             />
-            <S.AuthButton type="button" onClick={handleAuthVerify}>
+            <S.AuthButton type="button" onClick={confirmVerificationCode}>
               확인
             </S.AuthButton>
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
         <Link to="/find/find-complete">
-          <S.NextButton type="button" disabled={!isVerified}>
+          <S.NextButton type="button" disabled={!allCheck}>
             다음
           </S.NextButton>
         </Link>
