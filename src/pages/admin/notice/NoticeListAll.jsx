@@ -20,9 +20,9 @@ const NoticeListAll = () => {
 
     console.log(posts)
 
-const noticeLists = posts.map(({ id, noticeTitle, memberId, noticeDate,noticeCount}) => (
+const noticeLists = posts.map(({ id, noticeTitle, memberId, noticeDate,noticeCount}, index) => (
   <tr >
-      <td className='number'>{id}</td>
+      <td className='number'>{index + 1}</td>
       <Link to={`/admin/list/${id}`}>
         <td className='title'>{noticeTitle}</td>
       </Link>
