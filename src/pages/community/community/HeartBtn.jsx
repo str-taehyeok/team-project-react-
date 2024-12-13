@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { HeartContext } from '../../../context/heartContext';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // Heart는 클릭했을 때 
 // 1) product인지 community인지 확인해야 하므로 type을 받는다.
@@ -9,8 +11,13 @@ import { HeartContext } from '../../../context/heartContext';
 // postid 또는 productId
 const HeartBtn = ({ id, type }) => {
 
+  // 방어 코드
+  const navigate = useNavigate();
+  
   // 리덕스에 로그인한 유저의 id
-  const memberId = 1;
+  const { currentUser } = useSelector((state) => state.user);
+  const memberId = currentUser?.id ? currentUser?.id : 0; 
+
   const { commLikes, productLikes, isUpdate } = useContext(HeartContext).state;
   const { setIsUpdate } = useContext(HeartContext).action;
 
@@ -40,7 +47,12 @@ const HeartBtn = ({ id, type }) => {
   }
   
   const handleLike = async () => {
-    
+   
+    if(!memberId){
+      alert("로그인 해주세요.")
+      navigate("login")
+      return;
+    }
     await fetch(`http://localhost:10000/${fetchType}/${fetchPath}`, {
       method : `${fetchMethodType}`,
       headers : {
