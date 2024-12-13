@@ -67,24 +67,26 @@ const Main = () => {
             spaceBetween={20}
           >
             {[
-              { src: "dentalgum1.png", coupon: "강아지 인기" },
-              { src: "shampoo3.png", coupon: "고양이 특가" },
-              { src: "feed.png", coupon: "세일 특가" },
-              { src: "dentalgum1.png", coupon: "강아지 인기" },
-              { src: "shampoo3.png", coupon: "고양이 특가" },
-              { src: "feed.png", coupon: "세일 특가" },
-            ].map((item, i) => (
+              { id: 1, src: "dentalgum1.png", coupon: "강아지 인기" },
+              { id: 2, src: "shampoo3.png", coupon: "고양이 특가" },
+              { id: 3, src: "feed.png", coupon: "세일 특가" },
+              { id: 4, src: "dentalgum1.png", coupon: "강아지 인기" },
+              { id: 5, src: "shampoo3.png", coupon: "고양이 특가" },
+              { id: 6, src: "feed.png", coupon: "세일 특가" },
+            ].map(({src, coupon, id}, i) => (
               <SwiperSlide key={i}>
                 <S.ImageAndCart>
                   <S.HotImage>
                     <Link to="/store">
                       <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/layout/${item.src}`}
+                        src={`${process.env.PUBLIC_URL}/assets/images/layout/${src}`}
                         alt={`상품-${i + 1}`}
                       />
                     </Link>
-                    <S.Coupon>{item.coupon}</S.Coupon>
-                    <HeartBtn />
+                    <S.Coupon>{coupon}</S.Coupon>
+                    <S.Heart>
+                        <HeartBtn id={id} type={"product"} />
+                    </S.Heart>
                   </S.HotImage>
                   <S.Cart>
                     <Link to="/cart">
@@ -142,23 +144,25 @@ const Main = () => {
                     />
                   </S.PostImage>
                 </Link>
-                <HeartBtn />
+                <S.Heart>
+                    <HeartBtn id={1} type={"community"} />
+                </S.Heart>
               </S.LargePost>
 
               <S.SmallWrap>
                 <S.SmallPost>
                   {[
-                    { src: "community2.png", userId: "지나 안지나" },
-                    { src: "community3.png", userId: "철을 밀면 민철" },
-                    { src: "community4.png", userId: "재금이 다음 재은" },
-                    { src: "community5.png", userId: "작은 연 날리기 소연" },
-                    { src: "community6.png", userId: "연을 세우면 세연" },
-                    { src: "community7.png", userId: "찹쌀징어" },
-                  ].map((item, index) => (
+                    { id : 1, src: "community2.png", userId: "지나 안지나" },
+                    { id : 2, src: "community3.png", userId: "철을 밀면 민철" },
+                    { id : 3, src: "community4.png", userId: "재금이 다음 재은" },
+                    { id : 4, src: "community5.png", userId: "작은 연 날리기 소연" },
+                    { id : 5, src: "community6.png", userId: "연을 세우면 세연" },
+                    { id : 6, src: "community7.png", userId: "찹쌀징어" },
+                  ].map(({id, src, userId}, index) => (
                     <S.Post key={index}>
                       <Link to="/community">
                         <S.SmallPostImage
-                          src={`${process.env.PUBLIC_URL}/assets/images/layout/${item.src}`}
+                          src={`${process.env.PUBLIC_URL}/assets/images/layout/${src}`}
                           alt={`게시물-${index + 1}`}
                         />
                         <S.ProfileInfo>
@@ -166,10 +170,12 @@ const Main = () => {
                             src={`${process.env.PUBLIC_URL}/assets/images/layout/profile.png`}
                             alt="프로필"
                           />
-                          <span className="UserId">{item.userId}</span>
+                          <span className="UserId">{userId}</span>
                         </S.ProfileInfo>
                       </Link>
-                      <HeartBtn />
+                      <S.Heart>
+                          <HeartBtn id={id} type={"community"} />
+                      </S.Heart>
                     </S.Post>
                   ))}
                 </S.SmallPost>
@@ -223,11 +229,11 @@ const Main = () => {
                                   marginRight: "10px",
                                 }}
                               >
-                                {productDiscount}
+                                {productDiscount}%
                               </span>
                             </b>
                           )}
-                          {productPrice}
+                          {productPrice.toLocaleString('ko-KR')}원
                         </S.DiscountText>
                       </S.CardTextWrap>
                     </S.ProductCard>

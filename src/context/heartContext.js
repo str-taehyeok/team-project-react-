@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const HeartContext = createContext({
   state : { 
@@ -16,7 +17,10 @@ const HeartContext = createContext({
 const HeartProvider = ({children}) => {
 
   // 리덕스에 있는 memberId
-  const memberId = 1;
+   // 리덕스에 로그인한 유저의 id
+   const { currentUser } = useSelector((state) => state.user);
+   const memberId = currentUser?.id ? currentUser?.id : 0; 
+   
   const [ productLikes, setProductLikes ] = useState([]);
   const [ commLikes, setCommLikes ] = useState([]);
   const [ isUpdate, setIsUpdate ] = useState(false);
