@@ -76,7 +76,7 @@ export const PostOrangeList = () => {
 
     return (
         <>
-            <S.Title>#Orange</S.Title>
+            <S.ColorTitle>#Orange</S.ColorTitle>
             <S.AllPostWrapper>
                 {postList}
             </S.AllPostWrapper>
