@@ -3,6 +3,19 @@ import theme from "../../global/theme";
 
 const S = {};
 
+// 공용 하트
+S.Heart = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+
+  & > img {
+    width: 100%;
+  }
+`
+
 S.Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -403,6 +416,10 @@ S.ProductCard = styled.div`
     position: absolute;
     top: 10px;
     right: 10px;
+  }
+
+  img {
+    width: 100%;
   }
 `;
 

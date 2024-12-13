@@ -6,26 +6,41 @@ import { HeartContext } from '../../../context/heartContext';
 // 2) 클릭한 상품의 id를 받는다.
 // 3) id와 like한 상품을 비교한다.
 
-const HeartBtn = ({ postId, type }) => {
+// postid 또는 productId
+const HeartBtn = ({ id, type }) => {
 
   // 리덕스에 로그인한 유저의 id
   const memberId = 1;
-  const { commLikes, isUpdate } = useContext(HeartContext).state;
+  const { commLikes, productLikes, isUpdate } = useContext(HeartContext).state;
   const { setIsUpdate } = useContext(HeartContext).action;
-  // 좋아요인지 아닌지 비교
-  const isLike = commLikes.some((comm) => comm.id === postId);
 
+  // 좋아요인지 아닌지 비교
+  const isCommunityLike = commLikes.some((comm) => comm.id === id);
+  const isProductLike = productLikes.some((product) => product.productId === id);
   // 타입 비교
   let fetchType = type === "community" ? "commLikes" : "productLikes";
-  let fetchPath = isLike ? "cancelLike" : "like";
-  let fetchMethodType = isLike ? "DELETE" : "POST";
-  let fetchData = { 
+  let fetchPath = null;
+  let fetchMethodType = null;
+  let fetchData = null;
+  
+  if(fetchType === "commLikes"){
+    fetchPath = isCommunityLike ? "cancelLike" : "like";
+    fetchMethodType = isCommunityLike ? "DELETE" : "POST";
+    fetchData = { 
       memberId : memberId,
-      postId : postId
+      postId : id
+    }
+  }else{
+    fetchPath = isProductLike ? "cancelLike" : "like";
+    fetchMethodType = isProductLike ? "DELETE" : "POST";
+    fetchData = { 
+      memberId : memberId,
+      productId : id
+    }
   }
   
   const handleLike = async () => {
-
+    
     await fetch(`http://localhost:10000/${fetchType}/${fetchPath}`, {
       method : `${fetchMethodType}`,
       headers : {
@@ -38,23 +53,46 @@ const HeartBtn = ({ postId, type }) => {
 
   };
 
-  return (
-    <>
-      {isLike ? (
-        <img
-          onClick={handleLike}
-          src={process.env.PUBLIC_URL + "/assets/images/store/heart-click.png"}
-          alt="Liked"
-        />
-      ) : (
-        <img
-          onClick={handleLike}
-          src={process.env.PUBLIC_URL + "/assets/images/store/heart-not-click.png"}
-          alt="Not Liked"
-        />
-      )}
-    </>
-  );
+  if(type === "community"){
+    return (
+      <>
+        {isCommunityLike ? (
+          <img
+            onClick={handleLike}
+            src={process.env.PUBLIC_URL + "/assets/images/store/heart-click.png"}
+            alt="Liked"
+          />
+        ) : (
+          <img
+            onClick={handleLike}
+            src={process.env.PUBLIC_URL + "/assets/images/store/heart-not-click.png"}
+            alt="Not Liked"
+          />
+        )}
+      </>
+    );
+
+  }else{
+    // product
+    return (
+      <>
+        {isProductLike ? (
+          <img
+            onClick={handleLike}
+            src={process.env.PUBLIC_URL + "/assets/images/store/heart-click.png"}
+            alt="Liked"
+          />
+        ) : (
+          <img
+            onClick={handleLike}
+            src={process.env.PUBLIC_URL + "/assets/images/store/heart-not-click.png"}
+            alt="Not Liked"
+          />
+        )}
+      </>
+    );
+  }
+  
 };
 
 export default HeartBtn;

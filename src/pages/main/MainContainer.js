@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import S from "./style";
 import SwiperCore from "swiper/core";
-import HeartBtn from "../store/store/HeartBtn";
+import HeartBtn from "../community/community/HeartBtn";
 SwiperCore.use([Pagination]);
 
 const Main = () => {
@@ -17,7 +17,20 @@ const Main = () => {
   const bannerLength = bannerCount.length;
   const [activeIndex, setActiveIndex] = useState(0);
   const onChangeIndex = (index) => { setActiveIndex(index + 1) } 
-  
+  const [products, setProducts] = useState([]);
+
+  // fetch products
+  useEffect(() => {
+    const getProducts = async () => {
+      const response = await fetch("http://localhost:10000/products/products")
+      const products = await response.json()
+      return products
+    }
+
+    getProducts().then(setProducts).catch(console.error)
+
+  }, [])
+
   return (
     <>
       <Header />
@@ -183,83 +196,25 @@ const Main = () => {
 
             <S.ProductsWrap>
               <S.Products>
-                {[
-                  {
-                    name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
-                    price: "55% 9,900원",
-                    image: "product1.png",
-                  },
-                  {
-                    name: "디팡 강아지 사료 500g",
-                    price: "10% 8,500원",
-                    image: "product2.png",
-                  },
-                  {
-                    name: "로얄캐닌 캣파우치 키튼 그레이비 85g 1박스(12개)",
-                    price: "10% 9,900원",
-                    image: "product3.png",
-                  },
-                  {
-                    name: "힐스 강아지사료 어덜트 라이트 스몰 앤 미니 1.5kg",
-                    price: "10% 8,500원",
-                    image: "product4.png",
-                  },
-                  {
-                    name: "로얄캐닌 마더앤베이비캣캔 트레이 100g x 6개 습식사료 주식캔 아기고양이",
-                    price: "50% 9,900원",
-                    image: "product5.png",
-                  },
-                  {
-                    name: "잘먹잘싸 황금변 강아지사료 변냄새/피부/모질 2KG",
-                    price: "55% 8,500원",
-                    image: "product6.png",
-                  },
-                  {
-                    name: "내추럴발란스 LI 브로스 코팅 야채 레시피 스몰브리드 2.4kg",
-                    price: "35% 9,900원",
-                    image: "product1.png",
-                  },
-                  {
-                    name: "하림펫푸드 더리얼 그레인프리 오븐베이크드 소고기 시니어 1.6kg",
-                    price: "55% 8,500원",
-                    image: "product2.png",
-                  },
-                  {
-                    name: "스텔라앤츄이스 로우 코티드 키블 스몰 브리드 케이지 프리 치킨 4.5kg",
-                    price: "10% 9,900원",
-                    image: "product3.png",
-                  },
-                  {
-                    name: "펫생각 데일리케얼 네츄럴칼디오 큐브 화식 30개입 (치킨/비프)",
-                    price: "35% 8,500원",
-                    image: "product4.png",
-                  },
-                  {
-                    name: "프레시지펫 반습식 수제 사료 오리 1KG+말랑 치즈버거 져키 소고기 100G 6팩",
-                    price: "20% 9,900원",
-                    image: "product5.png",
-                  },
-                  {
-                    name: "스텔라앤츄이스 로우 코티드 키블 퍼피 케이지 프리 치킨 4.5kg",
-                    price: "35% 8,500원",
-                    image: "product6.png",
-                  },
-                ].map((product, index) => {
-                  const [discount, price] = product.price.split(" ");
-
+                { products.map(({
+                  id, productName, productImage1, productPrice, productDiscount
+                }, index) => {
+                  const isDiscount = productDiscount !== 0;
                   return (
                     <S.ProductCard key={index}>
                       <Link to="/store">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/layout/${product.image}`}
-                          alt={product.name}
+                          src={`${process.env.PUBLIC_URL}/assets/images/layout/${productImage1}`}
+                          alt={productName}
                         />
                       </Link>
-                      <HeartBtn />
+                      <S.Heart>
+                          <HeartBtn id={id} type={"product"} />
+                      </S.Heart>
                       <S.CardTextWrap>
-                        <S.ProductName>{product.name}</S.ProductName>
+                        <S.ProductName>{productName}</S.ProductName>
                         <S.DiscountText>
-                          {discount && (
+                          {isDiscount && (
                             <b>
                               <span
                                 style={{
@@ -268,16 +223,17 @@ const Main = () => {
                                   marginRight: "10px",
                                 }}
                               >
-                                {discount}
+                                {productDiscount}
                               </span>
                             </b>
                           )}
-                          {price}
+                          {productPrice}
                         </S.DiscountText>
                       </S.CardTextWrap>
                     </S.ProductCard>
                   );
                 })}
+
               </S.Products>
             </S.ProductsWrap>
           </S.ProductContainer>
