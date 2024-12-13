@@ -77,7 +77,7 @@ export const PostSkyBlueList = () => {
 
     return (
         <>
-            <S.Title>#Sky Blue</S.Title>
+            <S.ColorTitle>#Sky Blue</S.ColorTitle>
             <S.AllPostWrapper>
                 {postList}
             </S.AllPostWrapper>

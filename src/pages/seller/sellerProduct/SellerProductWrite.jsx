@@ -7,26 +7,26 @@ const SellerProductWrite = () => {
 
     const { register, handleSubmit, formState: { isSubmitting }} = useForm({ mode: 'onChange' });
     const [productName, setProductName] = useState("");
-    const [productPrice, setProductPrice] = useState("");
-    const [productCode, setProductCode] = useState("");
-    const [productDate, setProductDate] = useState("");
-    const [productStock, setProductStock] = useState("");
-    const [productEditDate, setProductEditDate] = useState("");
-    const [productDetail, setProductDetail] = useState("");
-    const [productImage1, setProductImage1] = useState("");
-    const [productImage2, setProductImage2] = useState("");
-    const [productImage3, setProductImage3] = useState("");
-    const [productImage4, setProductImage4] = useState("");
-    const [productAnimal, setProductAnimal] = useState("");
-    const [productCategory, setProductCategory] = useState("");
-    const [productColor, setProductColor] = useState("");
-    const [productSize, setProductSize] = useState("");
-    const [deliveryFee, setDeliveryFee] = useState("");
-    const [deliveryFeeKind, setDeliveryFeeKind] = useState("");
-    const [deliveryFeeFree, setDeliveryFeeFree] = useState("");
-    const [deliveryHow, setDeliveryHow] = useState("");
-    const [deliveryPayWhen, setDeliveryPayWhen] = useState("");
-    const [deliveryCompany, setDeliveryCompany] = useState("");
+    // const [productPrice, setProductPrice] = useState("");
+    // const [productCode, setProductCode] = useState("");
+    // const [productDate, setProductDate] = useState("");
+    // const [productStock, setProductStock] = useState("");
+    // const [productEditDate, setProductEditDate] = useState("");
+    // const [productDetail, setProductDetail] = useState("");
+    // const [productImage1, setProductImage1] = useState("");
+    // const [productImage2, setProductImage2] = useState("");
+    // const [productImage3, setProductImage3] = useState("");
+    // const [productImage4, setProductImage4] = useState("");
+    const [ setProductAnimal] = useState("");
+    // const [productCategory, setProductCategory] = useState("");
+    // const [productColor, setProductColor] = useState("");
+    // const [productSize, setProductSize] = useState("");
+    // const [deliveryFee, setDeliveryFee] = useState("");
+    const [ setDeliveryFeeKind] = useState("");
+    // const [deliveryFeeFree, setDeliveryFeeFree] = useState("");
+    const [setDeliveryHow] = useState("");
+    const [ setDeliveryPayWhen] = useState("");
+    // const [deliveryCompany, setDeliveryCompany] = useState("");
     const memberId = 1;
 
     const handleChange = (e) => {
@@ -115,10 +115,14 @@ const SellerProductWrite = () => {
                     body: JSON.stringify({
                         productName: data.productName,
                         productPrice: data.productPrice,
-                        productCode: new Date().getTime().toString(), // 임시 상품 코드 생성
-                        productDate: new Date().toISOString(), // 현재 날짜 추가
+                        productCode: new Date().getTime().toString(),
+                        productDate: new Date().toISOString(),
                         productStock: data.productStock,
                         productEditDate: new Date().toISOString(),
+                        productImage1: data.productImage1,
+                        productImage2: data.productImage2,
+                        productImage3: data.productImage3,
+                        productImage4: data.productImage4,
                         productDetail: data.productDetail,
                         productAnimal: data.productAnimal,
                         productCategory: data.productCategory,
@@ -129,8 +133,8 @@ const SellerProductWrite = () => {
                         deliveryFeeFree: data.deliveryFeeFree,
                         deliveryHow: data.deliveryHow,
                         deliveryPayHow: data.deliveryPayHow,
-                        // memberId는 임시로 1로 고정
-                        memberId: 1
+                        deliveryCompany: data.deliveryCompany,
+                        memberId: memberId
                     })
                 })
                     .then((res) => res.json())

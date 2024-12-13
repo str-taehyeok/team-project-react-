@@ -1,74 +1,71 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import S from "./style";
-import { Link } from 'react-router-dom';
+import {Link, useNavigate, useParams} from "react-router-dom";
+import notice from "../../myhome/notice/Notice";
 
 
 const NoticeList = () => {
+    const {id} = useParams();
+    const [post, setPost] = useState({});
+    const navigate = useNavigate();
 
 
-  const [noticeList] = useState([
-    {
-        id : 1,
-        noticeTitle : "공지사항 제목1",
-        noticeContent : "공지사항 내용1",
-        noticeDate : "2024-12-08"
-    },
-    {
-      id : 2,
-      noticeTitle : "공지사항 제목2",
-      noticeContent : "공지사항 내용2",
-      noticeDate : "2024-12-24"
-    },
-]);
+    useEffect(() => {
+        const getPost = async () => {
+            const response = await fetch(`http://localhost:10000/notice/list/${id}`);
+            if(!response.ok) return console.error(`데이터가 없습니다.`)
+            const post = await response.json();
+            return post;
+        }
 
-const noticeLists = noticeList.map((notice, index) => (
-  <tr key={notice.id}>
-      <td className='number'>{index + 1}</td>
-      <td className='title'>{notice.noticeTitle}</td>
-      <td className='content'>{notice.noticeContent}</td>
-      <td className='date'>{notice.noticeDate}</td>
-      <td className='button'>      
-        <S.Button>
-        <S.LinkButton to="/admin/update"> 수정</S.LinkButton>
-          <button className="delete">삭제</button>
-        </S.Button>
-      </td>
-  </tr>
-));
+        getPost().then(setPost).catch(console.error);
+    }, [id]);
 
-  return (
-    <S.WriteBox>
-      <S.Title>
-        공지사항 조회
-      </S.Title>
-      <S.SearchInput>
-        <input placeholder='검색어를 입력해주세요' />
-      </S.SearchInput>
-      <S.Buttons>
-        <button className="search">검색</button>
-        <button className="reset">초기화</button>
-        <Link to={`/admin/write`}>
-          <button className="add">신규 등록</button>
-        </Link>
-      </S.Buttons>
-      <S.NoticeList>
-        <S.Table>
-          <thead>
-            <tr>
-              <th className='number'>No</th>
-              <th className='title'>제목</th>
-              <th className='content'>상세내용</th>
-              <th className='date'>등록일</th>
-              <th className='button'>관리</th>
-            </tr>
-          </thead>
-          <tbody>
-            {noticeLists}
-          </tbody>
-        </S.Table>
-      </S.NoticeList>
-    </S.WriteBox>
-  );
+    console.log(post)
+
+
+
+    const {noticeTitle,noticeContent,noticeDate, noticeCount} = post;
+    return (
+        <S.NoticeBox>
+            <S.Title>공지사항</S.Title>
+            <S.ListButton>
+                <Link to={`/admin/update/${id}`}>
+                    <button className={"update"}>수정</button>
+                </Link>
+                <button className={"delete"}onClick={async () => {
+                    await fetch(`http://localhost:10000/notice/list/${id}`, {
+                        method : "DELETE"
+                    })
+                        .then((res) => {
+                            navigate("/admin")
+                        })
+                }}>삭제</button>
+            </S.ListButton>
+            <S.NoticeList>
+                <S.TitleBox>
+                    <S.ListTitle >{noticeTitle}</S.ListTitle>
+                    <S.Span>
+                        <S.Date><span>등록일 : </span>{noticeDate}</S.Date>
+                        <S.Count><span>조회수 : </span>{noticeCount}</S.Count>
+                    </S.Span>
+                </S.TitleBox>
+
+                <S.Content>{noticeContent}</S.Content>
+            </S.NoticeList>
+
+            <S.Button>
+                <Link to={`/admin`}>
+                    <button className={"listButton"}>목록으로 돌아가기</button>
+                </Link>
+            </S.Button>
+
+        </S.NoticeBox>
+
+
+
+
+    );
 };
 
 export default NoticeList;
