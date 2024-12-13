@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import S from "./style";
 import ClothesColor from './clothes/ClothesColor';
 import ClothesBest from './clothes/ClothesBest';
 import ClothesSpecial from './clothes/ClothesSpecial';
 import ClothesRecommend from './clothes/ClothesRecommend';
 import { Link } from "react-router-dom";
+import HeartBtn from "../HeartBtn";
 
+
+// fetch 를 통해서 products 를 모두 가져와야한다.
+useEffect(() => {
+//     fetch products
+    const getProducts = async () => {
+        const response = await fetch("http://localhost:10000/product/write")
+        const products = await response.json()
+        return products;
+    }
+    getProducts().then(console.log).catch(console.error)
+}, []);
 // 더미데이터 확인용
 
 const productList = [
@@ -111,8 +123,9 @@ const productList = [
 
 const Clothes = () => {
 
-    const bestProducts = productList.map(({productName, productPrice, productImage1}, i) => (
+    const bestProducts = products.map(({productName, productPrice, productImage1}, i) => (
         <S.BestProduct key={i} >
+            <HeartBtn />
             <Link to={"/product"}>
             <img src={productImage1} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
@@ -124,6 +137,7 @@ const Clothes = () => {
 
     const specialProducts = productList.map(({productName, productPrice, productImage1}, i) => (
         <S.SpecialProduct key={i}>
+            <HeartBtn />
             <Link to={"/product"}>
             <img src={productImage1} alt={"상품" + (i + 1)}/>
             <span>{productName}</span>
@@ -135,6 +149,7 @@ const Clothes = () => {
 
     const recommendProducts = productList.map(({productName, productPrice, productImage1}, i) => (
         <S.Product key={i} >
+            <HeartBtn />
             <Link to={"/product"}>
             <img src={productImage1} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
