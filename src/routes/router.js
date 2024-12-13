@@ -151,7 +151,7 @@ const router = createBrowserRouter([
                         element: <NoticeListPage />,
                     },
                     {
-                        path: "list",
+                        path: "list/:id",
                         element: <Notice />
                     },
                 ]
@@ -387,7 +387,7 @@ const router = createBrowserRouter([
                         element: <NoticeList />
                     },
                     {
-                        path: 'update',
+                        path: 'update/:id',
                         element: <NoticeUpdate />
                     },
                     {
