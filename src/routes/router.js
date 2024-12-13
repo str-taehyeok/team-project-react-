@@ -383,7 +383,7 @@ const router = createBrowserRouter([
                         element: <NoticeListAll />
                     },
                     {
-                        path: 'list',
+                        path: `list/:id`,
                         element: <NoticeList />
                     },
                     {

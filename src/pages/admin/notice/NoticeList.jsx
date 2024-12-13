@@ -1,25 +1,47 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import S from "./style";
-import { Link } from 'react-router-dom';
+import {Link, useNavigate, useParams} from "react-router-dom";
+import notice from "../../myhome/notice/Notice";
 
 
 const NoticeList = () => {
+    const {id} = useParams();
+    const [post, setPost] = useState({});
+    const navigate = useNavigate();
 
 
-    const datas = [
-        {
-            id : 1,
-            noticeTitle : "공지사항 제목1",
-            noticeCount : "0",
-            noticeDate : "2024-12-08",
-            noticeContent : "안녕하세요, POWPOW입니다." +
-                "POWPOW을 이용해주시는 이용자분들께 감사드리며," +
-                "감사합니다. POWPOW 드림"
+    useEffect(() => {
+        const getPost = async () => {
+            const response = await fetch(`http://localhost:10000/notice/list/${id}`);
+            if(!response.ok) return console.error(`데이터가 없습니다.`)
+            const post = await response.json();
+            return post;
+        }
 
-        },
-    ];
-    const noticeLists = datas.map(({noticeTitle,noticeContent,noticeDate, noticeCount}, i) => (
-        <S.NoticeBox key={i}>
+        getPost().then(setPost).catch(console.error);
+    }, [id]);
+
+    console.log(post)
+
+
+
+    const {noticeTitle,noticeContent,noticeDate, noticeCount} = post;
+    return (
+        <S.NoticeBox>
+            <S.Title>공지사항</S.Title>
+            <S.ListButton>
+                <Link to={`/admin/update/${id}`}>
+                    <button className={"update"}>수정</button>
+                </Link>
+                <button className={"delete"}onClick={async () => {
+                    await fetch(`http://localhost:10000/notice/list/${id}`, {
+                        method : "DELETE"
+                    })
+                        .then((res) => {
+                            navigate("/admin")
+                        })
+                }}>삭제</button>
+            </S.ListButton>
             <S.NoticeList>
                 <S.TitleBox>
                     <S.ListTitle >{noticeTitle}</S.ListTitle>
@@ -39,16 +61,8 @@ const NoticeList = () => {
             </S.Button>
 
         </S.NoticeBox>
-    ));
-    return (
-        <S.NoticeBox>
-                <S.Title>공지사항</S.Title>
-                <S.Buttons>
-                    <button className={"update"}>수정</button>
-                    <button className={"delete"}>삭제</button>
-                </S.Buttons>
-            {noticeLists}
-        </S.NoticeBox>
+
+
 
 
     );

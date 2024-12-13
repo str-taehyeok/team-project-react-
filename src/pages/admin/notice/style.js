@@ -256,7 +256,7 @@ S.Table = styled.table`
     }
 `;
 
-S.Buttons = styled.div`
+S.ListButton = styled.div`
  display: flex;
  flex-direction: row;
  width: 1200px;
