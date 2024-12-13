@@ -17,7 +17,7 @@ const HeartProvider = ({children}) => {
 
   // 리덕스에 있는 memberId
   const memberId = 1;
-  const [ postLikes, setPostLikes ] = useState([]);
+  const [ productLikes, setProductLikes ] = useState([]);
   const [ commLikes, setCommLikes ] = useState([]);
   const [ isUpdate, setIsUpdate ] = useState(false);
 
@@ -38,18 +38,31 @@ const HeartProvider = ({children}) => {
 
     getCommLikes().then(setCommLikes).catch(console.error);
 
-    // 포스트 1개 좋아요 전체 조회
+    // 상품 좋아요 전체 조회
+    const getProductLikes = async () => {
+      const response = await fetch(`http://localhost:10000/productLikes/allLikes`, {
+        method : "POST",
+        headers : {
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(memberId)
+      });
+      const data = await response.json();
+      return data;
+    };
+
+    getProductLikes().then(setProductLikes).catch(console.error);
 
   }, [isUpdate]);
 
   const value = {
     state : { 
-      postLikes : postLikes, 
+      productLikes : productLikes, 
       commLikes : commLikes,
       isUpdate : isUpdate
     },
     action : { 
-      setPostLikes : setPostLikes,
+      setProductLikes : setProductLikes,
       setCommLikes : setCommLikes,
       setIsUpdate : setIsUpdate
     }
