@@ -50,7 +50,7 @@ const Join = () => {
   const memberPhone = state.phone;
   useEffect(() => {
     // 휴대폰 없으면 휴대폰 인증페이지로 되돌리기
-    if(!memberPhone){
+    if(!provider ?!memberPhone : memberPhone){
       navigate("/join/phone")
     }
   }, [navigate, memberPhone])
