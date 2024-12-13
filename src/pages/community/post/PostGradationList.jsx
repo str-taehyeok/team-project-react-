@@ -77,7 +77,7 @@ export const PostGradationList = () => {
 
     return (
         <>
-            <S.Title>#Gradation</S.Title>
+            <S.ColorTitle>#Gradation</S.ColorTitle>
             <S.AllPostWrapper>
                 {postList}
             </S.AllPostWrapper>

@@ -77,7 +77,7 @@ export const PostDustySilverList = () => {
 
     return (
         <>
-            <S.Title>#Dusty Silver</S.Title>
+            <S.ColorTitle>#Dusty Silver</S.ColorTitle>
             <S.AllPostWrapper>
                 {postList}
             </S.AllPostWrapper>

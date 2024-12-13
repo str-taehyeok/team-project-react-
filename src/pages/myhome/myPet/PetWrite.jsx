@@ -11,7 +11,6 @@ const PetWrite = () => {
   const [petBreed, setPetBreed] = useState(""); // 마이펫 품종
   const [petNeuter, setPetNeuter] = useState(""); // 마이펫 중성화
   const navigate = useNavigate();
-  const memberId = 1;
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -56,7 +55,6 @@ const PetWrite = () => {
           petWeight: data.petWeight,
           petNeuter: data.petNeuter,
           petVet: data.petVet,
-          memberId: memberId
         })
       })
         .then((res) => res.json())
