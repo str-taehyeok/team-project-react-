@@ -31,7 +31,8 @@ const Login = () => {
 
             const result = await response.json();
             if (result && result.jwtToken) {
-                navigate(`/?jwtToken=${result.jwtToken}`);
+                localStorage.setItem('jwtToken', result.jwtToken);
+                navigate('/seller');
             }
         } catch (error) {
             console.error("Login error:", error);
@@ -43,8 +44,8 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <S.InputBox>
                 <label>
-                    <S.Input type="text" id='email' placeholder='판매자 아이디(이메일)를 입력해주세요'
-                        {...register("email", {
+                    <S.Input type="text" placeholder='판매자자 아이디(이메일)를 입력해주세요'
+                        {...register("memberEmail", {
                             required: "이메일을 입력하세요.",
                             pattern: {
                                 value: emailRegex,
@@ -57,9 +58,9 @@ const Login = () => {
             </S.InputBox>
 
             <label>
-                <S.Input type="password" id='password' placeholder='판매자 비밀번호를 입력해주세요'
+                <S.Input type="password" placeholder='판매자 비밀번호를 입력해주세요'
                     autoComplete='off'
-                    {...register("password", {
+                    {...register("memberPassword", {
                         required: "비밀번호를 입력하세요.",
                         pattern: {
                             value: passwordRegex,
