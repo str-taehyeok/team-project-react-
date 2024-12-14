@@ -81,7 +81,8 @@ const ClothesColor = ({productList}) => {
     }, []);
 
     const colorProducts = products.length !== 0 ? filterdProducts.map(({productName, productPrice, productDiscount, productImage1}, i) => (
-            <SwiperSlide key={i}>
+        <S.SwiperDirection>
+        <SwiperSlide key={i}>
         <S.Product key={i}>
             <HeartBtn />
             <Link to={"/product"}>
@@ -95,6 +96,7 @@ const ClothesColor = ({productList}) => {
             <button>담기</button>
         </S.Product>
             </SwiperSlide>
+        </S.SwiperDirection>
     )) : <S.CustomProductMessage>검색된 상품이 없습니다.</S.CustomProductMessage>
 
     // useEffect(() => {
@@ -250,29 +252,43 @@ const ClothesColor = ({productList}) => {
                         <p>초기화</p>
                     </S.SortButtonWrap>
                     </S.Box>
-                <S.ProductWrap>
-                <Swiper
-                    slidesPerView={4} // 한 줄에 4개
-                    grid={{
-                        rows: 2, // 두 줄
-                        fill: "row", // 위에서부터 채우기
-                    }}
-                    spaceBetween={16}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    modules={[Grid, Pagination]}
-                    style={{
-                        "--swiper-pagination-bottom": "0px",
-                        "--swiper-pagination-color": "#131313",
-                        "--swiper-pagination-bullet-inactive-color": "#888888",
-                        padding: "0",
-                    }}
-                >
-                    {colorProducts}
-                </Swiper>
-                </S.ProductWrap>
                 </S.ColorProducts>
+                <S.ProductWrap>
+                {/*<Swiper*/}
+                {/*    slidesPerView={4} // 한 줄에 4개*/}
+                {/*    grid={{*/}
+                {/*        rows: 2, // 두 줄*/}
+                {/*        fill: "row", // 위에서부터 채우기*/}
+                {/*    }}*/}
+                {/*    spaceBetween={16}*/}
+                {/*    pagination={{*/}
+                {/*        clickable: true,*/}
+                {/*    }}*/}
+                {/*    modules={[Grid, Pagination]}*/}
+                {/*    style={{*/}
+                {/*        "--swiper-pagination-bottom": "0px",*/}
+                {/*        "--swiper-pagination-color": "#131313",*/}
+                {/*        "--swiper-pagination-bullet-inactive-color": "#888888",*/}
+                {/*        padding: "0",*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    {colorProducts}*/}
+                {/*</Swiper>*/}
+                    <Swiper
+                        slidesPerView={4}
+                        grid={{
+                            rows: 2,
+                        }}
+                        spaceBetween={30}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        modules={[Grid, Pagination]}
+                        className="mySwiper"
+                    >
+                        <SwiperSlide>{colorProducts}</SwiperSlide>
+                    </Swiper>
+                </S.ProductWrap>
                 {/*제품들*/}
                 {/*<S.ProductWrap>*/}
                 {/*    {colorProducts}*/}
