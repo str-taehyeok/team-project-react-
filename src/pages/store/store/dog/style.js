@@ -27,7 +27,7 @@ const S = {}
         line-height: 58px;
         top: 150px;
         left: 42%;
-        transform: translateX(-50%);
+        transform: translateX(-45%);
         text-align: left;
         width: 1440px;
         
@@ -74,6 +74,8 @@ S.CustomProductMessage = styled.p`
     S.Banner = styled.img`
             width: 1920px;
     `;
+
+
 
 
     // 카테고리들
@@ -311,8 +313,8 @@ S.SwiperDirection = styled.div`
 
 S.Product = styled.div`
     width: 100%;
-    max-width: 342px;
-    height: 480px;
+    //max-width: 342px;
+    //height: 480px;
     position: relative;
     box-sizing: border-box;
     text-align: center;

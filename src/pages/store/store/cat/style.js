@@ -59,7 +59,7 @@ S.Content = styled.div`
     `;
 
 S.Banner = styled.img`
-            width: 1880px;
+            width: 1920px;
     `;
 
 
