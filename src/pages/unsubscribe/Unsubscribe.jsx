@@ -1,16 +1,37 @@
 import React from "react";
 import S from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../layout/Footer";
+import { useSelector } from "react-redux";
 
 const Unsubscribe = () => {
+  const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user)
+  
+  console.log(currentUser && currentUser.id)
 
-  const onClickToConfirm = () => {
+  
+  const onClickToConfirm = async () => {
     const userConfirmed = window.confirm("정말로 탈퇴하시겠습니까?");
     console.log(userConfirmed ? "확인" : "취소");
-    
-    
 
+    if(userConfirmed){
+      await fetch(`http://localhost:10000/member/buyer/${currentUser.id}`,{
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res)=>{
+        if(res.ok){
+          const { jwtToken } = res;
+          localStorage.removeItem("jwtToken", jwtToken);
+          alert("회원탈퇴가 완료되었습니다.")
+          navigate("/")
+        }
+      })
+      .catch(console.err);
+    }
   };
 
 
