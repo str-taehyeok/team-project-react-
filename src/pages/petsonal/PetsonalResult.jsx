@@ -14,6 +14,7 @@ const PetsonalResult = () => {
   
   console.log(state)
 
+  console.log(state.petColor);
   useEffect(() => {
       const getPetsonalResult = async () => {
           const response = await fetch(`http://localhost:10000/petsonal/result/${petId}`);

@@ -37,6 +37,9 @@ const PetsonalTest = () => {
     if (!loading && pets.length === 0) {
       alert("펫을 등록해주세요");
       navigate("/my-pet/pet-not");
+    }else {
+      alert("테스트 하실 펫을 선택해주세요");
+      navigate("/my-pet");
     }
   }, [pets, navigate, loading]);
 
@@ -139,7 +142,6 @@ const PetsonalTest = () => {
     }
 
     setPetColor(selectedPetColor);
-
     await fetch("http://localhost:10000/petsonal/register-survey",{
       method: "POST",
       headers: {
