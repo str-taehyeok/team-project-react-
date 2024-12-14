@@ -557,7 +557,7 @@ const router = createBrowserRouter([
                 element: <FindType />,
             },
             {
-                path: "find-id",
+                path: "find-id/",
                 element: <FindId />,
             },
             {
