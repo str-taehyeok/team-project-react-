@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import S from "./style"; // 스타일을 위한 컴포넌트
+import S from "./style"; 
 
 const FindId = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [authNumber, setAuthNumber] = useState(""); 
-  const [generatedAuthNumber, setGeneratedAuthNumber] = useState(""); // 상태 변수 수정
+  const [setGeneratedAuthNumber] = useState(""); 
   const [attempts, setAttempts] = useState(0); 
   const [isBlocked, setIsBlocked] = useState(false); 
   const [allCheck, setAllCheck] = useState(false); 
@@ -27,7 +27,7 @@ const FindId = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setGeneratedAuthNumber(data.verificationCode); // 인증번호 저장
+        setGeneratedAuthNumber(data.verificationCode);
         alert("인증번호를 발송했습니다.");
       })
       .catch((error) => {
@@ -152,7 +152,7 @@ const FindId = () => {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
-            <S.AuthButton type="button" onClick={transferSms}>
+            <S.AuthButton type="button" onClick={findMemberByPhone}>
               인증요청
             </S.AuthButton>
           </S.InputWrapper>
