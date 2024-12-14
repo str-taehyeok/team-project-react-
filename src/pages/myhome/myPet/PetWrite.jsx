@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState  } from 'react';
 import { useForm } from 'react-hook-form';
 import {useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import S from './style';
 
 const PetWrite = () => {
-  const { currentUser } = useSelector((state) => state.user)
+  const { currentUser, isLogin } = useSelector((state) => state.user)
   console.log("멤버아이디", currentUser && currentUser.id)
   console.log(currentUser)
 
@@ -17,6 +17,13 @@ const PetWrite = () => {
   const [petNeuter, setPetNeuter] = useState(""); // 마이펫 중성화
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!isLogin) {
+      alert("로그인 후 이용해주시길 바랍니다.")
+      navigate('/login'); 
+    }
+  }, [ navigate, isLogin]);
+
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -24,24 +31,12 @@ const PetWrite = () => {
   };
 
   const handleNextClick = (e) => {
-    // 입력 값 확인
-    if (!petName) {
+    if (!petName || !petKind || !petGender || !petNeuter) {
       e.preventDefault();
-      return alert("이름을 입력해주세요.");
-    }
-    if (!petKind) {
-      e.preventDefault();
-      return alert("종류를 입력해주세요.");
-    }
-    if (!petGender) {
-      e.preventDefault();
-      return alert("성별을 체크해주세요.");
-    }
-    if (!petNeuter) {
-      e.preventDefault();
-      return alert("중성화 여부를 입력해주세요.");
+      return alert("모든 항목을 입력해주세요.");
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit(async (data) => {
@@ -55,7 +50,7 @@ const PetWrite = () => {
           memberId: currentUser.id,
           petName: data.petName,
           petKind: data.petKind,
-          petImage : "1234",
+          petImage : "pet.png",
           petGender: data.petGender,
           petBreed: data.petBreed,
           petBirth: data.petBirth,
