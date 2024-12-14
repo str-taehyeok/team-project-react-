@@ -129,7 +129,7 @@ const PetsonalTest = () => {
     .then((res) => console.log(res))
     .then((res) => {
         alert('설문 결과가 완료되었습니다!');
-        navigate("/petsonal/result");
+        navigate(`/petsonal/result/${id}`);
     })
     .catch((error) => {
         console.error('에러발생 :', error);
