@@ -14,7 +14,7 @@ const PetsonalMain = () => {
           <S.MainFirst src= {`${process.env.PUBLIC_URL}/assets/images/petsonal/petsonal-main.png`} alt="메인" />
         </S.StartImage>
         <S.MainText>what’s your pet?</S.MainText>
-        <Link className="go-to-start" to={"./test"}>
+        <Link className="go-to-start" to={"/my-pet/test-list"}>
            TEST START
         </Link>
         </S.FirstImage>

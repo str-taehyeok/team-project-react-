@@ -106,6 +106,7 @@ import PetNot from "../pages/myhome/myPet/PetNot";
 import NoticeListPage from "../pages/myhome/notice/NoticeListPage";
 import Notice from "../pages/myhome/notice/Notice";
 import NoticeListAll from "../pages/admin/notice/NoticeListAll";
+import PetTestList from "../pages/myhome/myPet/PetTestList";
 
 const router = createBrowserRouter([
     {
@@ -176,6 +177,10 @@ const router = createBrowserRouter([
                         path: "pet-update/:id",
                         element: <PetUpdate />
                     },
+                    {
+                        path: "test-list",
+                        element: <PetTestList />
+                    },
                 ]
             },
             {
@@ -191,7 +196,7 @@ const router = createBrowserRouter([
                         element: <PetsonalMain />,
                     },
                     {
-                        path: "test",
+                        path: "test/:id",
                         element: <PetsonalTest />,
                     },
                     {
