@@ -200,7 +200,7 @@ const router = createBrowserRouter([
                         element: <PetsonalTest />,
                     },
                     {
-                        path: "result",
+                        path: "result/:id",
                         element: <PetsonalResult />,
                     },
                 ]
