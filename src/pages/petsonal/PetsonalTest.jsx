@@ -115,15 +115,6 @@ const PetsonalTest = () => {
     setPetsonalCoward(coward);
     setPetsonalBrave(brave);
 
-    console.log("cute", cute)
-    console.log("chic", chic)
-    console.log("active", active)
-    console.log("calm", calm)
-    console.log("diligent", diligent)
-    console.log("lazy", lazy)
-    console.log("brave", brave)
-    console.log("coward", coward)
-
     let result = "";
     result += active > calm ? "A" : "C";
     result += diligent > lazy ? "D" : "L";
