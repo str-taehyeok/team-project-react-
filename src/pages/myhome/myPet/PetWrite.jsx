@@ -1,16 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import S from './style';
 
 const PetWrite = () => {
+  // 리덕스에서 사용자 정보 가져오기
+  const { memberId } = useSelector((state) => state.user);
+  
+  const navigate = useNavigate();
+  const jwtToken = localStorage.getItem("jwtToken");
+
+  // PetWrite 관련 상태
   const { register, handleSubmit, formState: { isSubmitting }} = useForm({ mode: 'onChange' });
   const [petName, setPetName] = useState(""); // 마이펫 이름
   const [petKind, setPetKind] = useState(""); // 마이펫 종류
   const [petGender, setPetGender] = useState(""); // 마이펫 성별
   const [petBreed, setPetBreed] = useState(""); // 마이펫 품종
   const [petNeuter, setPetNeuter] = useState(""); // 마이펫 중성화
-  const navigate = useNavigate();
+  const [petData, setPetData] = useState(null); // DB에서 가져온 펫 정보
+
+  // 마운트 시 토큰 확인
+  useEffect(() => {
+    if (!jwtToken) {
+      navigate("/login");
+    } else {
+      if (memberId) {
+        fetch(`http://localhost:10000/my-pet/${memberId}`)
+          .then((res) => res.json())
+          .then((data) => {
+            // 서버에서 해당 사용자 정보 받아오기
+            if (data) {
+              setPetData(data); // 사용자 펫 데이터
+              setPetName(data.petName || ""); 
+              setPetKind(data.petKind || ""); 
+              setPetGender(data.petGender || ""); 
+              setPetBreed(data.petBreed || ""); 
+              setPetNeuter(data.petNeuter || ""); 
+            }
+          })
+          .catch((error) => {
+            console.error('에러발생 :', error);
+          });
+      }
+    }
+  }, [jwtToken, memberId]);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -36,7 +70,6 @@ const PetWrite = () => {
       return alert("중성화 여부를 입력해주세요.");
     }
   };
-
   return (
     <form onSubmit={handleSubmit(async (data) => {
       console.log(data)
