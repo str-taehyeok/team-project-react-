@@ -28,9 +28,9 @@ const UnsubscribeComplete = () => {
           <S.Text1>
             웹사이트 회원탈퇴 신청이 완료되었습니다.
           </S.Text1>
-          <S.NextButton>
-            <Link to={"/"}>홈 바로가기</Link>
-          </S.NextButton>
+          <Link to={"/"}>
+            <S.NextButton>홈 바로가기</S.NextButton>
+          </Link>
         </S.Box>
       </S.CompletionMain>
       <footer />

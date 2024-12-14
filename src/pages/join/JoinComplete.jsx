@@ -28,11 +28,10 @@ const JoinComplete = () => {
             <S.Text1>
                 로그인하시면 더욱 다양한 서비스를 제공받으실 수 있습니다.
             </S.Text1>
-            <S.NextButton>
-              <Link to={"/login"}>
-                로그인
-              </Link>
-            </S.NextButton>
+            <Link to={"/login"}>
+              <S.NextButton>로그인</S.NextButton>
+            </Link>
+            
         </S.Box>
       </S.CompletionMain>
     </div>

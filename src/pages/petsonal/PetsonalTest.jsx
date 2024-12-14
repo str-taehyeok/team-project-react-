@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
 import Footer from "../layout/Footer";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,40 @@ import { PetsonalContext } from "../../context/petsonalContext";
 
 const PetsonalTest = () => {
   const navigate = useNavigate();
+  const [pets, setPets] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { state, action } = useContext(PetsonalContext);
+
+  // 펫이 없을 때 등록하러 가는 로직
+  useEffect(() => {
+    const getPets = async () => {
+      try {
+        const response = await fetch("http://localhost:10000/my-pet/list"); 
+        if (!response.ok) {
+          console.error("데이터가 없습니다.");
+          return;
+        }
+        const data = await response.json();
+        setPets(data);
+      } catch (error) {
+        console.error(error);
+        alert("펫 데이터를 가져오는 중 오류가 발생했습니다.");
+      }finally{
+        setLoading(false); 
+      }
+    };
+
+    getPets();
+  }, []);
+
+  useEffect(() => {
+    console.log("Pets updated:", pets);
+    if (!loading && pets.length === 0) {
+      alert("펫을 등록해주세요");
+      navigate("/my-pet/pet-not");
+    }
+  }, [pets, navigate, loading]);
+
 
   const {
     setPetColor,
@@ -19,7 +52,11 @@ const PetsonalTest = () => {
     setPetsonalCoward,
     setPetsonalBrave,
   } = action;
-  const { survey } = state;
+  const { survey, petColor } = state;
+  
+  // 임의로 넣음 가져올 로직 추가가
+  const petId = 5;
+
 
   // 한페이지 문항의 개수
   const [inputScore, inputSetScore] = useState(Array(25).fill(0));
@@ -33,7 +70,7 @@ const PetsonalTest = () => {
   };
 
   // 문항을 모두 선택했는지 검증 후 스코어 주입
-  const onClickToAddScoreAndNavigate = () => {
+  const onClickToAddScoreAndNavigate = async () => {
     let selectLength = inputScore.filter((score) => score).length;
 
     if (selectLength < survey.length) {
@@ -110,8 +147,32 @@ const PetsonalTest = () => {
       setPetColor("DustySilver")
     }
 
-    // fetch로 insert
-    navigate("/petsonal/result");
+    await fetch("http://localhost:10000/petsonal/register-survey",{
+      method: "POST",
+      headers: {
+        "Content-type" : "application/json"
+      },
+      body: JSON.stringify({
+        petColor: petColor,
+        petId: petId,
+        petsonalChic: chic,
+        petsonalCute: cute,
+        petsonalCalm: calm,
+        petsonalActive: active,
+        petsonalLazy: lazy,
+        petsonalDiligent: diligent,
+        petsonalCoward: coward,
+        petsonalBrave: brave,
+      })
+    })                   
+    .then((res) => res.json())
+    .then((res) => {
+        alert('데이터가 성공적으로 전송되었습니다!');
+        navigate("/petsonal/result");
+    })
+    .catch((error) => {
+        console.error('에러발생 :', error);
+    })
   };
 
   const surveyList = survey.map(({ title, group }, i) => {
