@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import S from "./style";
+import S from "./style"; // 스타일을 위한 컴포넌트
 
 const FindId = () => {
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [authNumber, setAuthNumber] = useState(""); 
+  const [generatedAuthNumber, setGeneratedAuthNumber] = useState(""); // 상태 변수 수정
+  const [attempts, setAttempts] = useState(0); 
+  const [isBlocked, setIsBlocked] = useState(false); 
+  const [allCheck, setAllCheck] = useState(false); 
+  const [memberEmail, setMemberEmail] = useState(""); // 이메일 상태 추가
 
-  const [name, setName] = useState(""); // 이름 상태
-  const [phoneNumber, setPhoneNumber] = useState(""); // 전화번호 상태
-  const [authNumber, setAuthNumber] = useState(""); // 인증번호 상태
-  const [generatedAuthNumber, setGeneratedAuthNumber] = useState(""); // 서버에서 받은 인증번호
-  const [attempts, setAttempts] = useState(0); // 인증 시도 횟수
-  const [isBlocked, setIsBlocked] = useState(false); // 인증 횟수 초과 여부
-  const [allCheck, setAllCheck] = useState(false); // 전체 확인 여부
-
-
+  // 인증번호 발송
   const transferSms = async () => {
     if (!phoneNumber) {
       return alert("휴대폰 번호를 입력해주세요.");
@@ -23,16 +23,67 @@ const FindId = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ memberPhone: phoneNumber }), 
+      body: JSON.stringify({ memberPhone: phoneNumber }),
     })
       .then((res) => res.json())
       .then((data) => {
-        setGeneratedAuthNumber(data.verificationCode);
+        setGeneratedAuthNumber(data.verificationCode); // 인증번호 저장
         alert("인증번호를 발송했습니다.");
       })
       .catch((error) => {
         console.error("Error:", error);
         alert("인증번호 전송 실패");
+      });
+  };
+
+  // 아이디 찾기 요청
+  const findId = async () => {
+    if (!phoneNumber) {
+      return alert("휴대폰 번호를 입력해주세요.");
+    }
+
+    await fetch("http://localhost:10000/member/find-id", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ phoneNumber }), 
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.memberEmail) {
+          setMemberEmail(data.memberEmail); 
+          alert("아이디를 찾았습니다.");
+        } else {
+          alert("해당하는 아이디가 없습니다.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("아이디 찾기 실패");
+      });
+  };
+
+  const findMemberByPhone = async () => {
+    if (!phoneNumber) {
+      return alert("휴대폰 번호를 입력해주세요.");
+    }
+
+    await fetch(`http://localhost:10000/member/find-id/${phoneNumber}`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.memberEmail) {
+          setMemberEmail(data.memberEmail); 
+          alert("회원 정보를 찾았습니다.");
+        } else {
+          alert("해당하는 회원 정보가 없습니다.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("회원 조회 실패");
       });
   };
 
@@ -124,7 +175,7 @@ const FindId = () => {
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
-        <Link to="/find/find-complete">
+        <Link to={{ pathname: "/find/find-complete", state: { memberEmail } }}>
           <S.NextButton type="button" disabled={!allCheck}>
             다음
           </S.NextButton>
