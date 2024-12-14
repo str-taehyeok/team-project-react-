@@ -7,6 +7,7 @@ import { JoinContext } from "../../context/joinContext";
 const SellerJoin = () => {
 
   const navigate = useNavigate();
+  const [isBusiness, setIsBusiness] = useState(false);
   const { state } = useContext(JoinContext);
   const {
     register,
@@ -46,6 +47,42 @@ const SellerJoin = () => {
     }
   }, [navigate, memberPhone])
 
+  useEffect(() => {
+    const getDatas = async () => {
+      try {
+        const response = await fetch("https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=zPxDylXahymfC6Lth%2By10WTp5PpmNc7edYSs5QsqA6lJ4l58QDodaRYzKg8fTgGDnhTPCmEAY3l7DX%2BccmQHng%3D%3D", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            "b_no": ["2018153657"] // 여기에 사업자 번호를 동적으로 추가
+          })
+        });
+        const datas = await response.json();
+        
+        if (!datas.data[0].b_stt_cd) {
+          alert("사업자가 아닙니다. 당장 나가세요!");
+        } else {
+          alert("확인이 완료되었습니다.");
+          setIsBusiness(true);
+        }
+      } catch (error) {
+        console.error("사업자 인증 중 오류 발생:", error);
+      }
+    };
+  
+    if (isBusiness) {
+      getDatas();
+    }
+  }, [isBusiness]);
+  
+  const checkBusiness = () => {
+    setIsBusiness(true); 
+  };
+
+
+
   return (
     <form
       onSubmit={handleSubmit(async (data) => {
@@ -55,6 +92,10 @@ const SellerJoin = () => {
           memberPassword: data.memberPassword,
           memberName: data.memberName,
           memberPhone: data.memberPhone,
+          memberBusinessNumber: data.memberBusinessNumber,
+          memberBusinessName: data.memberBusinessName,
+          memberBank: data.memberBank,
+          memberBankAccount: data.memberBankAccount,
           memberProvier: "판매자",
           memberSmsCheck: data.optionAgrees === "4" ? "1" : "0",
           memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
@@ -257,11 +298,10 @@ const SellerJoin = () => {
             <S.InputContainer>
               <S.InputField
                 type="number"
-                name="number"
-                id="Number"
+                {...register("memberBusinessNumber")}
                 placeholder="'-'없이 입력"
               />
-              <S.AuthButton>인증</S.AuthButton>
+              <S.AuthButton onClick={checkBusiness}>사업자 인증</S.AuthButton>
               <p id="NumberResult"></p>
             </S.InputContainer>
           </S.InputText>
@@ -275,7 +315,6 @@ const SellerJoin = () => {
                 placeholder="대표자명"
                 {...register("memberName")}
               />
-            <p id="KingNameResult"></p>
           </S.InputText>
 
           <S.InputText>
@@ -285,10 +324,28 @@ const SellerJoin = () => {
             </S.TextBox>
             <S.InputField
               type="text"
-              {...register("memberNickName")}
+              {...register("memberBusinessName")}
               placeholder="업체명"
             />
-            <p id="CompanyNameResult"></p>
+          </S.InputText>
+
+          <S.InputText>
+            <S.TextBox>
+              <S.Red id="Text">은행명</S.Red>
+              <S.Red id="Text">*</S.Red>
+            </S.TextBox>
+            <S.InputField
+              type="text"
+              {...register("memberBank")}
+              placeholder="은행명"
+            />
+          </S.InputText>
+          <S.InputText>
+            <S.InputField
+              type="text"
+              {...register("memberBankAccount")}
+              placeholder="계좌번호('-'없이 입력)"
+            />
           </S.InputText>
           <S.Line></S.Line>
         </S.Input>
