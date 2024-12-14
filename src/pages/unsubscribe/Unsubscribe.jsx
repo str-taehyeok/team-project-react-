@@ -8,7 +8,7 @@ const Unsubscribe = () => {
   const onClickToConfirm = () => {
     const userConfirmed = window.confirm("정말로 탈퇴하시겠습니까?");
     console.log(userConfirmed ? "확인" : "취소");
-    // fetch 코드 작성
+    
     
 
   };
