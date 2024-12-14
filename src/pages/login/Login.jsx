@@ -27,7 +27,7 @@ const Login = () => {
                 },
                 body: JSON.stringify(data)
             });
-            
+
             if (!response.ok) {
                 const errorData = await response.json();
                 alert(errorData.message);
@@ -78,8 +78,8 @@ const Login = () => {
 
             <label>
                 <S.Input type="hidden"
-                    {...register("memberProvider")} 
-                    value= "구매자"
+                    {...register("memberProvider")}
+                    value="구매자"
                 />
                 {errors.password && <S.P>{errors.password.message}</S.P>}
             </label>
