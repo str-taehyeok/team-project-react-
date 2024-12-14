@@ -6,12 +6,14 @@ import { PetsonalContext } from "../../context/petsonalContext";
 const PetsonalResult = () => {
 
   const { state, result } = useContext(PetsonalContext)
-  const [ colorResult, setColorResult ] = useState({ imageSrc : "", message : [], boxColor : ""});
+  const [ colorResult, setColorResult ] = useState({ imageSrc : "", message : [], boxColor : "", title : ""});
   const { imageSrc, message, boxColor, title } = colorResult;
 
   const [petsonalResult, setpetsonalResult] = useState([]);
   const petId = 5;
   
+  console.log(state)
+
   useEffect(() => {
       const getPetsonalResult = async () => {
           const response = await fetch(`http://localhost:10000/petsonal/result/${petId}`);
@@ -47,7 +49,7 @@ const PetsonalResult = () => {
                 src={`${process.env.PUBLIC_URL}/assets/images/pet/${petImage}`}
                 alt="강아지사진"
               />
-              <p>반려동물 이름</p>
+              <p>{petName}</p>
             </S.PetProfile>
             <S.RateWrap>
               <S.ResultName>{title}</S.ResultName>

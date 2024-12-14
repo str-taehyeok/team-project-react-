@@ -57,7 +57,6 @@ const PetsonalTest = () => {
   // 임의로 넣음 가져올 로직 추가가
   const petId = 5;
 
-
   // 한페이지 문항의 개수
   const [inputScore, inputSetScore] = useState(Array(25).fill(0));
 
@@ -120,6 +119,7 @@ const PetsonalTest = () => {
     result += diligent > lazy ? "D" : "L";
     result += brave > coward ? "B" : "C";
 
+    let selectedPetColor = "";
     if(result === "ADC"){
       setPetColor("Orange")
     }else if(result === "ADB"){
@@ -138,13 +138,15 @@ const PetsonalTest = () => {
       setPetColor("DustySilver")
     }
 
+    setPetColor(selectedPetColor);
+
     await fetch("http://localhost:10000/petsonal/register-survey",{
       method: "POST",
       headers: {
         "Content-type" : "application/json"
       },
       body: JSON.stringify({
-        petColor: petColor,
+        petColor: selectedPetColor,
         petId: petId,
         petsonalChic: chic,
         petsonalCute: cute,
@@ -158,7 +160,7 @@ const PetsonalTest = () => {
     })                   
     .then((res) => res.json())
     .then((res) => {
-        alert('데이터가 성공적으로 전송되었습니다!');
+        alert('설문 결과가 완료되었습니다!');
         navigate("/petsonal/result");
     })
     .catch((error) => {
