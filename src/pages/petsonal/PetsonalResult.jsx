@@ -10,9 +10,8 @@ const PetsonalResult = () => {
   const { imageSrc, message, boxColor, title } = colorResult;
 
   const [petsonalResult, setpetsonalResult] = useState([]);
-  const petId = 5;
+  const petId = 8;
   
-  console.log(state)
 
   console.log(state.petColor);
   useEffect(() => {
