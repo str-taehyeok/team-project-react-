@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import S from "./style"; 
+import { FindContext } from "../../context/findContext";
 
 const FindId = () => {
   const [name, setName] = useState("");
@@ -10,7 +11,9 @@ const FindId = () => {
   const [attempts, setAttempts] = useState(0); 
   const [isBlocked, setIsBlocked] = useState(false); 
   const [allCheck, setAllCheck] = useState(false); 
-  const [memberEmail, setMemberEmail] = useState(""); // 이메일 상태 추가
+  const { state, action } = useContext(FindContext);
+  const [ memberEmail ] = useState(""); // 이메일 상태 추가
+  const { setMemberEmail } = action;
 
   // 인증번호 발송
   const transferSms = async () => {
@@ -37,32 +40,32 @@ const FindId = () => {
   };
 
   // 아이디 찾기 요청
-  const findId = async () => {
-    if (!phoneNumber) {
-      return alert("휴대폰 번호를 입력해주세요.");
-    }
+  // const findId = async () => {
+  //   if (!phoneNumber) {
+  //     return alert("휴대폰 번호를 입력해주세요.");
+  //   }
 
-    await fetch("http://localhost:10000/member/find-id", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ phoneNumber }), 
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.memberEmail) {
-          setMemberEmail(data.memberEmail); 
-          alert("아이디를 찾았습니다.");
-        } else {
-          alert("해당하는 아이디가 없습니다.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("아이디 찾기 실패");
-      });
-  };
+  //   await fetch("http://localhost:10000/member/find-id", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ phoneNumber }), 
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data && data.memberEmail) {
+  //         setMemberEmail(data.memberEmail); 
+  //         alert("아이디를 찾았습니다.");
+  //       } else {
+  //         alert("해당하는 아이디가 없습니다.");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //       alert("아이디 찾기 실패");
+  //     });
+  // };
 
   const findMemberByPhone = async () => {
     if (!phoneNumber) {
@@ -74,8 +77,9 @@ const FindId = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data.memberEmail)
         if (data && data.memberEmail) {
-          setMemberEmail(data.memberEmail); 
+          setMemberEmail(data.memberEmail);
           alert("회원 정보를 찾았습니다.");
         } else {
           alert("해당하는 회원 정보가 없습니다.");
@@ -152,7 +156,7 @@ const FindId = () => {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
-            <S.AuthButton type="button" onClick={findMemberByPhone}>
+            <S.AuthButton type="button" onClick={transferSms}>
               인증요청
             </S.AuthButton>
           </S.InputWrapper>
@@ -176,7 +180,7 @@ const FindId = () => {
         </S.AuthNumberContainer>
 
         <Link to={{ pathname: "/find/find-complete", state: { memberEmail } }}>
-          <S.NextButton type="button" disabled={!allCheck}>
+          <S.NextButton type="button" disabled={!allCheck} onClick={findMemberByPhone}>
             다음
           </S.NextButton>
         </Link>
