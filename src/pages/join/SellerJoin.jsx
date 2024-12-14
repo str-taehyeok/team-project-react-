@@ -96,12 +96,11 @@ const SellerJoin = () => {
           memberBusinessName: data.memberBusinessName,
           memberBank: data.memberBank,
           memberBankAccount: data.memberBankAccount,
-          memberProvier: "판매자",
+          memberProvider: "판매자",
           memberSmsCheck: data.optionAgrees === "4" ? "1" : "0",
           memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
         };
 
-        console.log(member)
         await fetch("http://localhost:10000/member/register", {
           method: "POST",
           headers: {

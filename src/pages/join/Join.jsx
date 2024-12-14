@@ -52,7 +52,7 @@ const Join = () => {
     if(!provider ?!memberPhone : memberPhone){
       navigate("/join/phone")
     }
-  }, [navigate, memberPhone]);
+  }, [navigate, memberPhone, provider]);
 
   const handleComplete = (data) => {
     setAddress((prev) => ({

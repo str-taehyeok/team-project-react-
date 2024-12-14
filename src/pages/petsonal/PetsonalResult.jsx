@@ -6,66 +6,51 @@ import { PetsonalContext } from "../../context/petsonalContext";
 const PetsonalResult = () => {
 
   const { state, result } = useContext(PetsonalContext)
-  const [ scoreResult, setScoreResult ] = useState({ petColor : "", petsonalChic : 0, petsonalCute : 0, petsonalCalm : 0, petsonalActive : 0, petsonalLazy : 0, petsonalDiligent : 0, petsonalCoward : 0, petsonalBrave : 0 })
-  const [ colorResult, setColorResult ] = useState({ imageSrc : "", message : [], boxColor : ""});
-  const [ isResultUpdate, setIsResultUpdate ] = useState(false);
+  const [ colorResult, setColorResult ] = useState({ imageSrc : "", message : [], boxColor : "", title : ""});
   const { imageSrc, message, boxColor, title } = colorResult;
 
-  const navigate = useNavigate();
-  const handleResultUpdate = () => {
-    setIsResultUpdate(!isResultUpdate);
-  }
+  const [petsonalResult, setpetsonalResult] = useState([]);
+  const petId = 5;
   
-  useEffect(() => {
-    if(localStorage.getItem("colorResult") !== null){
-      // 있을 때 다시 검사한사람인지, 처음 검사한사람인지
-      if(state.petColor){
-        // 기존에 로컬스토리지를 삭제
-        localStorage.clear()
-        localStorage.setItem("colorResult", JSON.stringify(result[state.petColor]))
-        localStorage.setItem("scoreResult", JSON.stringify(state))
-        setColorResult(JSON.parse(localStorage.getItem("colorResult")))
-        setScoreResult(JSON.parse(localStorage.getItem("scoreResult")))
-      }else {
-        setColorResult(JSON.parse(localStorage.getItem("colorResult")))
-        setScoreResult(JSON.parse(localStorage.getItem("scoreResult")))
-      }
-    } else {
-      // 없으면 검사했는지 안넣은사람인지 진짜 검사 안한사람
-      if(state.petColor !== ""){
-        // 검사 했는데 안넣은 사람
-        localStorage.setItem("colorResult", JSON.stringify(result[state.petColor]))
-        localStorage.setItem("scoreResult", JSON.stringify(state))
-        handleResultUpdate()
-      }else{
-        // 진짜 검사 안한사람
-        navigate("/petsonal/test")
-      }
-    }
-  }, [isResultUpdate])
+  console.log(state)
 
+  console.log(state.petColor);
+  useEffect(() => {
+      const getPetsonalResult = async () => {
+          const response = await fetch(`http://localhost:10000/petsonal/result/${petId}`);
+          if(!response.ok) return console.error(`데이터가 없습니다.`)
+          const petsonalResult = await response.json();
+          return petsonalResult;
+      }
+
+      getPetsonalResult().then(setpetsonalResult).catch(console.error);
+  }, []);
+
+  console.log(petsonalResult);
+
+  const { petName, petImage, petsonalCute, petsonalChic, petsonalCalm, petsonalActive, petsonalLazy, petsonalDiligent, petsonalCoward, petsonalBrave } = petsonalResult;
 
   return (
     <div>
       <S.Frame>
         <S.ResultContainer>
-          <S.ColorWrap>
-            <img src={`${process.env.PUBLIC_URL}${imageSrc}`} alt="오렌지" />
+           <S.ColorWrap>
+            <img src={`${process.env.PUBLIC_URL}${imageSrc}`} alt="펫 컬러" />
           </S.ColorWrap>
 
           <S.OrangeResult>
             {message.map((m, i) => (
               <li key={i}>{m}</li>
             ))}
-          </S.OrangeResult>
+          </S.OrangeResult> 
 
-          <S.ResultBox color={boxColor} >
+           <S.ResultBox color={boxColor} >
             <S.PetProfile>
               <S.PetImage
-                src={`${process.env.PUBLIC_URL}/assets/images/petsonal/dog-img.png`}
+                src={`${process.env.PUBLIC_URL}/assets/images/pet/${petImage}`}
                 alt="강아지사진"
               />
-              <p>반려동물 이름</p>
+              <p>{petName}</p>
             </S.PetProfile>
             <S.RateWrap>
               <S.ResultName>{title}</S.ResultName>
@@ -76,11 +61,11 @@ const PetsonalResult = () => {
                     <span>귀염</span>
                   </S.ResultCategory>
                   <S.PercentageWrap>
-                  <span>{scoreResult.petsonalChic}<S.Percentage>(%)</S.Percentage></span>
+                  <span>{petsonalChic}<S.Percentage>(%)</S.Percentage></span>
                     <S.Percent>
-                      <S.CuteAndChicGage style={{ width: `${scoreResult.petsonalCute}%` }}></S.CuteAndChicGage>
+                      <S.CuteAndChicGage style={{ width: `${ petsonalCute }%` }}></S.CuteAndChicGage>
                     </S.Percent>
-                    <span>{scoreResult.petsonalCute}<S.Percentage>(%)</S.Percentage></span>
+                    <span>{petsonalCute}<S.Percentage>(%)</S.Percentage></span>
                   </S.PercentageWrap>
                 </S.AllRate>
                 <S.AllRate>
@@ -89,11 +74,11 @@ const PetsonalResult = () => {
                     <span>발랄</span>
                   </S.ResultCategory>
                   <S.PercentageWrap>
-                  <span>{scoreResult.petsonalCalm}<S.Percentage>(%)</S.Percentage></span>
+                  <span>{petsonalCalm}<S.Percentage>(%)</S.Percentage></span>
                     <S.Percent>
-                      <S.CalmAndActive style={{ width: `${scoreResult.petsonalActive}%` }}></S.CalmAndActive>
+                      <S.CalmAndActive style={{ width: `${petsonalActive}%` }}></S.CalmAndActive>
                     </S.Percent>
-                    <span>{scoreResult.petsonalActive}<S.Percentage>(%)</S.Percentage></span>
+                    <span>{petsonalActive}<S.Percentage>(%)</S.Percentage></span>
                   </S.PercentageWrap>
                 </S.AllRate>
                 <S.AllRate>
@@ -102,11 +87,11 @@ const PetsonalResult = () => {
                     <span>부지런함</span>
                   </S.ResultCategory>
                   <S.PercentageWrap>
-                  <span>{scoreResult.petsonalLazy}<S.Percentage>(%)</S.Percentage></span>
+                  <span>{petsonalLazy}<S.Percentage>(%)</S.Percentage></span>
                     <S.Percent>
-                      <S.LazyAndDilight style={{ width: `${scoreResult.petsonalDiligent}%` }}></S.LazyAndDilight>
+                      <S.LazyAndDilight style={{ width: `${petsonalDiligent}%` }}></S.LazyAndDilight>
                     </S.Percent>
-                    <span>{scoreResult.petsonalDiligent}<S.Percentage>(%)</S.Percentage></span>
+                    <span>{petsonalDiligent}<S.Percentage>(%)</S.Percentage></span>
                   </S.PercentageWrap>
                 </S.AllRate>
                 <S.AllRate>
@@ -115,16 +100,16 @@ const PetsonalResult = () => {
                     <span>용감함</span>
                   </S.ResultCategory>
                   <S.PercentageWrap >
-                  <span>{scoreResult.petsonalCoward}<S.Percentage>(%)</S.Percentage></span>
+                  <span>{petsonalCoward}<S.Percentage>(%)</S.Percentage></span>
                     <S.Percent>
-                      <S.CowardAndBrave style={{ width: `${scoreResult.petsonalBrave}%` }}></S.CowardAndBrave>
+                      <S.CowardAndBrave style={{ width: `${petsonalBrave}%` }}></S.CowardAndBrave>
                     </S.Percent>
-                    <span>{scoreResult.petsonalBrave}<S.Percentage>(%)</S.Percentage></span>
+                    <span>{petsonalBrave}<S.Percentage>(%)</S.Percentage></span>
                   </S.PercentageWrap>
                 </S.AllRate>
               </S.PercentageContainer>
             </S.RateWrap>
-          </S.ResultBox>
+          </S.ResultBox> 
 
           <S.ProductContainer>
           <S.ProductHeader>

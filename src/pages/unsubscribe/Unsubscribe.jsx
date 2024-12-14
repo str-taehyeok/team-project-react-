@@ -26,8 +26,7 @@ const Unsubscribe = () => {
         if(res.ok){
           const { jwtToken } = res;
           localStorage.removeItem("jwtToken", jwtToken);
-          alert("회원탈퇴가 완료되었습니다.")
-          navigate("/")
+          navigate("/unsubscribe/complete")
         }
       })
       .catch(console.err);
