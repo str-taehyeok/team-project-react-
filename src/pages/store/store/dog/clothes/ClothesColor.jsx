@@ -1,6 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import S from "../style";
 import { Link } from "react-router-dom";
+import HeartBtn from "../../HeartBtn";
+import {Grid, Pagination} from "swiper/modules";
+import "swiper/css";
+import "swiper/css/grid";
+import "swiper/css/pagination";
+import {Swiper, SwiperSlide} from "swiper/react";
 
 const ClothesColor = ({productList}) => {
 
@@ -13,6 +19,8 @@ const ClothesColor = ({productList}) => {
     const [selectedPrice, setSelectedPrice] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedSort, setSelectedSort] = useState(null);
+
+
 
     // 색상 필터링
     const handleColorSelect = (color) => {
@@ -42,29 +50,65 @@ const ClothesColor = ({productList}) => {
         setIsOpen(false);
     };
 
-    const colorProducts = filterdProducts.map(({productName, productPrice, productImage1}, i) => (
+    // 초기화 함수
+    const onClickToReset = () => {
+        // 상태 초기화
+        setSelectedColor(null);
+        setSelectedPrice(null);
+        setSelectedSize(null);
+        setSelectedSort(null);
+
+        // 필터링된 상품을 원래 상품 목록으로 복원
+        setFilteredProducts(productList);
+    };
+
+    const [products, setProducts] = useState([]);
+
+    // fetch 를 통해서 products 를 모두 가져와야한다.
+    useEffect(() => {
+        const getProducts = async () => {
+            try {
+                const response = await fetch("http://localhost:10000/products/products")
+                const products = await response.json()
+                setProducts(products)
+                // 초기에 모든 상품을 filterdProducts에 설정
+                setFilteredProducts(products)
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        getProducts()
+    }, []);
+
+    const colorProducts = products.length !== 0 ? filterdProducts.map(({productName, productPrice, productDiscount, productImage1}, i) => (
+            <SwiperSlide key={i}>
         <S.Product key={i}>
+            <HeartBtn />
             <Link to={"/product"}>
-            <img src={productImage1} alt={"상품" + (i + 1)}/>
+            <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)}/>
             <span>{productName}</span>
             </Link>
-            <span style={{fontWeight: 700}}>{productPrice}&nbsp;원</span>
+            <S.RecommendedPrice>
+                <p style={{color: "#C83F3F", fontWeight: "bold"}}>{productDiscount}%</p>
+                <p style={{fontWeight: 700}}>{productPrice}&nbsp;원</p>
+            </S.RecommendedPrice>
             <button>담기</button>
         </S.Product>
-    ))
+            </SwiperSlide>
+    )) : <S.CustomProductMessage>검색된 상품이 없습니다.</S.CustomProductMessage>
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
+    // useEffect(() => {
+    //     const handleClickOutside = (event) => {
+    //         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    //             setIsOpen(false);
+    //         }
+    //     };
+    //
+    //     document.addEventListener('mousedown', handleClickOutside);
+    //     return () => {
+    //         document.removeEventListener('mousedown', handleClickOutside);
+    //     };
+    // }, []);
 
 
 
@@ -72,12 +116,12 @@ const ClothesColor = ({productList}) => {
     const filterProducts = (color, price, size, sort) => {
         let result = [...productList];
 
-        // 색상 
+        // 색상
         if (color) {
             result = result.filter(product => product.productColor === color);
         }
 
-        // 가격 
+        // 가격
         if (price === 'Low') {
             result.sort((a, b) => a.productPrice - b.productPrice);
         } else if (price === 'High') {
@@ -122,9 +166,7 @@ const ClothesColor = ({productList}) => {
         };
     }, []);
 
-    // const toggleDropdown = () => {
-    //     setIsOpen(!isOpen);
-    // };
+
     const toggleDropdown = (dropdown) => {
         setOpenDropdown(openDropdown === dropdown ? null : dropdown);
         setIsOpen(!isOpen);
@@ -195,8 +237,6 @@ const ClothesColor = ({productList}) => {
                                 <button onClick={() => toggleDropdown('sort')} type="button"> 정렬
                                     <S.Arrow src={`${process.env.PUBLIC_URL}/assets/images/store/down-arrow.svg`} alt="icon"/></button>
                                 <S.DropdownContent isOpen={openDropdown === 'sort'}>
-                                    <S.DropdownItem onClick={() => handleSortSelect('Recent')} isSelected={selectedSort === 'Recent'}>
-                                        <input type="checkbox" checked={selectedSort === 'Recent'}/>최신 등록순</S.DropdownItem>
                                     <S.DropdownItem onClick={() => handleSortSelect('Star')} isSelected={selectedSort === 'Star'}>
                                         <input type="checkbox" checked={selectedSort === 'Star'}/>별점순</S.DropdownItem>
                                     <S.DropdownItem onClick={() => handleSortSelect('Sold')} isSelected={selectedSort === 'Sold'}>
@@ -206,12 +246,37 @@ const ClothesColor = ({productList}) => {
                                 </S.DropdownContent>
                             </S.DropdownWrapper>
                         </S.DropdownContainer>
+                    <S.SortButtonWrap onClick={onClickToReset}>
+                        <p>초기화</p>
+                    </S.SortButtonWrap>
                     </S.Box>
+                <S.ProductWrap>
+                <Swiper
+                    slidesPerView={4} // 한 줄에 4개
+                    grid={{
+                        rows: 2, // 두 줄
+                        fill: "row", // 위에서부터 채우기
+                    }}
+                    spaceBetween={16}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Grid, Pagination]}
+                    style={{
+                        "--swiper-pagination-bottom": "0px",
+                        "--swiper-pagination-color": "#131313",
+                        "--swiper-pagination-bullet-inactive-color": "#888888",
+                        padding: "0",
+                    }}
+                >
+                    {colorProducts}
+                </Swiper>
+                </S.ProductWrap>
                 </S.ColorProducts>
                 {/*제품들*/}
-                <S.ProductWrap>
-                    {colorProducts}
-                </S.ProductWrap>
+                {/*<S.ProductWrap>*/}
+                {/*    {colorProducts}*/}
+                {/*</S.ProductWrap>*/}
             </>
         );
     };

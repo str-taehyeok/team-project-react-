@@ -1,5 +1,14 @@
 import styled from "styled-components";
-import { flexRowCenter, flexColumnCenter, h4Medium, h8Medium, h1Bold, yellow200, h8Regular } from '../../../../global/common'
+import {
+    flexRowCenter,
+    flexColumnCenter,
+    h4Medium,
+    h8Medium,
+    h1Bold,
+    yellow200,
+    h8Regular,
+    h5Medium
+} from '../../../../global/common'
 
 const S = {}
 
@@ -42,6 +51,10 @@ const S = {}
             cursor: pointer;
         }
     `;
+S.CustomProductMessage = styled.p`
+  width: 100%;
+  text-align: center;
+`
 
 
     S.BannerButton = styled.img`
@@ -77,6 +90,81 @@ const S = {}
             margin-top: 11px;
     `;
 
+
+// 버튼 정렬 스타일
+
+S.SortButtonWrapper = styled.div`
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  margin: 176px 0 60px auto;
+  
+  & > div {
+    position: relative;
+  }
+`
+
+S.SortButtonWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 42px;
+  border-radius: 20px;
+    margin-left: 10px;
+  border: solid 1px #888888;
+    cursor: pointer;
+
+  img { 
+    position: absolute; 
+    top: 50%;
+    right: 6px;
+    transform: translate(0, -50%);
+    width: 12px;
+  }
+`
+
+S.SortModal = styled.div`
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  left: 0;
+  min-width: 114px;
+  top: 50px;
+  z-index: 1000;
+  gap: 12px;
+  border: solid 1px #d9d9d9;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  p {
+    white-space: nowrap;
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  &.active {
+    display: flex;
+  }
+  
+  & input {
+    border : none;
+  }
+`
+
+S.ColorCircle = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: ${({subtitle}) => subtitle};
+`
+
+
+
     // 드롭다운 필터링 버튼들
 
 S.DropdownWrapper = styled.div`
@@ -84,15 +172,15 @@ S.DropdownWrapper = styled.div`
     display: inline-block;
 `;
 
-// S.DropdownContainer = styled.div`
-//     display: flex;
-//     gap: 10px;
-// `;
+S.DropdownContainer = styled.div`
+    display: flex;
+    gap: 10px;
+`;
 
     S.DropdownContainer = styled.div`
         display: flex;
         position: relative;
-        
+
         & button{
             padding: 10px 15px;
             background: white;
@@ -111,16 +199,16 @@ S.DropdownWrapper = styled.div`
         cursor: pointer;
         background-color: ${props => props.isSelected ? '#f0f0f0' : 'white'};
         border-radius: 10px;
-        
+
         &:hover {
             background-color: #f5f5f5;
             border-radius: 10px;
         }
-    
+
         input {
             margin-right: 10px;
         }
-        
+
         & img{
             width: 30px;
             height: 30px;
@@ -149,40 +237,131 @@ S.DropdownWrapper = styled.div`
         }
     `;
 
+
     S.ProductWrap = styled.div`
-            grid-template-columns: repeat(4, 1fr);
-            display: grid;
-            justify-content: space-between;
-            gap: 24px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+
+        @media (max-width: 1024px) {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        @media (max-width: 480px) {
+            grid-template-columns: 1fr;
+            gap: 6px;
+        }
+        \`;
     `;
 
 
-    S.Product = styled.div`
-            width: 342px;
-            height: 457px;
-            ${flexColumnCenter};
-            
-            & span{
-                display: flex;
-                width: 342px;
-                margin-top: 15px;
-            }
-            
-            & button{
-                width: 342px;
-                height: 42px;
-                margin-top: 14px;
-                border-radius: 5px;
-                background-color: #fff;
-                border: 1px solid #D9D9D9;
-            }
-            
-            & img{
-                width: 342px;
-                height: 341px;
-                border-radius: 10px;
-            }
-        
+    // S.Product = styled.div`
+    //         width: 342px;
+    //         height: 480px;
+    //         position: relative;
+    //     box-sizing: border-box;
+    //     text-align: center;
+    //     margin: 0;
+    //     padding: 10px;
+    //
+    //         & span{
+    //             display: inline-block;
+    //             width: 342px;
+    //             margin-top: 15px;
+    //             flex-shrink: 0;
+    //             white-space: nowrap;
+    //             overflow: hidden;
+    //             text-overflow: ellipsis;
+    //             //text-align: center;
+    //         }
+    //
+    //     //& p{
+    //     //    display: flex;
+    //     //    width: 342px;
+    //     //    margin-top: 5px;
+    //     //}
+    //
+    //         & button{
+    //             width: 342px;
+    //             min-height: 42px;
+    //             margin-top: 14px;
+    //             border-radius: 5px;
+    //             background-color: #fff;
+    //             border: 1px solid #D9D9D9;
+    //         }
+    //
+    //         & img{
+    //             width: 342px;
+    //             height: 341px;
+    //             border-radius: 10px;
+    //         }
+    //     .like-icon {
+    //         width: 40px;
+    //         height: 40px;
+    //         position: absolute;
+    //         top: 10px;
+    //         right: 10px;
+    //     }
+    //
+    // `;
+
+S.Product = styled.div`
+    width: 100%;
+    max-width: 342px;
+    height: 480px;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    & span {
+        display: inline-block;
+        margin-top: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    & button {
+        width: 100%;
+        min-height: 42px;
+        margin-top: 14px;
+        border-radius: 5px;
+        background-color: #fff;
+        border: 1px solid #D9D9D9;
+    }
+
+    & img {
+        width: 100%;
+        max-width: 342px;
+        height: 341px;
+        border-radius: 10px;
+    }
+
+    .like-icon {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+`;
+
+S.RecommendedPrice = styled.p`
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    margin-top: 5px;
     `;
 
     //
@@ -193,9 +372,23 @@ S.DropdownWrapper = styled.div`
     // `;
     
     S.ColorProducts = styled.div`
-            margin: 0 auto;
-            ${flexRowCenter};
+        // //     margin: 0 auto;
+        // //     ${flexRowCenter};
+        // // width: 1440px;
+        // max-width: 1440px;
+        // display: flex;
+        // flex-direction: row;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1440px;
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: center;
+        align-items: flex-start; 
+        //gap: 24px; 
     `;
+
+
 
 
     // 컬러 제품들 타이틀부터 제품까지 묶임
@@ -215,13 +408,15 @@ S.DropdownWrapper = styled.div`
 
     S.BoxTitle = styled.span`
             font-size: 40px;
-            margin-right: 665px;
+            margin-right: 530px;
             font-weight: bold;
+            width: 380px;
         `;
 
     S.Arrow = styled.img`
         width: 10px;
         height: 10px;
+        margin-left: 10px;
     `
 
     // 베스트
@@ -231,6 +426,7 @@ S.DropdownWrapper = styled.div`
         margin-bottom: 50px;
         margin-top: 180px;
         width: 1440px;
+        position: relative;
     `;
 
     S.BestProducts = styled.div`
@@ -241,10 +437,11 @@ S.DropdownWrapper = styled.div`
 
     S.BestProduct = styled.div`
             display: flex;
-            align-items: center;
-            justify-content: center;
+            //align-items: center;
+            //justify-content: center;
             flex-direction: column;
             flex-shrink: 0;
+            position: relative;
 
             & img{
                 width: 244px;
@@ -253,10 +450,20 @@ S.DropdownWrapper = styled.div`
             }
             
             & span{
-                display: flex;
+                display: block;
                 width: 244px;
                 margin-top: 5px;
+                flex-shrink: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
+    
+            & p{
+                display: flex;
+                margin-top: 5px;
+            }
+        
             
             & button{
                 width: 244px;
@@ -264,9 +471,24 @@ S.DropdownWrapper = styled.div`
                 margin-top: 9px;
                 border-radius: 5px;
                 background-color: #fff;
-                border: 1px solid #D9D9D9;
+            }
+
+            .like-icon {
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                top: 10px;
+                right: 10px;
             }
         `;
+
+    S.NormalPrice = styled.p`
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    `;
+
+
 
     S.BestProductWrap = styled.div`
             display: flex;
@@ -299,6 +521,7 @@ S.DropdownWrapper = styled.div`
         display: flex;
         flex-direction: column;
         width: 244px;
+        position: relative;
         
         & img {
             width: 100%;
@@ -325,13 +548,77 @@ S.DropdownWrapper = styled.div`
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             ${h8Regular};
+            flex-shrink: 0;
+            white-space: nowrap;
+            display: inline-block;
+        }
+ 
+        
+        // & span:first-child{
+        //     display: flex;
+        //     width: 500px;
+        //     margin-top: 5px;
+        //     ${h5Medium};
+        // }
+        
+        .like-icon:first-child {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .like-icon {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* 첫 번째 상품 전체 크기 */
+        .first-product {
+            width: 300px; /* 원하는 크기로 조정 */
+        }
+
+        /* 첫 번째 상품 이름 스타일 */
+        .first-product-name {
+            ${h5Medium};
+            width: 100%;
+            height: 80px;
+            margin-top: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            flex-shrink: 0;
+        }
+
+        /* 첫 번째 상품 할인율 스타일 */
+        .first-product-discount {
+            ${h5Medium};
+        }
+
+        /* 첫 번째 상품 가격 스타일 */
+        .first-product-price {
+            ${h5Medium};
         }
         
-        & span:nth-of-type(2) {
-            font-weight: 700;
-            margin-top: 5px;
+        .rest{
+            ${h8Regular};
         }
+        
+        
     `;
+
+
+    S.Price = styled.div`
+        display: flex;
+        flex-direction: row;
+    `;
+
 
     S.SpecialProducts = styled.div`
         display: grid;
