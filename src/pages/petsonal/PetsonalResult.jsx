@@ -1,30 +1,29 @@
 import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { PetsonalContext } from "../../context/petsonalContext";
 
 const PetsonalResult = () => {
 
-  const { state, result } = useContext(PetsonalContext)
-  const [ colorResult, setColorResult ] = useState({ imageSrc : "", message : [], boxColor : "", title : ""});
+  const { id } = useParams();
+  const { result } = useContext(PetsonalContext)
+  const [ colorResult  ] = useState({ imageSrc : "", message : [], boxColor : "", title : ""});
   const { imageSrc, message, boxColor, title } = colorResult;
 
   const [petsonalResult, setpetsonalResult] = useState([]);
-  const petId = 5;
   
-  console.log(state)
 
-  console.log(state.petColor);
+  console.log(result.petColor);
   useEffect(() => {
       const getPetsonalResult = async () => {
-          const response = await fetch(`http://localhost:10000/petsonal/result/${petId}`);
+          const response = await fetch(`http://localhost:10000/petsonal/result/${id}`);
           if(!response.ok) return console.error(`데이터가 없습니다.`)
           const petsonalResult = await response.json();
           return petsonalResult;
       }
 
       getPetsonalResult().then(setpetsonalResult).catch(console.error);
-  }, []);
+  }, [id]);
 
   console.log(petsonalResult);
 

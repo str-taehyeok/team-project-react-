@@ -1,15 +1,16 @@
 import { createContext, useState } from "react";
 
 const FindContext = createContext({
-  state : { select : ""},
-  action : { setSelect : () => {}}
+  state : { select : "", memberEmail : ""},
+  action : { setSelect : () => {}, setMemberEmail : () => {}}
 })
 
 const FindProvider = ({children}) => {
   const [select, setSelect] = useState("id");
+  const [memberEmail, setMemberEmail] = useState("")
   const value = {
-    state : { select : select },
-    action : { setSelect : setSelect }
+    state : { select : select, memberEmail : memberEmail },
+    action : { setSelect : setSelect, setMemberEmail : setMemberEmail }
   }
 
   return (

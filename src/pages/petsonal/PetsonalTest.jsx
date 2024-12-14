@@ -1,48 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import S from "./style";
 import Footer from "../layout/Footer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { PetsonalContext } from "../../context/petsonalContext";
 
 const PetsonalTest = () => {
   const navigate = useNavigate();
-  const [pets, setPets] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { state, action } = useContext(PetsonalContext);
-
-  // 펫이 없을 때 등록하러 가는 로직
-  useEffect(() => {
-    const getPets = async () => {
-      try {
-        const response = await fetch("http://localhost:10000/my-pet/list"); 
-        if (!response.ok) {
-          console.error("데이터가 없습니다.");
-          return;
-        }
-        const data = await response.json();
-        setPets(data);
-      } catch (error) {
-        console.error(error);
-        alert("펫 데이터를 가져오는 중 오류가 발생했습니다.");
-      }finally{
-        setLoading(false); 
-      }
-    };
-
-    getPets();
-  }, []);
-
-  useEffect(() => {
-    console.log("Pets updated:", pets);
-    if (!loading && pets.length === 0) {
-      alert("펫을 등록해주세요");
-      navigate("/my-pet/pet-not");
-    }else {
-      alert("테스트 하실 펫을 선택해주세요");
-      navigate("/my-pet");
-    }
-  }, [pets, navigate, loading]);
-
+  const { id } = useParams();
 
   const {
     setPetColor,
@@ -55,10 +20,10 @@ const PetsonalTest = () => {
     setPetsonalCoward,
     setPetsonalBrave,
   } = action;
-  const { survey, petColor } = state;
+  const { survey } = state;
   
   // 임의로 넣음 가져올 로직 추가가
-  const petId = 5;
+  // const petId = 5;
 
   // 한페이지 문항의 개수
   const [inputScore, inputSetScore] = useState(Array(25).fill(0));
@@ -149,7 +114,7 @@ const PetsonalTest = () => {
       },
       body: JSON.stringify({
         petColor: selectedPetColor,
-        petId: petId,
+        petId: id,
         petsonalChic: chic,
         petsonalCute: cute,
         petsonalCalm: calm,
@@ -161,9 +126,10 @@ const PetsonalTest = () => {
       })
     })                   
     .then((res) => res.json())
+    .then((res) => console.log(res))
     .then((res) => {
         alert('설문 결과가 완료되었습니다!');
-        navigate("/petsonal/result");
+        navigate(`/petsonal/result/${id}`);
     })
     .catch((error) => {
         console.error('에러발생 :', error);
