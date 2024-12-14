@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 import S from './style';
 
 const PetWrite = () => {
+  const { currentUser } = useSelector((state) => state.user)
+  console.log("멤버아이디", currentUser && currentUser.id)
+  console.log(currentUser)
+
   const { register, handleSubmit, formState: { isSubmitting }} = useForm({ mode: 'onChange' });
   const [petName, setPetName] = useState(""); // 마이펫 이름
   const [petKind, setPetKind] = useState(""); // 마이펫 종류
@@ -11,6 +16,7 @@ const PetWrite = () => {
   const [petBreed, setPetBreed] = useState(""); // 마이펫 품종
   const [petNeuter, setPetNeuter] = useState(""); // 마이펫 중성화
   const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -40,12 +46,13 @@ const PetWrite = () => {
   return (
     <form onSubmit={handleSubmit(async (data) => {
       console.log(data)
-      await fetch("http://localhost:10000/my-pet/write", {
+      await fetch(`http://localhost:10000/my-pet/write`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
+          memberId: currentUser.id,
           petName: data.petName,
           petKind: data.petKind,
           petImage : "1234",
