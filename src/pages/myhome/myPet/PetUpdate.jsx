@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import S from './style';
+import { useSelector } from "react-redux";
 
 const PetUpdate = () => {
   const navigate = useNavigate();
   const [pet, setPet] = useState({ petName: '', petKind: '', petImage: '/assets/images/layout/petimg.png',  petGender: '', petBreed: '',  petBirth: '', petWeight: '', petNeuter: '', petVet: '' });
   const { id } = useParams();
-  const memberId = 1;
+  const { currentUser} = useSelector((state) => state.user)
 
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const PetUpdate = () => {
       const response = await fetch(`http://localhost:10000/my-pet/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...pet, petImage: '1234', memberId }),
+        body: JSON.stringify({ ...pet, petImage: '1234', memberId: currentUser.id, }),
       });
       if (!response.ok) throw new Error('데이터 전송 실패');
       alert('데이터가 성공적으로 전송되었습니다!');
