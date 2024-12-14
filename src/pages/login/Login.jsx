@@ -27,8 +27,7 @@ const Login = () => {
                 },
                 body: JSON.stringify(data)
             });
-            console.log("Response Status:", response.status); 
-
+            
             if (!response.ok) {
                 const errorData = await response.json();
                 alert(errorData.message);
@@ -43,6 +42,7 @@ const Login = () => {
             console.error("Login error:", error);
             alert("로그인에 실패했습니다. 다시 시도해주세요.");
         }
+
     };
 
     return (
@@ -72,6 +72,14 @@ const Login = () => {
                             message: "소문자, 숫자, 특수문자를 포함한 8자리 이상이어야 합니다."
                         }
                     })}
+                />
+                {errors.password && <S.P>{errors.password.message}</S.P>}
+            </label>
+
+            <label>
+                <S.Input type="hidden"
+                    {...register("memberProvider")} 
+                    value= "구매자"
                 />
                 {errors.password && <S.P>{errors.password.message}</S.P>}
             </label>

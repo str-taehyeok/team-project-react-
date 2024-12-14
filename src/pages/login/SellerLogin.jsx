@@ -14,6 +14,7 @@ const Login = () => {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
     const onSubmit = async (data) => {
+        if(data.memberProvider === "판매자"){
         try {
             const response = await fetch("http://localhost:10000/member/login", {
                 method: "POST",
@@ -32,14 +33,16 @@ const Login = () => {
             const result = await response.json();
             if (result && result.jwtToken) {
                 localStorage.setItem('jwtToken', result.jwtToken);
+                console.log("result", result)
                 navigate('/seller');
             }
         } catch (error) {
             console.error("Login error:", error);
             alert("로그인에 실패했습니다. 다시 시도해주세요.");
         }
+    }
+    return alert("구매자 로그인을 이용해주세요")
     };
-
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <S.InputBox>
@@ -67,6 +70,14 @@ const Login = () => {
                             message: "소문자, 숫자, 특수문자를 포함한 8자리 이상이어야 합니다."
                         }
                     })}
+                />
+                {errors.password && <S.P>{errors.password.message}</S.P>}
+            </label>
+
+            <label>
+                <S.Input type="hidden"
+                    {...register("memberProvider")}
+                    value="판매자자"
                 />
                 {errors.password && <S.P>{errors.password.message}</S.P>}
             </label>

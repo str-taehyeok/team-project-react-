@@ -2,22 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import S from "./style";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const PetList = () => {
   const [pets, setPets] = useState([]);
-  const {isLogin } = useSelector((state) => state.user)
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
   const navigate = useNavigate();
+  const localJwtToken = localStorage.getItem("jwtToken");
+  
+
 
   useEffect(() => {
-      if (!isLogin) {
+      if (!localJwtToken) {
         alert("로그인 후 이용해주시길 바랍니다.")
         navigate('/login'); 
       }
-    }, [ navigate, isLogin]);
+    }, [ navigate, localJwtToken]);
   
-
   useEffect(() => {
     const getPets = async () => {
       try {
