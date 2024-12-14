@@ -36,10 +36,7 @@ const PetsonalTest = () => {
     console.log("Pets updated:", pets);
     if (!loading && pets.length === 0) {
       alert("펫을 등록해주세요");
-      navigate("/my-pet/pet-not");
-    }else {
-      alert("테스트 하실 펫을 선택해주세요");
-      navigate("/my-pet");
+      navigate("/my-pet/test-list");
     }
   }, [pets, navigate, loading]);
 
@@ -109,7 +106,7 @@ const PetsonalTest = () => {
 
     // 상태 업데이트
     setPetsonalChic(chic);
-    setPetsonalCute(cute);
+    setPetsonalCute(깜찍);
     setPetsonalCalm(calm);
     setPetsonalActive(active);
     setPetsonalLazy(lazy);
