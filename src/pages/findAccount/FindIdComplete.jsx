@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import S from "./style";
+import { FindContext } from "../../context/findContext";
 
 const FindIdComplete = () => {
-  const location = useLocation();
-  const { memberEmail } = location.state || {};
+
+  const { state } = useContext(FindContext);
 
   return (
     <div>
@@ -28,7 +29,7 @@ const FindIdComplete = () => {
             alt="체크"
           />
           <S.BoldText>
-            {memberEmail ? memberEmail : "아이디를 찾을 수 없습니다."}
+            {state.memberEmail ? state.memberEmail : "아이디를 찾을 수 없습니다."}
           </S.BoldText>
           <Link to={"/login"}>
             <S.GoToLoginButton>로그인</S.GoToLoginButton>
