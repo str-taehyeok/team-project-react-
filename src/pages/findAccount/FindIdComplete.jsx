@@ -1,8 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import S from "./style";
 
 const FindIdComplete = () => {
+  const location = useLocation();
+  const { memberEmail } = location.state || {};
+
   return (
     <div>
       <S.CompletionMain>
@@ -16,22 +19,19 @@ const FindIdComplete = () => {
             </Link>
           </S.LogoWrap>
         </S.LogoBox>
+
         <S.Box>
           <img
             id="Check"
-            style={{ marginBottom: '7px'}}
+            style={{ marginBottom: "7px" }}
             src={`${process.env.PUBLIC_URL}/assets/images/join/complete-check.png`}
             alt="체크"
           />
-
-          <S.BoldText>powpow123@naver.com</S.BoldText>
-          <S.Text1>
-          아이디 찾기가 완료되었습니다.
-          </S.Text1>
+          <S.BoldText>
+            {memberEmail ? memberEmail : "아이디를 찾을 수 없습니다."}
+          </S.BoldText>
           <Link to={"/login"}>
-          <S.GoToLoginButton>
-            로그인
-          </S.GoToLoginButton>
+            <S.GoToLoginButton>로그인</S.GoToLoginButton>
           </Link>
         </S.Box>
       </S.CompletionMain>
