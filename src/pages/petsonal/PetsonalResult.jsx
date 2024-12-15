@@ -1,39 +1,55 @@
 import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { PetsonalContext } from "../../context/petsonalContext";
 
 const PetsonalResult = () => {
-
   const { id } = useParams();
-  const { result } = useContext(PetsonalContext)
-  const [ colorResult  ] = useState({ imageSrc : "", message : [], boxColor : "", title : ""});
-  const { imageSrc, message, boxColor, title } = colorResult;
+  const navigate = useNavigate();
+  const { result } = useContext(PetsonalContext);
 
   const [petsonalResult, setpetsonalResult] = useState([]);
+  const [colorResult, setColorResult] = useState({
+    imageSrc: "",
+    message: [],
+    boxColor: "",
+    title: "",
+  });
+
   
-
-  console.log(result.petColor);
+  
   useEffect(() => {
-      const getPetsonalResult = async () => {
-          const response = await fetch(`http://localhost:10000/petsonal/result/${id}`);
-          if(!response.ok) return console.error(`데이터가 없습니다.`)
-          const petsonalResult = await response.json();
-          return petsonalResult;
+    const getPetsonalResult = async () => {
+      const response = await fetch(`http://localhost:10000/petsonal/result/${id}`);
+      if (!response.ok) return console.error(`데이터가 없습니다.`);
+      const petsonalResult = await response.json();
+
+      if (petsonalResult.id === null) {
+        navigate(`/petsonal/test/${id}`);
+        alert("진행하신 테스트 결과가 없습니다.");
+      } else {
+        setpetsonalResult(petsonalResult);
+        
+        const color = petsonalResult.petColor;
+        if (result[color]) {
+          setColorResult(result[color]);
+        }
       }
+    };
 
-      getPetsonalResult().then(setpetsonalResult).catch(console.error);
-  }, [id]);
-
-  console.log(petsonalResult);
-
+    getPetsonalResult().catch(console.error);
+  }, [id, navigate, result]);
+  
+  
   const { petName, petImage, petsonalCute, petsonalChic, petsonalCalm, petsonalActive, petsonalLazy, petsonalDiligent, petsonalCoward, petsonalBrave } = petsonalResult;
-
+  const { imageSrc, message, boxColor, title } = colorResult;
+  
+  console.log(colorResult);
   return (
     <div>
       <S.Frame>
         <S.ResultContainer>
-           <S.ColorWrap>
+          <S.ColorWrap>
             <img src={`${process.env.PUBLIC_URL}${imageSrc}`} alt="펫 컬러" />
           </S.ColorWrap>
 
@@ -41,9 +57,9 @@ const PetsonalResult = () => {
             {message.map((m, i) => (
               <li key={i}>{m}</li>
             ))}
-          </S.OrangeResult> 
+          </S.OrangeResult>
 
-           <S.ResultBox color={boxColor} >
+          <S.ResultBox color={boxColor}>
             <S.PetProfile>
               <S.PetImage
                 src={`${process.env.PUBLIC_URL}/assets/images/pet/${petImage}`}
@@ -60,11 +76,19 @@ const PetsonalResult = () => {
                     <span>귀염</span>
                   </S.ResultCategory>
                   <S.PercentageWrap>
-                  <span>{petsonalChic}<S.Percentage>(%)</S.Percentage></span>
+                    <span>
+                      {petsonalChic}
+                      <S.Percentage>(%)</S.Percentage>
+                    </span>
                     <S.Percent>
-                      <S.CuteAndChicGage style={{ width: `${ petsonalCute }%` }}></S.CuteAndChicGage>
+                      <S.CuteAndChicGage
+                        style={{ width: `${petsonalCute}%` }}
+                      ></S.CuteAndChicGage>
                     </S.Percent>
-                    <span>{petsonalCute}<S.Percentage>(%)</S.Percentage></span>
+                    <span>
+                      {petsonalCute}
+                      <S.Percentage>(%)</S.Percentage>
+                    </span>
                   </S.PercentageWrap>
                 </S.AllRate>
                 <S.AllRate>
@@ -73,11 +97,19 @@ const PetsonalResult = () => {
                     <span>발랄</span>
                   </S.ResultCategory>
                   <S.PercentageWrap>
-                  <span>{petsonalCalm}<S.Percentage>(%)</S.Percentage></span>
+                    <span>
+                      {petsonalCalm}
+                      <S.Percentage>(%)</S.Percentage>
+                    </span>
                     <S.Percent>
-                      <S.CalmAndActive style={{ width: `${petsonalActive}%` }}></S.CalmAndActive>
+                      <S.CalmAndActive
+                        style={{ width: `${petsonalActive}%` }}
+                      ></S.CalmAndActive>
                     </S.Percent>
-                    <span>{petsonalActive}<S.Percentage>(%)</S.Percentage></span>
+                    <span>
+                      {petsonalActive}
+                      <S.Percentage>(%)</S.Percentage>
+                    </span>
                   </S.PercentageWrap>
                 </S.AllRate>
                 <S.AllRate>
@@ -86,11 +118,19 @@ const PetsonalResult = () => {
                     <span>부지런함</span>
                   </S.ResultCategory>
                   <S.PercentageWrap>
-                  <span>{petsonalLazy}<S.Percentage>(%)</S.Percentage></span>
+                    <span>
+                      {petsonalLazy}
+                      <S.Percentage>(%)</S.Percentage>
+                    </span>
                     <S.Percent>
-                      <S.LazyAndDilight style={{ width: `${petsonalDiligent}%` }}></S.LazyAndDilight>
+                      <S.LazyAndDilight
+                        style={{ width: `${petsonalDiligent}%` }}
+                      ></S.LazyAndDilight>
                     </S.Percent>
-                    <span>{petsonalDiligent}<S.Percentage>(%)</S.Percentage></span>
+                    <span>
+                      {petsonalDiligent}
+                      <S.Percentage>(%)</S.Percentage>
+                    </span>
                   </S.PercentageWrap>
                 </S.AllRate>
                 <S.AllRate>
@@ -98,66 +138,127 @@ const PetsonalResult = () => {
                     <span>겁쟁이</span>
                     <span>용감함</span>
                   </S.ResultCategory>
-                  <S.PercentageWrap >
-                  <span>{petsonalCoward}<S.Percentage>(%)</S.Percentage></span>
+                  <S.PercentageWrap>
+                    <span>
+                      {petsonalCoward}
+                      <S.Percentage>(%)</S.Percentage>
+                    </span>
                     <S.Percent>
-                      <S.CowardAndBrave style={{ width: `${petsonalBrave}%` }}></S.CowardAndBrave>
+                      <S.CowardAndBrave
+                        style={{ width: `${petsonalBrave}%` }}
+                      ></S.CowardAndBrave>
                     </S.Percent>
-                    <span>{petsonalBrave}<S.Percentage>(%)</S.Percentage></span>
+                    <span>
+                      {petsonalBrave}
+                      <S.Percentage>(%)</S.Percentage>
+                    </span>
                   </S.PercentageWrap>
                 </S.AllRate>
               </S.PercentageContainer>
             </S.RateWrap>
-          </S.ResultBox> 
+          </S.ResultBox>
 
           <S.ProductContainer>
-          <S.ProductHeader>
-            <h2>POWPOW의 추천상품이에요!</h2>
-            <Link to={"/product"}><strong>+ 더보기</strong></Link>
-          </S.ProductHeader>
+            <S.ProductHeader>
+              <h2>POWPOW의 추천상품이에요!</h2>
+              <Link to={"/product"}>
+                <strong>+ 더보기</strong>
+              </Link>
+            </S.ProductHeader>
 
-          <S.ProductsWrap>
-          <S.Products>
-            {[
-              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "55% 9,900원", image: "product1.png" },
-              { name: "디팡 강아지 사료 500g", price: "10% 8,500원", image: "product2.png" },
-              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "10% 9,900원", image: "product3.png" },
-              { name: "디팡 강아지 사료 500g", price: "10% 8,500원", image: "product4.png" },
-              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "35% 9,900원", image: "product1.png" },
-              { name: "디팡 강아지 사료 500g", price: "55% 8,500원", image: "product2.png" },
-              { name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g", price: "10% 9,900원", image: "product3.png" },
-              { name: "디팡 강아지 사료 500g", price: "35% 8,500원", image: "product4.png" }
-            ].map((product, index) => {
-              const [discount, price] = product.price.split(' ');
+            <S.ProductsWrap>
+              <S.Products>
+                {[
+                  {
+                    name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
+                    price: "55% 9,900원",
+                    image: "product1.png",
+                  },
+                  {
+                    name: "디팡 강아지 사료 500g",
+                    price: "10% 8,500원",
+                    image: "product2.png",
+                  },
+                  {
+                    name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
+                    price: "10% 9,900원",
+                    image: "product3.png",
+                  },
+                  {
+                    name: "디팡 강아지 사료 500g",
+                    price: "10% 8,500원",
+                    image: "product4.png",
+                  },
+                  {
+                    name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
+                    price: "35% 9,900원",
+                    image: "product1.png",
+                  },
+                  {
+                    name: "디팡 강아지 사료 500g",
+                    price: "55% 8,500원",
+                    image: "product2.png",
+                  },
+                  {
+                    name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
+                    price: "10% 9,900원",
+                    image: "product3.png",
+                  },
+                  {
+                    name: "디팡 강아지 사료 500g",
+                    price: "35% 8,500원",
+                    image: "product4.png",
+                  },
+                ].map((product, index) => {
+                  const [discount, price] = product.price.split(" ");
 
-              return (
-                <S.ProductCard key={index}>
-                  <img className="productImage" src={`${process.env.PUBLIC_URL}/assets/images/layout/${product.image}`} alt={product.name} />
-                  <S.ProductHeartICon src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`} alt="하트" />
-                  <S.CardTextWrap>
-                    <S.ProductName>{product.name}</S.ProductName>
-                    <S.DiscountText>   
-                      
-                      {discount && (
-                        <b><span style={{ color: '#C83F3F', fontWeight: 'bold', marginRight: '10px' }}>{discount}</span></b>
-                      )}
-                        <b><span>{price}</span></b>
-                      
-                    </S.DiscountText>
-                  </S.CardTextWrap>
-                  <S.CardCart>
-                    <Link to={"/"}>
-                    <img src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`} alt="장바구니아이콘" />
-                    <p>담기</p>
-                    </Link>
-                  </S.CardCart>
-                </S.ProductCard>
-              );
-            })}
-          </S.Products>
-        </S.ProductsWrap>
-        </S.ProductContainer>
-
+                  return (
+                    <S.ProductCard key={index}>
+                      <img
+                        className="productImage"
+                        src={`${process.env.PUBLIC_URL}/assets/images/layout/${product.image}`}
+                        alt={product.name}
+                      />
+                      <S.ProductHeartICon
+                        src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`}
+                        alt="하트"
+                      />
+                      <S.CardTextWrap>
+                        <S.ProductName>{product.name}</S.ProductName>
+                        <S.DiscountText>
+                          {discount && (
+                            <b>
+                              <span
+                                style={{
+                                  color: "#C83F3F",
+                                  fontWeight: "bold",
+                                  marginRight: "10px",
+                                }}
+                              >
+                                {discount}
+                              </span>
+                            </b>
+                          )}
+                          <b>
+                            <span>{price}</span>
+                          </b>
+                        </S.DiscountText>
+                      </S.CardTextWrap>
+                      <S.CardCart>
+                        <Link to={"/"}>
+                          <img
+                            src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
+                            alt="장바구니아이콘"
+                          />
+                          <p>담기</p>
+                        </Link>
+                      </S.CardCart>
+                    </S.ProductCard>
+                  );
+                })}
+              </S.Products>
+            </S.ProductsWrap>
+          </S.ProductContainer>
         </S.ResultContainer>
       </S.Frame>
     </div>

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import S from './style';
 import PayMemo from './PayMemo';
 import Checkbox from './Checkbox';
 import PayCoupon from './PayCoupon';
 import PayBtn from './PayBtn';
+import Card from "./Card";
+import InsertedCard from "./InsertedCard";
 
 // 더미데이터
 const payList = 
@@ -31,6 +33,8 @@ const payList =
 
 
 const Pay = () => {
+
+    const [isInsert, setIsInsert] = useState(true);
 
   const delivery = (
     <S.DeliveryPlaceWrap>
@@ -92,6 +96,11 @@ const Pay = () => {
             <input type="radio" name="pay" id="card" />
             <p>카드 간편결제</p>
           </S.PayCardTitle>
+            {isInsert ? (
+                <Card/>
+            ) : (
+                <InsertedCard/>
+            )}
         </S.PayCardCategory>
         <S.PayNormalCategory>
           <input type="radio" name="pay" id="normal" />

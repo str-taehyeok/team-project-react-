@@ -8,7 +8,7 @@ import { Pagination } from 'swiper/modules';
 const ClothesBest = ({bestProducts}) => {
   return (
     <>
-        <S.BestTitle>강아지 BEST 상품</S.BestTitle>
+        <S.BestTitle>고양이 BEST 상품</S.BestTitle>
         <S.BestProducts>
             <Swiper
                 slidesPerView={5}

@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import S from "./style";
-import {Outlet, useLocation} from "react-router-dom";
+import {Outlet, useLocation, useParams} from "react-router-dom";
 
 const MemberContainer = () => {
 
@@ -17,109 +17,134 @@ const MemberContainer = () => {
         }
     };
 
-    const [memberList] = useState([
-        {
-            id : 1,
-            memberName : "홍길동",
-            memberEmail : "jane@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01012345678",
-            memberSmscheck : "1",
-            memberEmailcheck : "1",
-            memberDate : "2022-11-18",
-            memberBusinessNumber : "1111111111",
-            memberBusinessName : "멍냥멍냥"
-        },
-        {
-            id : 2,
-            memberName : "홍길동",
-            memberEmail : "chapssal@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01034566768",
-            memberSmscheck : "0",
-            memberEmailcheck : "0",
-            memberDate : "2022-11-18",
-            memberBusinessNumber : "1111111111",
-            memberBusinessName : "댕냥댕냥"
-        },
-        {
-            id : 3,
-            memberName : "홍길동",
-            memberEmail : "hong@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01011111111",
-            memberSmscheck : "1",
-            memberEmailcheck : "1",
-            memberDate : "2022-11-18",
-            memberBusinessNumber : "1111111111",
-            memberBusinessName : "멍냥멍냥"
-        },
-        {
-            id : 4,
-            memberName : "홍길동",
-            memberEmail : "kim@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01036363773",
-            memberSmscheck : "0",
-            memberEmailcheck : "0",
-            memberDate : "2022-11-18",
-            memberBusinessNumber : "1111111111",
-            memberBusinessName : "댕냥댕냥"
-        },
-        {
-            id : 5,
-            memberName : "홍길동",
-            memberEmail : "king@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01023455674",
-            memberSmscheck : "0",
-            memberEmailcheck : "1",
-            memberDate : "2022-11-18",
-            memberBusinessNumber : "1111111111",
-            memberBusinessName : "멍냥멍냥"
-        },
-        {
-            id : 6,
-            memberName : "홍길동",
-            memberEmail : "queen@gmail.com",
-            memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-            memberPhone : "01056479389",
-            memberSmscheck : "1",
-            memberEmailcheck : "0",
-            memberDate : "2022-11-18",
-            memberBusinessNumber : "1111111111",
-            memberBusinessName : "댕냥댕냥"
-        },
-    ]);
+    // const [memberList] = useState([
+    //     {
+    //         id : 1,
+    //         memberName : "홍길동",
+    //         memberEmail : "jane@gmail.com",
+    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
+    //         memberPhone : "01012345678",
+    //         memberSmscheck : "1",
+    //         memberEmailcheck : "1",
+    //         memberDate : "2022-11-18",
+    //         memberBusinessNumber : "1111111111",
+    //         memberBusinessName : "멍냥멍냥"
+    //     },
+    //     {
+    //         id : 2,
+    //         memberName : "홍길동",
+    //         memberEmail : "chapssal@gmail.com",
+    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
+    //         memberPhone : "01034566768",
+    //         memberSmscheck : "0",
+    //         memberEmailcheck : "0",
+    //         memberDate : "2022-11-18",
+    //         memberBusinessNumber : "1111111111",
+    //         memberBusinessName : "댕냥댕냥"
+    //     },
+    //     {
+    //         id : 3,
+    //         memberName : "홍길동",
+    //         memberEmail : "hong@gmail.com",
+    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
+    //         memberPhone : "01011111111",
+    //         memberSmscheck : "1",
+    //         memberEmailcheck : "1",
+    //         memberDate : "2022-11-18",
+    //         memberBusinessNumber : "1111111111",
+    //         memberBusinessName : "멍냥멍냥"
+    //     },
+    //     {
+    //         id : 4,
+    //         memberName : "홍길동",
+    //         memberEmail : "kim@gmail.com",
+    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
+    //         memberPhone : "01036363773",
+    //         memberSmscheck : "0",
+    //         memberEmailcheck : "0",
+    //         memberDate : "2022-11-18",
+    //         memberBusinessNumber : "1111111111",
+    //         memberBusinessName : "댕냥댕냥"
+    //     },
+    //     {
+    //         id : 5,
+    //         memberName : "홍길동",
+    //         memberEmail : "king@gmail.com",
+    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
+    //         memberPhone : "01023455674",
+    //         memberSmscheck : "0",
+    //         memberEmailcheck : "1",
+    //         memberDate : "2022-11-18",
+    //         memberBusinessNumber : "1111111111",
+    //         memberBusinessName : "멍냥멍냥"
+    //     },
+    //     {
+    //         id : 6,
+    //         memberName : "홍길동",
+    //         memberEmail : "queen@gmail.com",
+    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
+    //         memberPhone : "01056479389",
+    //         memberSmscheck : "1",
+    //         memberEmailcheck : "0",
+    //         memberDate : "2022-11-18",
+    //         memberBusinessNumber : "1111111111",
+    //         memberBusinessName : "댕냥댕냥"
+    //     },
+    // ]);
 
-
-    // 검색 상태 관리
+    const {memberProvider} = useParams();
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredMembers, setFilteredMembers] = useState(memberList);
     const [smsFilter, setSmsFilter] = useState('1');
     const [emailFilter, setEmailFilter] = useState('1');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
+    const [members, setMembers] = useState([]);
+    const [filteredMembers, setFilteredMembers] = useState([]);
 
-    // 통합 검색 필터 함수
+    useEffect(() => {
+        const getMembers = async () => {
+            try {
+                const response = await fetch(`http://localhost:10000/admin/members/${memberProvider}`);
+                if (!response.ok) throw new Error('데이터를 불러올 수 없습니다.');
+                const data = await response.json();
+                setMembers(data);
+                setFilteredMembers(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        getMembers();
+    }, [memberProvider]);
+
+
     const handleSearch = () => {
-        const filtered = memberList.filter(member => {
-            // 검색어
-            const matchSearchTerm =
-                member.memberEmail.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                member.memberAddressDetail.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                member.memberPhone.includes(searchTerm) ||
-                member.memberName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                member.memberBusinessName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                member.memberBusinessNumber.includes(searchTerm);
+        if (!members.length) return;
 
-            // SMS랑 이메일 필터
-            const matchSmsFilter =
-                smsFilter === '1' ? member.memberSmscheck === '1' : member.memberSmscheck === '0';
+        const filtered = members.filter(member => {
+            const searchFields = [
+                member.memberEmail,
+                member.memberAddressDetail,
+                member.memberPhone,
+                member.memberName,
+                member.memberBusinessName,
+                member.memberBusinessNumber
+            ];
 
-            const matchEmailFilter =
-                emailFilter === '1' ? member.memberEmailcheck === '1' : member.memberEmailcheck === '0';
+            const matchSearchTerm = searchFields.some(field =>
+                field.toLowerCase().includes(searchTerm.toLowerCase())
+            );
 
+            // SMS  Email
+            const matchSmsFilter = smsFilter === '1'
+                ? member.memberSmscheck === '1'
+                : member.memberSmscheck === '0';
+
+            const matchEmailFilter = emailFilter === '1'
+                ? member.memberEmailcheck === '1'
+                : member.memberEmailcheck === '0';
+
+            // 날짜
             const matchDateFilter =
                 (!startDate || member.memberDate >= startDate) &&
                 (!endDate || member.memberDate <= endDate);
@@ -129,6 +154,7 @@ const MemberContainer = () => {
 
         setFilteredMembers(filtered);
     };
+
 
     // 검색어 입력
     const handleSearchInput = (e) => {
@@ -142,7 +168,7 @@ const MemberContainer = () => {
         setEmailFilter('1');
         setStartDate('');
         setEndDate('');
-        setFilteredMembers(memberList);
+        setFilteredMembers(members);
     };
 
     return (

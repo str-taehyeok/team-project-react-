@@ -56,6 +56,11 @@ const PetTestList = () => {
                   테스트 하러가기
                 </Link>
               </S.GoToTestButton> 
+              <S.GoToResultButton type="button">
+                <Link to={`/petsonal/result/${id}`}>
+                  테스트 결과
+                </Link>
+              </S.GoToResultButton> 
           </S.PetCard2>
         ))}
       </S.PetList>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import S from "./style";
 import { useForm } from 'react-hook-form';
 import {useNavigate } from 'react-router-dom';
@@ -6,29 +6,35 @@ import {useNavigate } from 'react-router-dom';
 const CouponWrite = () => {
 
 const { register, handleSubmit, formState: { isSubmitting }} = useForm({ mode: 'onChange' });
-const memberId = 1;
+const [rate, setRate] = useState(0); //  할인 상태
+const [selectedRate, setSelectedRate] = useState("");
 const navigate = useNavigate();
 
     return (
         <S.CouponListWrap>
+
+
+
+
             <S.CouponForm
                 onSubmit={handleSubmit(async (data) => {
                 console.log(data)
                 const coupon = {
-                    memberId,
                     couponTitle : data.couponTitle,
                     couponCategory : data.couponCategory,
-                    couponCategoryAnimal : data.couponCategoryAnimal,
+                    couponAnimal : data.couponAnimal,
                     couponCode : data.couponCode,
                     couponStart : data.couponStart,
                     couponEnd : data.couponEnd,
                     couponContent : data.couponContent,
                     couponQuantity : data.couponQuantity,
-                    couponDiscountRate: data.couponDiscountRate === 'custom' ? data.couponDiscountRateCustom : data.couponDiscountRate,
+                    couponDiscountRate: selectedRate === "custom" ? rate : selectedRate,
+                    memberId : 1,
+                    productId : 1
                 };
 
                 console.log("쿠폰", coupon)
-                await fetch("http://localhost:10000/coupon/write",{
+                await fetch("http://localhost:10000/coupons/write",{
                     method : "POST",
                     headers : {
                         "Content-Type": "application/json"
@@ -55,7 +61,7 @@ const navigate = useNavigate();
                         <S.Label htmlFor="eventTitle">쿠폰 명</S.Label>
                         <S.Input
                             id="eventTitle"
-                            {...register("couponTitle", { required: true })}
+                            {...register("couponTitle")}
                             placeholder="ex) 쿠폰이벤트 기획전 -1"
                         />
                     </S.Box1>
@@ -64,7 +70,7 @@ const navigate = useNavigate();
                         <S.Label htmlFor="coupon-code">쿠폰 코드</S.Label>
                         <S.Input
                             id="coupon-code"
-                            {...register("couponCode", {required : true })}
+                            {...register("couponCode")}
                             placeholder="쿠폰 번호 16자리를 입력해 주세요. '-'제외"
                             maxLength="16"
                         />
@@ -76,30 +82,36 @@ const navigate = useNavigate();
                             <S.DateInput
                                 type="date"
                                 id="start-date"
-                                {...register("couponStart", {required : true })}
+                                {...register("couponStart")}
                             />
                         <S.Span>~</S.Span>
                         <S.DateInput
                             type="date"
                             id="end-date"
-                            {...register("couponEnd", {required : true })}
+                            {...register("couponEnd")}
                         />
                         </S.DateInputWrap>
                     </S.Box1>
 
                     <S.Box1>
-                        <S.Label htmlFor="coupon-category">쿠폰 카테고리</S.Label>
+                        <S.Label htmlFor="coupon-category">동물 카테고리</S.Label>
                         <S.CouponCategory
-                            {...register("couponCategory",{required : true })}
+                            {...register("couponAnimal")}
                         >
-                            <option value="category7">강아지 사료/간식</option>
-                            <option value="category1">강아지 장난감</option>
-                            <option value="category2">강아지 펫웨어</option>
-                            <option value="category3">강아지 헬스케어</option>
-                            <option value="category4">고양이 사료/간식</option>
-                            <option value="category5">고양이 장난감</option>
-                            <option value="category6">고양이 펫웨어</option>
-                            <option value="category7">고양이 헬스케어</option>
+                            <option value="고양이">고양이</option>
+                            <option value="강아지">강아지</option>
+                        </S.CouponCategory>
+                    </S.Box1>
+
+                    <S.Box1>
+                        <S.Label htmlFor="coupon-category">제품 카테고리</S.Label>
+                        <S.CouponCategory
+                            {...register("couponCategory")}
+                        >
+                            <option value="장난감">장난감</option>
+                            <option value="간식/사료">간식/사료</option>
+                            <option value="의류">의류</option>
+                            <option value="헬스케어">헬스케어</option>
                         </S.CouponCategory>
                     </S.Box1>
 
@@ -107,7 +119,7 @@ const navigate = useNavigate();
                         <S.Label htmlFor="details">상세 내용</S.Label>
                         <S.Textarea
                             id="details"
-                            {...register("couponContent",{required : true })}
+                            {...register("couponContent")}
                             rows="4"
                             placeholder="내용을 입력해주세요. (500자 이내)"
                             maxLength="500"
@@ -120,7 +132,7 @@ const navigate = useNavigate();
                         <S.Input
                             type="number"
                             id="coupon-quantity"
-                            {...register("couponQuantity", {required : true})}
+                            {...register("couponQuantity")}
                             placeholder="ex) 1000"
                             min="1"
                         />
@@ -131,27 +143,34 @@ const navigate = useNavigate();
                         <S.Box3>
                             <S.Box2>
                                 <S.LabelRadio><input
+                                    required={true}
                                     type="radio"
-                                    {...register("couponDiscountRate" , {required : true })}
-                                    value="10"
+                                    {...register("couponDiscountRate")}
+                                    onChange={() => setSelectedRate("10")}
+                                    checked={selectedRate === "10"}
                                 /> 10%
                                 </S.LabelRadio>
                                 <S.LabelRadio><input
                                     type="radio"
-                                    {...register("couponDiscountRate" , {required : true })}
-                                    value="20"
+                                    {...register("couponDiscountRate")}
+                                    onChange={() => setSelectedRate("20")}
+                                    checked={selectedRate === "20"}
                                 /> 20%
                                 </S.LabelRadio>
                                 <S.LabelRadioWrap>
                                     <S.LabelRadioCustom><input
                                         type="radio"
-                                        {...register("couponDiscountRate", {required: true})}
                                         value="custom"
+                                        {...register("couponDiscountRate")}
+                                        onChange={() => setSelectedRate("custom")}
+                                        checked={selectedRate === "custom"}
                                     />직접입력
                                     </S.LabelRadioCustom>
                                     <input
                                         type="number"
-                                        {...register("couponDiscountRate", {valueAsNumber: true})}
+                                        value={rate}
+                                        onChange={(e) => setRate(e.target.value)}
+                                        disabled={selectedRate !== "custom"}
                                         placeholder="예) 7%"
                                         min="0"
                                         max="100"

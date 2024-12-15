@@ -145,11 +145,15 @@ const S = {}
     `;
 
     S.EditButton = styled.button`
+        display: flex;
+        justify-content: center;
         background-color: #888888;
         border: solid 0.1px #888888;
         color: #fff;
         border-radius: 50px;
-        padding: 5px 15px;
+        width: 46px;
+        height: 24px;
+        padding-top: 2px;
         ${h11Regular};
         
         & a{
@@ -162,9 +166,11 @@ const S = {}
         color: #131313;
         background-color: #fff;
         border-radius: 50px;
-        padding: 5px 15px;
+        padding-top: 2px;
         ${h11Regular};
         cursor: pointer;
+        width: 46px;
+        height: 24px;
     `;
 
     S.ManageButtons = styled.div`
@@ -174,6 +180,31 @@ const S = {}
         cursor: pointer;
     `;
 
+//
+// S.Popup = styled.div`
+//     display: ${props => props.isVisible ? 'flex' : 'none'};
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     border: solid 0.1px #888888;
+//     border-radius: 20px;
+//     width: 430px;
+//     height: 150px;
+//     gap: 50px;
+//     position: fixed;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     background-color: white;
+//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//     animation: lift-popup 0.1s;
+//     z-index: 100;
+//
+//
+//     & p{
+//         margin-top: 30px;
+//     }
+// `;
 
 S.Popup = styled.div`
     display: ${props => props.isVisible ? 'flex' : 'none'};
@@ -191,11 +222,9 @@ S.Popup = styled.div`
     transform: translate(-50%, -50%);
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    animation: lift-popup 0.1s;
     z-index: 100;
     
-    
-    & p{
+    & p {
         margin-top: 30px;
     }
 `;
@@ -206,10 +235,22 @@ S.PopupBackground = styled.div`
     position: fixed;
     left: 0;
     top: 0;
-    width: 100dvw;
-    height: 100dvh;
+    width: 100vw; /* 수정된 부분 */
+    height: 100vh; /* 수정된 부분 */
     background-color: rgba(0, 0, 0, 0.5);
 `;
+
+// S.PopupBackground = styled.div`
+//     display: ${props => props.isVisible ? 'block' : 'none'};
+//     z-index: 99;
+//     position: fixed;
+//     left: 0;
+//     top: 0;
+//     width: 100dvw;
+//     height: 100dvh;
+//     background-color: rgba(0, 0, 0, 0.5);
+// `;
+
 
 
     S.CheckButton = styled.div`

@@ -1,11 +1,18 @@
-import React, { useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import S from "./style";
 import { FindContext } from "../../context/findContext";
 
 const FindIdComplete = () => {
-
   const { state } = useContext(FindContext);
+  
+  const [message, setMessage] = useState("로딩 중");
+
+  useEffect(() => {
+    if (state.memberEmail) {
+      setMessage(state.memberEmail); 
+    }
+  }, [state.memberEmail]);
 
   return (
     <div>
@@ -28,9 +35,7 @@ const FindIdComplete = () => {
             src={`${process.env.PUBLIC_URL}/assets/images/join/complete-check.png`}
             alt="체크"
           />
-          <S.BoldText>
-            {state.memberEmail ? state.memberEmail : "아이디를 찾을 수 없습니다."}
-          </S.BoldText>
+          <S.BoldText>{message}</S.BoldText>
           <Link to={"/login"}>
             <S.GoToLoginButton>로그인</S.GoToLoginButton>
           </Link>

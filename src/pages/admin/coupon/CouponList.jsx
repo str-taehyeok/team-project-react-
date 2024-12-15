@@ -1,58 +1,45 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom';
+
 const CouponList = () => {
+    const [coupons, setCoupons] = useState([]);
 
-    // const startdateInput = document.querySelector("#start-date");
-    // let startDate = `${adminBanner.adminBannerStart}`;
-    // startDate = startDate.split(" ")[0];
-    // startdateInput.value = startDate;
-    //
-    // const endDateInput = document.querySelector("#end-date");
-    // let endDate = `${adminBanner.adminBannerEnd}`;
-    // endDate = endDate.split(" ")[0];
-    // endDateInput.value = endDate;
+    useEffect(() => {
+        const fetchCoupons = async () => {
+            try {
+                const response = await fetch("http://localhost:10000/coupons/list");
+                if (!response.ok) {
+                    console.error("데이터가 없습니다.");
+                    return;
+                }
+                const data = await response.json();
+                setCoupons(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
-    const [couponData] = useState([
-        {
-            id : 1,
-            couponTitle : "이것은 쿠폰타이틀",
-            couponCode : "1111111111",
-            couponDiscountRate : "50",
-            couponStart : "2024-10-04",
-            couponEnd : "2024-10-30",
-            couponQuantity : "11",
-        },
-        {
-            id : 2,
-            couponTitle : "이것은 쿠폰타이틀",
-            couponCode : "1111111111",
-            couponDiscountRate : "50",
-            couponStart : "2024-10-04",
-            couponEnd : "2024-10-30",
-            couponQuantity : "11",
-        },
-        {
-            id : 3,
-            couponTitle : "이것은 쿠폰타이틀",
-            couponCode : "1111111111",
-            couponDiscountRate : "50",
-            couponStart : "2024-10-04",
-            couponEnd : "2024-10-30",
-            couponQuantity : "11",
-        },
-        {
-            id : 4,
-            couponTitle : "이것은 쿠폰타이틀",
-            couponCode : "1111111111",
-            couponDiscountRate : "50",
-            couponStart : "2024-10-04",
-            couponEnd : "2024-10-30",
-            couponQuantity : "11",
-        },
-    ]);
+        fetchCoupons();
+    }, []);
 
-    const couponList = couponData.map((coupon, i) => (
+    const getDelete = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:10000/coupons/${id}`, {
+                method: "DELETE",
+            });
+            if (!response.ok) {
+                throw new Error("삭제 실패");
+            }
+            setCoupons(coupons.filter(coupon => coupon.id !== id));
+            alert("삭제되었습니다.");
+        } catch (error) {
+            console.error(error.message);
+            alert("삭제 중 오류가 발생했습니다.");
+        }
+    };
+
+    const couponList = coupons.map((coupon, i) => (
         <S.TableRow key={i}>
             <S.TableCell>{i + 1}</S.TableCell>
             <S.TableCell>{coupon.couponTitle}</S.TableCell>
@@ -60,8 +47,8 @@ const CouponList = () => {
             <S.TableCell>{coupon.couponEnd}</S.TableCell>
             <S.TableCell>{coupon.couponCode}</S.TableCell>
             <S.TableCell>
-                <S.CouponEdit><Link to={"/admin/coupon/coupon-update"}>수정</Link></S.CouponEdit>
-                <S.CouponDelete>삭제</S.CouponDelete>
+                <S.CouponEdit><Link to={`/admin/coupon/coupon-update/${coupon.id}`}>수정</Link></S.CouponEdit>
+                <S.CouponDelete onClick={() => getDelete(coupon.id)}>삭제</S.CouponDelete>
             </S.TableCell>
         </S.TableRow>
     ));

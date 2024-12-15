@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import S from "./style";
+import {useDispatch} from "react-redux";
+import {setUser, setUserStatus} from "../../modules/user";
 
 const SellerHeader = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSubmenu, setActiveSubmenu] = useState(null);
     const [currentTitle, setCurrentTitle] = useState("상품 관리");
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        localStorage.removeItem("jwtToken");
+        dispatch(setUser({}));
+        dispatch(setUserStatus(false));
+        window.location.href = "http://localhost:10000/logout";
+    };
+
 
     const menuItems = [
         {
@@ -78,9 +89,6 @@ const SellerHeader = () => {
         }, 300);
     };
 
-    const handleLogout = () => {
-        window.location.href = '/login';
-    };
 
     return (
         <S.Header>
@@ -91,9 +99,7 @@ const SellerHeader = () => {
                 <S.MenuFrame style={{ display: isMenuOpen ? 'flex' : 'none' }}  onMouseLeave={handleFrameLeave}>
                     <S.MenuHeader>
                         <S.Welcome>seller님 환영합니다!</S.Welcome>
-                        <button type="button" className="logout" onClick={handleLogout}>
-                            로그아웃
-                        </button>
+                        <Link to="/login" onClick={handleLogout}>로그아웃</Link>
                     </S.MenuHeader>
                     <S.MenuForm>
                         <ul>

@@ -42,7 +42,6 @@ const NoticeList = () => {
                         })
                 }}>삭제</button>
             </S.ListButton>
-            <S.NoticeList>
                 <S.TitleBox>
                     <S.ListTitle >{noticeTitle}</S.ListTitle>
                     <S.Span>
@@ -52,7 +51,7 @@ const NoticeList = () => {
                 </S.TitleBox>
 
                 <S.Content>{noticeContent}</S.Content>
-            </S.NoticeList>
+
 
             <S.Button>
                 <Link to={`/admin`}>

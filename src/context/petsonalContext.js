@@ -221,13 +221,13 @@ const PetsonalProvider = ({children}) => {
     result : {
       Orange : {
         message : ["신이 많고 재밌는 성격이에요", "자유분방하고, 자신감이 넘치며 주변 사람들을 웃게 만들어요.", "에너지가 넘치고, 정이 많아 사람들과 쉽게 어울려요.", "혼자 있는 것보다는 다른 사람들이랑 함께 있으면서 사랑을 베푸는 것을 더 좋아해요."],
-        boxColor : "FFCC66",
+        boxColor : "#FFCC66",
         imageSrc : "/assets/images/petsonal/orange-result.png",
         title : "천방지축 귀염둥이"
       },
       Gold : {
         message : ["골드색은 발랄하고 부지런하며 용감한 성격을 가진 색깔입니다.", "흥이 많고 재밌는 성격으로 언제나 주변을 즐겁게 만듭니다. ", "흥이 많고 재밌는 성격으로 언제나 주변을 즐겁게 만듭니다.", "어려운 상황에서도 두려움 없이 나서는 용맹함을 가지고 있습니다."],
-        boxColor : "FFD700",
+        boxColor : "#FFD700",
         imageSrc : "/assets/images/petsonal/gold-result.png",
         title : "발랄한 부지러니"
       },
@@ -239,31 +239,31 @@ const PetsonalProvider = ({children}) => {
       },
       LightPurple : {
         message : ["라이트 퍼플은 발랄함과 여유로운, 그리고 약간의 소심함이 조화를 이루는 특별한 성격을 가진 반려동물을 의미합니다.", "언제나 호기심이 많고, 새로운 경험을 즐기며 주변을 생동감 있게 만드는 존재랍니다.", "긴 낮잠과 여유로운 시간을 즐기며, 바쁜 일상 속에서 잠깐의 휴식이 가장 큰 행복이에요.", "낯선 사람이나 큰 소리에는 조금 두려워하며, 익숙한 사람과 편안한 공간에서만 편안함을 느껴요."],
-        boxColor : "CFA5CB",
+        boxColor : "#CFA5CB",
         imageSrc : "/assets/images/petsonal/ligth-purple-result.png",
         title : "호기심쟁이 탐험가"
       },
       SkyBlue : {
         message : ["스카이 블루는 편안하고 여유로운 성격을 나타내며, 차분하고 부드러운 특징을 지닌 색이에요.", "때로는 겁을 먹고 조심스러워하는 면도 있지만, 전체적으로 순하고 온화한 느낌을 전달합니다.", "이 색은 스트레스 없이 평온하게 지낼 수 있는 반려동물의 성격을 잘 표현합니다.", "조용하면서도 세심하게 행동하는 반려동물로, 주인에게는 큰 위안이자 보호를 주는 존재입니다."],
-        boxColor : "87CEEB",
+        boxColor : "#87CEEB",
         imageSrc : "/assets/images/petsonal/sky-blue-result.png" ,
         title : "여유로운 개리니"
       },
       SageGreen : {
         message : ["세이지 그린은 차분하고 부지런하며 용감한 성격을 가진 색입니다. ", "평온하고 안정적인 성격으로, 새로운 환경이나 상황에서도 침착함을 유지하며 주인과의 유대감을 깊게 쌓는 편이에요.", "용감한 성격 덕분에 위험한 상황에서도 주인을 지키기 위해 단호한 태도를 취할 수 있어요.", "이와 같은 성격은 주인에게 큰 안정감과 신뢰를 줍니다. "],
-        boxColor : "BCE2D6",
+        boxColor : "#BCE2D6",
         imageSrc : "/assets/images/petsonal/sage-green-result.png",
         title : "똥꼬발랄 사랑둥이"
       },
       IceBlue : {
         message : ["아이스 블루는 평온하고 여유로운 성격으로 대부분의 시간을 편안하게 보내며, 에너지가 넘치지 않아 느긋하게 휴식을 취하는 것을 좋아해요.", "그러나 중요한 순간이나 위급한 상황에서는 용감하게 행동하여 주인을 보호하려는 강한 의지를 보입니다.", "이 반려동물은 부드럽고 차가운 외모와는 달리, 주인에게는 큰 신뢰와 안정을 주는 존재입니다."],
-        boxColor : "D1F2F2",
+        boxColor : "#D1F2F2",
         imageSrc : "/assets/images/petsonal/ice-blue-result.png",
         title : "용맹한 쿨강아지"
       },
       DustySilver : {
         message : ["실버를 선택한 반려동물은 활동보다는 휴식을 선호하며, 편안한 환경에서 느긋하게 시간을 보내는 것을 좋아합니다.", "겁이 많은 성격으로 갑작스러운 소음이나 낯선 사람을 만나면 쉽게 놀라며 숨거나 피하려는 경향이 있습니다.", "그럼에도 불구하고 주인과 함께 있을 때는 편안함을 느끼며, 주인이 가까이 있을 때 가장 안정감을 느끼는 순한 성격을 지니고 있어요."],
-        boxColor : "linear-gradient(to bottom, #89A9C4 20%, #42555E 50%)",
+        boxColor : "linear-gradient(to bottom, rgba(137, 169, 196, 0.5) 20%, rgba(66, 85, 94, 0.5) 100%)",
         imageSrc : "/assets/images/petsonal/dusty-silver-result.png",
         title : "차가운 겁쟁이"
       },
