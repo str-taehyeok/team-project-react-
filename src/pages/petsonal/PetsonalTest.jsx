@@ -57,8 +57,10 @@ const PetsonalTest = () => {
         const group = surveyItem.group;
         groupScores[group] += score;
       } 
-      
     });
+
+    // 그룹 점수 출력
+    console.log("Group Scores: ", groupScores);
 
     const cute = groupScores[1];
     const chic = 100 - cute;
@@ -82,60 +84,69 @@ const PetsonalTest = () => {
     setPetsonalCoward(coward);
     setPetsonalBrave(brave);
 
+    // result 값 출력
     let result = "";
     result += active > calm ? "A" : "C";
     result += diligent > lazy ? "D" : "L";
     result += brave > coward ? "B" : "C";
 
+    console.log("Result: ", result); // result 값 확인
+
     let selectedPetColor = "";
     if(result === "ADC"){
-      setPetColor("Orange")
+      selectedPetColor = "Orange";
     }else if(result === "ADB"){
-      setPetColor("Gold")
+      selectedPetColor = "Gold";
     }else if(result === "ALB"){
-      setPetColor("Gradation")
+      selectedPetColor = "Gradation";
     }else if(result === "ALC"){
-      setPetColor("LightPurple") 
+      selectedPetColor = "LightPurple";
     }else if(result === "CDC"){
-      setPetColor("SkyBlue")
+      selectedPetColor = "SkyBlue";
     }else if(result === "CDB"){
-      setPetColor("SageGreen")
+      selectedPetColor = "SageGreen";
     }else if(result === "CLB"){
-      setPetColor("IceBlue")
+      selectedPetColor = "IceBlue";
     }else if(result === "CLC"){
-      setPetColor("DustySilver")
+      selectedPetColor = "DustySilver";
     }
 
+    // 선택된 색상 출력
+    console.log("Selected Pet Color: ", selectedPetColor);
     setPetColor(selectedPetColor);
-    await fetch("http://localhost:10000/petsonal/register-survey",{
+
+    await fetch("http://localhost:10000/petsonal/register-survey", {
       method: "POST",
       headers: {
-        "Content-type" : "application/json"
+        "Content-type": "application/json",
       },
       body: JSON.stringify({
-        petColor: selectedPetColor,
-        petId: id,
-        petsonalChic: chic,
-        petsonalCute: cute,
-        petsonalCalm: calm,
-        petsonalActive: active,
-        petsonalLazy: lazy,
-        petsonalDiligent: diligent,
-        petsonalCoward: coward,
-        petsonalBrave: brave,
-      })
-    })                   
-    .then((res) => res.json())
-    .then((res) => console.log(res))
-    .then((res) => {
-        alert('설문 결과가 완료되었습니다!');
+        petsonalVO: {
+          petId: id,
+          petsonalChic: chic,
+          petsonalCute: cute,
+          petsonalCalm: calm,
+          petsonalActive: active,
+          petsonalLazy: lazy,
+          petsonalDiligent: diligent,
+          petsonalCoward: coward,
+          petsonalBrave: brave,
+        },
+        petVO: {
+          petColor: selectedPetColor,
+          id: id,  // `petId`에 해당하는 값
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        alert("설문 결과가 완료되었습니다!");
         navigate(`/petsonal/result/${id}`);
-    })
-    .catch((error) => {
-        console.error('에러발생 :', error);
-    })
-  };
-
+      })
+      .catch((error) => {
+        console.error("에러발생 :", error);
+      });
+};
   const surveyList = survey.map(({ title, group }, i) => {
     return (
       <S.Questions key={i}>
@@ -144,18 +155,18 @@ const PetsonalTest = () => {
           <span>그렇지 않다</span>
           <S.Circles>
             <S.BigCircle
-              value={3}
+              value={1}
               type="radio"
               name={group + i}
-              checked={inputScore[i] === 3}
-              onChange={() => handleRadioChecked(i, 3)}
+              checked={inputScore[i] === 1}
+              onChange={() => handleRadioChecked(i, 1)}
             ></S.BigCircle>
             <S.MiddleCircle
-              value={6}
+              value={5}
               type="radio"
               name={group + i}
-              checked={inputScore[i] === 6}
-              onChange={() => handleRadioChecked(i, 6)}
+              checked={inputScore[i] === 5}
+              onChange={() => handleRadioChecked(i, 5)}
             ></S.MiddleCircle>
             <S.SmallCircle
               value={9}

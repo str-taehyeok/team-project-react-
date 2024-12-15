@@ -376,14 +376,30 @@ S.DeleteButton = styled.button`
   }
 `;
 S.GoToTestButton = styled.button`
-  background-color: #FFC303;  
-	color: white;
-	border: solid 1px #113F8A;
+  background-color: #FFC303;
+	border: none;
 	border-radius: 20px;
 	cursor: pointer;
 	width: 120px;
 	height: 30px;
 	margin-top: 18px;
+
+  & a{
+    color: white;
+  }
+`
+S.GoToResultButton = styled.button`
+  background-color: #113F8A;
+	border: none;
+	border-radius: 20px;
+	cursor: pointer;
+	width: 120px;
+	height: 30px;
+	margin-top: 18px;
+
+  & a{
+    color: white;
+  }
 `
 
 
