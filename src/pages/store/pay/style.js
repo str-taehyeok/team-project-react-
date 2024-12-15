@@ -1,5 +1,14 @@
 import styled from "styled-components";
-import { h4Bold, h6Medium, h7Medium, h7Regular, h8Bold, h9Regular } from "../../../global/common";
+import {
+    h4Bold,
+    h6Medium,
+    h7Bold,
+    h7Medium,
+    h7Regular,
+    h8Bold,
+    h8Medium, h8Regular,
+    h9Regular
+} from "../../../global/common";
 import { Link } from "react-router-dom";
 
 const S = {}
@@ -480,6 +489,260 @@ S.Link = styled(Link)`
   color: #FFFFFF;
   ${h8Bold}
 
-` 
+`
+
+// 카드 추가 팝업
+S.CardInsertBox = styled.div`
+    position: relative;
+    width: 342px;
+    height: 170px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    border: solid 1px #828282;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    flex-direction: column;
+    
+    & > img {
+        width: 20px;
+        height: 20px;
+    }
+    
+`
+// 카드 팝업 입력칸
+
+S.CardPopUpWrap = styled.div`
+    position: absolute;
+    width: 516px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    border: solid 1px #828282;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    z-index: 1;
+    justify-content: center;
+    
+    & form {
+        width: 464px;
+        height: 276px;
+    }
+    
+`
+
+S.CardInsertMent = styled.div`
+    margin-top: 8px;
+    ${h8Medium}
+    
+`
+// 카드 회사명 입력칸
+
+S.CardArea1 = styled.div`
+    width: 464px;
+    height: 40px;
+    display: flex;
+    margin-top: 18px;
+    margin-left: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+`
+
+S.CardCompany = styled.div`
+    display: flex;
+    width: 380px;
+    height: 30px;
+    align-items: center;
+    
+    & > div {
+        ${h7Bold}
+        margin-right: 8px;
+        
+    }
+    
+    & > input {
+        width: 122px;
+        height: 30px;
+        box-sizing: border-box;
+        border: solid 0.5px #ACACA8;
+        border-radius: 20px;
+        padding-left: 12px;
+        
+        ${h9Regular}
+        
+    }
+    
+    
+`
+S.cardNumber = styled.div`
+    display: flex;
+    width: 440px;
+    height: 30px;
+    margin-top: 42px;
+    margin-left: 24px;
+
+    & > div {
+        ${h7Bold}
+        margin-right: 8px;
+    }
+
+    & > input {
+        width: 186px;
+        height: 30px;
+        box-sizing: border-box;
+        border: solid 0.5px #ACACA8;
+        border-radius: 20px;
+        padding-left: 12px;
+
+        ${h9Regular}
+
+    }
+
+
+`
+
+S.cardSecurityCode = styled.div`
+    display: flex;
+    width: 120px;
+    height: 30px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-right: 130px;
+    
+
+    & > div {
+        ${h7Bold}
+        margin-right: 8px;
+        margin-bottom: 4px;
+    }
+
+    & > input {
+        width: 68px;
+        height: 30px;
+        box-sizing: border-box;
+        border: solid 0.5px #ACACA8;
+        border-radius: 20px;
+        padding-left: 25px;
+
+        ${h9Regular}
+
+    }
+
+
+`
+S.cardExpirationDate = styled.div`
+    display: flex;
+    width: 120px;
+    height: 30px;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    & > div {
+        ${h7Bold}
+        margin-right: 8px;
+        margin-bottom: 4px;
+    }
+
+    & > input {
+        width: 68px;
+        height: 30px;
+        box-sizing: border-box;
+        border: solid 0.5px #ACACA8;
+        border-radius: 20px;
+        padding-left: 15px;
+
+        ${h9Regular}
+
+    }
+
+`
+
+S.codeWrap = styled.div`
+    width: 464px;
+    height: 52px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 108px;
+    margin-left: 24px;
+    justify-content: space-between;
+`
+
+S.CardIcon1 = styled.div`
+    width: 40px;
+    height: 40px;
+
+`
+
+S.CardIcon2 = styled.div`
+    width: 48px;
+    height: 28px;
+`
+
+S.CardRegisterBtn = styled.div`
+    cursor: pointer;
+    width: 73px;
+    margin-top: 20px;
+    margin-left: 440px;
+    height: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 20px;
+    background-color: #113F8A;
+    align-items: center;
+    justify-content: center;
+    ${h8Regular}
+    
+    & > button {
+        background-color: transparent;
+        border: 0;
+        color : #FFFFFF;
+        cursor: pointer;
+    }
+`
+// 쿠폰 배경
+
+S.CardBgWrap = styled.div`
+    position: fixed;
+    width: 100dvw;
+    height : 100dvh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+    left: 0;
+    top: 0;
+
+`
+S.CardPopUpContainer = styled.div`
+    display: flex;
+    position: fixed;
+    top : 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    border: solid black 1px;
+    width: 656px;
+    height: 685px;
+    z-index: 1;
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
+
+`
+
+S.CardPopUpBtn = styled.div`
+    position: absolute;
+    z-index: 2;
+    margin-left: 613px;
+    margin-bottom: 640px;
+    
+    & > img {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+    }
+`
 
 export default S;
