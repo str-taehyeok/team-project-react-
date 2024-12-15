@@ -262,6 +262,7 @@ S.ListButton = styled.div`
  width: 1200px;
  justify-content: right;
  gap: 5px;
+ margin: 0 auto;
  
   & button.delete {
    width: 46px;
@@ -360,10 +361,11 @@ S.WriteBox = styled.div`
 `
 
 S.NoticeBox = styled.div`
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ width: 1440px;
+ margin: 0 auto;
 `
 S.Date = styled.div`
   font-size: 16px;

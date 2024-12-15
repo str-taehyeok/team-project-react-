@@ -277,6 +277,31 @@ S.TitleText = styled.div  `
     text-align: left;
     margin-right: 50px;
 `
+S.TypeInput = styled.div  `
+  & select {
+   -webkit-appearance: none;  
+   -moz-appearance: none; 
+   appearance: none;
+   cursor: pointer;
+    border-radius: 20px;
+    border-style: none;
+    border: solid 1px #828282;
+    width: 763px;
+    height: 55px;
+    padding: 15px 26px;
+    font-size: 14px;
+    line-height: 22px;
+    color:#828282;
+    outline:none;
+   
+  }
+`
+S.TypeInputBox = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
+`
 S.LinkInputBox = styled.div`
   display:flex;
   flex-direction: row;
@@ -296,6 +321,14 @@ S.LinkInput = styled.div  `
     color:#828282;
     outline:none;
   }
+`
+S.TypeText = styled.div  `
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    width: 100px;
+    text-align: left;
+    margin-right: 50px;
 `
 S.LinkText = styled.div  `
     font-size: 20px;
@@ -393,7 +426,6 @@ S.UseButton = styled.div  `
 S.Radio = styled.div`
     display: flex;
     flex-direction: row;
-    
     width: 763px;
      & input.date1 {
       border-radius: 20px;
@@ -406,7 +438,6 @@ S.Radio = styled.div`
       line-height: 24px;
       color:#828282;
       outline:none;
-      margin-left: 270px;
      }
      & input.date {
       border-radius: 20px;
@@ -419,6 +450,7 @@ S.Radio = styled.div`
       line-height: 24px;
       color:#828282;
       outline:none;
+      margin-right: 30px;
      }
     & span { 
       text-align: center;

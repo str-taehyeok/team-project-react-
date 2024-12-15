@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import {useNavigate, useParams} from "react-router-dom";
 
 const datas = [
     {
@@ -13,7 +15,24 @@ const datas = [
 ]
 
 const BannerUpdate = () => {
+    const {id} = useParams();
+    const { register, handleSubmit, getValues, formState: {isSubmitting, isSubmitted, errors}} = useForm({mode:"onChange"});
+    const memberId = 1;
+    const navigate = useNavigate();
+    const [post, setPost] = useState({});
 
+    useEffect(() => {
+        const getPost = async () => {
+            const response = await fetch(`http://localhost:10000/banners/list/${id}`);
+            if(!response.ok) return console.error(`데이터가 없습니다.`)
+            const post = await response.json();
+            return post;
+        }
+
+        getPost().then(setPost).catch(console.error);
+    }, [id]);
+
+    console.log(post)
     const onDelete = () => {
         if (window.confirm("정말 취소하시나요??")) {
           window.location.href = '/admin/banner';
@@ -21,6 +40,7 @@ const BannerUpdate = () => {
           window.location.href = '/admin/banner/banner-update';
         }
     };
+    const {bannerTitle,bannerStart, bannerEnd, bannerType, bannerLink, BannerImage} = post;
 
     const updates = datas.map(({bannerStart,bannerEnd, bannerTitle,bannerImage, bannerUrl }, i) => (
         <S.WriteBox key={i}>

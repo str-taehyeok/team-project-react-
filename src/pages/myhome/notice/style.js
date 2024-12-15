@@ -23,9 +23,9 @@ S.NoticeTitle = styled.div`
   margin-bottom: 8px;
   font-size: 16px;
   line-height: 24px;
+    font-weight: bold;
 `
 S.NoticeDate = styled.div`
-  width: 100%;
   font-size: 14px;
   line-height: 22px;
   color: #828282;
@@ -49,11 +49,14 @@ S.Title = styled.div`
   margin-bottom: 16px;
 `
 S.Date = styled.div`
-  width: 100%;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 14px;
+  line-height: 22px;
   color: #828282;
-  font-weight: bold;
+`
+S.Count = styled.div`
+  font-size: 14px;
+  line-height: 22px;
+  color: #828282;
 `
 S.Content = styled.div`
    margin: 30px 0px;
@@ -75,5 +78,10 @@ S.Button = styled.div`
   }
 `
 
+S.Span = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 9px;  
+`
 
 export default S;
