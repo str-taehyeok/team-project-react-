@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setPreviousUrl, setUser, setUserStatus } from '../../modules/user';
@@ -24,7 +24,6 @@ const Layout = () => {
 
         // 로컬스토리지 토큰 확인
         if (localJwtToken) {
-            console.log("로컬스토리지에서 가져온 jwtToken:", localJwtToken);
 
             const getUserDatas = async () => {
                 const response = await fetch("http://localhost:10000/member/token", {
@@ -34,8 +33,6 @@ const Layout = () => {
                         "Authorization": `Bearer ${localJwtToken}`
                     }
                 });
-
-                console.log("응답 상태:", response.status);
 
                 // 데이터를 못 가져오면 토큰 만료
                 if (!response.ok) {
