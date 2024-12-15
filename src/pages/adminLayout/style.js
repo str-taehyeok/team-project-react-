@@ -75,7 +75,7 @@ const S = {}
             min-width: 241px;
             background-color: #fff;
 
-            & button{
+            & a{
                 font-size: 10px;
                 color: #ffc303;
                 background-color: white;

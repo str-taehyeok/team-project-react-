@@ -16,9 +16,6 @@ const Clothes = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                // 동물 타입을 URL에 포함시켜 fetch
-                // const response = await fetch("http://localhost:10000/products/products/");
-                // 또는 쿼리 파라미터 사용:
                 const response = await fetch("http://localhost:10000/products/products?productAnimal=dog");
 
                 if (!response.ok) {
@@ -50,7 +47,7 @@ const Clothes = () => {
     const bestProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
         <S.BestProduct key={i}>
             <HeartBtn/>
-            <Link to={"/product/:id"}>
+            <Link to={`/product/${products.id}`}>
                 <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)}/>
                 <span>{productName}</span>
             </Link>
@@ -65,7 +62,7 @@ const Clothes = () => {
     const specialProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
         <S.SpecialProduct key={i} className={i === 0 ? 'first-product' : 'rest'}>
             <HeartBtn />
-            <Link to={"/product/:id"}>
+            <Link to={`/product/${products.id}`}>
                 <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)}/>
                 <span className={i === 0 ? 'first-product-name' : 'rest'}>{productName}</span>
             </Link>
@@ -80,7 +77,7 @@ const Clothes = () => {
     const recommendProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
         <S.Product key={i} >
             <HeartBtn />
-            <Link to={"/product/:id"}>
+            <Link to={`/product/${products.id}`}>
             <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
             </Link>
