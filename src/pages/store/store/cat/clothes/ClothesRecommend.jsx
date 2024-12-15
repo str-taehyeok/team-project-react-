@@ -5,7 +5,7 @@ const ClothesRecommend = ({recommendProducts}) => {
   return (
       <>
           <S.RecommendedProduct>
-          <S.Title>강아지 추천 상품</S.Title>
+          <S.Title>고양이 추천 상품</S.Title>
         <S.RecommendedWrap>
             {recommendProducts}
         </S.RecommendedWrap>

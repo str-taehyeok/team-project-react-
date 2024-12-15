@@ -1,154 +1,102 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import S from "./style";
 import ClothesColor from './clothes/ClothesColor';
 import ClothesBest from './clothes/ClothesBest';
 import ClothesSpecial from './clothes/ClothesSpecial';
 import ClothesRecommend from './clothes/ClothesRecommend';
 import { Link } from "react-router-dom";
-
-// 더미데이터 확인용
-
-const productList = [
-    {
-        id : 1,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 11_900,
-        productImage1 : "/assets/images/store/dental-dog.png",
-        productColor : "Orange",
-        productSize : "M",
-        reviewStar : 4.5,
-        soldCount : 100,
-        productDate : "2023-01-03"
-
-    },
-    {
-        id : 2,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 5_900,
-        productImage1 : "/assets/images/store/product2.png",
-        productColor : "Gold",
-        productSize : "S",
-        reviewStar : 3,
-        soldCount : 200,
-        productDate : "2023-05-03"
-    },
-    {
-        id : 3,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 6_500,
-        productImage1 : "/assets/images/store/product3.png",
-        productColor : "Gradation",
-        productSize : "M",
-        reviewStar : 2,
-        soldCount : 300,
-        productDate : "2023-07-03"
-    },
-    {
-        id : 4,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 4_000,
-        productImage1 : "/assets/images/store/product4.png",
-        productColor : "Dark Purple",
-        productSize : "L",
-        reviewStar : 5,
-        soldCount : 50,
-        productDate : "2023-03-03"
-    },
-    {
-        id : 5,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 12_900,
-        productImage1 : "/assets/images/store/product5.png",
-        productColor : "Light Purple",
-        productSize : "L",
-        reviewStar : 2,
-        soldCount : 600,
-        productDate : "2023-07-03"
-    },
-    {
-        id : 6,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 14_000,
-        productImage1 : "/assets/images/store/product6.png",
-        productColor : "Gold",
-        productSize : "S",
-        reviewStar : 1,
-        soldCount : 100,
-        productDate : "2023-01-03"
-    },
-    {
-        id : 7,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 7_900,
-        productImage1 : "/assets/images/store/dental-dog.png",
-        productColor : "Orange",
-        productSize : "M",
-        reviewStar : 4.5,
-        soldCount : 130,
-        productDate : "2023-01-07"
-    },
-    {
-        id : 8,
-        productCategory : "사료",
-        productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g ,5개",
-        productPrice : 8_000,
-        productImage1 : "/assets/images/store/product2.png",
-        productColor : "Gradation",
-        productSize : "L",
-        reviewStar : 4,
-        soldCount : 170,
-        productDate : "2023-09-03"
-    },
-]
-
+import HeartBtn from "../HeartBtn";
 
 const Clothes = () => {
 
-    const bestProducts = productList.map(({productName, productPrice, productImage1}, i) => (
-        <S.BestProduct key={i} >
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                // 동물 타입을 URL에 포함시켜 fetch
+                // const response = await fetch("http://localhost:10000/products/products/");
+                // 또는 쿼리 파라미터 사용:
+                const response = await fetch("http://localhost:10000/products/products?productAnimal=dog");
+
+                if (!response.ok) {
+                    throw new Error('상품을 불러오는 데 실패했습니다.');
+                }
+
+                const data = await response.json();
+                setProducts(data);
+                setLoading(false);
+            } catch (error) {
+                setError(error.message);
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
+    // 로딩 상태 처리
+    if (loading) {
+        return <div>상품을 불러오는 중입니다...</div>;
+    }
+
+    // 에러 상태 처리
+    if (error) {
+        return <div>오류: {error}</div>;
+    }
+
+    const bestProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
+        <S.BestProduct key={i}>
+            <HeartBtn/>
             <Link to={"/product"}>
-            <img src={productImage1} alt={"상품" + (i + 1)} />
-            <span>{productName}</span>
+                <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)}/>
+                <span>{productName}</span>
             </Link>
-            <span style={{ fontWeight: 700 }}>{productPrice}&nbsp;원</span>
+            <S.NormalPrice>
+            <p style={{color: "#C83F3F", fontWeight: "bold"}}>{productDiscount}%</p>
+            <p style={{fontWeight: 700}}>{productPrice}&nbsp;원</p>
+            </S.NormalPrice>
             <button>담기</button>
         </S.BestProduct>
-    ))
+    )) : [];
 
-    const specialProducts = productList.map(({productName, productPrice, productImage1}, i) => (
-        <S.SpecialProduct key={i}>
+    const specialProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
+        <S.SpecialProduct key={i} className={i === 0 ? 'first-product' : 'rest'}>
+            <HeartBtn />
             <Link to={"/product"}>
-            <img src={productImage1} alt={"상품" + (i + 1)}/>
-            <span>{productName}</span>
+                <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)}/>
+                <span className={i === 0 ? 'first-product-name' : 'rest'}>{productName}</span>
             </Link>
-            <span style={{ fontWeight: 700 }}>{productPrice}&nbsp;원</span>
+            <S.Price>
+                <p style={{color: "#C83F3F", fontWeight: "bold", marginRight: "10px"}} className={i === 0 ? 'first-product-discount' : 'rest'}>{productDiscount}%</p>
+                <p className={i === 0 ? 'first-product-price' : 'rest'}>{productPrice}&nbsp;원</p>
+            </S.Price>
             <button>담기</button>
-        </S.SpecialProduct >
-    ))
+        </S.SpecialProduct>
+    )) : [];
 
-    const recommendProducts = productList.map(({productName, productPrice, productImage1}, i) => (
+    const recommendProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
         <S.Product key={i} >
+            <HeartBtn />
             <Link to={"/product"}>
-            <img src={productImage1} alt={"상품" + (i + 1)} />
+            <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)} />
             <span>{productName}</span>
             </Link>
-            <span style={{ fontWeight: 700 }}>{productPrice}&nbsp;원</span>
+            <S.RecommendedPrice>
+                <p style={{color: "#C83F3F", fontWeight: "bold"}}>{productDiscount}%</p>
+                <p style={{fontWeight: 700}}>{productPrice}&nbsp;원</p>
+            </S.RecommendedPrice>
             <button>담기</button>
         </S.Product>
-    ))
+    )) : [];
 
     return (
         <div>
             <S.Content>
                 {/* 컬러 추천 상품 */}
-                <ClothesColor productList={productList} />
+                <ClothesColor productList={products} />
 
                 {/* 베스트상품 */}
                 <ClothesBest bestProducts={bestProducts} />
