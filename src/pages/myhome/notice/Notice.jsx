@@ -1,42 +1,45 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Link, useNavigate, useParams} from "react-router-dom";
 import S from "./style";
 
 const NoticeListPage = () => {
+    const {id} = useParams();
+    const [post, setPost] = useState({});
+    const navigate = useNavigate();
 
-  const datas = [
-    {
-        id : 1,
-        noticeTitle : "공지사항 제목1",
-        noticeDate : "2024-12-08",
-        noticeContent : "안녕하세요, POWPOW입니다." + 
-                        "POWPOW을 이용해주시는 이용자분들께 감사드리며," +
-                        "감사합니다. POWPOW 드림"
+    useEffect(() => {
+        const getPost = async () => {
+            const response = await fetch(`http://localhost:10000/notice/list/${id}`);
+            if(!response.ok) return console.error(`데이터가 없습니다.`)
+            const post = await response.json();
+            return post;
+        }
 
-    },
-];
-const noticeLists = datas.map(({noticeTitle,noticeContent,noticeDate }, i) => (
-  <S.NoticeBox key={i}>
-    <S.NoticeList>
-      <S.Title>{noticeTitle}</S.Title>
-      <S.Date>{noticeDate}</S.Date>
-      <S.Content>{noticeContent}</S.Content>
-    </S.NoticeList>
+        getPost().then(setPost).catch(console.error);
+    }, [id]);
 
-    <S.Button>
-      <Link to={`/notice`}>
-        <button>목록으로 돌아가기</button>
-      </Link>
-    </S.Button>
-
-
-  </S.NoticeBox>
- )); 
+    console.log(post)
+    const {noticeTitle,noticeContent,noticeDate, noticeCount} = post;
 
   return (
-    <S.NoticeBox>
-      {noticeLists}
-    </S.NoticeBox>
+      <S.NoticeBox>
+          <S.NoticeList>
+              <S.Title>{noticeTitle}</S.Title>
+              <S.Span>
+                  <S.Date><span>등록일 : </span>{noticeDate}</S.Date>
+                  <S.Count><span>조회수 : </span>{noticeCount}</S.Count>
+              </S.Span>
+              <S.Content>{noticeContent}</S.Content>
+          </S.NoticeList>
+
+          <S.Button>
+              <Link to={`/notice`}>
+                  <button>목록으로 돌아가기</button>
+              </Link>
+          </S.Button>
+
+
+      </S.NoticeBox>
     
 
   );
