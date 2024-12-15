@@ -51,10 +51,10 @@ const S = {}
             cursor: pointer;
         }
     `;
-S.CustomProductMessage = styled.p`
-  width: 100%;
-  text-align: center;
-`
+// S.CustomProductMessage = styled.p`
+//   width: 100%;
+//   text-align: center;
+// `
 
 
     S.BannerButton = styled.img`
@@ -199,7 +199,6 @@ S.DropdownContainer = styled.div`
         align-items: center;
         padding: 10px;
         cursor: pointer;
-        background-color: ${props => props.isSelected ? '#f0f0f0' : 'white'};
         border-radius: 10px;
 
         &:hover {
@@ -357,11 +356,15 @@ S.Product = styled.div`
     }
 `;
 
-S.RecommendedPrice = styled.p`
+S.RecommendedPrice = styled.div`
+    
+    & p{
         display: flex;
         flex-direction: row;
         gap: 10px;
-    margin-top: 5px;
+        margin-top: 5px;
+    }
+       
     `;
 
     //
@@ -482,10 +485,14 @@ S.RecommendedPrice = styled.p`
             }
         `;
 
-    S.NormalPrice = styled.p`
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
+    S.NormalPrice = styled.div`
+        
+        & p{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+        
     `;
 
 

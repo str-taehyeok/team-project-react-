@@ -11,7 +11,6 @@ const Clothes = () => {
 
     const [products, setProducts] = useState([]);
 
-    // fetch 를 통해서 products 를 모두 가져와야한다.
     useEffect(() => {
 //     fetch products
         const getProducts = async () => {
