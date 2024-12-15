@@ -302,7 +302,7 @@ const ClothesColor = ({productList}) => {
                             <SwiperSlide key={i}>
                                 <S.Product>
                                     <HeartBtn />
-                                    <Link to="/product">
+                                    <Link to="/product/:id">
                                         <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={`상품${i + 1}`} />
                                         <span>{productName}</span>
                                     </Link>

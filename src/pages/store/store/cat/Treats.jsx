@@ -26,7 +26,7 @@ const Treats = () => {
     const bestProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
         <S.BestProduct key={i}>
             <HeartBtn/>
-            <Link to={"/product"}>
+            <Link to={"/product/:id"}>
                 <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)}/>
                 <span>{productName}</span>
             </Link>
@@ -41,7 +41,7 @@ const Treats = () => {
     const specialProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
         <S.SpecialProduct key={i} className={i === 0 ? 'first-product' : 'rest'}>
             <HeartBtn />
-            <Link to={"/product"}>
+            <Link to={"/product/:id"}>
                 <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)}/>
                 <span className={i === 0 ? 'first-product-name' : 'rest'}>{productName}</span>
             </Link>
@@ -56,7 +56,7 @@ const Treats = () => {
     const recommendProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
         <S.Product key={i} >
             <HeartBtn />
-            <Link to={"/product"}>
+            <Link to={"/product/:id"}>
                 <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)} />
                 <span>{productName}</span>
             </Link>
