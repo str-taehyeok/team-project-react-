@@ -1,20 +1,58 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import S from "./style";
 import { useForm } from 'react-hook-form';
-import {useNavigate } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 const CouponUpdate = () => {
 
-    const { register, handleSubmit, formState: { isSubmitting }} = useForm({ mode: 'onChange' });
-    const [rate, setRate] = useState(0); //  할인 상태
+    const { id } = useParams();
+    const { register, handleSubmit, setValue, formState: { isSubmitting } } = useForm({ mode: 'onChange' });
+    const [rate, setRate] = useState(0);
     const [selectedRate, setSelectedRate] = useState("");
     const navigate = useNavigate();
+
+    // 데이터 불러오기
+    useEffect(() => {
+        const fetchCouponData = async () => {
+            try {
+                const response = await fetch(`http://localhost:10000/coupons/${id}`);
+                if (!response.ok) {
+                    console.error("쿠폰 데이터를 불러올 수 없습니다.");
+                    return;
+                }
+                const data = await response.json();
+
+                // 필드에 데이터 입력
+                setValue("id", data.id);
+                setValue("couponTitle", data.couponTitle);
+                setValue("couponCategory", data.couponCategory);
+                setValue("couponAnimal", data.couponAnimal);
+                setValue("couponCode", data.couponCode);
+                setValue("couponStart", formatDate(data.couponStart));  // 날짜 형식 맞추기
+                setValue("couponEnd", formatDate(data.couponEnd));
+                setValue("couponContent", data.couponContent);
+                setValue("couponQuantity", data.couponQuantity);
+                setSelectedRate(data.couponDiscountRate);
+                setRate(data.couponDiscountRate);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchCouponData();
+    }, [id, setValue]);
+
+    const formatDate = (dateString) => {
+        if (!dateString) return ""; // 아무 값 없으면 공백 리턴
+        const date = new Date(dateString);
+        return date.toISOString().split('T')[0];  // yyyy-MM-dd 형식
+    };
+
 
     return (
         <S.CouponListWrap>
             <S.CouponForm
                 onSubmit={handleSubmit(async (data) => {
-                    console.log(data)
+                    // console.log(data)
                     const coupon = {
                         id : data.id,
                         couponTitle : data.couponTitle,
@@ -30,8 +68,8 @@ const CouponUpdate = () => {
                         productId : 1
                     };
 
-                    console.log("쿠폰", coupon)
-                    await fetch(`http://localhost:10000/coupons/${data.id}`,{
+                    // console.log("쿠폰", coupon)
+                    await fetch(`http://localhost:10000/coupons/${id}`,{
                         method : "PUT",
                         headers : {
                             "Content-Type": "application/json"
