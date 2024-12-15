@@ -148,8 +148,9 @@ S.InfoSeller = styled.div`
 
     S.PriceCheck = styled.div`
         display: flex;
-        position: relative;
+        //position: relative;
         margin-bottom: 50px;
+        width: 303px;
     `;
 
     S.TagWrap = styled.div`

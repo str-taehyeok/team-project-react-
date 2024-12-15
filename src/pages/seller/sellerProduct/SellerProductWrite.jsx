@@ -115,7 +115,7 @@ const SellerProductWrite = () => {
                     body: JSON.stringify({
                         productName: data.productName,
                         productPrice: data.productPrice,
-                        productDiscount:data.productDiscount,
+                        productRealPrice:data.productRealPrice,
                         productCode: new Date().getTime().toString(),
                         productDate: new Date().toISOString(),
                         productStock: data.productStock,
@@ -188,6 +188,10 @@ const SellerProductWrite = () => {
                                        onChange={handleChange}/>
                             </S.ListWrap>
                             <S.ListWrap>
+                                <S.Division>소비자가</S.Division>
+                                <input className="require-value" type="text" name="productRealPrice" placeholder="원(원)"/>
+                            </S.ListWrap>
+                            <S.ListWrap>
                                 <S.Division>상품가격</S.Division>
                                 <input className="require-value" type="text" name="productPrice" placeholder="원(원)"/>
                             </S.ListWrap>
@@ -218,7 +222,7 @@ const SellerProductWrite = () => {
                                     <option value="healthCare">헬스케어</option>
                                     <option value="treats">사료/간식</option>
                                     <option value="colothes">의류</option>
-                                    <option value="toys">장난감</option>
+                                    <option value="flushies">장난감</option>
                                 </select>
                             </S.ListWrap>
                             <S.ListWrap>
