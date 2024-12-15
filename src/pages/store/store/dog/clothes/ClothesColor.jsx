@@ -81,7 +81,7 @@ const ClothesColor = ({productList}) => {
 
 
     const toggleDropdown = (dropdownName) => {
-        setOpenDropdown((prev) => (prev === dropdownName ? null : dropdownName));
+        setOpenDropdown(prev => prev === dropdownName ? null : dropdownName);
     };
 
     const closeDropdown = () => setOpenDropdown(null);
@@ -108,25 +108,6 @@ const ClothesColor = ({productList}) => {
     };
 
 
-    // const colorProducts = products.length !== 0 ? filterdProducts.map(({productName, productPrice, productDiscount, productImage1}, i) => (
-    //     <S.SwiperDirection>
-    //     <SwiperSlide key={i}>
-    //     <S.Product key={i}>
-    //         <HeartBtn />
-    //         <Link to={"/product"}>
-    //         <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)}/>
-    //         <span>{productName}</span>
-    //         </Link>
-    //         <S.RecommendedPrice>
-    //             <p style={{color: "#C83F3F", fontWeight: "bold"}}>{productDiscount}%</p>
-    //             <p style={{fontWeight: 700}}>{productPrice}&nbsp;원</p>
-    //         </S.RecommendedPrice>
-    //         <button>담기</button>
-    //     </S.Product>
-    //         </SwiperSlide>
-    //     </S.SwiperDirection>
-    // )) : <S.CustomProductMessage>검색된 상품이 없습니다.</S.CustomProductMessage>
-
 
         return (
             <>
@@ -138,7 +119,7 @@ const ClothesColor = ({productList}) => {
                                 <button onClick={() => toggleDropdown('color')} type="button">색상
                                     <S.Arrow src={`${process.env.PUBLIC_URL}/assets/images/store/down-arrow.svg`} alt="icon"/>
                                 </button>
-                                <S.DropdownContent isopen={openDropdown === 'color' ? 'true' : undefined}>
+                                <S.DropdownContent isopen={openDropdown === 'color'}>
                                     <S.DropdownItem
                                         onClick={() => handleColorSelect('Orange')}
                                         className={selectedColor === 'Orange' ? 'selected' : ''}
@@ -187,23 +168,59 @@ const ClothesColor = ({productList}) => {
                                              alt="light purple"/>
                                     </S.DropdownItem>
                                     <S.DropdownItem
-                                        onClick={() => handleColorSelect('Dark Purple')}
-                                        className={selectedColor === 'Dark Purple' ? 'selected' : ''}
+                                        onClick={() => handleColorSelect('Sky Blue')}
+                                        className={selectedColor === 'Sky Blue' ? 'selected' : ''}
                                     >
                                         <input
                                             type="checkbox"
-                                            checked={selectedColor === 'Dark Purple'}
-                                            onChange={() => handleColorSelect('Dark Purple')}
+                                            checked={selectedColor === 'Sky Blue'}
+                                            onChange={() => handleColorSelect('Sky Blue')}
                                         />
-                                        <img src={`${process.env.PUBLIC_URL}/assets/images/store/dark-purple.png`}
-                                             alt="dark purple"/>
+                                        <img src={`${process.env.PUBLIC_URL}/assets/images/store/skyBlue.png`}
+                                             alt="Sky Blue"/>
+                                    </S.DropdownItem>
+                                    <S.DropdownItem
+                                        onClick={() => handleColorSelect('Sage Green')}
+                                        className={selectedColor === 'Sage Green' ? 'selected' : ''}
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedColor === 'Sage Green'}
+                                            onChange={() => handleColorSelect('Sage Green')}
+                                        />
+                                        <img src={`${process.env.PUBLIC_URL}/assets/images/store/sageGreen.png`}
+                                             alt="Sage Green"/>
+                                    </S.DropdownItem>
+                                    <S.DropdownItem
+                                        onClick={() => handleColorSelect('Ice Blue')}
+                                        className={selectedColor === 'Ice Blue' ? 'selected' : ''}
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedColor === 'Ice Blue'}
+                                            onChange={() => handleColorSelect('Ice Blue')}
+                                        />
+                                        <img src={`${process.env.PUBLIC_URL}/assets/images/store/iceBlue.png`}
+                                             alt="Ice Blue"/>
+                                    </S.DropdownItem>
+                                    <S.DropdownItem
+                                        onClick={() => handleColorSelect('Dusty Silver')}
+                                        className={selectedColor === 'Dusty Silver' ? 'selected' : ''}
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedColor === 'Dusty Silver'}
+                                            onChange={() => handleColorSelect('Dusty Silver')}
+                                        />
+                                        <img src={`${process.env.PUBLIC_URL}/assets/images/store/dustySilver.png`}
+                                             alt="Dusty Silver"/>
                                     </S.DropdownItem>
                                 </S.DropdownContent>
                             </S.DropdownWrapper>
                             <S.DropdownWrapper>
                                 <button onClick={() => toggleDropdown('price')} type="button">가격
                                     <S.Arrow src={`${process.env.PUBLIC_URL}/assets/images/store/down-arrow.svg`} alt="icon"/></button>
-                                <S.DropdownContent isopen={openDropdown === 'price' ? 'true' : undefined}>
+                                <S.DropdownContent isopen={openDropdown === 'price'}>
                                     <S.DropdownItem
                                         onClick={() => handlePriceSelect('Low')}
                                         className={selectedPrice === 'Low' ? 'selected' : ''}
@@ -220,7 +237,7 @@ const ClothesColor = ({productList}) => {
                             <S.DropdownWrapper>
                                 <button onClick={() => toggleDropdown('size')} type="button">사이즈
                                     <S.Arrow src={`${process.env.PUBLIC_URL}/assets/images/store/down-arrow.svg`} alt="icon"/></button>
-                                <S.DropdownContent isopen={openDropdown === 'size' ? 'true' : undefined}>
+                                <S.DropdownContent isopen={openDropdown === 'size'}>
                                     <S.DropdownItem
                                         onClick={() => handleSizeSelect('S')}
                                         className={selectedSize === 'S' ? 'selected' : ''}
@@ -242,7 +259,7 @@ const ClothesColor = ({productList}) => {
                             <S.DropdownWrapper>
                                 <button onClick={() => toggleDropdown('sort')} type="button"> 정렬
                                     <S.Arrow src={`${process.env.PUBLIC_URL}/assets/images/store/down-arrow.svg`} alt="icon"/></button>
-                                <S.DropdownContent isopen={openDropdown === 'sort'? 'true' : undefined}>
+                                <S.DropdownContent isopen={openDropdown === 'sort'}>
                                     <S.DropdownItem
                                         onClick={() => handleSortSelect('Star')}
                                         className={selectedSort === 'Star' ? 'selected' : ''}
@@ -257,7 +274,12 @@ const ClothesColor = ({productList}) => {
                                         onClick={() => handleSortSelect('Name')}
                                         className={selectedSort === 'Name' ? 'selected' : ''}
                                     >
-                                        <input type="checkbox" checked={selectedSort === 'Name'} onChange={() => handleSortSelect('Star')}/>이름순</S.DropdownItem>
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedSort === 'Name'}
+                                            onChange={() => handleSortSelect('Star')}  // This should be 'Name', not 'Star'
+                                        />이름순
+                                    </S.DropdownItem>
                                 </S.DropdownContent>
                             </S.DropdownWrapper>
                         </S.DropdownContainer>
@@ -275,22 +297,26 @@ const ClothesColor = ({productList}) => {
                         modules={[Grid, Pagination]}
                         className="mySwiper"
                     >
-                        {filteredProducts.map(({ productName, productPrice, productDiscount, productImage1 }, i) => (
-                            <SwiperSlide key={i}>
-                                <S.Product>
-                                    <HeartBtn />
-                                    <Link to="/product">
-                                        <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={`상품${i + 1}`} />
-                                        <span>{productName}</span>
-                                    </Link>
-                                    <S.RecommendedPrice>
-                                        <p style={{ color: "#C83F3F", fontWeight: "bold" }}>{productDiscount}%</p>
-                                        <p style={{ fontWeight: 700 }}>{productPrice}&nbsp;원</p>
-                                    </S.RecommendedPrice>
-                                    <button>담기</button>
-                                </S.Product>
-                            </SwiperSlide>
-                        ))}
+                        {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+                            filteredProducts.map(({ productName, productPrice, productDiscount, productImage1 }, i) => (
+                                <SwiperSlide key={i}>
+                                    <S.Product>
+                                        <HeartBtn />
+                                        <Link to="/product">
+                                            <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={`상품${i + 1}`} />
+                                            <span>{productName}</span>
+                                        </Link>
+                                        <S.RecommendedPrice>
+                                            <p style={{ color: "#C83F3F", fontWeight: "bold" }}>{productDiscount}%</p>
+                                            <p style={{ fontWeight: 700 }}>{productPrice}&nbsp;원</p>
+                                        </S.RecommendedPrice>
+                                        <button>담기</button>
+                                    </S.Product>
+                                </SwiperSlide>
+                            ))
+                        ) : (
+                            <S.CustomProductMessage>검색된 상품이 없습니다.</S.CustomProductMessage>
+                        )}
                     </Swiper>
                 </S.ProductWrap>
             </>

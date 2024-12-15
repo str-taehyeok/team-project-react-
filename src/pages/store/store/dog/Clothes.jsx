@@ -10,16 +10,42 @@ import HeartBtn from "../HeartBtn";
 const Clothes = () => {
 
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-//     fetch products
-        const getProducts = async () => {
-            const response = await fetch("http://localhost:10000/products/products")
-            const products = await response.json()
-            return products
-        }
-        getProducts().then(setProducts).catch(console.error)
+        const fetchProducts = async () => {
+            try {
+                // 동물 타입을 URL에 포함시켜 fetch
+                // const response = await fetch("http://localhost:10000/products/products/");
+                // 또는 쿼리 파라미터 사용:
+                const response = await fetch("http://localhost:10000/products/products?productAnimal=dog");
+
+                if (!response.ok) {
+                    throw new Error('상품을 불러오는 데 실패했습니다.');
+                }
+
+                const data = await response.json();
+                setProducts(data);
+                setLoading(false);
+            } catch (error) {
+                setError(error.message);
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
     }, []);
+
+    // 로딩 상태 처리
+    if (loading) {
+        return <div>상품을 불러오는 중입니다...</div>;
+    }
+
+    // 에러 상태 처리
+    if (error) {
+        return <div>오류: {error}</div>;
+    }
 
     const bestProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
         <S.BestProduct key={i}>

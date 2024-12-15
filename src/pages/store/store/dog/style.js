@@ -51,10 +51,10 @@ const S = {}
             cursor: pointer;
         }
     `;
-// S.CustomProductMessage = styled.p`
-//   width: 100%;
-//   text-align: center;
-// `
+S.CustomProductMessage = styled.p`
+  width: 100%;
+  text-align: center;
+`;
 
 
     S.BannerButton = styled.img`
@@ -225,7 +225,7 @@ S.DropdownContainer = styled.div`
         border: 1px solid #D9D9D9;
         border-radius: 10px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        display: ${props => props.isOpen ? 'block' : 'none'};
+        display: ${props => props.isopen ? 'block' : 'none'};
         z-index: 1000;
     `;
 
@@ -243,7 +243,7 @@ S.DropdownContainer = styled.div`
         display: flex;
         flex-direction: row;
         width: 1440px;
-        height: 1000px;
+        height: 1070px;
         overflow: hidden;
         background: #fff;
         //height: calc((100% - 30px) / 2) !important;
@@ -316,7 +316,7 @@ S.Product = styled.div`
     //height: 480px;
     position: relative;
     box-sizing: border-box;
-    text-align: center;
+    //text-align: center;
     margin: 0;
     padding: 10px;
     display: flex;
@@ -326,6 +326,7 @@ S.Product = styled.div`
     & span {
         display: inline-block;
         margin-top: 15px;
+        width: 317px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -357,11 +358,10 @@ S.Product = styled.div`
 `;
 
 S.RecommendedPrice = styled.div`
-    
+    display: flex;
+    flex-direction: row;
     & p{
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
+        margin-right: 10px;
         margin-top: 5px;
     }
        
@@ -486,11 +486,10 @@ S.RecommendedPrice = styled.div`
         `;
 
     S.NormalPrice = styled.div`
-        
+        display: flex;
+        flex-direction: row;
         & p{
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
+            margin-right: 10px;
         }
         
     `;
@@ -508,6 +507,7 @@ S.RecommendedPrice = styled.div`
     // 추천
     S.RecommendedProduct = styled.div`
             margin-top: 150px;
+        max-width: 1440px;
         `;
     S.Title = styled.span`
             ${h1Bold};
