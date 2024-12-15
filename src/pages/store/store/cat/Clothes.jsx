@@ -16,9 +16,6 @@ const Clothes = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                // 동물 타입을 URL에 포함시켜 fetch
-                // const response = await fetch("http://localhost:10000/products/products/");
-                // 또는 쿼리 파라미터 사용:
                 const response = await fetch("http://localhost:10000/products/products?productAnimal=dog");
 
                 if (!response.ok) {

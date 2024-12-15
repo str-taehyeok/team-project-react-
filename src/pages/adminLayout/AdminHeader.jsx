@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import S from "./style";
+import {setUser, setUserStatus} from "../../modules/user";
+import {useDispatch} from "react-redux";
 
 const AdminHeader = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSubmenu, setActiveSubmenu] = useState(null);
     const [currentTitle, setCurrentTitle] = useState("공지사항");
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        localStorage.removeItem("jwtToken");
+        dispatch(setUser({}));
+        dispatch(setUserStatus(false));
+        window.location.href = "http://localhost:10000/logout";
+    };
 
     const menuItems = [
         {
@@ -72,10 +82,6 @@ const AdminHeader = () => {
         }, 300);
     };
 
-    const handleLogout = () => {
-        window.location.href = '/admin-login';
-    };
-
 
     const menus = menuItems.map((item, index) => (
         <li key={index} onMouseEnter={() => handleMenuItemHover(index)} onMouseLeave={handleMenuLeave}>
@@ -101,9 +107,7 @@ const AdminHeader = () => {
                     <S.MenuFrame style={{ display: isMenuOpen ? 'flex' : 'none' }}  onMouseLeave={handleFrameLeave}>
                         <S.MenuHeader>
                             <S.Welcome>admin님 환영합니다!</S.Welcome>
-                            <button type="button" className="logout" onClick={handleLogout}>
-                                로그아웃
-                            </button>
+                            <Link to="/admin-login" onClick={handleLogout}>로그아웃</Link>
                         </S.MenuHeader>
                         <S.MenuForm>
                             <ul>

@@ -115,6 +115,7 @@ const SellerProductWrite = () => {
                     body: JSON.stringify({
                         productName: data.productName,
                         productPrice: data.productPrice,
+                        productDiscount:data.productDiscount,
                         productCode: new Date().getTime().toString(),
                         productDate: new Date().toISOString(),
                         productStock: data.productStock,
@@ -126,7 +127,7 @@ const SellerProductWrite = () => {
                         productDetail: data.productDetail,
                         productAnimal: data.productAnimal,
                         productCategory: data.productCategory,
-                        petsonalColor: data.petsonalColor,
+                        productColor: data.productColor,
                         productSize: data.productSize,
                         deliveryFeeKind: data.deliveryFeeKind,
                         deliveryFee: data.deliveryFee,
@@ -148,33 +149,33 @@ const SellerProductWrite = () => {
                     })
             })}>
 
-                {/*<form onSubmit={handleSubmit(async (data) => {*/}
-                {/*    console.log(data)*/}
-                {/*    await fetch("http://localhost:10000/delivery/write", {*/}
-                {/*        method: "POST",*/}
-                {/*        headers: {*/}
-                {/*            "Content-Type": "application/json"*/}
-                {/*        },*/}
-                {/*        body: JSON.stringify({*/}
-                {/*            deliveryFeeKind: data.deliveryFeeKind,*/}
-                {/*            deliveryFee: data.deliveryFee,*/}
-                {/*            deliveryFeeFree: data.deliveryFeeFree,*/}
-                {/*            deliveryHow: data.deliveryHow,*/}
-                {/*            deliveryPayHow: data.deliveryPayHow,*/}
-                {/*            deliveryCompany: data.deliveryCompany,*/}
-                {/*            memberId: memberId*/}
-                {/*        })*/}
-                {/*    })*/}
-                {/*        .then((res) => res.json())*/}
-                {/*        .then((res) => {*/}
-                {/*            alert('데이터가 성공적으로 전송되었습니다!');*/}
-                {/*            navigate(`/seller`)*/}
-                {/*        })*/}
-                {/*        .catch((error) => {*/}
-                {/*            console.error('에러발생 :', error);*/}
-                {/*            alert('데이터 저장중 오류가 발생하였습니다.');*/}
-                {/*        })*/}
-                {/*})}>*/}
+                <form onSubmit={handleSubmit(async (data) => {
+                    console.log(data)
+                    await fetch("http://localhost:10000/delivery/write", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            deliveryFeeKind: data.deliveryFeeKind,
+                            deliveryFee: data.deliveryFee,
+                            deliveryFeeFree: data.deliveryFeeFree,
+                            deliveryHow: data.deliveryHow,
+                            deliveryPayHow: data.deliveryPayHow,
+                            deliveryCompany: data.deliveryCompany,
+                            memberId: memberId
+                        })
+                    })
+                        .then((res) => res.json())
+                        .then((res) => {
+                            alert('데이터가 성공적으로 전송되었습니다!');
+                            navigate(`/seller`)
+                        })
+                        .catch((error) => {
+                            console.error('에러발생 :', error);
+                            alert('데이터 저장중 오류가 발생하였습니다.');
+                        })
+                })}>
 
                     <S.ProductInsert>
                         <p>상품 정보 입력</p>
@@ -379,6 +380,7 @@ const SellerProductWrite = () => {
                         </S.ButtonWrap>
                     </S.ProductInsert>
                 </form>
+            </form>
         </div>
 );
 };

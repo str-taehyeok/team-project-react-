@@ -89,9 +89,12 @@ S.InfoSeller = styled.div`
             position: absolute;
             top: 0;
             left: 590px;
-            background-color: #ffc303;
+            background-color: #61dafb;
+            border: 1px solid #131313;
+            
         }
     `;
+
 
     S.star = styled.div`
         display: flex;
@@ -161,7 +164,7 @@ S.InfoSeller = styled.div`
         & P{
             display: flex;
             flex-direction: column;
-            margin-bottom: 126px;
+            //margin-bottom: 126px;
             width: 59px;
         }
     `;
@@ -170,6 +173,7 @@ S.InfoSeller = styled.div`
     S.InfoWrap = styled.div`
         display: flex;
         flex-direction: column;
+        
     `;
 
     S.DeliveryInfo = styled.div`
@@ -178,6 +182,8 @@ S.InfoSeller = styled.div`
         gap : 16px;
         margin-bottom: 10px;
         height: 50px;
+        width: 200px;
+ 
     `;
 
     S.ProductBox = styled.div`
