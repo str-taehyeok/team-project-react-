@@ -9,13 +9,15 @@ const FindPassword = () => {
   const [email, setEmail] = useState(""); 
   const [authNumber, setAuthNumber] = useState(""); 
   const [mark, setMark] = useState(false);
+  const [authVerified, setAuthVerified] = useState(false); 
+
   const {
     register,
     getValues,
     formState: { errors },
   } = useForm({ mode: "onChange" });
 
-  const handlePasswordChange = () => {
+  const handlePasswordChange = async () => {
     if (!authNumber || !newPassword || !confirmNewPassword) {
       return alert("인증번호와 새로운 비밀번호를 모두 입력해주세요.");
     }
@@ -24,41 +26,66 @@ const FindPassword = () => {
       return alert("새로운 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
     }
 
-    alert("비밀번호가 변경되었습니다.");
+    const response = await fetch("/change-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ memberEmail: email, authCode: authNumber, newPassword }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert("비밀번호가 변경되었습니다.");
+    } else {
+      alert(result.message || "비밀번호 변경에 실패했습니다.");
+    }
   };
 
-  // 이메일로 인증번호 전송 API 요청
   const handleAuthRequest = async () => {
     if (!email) {
       return alert("이메일을 입력해주세요.");
     }
 
-    try {
-      const response = await fetch("/api/send-auth-code", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+    const response = await fetch("/find-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ memberEmail: email }),
+    });
 
-      const result = await response.json();
+    const result = await response.json();
 
-      if (response.ok) {
-        alert("인증번호가 이메일로 전송되었습니다.");
-      } else {
-        alert(result.message || "인증번호 전송에 실패했습니다.");
-      }
-    } catch (error) {
-      alert("서버에 문제가 발생했습니다. 다시 시도해주세요.");
+    if (response.ok) {
+      alert("인증번호가 이메일로 전송되었습니다.");
+    } else {
+      alert(result.message || "인증번호 전송에 실패했습니다.");
     }
   };
 
-  const handleAuthVerify = () => {
-    if (authNumber === "입력된 인증번호") { 
-      alert("인증이 확인되었습니다.");
+  const handleAuthVerify = async () => {
+    if (!authNumber) {
+      return alert("인증번호를 입력해주세요.");
+    }
+
+    const response = await fetch("/verify-password-auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ memberEmail: email, authCode: authNumber }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert("인증번호가 확인되었습니다.");
+      setAuthVerified(true);  
     } else {
-      alert("인증번호를 확인해주세요.");
+      alert(result.message || "인증번호 확인에 실패했습니다.");
+      setAuthVerified(false); 
     }
   };
 
@@ -185,7 +212,7 @@ const FindPassword = () => {
           <S.NextButton
             type="button"
             onClick={handlePasswordChange}
-            disabled={!authNumber || !newPassword || !confirmNewPassword}
+            disabled={!authNumber || !newPassword || !confirmNewPassword || !authVerified}
           >
             확인
           </S.NextButton>

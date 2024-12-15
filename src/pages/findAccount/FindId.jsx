@@ -39,34 +39,6 @@ const FindId = () => {
       });
   };
 
-  // 아이디 찾기 요청
-  // const findId = async () => {
-  //   if (!phoneNumber) {
-  //     return alert("휴대폰 번호를 입력해주세요.");
-  //   }
-
-  //   await fetch("http://localhost:10000/member/find-id", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ phoneNumber }), 
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data && data.memberEmail) {
-  //         setMemberEmail(data.memberEmail); 
-  //         alert("아이디를 찾았습니다.");
-  //       } else {
-  //         alert("해당하는 아이디가 없습니다.");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //       alert("아이디 찾기 실패");
-  //     });
-  // };
-
   const findMemberByPhone = async () => {
     if (!phoneNumber) {
       return alert("휴대폰 번호를 입력해주세요.");
@@ -152,7 +124,7 @@ const FindId = () => {
               type="text"
               id="phone"
               name="phone"
-              placeholder="전화번호"
+              placeholder="(-)없이 입력해주세요."
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
