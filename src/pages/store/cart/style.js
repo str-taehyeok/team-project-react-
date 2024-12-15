@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { h4Bold, h2Bold, h6Medium, h7Bold, h7Medium, h8Regular, h10Regular, h9Regular, h8Bold } from "../../../global/common";
-import { Link } from "react-router-dom";
 
 const S = {}
 
@@ -61,13 +60,13 @@ S.NoCartInfo = styled.div`
 
   
   & div {
-    ${h7Medium}
     width: 370px;
     display: flex;
     flex-direction: column;
     margin-top: 28px;
     justify-content: center;
     align-items: center;
+    ${h7Medium}
   }
 
 
@@ -77,7 +76,8 @@ S.NoCartInfo = styled.div`
 S.CartTitle = styled.div`
   margin-top: 190px;
   margin-bottom: 50px;
-    
+    margin-left: 132.5px;
+    width: 1175px;
   ${h4Bold}
 
  
@@ -90,6 +90,7 @@ S.CartAllCheck = styled.div`
   border-radius: 12px;
   display: flex;
   align-items: center;
+    margin: 0 auto;
 
   & > input {
     width: 28px;
@@ -135,6 +136,7 @@ S.CartAllNames = styled.div`
 
 S.CartProductBox = styled.div`
   width: 1175px;
+    margin: 0 auto;
   height: 286px;
   box-sizing: border-box;
   border: solid 1px #828282;
@@ -176,9 +178,9 @@ S.ProductName = styled.div`
       width: 262px;
       height: 50px;
       overflow: hidden;
-      ${h8Regular}
       margin-left: 34px;
       text-overflow: ellipsis;
+      ${h8Regular}
       
 
 `
@@ -209,10 +211,10 @@ S.productPrice = styled.div`
   }
 
   & p:nth-child(2) {
-    ${h6Medium}
     margin-left: 4px;
     color: #828282;
     text-decoration: line-through;
+    ${h6Medium}
   }
 
 `
@@ -240,9 +242,9 @@ S.RecommendInfo = styled.div`
   }
   
   & span:nth-child(1) {
-    ${h8Regular}
     display: flex;
     overflow: hidden;
+    ${h8Regular}
   }
 
   & span:nth-child(2) {
@@ -276,47 +278,49 @@ S.CouponBtnWrap = styled.div`
 `
 
 S.CouponBtn = styled.div`
-  width: 140px;
-  height: 30px;
-  box-sizing: border-box;
-  border: solid 1px #828282;
-  border-radius: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  color: #828282;
-  margin-left: 32px;
-  align-items: center;
-  justify-content: space-around;
-  ${h9Regular}
-  cursor: pointer;
+    & select {
+        width: 140px;
+        height: 30px;
+        box-sizing: border-box;
+        border: solid 1px #828282;
+        border-radius: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        color: #828282;
+        margin-left: 32px;
+        align-items: center;
+        justify-content: space-around;
+        cursor: pointer;
+        padding: 5px 5px;
+        ${h9Regular}
+    }
 
-  & img {
-    width: 8px;
-    height: 6px;
-    
-  }
+
+  //& img {
+  //  width: 8px;
+  //  height: 6px;
+  //  
+  //}
  
 `
 S.CouponWrap = styled.div`
   position: absolute;
-  padding: 10px 10px 0px 16px;
+  padding: 10px 10px 0 16px;
   margin-top: 6px;
-  right: 0px;
   border: solid 1px #828282;
   width: 140px;
   height: 100px;
   background: white;
         /* min-width: 120%; */
-        border: 1px solid #D9D9D9;
         border-radius: 10px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   display: none;
 
   &.active {
     display: flex;
-    ${h9Regular}
     flex-direction: column;
     overflow-y: scroll;
+    ${h9Regular}
   }
 
   &.active::-webkit-scrollbar {
@@ -335,15 +339,15 @@ S.CouponWrap = styled.div`
 
 
 // 카트 결제
-
 S.CartPayWrap = styled.div`
   width: 1175px;
   height: 480px;
   display: block;
+  margin: 0 auto;  
 `
 
 S.CartPayTitle = styled.div`
-  width: 1175px;
+  //width: 1175px;
   height: 34px;
   margin-top: 86px;
   margin-bottom: 50px;
@@ -377,8 +381,8 @@ S.AllDeliveryFee = styled.div`
     height: 50px;
     align-items: first baseline;
     justify-content: space-between;
-    ${h7Bold}
     color: #888888;
+    ${h7Bold}
 `
 
 S.PurchasePrice= styled.div`
@@ -388,10 +392,10 @@ S.PurchasePrice= styled.div`
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
-    ${h7Bold}
     color: #888888;
     border-top: solid 1px #888888;
     border-bottom: solid 1px #888888;
+    ${h7Bold}
 
 `
 
@@ -399,11 +403,11 @@ S.DiscountPrice = styled.div`
   width: 920px;
   height: 60px;
   box-sizing: border-box;
-  ${h7Bold}
   color: #888888;
   display: flex;
   align-items: center;
   border-bottom: solid 1px #888888;
+  ${h7Bold}
 
 `
 
@@ -411,24 +415,30 @@ S.AllPurchaseFee = styled.div`
   width: 920px;
   height: 50px;
   box-sizing: border-box;
-  ${h7Bold}
   display: flex;
   align-items: center;
-
+  ${h7Bold}
 `
 
 // cartBtn
 
-S.Link = styled(Link)`
-  margin-left: 1094px;
-  width: 177px;
-  height: 36px;
-  border-radius: 12px;
-  background-color: #113F8A;
-  color: #FFFFFF;
+S.Link = styled.div`
+  width: 1175px;
+  display: flex;
+  justify-content: right;
+  margin-top: 33px;
   ${h8Bold}
+  `
+S.All = styled.div`
+      width: 177px;
+      height: 36px;
+      border-radius: 20px;
+      background-color: #113F8A;
+      color: #FFFFFF;
+      text-align: center;
+      line-height: 36px;
+  `
 
-` 
 
 S.CouponList = styled.div`
 
@@ -438,5 +448,11 @@ S.CouponList = styled.div`
 
   } 
 `
-
+S.CartBox = styled.div`
+width: 1440px;
+//    display: flex;
+//flex-direction: column;
+//justify-content: center;
+//    align-items: center;
+`
 export default S;

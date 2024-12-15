@@ -1,4 +1,5 @@
 import React from 'react';
+import S from './style';
 
 // 데이터 
 const delivery = 
@@ -27,7 +28,6 @@ const Purchase = () => {
         {/* 배송 메모를 선택하세요 모달 */}
         {/* 다음에도 사용할게요 */}
       </S.PurchaseInfo>
-    
     </>
     
   );
