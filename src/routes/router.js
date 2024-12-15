@@ -108,6 +108,28 @@ import Notice from "../pages/myhome/notice/Notice";
 import NoticeListAll from "../pages/admin/notice/NoticeListAll";
 import PetTestList from "../pages/myhome/myPet/PetTestList";
 
+
+
+function createProductRoutes(animal) {
+    return [
+        {
+            index: true,
+            element: animal === 'dog' ? <Flushies /> : <Flushie />
+        },
+        {
+            path: 'treats',
+            element: animal === 'dog' ? <Treats /> : <Treat />
+        },
+        {
+            path: 'clothes',
+            element: animal === 'dog' ? <Clothes /> : <Cloth />
+        },
+        {
+            path: 'health-care',
+            element: animal === 'dog' ? <HealthCare /> : <HealthCares />
+        },
+    ];
+}
 const router = createBrowserRouter([
     {
         path: '/',
@@ -228,46 +250,12 @@ const router = createBrowserRouter([
             {
                 path: '/store-dog',
                 element: <StoreDogContainer />,
-                children: [
-                    {
-                        index: true,
-                        element: <Flushies />
-                    },
-                    {
-                        path: 'treats',
-                        element: <Treats />
-                    },
-                    {
-                        path: 'clothes',
-                        element: <Clothes />
-                    },
-                    {
-                        path: 'health-care',
-                        element: <HealthCare />
-                    },
-                ]
+                children: createProductRoutes('dog')
             },
             {
                 path: '/store-cat',
                 element: <StoreCatContainer />,
-                children: [
-                    {
-                        index: true,
-                        element: <Flushie />
-                    },
-                    {
-                        path: 'treats',
-                        element: <Treat />
-                    },
-                    {
-                        path: 'clothes',
-                        element: <Cloth />
-                    },
-                    {
-                        path: 'health-care',
-                        element: <HealthCares />
-                    },
-                ]
+                children: createProductRoutes('cat')
             },
             {
                 path: '/cart',
