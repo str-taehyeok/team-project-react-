@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import S from "./style";
 import { useForm } from "react-hook-form";
 
+
 const FindPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
