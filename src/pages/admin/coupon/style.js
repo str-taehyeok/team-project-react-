@@ -161,10 +161,10 @@ S.Container = styled.div`
     background-color: #ffffff;
     justify-content: center;
     margin: 0 auto;
+    gap : 35px;
 `
 
 S.Box1 = styled.div`
-    margin-top: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -176,7 +176,6 @@ S.Input = styled.input`
     padding: 26px;
     border: 1px solid #ccc;
     border-radius: 20px;
-    margin-top: 15px;
 
     //::-webkit-inner-spin-button {
     //    -webkit-appearance: none;
@@ -251,7 +250,6 @@ S.CouponCategory = styled.select`
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 20px;
-    margin-top: 15px;
     
     & option {
     }
@@ -260,7 +258,6 @@ S.CouponCategory = styled.select`
 S.DiscountType = styled.div`
     display: flex;
     align-items: flex-start;
-    margin-top: 30px;
 `
 
 S.Box3 = styled.div`
@@ -280,6 +277,9 @@ S.Textarea = styled.textarea`
     display: flex;
     width: 708px;
     height: 100px;
+    border-radius: 20px;
+    padding-top: 19px;
+    padding-left: 26px;
 `
 
 S.LabelRadio = styled.label`

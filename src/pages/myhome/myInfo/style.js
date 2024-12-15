@@ -354,12 +354,20 @@ S.PasswordUpdateInput = styled.div`
     }
 `;
 
+S.PasswordUpdateFormContainer = styled.div`
+    display: flex;
+    margin: 0 auto;
+    width: 464px;
+`
+
+
 S.PasswordUpdateForm = styled.form`
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 464px;
     margin-top: 104px;
+    margin-bottom: 456px;
 `;
 
 S.PasswordUpdateButton = styled.button`
