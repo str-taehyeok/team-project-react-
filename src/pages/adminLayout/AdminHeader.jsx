@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import S from "./style";
 import {setUser, setUserStatus} from "../../modules/user";
 import {useDispatch} from "react-redux";
@@ -10,12 +10,12 @@ const AdminHeader = () => {
     const [currentTitle, setCurrentTitle] = useState("공지사항");
     const dispatch = useDispatch();
 
-    const handleLogout = () => {
-        localStorage.removeItem("jwtToken");
-        dispatch(setUser({}));
-        dispatch(setUserStatus(false));
-        window.location.href = "http://localhost:10000/logout";
-    };
+    // const handleLogout = () => {
+    //     localStorage.removeItem("jwtToken");
+    //     dispatch(setUser({}));
+    //     dispatch(setUserStatus(false));
+    //     window.location.href = "http://localhost:10000/logout";
+    // };
 
     const menuItems = [
         {
@@ -97,6 +97,31 @@ const AdminHeader = () => {
             </div>
         </li>
     ));
+    const[posts, setPosts] = useState([])
+
+    useEffect(() => {
+        const getPosts = async() => {
+            const response = await fetch(`http://localhost:10000/notice/list-all`);
+            if(!response.ok) return console.error(`데이터가 없습니다`)
+            const posts = await response.json();
+            return posts;
+        }
+
+        getPosts().then(setPosts).catch(console.error);
+    }, []);
+
+    console.log(posts)
+
+    const admin = posts.map(({ id,memberName},i) => (
+        <S.Welcome key={id}>{memberName}님 환영합니다!</S.Welcome>
+    ));
+
+    // 로그아웃
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('jwtToken');
+        navigate('/admin-login');
+    };
 
     return (
         <S.Header>
@@ -106,8 +131,15 @@ const AdminHeader = () => {
                 <S.EntireMenu>
                     <S.MenuFrame style={{ display: isMenuOpen ? 'flex' : 'none' }}  onMouseLeave={handleFrameLeave}>
                         <S.MenuHeader>
-                            <S.Welcome>admin님 환영합니다!</S.Welcome>
+
+                            {/*<S.Welcome>admin 님 환영합니다!</S.Welcome>*/}
+                            <S.Welcome>{admin}</S.Welcome>
                             <Link to="/admin-login" onClick={handleLogout}>로그아웃</Link>
+
+                            {/*<button type="button" className="logout" onClick={handleLogout}>*/}
+                            {/*    로그아웃*/}
+                            {/*</button>*/}
+
                         </S.MenuHeader>
                         <S.MenuForm>
                             <ul>
