@@ -6,7 +6,7 @@ const CouponList = () => {
     const [coupons, setCoupons] = useState([]);
 
     useEffect(() => {
-        const fetchCoupons = async () => {
+        const coupons = async () => {
             try {
                 const response = await fetch("http://localhost:10000/coupons/list");
                 if (!response.ok) {
@@ -20,7 +20,7 @@ const CouponList = () => {
             }
         };
 
-        fetchCoupons();
+        coupons();
     }, []);
 
     const getDelete = async (id) => {

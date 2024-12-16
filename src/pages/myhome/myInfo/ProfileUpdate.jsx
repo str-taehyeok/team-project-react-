@@ -1,19 +1,28 @@
 import React, {useState} from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 
 const ProfileUpdate = () => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const { currentUser } = useSelector((state) => state.user);
 
     const [formData, setFormData] = useState({
-        memberImage : "",
-        memberName : "Jane Ryo",
-        memberNickName : "Jane",
-        memberEmail : "example@gmail.com",
-        memberPhone : "01012345678",
-        memberAdress : "06544",
-        memberAdressDetail : "Seoul 34th st."
-    });
+            memberEmail: currentUser.memberEmail,
+            memberName: currentUser.memberName,
+            memberPhone: currentUser.memberPhone,
+            memberZipcode: currentUser.memberZipcode,
+            memberAddress: currentUser.memberAddress,
+            memberAddressDetail: currentUser.memberAddressDetail,
+            memberSmsCheck: currentUser.memberSmsCheck,
+            memberEmailCheck: currentUser.memberEmailCheck,
+            memberDate: currentUser.memberDate,
+            memberBusinessNumber: currentUser.memberBusinessNumber,
+            memberImage: currentUser.memberImage,
+            memberNickname: currentUser.memberNickname,
+            memberProvider: "자사로그인"
+        });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -37,7 +46,7 @@ const ProfileUpdate = () => {
                             <S.ProfileImage>
                                 <img src={`${process.env.PUBLIC_URL}/assets/images/myhome/default-userImg.png`}
                                      alt="프로필사진"/>
-                                <p>{formData.memberNickName}</p>
+                                <p>{formData.memberNickname}</p>
                             </S.ProfileImage>
                             <S.ProfileBoxImageWrap>
                                 <button><Link to={"/"}>이미지 편집</Link></button>
@@ -51,13 +60,15 @@ const ProfileUpdate = () => {
                                 </S.MemberInputBox>
                                 <S.MemberInputBox>
                                     <S.h7>닉네임</S.h7>
-                                    <input type="text" name="userNickName" placeholder="닉네임을 입력하세요" value={formData.memberNickName}
+                                    <input type="text" name="userNickName" placeholder="닉네임을 입력하세요" value={formData.memberNickname}
                                            onChange={handleChange}/>
                                 </S.MemberInputBox>
                                 <S.MemberInputBox>
                                     <S.h7>아이디(이메일)</S.h7>
-                                    <input type="text" name="userEmail" placeholder="이메일을 입력하세요" value={formData.memberEmail}
-                                           onChange={handleChange}/>
+                                    {/*<input type="text" name="userEmail" placeholder="이메일을 입력하세요"*/}
+                                    {/*       value={formData.memberEmail}*/}
+                                    {/*       onChange={handleChange}/>*/}
+                                    <p name="userEmail">{formData.memberEmail}</p>
                                 </S.MemberInputBox>
                                 <S.MemberInputBox>
                                     <S.h7>휴대폰번호</S.h7>
@@ -72,13 +83,13 @@ const ProfileUpdate = () => {
                                     <S.MemberInputAddress>
                                         <S.ZipCode>
                                             <input type="text" name="memberAdress" placeholder="우편주소를 입력해주세요"
-                                                   value={formData.memberAdress} onChange={handleChange}/>
+                                                   value={formData.memberZipcode} readOnly onChange={handleChange}/>
                                             <p>우편번호</p>
                                         </S.ZipCode>
-                                        <input type="text" name="memberAdress" placeholder="간편주소"
-                                               value={formData.memberAdress} onChange={handleChange}/>
-                                        <input type="text" name="memberAdressDetail" placeholder="상세주소를 입력하세요"
-                                               value={formData.memberAdressDetail} onChange={handleChange}/>
+                                        <input type="text" name="memberAddress" placeholder="간편주소"
+                                               value={formData.memberAddress} onChange={handleChange}/>
+                                        <input type="text" name="memberAddressDetail" placeholder="상세주소를 입력하세요"
+                                               value={formData.memberAddressDetail} onChange={handleChange}/>
                                     </S.MemberInputAddress>
                                 </S.MemberInputBox>
                             </S.MemberInputBoxWrap>
