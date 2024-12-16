@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import S from "./style";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import notice from "../../myhome/notice/Notice";
-
 
 const NoticeList = () => {
     const {id} = useParams();
     const [post, setPost] = useState({});
     const navigate = useNavigate();
-
 
     useEffect(() => {
         const getPost = async () => {
@@ -21,11 +18,18 @@ const NoticeList = () => {
         getPost().then(setPost).catch(console.error);
     }, [id]);
 
-    console.log(post)
-
-
-
     const {noticeTitle,noticeContent,noticeDate, noticeCount} = post;
+
+    const onClickDeleteNotice = async () => {
+        await fetch(`http://localhost:10000/notice/list/${id}`, {
+            method : "DELETE"
+        })
+        .then((res) => {
+            navigate("/admin")
+        })
+    }
+
+
     return (
         <S.NoticeBox>
             <S.Title>공지사항</S.Title>
@@ -33,14 +37,7 @@ const NoticeList = () => {
                 <Link to={`/admin/update/${id}`}>
                     <button className={"update"}>수정</button>
                 </Link>
-                <button className={"delete"}onClick={async () => {
-                    await fetch(`http://localhost:10000/notice/list/${id}`, {
-                        method : "DELETE"
-                    })
-                        .then((res) => {
-                            navigate("/admin")
-                        })
-                }}>삭제</button>
+                <button className={"delete"} onClick={onClickDeleteNotice}>삭제</button>
             </S.ListButton>
                 <S.TitleBox>
                     <S.ListTitle >{noticeTitle}</S.ListTitle>
