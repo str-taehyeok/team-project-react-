@@ -99,14 +99,12 @@ const JoinPhone = () => {
             <S.InputContainer>
               <S.InputField
                 type="number"
-                name="phone"
                 placeholder="휴대폰 번호 입력 ('-'제외 11자리 입력)"
                 value={state.phone}
                 onChange={(e) => action.setPhone(e.target.value)}
               />
               <S.AuthButton
                 type="button"
-                id="RequestAuth"
                 onClick={transferSms}
               >
                 인증요청

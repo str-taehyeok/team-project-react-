@@ -17,7 +17,10 @@ const Login = () => {
 
     const onSubmit = async (data) => {
 
+        console.log(data.memberProvider)
         if(data.memberProvider === "판매자"){
+
+            navigate("/login/seller")
             alert("판매자 로그인서비스 이용해주세요.");
             return;
         }
@@ -80,14 +83,6 @@ const Login = () => {
                     })}
                 />
                 {errors.memberPassword && <S.P>{errors.memberPassword.message}</S.P>}
-            </label>
-
-            <label>
-                <S.Input
-                    type="hidden"
-                    {...register("memberProvider")}
-                    value="구매자"
-                />
             </label>
 
             <S.LoginButton disabled={isSubmitting}>로그인</S.LoginButton>

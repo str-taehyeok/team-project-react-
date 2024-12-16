@@ -72,6 +72,7 @@ const Join = () => {
             memberEmail: email,
             memberNickname: data.memberNickname,
             memberName: data.memberName,
+            memberPhone: data.memberPhone,
             memberProvider: provider,
             memberZipcode: address.postcode,
             memberAddress: address.baseAddress,
@@ -147,6 +148,21 @@ const Join = () => {
 
             <S.InputText>
               <S.TextBox>
+                <S.Red>휴대전화 번호</S.Red>
+                <S.Red>*</S.Red>
+              </S.TextBox>
+              <S.InputContainer>
+                <S.InputField  
+                  type="number"
+                  placeholder="휴대폰 번호 입력 ('-'제외 11자리 입력)" 
+                  {...register("memberPhone")} 
+                />
+                <p id="NameResult"></p>
+              </S.InputContainer>
+            </S.InputText>
+
+            <S.InputText>
+              <S.TextBox>
                 <S.Red>주소</S.Red>
                 <S.Red>*</S.Red>
               </S.TextBox>
@@ -180,15 +196,7 @@ const Join = () => {
                         닫기
                       </S.CloseAddressBtn>
                       <DaumPostcode
-                        onComplete={(data) => {
-                          // DaumPostcode 결과 반영
-                          setAddress({
-                            postcode: data.zonecode,
-                            baseAddress: data.address,
-                            detailAddress: "",
-                          });
-                          setIsPostcodeOpen(false); // 모달 닫기
-                        }}
+                        onComplete={handleComplete}
                         style={{ width: "100%", height: "400px" }}
                       />
                     </S.ModalContent>
@@ -578,15 +586,7 @@ const Join = () => {
                       닫기
                     </S.CloseAddressBtn>
                     <DaumPostcode
-                      onComplete={(data) => {
-                        // DaumPostcode 결과 반영
-                        setAddress({
-                          postcode: data.zonecode,
-                          baseAddress: data.address,
-                          detailAddress: "",
-                        });
-                        setIsPostcodeOpen(false); // 모달 닫기
-                      }}
+                      onComplete={handleComplete}
                       style={{ width: "100%", height: "400px" }}
                     />
                   </S.ModalContent>

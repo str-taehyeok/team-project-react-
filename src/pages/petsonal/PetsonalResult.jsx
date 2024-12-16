@@ -63,7 +63,7 @@ const PetsonalResult = () => {
           <S.ResultBox color={boxColor}>
             <S.PetProfile>
               <S.PetImage
-                src={`${process.env.PUBLIC_URL}${petImage}`}
+                src={`${process.env.PUBLIC_URL}/assets/images/pet/${petImage}`}
                 alt="펫 사진"
               />
               <p>{petName}</p>
