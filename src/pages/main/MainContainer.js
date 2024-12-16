@@ -28,7 +28,6 @@ const Main = () => {
     }
 
     getProducts().then(setProducts).catch(console.error)
-
   }, [])
 
   return (
@@ -203,14 +202,14 @@ const Main = () => {
             <S.ProductsWrap>
               <S.Products>
                 { products.map(({
-                  id, productName, productImage1, productPrice, productDiscount
+                  id, productName, productFilePath, productPrice, productDiscount
                 }, index) => {
                   const isDiscount = productDiscount !== 0;
                   return (
                     <S.ProductCard key={index}>
                       <Link to="/store">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/layout/${productImage1}`}
+                          src={`${process.env.PUBLIC_URL}/assets/images/products/${productFilePath}`}
                           alt={productName}
                         />
                       </Link>

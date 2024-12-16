@@ -394,7 +394,6 @@ S.ProductsWrap = styled.div`
 
 S.Products = styled.div`
   display: flex;
-  justify-content: space-between;
   width: 1440px;
   flex-wrap: wrap;
   gap: 24px;
@@ -407,6 +406,7 @@ S.ProductCard = styled.div`
   width: 220px;
   height: 345px;
   border-radius: 10px;
+  overflow: hidden;
   position: relative;
   background-color: #fff;
 

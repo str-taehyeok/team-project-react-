@@ -3,36 +3,37 @@ import S from "./style";
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const BannerWrite = () => {
     const { register, handleSubmit, getValues, formState: {isSubmitting, isSubmitted, errors}} = useForm({mode:"onChange"});
-    const memberId = 1;
+    const { id } = useSelector(state => state.admin.currentUser);
     const navigate = useNavigate();
 
     return (
-        <form onSubmit={handleSubmit(async (data) => {
+        <form encType="multipart/form-data" onSubmit={handleSubmit(async (data) => {
 
-            console.log(data)
-            await fetch("http://localhost:10000/banners/write", {
+            const formData = new FormData();
+            const banner = {
+                memberId: id,
+                bannerStart: data.bannerStart,
+                bannerEnd: data.bannerEnd,
+                bannerTitle: data.bannerTitle,
+                bannerType: data.bannerType,
+                bannerLink: data.bannerLink,
+                bannerImage: data.bannerImage,
+            }
+
+            formData.append("banner", { banner });
+            formData.append("uploadFile", data.bannerImage[0]);
+
+            await fetch("http://localhost:10000/banners/upload", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    bannerTitle: data.bannerTitle,
-                    bannerStart: data.bannerStart,
-                    bannerEnd: data.bannerEnd,
-                    bannerType: data.bannerType,
-                    bannerLink: data.bannerLink,
-                    bannerImage: data.bannerImage,
-                    memberId: memberId
-                })
+                body: formData
             })
                 .then((res) => res.json())
                 .then((res) => {
                     //     이후 처리해야할 로직
-                    const {id} = res;
-                    navigate(`/admin/banner`)
                 })
         })}>
 
@@ -58,7 +59,6 @@ const BannerWrite = () => {
                                 {...register("bannerType", {
                                 required: true,
                             })}>
-                                <option value="" disabled selected>사용 위치에 맞는 배너 선택</option>
                                 <option value="상단 배너">쇼핑 메인 배너(사이즈 : 1920 x 603 )</option>
                                 <option value="매인 배너">커뮤니티 서브 배너(사이즈 : 1440 x 300 )</option>
 
@@ -106,20 +106,13 @@ const BannerWrite = () => {
                         </S.Radio>
                     </S.DateBox>
                 </label>
-                    {/*<S.UseBox>*/}
-                    {/*    <S.UseText>사용 여부</S.UseText>*/}
-                    {/*    <S.Radio>*/}
-                    {/*        <S.UseButton><input type='radio' name="useOption"/>사용함</S.UseButton>*/}
-                    {/*        <S.UseButton><input type='radio' className='no' name="useOption"/>사용안함</S.UseButton>*/}
-                    {/*    </S.Radio>*/}
-                    {/*</S.UseBox>*/}
 
-                    <S.ButtonBox>
-                            <button className='done' disabled={isSubmitting}>완료</button>
-                        <Link to={`/admin/banner`}>
-                            <button className='cancel'>취소</button>
-                        </Link>
-                    </S.ButtonBox>
+                <S.ButtonBox>
+                        <button className='done' disabled={isSubmitting}>완료</button>
+                    <Link to={`/admin/banner`}>
+                        <button className='cancel'>취소</button>
+                    </Link>
+                </S.ButtonBox>
             </S.WriteBox>
         </form>
     );

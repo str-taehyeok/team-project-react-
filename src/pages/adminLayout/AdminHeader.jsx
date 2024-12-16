@@ -1,21 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import S from "./style";
-import {setUser, setUserStatus} from "../../modules/user";
-import {useDispatch} from "react-redux";
+import { useSelector } from 'react-redux';
 
 const AdminHeader = () => {
+    const { currentUser, isLogin } = useSelector((state) => state.admin)
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSubmenu, setActiveSubmenu] = useState(null);
     const [currentTitle, setCurrentTitle] = useState("공지사항");
-    const dispatch = useDispatch();
-
-    // const handleLogout = () => {
-    //     localStorage.removeItem("jwtToken");
-    //     dispatch(setUser({}));
-    //     dispatch(setUserStatus(false));
-    //     window.location.href = "http://localhost:10000/logout";
-    // };
 
     const menuItems = [
         {
@@ -82,7 +74,6 @@ const AdminHeader = () => {
         }, 300);
     };
 
-
     const menus = menuItems.map((item, index) => (
         <li key={index} onMouseEnter={() => handleMenuItemHover(index)} onMouseLeave={handleMenuLeave}>
             <Link to={item.title[0].path} onClick={() => handleMenuItemClick(item.title[0].name)}>
@@ -110,16 +101,10 @@ const AdminHeader = () => {
         getPosts().then(setPosts).catch(console.error);
     }, []);
 
-    console.log(posts)
-
-    const admin = posts.map(({ id,memberName},i) => (
-        <S.Welcome key={id}>{memberName}님 환영합니다!</S.Welcome>
-    ));
-
     // 로그아웃
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem('jwtToken');
+        localStorage.removeItem('adminToken');
         navigate('/admin-login');
     };
 
@@ -131,15 +116,15 @@ const AdminHeader = () => {
                 <S.EntireMenu>
                     <S.MenuFrame style={{ display: isMenuOpen ? 'flex' : 'none' }}  onMouseLeave={handleFrameLeave}>
                         <S.MenuHeader>
-
-                            {/*<S.Welcome>admin 님 환영합니다!</S.Welcome>*/}
-                            <S.Welcome>{admin}</S.Welcome>
-                            <Link to="/admin-login" onClick={handleLogout}>로그아웃</Link>
-
-                            {/*<button type="button" className="logout" onClick={handleLogout}>*/}
-                            {/*    로그아웃*/}
-                            {/*</button>*/}
-
+                            { isLogin ? (
+                                <>
+                                    <S.Welcome>{currentUser.memberName}님 환영합니다.</S.Welcome>
+                                    <Link to="/admin-login" onClick={handleLogout}>로그아웃</Link>
+                                </>
+                            ) : (
+                                <S.Welcome>세션 만료</S.Welcome>
+                            )}
+                            
                         </S.MenuHeader>
                         <S.MenuForm>
                             <ul>
