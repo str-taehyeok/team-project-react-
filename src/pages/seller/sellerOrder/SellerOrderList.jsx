@@ -1,98 +1,131 @@
-import React, {useEffect, useState} from 'react';
-import S from "./style";
-import { useParams} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import S from './style';
 
 const SellerOrderList = () => {
-    const {id} = useParams();
-    const [order, setOrder] = useState({});
-    // const navigate = useNavigate();
+
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [ orders,  setOrders ] = useState([])
+
 
     useEffect(() => {
-        const getOrder = async () => {
-            const response = await fetch(`http://localhost:10000/orders/order/${id}`);
-            if(!response.ok) return console.error(`데이터가 없습니다.`)
-            const orders = await response.json();
-            console.log(orders)
-            return orders;
-        }
+        const getOrders = async () => {
+            try {
+                const response = await fetch("http://localhost:10000/orders/orders");
+                if (!response.ok) {
+                    console.error("주문 데이터가 없습니다.");
+                    return;
+                }
+                const data = await response.json();
+                setOrders(data);
+            } catch (error) {
+                console.error(error);
+                alert("주문 데이터를 가져오는 중 오류가 발생했습니다.");
+            }
+        };
 
-        getOrder().then(setOrder).catch(console.error);
+        getOrders();
+    }, [ orders, setOrders]);
 
-    }, [id]);
+    // const handleOrderCheck = (orderId) => {
+    //     setCheckedOrders(prev => ({
+    //         ...prev,
+    //         [orderId]: !prev[orderId]
+    //     }));
+    //
+    //     const allChecked = Object.values({
+    //         ...checkedOrders,
+    //         [orderId]: !checkedOrders[orderId]
+    //     }).every(checked => checked);
+    //     setIsAllChecked(allChecked);
+    // };
+    // //
+    // const handleSelectAll = () => {
+    //     const newCheckedState = orders.reduce((check, order) => {
+    //         check[order.id] = !isAllChecked;
+    //         return check;
+    //     }, {});
+    //
+    //     setCheckedOrders(newCheckedState);
+    //     setIsAllChecked(!isAllChecked);
+    // };
+    //
+    // const handleCancelOrders = () => {
+    //     const orderIdsToCancel = Object.entries(checkedOrders)
+    //         .filter(([_, isChecked]) => isChecked)
+    //         .map(([orderId]) => orderId);
+    //
+    //     if (orderIdsToCancel.length === 0) {
+    //         alert('취소할 주문을 선택해주세요.');
+    //         return;
+    //     }
+    //
+    //     console.log('주문 취소할 ID들:', orderIdsToCancel);
+    // };
 
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
 
     return (
-        <>
-        <div>
-            주문 관리
-        </div>
-        <S.Frame>
-            <S.Title>
-                <p>주문조회</p>
-            </S.Title>
-            <S.NoticeSearch>
-                <S.SearchBar>
-                    <input type="text" placeholder="주문번호를 입력하세요"/>
-                    <input type="text" placeholder="주문자 이름을 입력하세요"/>
-                    <select name="search">
-                        {/*<option value="배송 전">배송 전</option>*/}
-                        {/*<option value="배송 중">배송 중</option>*/}
-                        {/*<option value="배송 후">배송완료</option>*/}
-                        <option value="주문취소">선택주문취소</option>
-                        <option value="주문취소">전체주문취소</option>
-                    </select>
-                </S.SearchBar>
-                <div className="buttons">
-                    <button className="search-btn">검색</button>
-                    <button className="reset-btn">초기화</button>
-                </div>
-            </S.NoticeSearch>
+        <S.Container>
+                <S.Title>
+                    <h1>주문조회</h1>
+                </S.Title>
+                <S.NoticeSearch>
+                    <S.SearchBar>
+                        <S.Search type="text" placeholder="주문번호를 입력하세요"/>
+                        <S.Search type="text" placeholder="주문자 이름을 입력하세요"/>
 
-            <section className="notice-list">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>상품명</th>
-                        <th>판매가</th>
-                        <th>개수</th>
-                        <th>총가격</th>
-                        <th>상태</th>
-                        <th>등록일</th>
-                        <th>관리</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                    </S.SearchBar>
+                    <S.SearchButtons>
+                        <S.SearchButton>검색</S.SearchButton>
+                        <S.ResetButton>초기화</S.ResetButton>
+                    </S.SearchButtons>
+                </S.NoticeSearch>
+
+                <S.NoticeList>
+                    <S.Table>
+                        <thead>
                         <tr>
-                            <td></td>
+                            <th>
+                                <input type="checkbox"/>
+                                <S.MenuIcon onClick={toggleDropdown}
+                                     src={process.env.PUBLIC_URL + "/assets/images/seller/down-arrow.svg"}/>
+                                <S.DropdownContent id="dropdownMenu">
+                                    <p>선택 주문 취소</p>
+                                    <p>전체 주문 취소</p>
+                                </S.DropdownContent>
+                            </th>
+                            <th>No</th>
+                            <th>상품명</th>
+                            <th>판매가</th>
+                            <th>개수</th>
+                            <th>총가격</th>
+                            <th>상태</th>
+                            <th>등록일</th>
+                            <th>관리</th>
+                        </tr>
+                        </thead>
+                        <div className="line"></div>
+                        <tbody>
+                        <tr>
+                            <td><input type="checkbox"/></td>
+                            <td>Order12345</td>
+                            <td>Product Name</td>
+                            <td>$100</td>
+                            <td>7099</td>
+                            <td>709900</td>
+                            <td>배송준비중중</td>
+                            <td>2024-12-12</td>
                             <td>
-                                {/*{order.productName}*/}
-                            </td>
-                            <td>
-                                {/*{order.productPrice}*/}
-                            </td>
-                            <td>
-                                {/*{order.productCount}*/}
-                            </td>
-                            <td>
-                                {/*{order.totalPrice}*/}
-                            </td>
-                            <td>
-                                {/*<c:out value="배송 전,배송 후,배송완료,주문취소"/>*/}
-                            </td>
-                            <td>
-                                {/*{order.orderDate.substring(0, 16)}*/}
-                            </td>
-                            <td>
-                                <button className="details-button">상세</button>
+                                <S.DetailsButton>상세</S.DetailsButton>
                             </td>
                         </tr>
+                        </tbody>
+                    </S.Table>
+                </S.NoticeList>
 
-                    </tbody>
-                </table>
-            </section>
-
-                <div className="form-frame">
+                <S.FormFrame>
                     <div className="detail-frame">
                         <div className="detail-container">
                             <h2 className="detail-title">주문 상세</h2>
@@ -103,49 +136,38 @@ const SellerOrderList = () => {
                         <div className="info-input">
                             <span>주문번호</span>
                             <div className="info">
-                                <span>
-                                    {/*<c:out value="${orderList.orderNumber}"/>*/}
-                                </span>
+                                {/*<span>${orderList.orderNumber}</span>*/}
                             </div>
                         </div>
                         <div className="info-input">
                             <span>이름</span>
                             <div className="info">
-                                <span>
-                                    {/*<c:out value="${orderList.memberNickname}"/>*/}
-                                </span>
+                                {/*<span>${orderList.memberNickname}</span>*/}
                             </div>
                         </div>
                         <div className="info-input">
                             <span>이메일</span>
                             <div className="info">
-                                <span>
-                                    {/*<c:out value="${orderList.memberEmail}"/>*/}
-                                </span>
+                                {/*<span>${orderList.memberEmail}</span>*/}
                             </div>
                         </div>
                         <div className="info-input">
                             <span>전화번호</span>
                             <div className="info">
-                                <span>
-                                    {/*<c:out value="${orderList.memberPhone}"/>*/}
-                                </span>
+                                {/*<span>${orderList.memberPhone}</span>*/}
                             </div>
                         </div>
                         <div className="info-input">
                             <span>지역</span>
                             <div className="info">
-                                <span>
-                                    {/*<c:out value="${orderList.memberAddress}"/>*/}
-                                </span>
+                                {/*<span>${orderList.memberAddress}</span>*/}
                             </div>
                         </div>
                     </div>
-                </div>
-            <div className="popup-bg"></div>
-        </S.Frame>
-            </>
+                </S.FormFrame>
+                <S.PopupBackground></S.PopupBackground>
+            </S.Container>
     );
 };
 
-export default SellerOrderList;
+            export default SellerOrderList;
