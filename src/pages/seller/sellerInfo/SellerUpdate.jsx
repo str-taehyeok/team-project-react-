@@ -26,21 +26,23 @@ const SellerUpdate = () => {
     return (
         <form onSubmit={handleSubmit(async (data) => {
             console.log("전송할 데이터 :", data)
-            await fetch(`http://localhost:10000/seller/update/${id}`, {
-                method : "PUT",
-                headers : {
-                    "Content-Type" : "application/json"
-                },
-                body : JSON.stringify({
-                    memberName : data.memberName
+
+                await fetch(`http://localhost:10000/seller/update/${id}`, {
+                    method : "PUT",
+                    headers : {
+                        "Content-Type" : "application/json"
+                    },
+                    body : JSON.stringify({
+                        memberName : data.memberName,
+                        // memberId : memberId
+                    })
                 })
-            })
-                .then((res) => res.json())
-                .then((res) => {
-                    console.log(res)
-                    const {id} = res;
-                    navigate(`/seller/seller-info/${id}`)
-                })
+                    .then((res) => res.json())
+                    .then((res) => {
+                        console.log(res)
+                        const {id} = res;
+                        navigate(`/seller/seller-info/${id}`)
+                    })
         })}>
             <label>
                 <p>회원 이름</p>
