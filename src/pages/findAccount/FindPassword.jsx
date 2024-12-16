@@ -21,73 +21,89 @@ const FindPassword = () => {
     if (!authNumber || !newPassword || !confirmNewPassword) {
       return alert("인증번호와 새로운 비밀번호를 모두 입력해주세요.");
     }
-
+  
     if (newPassword !== confirmNewPassword) {
       return alert("새로운 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
     }
-
-   await fetch(`http://localhost:10000/member/change-password`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ memberEmail: email, authCode: authNumber, newPassword }),
-    });
-
-    const result = await response.json();
-
-    if (response.ok) {
-      alert("비밀번호가 변경되었습니다.");
-    } else {
-      alert(result.message || "비밀번호 변경에 실패했습니다.");
+  
+    try {
+      const response = await fetch(`http://localhost:10000/member/change-password`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ memberEmail: email, authCode: authNumber, newPassword }),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        alert("비밀번호가 변경되었습니다.");
+      } else {
+        alert(result.message || "비밀번호 변경에 실패했습니다.");
+      }
+    } catch (error) {
+      console.error("Error changing password:", error);
+      alert("서버와의 통신에 실패했습니다.");
     }
   };
-
+  
   const handleAuthRequest = async () => {
     if (!email) {
       return alert("이메일을 입력해주세요.");
     }
-
-    await fetch(`http://localhost:10000/member/find-password`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ memberEmail: email }),
-    });
-
-    const result = await response.json();
-
-    if (response.ok) {
-      alert("인증번호가 이메일로 전송되었습니다.");
-    } else {
-      alert(result.message || "인증번호 전송에 실패했습니다.");
+  
+    try {
+      const response = await fetch(`http://localhost:10000/member/find-password`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ memberEmail: email }),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        alert("인증번호가 이메일로 전송되었습니다.");
+      } else {
+        alert(result.message || "인증번호 전송에 실패했습니다.");
+      }
+    } catch (error) {
+      console.error("Error requesting auth code:", error);
+      alert("서버와의 통신에 실패했습니다.");
     }
   };
-
+  
   const handleAuthVerify = async () => {
     if (!authNumber) {
       return alert("인증번호를 입력해주세요.");
     }
- 
-    await fetch(`http://localhost:10000/member/verify-password-auth`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ memberEmail: email, authCode: authNumber }),
-    });
-
-    const result = await response.json();
-
-    if (response.ok) {
-      alert("인증번호가 확인되었습니다.");
-      setAuthVerified(true);  
-    } else {
-      alert(result.message || "인증번호 확인에 실패했습니다.");
-      setAuthVerified(false); 
+  
+    try {
+      const response = await fetch(`http://localhost:10000/member/verify-password-auth`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ memberEmail: email, authCode: authNumber }),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        alert("인증번호가 확인되었습니다.");
+        setAuthVerified(true);
+      } else {
+        alert(result.message || "인증번호 확인에 실패했습니다.");
+        setAuthVerified(false);
+      }
+    } catch (error) {
+      console.error("Error verifying auth code:", error);
+      alert("서버와의 통신에 실패했습니다.");
     }
   };
+  
 
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
