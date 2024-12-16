@@ -10,22 +10,32 @@ const ProfileUpdate = () => {
     const [authNumber, setAuthNumber] = useState(""); // 인증 번호 상태
     const [attempts, setAttempts] = useState(0); // 인증번호 횟수
     const [isBlocked, setIsBlocked] = useState(false); // 인증횟수 초과
-    const [verificationCode, setVerificationCode] = useState(""); // 받아온 인증번호
+
+
+    // const [verificationCode, setVerificationCode] = useState("");
+    const [setVerificationCode] = useState(""); // 받아온 인증번호
+
     const [isVisible, setIsVisible] = useState(false); // input 숨기기
-    const { register, setValue, formState: { isSubmitting } } = useForm({ mode: 'onChange' });
+
+    // const { register, setValue, formState: { isSubmitting } } = useForm({ mode: 'onChange' });
+    const { register, formState: { isSubmitting } } = useForm({ mode: 'onChange' });
+
+
+    const [userData, setUserData] = useState(currentUser);
+
     
 
     const memberPhone = currentUser.memberPhone;
 
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setUserData({ ...userData, [name]: value });
-    // };
-    //
-    // const handleSubmit = () => {
-    //     console.log("input 데이터 전송: ", userData);
-    //     alert("데이터가 전송되었습니다!");
-    // };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUserData({ ...userData, [name]: value });
+    };
+
+    const handleSubmit = () => {
+        console.log("input 데이터 전송: ", userData);
+        alert("데이터가 전송되었습니다!");
+    };
 
     // 돈나가니까 인증번호 누를수만 있게 해놈
     const checkVisible = () => {
@@ -86,7 +96,7 @@ const ProfileUpdate = () => {
             <S.MyHomeContainer>
                 <S.MyHomeWrap>
                     <S.UpdateButtonWrap>
-                        <button onClick={handleSubmit}><Link to={"/myhome"}>완료</Link></button>
+                        <button onClick={isSubmitting}><Link to={"/myhome"}>완료</Link></button>
                     </S.UpdateButtonWrap>
                     <S.ProfileBoxWrap>
                         <S.ProfileBox>
