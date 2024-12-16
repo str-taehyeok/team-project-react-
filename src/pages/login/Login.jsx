@@ -32,10 +32,9 @@ const Login = () => {
             }
     
             const result = await response.json();
-    
-            // 사용자 유형 확인
-            if (result.memberProvider === "판매자") {
-                alert("판매자는 판매자 로그인 페이지를 이용해주세요.");
+
+            if (result.provider === "판매자") {
+                alert("판매자 로그인 페이지를 이용해주세요.");
                 navigate("/login/seller");
                 return;
             }
