@@ -3,6 +3,7 @@ import S from "./style";
 
 
 const PasswordUpdate = () => {
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
     return (
         <S.PasswordUpdateFormContainer>
             <S.PasswordUpdateForm>

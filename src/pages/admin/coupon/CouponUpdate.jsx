@@ -12,7 +12,7 @@ const CouponUpdate = () => {
 
     // 데이터 불러오기
     useEffect(() => {
-        const fetchCouponData = async () => {
+        const CouponData = async () => {
             try {
                 const response = await fetch(`http://localhost:10000/coupons/${id}`);
                 if (!response.ok) {
@@ -38,7 +38,7 @@ const CouponUpdate = () => {
             }
         };
 
-        fetchCouponData();
+        CouponData();
     }, [id, setValue]);
 
     const formatDate = (dateString) => {
