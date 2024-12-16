@@ -171,6 +171,7 @@ const S = {}
         justify-content: space-between;
         width: 1440px;
         margin: 0 auto;
+        margin-bottom: 150px;
     `;
 
     S.Line = styled.div`
@@ -212,8 +213,9 @@ const S = {}
         }
         
         & tr > th {
-            //border-bottom: solid 0.1px #828282;
+            border-bottom: solid 0.1px #828282;
             padding-bottom: 28px;
+            height: 90px;
         }
         
         & tr > th:nth-child(1),
@@ -222,7 +224,6 @@ const S = {}
             flex-shrink: 0;
             display: flex;
             align-items: center;
-            margin-top: 10px;
         }
         
         & tr > th:nth-child(2),
