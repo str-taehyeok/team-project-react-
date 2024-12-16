@@ -14,27 +14,37 @@ const BannerWrite = () => {
         <form encType="multipart/form-data" onSubmit={handleSubmit(async (data) => {
 
             const formData = new FormData();
-            const banner = {
-                memberId: id,
-                bannerStart: data.bannerStart,
-                bannerEnd: data.bannerEnd,
-                bannerTitle: data.bannerTitle,
-                bannerType: data.bannerType,
-                bannerLink: data.bannerLink,
-                bannerImage: data.bannerImage,
-            }
+            const { bannerStart, bannerEnd, bannerTitle, bannerType, bannerLink, bannerImage } = data;
 
-            formData.append("banner", { banner });
+            formData.append("memberId", id);
+            formData.append("bannerStart", bannerStart);
+            formData.append("bannerEnd", bannerEnd);
+            formData.append("bannerTitle", bannerTitle);
+            formData.append("bannerType", bannerType);
+            formData.append("bannerLink", bannerLink);
             formData.append("uploadFile", data.bannerImage[0]);
 
             await fetch("http://localhost:10000/banners/upload", {
                 method: "POST",
                 body: formData
             })
+            .then((res) => res.json())
+            .then(async (res) => {
+                console.log(res)
+                formData.append("uuid", res.uuid);
+                await fetch("http://localhost:10000/banners/write", {
+                    method: "POST",
+                    body: formData
+                })
                 .then((res) => res.json())
                 .then((res) => {
-                    //     이후 처리해야할 로직
+                    alert(res.message)
+                    navigate("/admin/banner")
+                    return;
                 })
+            })
+            .catch(console.error)
+
         })}>
 
             <S.WriteBox>
