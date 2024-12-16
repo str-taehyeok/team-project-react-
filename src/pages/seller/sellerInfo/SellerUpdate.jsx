@@ -5,7 +5,7 @@ import {useForm} from "react-hook-form";
 
 const SellerUpdate = () => {
     const {id} = useParams();
-    const { register, handleSubmit, getValues, formState: {isSubmitting, isSubmitted, errors}} = useForm({mode:"onChange"});
+    const { register, handleSubmit, formState: {isSubmitting}} = useForm({mode:"onChange"});
     const navigate = useNavigate();
     const [post, setPost] = useState({});
 
