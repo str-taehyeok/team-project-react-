@@ -23,8 +23,8 @@ const UserInitalValue = {
         memberDate: null,
         memberBusinessNumber: "",
         memberImage: "",
-        memberNickName: "포포친구",
-        memberProvider: "자사로그인"
+        memberNickname: "포포친구",
+        memberProvider: "구매자"
     },
     isLogin: false,
     previousUrl: "",

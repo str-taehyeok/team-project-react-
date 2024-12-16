@@ -55,7 +55,11 @@ const JoinPhone = () => {
 
     return alert("인증번호를 발송했습니다.");
   };
+  
+  
   const testCode = "123456"
+  // verificationCode 할 때 이걸로 변경
+  
   const confirmVerificationCode = () => {
     if (isBlocked) {
       return alert("인증 시도 횟수를 초과했습니다. 다시 시도해주세요.");
