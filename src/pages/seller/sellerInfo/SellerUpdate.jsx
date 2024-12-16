@@ -56,7 +56,7 @@ const SellerUpdate = () => {
     return (
         <form onSubmit={handleSubmit(async (data) => {
             console.log("전송할 데이터 :", data)
-                await fetch(`http://localhost:10000/seller/seller-info/${id}`, {
+                await fetch(`http://localhost:10000/seller/update/${id}`, {
                     method : "PUT",
                     headers : {
                         "Content-Type" : "application/json"
