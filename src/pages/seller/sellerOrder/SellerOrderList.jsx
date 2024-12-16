@@ -2,154 +2,172 @@ import React, { useEffect, useState } from 'react';
 import S from './style';
 
 const SellerOrderList = () => {
-    const [orders, setOrders] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [checkedOrders, setCheckedOrders] = useState({});
-    const [isAllChecked, setIsAllChecked] = useState(false);
+
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [ orders,  setOrders ] = useState([])
+
 
     useEffect(() => {
-        const fetchOrders = async () => {
+        const getOrders = async () => {
             try {
-                // 여기서 실제 백엔드 API 엔드포인트로 수정 필요
-                const response = await fetch('http://localhost:10000/orders');
-
+                const response = await fetch("http://localhost:10000/orders/orders");
                 if (!response.ok) {
-                    throw new Error('주문 데이터를 불러오는데 실패했습니다.');
+                    console.error("주문 데이터가 없습니다.");
+                    return;
                 }
-
                 const data = await response.json();
                 setOrders(data);
-
-                // 초기 체크박스 상태 설정
-                const initialCheckedState = data.reduce((acc, order) => {
-                    acc[order.id] = false;
-                    return acc;
-                }, {});
-
-                setCheckedOrders(initialCheckedState);
-                setLoading(false);
-            } catch (err) {
-                setError(err.message);
-                setLoading(false);
+            } catch (error) {
+                console.error(error);
+                alert("주문 데이터를 가져오는 중 오류가 발생했습니다.");
             }
         };
 
-        fetchOrders();
-    }, []);
+        getOrders();
+    }, [ orders, setOrders]);
 
-    const handleOrderCheck = (orderId) => {
-        setCheckedOrders(prev => ({
-            ...prev,
-            [orderId]: !prev[orderId]
-        }));
+    // const handleOrderCheck = (orderId) => {
+    //     setCheckedOrders(prev => ({
+    //         ...prev,
+    //         [orderId]: !prev[orderId]
+    //     }));
+    //
+    //     const allChecked = Object.values({
+    //         ...checkedOrders,
+    //         [orderId]: !checkedOrders[orderId]
+    //     }).every(checked => checked);
+    //     setIsAllChecked(allChecked);
+    // };
+    // //
+    // const handleSelectAll = () => {
+    //     const newCheckedState = orders.reduce((check, order) => {
+    //         check[order.id] = !isAllChecked;
+    //         return check;
+    //     }, {});
+    //
+    //     setCheckedOrders(newCheckedState);
+    //     setIsAllChecked(!isAllChecked);
+    // };
+    //
+    // const handleCancelOrders = () => {
+    //     const orderIdsToCancel = Object.entries(checkedOrders)
+    //         .filter(([_, isChecked]) => isChecked)
+    //         .map(([orderId]) => orderId);
+    //
+    //     if (orderIdsToCancel.length === 0) {
+    //         alert('취소할 주문을 선택해주세요.');
+    //         return;
+    //     }
+    //
+    //     console.log('주문 취소할 ID들:', orderIdsToCancel);
+    // };
 
-        const allChecked = Object.values({
-            ...checkedOrders,
-            [orderId]: !checkedOrders[orderId]
-        }).every(checked => checked);
-        setIsAllChecked(allChecked);
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
     };
-
-    const handleSelectAll = () => {
-        const newCheckedState = orders.reduce((check, order) => {
-            check[order.id] = !isAllChecked;
-            return check;
-        }, {});
-
-        setCheckedOrders(newCheckedState);
-        setIsAllChecked(!isAllChecked);
-    };
-
-    const handleCancelOrders = () => {
-        const orderIdsToCancel = Object.entries(checkedOrders)
-            .filter(([_, isChecked]) => isChecked)
-            .map(([orderId]) => orderId);
-
-        if (orderIdsToCancel.length === 0) {
-            alert('취소할 주문을 선택해주세요.');
-            return;
-        }
-
-        // 여기에 주문 취소 API 호출 로직 추가
-        console.log('주문 취소할 ID들:', orderIdsToCancel);
-    };
-
-    if (loading) return <div>로딩 중...</div>;
-    if (error) return <div>오류: {error}</div>;
 
     return (
         <S.Container>
-            <div className="title">
-                <h1 className="h1">주문조회</h1>
-            </div>
+                <S.Title>
+                    <h1>주문조회</h1>
+                </S.Title>
+                <S.NoticeSearch>
+                    <S.SearchBar>
+                        <S.Search type="text" placeholder="주문번호를 입력하세요"/>
+                        <S.Search type="text" placeholder="주문자 이름을 입력하세요"/>
 
-            <section className="notice-search">
-                <div className="search-bar">
-                    <input type="text" className="search" placeholder="주문번호를 입력하세요"/>
-                    <input type="text" className="search" placeholder="주문자 이름을 입력하세요"/>
-                </div>
-                <div className="buttons">
-                    <button className="search-btn">검색</button>
-                    <button className="reset-btn">초기화</button>
-                </div>
-            </section>
+                    </S.SearchBar>
+                    <S.SearchButtons>
+                        <S.SearchButton>검색</S.SearchButton>
+                        <S.ResetButton>초기화</S.ResetButton>
+                    </S.SearchButtons>
+                </S.NoticeSearch>
 
-            <section className="notice-list">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>
-                            <input
-                                type="checkbox"
-                                checked={isAllChecked}
-                                onChange={handleSelectAll}
-                            />
-                        </th>
-                        <th>No</th>
-                        <th>상품명</th>
-                        <th>판매가</th>
-                        <th>개수</th>
-                        <th>총가격</th>
-                        <th>상태</th>
-                        <th>등록일</th>
-                        <th>관리</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {orders.map((order, index) => (
-                        <tr key={order.id}>
+                <S.NoticeList>
+                    <S.Table>
+                        <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox"/>
+                                <S.MenuIcon onClick={toggleDropdown}
+                                     src={process.env.PUBLIC_URL + "/assets/images/seller/down-arrow.svg"}/>
+                                <S.DropdownContent id="dropdownMenu">
+                                    <p>선택 주문 취소</p>
+                                    <p>전체 주문 취소</p>
+                                </S.DropdownContent>
+                            </th>
+                            <th>No</th>
+                            <th>상품명</th>
+                            <th>판매가</th>
+                            <th>개수</th>
+                            <th>총가격</th>
+                            <th>상태</th>
+                            <th>등록일</th>
+                            <th>관리</th>
+                        </tr>
+                        </thead>
+                        <div className="line"></div>
+                        <tbody>
+                        <tr>
+                            <td><input type="checkbox"/></td>
+                            <td>Order12345</td>
+                            <td>Product Name</td>
+                            <td>$100</td>
+                            <td>7099</td>
+                            <td>709900</td>
+                            <td>배송준비중중</td>
+                            <td>2024-12-12</td>
                             <td>
-                                <input
-                                    type="checkbox"
-                                    checked={checkedOrders[order.id] || false}
-                                    onChange={() => handleOrderCheck(order.id)}
-                                />
-                            </td>
-                            <td>{index + 1}</td>
-                            <td>{order.productName}</td>
-                            <td>{order.productPrice.toLocaleString()}원</td>
-                            <td>{order.productCount}</td>
-                            <td>{order.totalPrice.toLocaleString()}원</td>
-                            <td>{order.deliveryStatus}</td>
-                            <td>{new Date(order.orderDate).toLocaleDateString()}</td>
-                            <td>
-                                <button className="details-button">상세</button>
+                                <S.DetailsButton>상세</S.DetailsButton>
                             </td>
                         </tr>
-                    ))}
-                    </tbody>
-                </table>
-            </section>
+                        </tbody>
+                    </S.Table>
+                </S.NoticeList>
 
-            <button
-                className="cancel-selected-orders"
-                onClick={handleCancelOrders}
-            >
-                선택 주문 취소
-            </button>
-        </S.Container>
+                <S.FormFrame>
+                    <div className="detail-frame">
+                        <div className="detail-container">
+                            <h2 className="detail-title">주문 상세</h2>
+                            <button className="close-btn">닫기</button>
+                        </div>
+                    </div>
+                    <div className="inputs">
+                        <div className="info-input">
+                            <span>주문번호</span>
+                            <div className="info">
+                                {/*<span>${orderList.orderNumber}</span>*/}
+                            </div>
+                        </div>
+                        <div className="info-input">
+                            <span>이름</span>
+                            <div className="info">
+                                {/*<span>${orderList.memberNickname}</span>*/}
+                            </div>
+                        </div>
+                        <div className="info-input">
+                            <span>이메일</span>
+                            <div className="info">
+                                {/*<span>${orderList.memberEmail}</span>*/}
+                            </div>
+                        </div>
+                        <div className="info-input">
+                            <span>전화번호</span>
+                            <div className="info">
+                                {/*<span>${orderList.memberPhone}</span>*/}
+                            </div>
+                        </div>
+                        <div className="info-input">
+                            <span>지역</span>
+                            <div className="info">
+                                {/*<span>${orderList.memberAddress}</span>*/}
+                            </div>
+                        </div>
+                    </div>
+                </S.FormFrame>
+                <S.PopupBackground></S.PopupBackground>
+            </S.Container>
     );
 };
 
-export default SellerOrderList;
+            export default SellerOrderList;

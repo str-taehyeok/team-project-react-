@@ -1,52 +1,14 @@
 import styled from "styled-components";
 
 const S = {}
-// Main Frame
-S.Frame = styled.div`
+
+S.Container = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding-bottom: 100px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 `;
 
-// Global Styles
-S.GlobalReset = styled.div`
-  * {
-    box-sizing: border-box;
-  }
-`;
-
-// Images
-S.Image = styled.img`
-  width: 40px;
-  height: 40px;
-`;
-
-// Menu Wrap
-S.MenuWrap = styled.div`
-  display: flex;
-  align-items: center;
-  width: 1440px;
-  margin: 28px 0;
-  gap: 72px;
-  padding-left: 28px;
-
-  & > span {
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: 4px;
-  }
-`;
-
-// Division Line
-S.DivisionLine = styled.div`
-  border: solid 0.1px #828282;
-  width: 1440px;
-`;
-
-// Title Section
 S.Title = styled.div`
   margin: 43px 0 80px 0;
   display: flex;
@@ -79,8 +41,7 @@ S.NewAddButton = styled.button`
   top: 134px;
 `;
 
-// Notice Search
-S.NoticeSearch = styled.div`
+S.NoticeSearch = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,7 +97,7 @@ S.ResetButton = styled.button`
 `;
 
 // Notice List
-S.NoticeList = styled.div`
+S.NoticeList = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -168,7 +129,6 @@ S.Table = styled.table`
     }
   }
 
-  // Specific column widths
   & th:nth-child(1), & td:nth-child(1) { width: 122px; }
   & th:nth-child(2), & td:nth-child(2) { width: 122px; }
   & th:nth-child(3), & td:nth-child(3) { width: 366px; }
@@ -180,7 +140,6 @@ S.Table = styled.table`
   & th:nth-child(9), & td:nth-child(9) { width: 98px; }
 `;
 
-// Details Button
 S.DetailsButton = styled.button`
   width: 53px;
   height: 30px;
@@ -240,6 +199,13 @@ S.DropdownContent = styled.div`
       background-color: #f1f1f1;
     }
   }
+`;
+
+S.Search = styled.input`
+    width: 708px;
+    height: 60px;
+    border-radius: 20px;
+    padding: 17px;
 `;
 
 // Menu Icon
