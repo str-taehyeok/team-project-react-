@@ -31,7 +31,6 @@ const Login = () => {
             const result = await response.json();
             if (result && result.jwtToken) {
                 localStorage.setItem('jwtToken', result.jwtToken);
-                console.log("result", result);
                 navigate('/seller');
             }
         } catch (error) {

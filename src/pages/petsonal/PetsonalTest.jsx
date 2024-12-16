@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
 import Footer from "../layout/Footer";
 import { useNavigate, useParams } from "react-router-dom";
@@ -21,9 +21,23 @@ const PetsonalTest = () => {
     setPetsonalBrave,
   } = action;
   const { survey } = state;
-  
-  // 임의로 넣음 가져올 로직 추가가
-  // const petId = 5;
+
+  useEffect(() => {
+    const getPetsonalResult = async () => {
+      const response = await fetch(
+        `http://localhost:10000/petsonal/result/${id}`
+      );
+      if (!response.ok) return console.error(`데이터가 없습니다.`);
+      const petsonalResult = await response.json();
+
+      if (petsonalResult.id) {
+        navigate(`/petsonal/result/${id}`);
+        alert("반려동물 1마리당 1번만 가능합니다.");
+      }
+    };
+
+    getPetsonalResult().catch(console.error);
+  }, [id, navigate]);
 
   // 한페이지 문항의 개수
   const [inputScore, inputSetScore] = useState(Array(25).fill(0));
@@ -56,7 +70,7 @@ const PetsonalTest = () => {
       if (surveyItem && surveyItem.group !== undefined) {
         const group = surveyItem.group;
         groupScores[group] += score;
-      } 
+      }
     });
 
     // 그룹 점수 출력
@@ -93,21 +107,21 @@ const PetsonalTest = () => {
     console.log("Result: ", result); // result 값 확인
 
     let selectedPetColor = "";
-    if(result === "ADC"){
+    if (result === "ADC") {
       selectedPetColor = "Orange";
-    }else if(result === "ADB"){
+    } else if (result === "ADB") {
       selectedPetColor = "Gold";
-    }else if(result === "ALB"){
+    } else if (result === "ALB") {
       selectedPetColor = "Gradation";
-    }else if(result === "ALC"){
+    } else if (result === "ALC") {
       selectedPetColor = "LightPurple";
-    }else if(result === "CDC"){
+    } else if (result === "CDC") {
       selectedPetColor = "SkyBlue";
-    }else if(result === "CDB"){
+    } else if (result === "CDB") {
       selectedPetColor = "SageGreen";
-    }else if(result === "CLB"){
+    } else if (result === "CLB") {
       selectedPetColor = "IceBlue";
-    }else if(result === "CLC"){
+    } else if (result === "CLC") {
       selectedPetColor = "DustySilver";
     }
 
@@ -134,7 +148,7 @@ const PetsonalTest = () => {
         },
         petVO: {
           petColor: selectedPetColor,
-          id: id,  // `petId`에 해당하는 값
+          id: id, // `petId`에 해당하는 값
         },
       }),
     })
@@ -146,7 +160,7 @@ const PetsonalTest = () => {
       .catch((error) => {
         console.error("에러발생 :", error);
       });
-};
+  };
   const surveyList = survey.map(({ title, group }, i) => {
     return (
       <S.Questions key={i}>
