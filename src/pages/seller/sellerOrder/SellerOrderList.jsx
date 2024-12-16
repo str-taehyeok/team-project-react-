@@ -1,7 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import S from "./style";
+import { useParams} from "react-router-dom";
 
 const SellerOrderList = () => {
+    const {id} = useParams();
+    const [order, setOrder] = useState({});
+    // const navigate = useNavigate();
+
+    useEffect(() => {
+        const getOrder = async () => {
+            const response = await fetch(`http://localhost:10000/orders/order/${id}`);
+            if(!response.ok) return console.error(`데이터가 없습니다.`)
+            const orders = await response.json();
+            console.log(orders)
+            return orders;
+        }
+
+        getOrder().then(setOrder).catch(console.error);
+
+    }, [id]);
+
 
     return (
         <>
@@ -17,10 +35,11 @@ const SellerOrderList = () => {
                     <input type="text" placeholder="주문번호를 입력하세요"/>
                     <input type="text" placeholder="주문자 이름을 입력하세요"/>
                     <select name="search">
-                        <option value="배송 전">배송 전</option>
-                        <option value="배송 중">배송 중</option>
-                        <option value="배송 후">배송완료</option>
-                        <option value="주문취소">주문취소</option>
+                        {/*<option value="배송 전">배송 전</option>*/}
+                        {/*<option value="배송 중">배송 중</option>*/}
+                        {/*<option value="배송 후">배송완료</option>*/}
+                        <option value="주문취소">선택주문취소</option>
+                        <option value="주문취소">전체주문취소</option>
                     </select>
                 </S.SearchBar>
                 <div className="buttons">
@@ -47,25 +66,25 @@ const SellerOrderList = () => {
                         <tr>
                             <td></td>
                             <td>
-                                {/*{productName}*/}
+                                {/*{order.productName}*/}
                             </td>
                             <td>
-                                {/*<c:out value="${orderList.productPrice}"/>*/}
+                                {/*{order.productPrice}*/}
                             </td>
                             <td>
-                                {/*<c:out value="${orderList.productCount}"/>*/}
+                                {/*{order.productCount}*/}
                             </td>
                             <td>
-                                {/*<c:out value="${orderList.totalPrice}"/>*/}
+                                {/*{order.totalPrice}*/}
                             </td>
                             <td>
                                 {/*<c:out value="배송 전,배송 후,배송완료,주문취소"/>*/}
                             </td>
                             <td>
-                                {/*<c:out value="${orderList.orderDate.substring(0, 16)}"/>*/}
+                                {/*{order.orderDate.substring(0, 16)}*/}
                             </td>
                             <td>
-                                {/*<button className="details-button">상세</button>*/}
+                                <button className="details-button">상세</button>
                             </td>
                         </tr>
 
@@ -84,31 +103,41 @@ const SellerOrderList = () => {
                         <div className="info-input">
                             <span>주문번호</span>
                             <div className="info">
-                                {/*<span><c:out value="${orderList.orderNumber}"/></span>*/}
+                                <span>
+                                    {/*<c:out value="${orderList.orderNumber}"/>*/}
+                                </span>
                             </div>
                         </div>
                         <div className="info-input">
                             <span>이름</span>
                             <div className="info">
-                                {/*<span><c:out value="${orderList.memberNickname}"/></span>*/}
+                                <span>
+                                    {/*<c:out value="${orderList.memberNickname}"/>*/}
+                                </span>
                             </div>
                         </div>
                         <div className="info-input">
                             <span>이메일</span>
                             <div className="info">
-                                {/*<span><c:out value="${orderList.memberEmail}"/></span>*/}
+                                <span>
+                                    {/*<c:out value="${orderList.memberEmail}"/>*/}
+                                </span>
                             </div>
                         </div>
                         <div className="info-input">
                             <span>전화번호</span>
                             <div className="info">
-                                {/*<span><c:out value="${orderList.memberPhone}"/></span>*/}
+                                <span>
+                                    {/*<c:out value="${orderList.memberPhone}"/>*/}
+                                </span>
                             </div>
                         </div>
                         <div className="info-input">
                             <span>지역</span>
                             <div className="info">
-                                {/*<span><c:out value="${orderList.memberAddress}"/></span>*/}
+                                <span>
+                                    {/*<c:out value="${orderList.memberAddress}"/>*/}
+                                </span>
                             </div>
                         </div>
                     </div>
