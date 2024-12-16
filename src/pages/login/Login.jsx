@@ -4,10 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-
-    const {
-        register, handleSubmit, formState: { isSubmitting, errors }
-    } = useForm({ mode: "onChange" });
+    const { register, handleSubmit, formState: { isSubmitting, errors }} = useForm({ mode: "onSubmit" });
     const navigate = useNavigate();
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -27,16 +24,16 @@ const Login = () => {
                 },
                 body: JSON.stringify(data)
             });
-            console.log("Response Status:", response.status); 
 
             if (!response.ok) {
                 const errorData = await response.json();
-                alert(errorData.message);
+                alert(errorData.message || "아이디 또는 비밀번호가 잘못되었습니다.");
                 return;
             }
 
             const result = await response.json();
             if (result && result.jwtToken) {
+                alert("로그인 성공 환영합니다🎉!");
                 navigate(`/?jwtToken=${result.jwtToken}`);
             }
         } catch (error) {
@@ -49,7 +46,9 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <S.InputBox>
                 <label>
-                    <S.Input type="text" placeholder='회원 아이디(이메일)를 입력해주세요'
+                    <S.Input
+                        type="text"
+                        placeholder='회원 아이디(이메일)를 입력해주세요'
                         {...register("memberEmail", {
                             required: "이메일을 입력하세요.",
                             pattern: {
@@ -58,12 +57,14 @@ const Login = () => {
                             }
                         })}
                     />
-                    {errors.email && <S.P>{errors.email.message}</S.P>}
+                    {errors.memberEmail && <S.P>{errors.memberEmail.message}</S.P>}
                 </label>
             </S.InputBox>
 
             <label>
-                <S.Input type="password" placeholder='회원 비밀번호를 입력해주세요'
+                <S.Input
+                    type="password"
+                    placeholder='회원 비밀번호를 입력해주세요'
                     autoComplete='off'
                     {...register("memberPassword", {
                         required: "비밀번호를 입력하세요.",
@@ -73,10 +74,18 @@ const Login = () => {
                         }
                     })}
                 />
-                {errors.password && <S.P>{errors.password.message}</S.P>}
+                {errors.memberPassword && <S.P>{errors.memberPassword.message}</S.P>}
             </label>
 
-            <S.LoginButton disabled={isSubmitting}>로그인</S.LoginButton>
+            <label>
+                <S.Input
+                    type="hidden"
+                    {...register("memberProvider")}
+                    value="구매자"
+                />
+            </label>
+
+            <S.LoginButton type="submit" disabled={isSubmitting}>로그인</S.LoginButton>
 
             <S.Box4>
                 <S.Box3>
@@ -100,9 +109,9 @@ const Login = () => {
 
             <S.Text2>Or continue with</S.Text2>
             <S.ApiLogo>
-                <img src={`${process.env.PUBLIC_URL}/assets/images/login/kakao.svg`} onClick={() => socialAuth("kakao")} style={{ cursor: "pointer" }} alt="카카오 로그" />
-                <img src={`${process.env.PUBLIC_URL}/assets/images/login/naver.svg`} onClick={() => socialAuth("naver")} style={{ cursor: "pointer" }} alt="네이버 로그" />
-                <img src={`${process.env.PUBLIC_URL}/assets/images/login/google.svg`} onClick={() => socialAuth("google")} style={{ cursor: "pointer" }} alt="구글 로그" />
+                <img src={`${process.env.PUBLIC_URL}/assets/images/login/kakao.svg`} onClick={() => socialAuth("kakao")} style={{ cursor: "pointer" }} alt="카카오 로그인" />
+                <img src={`${process.env.PUBLIC_URL}/assets/images/login/naver.svg`} onClick={() => socialAuth("naver")} style={{ cursor: "pointer" }} alt="네이버 로그인" />
+                <img src={`${process.env.PUBLIC_URL}/assets/images/login/google.svg`} onClick={() => socialAuth("google")} style={{ cursor: "pointer" }} alt="구글 로그인" />
             </S.ApiLogo>
 
             <S.BottonBox>
