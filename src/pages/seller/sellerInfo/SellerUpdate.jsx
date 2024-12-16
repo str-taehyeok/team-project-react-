@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useForm} from "react-hook-form";
+import S from "../../admin/banner/style";
 
 
 const SellerUpdate = () => {
@@ -27,30 +28,40 @@ const SellerUpdate = () => {
         <form onSubmit={handleSubmit(async (data) => {
             console.log("전송할 데이터 :", data)
 
-                await fetch(`http://localhost:10000/seller/update/${id}`, {
-                    method : "PUT",
-                    headers : {
-                        "Content-Type" : "application/json"
-                    },
-                    body : JSON.stringify({
-                        memberName : data.memberName,
-                        // memberId : memberId
-                    })
+            await fetch(`http://localhost:10000/seller/update/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    memberName: data.memberName,
+                    // memberId : memberId
                 })
-                    .then((res) => res.json())
-                    .then((res) => {
-                        console.log(res)
-                        const {id} = res;
-                        navigate(`/seller/seller-info/${id}`)
-                    })
+            })
+                .then((res) => res.json())
+                .then((res) => {
+                    console.log(res)
+                    const {id} = res;
+                    navigate(`/seller/seller-info/${id}`)
+                })
         })}>
             <label>
                 <p>회원 이름</p>
                 <input type={"text"} defaultValue={memberName}
                        {...register("memberName", {
-                           required : true,
+                           required: true,
                        })}
                 />
+            </label>
+            <label>
+                <S.LinkInputBox>
+                    <S.LinkText>배너링크</S.LinkText>
+                    <S.LinkInput><input  defaultValue={memberName}
+                                        {...register("memberName", {
+                                            required: true,
+                                        })}
+                    /></S.LinkInput>
+                </S.LinkInputBox>
             </label>
             <button disabled={isSubmitting}>수정하기</button>
         </form>
