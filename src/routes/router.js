@@ -464,7 +464,7 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: 'seller-info',
+                path: 'seller-info/:id',
                 element: <SellerInfoContainer />,
                 children: [
                     {
