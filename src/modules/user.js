@@ -24,7 +24,7 @@ const UserInitalValue = {
         memberBusinessNumber: "",
         memberImage: "",
         memberNickname: "포포친구",
-        memberProvider: "자사로그인"
+        memberProvider: "구매자"
     },
     isLogin: false,
     previousUrl: "",

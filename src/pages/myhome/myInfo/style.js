@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {
-    h1Bold,h7Bold,h8Regular,gray500,h7Regular,h2Bold,h6Regular,h9Regular
+    h1Bold,h7Bold,h8Regular,gray500,h7Regular,h2Bold,h6Regular,h9Regular, h9Bold, flexRowCenter
 } from '../../../global/common'
 import theme from "../../../global/theme";
 import { Link } from 'react-router-dom'
@@ -265,7 +265,6 @@ S.ProfileBoxImageWrap = styled.div`
 
 S.MemberInputBoxContainer = styled.div`
     display: flex;
-    width: 438px;
     align-items: center;
     flex-direction: column;
 `;
@@ -310,6 +309,35 @@ S.MemberInputBox = styled.div`
         ${h8Regular};
         color: #828282;
     }
+`;
+S.MemberInput2Box = styled.div`
+    display: flex;
+    width: 437px;
+    justify-content: end;
+    gap : 44px;
+    margin: 0 0 30px 0;
+
+    & input {
+        width: 285px;
+        padding: 4px 26px;
+        border: 1px solid #acaca8;
+        border-radius: 20px;
+        ${h8Regular};
+        color: #828282;
+    }
+`;
+
+S.AuthButton = styled.button`
+    position: absolute;
+    right: 14px;
+    top: 17px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: #c83f3f;
+    border: none;
+    cursor: pointer;
+    ${h9Bold};
+    ${flexRowCenter};
 `;
 
 S.MemberInputAddress = styled.div`
@@ -409,14 +437,6 @@ S.MemberCertification = styled.div`
     display: flex;
     position: relative;
     align-items: center;
-
-    & p {
-        position: absolute;
-        right: 14px;
-        color: #C83F3F;
-        cursor:pointer;
-        ${h9Regular};
-    }
 `;
 
 S.CompletionMain = styled.div`
