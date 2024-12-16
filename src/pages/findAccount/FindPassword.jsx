@@ -26,7 +26,7 @@ const FindPassword = () => {
       return alert("새로운 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
     }
 
-    const response = await fetch("/change-password", {
+   await fetch(`http://localhost:10000/member/change-password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const FindPassword = () => {
       return alert("이메일을 입력해주세요.");
     }
 
-    const response = await fetch("/find-password", {
+    await fetch(`http://localhost:10000/member/find-password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,8 +69,8 @@ const FindPassword = () => {
     if (!authNumber) {
       return alert("인증번호를 입력해주세요.");
     }
-
-    const response = await fetch("/verify-password-auth", {
+ 
+    await fetch(`http://localhost:10000/member/verify-password-auth`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
