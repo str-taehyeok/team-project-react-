@@ -16,6 +16,12 @@ const Login = () => {
     };
 
     const onSubmit = async (data) => {
+
+        if(data.memberProvider === "판매자"){
+            alert("판매자 로그인서비스 이용해주세요.");
+            return;
+        }
+
         try {
             const response = await fetch("http://localhost:10000/member/login", {
                 method: "POST",
@@ -33,7 +39,6 @@ const Login = () => {
 
             const result = await response.json();
             if (result && result.jwtToken) {
-                alert("로그인 성공 환영합니다🎉!");
                 navigate(`/?jwtToken=${result.jwtToken}`);
             }
         } catch (error) {
@@ -85,7 +90,7 @@ const Login = () => {
                 />
             </label>
 
-            <S.LoginButton type="submit" disabled={isSubmitting}>로그인</S.LoginButton>
+            <S.LoginButton disabled={isSubmitting}>로그인</S.LoginButton>
 
             <S.Box4>
                 <S.Box3>

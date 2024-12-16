@@ -49,8 +49,8 @@ const Join = () => {
   const memberPhone = state.phone;
   useEffect(() => {
     // 휴대폰 없으면 휴대폰 인증페이지로 되돌리기
-    if(!provider ?!memberPhone : memberPhone){
-      navigate("/join/phone")
+    if (!provider ? !memberPhone : memberPhone) {
+      navigate("/join/phone");
     }
   }, [navigate, memberPhone, provider]);
 
@@ -63,23 +63,25 @@ const Join = () => {
     setIsPostcodeOpen(false);
   };
 
+  // 소셜 로그인
   if (provider) {
     return (
       <form
         onSubmit={handleSubmit(async (data) => {
           const member = {
             memberEmail: email,
-            memberNickname: data.memberNickName,
+            memberNickname: data.memberNickname,
             memberName: data.memberName,
             memberProvider: provider,
-            memberZipcode: data.postcode,
-            memberAddress: data.baseAddress,
-            memberAddressDetail: data.detailAddress,
+            memberZipcode: address.postcode,
+            memberAddress: address.baseAddress,
+            memberAddressDetail: data.memberAddressDetail,
             memberSmsCheck: data.optionAgrees === "4" ? "1" : "0",
             memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
           };
 
-          console.log(member);
+          console.log("member", member);
+
           await fetch("http://localhost:10000/member/register", {
             method: "POST",
             headers: {
@@ -96,8 +98,6 @@ const Join = () => {
               return res.json();
             })
             .then((res) => {
-              console.log(res);
-              console.log(res && res.jwtToken);
               if (res && res.jwtToken) {
                 const { jwtToken } = res;
                 localStorage.setItem("jwtToken", jwtToken);
@@ -122,13 +122,24 @@ const Join = () => {
           <S.Input>
             <S.InputText>
               <S.TextBox>
-                <S.Red id="Text">닉네임</S.Red>
-                <S.Red id="Text">*</S.Red>
+                <S.Red>이름</S.Red>
+                <S.Red>*</S.Red>
+              </S.TextBox>
+              <S.InputContainer>
+                <S.InputField placeholder="이름" {...register("memberName")} />
+                <p id="NameResult"></p>
+              </S.InputContainer>
+            </S.InputText>
+
+            <S.InputText>
+              <S.TextBox>
+                <S.Red>닉네임</S.Red>
+                <S.Red>*</S.Red>
               </S.TextBox>
               <S.InputContainer>
                 <S.InputField
                   placeholder="별명"
-                  {...register("memberNickName")}
+                  {...register("memberNickname")}
                 />
                 <p id="NameResult"></p>
               </S.InputContainer>
@@ -136,14 +147,21 @@ const Join = () => {
 
             <S.InputText>
               <S.TextBox>
-                <S.Red id="Text">주소</S.Red>
-                <S.Red id="Text">*</S.Red>
+                <S.Red>주소</S.Red>
+                <S.Red>*</S.Red>
               </S.TextBox>
               <S.InputContainer>
                 <S.InputField
                   placeholder="우편번호"
                   {...register("memberZipcode")}
-                  value={address.postcode}
+                  value={address.postcode} // 상태값을 반영
+                  onChange={
+                    (e) =>
+                      setAddress((prev) => ({
+                        ...prev,
+                        postcode: e.target.value,
+                      })) // postcode만 업데이트
+                  }
                   readOnly
                 />
                 <S.AuthButton
@@ -162,7 +180,15 @@ const Join = () => {
                         닫기
                       </S.CloseAddressBtn>
                       <DaumPostcode
-                        onComplete={handleComplete}
+                        onComplete={(data) => {
+                          // DaumPostcode 결과 반영
+                          setAddress({
+                            postcode: data.zonecode,
+                            baseAddress: data.address,
+                            detailAddress: "",
+                          });
+                          setIsPostcodeOpen(false); // 모달 닫기
+                        }}
                         style={{ width: "100%", height: "400px" }}
                       />
                     </S.ModalContent>
@@ -172,7 +198,14 @@ const Join = () => {
                   placeholder="기본주소"
                   id="Sample6Address"
                   {...register("memberAddress")}
-                  value={address.baseAddress}
+                  value={address.baseAddress} // 상태값을 반영
+                  onChange={
+                    (e) =>
+                      setAddress((prev) => ({
+                        ...prev,
+                        baseAddress: e.target.value,
+                      })) // baseAddress만 업데이트
+                  }
                   readOnly
                 />
                 <S.InputField1
@@ -187,8 +220,8 @@ const Join = () => {
 
             <S.InputText>
               <S.TextBox1>
-                <S.Red id="Text1">약관 및 개인정보수집 동의</S.Red>
-                <S.Red id="Text1">*</S.Red>
+                <S.Red>약관 및 개인정보수집 동의</S.Red>
+                <S.Red>*</S.Red>
               </S.TextBox1>
 
               <S.AgreeBox>
@@ -215,7 +248,6 @@ const Join = () => {
                     <label>
                       <input
                         type="checkbox"
-                        name="agrees"
                         value={item.id}
                         {...register("agrees", {
                           required: "필수 약관에 동의하셔야 합니다.",
@@ -248,7 +280,6 @@ const Join = () => {
                   <label>
                     <input
                       type="checkbox"
-                      name="agrees"
                       value={"4"}
                       {...register("optionAgrees", {
                         validate: {
@@ -298,7 +329,7 @@ const Join = () => {
         const member = {
           memberEmail: data.memberEmail,
           memberPassword: data.memberPassword,
-          memberNickname: data.memberNickName,
+          memberNickname: data.memberNickname,
           memberName: data.memberName,
           memberPhone: data.memberPhone,
           memberZipcode: address.postcode,
@@ -307,7 +338,6 @@ const Join = () => {
           memberSmsCheck: data.optionAgrees === "4" ? "1" : "0",
           memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
         };
-        console.log(member);
 
         await fetch("http://localhost:10000/member/register", {
           method: "POST",
@@ -325,8 +355,6 @@ const Join = () => {
             return res.json();
           })
           .then((res) => {
-            console.log(res);
-            console.log(res && res.jwtToken);
             if (res && res.jwtToken) {
               const { jwtToken } = res;
               localStorage.setItem("jwtToken", jwtToken);
@@ -351,14 +379,12 @@ const Join = () => {
         <S.Input>
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">아이디</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>아이디</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputContainer>
               <label>
                 <S.InputField
-                  type="text"
-                  id="email"
                   placeholder="아이디(이메일)"
                   {...register("memberEmail", {
                     required: true,
@@ -374,7 +400,6 @@ const Join = () => {
                   <S.P>이메일 양식에 맞게 입력해주세요.</S.P>
                 )}
                 <S.AuthButton
-                  id="EmailCheck"
                   type="button"
                   onClick={() => {
                     const memberEmail = getValues("memberEmail");
@@ -412,8 +437,8 @@ const Join = () => {
 
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">비밀번호</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>비밀번호</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputContainer>
               <label>
@@ -455,8 +480,8 @@ const Join = () => {
           <S.InputText>
             <label className="inputTextGap">
               <S.TextBox>
-                <S.Red id="Text">비밀번호 확인</S.Red>
-                <S.Red id="Text">*</S.Red>
+                <S.Red>비밀번호 확인</S.Red>
+                <S.Red>*</S.Red>
               </S.TextBox>
               <S.InputContainer>
                 <S.InputField
@@ -485,13 +510,13 @@ const Join = () => {
 
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">닉네임</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>닉네임</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputContainer>
               <S.InputField
                 placeholder="별명"
-                {...register("memberNickName")}
+                {...register("memberNickname")}
               />
               <p id="NameResult"></p>
             </S.InputContainer>
@@ -499,8 +524,8 @@ const Join = () => {
 
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">이름</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>이름</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputField placeholder="이름" {...register("memberName")} />
             <p id="NameResult"></p>
@@ -508,8 +533,8 @@ const Join = () => {
 
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">휴대전화 번호</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>휴대전화 번호</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputField
               {...register("memberPhone")}
@@ -520,8 +545,8 @@ const Join = () => {
 
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">주소</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>주소</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputContainer>
               <S.InputField
@@ -593,8 +618,8 @@ const Join = () => {
 
           <S.InputText>
             <S.TextBox1>
-              <S.Red id="Text1">약관 및 개인정보수집 동의</S.Red>
-              <S.Red id="Text1">*</S.Red>
+              <S.Red>약관 및 개인정보수집 동의</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox1>
 
             <S.AgreeBox>
@@ -621,7 +646,6 @@ const Join = () => {
                   <label>
                     <input
                       type="checkbox"
-                      name="agrees"
                       value={item.id}
                       {...register("agrees", {
                         required: "필수 약관에 동의하셔야 합니다.",
@@ -654,7 +678,6 @@ const Join = () => {
                 <label>
                   <input
                     type="checkbox"
-                    name="agrees"
                     value={"4"}
                     {...register("optionAgrees", {
                       validate: {
