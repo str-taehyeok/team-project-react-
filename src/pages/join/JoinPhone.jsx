@@ -56,7 +56,6 @@ const JoinPhone = () => {
     return alert("인증번호를 발송했습니다.");
   };
   
-  
   const testCode = "123456"
   // verificationCode 할 때 이걸로 변경
   
@@ -118,8 +117,6 @@ const JoinPhone = () => {
             <S.AuthNumberContainer id="AuthNumberContainer">
               <S.InputContainer>
                 <S.InputField
-                  type="text"
-                  name="authNumber"
                   placeholder="인증번호 6자리 입력"
                   value={authNumber}
                   onChange={(e) => setAuthNumber(e.target.value)}

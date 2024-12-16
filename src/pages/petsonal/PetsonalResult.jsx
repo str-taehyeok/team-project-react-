@@ -17,8 +17,6 @@ const PetsonalResult = () => {
     title: "",
   });
 
-  
-  
   useEffect(() => {
     const getPetsonalResult = async () => {
       const response = await fetch(`http://localhost:10000/petsonal/result/${id}`);
@@ -41,11 +39,9 @@ const PetsonalResult = () => {
     getPetsonalResult().catch(console.error);
   }, [id, navigate, result]);
   
-  
   const { petName, petImage, petsonalCute, petsonalChic, petsonalCalm, petsonalActive, petsonalLazy, petsonalDiligent, petsonalCoward, petsonalBrave } = petsonalResult;
   const { imageSrc, message, boxColor, title } = colorResult;
   
-  console.log(colorResult);
   return (
     <div>
       <S.Frame>
@@ -158,8 +154,6 @@ const PetsonalResult = () => {
               </S.PercentageContainer>
             </S.RateWrap>
           </S.ResultBox>
-
-            {/* <button>테스트다시하기</button> */}
 
           <ProductResult />
         </S.ResultContainer>
