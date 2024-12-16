@@ -31,7 +31,8 @@ const AdminLogin = () => {
             }
 
             const result = await response.json();
-            if (result) {
+            if(result){
+                localStorage.setItem("adminToken", result.adminToken);
                 navigate(`/admin`);
             }
         } catch (error) {
