@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { PetsonalContext } from "../../context/petsonalContext";
+import ProductResult from "./ProductResult";
 
 const PetsonalResult = () => {
   const { id } = useParams();
@@ -62,8 +63,8 @@ const PetsonalResult = () => {
           <S.ResultBox color={boxColor}>
             <S.PetProfile>
               <S.PetImage
-                src={`${process.env.PUBLIC_URL}/assets/images/pet/${petImage}`}
-                alt="강아지사진"
+                src={`${process.env.PUBLIC_URL}${petImage}`}
+                alt="펫 사진"
               />
               <p>{petName}</p>
             </S.PetProfile>
@@ -158,107 +159,9 @@ const PetsonalResult = () => {
             </S.RateWrap>
           </S.ResultBox>
 
-          <S.ProductContainer>
-            <S.ProductHeader>
-              <h2>POWPOW의 추천상품이에요!</h2>
-              <Link to={"/product"}>
-                <strong>+ 더보기</strong>
-              </Link>
-            </S.ProductHeader>
+            {/* <button>테스트다시하기</button> */}
 
-            <S.ProductsWrap>
-              <S.Products>
-                {[
-                  {
-                    name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
-                    price: "55% 9,900원",
-                    image: "product1.png",
-                  },
-                  {
-                    name: "디팡 강아지 사료 500g",
-                    price: "10% 8,500원",
-                    image: "product2.png",
-                  },
-                  {
-                    name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
-                    price: "10% 9,900원",
-                    image: "product3.png",
-                  },
-                  {
-                    name: "디팡 강아지 사료 500g",
-                    price: "10% 8,500원",
-                    image: "product4.png",
-                  },
-                  {
-                    name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
-                    price: "35% 9,900원",
-                    image: "product1.png",
-                  },
-                  {
-                    name: "디팡 강아지 사료 500g",
-                    price: "55% 8,500원",
-                    image: "product2.png",
-                  },
-                  {
-                    name: "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
-                    price: "10% 9,900원",
-                    image: "product3.png",
-                  },
-                  {
-                    name: "디팡 강아지 사료 500g",
-                    price: "35% 8,500원",
-                    image: "product4.png",
-                  },
-                ].map((product, index) => {
-                  const [discount, price] = product.price.split(" ");
-
-                  return (
-                    <S.ProductCard key={index}>
-                      <img
-                        className="productImage"
-                        src={`${process.env.PUBLIC_URL}/assets/images/layout/${product.image}`}
-                        alt={product.name}
-                      />
-                      <S.ProductHeartICon
-                        src={`${process.env.PUBLIC_URL}/assets/images/layout/heart_icon.png`}
-                        alt="하트"
-                      />
-                      <S.CardTextWrap>
-                        <S.ProductName>{product.name}</S.ProductName>
-                        <S.DiscountText>
-                          {discount && (
-                            <b>
-                              <span
-                                style={{
-                                  color: "#C83F3F",
-                                  fontWeight: "bold",
-                                  marginRight: "10px",
-                                }}
-                              >
-                                {discount}
-                              </span>
-                            </b>
-                          )}
-                          <b>
-                            <span>{price}</span>
-                          </b>
-                        </S.DiscountText>
-                      </S.CardTextWrap>
-                      <S.CardCart>
-                        <Link to={"/"}>
-                          <img
-                            src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
-                            alt="장바구니아이콘"
-                          />
-                          <p>담기</p>
-                        </Link>
-                      </S.CardCart>
-                    </S.ProductCard>
-                  );
-                })}
-              </S.Products>
-            </S.ProductsWrap>
-          </S.ProductContainer>
+          <ProductResult />
         </S.ResultContainer>
       </S.Frame>
     </div>

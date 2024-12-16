@@ -25,6 +25,7 @@ const Clothes = () => {
                 const data = await response.json();
                 setProducts(data);
                 setLoading(false);
+                console.log(data)
             } catch (error) {
                 setError(error.message);
                 setLoading(false);
@@ -33,6 +34,7 @@ const Clothes = () => {
 
         fetchProducts();
     }, []);
+
 
     // 로딩 상태 처리
     if (loading) {

@@ -420,7 +420,7 @@ const router = createBrowserRouter([
                         element: <CouponWrite />
                     },
                     {
-                        path: "coupon-update",
+                        path: "coupon-update/:id",
                         element: <CouponUpdate />
                     },
                 ]
@@ -464,7 +464,7 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: 'seller-info',
+                path: 'seller-info/:id',
                 element: <SellerInfoContainer />,
                 children: [
                     {

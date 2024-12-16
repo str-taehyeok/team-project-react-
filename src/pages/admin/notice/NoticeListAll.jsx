@@ -20,13 +20,13 @@ const NoticeListAll = () => {
 
     console.log(posts)
 
-const noticeLists = posts.map(({ id, noticeTitle, memberId, noticeDate,noticeCount}, index) => (
-  <tr >
+const noticeLists = posts.map(({ id, noticeTitle, memberName, noticeDate,noticeCount}, index) => (
+  <tr key={id} >
       <td className='number'>{index + 1}</td>
-      <Link to={`/admin/list/${id}`}>
-        <td className='title'>{noticeTitle}</td>
-      </Link>
-      <td className='content'>{memberId}</td>
+      <td className='title'>
+          <Link to={`/admin/list/${id}`}>{noticeTitle}</Link>
+      </td>
+      <td className='content'>{memberName}</td>
       <td className='date'>{noticeDate}</td>
       <td className='button'>{noticeCount}</td>
   </tr>

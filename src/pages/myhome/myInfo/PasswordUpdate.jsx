@@ -4,7 +4,7 @@ import S from "./style";
 
 const PasswordUpdate = () => {
     return (
-        <div>
+        <S.PasswordUpdateFormContainer>
             <S.PasswordUpdateForm>
                 <S.PasswordUpdateInput>
                     <S.PasswordUpdateText>
@@ -27,7 +27,7 @@ const PasswordUpdate = () => {
                 </S.PasswordUpdateInput>
                 <S.PasswordUpdateButton>완료</S.PasswordUpdateButton>
             </S.PasswordUpdateForm>
-        </div>
+        </S.PasswordUpdateFormContainer>
     )
 };
 

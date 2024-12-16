@@ -245,7 +245,7 @@ S.NextButton = styled.button`
 S.ResultContainer = styled.div`
   width: 1440px;
   ${flexColumnCenter};
-  margin-top: 200px;
+  margin-top: 150px;
 `;
 
 S.ColorWrap = styled.div`
@@ -267,6 +267,7 @@ S.OrangeResult = styled.ul`
 
 S.ResultBox = styled.div`
   margin-top: 144px;
+  margin-bottom: 200px;
   width: 1440px;
   height: 885px;
   background: ${({color}) => color};
@@ -279,7 +280,7 @@ S.PetProfile = styled.div`
   width: 292px;
   ${flexColumnCenter};
 
-  &p {
+  & p{
     font-size: 40px;
     color: white;
     font-weight: bold;
@@ -504,6 +505,12 @@ S.CardCartIcon = styled.div`
 S.SubBanner = styled.div`
   width: 100%;
   text-align: center;
+`;
+
+S.Content = styled.div`
+  margin-bottom: 200px;
+  ${flexColumnCenter};
+  width: 100%;
 `;
 
 export default S;

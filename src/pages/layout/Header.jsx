@@ -87,7 +87,7 @@ const Header = () => {
                     <Link to={"/cart"} ><img src={`${process.env.PUBLIC_URL}/assets/images/layout/cart.png`} alt="로고" /></Link>
                     <p>|</p>
                     { isLogin ? (
-                        <Link to={"/logout"} onClick={handleLogout}>로그아웃</Link> 
+                        <Link onClick={handleLogout}>로그아웃</Link> 
                     ) : (
                         <Link to={"/login"}>로그인</Link> 
                     )}
