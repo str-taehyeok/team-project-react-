@@ -143,14 +143,12 @@ const SellerJoin = () => {
         <S.Input>
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">아이디</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>아이디</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputContainer>
               <label>
                 <S.InputField
-                 type="text"
-                 id="email"
                  placeholder="아이디(이메일)"
                  {...register("memberEmail", {
                    required: true,
@@ -204,8 +202,8 @@ const SellerJoin = () => {
 
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">비밀번호</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>비밀번호</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputContainer>
               <label>
@@ -248,13 +246,12 @@ const SellerJoin = () => {
           <S.InputText>
             <label className="inputTextGap">
               <S.TextBox>
-                <S.Red id="Text">비밀번호 확인</S.Red>
-                <S.Red id="Text">*</S.Red>
+                <S.Red>비밀번호 확인</S.Red>
+                <S.Red>*</S.Red>
               </S.TextBox>
               <S.InputContainer>
                 <S.InputField
                   type={mark ? "text" : "password"}
-                  id="passWordConfirm"
                   placeholder="비밀번호를 입력하세요"
                   {...register("passWordConfirm", {
                     required: "비밀번호 확인을 입력하세요",
@@ -278,8 +275,8 @@ const SellerJoin = () => {
 
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">휴대전화 번호</S.Red>
-              <S.Red id="Text" className="Red">
+              <S.Red >휴대전화 번호</S.Red>
+              <S.Red>
                 *
               </S.Red>
             </S.TextBox>
@@ -291,8 +288,8 @@ const SellerJoin = () => {
           <S.Line></S.Line>
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">사업자 인증번호</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>사업자 인증번호</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputContainer>
               <S.InputField
@@ -307,8 +304,8 @@ const SellerJoin = () => {
 
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">대표자명</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>대표자명</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputField
                 placeholder="대표자명"
@@ -318,11 +315,10 @@ const SellerJoin = () => {
 
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">업체명</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>업체명</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputField
-              type="text"
               {...register("memberBusinessName")}
               placeholder="업체명"
             />
@@ -330,18 +326,16 @@ const SellerJoin = () => {
 
           <S.InputText>
             <S.TextBox>
-              <S.Red id="Text">은행명</S.Red>
-              <S.Red id="Text">*</S.Red>
+              <S.Red>은행명</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputField
-              type="text"
               {...register("memberBank")}
               placeholder="은행명"
             />
           </S.InputText>
           <S.InputText>
             <S.InputField
-              type="text"
               {...register("memberBankAccount")}
               placeholder="계좌번호('-'없이 입력)"
             />
@@ -351,8 +345,8 @@ const SellerJoin = () => {
 
           <S.InputText>
             <S.TextBox1>
-              <S.Red id="Text1">약관 및 개인정보수집 동의</S.Red>
-              <S.Red id="Text1">*</S.Red>
+              <S.Red>약관 및 개인정보수집 동의</S.Red>
+              <S.Red>*</S.Red>
             </S.TextBox1>
 
             <S.AgreeBox>
@@ -379,7 +373,6 @@ const SellerJoin = () => {
                   <label>
                     <input
                       type="checkbox"
-                      name="agrees"
                       value={item.id}
                       {...register("agrees", {
                         required: "필수 약관에 동의하셔야 합니다.",
@@ -413,7 +406,6 @@ const SellerJoin = () => {
                   <label>
                     <input
                       type="checkbox"
-                      name="agrees"
                       value={"4"}
                       {...register("optionAgrees", {
                         validate: {
