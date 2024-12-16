@@ -17,81 +17,6 @@ const MemberContainer = () => {
         }
     };
 
-    // const [memberList] = useState([
-    //     {
-    //         id : 1,
-    //         memberName : "홍길동",
-    //         memberEmail : "jane@gmail.com",
-    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-    //         memberPhone : "01012345678",
-    //         memberSmscheck : "1",
-    //         memberEmailcheck : "1",
-    //         memberDate : "2022-11-18",
-    //         memberBusinessNumber : "1111111111",
-    //         memberBusinessName : "멍냥멍냥"
-    //     },
-    //     {
-    //         id : 2,
-    //         memberName : "홍길동",
-    //         memberEmail : "chapssal@gmail.com",
-    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-    //         memberPhone : "01034566768",
-    //         memberSmscheck : "0",
-    //         memberEmailcheck : "0",
-    //         memberDate : "2022-11-18",
-    //         memberBusinessNumber : "1111111111",
-    //         memberBusinessName : "댕냥댕냥"
-    //     },
-    //     {
-    //         id : 3,
-    //         memberName : "홍길동",
-    //         memberEmail : "hong@gmail.com",
-    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-    //         memberPhone : "01011111111",
-    //         memberSmscheck : "1",
-    //         memberEmailcheck : "1",
-    //         memberDate : "2022-11-18",
-    //         memberBusinessNumber : "1111111111",
-    //         memberBusinessName : "멍냥멍냥"
-    //     },
-    //     {
-    //         id : 4,
-    //         memberName : "홍길동",
-    //         memberEmail : "kim@gmail.com",
-    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-    //         memberPhone : "01036363773",
-    //         memberSmscheck : "0",
-    //         memberEmailcheck : "0",
-    //         memberDate : "2022-11-18",
-    //         memberBusinessNumber : "1111111111",
-    //         memberBusinessName : "댕냥댕냥"
-    //     },
-    //     {
-    //         id : 5,
-    //         memberName : "홍길동",
-    //         memberEmail : "king@gmail.com",
-    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-    //         memberPhone : "01023455674",
-    //         memberSmscheck : "0",
-    //         memberEmailcheck : "1",
-    //         memberDate : "2022-11-18",
-    //         memberBusinessNumber : "1111111111",
-    //         memberBusinessName : "멍냥멍냥"
-    //     },
-    //     {
-    //         id : 6,
-    //         memberName : "홍길동",
-    //         memberEmail : "queen@gmail.com",
-    //         memberAddressDetail : "서울특별시 어쩌구동 어쩌구 아파트 2401호",
-    //         memberPhone : "01056479389",
-    //         memberSmscheck : "1",
-    //         memberEmailcheck : "0",
-    //         memberDate : "2022-11-18",
-    //         memberBusinessNumber : "1111111111",
-    //         memberBusinessName : "댕냥댕냥"
-    //     },
-    // ]);
-
     const {memberProvider} = useParams();
     const [searchTerm, setSearchTerm] = useState('');
     const [smsFilter, setSmsFilter] = useState('1');
@@ -101,21 +26,22 @@ const MemberContainer = () => {
     const [members, setMembers] = useState([]);
     const [filteredMembers, setFilteredMembers] = useState([]);
 
-    useEffect(() => {
-        const getMembers = async () => {
-            try {
-                const response = await fetch(`http://localhost:10000/admin/members/${memberProvider}`);
-                if (!response.ok) throw new Error('데이터를 불러올 수 없습니다.');
-                const data = await response.json();
-                setMembers(data);
-                setFilteredMembers(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
+    // useEffect(() => {
+    //     const getMembers = async () => {
+    //         try {
+    //             const response = await fetch(`http://localhost:10000/admin/members/${memberProvider}`);
+    //             if (!response.ok) throw new Error('데이터를 불러올 수 없습니다.');
+    //             const data = await response.json();
+    //             setMembers(data);
+    //             setFilteredMembers(data);
+    //             console.log(data)
+    //         } catch (error) {
+    //           console.error(error);
+    //         }
+    //     };
 
-        getMembers();
-    }, [memberProvider]);
+    //     getMembers();
+    // }, [memberProvider]);
 
 
     const handleSearch = () => {
