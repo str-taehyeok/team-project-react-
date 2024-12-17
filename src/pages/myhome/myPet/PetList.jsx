@@ -30,7 +30,7 @@ const PetList = () => {
     };
 
     getPets();
-  }, []);
+  }, [id]);
   
   const getDelete = async (id) => {  
     try {

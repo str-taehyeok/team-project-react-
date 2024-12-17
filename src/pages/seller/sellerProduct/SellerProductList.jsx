@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import S from './style';
 import { Link, Outlet, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const SellerProductList = () => {
     const { id } = useParams();
-    // const navigate = useNavigate();
-
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [isPopupVisible, setIsPopupVisible] = useState(false);
-
+    const { currentUser } = useSelector((state) => state.user);
+    const memberId = currentUser.id;
+    console.log(currentUser)
 
 
     useEffect(() => {
         const getProducts = async () => {
-            const response = await fetch(`http://localhost:10000/products/products`);
+            const response = await fetch(`http://localhost:10000/products/seller-all-list/${memberId}`);
             if (!response.ok) return console.error('데이터가 없습니다.');
             const data = await response.json();
+            
             setProducts(data);
             setFilteredProducts(data); // 필터링 상태도 초기화
         };
         getProducts().catch(console.error);
-    }, [id]);
+    }, [memberId]);
 
     const getDelete = async (id) => {
         try {

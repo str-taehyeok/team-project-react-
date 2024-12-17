@@ -26,19 +26,8 @@ const Login = () => {
                 const errorData = await response.json();
                 alert(errorData.message || "아이디 또는 비밀번호가 잘못되었습니다.");
                 return;
-            }
-    
-            const result = await response.json();
-
-            if (result.provider !== "판매자") {
-                alert("구매자 로그인 페이지를 이용해주세요.");
-                navigate("/login");
-                return;
-            }
-    
-            // 구매자라면 JWT 토큰을 사용하여 다음 화면으로 이동
-            if (result && result.jwtToken) {
-                navigate(`/?jwtToken=${result.jwtToken}`);
+            }else{
+                navigate("/seller")
             }
         } catch (error) {
             console.error("Login error:", error);
@@ -80,14 +69,6 @@ const Login = () => {
                     })}
                 />
                 {errors.memberPassword && <S.P>{errors.memberPassword.message}</S.P>}
-            </label>
-
-            <label>
-                <S.Input
-                    type="hidden"
-                    {...register("memberProvider")}
-                    value="판매자"
-                />
             </label>
 
             <S.LoginButton disabled={isSubmitting}>로그인</S.LoginButton>
