@@ -518,25 +518,23 @@ const Join = () => {
 
           <S.InputText>
             <S.TextBox>
-              <S.Red>닉네임</S.Red>
-              <S.Red>*</S.Red>
-            </S.TextBox>
-            <S.InputContainer>
-              <S.InputField
-                placeholder="별명"
-                {...register("memberNickname")}
-              />
-              <p id="NameResult"></p>
-            </S.InputContainer>
-          </S.InputText>
-
-          <S.InputText>
-            <S.TextBox>
               <S.Red>이름</S.Red>
               <S.Red>*</S.Red>
             </S.TextBox>
             <S.InputField placeholder="이름" {...register("memberName")} />
             <p id="NameResult"></p>
+          </S.InputText>
+
+          <S.InputText>
+            <S.TextBox>
+              <S.Red>닉네임</S.Red>
+              <S.Red>*</S.Red>
+            </S.TextBox>
+              <S.InputField
+                placeholder="별명"
+                {...register("memberNickname")}
+              />
+              <p id="NameResult"></p>
           </S.InputText>
 
           <S.InputText>
