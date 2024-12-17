@@ -1,32 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner from "./Banner.jsx";
 import S from './style.js';
 import Slide from './Slide.jsx';
 import { Link } from 'react-router-dom';
 import HeartBtn from './HeartBtn.jsx';
 
-const myPostList = [
-    { 
-        id : 1,
-        postImage1 : "/assets/images/community/myPost1.png" 
-    },
-    { 
-        id : 2,
-        postImage1 : "/assets/images/community/myPost2.png" 
-    },
-    { 
-        id : 3,
-        postImage1 : "/assets/images/community/myPost3.png" 
-    },
-    { 
-        id : 4,
-        postImage1 : "/assets/images/community/myPost4.png" 
-    },
-    { 
-        id : 5,
-        postImage1 : "/assets/images/community/myPost5.png" 
-    }
-  ]
 
 const orangePostList = [
     {
@@ -63,16 +41,33 @@ const orangePostList = [
 
 const CommunityMain = () => {
 
-    const myPosts = myPostList.map(({postImage1, id}, i) => (
-        <S.MyPost key={i} >
+    const [ popularCommunites , setPopularCommunites] = useState([]);
+
+    useEffect(() => {
+
+        const getPopularCommunites = async () => {
+            const response = await fetch("http://localhost:10000/posts/postsPopular");
+            const datas = await response.json()
+            return datas;
+        }
+
+        getPopularCommunites().then(setPopularCommunites).catch(console.error)
+
+    }, [])
+
+    console.log("popularCommunites", popularCommunites)
+
+    const myPosts = popularCommunites.slice(0, 4).map(({id, imageName1}) => (
+        <S.MyPost key={id} >
             <S.Heart>
                  <HeartBtn id={id} type={"community"} />
             </S.Heart>
             <Link to={`/post/read?postId=${id}`}>
-                <img src={postImage1} alt={"나의 게시글" + (i + 1)} />
+            <img src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`} />
             </Link>
         </S.MyPost>
     ))
+    
 
     const orangePosts = orangePostList.map(({id, postImage1, memberImage, memberNickname}, i) => (
         <S.OrangePostBox key={i}>
