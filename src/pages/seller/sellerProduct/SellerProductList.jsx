@@ -10,14 +10,14 @@ const SellerProductList = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false); // 팝업 표시 여부
   const [deleteProductId, setDeleteProductId] = useState(null); // 삭제할 상품 ID 상태
   const { currentUser } = useSelector((state) => state.user);
-  const memberId = currentUser.id;
+  const sellerId = currentUser.id;
 
   
   // 상품 목록 가져오기
   useEffect(() => {
     const getProducts = async () => {
       const response = await fetch(
-        `http://localhost:10000/products/seller-all-list/${memberId}`
+        `http://localhost:10000/products/seller-all-list/${sellerId}`
       );
       if (!response.ok) return console.error("데이터가 없습니다.");
       const data = await response.json();
@@ -25,7 +25,7 @@ const SellerProductList = () => {
       setFilteredProducts(data); // 초기 검색 결과 설정
     };
     getProducts().catch(console.error);
-  }, [memberId]);
+  }, [sellerId]);
 
 
   // 삭제 팝업 열기
@@ -40,12 +40,28 @@ const SellerProductList = () => {
     setIsPopupVisible(false);
   };
 
-  // 상품 삭제 요청
   const handleDelete = async () => {
-    
-    await fetch(`http://localhost:10000/products/seller-product/${deleteProductId}`,{
-        method : 'DELETE'
-    })
+    // 상품 삭제 요청
+    console.log(deleteProductId); // 삭제할 상품 ID가 제대로 설정되었는지 확인
+    const response = await fetch(
+      `http://localhost:10000/products/seller-product/${deleteProductId}`,
+      {
+        method: 'DELETE',
+      }
+    );
+  
+    if (response.ok) {
+      const updatedProducts = products.filter(
+        (product) => product.id !== deleteProductId
+      );
+      setProducts(updatedProducts); // 전체 상품 목록에서 삭제
+      setFilteredProducts(updatedProducts); // 필터링된 상품 목록에서도 삭제
+      setIsPopupVisible(false); // 팝업 닫기
+      alert('상품이 삭제되었습니다.');
+    } else {
+      console.error("상품 삭제에 실패했습니다.");
+      alert('상품 삭제에 실패했습니다.');
+    }
   };
 
   // 검색 기능
@@ -74,7 +90,7 @@ const SellerProductList = () => {
           <td>{index + 1}</td>
           <td>
             <S.Image>
-              <img src={product.productImage1} alt={`상품 ${index + 1}`} />
+              <img src={product.productFileName} alt={`상품 ${index + 1}`} />
             </S.Image>
           </td>
           <td>

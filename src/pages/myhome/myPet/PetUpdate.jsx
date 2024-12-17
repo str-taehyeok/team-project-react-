@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import S from './style';
-import { useSelector } from "react-redux";
 
 const PetUpdate = () => {
-  const navigate = useNavigate();
-  const [pet, setPet] = useState({ petName: '', petKind: '', petImage: '/assets/images/layout/petimg.png',  petGender: '', petBreed: '',  petBirth: '', petWeight: '', petNeuter: '', petVet: '' });
   const { id } = useParams();
-  const { currentUser} = useSelector((state) => state.user)
+  const { currentUser } = useSelector((state) => state.user);
 
+  const { register, handleSubmit, setValue, formState: { isSubmitting } } = useForm({ mode: 'onChange' });
+
+  const [petName, setPetName] = useState("");
+  const [petKind, setPetKind] = useState("");
+  const [petGender, setPetGender] = useState("");
+  const [petBreed, setPetBreed] = useState("");
+  const [petNeuter, setPetNeuter] = useState("");
+  const [petImagePreview, setPetImagePreview] = useState(null);
+  const [petFilePath, setPetFilePath] = useState('');
+  const [petFileName, setPetFileName] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getPet = async () => {
@@ -16,62 +26,151 @@ const PetUpdate = () => {
         const response = await fetch(`http://localhost:10000/my-pet/${id}`);
         if (!response.ok) return console.error('데이터가 없습니다.');
         const petData = await response.json();
-        console.log(petData);
-        const formattedDate = new Date(petData.petBirth).toLocaleDateString('en-CA'); // 'yyyy-MM-dd' 형식
-        console.log(formattedDate)
-        setPet({ ...petData, petBirth: formattedDate });
+
+        // 날짜 포맷팅: petData.petBirth를 'yyyy-MM-dd' 형식으로 변환
+        const formattedDate = new Date(petData.petBirth).toISOString().split('T')[0];
+
+        // 초기값 설정
+        setPetName(petData.petName);
+        setPetKind(petData.petKind);
+        setPetGender(petData.petGender);
+        setPetBreed(petData.petBreed);
+        setPetNeuter(petData.petNeuter);
+        setPetFilePath(petData.petFilePath);
+        setPetFileName(petData.petFileName);
+
+        // form 값 설정
+        setValue("petName", petData.petName);
+        setValue("petKind", petData.petKind);
+        setValue("petGender", petData.petGender);
+        setValue("petBreed", petData.petBreed);
+        setValue("petBirth", formattedDate);
+        setValue("petWeight", petData.petWeight);
+        setValue("petNeuter", petData.petNeuter);
+        setValue("petVet", petData.petVet);
+
       } catch (error) {
         console.error('데이터 로드 중 오류 발생:', error);
       }
     };
     getPet();
-  }, [id]);
+  }, [id, setValue]);
 
-  const handleChange = (e) => setPet((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleFormSubmit = async (data) => {
     try {
-      const response = await fetch(`http://localhost:10000/my-pet/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...pet, petImage: '1234', memberId: currentUser.id, }),
+      const formData = new FormData();
+      const { petName, petKind, petGender, petBreed, petBirth, petWeight, petNeuter, petVet, petImage } = data;
+
+      formData.append("memberId", currentUser.id);
+      formData.append("petName", petName);
+      formData.append("petKind", petKind);
+      formData.append("petGender", petGender);
+      formData.append("petBreed", petBreed);
+      formData.append("petBirth", petBirth);
+      formData.append("petVet", petVet);
+      formData.append("petWeight", petWeight);
+      formData.append("petNeuter", petNeuter);
+
+      if (petImage && petImage[0]) {
+        formData.append("uploadFile", petImage[0]);
+      }
+
+      const response = await fetch("http://localhost:10000/my-pet/upload", {
+        method: "POST",
+        body: formData,
       });
-      if (!response.ok) throw new Error('데이터 전송 실패');
-      alert('데이터가 성공적으로 전송되었습니다!');
-      navigate('/my-pet');
+
+      const resData = await response.json();
+      formData.append("uuid", resData.uuid);
+
+      const updateResponse = await fetch(`http://localhost:10000/my-pet/${id}`, {
+        method: "PUT",
+        body: formData,
+      });
+
+      const updateResData = await updateResponse.json();
+      alert(updateResData.message);
+      navigate("/my-pet");
+
     } catch (error) {
-      console.error('에러 발생:', error);
-      alert('데이터 전송 중 오류가 발생하였습니다.');
+      console.error('폼 제출 중 오류 발생:', error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <S.PetWapper>
-        <div className="button-postion">
-          <S.Button id="submit-button" type="submit">완료</S.Button>
+    <S.PetWapper>
+      <form encType="multipart/form-data" onSubmit={handleSubmit(handleFormSubmit)}>
+        <div className='button-postion'>
+          <S.Button id="submit-button" type="submit" disabled={isSubmitting}>
+            수정 완료
+          </S.Button>
         </div>
         <S.Mydog>
           <S.PetCard>
-            <S.Profilepic><img src="/assets/images/layout/petimg.png" alt="펫 이미지" /></S.Profilepic>
-            <S.Name>{pet.petName || '이름'}</S.Name>
-            <S.EditButton>이미지 편집</S.EditButton>
+            <S.Profilepic>
+              {petImagePreview ? (
+                <img src={petImagePreview} alt="펫 이미지" />
+              ) : (
+                <img
+                  src={`http://localhost:10000/my-pet/display?fileName=${petFilePath}/${petFileName}`}
+                  alt={`${petName} 이미지`}
+                />
+              )}
+            </S.Profilepic>
+            <S.Name>{petName || "이름"}</S.Name>
+            <S.EditButton as="label" htmlFor="petImageInput">
+              이미지 편집
+            </S.EditButton>
+            <input
+              id="petImageInput"
+              type="file"
+              style={{ display: 'none' }}
+              {...register("petImage", {
+                validate: (e) => {
+                  const file = e[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                      setPetImagePreview(reader.result);
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                }
+              })}
+            />
           </S.PetCard>
           <S.Title as="h5">
             <S.InputGroup>
               <S.PetName>이름</S.PetName>
-              <input type="text" name="petName" value={pet.petName} onChange={handleChange} />
+              <input
+                type="text"
+                placeholder="이름을 입력하세요"
+                {...register("petName")}
+                value={petName}
+                onChange={(e) => setPetName(e.target.value)}
+              />
             </S.InputGroup>
             <S.RadioGroup>
               <S.PetKind>반려종류</S.PetKind>
               <S.RadioWrap>
                 <S.Gap>
-                  <input type="radio" name="petKind" value="반려견" checked={pet.petKind === '반려견'} onChange={handleChange} />
+                  <input 
+                    type="radio" 
+                    {...register("petKind", { required: true })} 
+                    value="반려견" 
+                    checked={petKind === "반려견"}
+                    onChange={(e) => setPetKind(e.target.value)} 
+                  />
                   <label>반려견</label>
                 </S.Gap>
                 <S.Gap>
-                  <input type="radio" name="petKind" value="반려묘" checked={pet.petKind === '반려묘'} onChange={handleChange} />
+                  <input 
+                    type="radio" 
+                    {...register("petKind", { required: true })} 
+                    value="반려묘" 
+                    checked={petKind === "반려묘"}
+                    onChange={(e) => setPetKind(e.target.value)} 
+                  />
                   <label>반려묘</label>
                 </S.Gap>
               </S.RadioWrap>
@@ -80,48 +179,78 @@ const PetUpdate = () => {
               <S.PetGender>성별</S.PetGender>
               <S.RadioWrap>
                 <S.Gap>
-                  <input type="radio" name="petGender" value="수컷" checked={pet.petGender === '수컷'} onChange={handleChange} />
+                  <input 
+                    type="radio" 
+                    {...register("petGender", { required: true })} 
+                    value="수컷" 
+                    checked={petGender === "수컷"}
+                    onChange={(e) => setPetGender(e.target.value)} 
+                  />
                   <label>수컷</label>
                 </S.Gap>
                 <S.Gap>
-                  <input type="radio" name="petGender" value="암컷" checked={pet.petGender === '암컷'} onChange={handleChange} />
+                  <input 
+                    type="radio" 
+                    {...register("petGender", { required: true })} 
+                    value="암컷" 
+                    checked={petGender === "암컷"}
+                    onChange={(e) => setPetGender(e.target.value)} 
+                  />
                   <label>암컷</label>
                 </S.Gap>
               </S.RadioWrap>
             </S.RadioGroupGender>
             <S.InputGroup2>
               <S.PetBreed>품종</S.PetBreed>
-              <input type="text" name="petBreed" value={pet.petBreed} onChange={handleChange} />
+              <input
+                type="text"
+                placeholder="품종을 입력하세요"
+                {...register("petBreed")}
+                value={petBreed}
+                onChange={(e) => setPetBreed(e.target.value)}
+              />
             </S.InputGroup2>
             <S.InputGroup3>
               <S.PetBrith>생일</S.PetBrith>
-              <input type="date" name="petBirth"  value={pet.petBirth}  onChange={handleChange} />
+              <input type="date" {...register("petBirth", { required: "생일을 선택하세요." })} />
             </S.InputGroup3>
             <S.InputGroup4>
               <S.PetBreed>몸무게(kg)</S.PetBreed>
-              <input type="number" name="petWeight" value={pet.petWeight} onChange={handleChange} />
+              <input type="number" placeholder="몸무게를 입력하세요" {...register("petWeight")} />
             </S.InputGroup4>
             <S.RadioGroupGender2>
               <S.PetNeuter>중성화</S.PetNeuter>
               <S.RadioWrap>
                 <S.Gap>
-                  <input type="radio" name="petNeuter" value="했어요" checked={pet.petNeuter === '했어요'} onChange={handleChange} />
+                  <input 
+                    type="radio" 
+                    value="했어요" 
+                    {...register("petNeuter")} 
+                    checked={petNeuter === "했어요"}
+                    onChange={(e) => setPetNeuter(e.target.value)} 
+                  />
                   <label>했어요</label>
                 </S.Gap>
                 <S.Gap>
-                  <input type="radio" name="petNeuter" value="안했어요" checked={pet.petNeuter === '안했어요'} onChange={handleChange} />
+                  <input 
+                    type="radio" 
+                    value="안했어요" 
+                    {...register("petNeuter")} 
+                    checked={petNeuter === "안했어요"}
+                    onChange={(e) => setPetNeuter(e.target.value)} 
+                  />
                   <label>안했어요</label>
                 </S.Gap>
               </S.RadioWrap>
             </S.RadioGroupGender2>
             <S.InputGroup5>
               <S.PetVet>동물병원</S.PetVet>
-              <input type="text" name="petVet" value={pet.petVet} onChange={handleChange} />
+              <input type="text" placeholder="병원명을 입력하세요" {...register("petVet")} />
             </S.InputGroup5>
           </S.Title>
         </S.Mydog>
-      </S.PetWapper>
-    </form>
+      </form>
+    </S.PetWapper>
   );
 };
 
