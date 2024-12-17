@@ -326,7 +326,7 @@ const router = createBrowserRouter([
                         element: <PostDustySilverList />,
                     },
                     {
-                        path: "read",
+                        path: "read/:id",
                         element: <UserPost />,
                     },
                     {
