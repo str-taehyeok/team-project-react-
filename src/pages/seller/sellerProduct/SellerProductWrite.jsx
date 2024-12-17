@@ -221,21 +221,21 @@ const SellerProductWrite = () => {
                                 <select name="productCategory">
                                     <option value="healthCare">헬스케어</option>
                                     <option value="treats">사료/간식</option>
-                                    <option value="colothes">의류</option>
+                                    <option value="clothes">의류</option>
                                     <option value="flushies">장난감</option>
                                 </select>
                             </S.ListWrap>
                             <S.ListWrap>
                                 <S.Division>펫스널컬러</S.Division>
                                 <select name="petsonalColor">
-                                    <option value="orange">오렌지</option>
-                                    <option value="gold">골드</option>
-                                    <option value="gradation">그라데이션</option>
-                                    <option value="lightPurple">라이트 퍼플</option>
-                                    <option value="skyBlue">스카이 블루</option>
-                                    <option value="sageGreen">세이지 그린</option>
-                                    <option value="iceBlue">아이스 블루</option>
-                                    <option value="dustySilver">더스티 실버</option>
+                                    <option value="Orange">오렌지</option>
+                                    <option value="Gold">골드</option>
+                                    <option value="Gradation">그라데이션</option>
+                                    <option value="LightPurple">라이트 퍼플</option>
+                                    <option value="SkyBlue">스카이 블루</option>
+                                    <option value="SageGreen">세이지 그린</option>
+                                    <option value="IceBlue">아이스 블루</option>
+                                    <option value="DustySilver">더스티 실버</option>
                                 </select>
                             </S.ListWrap>
                             <S.ListWrap>
