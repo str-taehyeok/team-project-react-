@@ -3,6 +3,7 @@ import S from "./style";
 import { useNavigate, useParams } from "react-router-dom";
 import { PetsonalContext } from "../../context/petsonalContext";
 import ProductResult from "./ProductResult";
+import CatProductResult from "./CatProductResult";
 
 const PetsonalResult = () => {
   const { id } = useParams();
@@ -17,7 +18,6 @@ const PetsonalResult = () => {
     title: "",
   });
 
-  console.log(id)
   useEffect(() => {
     const getPetsonalResult = async () => {
       const response = await fetch(`http://localhost:10000/petsonal/result/${id}`);
@@ -41,8 +41,11 @@ const PetsonalResult = () => {
     getPetsonalResult().catch(console.error);
   }, [id, navigate, result]);
   
-  const { petName, petImage, petsonalCute, petsonalChic, petsonalCalm, petsonalActive, petsonalLazy, petsonalDiligent, petsonalCoward, petsonalBrave } = petsonalResult;
+  const { petName, petImage, petsonalCute, petsonalChic, petsonalCalm, petsonalActive, petsonalLazy, petsonalDiligent, petsonalCoward, petsonalBrave, petKind } = petsonalResult;
   const { imageSrc, message, boxColor, title } = colorResult;
+  
+
+
   
   return (
     <div>
@@ -58,7 +61,7 @@ const PetsonalResult = () => {
             ))}
           </S.OrangeResult>
 
-          <S.ResultBox color={boxColor}>
+          <S.ResultBox color={boxColor || "Orange"}>
             <S.PetProfile>
               <S.PetImage
                 src={`${process.env.PUBLIC_URL}/assets/images/pet/${petImage}`}
@@ -157,7 +160,9 @@ const PetsonalResult = () => {
             </S.RateWrap>
           </S.ResultBox>
 
-          <ProductResult />
+             {/* 강아지일 때 강아지 상품 아닐때 고양이 상품 (이런 문법안되나?)*/}
+            {petKind === "강아지" ? (<ProductResult />) : (<CatProductResult />)}
+
         </S.ResultContainer>
       </S.Frame>
     </div>
