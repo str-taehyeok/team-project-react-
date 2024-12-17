@@ -6,8 +6,6 @@ import Footer from '../../layout/Footer';
 const PostContainer = () => {
     const path = useLocation().pathname;
 
-    console.log(path);
-
     return (
         <>
             <S.LayoutBox>

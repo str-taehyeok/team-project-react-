@@ -91,15 +91,7 @@ import NoticeUpdate from "../pages/admin/notice/NoticeUpdate";
 import NoticeWrite from "../pages/admin/notice/NoticeWrite";
 import SellerLogin from "../pages/login/SellerLogin";
 import StoreCatContainer from "../pages/store/store/cat/StoreCatContainer";
-import Flushie from "../pages/store/store/cat/Flushies";
-import Treat from "../pages/store/store/cat/Treats";
-import Cloth from "../pages/store/store/cat/Clothes";
-import HealthCares from "../pages/store/store/cat/HealthCare";
 import StoreDogContainer from "../pages/store/store/dog/StoreDogContainer";
-import Flushies from "../pages/store/store/dog/Flushies";
-import Treats from "../pages/store/store/dog/Treats";
-import Clothes from "../pages/store/store/dog/Clothes";
-import HealthCare from "../pages/store/store/dog/HealthCare";
 import NoCart from "../pages/store/cart/NoCart";
 import PetUpdate from "../pages/myhome/myPet/PetUpdate";
 import PetNot from "../pages/myhome/myPet/PetNot";
@@ -107,29 +99,11 @@ import NoticeListPage from "../pages/myhome/notice/NoticeListPage";
 import Notice from "../pages/myhome/notice/Notice";
 import NoticeListAll from "../pages/admin/notice/NoticeListAll";
 import PetTestList from "../pages/myhome/myPet/PetTestList";
+import Flushies from "../pages/store/store/dog/Flushies";
+import Treats from "../pages/store/store/dog/Treats";
+import Clothes from "../pages/store/store/dog/Clothes";
+import HealthCare from "../pages/store/store/dog/HealthCare";
 
-
-
-function createProductRoutes(animal) {
-    return [
-        {
-            index: true,
-            element: animal === 'dog' ? <Flushies /> : <Flushie />
-        },
-        {
-            path: 'treats',
-            element: animal === 'dog' ? <Treats /> : <Treat />
-        },
-        {
-            path: 'clothes',
-            element: animal === 'dog' ? <Clothes /> : <Cloth />
-        },
-        {
-            path: 'health-care',
-            element: animal === 'dog' ? <HealthCare /> : <HealthCares />
-        },
-    ];
-}
 const router = createBrowserRouter([
     {
         path: '/',
@@ -250,12 +224,30 @@ const router = createBrowserRouter([
             {
                 path: '/store-dog',
                 element: <StoreDogContainer />,
-                children: createProductRoutes('dog')
+                children : [
+                    {
+                        index: true,
+                        element: <Flushies />
+                    },
+                    {
+                        path: 'treats',
+                        element: <Treats />
+                    },
+                    {
+                        path: 'clothes',
+                        element: <Clothes />
+                    },
+                    {
+                        path: 'health-care',
+                        element: <HealthCare />
+                    },
+                ]
             },
             {
                 path: '/store-cat',
                 element: <StoreCatContainer />,
-                children: createProductRoutes('cat')
+                children : [
+                ]
             },
             {
                 path: '/cart',

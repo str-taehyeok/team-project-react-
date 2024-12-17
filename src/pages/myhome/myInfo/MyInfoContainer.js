@@ -1,10 +1,22 @@
-import React from 'react';
-import {Outlet} from "react-router-dom";
+import React, { useEffect } from 'react';
+import {Outlet, useNavigate} from "react-router-dom";
 import Footer from "../../layout/Footer";
 import S from "./style";
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const MyInfoContainer = () => {
+
+    const { isLogin } = useSelector((state) => state.user);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(!isLogin){
+            alert("로그인 후 이용해 주세요.")
+            navigate("/login")
+        }
+    }, [])
+
     return (
         <div>
             <S.MyHomeLeft>
