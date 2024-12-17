@@ -101,6 +101,10 @@ const SellerJoin = () => {
           memberEmailCheck: data.optionAgrees === "4" ? "1" : "0",
         };
 
+        if(!data.memberName){
+          return alert("이름을 입력해주세요")
+        }
+
         await fetch("http://localhost:10000/member/register", {
           method: "POST",
           headers: {
