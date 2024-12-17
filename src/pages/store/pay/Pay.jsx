@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import S from './style';
 import PayMemo from './PayMemo';
 import Checkbox from './Checkbox';
@@ -6,6 +6,7 @@ import PayCoupon from './PayCoupon';
 import PayBtn from './PayBtn';
 import Card from "./Card";
 import InsertedCard from "./InsertedCard";
+import {useParams} from "react-router-dom";
 
 // 더미데이터
 const payList = 
@@ -35,6 +36,15 @@ const payList =
 const Pay = () => {
 
     const [isInsert, setIsInsert] = useState(true);
+
+    const {id} = useParams();
+    const [member, setMember] = useState({});
+
+    useEffect(() => {
+        const getMember = async () => {
+            const response = await fetch(``)
+        }
+    }, []);
 
   const delivery = (
     <S.DeliveryPlaceWrap>
