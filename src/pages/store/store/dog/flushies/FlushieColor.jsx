@@ -156,61 +156,61 @@ const FlushieColor = ({productList}) => {
                                          alt="gradation"/>
                                 </S.DropdownItem>
                                 <S.DropdownItem
-                                    onClick={() => handleColorSelect('Light purple')}
-                                    className={selectedColor === 'Light purple' ? 'selected' : ''}
+                                    onClick={() => handleColorSelect('LightPurple')}
+                                    className={selectedColor === 'LightPurple' ? 'selected' : ''}
                                 >
                                     <input
                                         type="checkbox"
-                                        checked={selectedColor === 'Light Purple'}
-                                        onChange={() => handleColorSelect('Light Purple')}
+                                        checked={selectedColor === 'LightPurple'}
+                                        onChange={() => handleColorSelect('LightPurple')}
                                     />
                                     <img src={`${process.env.PUBLIC_URL}/assets/images/store/light-purple.png`}
                                          alt="light purple"/>
                                 </S.DropdownItem>
                                 <S.DropdownItem
-                                    onClick={() => handleColorSelect('Sky Blue')}
-                                    className={selectedColor === 'Sky Blue' ? 'selected' : ''}
+                                    onClick={() => handleColorSelect('SkyBlue')}
+                                    className={selectedColor === 'SkyBlue' ? 'selected' : ''}
                                 >
                                     <input
                                         type="checkbox"
-                                        checked={selectedColor === 'Sky Blue'}
-                                        onChange={() => handleColorSelect('Sky Blue')}
+                                        checked={selectedColor === 'SkyBlue'}
+                                        onChange={() => handleColorSelect('SkyBlue')}
                                     />
                                     <img src={`${process.env.PUBLIC_URL}/assets/images/store/skyBlue.png`}
                                          alt="Sky Blue"/>
                                 </S.DropdownItem>
                                 <S.DropdownItem
-                                    onClick={() => handleColorSelect('Sage Green')}
-                                    className={selectedColor === 'Sage Green' ? 'selected' : ''}
+                                    onClick={() => handleColorSelect('SageGreen')}
+                                    className={selectedColor === 'SageGreen' ? 'selected' : ''}
                                 >
                                     <input
                                         type="checkbox"
-                                        checked={selectedColor === 'Sage Green'}
-                                        onChange={() => handleColorSelect('Sage Green')}
+                                        checked={selectedColor === 'SageGreen'}
+                                        onChange={() => handleColorSelect('SageGreen')}
                                     />
                                     <img src={`${process.env.PUBLIC_URL}/assets/images/store/sageGreen.png`}
-                                         alt="Sage Green"/>
+                                         alt="SageGreen"/>
                                 </S.DropdownItem>
                                 <S.DropdownItem
-                                    onClick={() => handleColorSelect('Ice Blue')}
-                                    className={selectedColor === 'Ice Blue' ? 'selected' : ''}
+                                    onClick={() => handleColorSelect('IceBlue')}
+                                    className={selectedColor === 'IceBlue' ? 'selected' : ''}
                                 >
                                     <input
                                         type="checkbox"
-                                        checked={selectedColor === 'Ice Blue'}
-                                        onChange={() => handleColorSelect('Ice Blue')}
+                                        checked={selectedColor === 'IceBlue'}
+                                        onChange={() => handleColorSelect('IceBlue')}
                                     />
                                     <img src={`${process.env.PUBLIC_URL}/assets/images/store/iceBlue.png`}
-                                         alt="Ice Blue"/>
+                                         alt="IceBlue"/>
                                 </S.DropdownItem>
                                 <S.DropdownItem
-                                    onClick={() => handleColorSelect('Dusty Silver')}
-                                    className={selectedColor === 'Dusty Silver' ? 'selected' : ''}
+                                    onClick={() => handleColorSelect('DustySilver')}
+                                    className={selectedColor === 'DustySilver' ? 'selected' : ''}
                                 >
                                     <input
                                         type="checkbox"
-                                        checked={selectedColor === 'Dusty Silver'}
-                                        onChange={() => handleColorSelect('Dusty Silver')}
+                                        checked={selectedColor === 'DustySilver'}
+                                        onChange={() => handleColorSelect('DustySilver')}
                                     />
                                     <img src={`${process.env.PUBLIC_URL}/assets/images/store/dustySilver.png`}
                                          alt="Dusty Silver"/>
