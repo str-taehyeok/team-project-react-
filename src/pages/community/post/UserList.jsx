@@ -1,8 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import S from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const UserList = () => {
+
+    const { isLogin } = useSelector((state) => state.user);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(!isLogin){
+            alert("로그인 후 이용해 주세요.")
+            navigate("/login")
+        }
+    }, [])
+
+
+
     const [isFollowerPopupOpen, setIsFollowerPopupOpen] = useState(false);
     const [isFollowingPopupOpen, setIsFollowingPopupOpen] = useState(false);
 

@@ -30,8 +30,6 @@ const payList =
     memberAddress : "서울시 역삼역 1번출구 어쩌고저쩌고 배고프고 힘들고 지치고 배고프다 점심에 뭐먹어야"
   }
 
-  console.log({payList})
-
 
 const Pay = () => {
 

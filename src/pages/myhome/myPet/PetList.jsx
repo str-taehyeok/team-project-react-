@@ -7,16 +7,6 @@ const PetList = () => {
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
   const navigate = useNavigate();
-  const localJwtToken = localStorage.getItem("jwtToken");
-  
-
-
-  useEffect(() => {
-      if (!localJwtToken) {
-        alert("로그인 후 이용해주시길 바랍니다.")
-        navigate('/login'); 
-      }
-    }, [ navigate, localJwtToken]);
   
   useEffect(() => {
     const getPets = async () => {

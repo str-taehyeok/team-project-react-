@@ -8,8 +8,7 @@ const Cart = () => {
 
     return (
         <>
-        <CartProduct />
-
+            <CartProduct />
         </>
     );
 };
