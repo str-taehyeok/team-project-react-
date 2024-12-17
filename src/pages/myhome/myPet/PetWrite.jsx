@@ -6,8 +6,7 @@ import S from './style';
 
 const PetWrite = () => {
   const { currentUser } = useSelector((state) => state.user)
-  console.log("멤버아이디", currentUser && currentUser.id)
-  console.log(currentUser)
+  // console.log("멤버아이디", currentUser && currentUser.id)
 
   const { register, handleSubmit, formState: { isSubmitting } } = useForm({ mode: 'onChange' });
   const [petName, setPetName] = useState(""); // 마이펫 이름
@@ -44,12 +43,11 @@ const PetWrite = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPetImagePreview(reader.result); // 이미지 미리보기 설정
+        setPetImagePreview(reader.result); 
       };
-      reader.readAsDataURL(file); // 파일을 data URL로 읽음
+      reader.readAsDataURL(file); // 파일을 Data URL로 읽기 시작
     }
   };
-
 
   return (
     <form encType="multipart/form-data" onSubmit={handleSubmit(async (data) => {
@@ -67,25 +65,16 @@ const PetWrite = () => {
       formData.append("petWeight", petWeight); // 체중
       formData.append("petNeuter", petNeuter); // 중성화 여부
       formData.append("petVet", petVet); // 병원 여부
-      formData.append("uploadFile", data.petImage[0]); // 이미지 파일 
-
-      // 이미지 파일 추가
-      if (petImage && petImage[0]) {
-        formData.append("uploadFile", petImage[0]);
-      }
+      formData.append("uploadFile", data.petImage[0]);
 
       // 서버로 데이터 전송
       await fetch("http://localhost:10000/my-pet/upload", {
         method: "POST",
         body: formData,
       })
-        .then((res) => res.json())
-        .then(async (res) => {
-          console.log(res);
-          
-          // 서버에서 uuid 반환 후 추가 처리
+      .then((res) => res.json())
+      .then(async (res) => {
           formData.append("uuid", res.uuid);
-
           await fetch("http://localhost:10000/my-pet/write", {
             method: "POST",
             body: formData,
@@ -94,13 +83,11 @@ const PetWrite = () => {
             .then((res) => {
               alert(res.message);
               navigate("/my-pet");
-            });
-        })
-        .catch((error) => {
-          console.error("에러 발생:", error);
-          alert("데이터 전송 중 오류가 발생했습니다.");
-        });
-    })}>
+              return;
+            })
+          })
+          .catch(console.error)
+      })}>
 
       {/* 완료 버튼 */}
       <S.PetWapper>

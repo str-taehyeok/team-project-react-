@@ -6,11 +6,11 @@ import { useSelector } from 'react-redux';
 
 const MyPetContainer = () => {
 
-    const { isLogin } = useSelector((state) => state.user);
+    const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(!isLogin){
+        if(!currentUser){
             alert("로그인 후 이용해 주세요.")
             navigate("/login")
         }
