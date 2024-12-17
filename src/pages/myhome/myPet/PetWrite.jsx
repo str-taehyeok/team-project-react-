@@ -67,25 +67,17 @@ const PetWrite = () => {
       formData.append("petWeight", petWeight); // 체중
       formData.append("petNeuter", petNeuter); // 중성화 여부
       formData.append("petVet", petVet); // 병원 여부
-      formData.append("uploadFile", data.petImage[0]); // 이미지 파일 
-
-      // 이미지 파일 추가
-      if (petImage && petImage[0]) {
-        formData.append("uploadFile", petImage[0]);
-      }
+      formData.append("uploadFile", data.petImage[0]);
 
       // 서버로 데이터 전송
       await fetch("http://localhost:10000/my-pet/upload", {
         method: "POST",
         body: formData,
       })
-        .then((res) => res.json())
-        .then(async (res) => {
-          console.log(res);
-          
-          // 서버에서 uuid 반환 후 추가 처리
+      .then((res) => res.json())
+      .then(async (res) => {
+          console.log(res)
           formData.append("uuid", res.uuid);
-
           await fetch("http://localhost:10000/my-pet/write", {
             method: "POST",
             body: formData,
@@ -94,13 +86,11 @@ const PetWrite = () => {
             .then((res) => {
               alert(res.message);
               navigate("/my-pet");
-            });
-        })
-        .catch((error) => {
-          console.error("에러 발생:", error);
-          alert("데이터 전송 중 오류가 발생했습니다.");
-        });
-    })}>
+              return;
+            })
+          })
+          .catch(console.error)
+      })}>
 
       {/* 완료 버튼 */}
       <S.PetWapper>
