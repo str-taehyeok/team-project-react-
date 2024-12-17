@@ -10,6 +10,7 @@ const Join = () => {
   const [searchParams] = useSearchParams();
   const provider = searchParams.get("provider");
   const email = searchParams.get("email");
+  const name = searchParams.get("name");
   const { state } = useContext(JoinContext);
   const {
     register,
