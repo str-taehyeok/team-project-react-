@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {
-    h1Bold,h7Bold,h8Regular,gray500,h7Regular,h2Bold,h6Regular,h9Regular, h9Bold, flexRowCenter
+    h1Bold,h7Bold,h8Regular,gray500,h7Regular,h2Bold,h6Regular,h9Regular, h9Bold, flexRowCenter,h6Bold, h11Regular
 } from '../../../global/common'
 import theme from "../../../global/theme";
 import { Link } from 'react-router-dom'
@@ -508,18 +508,59 @@ S.Text = styled.p`
     font-weight: bold;
 `
 
+S.Notification = styled.div`
+    width: 580px;
+    margin: 108px auto 542px;
+    
+    
+    & {
+        ${h11Regular};
+    }
+`
+
+S.NotWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+S.Not1 = styled.span`
+    ${h6Bold};
+`
+S.Not2 = styled.span`
+    ${h6Regular};
+`
+
 S.ToggleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 50px;
-  margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 10px auto;
+    border: solid #828282 1px;
+    border-radius: 20px;
+    width: 580px;
+    height: 200px;
+    align-items: end;
+    justify-content: center;
+    padding: 58px 95px 58px 95px;
 `;
+
+
+S.ToggleWrap = styled.div`
+    display: flex;
+    width: 390px;
+    gap: 240px;
+    justify-content: end;
+    align-items: center;
+    
+    & p {
+        ${h6Regular};
+    }
+`
 
 S.ToggleSwitch = styled.div`
   width: 50px;
   height: 25px;
-  background-color: ${(props) => (props.$isOn ? "#4caf50" : "#f1f1f1")};
+  background-color: ${(props) => (props.$isOn ? "#FFC303" : "#E9E8E4")};
   border-radius: 25px;
   display: flex;
   align-items: center;
