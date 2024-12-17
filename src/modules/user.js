@@ -22,6 +22,9 @@ const UserInitalValue = {
         memberEmailCheck: "1",
         memberDate: null,
         memberBusinessNumber: "",
+        memberBusinessName: "",
+        memberBank: "",
+        memberBankAccount: "",
         memberImage: "",
         memberNickname: "포포친구",
         memberProvider: "구매자"
