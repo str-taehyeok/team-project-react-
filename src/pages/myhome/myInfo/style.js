@@ -508,6 +508,37 @@ S.Text = styled.p`
     font-weight: bold;
 `
 
+S.ToggleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 50px;
+  margin: 20px auto;
+`;
+
+S.ToggleSwitch = styled.div`
+  width: 50px;
+  height: 25px;
+  background-color: ${(props) => (props.$isOn ? "#4caf50" : "#f1f1f1")};
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s;
+`;
+
+S.ToggleCircle = styled.div`
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  left: 4px;
+  transition: transform 0.3s;
+  transform: ${(props) => (props.$isOn ? "translateX(24px)" : "translateX(0)")};
+`;
+
 
 
 
