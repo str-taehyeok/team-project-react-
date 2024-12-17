@@ -10,7 +10,7 @@ const SellerOrderList = () => {
     useEffect(() => {
         const getOrders = async () => {
             try {
-                const response = await fetch("http://localhost:10000/orders/orders");
+                const response = await fetch("http://localhost:10000/orders/order");
                 if (!response.ok) {
                     console.error("주문 데이터가 없습니다.");
                     return;
