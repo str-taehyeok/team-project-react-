@@ -17,7 +17,7 @@ const Login = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await fetch("http://localhost:10000/member/login", {
+            const response = await fetch("http://localhost:10000/member/login?type=buyer", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -43,6 +43,7 @@ const Login = () => {
             if (result && result.jwtToken) {
                 navigate(`/?jwtToken=${result.jwtToken}`);
             }
+            
         } catch (error) {
             console.error("Login error:", error);
             alert("로그인에 실패했습니다. 다시 시도해주세요.");

@@ -14,7 +14,7 @@ const Login = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await fetch("http://localhost:10000/member/login", {
+            const response = await fetch("http://localhost:10000/member/login?type=seller", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

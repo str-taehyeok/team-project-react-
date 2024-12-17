@@ -2,26 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import S from "./style";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const PetList = () => {
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
   const navigate = useNavigate();
-  const localJwtToken = localStorage.getItem("jwtToken");
-  
-
-
-  useEffect(() => {
-      if (!localJwtToken) {
-        alert("로그인 후 이용해주시길 바랍니다.")
-        navigate('/login'); 
-      }
-    }, [ navigate, localJwtToken]);
+  const { currentUser } = useSelector((state) => state.user);
+  const id = currentUser.id;
   
   useEffect(() => {
     const getPets = async () => {
       try {
-        const response = await fetch("http://localhost:10000/my-pet/list"); 
+        const response = await fetch(`http://localhost:10000/my-pet/list/${id}`); 
         if (!response.ok) {
           console.error("데이터가 없습니다.");
           return;
