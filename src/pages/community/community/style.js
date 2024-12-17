@@ -165,6 +165,16 @@ const S = {}
     align-items: center;
    `
   S.MyPost = styled.div`
+
+      width: 220px;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 10px;
+
+      & img {
+        width: 100%;
+      }
+
   position: relative;
     .like-icon{
       position: absolute;
