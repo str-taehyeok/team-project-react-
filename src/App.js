@@ -5,15 +5,21 @@ import GlobalStyle from "./global/global";
 import {RouterProvider} from "react-router-dom";
 import router from "./routes/router";
 import { HeartProvider } from './context/heartContext';
+import { ProductProvider } from './context/productContext';
+import { CommunityProvider } from './context/communityContext';
 
 function App() {
   return (
       <>
           <ThemeProvider theme={theme}>
-                <HeartProvider>
-                    <GlobalStyle />
-                    <RouterProvider router={router} future={{ v7_startTransition: true }} />
-                </HeartProvider>
+            <ProductProvider>
+                <CommunityProvider>
+                  <HeartProvider>
+                      <GlobalStyle />
+                      <RouterProvider router={router} future={{ v7_startTransition: true }} />
+                  </HeartProvider>
+                </CommunityProvider>
+            </ProductProvider>
           </ThemeProvider>
       </>
   );
