@@ -41,10 +41,8 @@ const PetsonalResult = () => {
     getPetsonalResult().catch(console.error);
   }, [id, navigate, result]);
   
-  const { petName, petImage, petsonalCute, petsonalChic, petsonalCalm, petsonalActive, petsonalLazy, petsonalDiligent, petsonalCoward, petsonalBrave, petKind } = petsonalResult;
+  const { petName, petImage, petsonalCute, petsonalChic, petsonalCalm, petsonalActive, petsonalLazy, petsonalDiligent, petsonalCoward, petsonalBrave, petKind, petFilePath, petFileName } = petsonalResult;
   const { imageSrc, message, boxColor, title } = colorResult;
-  
-
 
   
   return (
@@ -61,11 +59,11 @@ const PetsonalResult = () => {
             ))}
           </S.OrangeResult>
 
-          <S.ResultBox color={boxColor || "Orange"}>
+          <S.ResultBox color={boxColor}>
             <S.PetProfile>
               <S.PetImage
-                src={`${process.env.PUBLIC_URL}/assets/images/pet/${petImage}`}
-                alt="펫 사진"
+                src={ petImage || `http://localhost:10000/my-pet/display?fileName=${petFilePath}/${petFileName}`}
+                alt={`${petName} 이미지`}
               />
               <p>{petName}</p>
             </S.PetProfile>
