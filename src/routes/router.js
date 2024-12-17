@@ -450,7 +450,7 @@ const router = createBrowserRouter([
                         element: <SellerProductWrite />,
                     },
                     {
-                        path: "product-update",
+                        path: "product-update/:id",
                         element: <SellerProductUpdate />,
                     },
                 ]

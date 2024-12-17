@@ -26,9 +26,13 @@ const Login = () => {
                 const errorData = await response.json();
                 alert(errorData.message || "아이디 또는 비밀번호가 잘못되었습니다.");
                 return;
-            }else{
-                navigate("/seller")
             }
+            const result = await response.json();
+
+            if (result && result.jwtToken) {
+                navigate(`/seller?jwtToken=${result.jwtToken}`);
+            }
+            
         } catch (error) {
             console.error("Login error:", error);
             alert("로그인에 실패했습니다. 다시 시도해주세요.");
