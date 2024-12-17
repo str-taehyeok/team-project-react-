@@ -88,7 +88,7 @@ const SellerProductList = () => {
           <td>{index + 1}</td>
           <td>
             <S.Image>
-              <img src={product.productImage1} alt={`상품 ${index + 1}`} />
+              <img src={product.productFileName} alt={`상품 ${index + 1}`} />
             </S.Image>
           </td>
           <td>
