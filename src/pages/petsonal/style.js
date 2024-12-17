@@ -319,7 +319,7 @@ S.AllRate = styled.div`
 S.ResultCategory = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 505px;
+  width: 540px;
 
   &span {
     ${h6Medium}
@@ -327,7 +327,7 @@ S.ResultCategory = styled.div`
 `;
 
 S.PercentageWrap = styled.div`
-  width: 505px;
+  width: 540px;
   ${flexCenterRowSpaceBetween}
   
 `;
