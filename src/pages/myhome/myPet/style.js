@@ -50,6 +50,11 @@ S.Profilepic = styled.div`
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 20px;
+  >img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
 `
 S.Name = styled.div`
   font-weight: bold;
