@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import theme from "../../global/theme";
+import { Link } from "react-router-dom";
 
 const S = {};
 
@@ -21,7 +22,11 @@ S.Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1880px;
+  overflow: hidden;
+
+  & .banner {
+    width: 1920px;
+  }
 `;
 
 S.SwiperContainer = styled.div`
@@ -193,6 +198,11 @@ S.Cart = styled.div`
   justify-content: center;
   font-weight: bold;
 
+  &.small {
+    width: 220px;
+    height: 30px;
+  }
+  
   & a {
     display: flex;
     align-items: center;
@@ -205,14 +215,24 @@ S.Cart = styled.div`
 
 
 S.TestWrap = styled.div`
+  position: relative;
   margin-bottom: 150px;
 `;
 
-S.TestButton = styled.div`
+S.TestButton = styled(Link)`
   position: absolute;
-  top: 1517px;
-  left: 320px;
-  bottom: 237px;
+  left : 240px;
+  bottom : 340px;
+
+  display: flex;
+  justify-content: center;
+  color : #fff;
+  align-items: center;
+  background-color: #113f8a;
+  width: 300px;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 24px;
 `;
 
 ////////////////////////////////////////// 커뮤니티
@@ -251,6 +271,7 @@ S.MainProfileInfo = styled.div`
   top: 20px;
   left: 20px;
   z-index: 2; 
+  overflow: hidden;
 
   img {
     width: 50px;
@@ -285,10 +306,10 @@ S.PostImage = styled.div`
   width: 708px;
   height: 803px;
   border-radius: 10px;
+  overflow: hidden;
 
   & img {
     width: 100%;
-    height: 100%;
     border-radius: 10px;
   }
 `;
@@ -396,7 +417,8 @@ S.Products = styled.div`
   display: flex;
   width: 1440px;
   flex-wrap: wrap;
-  gap: 24px;
+  column-gap: 24px;
+  row-gap: 40px;
 `;
 
 S.ProductCard = styled.div`
@@ -405,7 +427,6 @@ S.ProductCard = styled.div`
   align-items: center;
   width: 220px;
   height: 345px;
-  border-radius: 10px;
   overflow: hidden;
   position: relative;
   background-color: #fff;
@@ -419,6 +440,7 @@ S.ProductCard = styled.div`
   }
 
   img {
+    border-radius: 10px;
     width: 100%;
   }
 `;
@@ -436,6 +458,7 @@ S.CardTextWrap = styled.div`
   margin: 14px 0 6px 0;
   width: 100%;
   gap: 6px;
+  flex : 1;
 
   & b {
     text-align: left;
@@ -450,7 +473,6 @@ S.ProductName = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 18px;
-  height: 35px;
   font-size: ${theme.FONT_SIZE.h8};
 `;
 
