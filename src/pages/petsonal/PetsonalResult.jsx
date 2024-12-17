@@ -17,6 +17,7 @@ const PetsonalResult = () => {
     title: "",
   });
 
+  console.log(id)
   useEffect(() => {
     const getPetsonalResult = async () => {
       const response = await fetch(`http://localhost:10000/petsonal/result/${id}`);
@@ -24,8 +25,9 @@ const PetsonalResult = () => {
       const petsonalResult = await response.json();
 
       if (petsonalResult.id === null) {
+        
         navigate(`/petsonal/test/${id}`);
-        alert("진행하신 테스트 결과가 없습니다.");
+        return alert("진행하신 테스트 결과가 없습니다.");
       } else {
         setpetsonalResult(petsonalResult);
         
