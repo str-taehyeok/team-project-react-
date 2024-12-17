@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { Link } from "react-router-dom";
@@ -9,6 +9,8 @@ import "swiper/css/pagination";
 import S from "./style";
 import SwiperCore from "swiper/core";
 import HeartBtn from "../community/community/HeartBtn";
+import { ProductContext } from "../../context/productContext";
+import { CommunityContext } from "../../context/communityContext";
 SwiperCore.use([Pagination]);
 
 const Main = () => {
@@ -17,18 +19,110 @@ const Main = () => {
   const bannerLength = bannerCount.length;
   const [activeIndex, setActiveIndex] = useState(0);
   const onChangeIndex = (index) => { setActiveIndex(index + 1) } 
-  const [products, setProducts] = useState([]);
 
-  // fetch products
-  useEffect(() => {
-    const getProducts = async () => {
-      const response = await fetch("http://localhost:10000/products/products")
-      const products = await response.json()
-      return products
-    }
+  // 상품
+  const { productState, productAction } = useContext(ProductContext);
+  const { products } = productState;
+  const { setProducts } = productState; 
 
-    getProducts().then(setProducts).catch(console.error)
-  }, [])
+  // 게시글
+  const { communityState, communityAction } = useContext(CommunityContext);
+  const { communites } = communityState;
+
+  const recommendCommunityLarge = communites.slice(0, 1).map(({id, imageName1, memberNickName}) => (
+      <S.LargePost key={id}>
+        <Link to={`/post/read?postId=${id}`}>
+          <S.MainProfileInfo>
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
+              alt="프로필"
+            />
+            <span className="UserId">{memberNickName}</span>
+          </S.MainProfileInfo>
+          <S.PostImage>
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
+              alt="메인포스트"
+            />
+          </S.PostImage>
+        </Link>
+      <S.Heart>
+          <HeartBtn id={id} type={"community"} />
+      </S.Heart>
+    </S.LargePost>
+  ))
+
+  // 커뮤니티 글 6개
+  const recommendCommunity = (
+    <S.SmallWrap>
+      <S.SmallPost>
+        {communites.slice(1, 7).map(({id, imageName1, memberNickName}) => (
+          <S.Post key={id}>
+            <Link to={`/post/read?postId=${id}`}>
+              <S.SmallPostImage
+                src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
+                alt={`게시물-${id + 1}`}
+              />
+              <S.ProfileInfo>
+                <img
+                  src={`${process.env.PUBLIC_URL}/assets/images/layout/profile.png`}
+                  alt="프로필"
+                />
+                <span className="UserId">{memberNickName}</span>
+              </S.ProfileInfo>
+            </Link>
+            <S.Heart>
+                <HeartBtn id={id} type={"community"} />
+            </S.Heart>
+          </S.Post>
+        ))}
+      </S.SmallPost>
+    </S.SmallWrap>
+  )
+
+  // 추천 상품 12개
+  const recommendProducts = products.slice(0, 12).map(({
+    id, productName, productFilePath, productFileName, productPrice, productDiscount
+  }, index) => {
+    const isDiscount = productDiscount !== 0;
+    return (
+      <S.ProductCard key={index}>
+        <Link to={`/product/${id}`}>
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/images/products/${productFileName}`}
+            alt={productName}
+          />
+        </Link>
+        <S.Heart>
+            <HeartBtn id={id} type={"product"} />
+        </S.Heart>
+        <S.CardTextWrap>
+          <S.ProductName>{productName}</S.ProductName>
+          <S.DiscountText>
+            {isDiscount && (
+              <b>
+                <span
+                  style={{
+                    color: "#C83F3F",
+                    fontWeight: "bold",
+                    marginRight: "10px",
+                  }}
+                >
+                  {productDiscount}%
+                </span>
+              </b>
+            )}
+            {productPrice.toLocaleString('ko-KR')}원
+          </S.DiscountText>
+        </S.CardTextWrap>
+        <S.Cart className="small">
+          <Link to="/cart">
+            <p>담기</p>
+          </Link>
+        </S.Cart>
+      </S.ProductCard>
+    );
+  })
 
   return (
     <>
@@ -105,16 +199,12 @@ const Main = () => {
         <S.Container>
           <S.TestWrap style={{ position: "relative" }}>
             <img
+              className="banner"
               src={`${process.env.PUBLIC_URL}/assets/images/layout/testbanner05.png`}
               alt="테스트 배너"
             />
-            <S.TestButton>
-              <Link to="/petsonal">
-                <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/layout/testbutton.png`}
-                  alt="테스트 버튼"
-                />
-              </Link>
+            <S.TestButton to="/petsonal">
+              테스트 버튼
             </S.TestButton>
           </S.TestWrap>
 
@@ -127,58 +217,8 @@ const Main = () => {
             </S.CommunityPlusMore>
 
             <S.RecommendContainer>
-              <S.LargePost>
-                <Link to="/community">
-                  <S.MainProfileInfo>
-                    <img
-                      src={`${process.env.PUBLIC_URL}/assets/images/layout/profile.png`}
-                      alt="프로필"
-                    />
-                    <span className="UserId">찹쌀오징어</span>
-                  </S.MainProfileInfo>
-                  <S.PostImage>
-                    <img
-                      src={`${process.env.PUBLIC_URL}/assets/images/layout/community1.png`}
-                      alt="메인포스트"
-                    />
-                  </S.PostImage>
-                </Link>
-                <S.Heart>
-                    <HeartBtn id={1} type={"community"} />
-                </S.Heart>
-              </S.LargePost>
-
-              <S.SmallWrap>
-                <S.SmallPost>
-                  {[
-                    { id : 1, src: "community2.png", userId: "지나 안지나" },
-                    { id : 2, src: "community3.png", userId: "철을 밀면 민철" },
-                    { id : 3, src: "community4.png", userId: "재금이 다음 재은" },
-                    { id : 4, src: "community5.png", userId: "작은 연 날리기 소연" },
-                    { id : 5, src: "community6.png", userId: "연을 세우면 세연" },
-                    { id : 6, src: "community7.png", userId: "찹쌀징어" },
-                  ].map(({id, src, userId}, index) => (
-                    <S.Post key={index}>
-                      <Link to="/community">
-                        <S.SmallPostImage
-                          src={`${process.env.PUBLIC_URL}/assets/images/layout/${src}`}
-                          alt={`게시물-${index + 1}`}
-                        />
-                        <S.ProfileInfo>
-                          <img
-                            src={`${process.env.PUBLIC_URL}/assets/images/layout/profile.png`}
-                            alt="프로필"
-                          />
-                          <span className="UserId">{userId}</span>
-                        </S.ProfileInfo>
-                      </Link>
-                      <S.Heart>
-                          <HeartBtn id={id} type={"community"} />
-                      </S.Heart>
-                    </S.Post>
-                  ))}
-                </S.SmallPost>
-              </S.SmallWrap>
+              {recommendCommunityLarge}
+              {recommendCommunity}
             </S.RecommendContainer>
           </S.RecommendSection>
 
@@ -201,44 +241,7 @@ const Main = () => {
 
             <S.ProductsWrap>
               <S.Products>
-                { products.map(({
-                  id, productName, productFilePath, productPrice, productDiscount
-                }, index) => {
-                  const isDiscount = productDiscount !== 0;
-                  return (
-                    <S.ProductCard key={index}>
-                      <Link to={`/product/${id}`}>
-                        <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/products/${productFilePath}`}
-                          alt={productName}
-                        />
-                      </Link>
-                      <S.Heart>
-                          <HeartBtn id={id} type={"product"} />
-                      </S.Heart>
-                      <S.CardTextWrap>
-                        <S.ProductName>{productName}</S.ProductName>
-                        <S.DiscountText>
-                          {isDiscount && (
-                            <b>
-                              <span
-                                style={{
-                                  color: "#C83F3F",
-                                  fontWeight: "bold",
-                                  marginRight: "10px",
-                                }}
-                              >
-                                {productDiscount}%
-                              </span>
-                            </b>
-                          )}
-                          {productPrice.toLocaleString('ko-KR')}원
-                        </S.DiscountText>
-                      </S.CardTextWrap>
-                    </S.ProductCard>
-                  );
-                })}
-
+                  {recommendProducts}
               </S.Products>
             </S.ProductsWrap>
           </S.ProductContainer>

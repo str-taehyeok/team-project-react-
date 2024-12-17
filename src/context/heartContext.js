@@ -57,7 +57,7 @@ const HeartProvider = ({children}) => {
 
     getProductLikes().then(setProductLikes).catch(console.error);
 
-  }, [isUpdate]);
+  }, [isUpdate, memberId]);
 
   const value = {
     state : { 
