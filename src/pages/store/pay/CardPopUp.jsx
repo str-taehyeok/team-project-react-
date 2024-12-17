@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import S from "./style";
 
 const CardPopUp = () => {
 
-    const { register, handleSubmit, getValues, formState: {isSubmitted, isSubmitting, errors}} = useForm({mode:"onChange"});
+    const { register, handleSubmit, reset, getValues, formState: {isSubmitted, isSubmitting, errors}} = useForm({mode:"onChange"});
     const memberId = 1;
     const navigate = useNavigate();
 
@@ -31,7 +31,9 @@ const CardPopUp = () => {
                         .then((res) => res.json())
                         .then((res) => {
                             //     이후 처리해야할 로직
+                            alert("카드 등록이 완료되었습니다.")
                             const {id} = res;
+                            reset();
                             navigate(`/pay`)
                         })
 
@@ -47,7 +49,7 @@ const CardPopUp = () => {
                                        })}
                                 />
                                 {errors && errors?.cardCompany?.type === "required" && (
-                                    <p>카드사를 입력하세요.</p>
+                                    <p>카드번호를 입력하세요.</p>
                                 )}
                             </S.CardCompany>
                             <S.CardIcon1>
