@@ -32,13 +32,6 @@ const Login = () => {
             }
     
             const result = await response.json();
-
-            if (result.provider === "판매자") {
-                alert("판매자 로그인 페이지를 이용해주세요.");
-                navigate("/login/seller");
-                return;
-            }
-    
             // 구매자라면 JWT 토큰을 사용하여 다음 화면으로 이동
             if (result && result.jwtToken) {
                 navigate(`/?jwtToken=${result.jwtToken}`);

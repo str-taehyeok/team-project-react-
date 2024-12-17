@@ -32,7 +32,7 @@ const PetTestList = () => {
     };
 
     getPets();
-  }, []);
+  }, [id]);
   
   useEffect(() => {
     console.log("Pets updated:", pets);
