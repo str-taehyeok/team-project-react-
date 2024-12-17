@@ -38,35 +38,29 @@ const PetWrite = () => {
     }
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPetImagePreview(reader.result); 
-      };
-      reader.readAsDataURL(file); // 파일을 Data URL로 읽기 시작
-    }
-  };
+  
 
   return (
     <form encType="multipart/form-data" onSubmit={handleSubmit(async (data) => {
+      console.log("Selected file in handleSubmit:", data.petImage);
       const formData = new FormData();
 
       const { petName, petKind, petGender, petBreed, petBirth, petWeight, petNeuter, petVet, petImage } = data;
+      console.log(data.petImage[0])
 
       // formData에 PetVO 데이터 추가
-      formData.append("memberId", currentUser.id); // 현재 로그인한 사용자 ID
-      formData.append("petName", petName); // 반려동물 이름
-      formData.append("petKind", petKind); // 반려동물 종류
-      formData.append("petGender", petGender); // 성별
-      formData.append("petBreed", petBreed); // 품종
-      formData.append("petBirth", petBirth); // 생년월일
-      formData.append("petWeight", petWeight); // 체중
-      formData.append("petNeuter", petNeuter); // 중성화 여부
-      formData.append("petVet", petVet); // 병원 여부
+      formData.append("memberId", currentUser.id);
+      formData.append("petName", petName);
+      formData.append("petKind", petKind);
+      formData.append("petGender", petGender);
+      formData.append("petBreed", petBreed);
+      formData.append("petBirth", petBirth);
+      formData.append("petVet", petVet);
+      formData.append("petWeight", petWeight);
+      formData.append("petNeuter", petNeuter);
       formData.append("uploadFile", data.petImage[0]);
 
+      
       // 서버로 데이터 전송
       await fetch("http://localhost:10000/my-pet/upload", {
         method: "POST",
@@ -114,8 +108,20 @@ const PetWrite = () => {
               id="petImageInput"
               type="file"
               style={{ display: 'none' }} // 숨겨진 파일 입력
-              {...register("petImage", { required: true })}
-              onChange={handleImageChange}
+              {...register("petImage", { 
+                required: true,
+                validate : (e) => {
+                  console.log("validate", e[0])
+                  const file = e[0];
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setPetImagePreview(reader.result);
+                      };
+                      reader.readAsDataURL(file);
+                    }
+                }
+               })}
             />
           </S.PetCard>
           <S.Title as="h5">

@@ -66,11 +66,11 @@ const PetList = () => {
         </S.NoPetButton>
       </Link>
       <S.PetList>
-        {pets.map(({ id, petName, petImage, petBirth }) => (
+        {pets.map(({ id, petName, petFileName, petFilePath, petImage, petBirth }) => (
           <S.PetCard2 key={id}>
             <S.Profilepic>
               <img
-                src={petImage || "/assets/images/layout/petimg.png"}
+                src={ petImage || `http://localhost:10000/my-pet/display?fileName=${petFilePath}/${petFileName}`}
                 alt={`${petName} 이미지`}
               />
             </S.Profilepic>
