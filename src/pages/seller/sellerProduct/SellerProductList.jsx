@@ -40,12 +40,26 @@ const SellerProductList = () => {
     setIsPopupVisible(false);
   };
 
-  // 상품 삭제 요청
   const handleDelete = async () => {
-    
-    await fetch(`http://localhost:10000/products/seller-product/${deleteProductId}`,{
-        method : 'DELETE'
-    })
+    // 상품 삭제 요청
+    const response = await fetch(
+      `http://localhost:10000/products/seller-product/${deleteProductId}`,
+      {
+        method: 'DELETE',
+      }
+    );
+  
+    if (response.ok) {
+
+      const updatedProducts = products.filter(
+        (product) => product.id !== deleteProductId
+      );
+      setProducts(updatedProducts);
+      setFilteredProducts(updatedProducts);
+      setIsPopupVisible(false);
+    } else {
+      console.error("상품 삭제에 실패했습니다.");
+    }
   };
 
   // 검색 기능
