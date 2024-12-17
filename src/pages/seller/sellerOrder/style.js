@@ -113,7 +113,6 @@ S.Table = styled.table`
 
   & tr {
     display: flex;
-    justify-content: space-between;
 
     & th, & td {
       width: 100%;
@@ -139,6 +138,12 @@ S.Table = styled.table`
   & th:nth-child(8), & td:nth-child(8) { width: 200px; }
   & th:nth-child(9), & td:nth-child(9) { width: 98px; }
 `;
+S.Buttons = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`
+
 
 S.DetailsButton = styled.button`
   width: 53px;
@@ -147,7 +152,12 @@ S.DetailsButton = styled.button`
   color: #828282;
   background-color: #fff;
   border-radius: 20px;
-  cursor: pointer;
+  cursor: pointer;  
+    &:nth-child(2) {
+      background-color: #888888;
+      color: white;
+      border: none;
+  }
 `;
 
 // Form Frame
