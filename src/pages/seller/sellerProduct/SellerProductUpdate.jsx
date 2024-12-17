@@ -5,18 +5,13 @@ import S from "./style";
 
 const SellerProductUpdate = () => {
 
-    const { register, handleSubmit, formState: { isSubmitting }} = useForm({ mode: 'onChange' });
+    const { update, handleSubmit, formState: { isSubmitting }} = useForm({ mode: 'onChange' });
     const [productName, setProductName] = useState("");
     // const [productPrice, setProductPrice] = useState("");
     // const [productCode, setProductCode] = useState("");
     // const [productDate, setProductDate] = useState("");
     // const [productStock, setProductStock] = useState("");
     // const [productEditDate, setProductEditDate] = useState("");
-    // const [productDetail, setProductDetail] = useState("");
-    // const [productImage1, setProductImage1] = useState("");
-    // const [productImage2, setProductImage2] = useState("");
-    // const [productImage3, setProductImage3] = useState("");
-    // const [productImage4, setProductImage4] = useState("");
     const [ setProductAnimal] = useState("");
     // const [productCategory, setProductCategory] = useState("");
     // const [productColor, setProductColor] = useState("");
@@ -28,6 +23,7 @@ const SellerProductUpdate = () => {
     const [ setDeliveryPayWhen] = useState("");
     // const [deliveryCompany, setDeliveryCompany] = useState("");
     const memberId = 1;
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -35,47 +31,13 @@ const SellerProductUpdate = () => {
     };
 
     // const handleNextClick = (e) => {
-    //
-    //     if (!productName) {
-    //         e.preventDefault();
-    //         return alert("상품명을 입력해주세요.");
-    //     }
-    //     if (!productPrice) {
-    //         e.preventDefault();
-    //         return alert("가격을 입력해주세요.");
-    //     }
-    //     if (!productCode) {
-    //         e.preventDefault();
-    //         return alert("제품 코드를 입력해주세요.");
-    //     }
-    //     if (!productStock) {
-    //         e.preventDefault();
-    //         return alert("재고를 입력해주세요.");
-    //     }
-    //     if (!productImage1) {
+    //     if (!productFileName || productFilePath) {
     //         e.preventDefault();
     //         return alert("상품의 이미지를 등록해주세요.");
-    //     }
-    //     if (!productAnimal) {
-    //         e.preventDefault();
-    //         return alert("제품을 사용할 수 있는 종을 선택해주세요.");
-    //     }
-    //     if (!productCategory) {
-    //         e.preventDefault();
-    //         return alert("카테고리를 선택해주세요.");
-    //     }
-    //     if (!productColor) {
-    //         e.preventDefault();
-    //         return alert("펫스널컬러로 구분할 색상을 선택해주세요.");
-    //     }
-    //     if (!productSize) {
-    //         e.preventDefault();
-    //         return alert("사이즈를 선택해주세요.");
     //     }
     // };
 
 
-    const navigate = useNavigate();
 
     const {id} = useParams();
     const [mainImage, setMainImage] = useState(null);
@@ -119,10 +81,8 @@ const SellerProductUpdate = () => {
                         productDate: new Date().toISOString(),
                         productStock: data.productStock,
                         productEditDate: new Date().toISOString(),
-                        productImage1: data.productImage1,
-                        productImage2: data.productImage2,
-                        productImage3: data.productImage3,
-                        productImage4: data.productImage4,
+                        productFileName: data.productFileName,
+                        productFilePath: data.productFilePath,
                         productDetail: data.productDetail,
                         productAnimal: data.productAnimal,
                         productRealPrice:data.productRealPrice,
@@ -183,7 +143,7 @@ const SellerProductUpdate = () => {
                         <S.ListWrap>
                             <S.Division>상품명</S.Division>
                             <input className="require-value" type="text"
-                                   name="productName" {...register("productName", {required: "상품명은 필수 입력 항목입니다."})}
+                                   name="productName" {...update("productName", {required: "상품명은 필수 입력 항목입니다."})}
                                    value={productName}
                                    onChange={handleChange}/>
                         </S.ListWrap>
@@ -204,13 +164,13 @@ const SellerProductUpdate = () => {
                             <S.RatioWrap>
                                 <S.Ratio>
                                     <input type="radio" name="productAnimal"
-                                           value="dog" {...register("productAnimal")}
+                                           value="dog" {...update("productAnimal")}
                                            onChange={(e) => setProductAnimal(e.target.value)}/>
                                     <span>반려견</span>
                                 </S.Ratio>
                                 <S.Ratio>
                                     <input type="radio" name="productAnimal"
-                                           value="cat" {...register("productAnimal")}
+                                           value="cat" {...update("productAnimal")}
                                            onChange={(e) => setProductAnimal(e.target.value)}/>
                                     <span>반려묘</span>
                                 </S.Ratio>
@@ -263,19 +223,19 @@ const SellerProductUpdate = () => {
                             <S.RatioWrap>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryFeeKind"
-                                           value="free" {...register("deliveryFeeKind")}
+                                           value="free" {...update("deliveryFeeKind")}
                                            onChange={(e) => setDeliveryFeeKind(e.target.value)}/>
                                     <span>무료</span>
                                 </S.Ratio>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryFeeKind"
-                                           value="paid" {...register("deliveryFeeKind")}
+                                           value="paid" {...update("deliveryFeeKind")}
                                            onChange={(e) => setDeliveryFeeKind(e.target.value)}/>
                                     <span>유료</span>
                                 </S.Ratio>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryFeeKind"
-                                           value="freeCondition" {...register("deliveryFeeKind")}
+                                           value="freeCondition" {...update("deliveryFeeKind")}
                                            onChange={(e) => setDeliveryFeeKind(e.target.value)}/>
                                     <span>조건부 무료</span>
                                 </S.Ratio>
@@ -294,13 +254,13 @@ const SellerProductUpdate = () => {
                             <S.RatioWrap>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryHow"
-                                           value="normalDelivery" {...register("deliveryHow")}
+                                           value="normalDelivery" {...update("deliveryHow")}
                                            onChange={(e) => setDeliveryHow(e.target.value)}/>
                                     <span>일반택배배송</span>
                                 </S.Ratio>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryHow"
-                                           value="ownDelivery" {...register("deliveryHow")}
+                                           value="ownDelivery" {...update("deliveryHow")}
                                            onChange={(e) => setDeliveryHow(e.target.value)}/>
                                     <span>자체배송</span>
                                 </S.Ratio>
@@ -311,13 +271,13 @@ const SellerProductUpdate = () => {
                             <S.RatioWrap>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryPayWhen"
-                                           value="prePay" {...register("deliveryPayWhen")}
+                                           value="prePay" {...update("deliveryPayWhen")}
                                            onChange={(e) => setDeliveryPayWhen(e.target.value)}/>
                                     <span>선결제</span>
                                 </S.Ratio>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryPayWhen"
-                                           value="payLater" {...register("deliveryPayWhen")}
+                                           value="payLater" {...update("deliveryPayWhen")}
                                            onChange={(e) => setDeliveryPayWhen(e.target.value)}/>
                                     <span>착불</span>
                                 </S.Ratio>
@@ -352,7 +312,7 @@ const SellerProductUpdate = () => {
                                     </S.MainImage>
                                 </label>
                                 <input type="file"
-                                       id="main"{...register('productImage', {required: '메인 이미지는 필수입니다.'})}
+                                       id="main"{...update('productImage', {required: '메인 이미지는 필수입니다.'})}
                                        ref={mainImageRef} accept="image/*" style={{display: 'none'}}
                                        onChange={(e) => handleImagePreview(e, 'main')}/>
                             </S.Main>
@@ -378,7 +338,7 @@ const SellerProductUpdate = () => {
                         </S.imageContent>
                     </S.ImageWrap>
                     <S.ButtonWrap>
-                        <button id="submit-button" type="submit" disabled={isSubmitting}>상품 등록</button>
+                        <button id="submit-button" type="submit" disabled={isSubmitting}>수정 완료</button>
                         <button type="button" onClick={() => navigate('/seller')}>취소
                         </button>
                     </S.ButtonWrap>
