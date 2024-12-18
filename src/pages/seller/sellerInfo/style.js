@@ -8,6 +8,9 @@ const S = {}
     flex-direction: column;
     justify-content: center;
     align-items: center;
+        & input.none {
+          caret-color: transparent;
+        }
   `
   S.Title = styled.div`
     font-size: 40px;
@@ -134,7 +137,6 @@ const S = {}
       color:#828282;
       outline:none;
       margin-left: 27px;
-      margin-top: 20px;
       cursor: pointer;
     }
     `
@@ -255,6 +257,28 @@ S.PwInputBox = styled.div`
         height: 55px;
       }
       & button.delete {
+        width: 90px;
+        height: 30px;
+        color: #ffffff;
+        background-color: #113F8A;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top:14px;
+      }
+  `
+
+S.Update = styled.div`
+    display:flex;
+    flex-direction: row;
+    margin-top: 20px;
+    align-items: center;
+    
+      & div.update-button {
+        width: 464px;
+        margin-left: 27px;
+        height: 55px;
+      }
+      & button.update {
         width: 90px;
         height: 30px;
         color: #ffffff;

@@ -45,7 +45,7 @@ const NoticeUpdate = () => {
               },
               body: JSON.stringify({
                   noticeTitle: data.noticeTitle,
-                  noticeContent: data.noticeContent,
+                  noticeContent: data.noticeContent
               })
           })
               .then((res) => res.json())

@@ -43,11 +43,7 @@ const SellerHeader = () => {
     {
       title: [{ name: "판매자 관리", path: `/seller/seller-info` }],
       submenu: [
-        { name: "판매자정보 관리", path: `/seller/seller-info/${id}` },
-        {
-          name: "사업자정보 관리",
-          path: "/seller/seller-info/business-update",
-        },
+        { name: "판매자정보 관리", path: `/seller/seller-info/read/${id}` },
       ],
     },
     {

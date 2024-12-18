@@ -13,10 +13,11 @@ const SellerUpdate = () => {
     const { currentUser } = useSelector((state) => state.user);
     const sellerId = currentUser.id;
 
-
     const onDelete = () => {
         if (window.confirm("정말 취소하시나요??")) {
-            window.location.href = `/seller/seller-info/${id}`;
+            window.location.href = `/seller/seller-info/read/${id}`;
+        }else {
+            window.location.href = `/seller/seller-info/update/${id}`;
         }
     };
 
@@ -32,11 +33,18 @@ const SellerUpdate = () => {
     }, [sellerId]);
 
     console.log(post)
-    const {memberName, memberEmail, memberPhone, memberBank, memberBankAccount, memberPassword,memberBusinessNumber } = post;
+    const {memberName, memberEmail, memberPhone, memberBank, memberBankAccount, memberPassword, memberBusinessNumber } = post;
 
+    const onClickDeleteNotice = async () => {
+        await fetch(`http://localhost:10000/member/seller/${id}`, {
+            method : "DELETE"
+        })
+            .then((res) => {
+                // navigate("/login")
+            })
+    }
     return (
         <form onSubmit={handleSubmit(async (data) => {
-            console.log("전송할 데이터 :", data)
 
             await fetch(`http://localhost:10000/seller/update/${id}`, {
                 method: "PUT",
@@ -45,20 +53,24 @@ const SellerUpdate = () => {
                 },
                 body: JSON.stringify({
                     memberName: data.memberName,
-                    // memberId : memberId
+                    memberEmail: data.memberEmail,
+                    memberPhone: data.memberPhone,
+                    memberBank: data.memberBank,
+                    memberBankAccount: data.memberBankAccount,
+                    memberPassword: data.memberPassword,
+                    memberBusinessNumber: data.memberBusinessNumber
                 })
             })
                 .then((res) => res.json())
                 .then((res) => {
-                    console.log(res)
                     const {id} = res;
-                    navigate(`/seller/seller-info/${id}`)
+                    navigate(`/seller/seller-info/read/${id}`)
                 })
         })}>
             <S.UpdateBox>
                 <S.ListButton>
                 <S.Title>판매자정보 수정</S.Title>
-                    <button className={"update"} disabled={isSubmitting}>수정</button>
+                    <button className={"update"} disabled={isSubmitting}>완료</button>
                     <button className={"delete"} onClick={onDelete}>취소</button>
                 </S.ListButton>
                 <label>
@@ -84,7 +96,7 @@ const SellerUpdate = () => {
                 <label>
                     <S.PayInputBox>
                         <S.PayText>정산 계좌 정보</S.PayText>
-                            <S.BankInput> <select
+                            <S.BankInput> <select  defaultValue={memberBank}
                                 {...register("memberBank", {
                                     required: true,
                                 })}>
@@ -137,7 +149,7 @@ const SellerUpdate = () => {
                 <S.Delete>
                     <S.BussinessText>탈퇴하기</S.BussinessText>
                     <div className={"delete-button"}>
-                        <button className={"delete"}>탈퇴하기</button>
+                        <button className={"delete"} onClick={onClickDeleteNotice}>탈퇴하기</button>
                     </div>
                 </S.Delete>
 
