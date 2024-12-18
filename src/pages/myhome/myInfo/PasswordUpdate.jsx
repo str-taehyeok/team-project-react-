@@ -33,11 +33,15 @@ const PasswordUpdate = () => {
                     },
                     body: JSON.stringify({
                         memberEmail: currentUser.email,
-                        memberPassword: currentPassword,
+                        memberPassword: currentUser.password,
                     }),
                 });
 
+                console.log("패치정보 {}" , response);
+
                 const result = await response.json();
+
+                console.log("결과 {}" ,result);
 
                 if (result.success) {
                     setMessage('비밀번호가 성공적으로 업데이트되었습니다.');
@@ -52,13 +56,18 @@ const PasswordUpdate = () => {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
     return (
         <S.PasswordUpdateFormContainer>
-            <S.PasswordUpdateForm>
+            <S.PasswordUpdateForm onSubmit = {handleSubmit}>
                 <S.PasswordUpdateInput>
                     <S.PasswordUpdateText>
                         <p>현재 비밀번호</p><S.PasswordUpdateTextStar>*</S.PasswordUpdateTextStar>
                     </S.PasswordUpdateText>
-                    <input placeholder="사용 중인 비밀번호를 입력해주세요."/>
+                    <input
+                        type="password"
+                        placeholder="사용 중인 비밀번호를 입력해주세요."
+                        // value={}
+                    />
                 </S.PasswordUpdateInput>
+
                 <S.PasswordUpdateInput>
                     <S.PasswordUpdateText>
                         <p>새로운 비밀번호</p><S.PasswordUpdateTextStar>*</S.PasswordUpdateTextStar>
@@ -66,12 +75,14 @@ const PasswordUpdate = () => {
                     <input placeholder="사용 중인 비밀번호를 입력해주세요."/>
                     <p>*소문자, 숫자, 특수문자를 포함해 8자 이상으로 만들어주세요.</p>
                 </S.PasswordUpdateInput>
+
                 <S.PasswordUpdateInput>
                     <S.PasswordUpdateText>
                         <p>새로운 비밀번호 확인</p><S.PasswordUpdateTextStar>*</S.PasswordUpdateTextStar>
                     </S.PasswordUpdateText>
                     <input placeholder="사용 중인 비밀번호를 입력해주세요."/>
                 </S.PasswordUpdateInput>
+
                 <S.PasswordUpdateButton>완료</S.PasswordUpdateButton>
             </S.PasswordUpdateForm>
         </S.PasswordUpdateFormContainer>
