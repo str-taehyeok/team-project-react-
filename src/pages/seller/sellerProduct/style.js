@@ -134,13 +134,16 @@ const S = {}
         border: none;
         width: 98px;
         height: 98px;
-        border-radius: 20px;
+        
         background-color: #828282;
         display: inline-flex;
+        border-radius: 20px;
         
         & img{
             width: 100%;
             height: 100%;
+            border-radius: 20px;
+            border: 1px solid #d9d9d9;
         }
     `;
 
@@ -265,8 +268,8 @@ S.PopupBackground = styled.div`
         border: none;
         border-radius: 20px;
         cursor: pointer;
-        width: 49px;
-        height: 30px;
+        width: 46px;
+        height: 24px;
         ${h11Regular};
     `;
 
