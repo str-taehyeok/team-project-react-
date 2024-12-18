@@ -12,7 +12,7 @@ const ProfileList = () => {
 
     // console.log(currentUser);
     const id = currentUser.id;
-    console.log("아이디",id);
+    // console.log("아이디",id);
 
 
 
@@ -33,7 +33,7 @@ const ProfileList = () => {
 
         couponData();
     }, []);
-    console.log("쿠폰데이터", couponData);
+    // console.log("쿠폰데이터", couponData);
 
     const onChangeInsertCoupon = (e) => {
         const { name, value } = e.target;
