@@ -1,81 +1,95 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom'
-import HeartBtn from './HeartBtn';
+import HeartBtn from '../../community/community/HeartBtn';
 import theme from '../../../global/theme';
+import {ProductContext} from "../../../context/productContext";
 
 
-// 더미데이터
-const products = [
-  {
-    productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
-    productPrice : 80000,
-    productImage1 : "/assets/images/store/custom-cat-1.png",
-    productDiscount : 35,
-    productReviewStart : 2,
-    productSoldCount : 15,
-    productDate : "2020-12-04",
-    productColor : "Orange",
-    productSize : "S"
-  },
-  {
-    productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
-    productPrice : 129_000,
-    productImage1 : "/assets/images/store/custom-cat-1.png",
-    productDiscount : 35,
-    productReviewStart : 5,
-    productSoldCount : 10,
-    productDate : "2014-12-04",
-    productColor : "Orange",
-    productSize : "M"
-  },
-  {
-    productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
-    productPrice : 129_000,
-    productImage1 : "/assets/images/store/custom-cat-1.png",
-    productDiscount : 35,
-    productReviewStart : 4,
-    productSoldCount : 10,
-    productDate : "2018-12-04",
-    productColor : "DarkPurple",
-    productSize : "L"
-  },
-  {
-    productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
-    productPrice : 129_000,
-    productImage1 : "/assets/images/store/custom-cat-1.png",
-    productDiscount : 45,
-    productReviewStart : 3,
-    productSoldCount : 100,
-    productDate : "2016-12-04",
-    productColor : "Orange",
-    productSize : "S"
-  },
-  {
-    productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
-    productPrice : 77000,
-    productImage1 : "/assets/images/store/custom-cat-1.png",
-    productDiscount : 15,
-    productReviewStart : 5,
-    productSoldCount : 10,
-    productDate : "2014-12-04",
-    productColor : "Orange",
-    productSize : "M"
-  },
-  {
-    productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
-    productPrice : 11000,
-    productImage1 : "/assets/images/store/custom-cat-1.png",
-    productDiscount : 20,
-    productReviewStart : 5,
-    productSoldCount : 13,
-    productDate : "2014-11-04",
-    productColor : "DarkPurple",
-    productSize : "S"
-  },
-]
+// // 더미데이터
+// const products = [
+//   {
+//     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
+//     productPrice : 80000,
+//     productImage1 : "/assets/images/store/custom-cat-1.png",
+//     productDiscount : 35,
+//     productReviewStart : 2,
+//     productSoldCount : 15,
+//     productDate : "2020-12-04",
+//     productColor : "Orange",
+//     productSize : "S"
+//   },
+//   {
+//     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
+//     productPrice : 129_000,
+//     productImage1 : "/assets/images/store/custom-cat-1.png",
+//     productDiscount : 35,
+//     productReviewStart : 5,
+//     productSoldCount : 10,
+//     productDate : "2014-12-04",
+//     productColor : "Orange",
+//     productSize : "M"
+//   },
+//   {
+//     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
+//     productPrice : 129_000,
+//     productImage1 : "/assets/images/store/custom-cat-1.png",
+//     productDiscount : 35,
+//     productReviewStart : 4,
+//     productSoldCount : 10,
+//     productDate : "2018-12-04",
+//     productColor : "DarkPurple",
+//     productSize : "L"
+//   },
+//   {
+//     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
+//     productPrice : 129_000,
+//     productImage1 : "/assets/images/store/custom-cat-1.png",
+//     productDiscount : 45,
+//     productReviewStart : 3,
+//     productSoldCount : 100,
+//     productDate : "2016-12-04",
+//     productColor : "Orange",
+//     productSize : "S"
+//   },
+//   {
+//     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
+//     productPrice : 77000,
+//     productImage1 : "/assets/images/store/custom-cat-1.png",
+//     productDiscount : 15,
+//     productReviewStart : 5,
+//     productSoldCount : 10,
+//     productDate : "2014-12-04",
+//     productColor : "Orange",
+//     productSize : "M"
+//   },
+//   {
+//     productName : "피시포독 그레인프리 참치+스피니치 + 캐롯 85g",
+//     productPrice : 11000,
+//     productImage1 : "/assets/images/store/custom-cat-1.png",
+//     productDiscount : 20,
+//     productReviewStart : 5,
+//     productSoldCount : 13,
+//     productDate : "2014-11-04",
+//     productColor : "DarkPurple",
+//     productSize : "S"
+//   },
+// ]
 
 const StoreCustom = () => {
+
+  // state로 product 데이터 들고 오기
+
+  const { productState } = useContext(ProductContext);
+  const { products } = productState;
+
+  const productList = products.map((product, i) => (
+      <div key={i}>
+        <p>{product.productName}</p>
+      </div>
+  ))
+
+  console.log(productList)
 
   // 해당 모달창을 나오게 하기
   const [isActive, setIsActive] = useState(10);
@@ -200,22 +214,22 @@ const StoreCustom = () => {
   })
 
   // 상품 반복문
-  const productList = sortedProductList.length !== 0 ? sortedProductList.map((product, i) => (
-    <S.CustomProduct key={i}>
-      <HeartBtn />
-      <Link to={`read/${i}`}>
-        <img className='thumb' src={`${process.env.PUBLIC_URL}${product.productImage1}`} alt={"상품" + (i + 1)} />
-        <S.CustomProductInfo>
-        <div>{product.productDate}</div>
-          <p>{product.productName}</p>
-          <p>{product.productPrice}</p>
-          <p>{product.productSoldCount}</p>
-          <span>{product.productDiscount}% </span><span>{product.productPrice * ((100 - product.productDiscount) / 100)}</span>
-          <span>★{product.productReviewStart}(8) </span><span>♥5,069</span>
-        </S.CustomProductInfo>
-      </Link>
-     </S.CustomProduct>
-  )) : <S.CustomProductMessage>검색된 상품이 없습니다.</S.CustomProductMessage>
+  // const productList = sortedProductList.length !== 0 ? sortedProductList.map((product, i) => (
+  //   <S.CustomProduct key={i}>
+  //     <HeartBtn />
+  //     <Link to={`read/${i}`}>
+  //       <img className='thumb' src={`${process.env.PUBLIC_URL}${product.productImage1}`} alt={"상품" + (i + 1)} />
+  //       <S.CustomProductInfo>
+  //       <div>{product.productDate}</div>
+  //         <p>{product.productName}</p>
+  //         <p>{product.productPrice}</p>
+  //         <p>{product.productSoldCount}</p>
+  //         <span>{product.productDiscount}% </span><span>{product.productPrice * ((100 - product.productDiscount) / 100)}</span>
+  //         <span>★{product.productReviewStart}(8) </span><span>♥5,069</span>
+  //       </S.CustomProductInfo>
+  //     </Link>
+  //    </S.CustomProduct>
+  // )) : <S.CustomProductMessage>검색된 상품이 없습니다.</S.CustomProductMessage>
   
   return (
       <>

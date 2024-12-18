@@ -11,12 +11,32 @@ S.LayoutBox = styled.div`
     margin-bottom: 300px;
 `
 
+S.InfiniteScrollContainer = styled.div`
+  & .infinite-scroll-component {
+    overflow: hidden !important;
+  }
+`
+
+S.EndMessage = styled.p`
+  margin-top : 200px;
+  text-align: center;
+`
+
 S.AllPostWrapper = styled.div`
+    position: relative;
     display:flex;
     flex-direction: row;
     gap:24px;
     margin-top: 29px;
     flex-wrap :wrap ;
+
+    & .heart {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 14px;
+      right: 14px;
+    }
 `
 
 S.LayoutButton = styled.div`
@@ -177,6 +197,10 @@ S.PropileBox = styled.div`
   width: 220px;
   align-items:center;
   margin-top: 5px;
+
+  & img {
+    width: 100%;
+  }
 `
 
   S.NickName = styled.div`
