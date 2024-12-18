@@ -97,7 +97,6 @@ const UserPost = () => {
                                     <img src="/assets/images/community/default-myProfile.png" alt="프로필" />
                                 </Link>
                             </S.MyProfile>
-                            <S.NickName>쏘오연</S.NickName> 
                             <FollowBtn />
                         </S.ProfileBox>
                         <Slide />
