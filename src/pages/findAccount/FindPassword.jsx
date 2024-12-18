@@ -19,7 +19,10 @@ const FindPassword = () => {
     formState: { errors },
   } = useForm({ mode: "onChange" });
 
-  // 비밀번호 변경 처리
+  // 비밀번호 유효성 검사 정규식 (소문자, 숫자, 특수문자 포함 8자리 이상)
+  const passwordRegex = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
+
+  // 비밀번호 확인 처리
   const handlePasswordChange = async () => {
     if (!authNumber || !newPassword || !confirmNewPassword) {
       return alert("인증번호와 새로운 비밀번호를 모두 입력해주세요.");
@@ -27,6 +30,10 @@ const FindPassword = () => {
 
     if (newPassword !== confirmNewPassword) {
       return alert("새로운 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+    }
+
+    if (!passwordRegex.test(newPassword)) {
+      return alert("소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이어야 합니다.");
     }
 
     try {
@@ -51,6 +58,23 @@ const FindPassword = () => {
     }
   };
 
+  // 인증번호 확인 처리
+  const handleVerifyPassword = () => {
+    if (authNumber !== code) {
+      if (errorCount < 2) {
+        setErrorCount(errorCount + 1);
+        return alert(`인증번호가 ${errorCount + 1}회 틀렸습니다`);
+      }
+      setErrorCount(0);
+      setCode(0);
+      return alert("인증번호를 다시 요청해주세요.");
+    }
+
+    // 인증 완료
+    setAuthVerified(true);
+    return alert("인증이 완료되었습니다.");
+  };
+
   // 인증번호 요청 처리
   const handleAuthRequest = async () => {
     if (!email) {
@@ -71,7 +95,6 @@ const FindPassword = () => {
       if (response.ok) {
         alert(result.message);
         setCode(result.code);
-       
       } else {
         alert(result.message || "인증번호 전송에 실패했습니다.");
       }
@@ -80,28 +103,6 @@ const FindPassword = () => {
       alert("서버와의 통신에 실패했습니다.");
     }
   };
-
-  console.log(code)
-
-  // 인증번호 확인 처리
-  const handleVerifyPassword = () => {
-    if(authNumber !== code){
-      if(errorCount < 2){
-        setErrorCount(errorCount + 1)
-        return alert(`인증번호가 ${errorCount + 1}회 틀렸습니다`)
-      }
-      setErrorCount(0)
-      setCode(0)
-      return alert("인증번호를 다시 요청해주세요.")
-    }
-
-    // 인증완료료
-    setAuthVerified(true)
-    return alert("인증이 완료되었습니다.")
-  }
-
-  // 비밀번호 유효성 검사 정규식
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
   return (
     <>
@@ -118,7 +119,8 @@ const FindPassword = () => {
         </S.LogoBox>
 
         <S.NewPasswordMessage>
-          <p>✔ 계정에 등록된 이메일로 전송된 인증번호와 새 비밀번호를 입력해주세요.</p>
+          <p>✔ 계정에 등록된 이메일로 전송된 인증번호를 입력해주세요.</p>
+          <p>✔ 새로운 비밀번호는 소문자, 숫자, 특수문자를 각 하나 포함한 8자리 이상이여야 합니다.</p>
         </S.NewPasswordMessage>
 
         {/* 이메일 입력 및 인증번호 요청 */}
@@ -229,7 +231,14 @@ const FindPassword = () => {
           <S.NextButton
             type="button"
             onClick={handlePasswordChange}
-            disabled={!authNumber || !newPassword || !confirmNewPassword || !authVerified}
+            disabled={
+              !authNumber || 
+              !newPassword || 
+              !confirmNewPassword || 
+              newPassword !== confirmNewPassword || 
+              !authVerified || 
+              !passwordRegex.test(newPassword)
+            }
           >
             확인
           </S.NextButton>
