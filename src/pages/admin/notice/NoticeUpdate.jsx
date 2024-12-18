@@ -11,7 +11,6 @@ import {useNavigate, useParams} from "react-router-dom";
 const NoticeUpdate = () => {
     const {id} = useParams();
     const { register, handleSubmit, getValues, formState: {isSubmitting, isSubmitted, errors}} = useForm({mode:"onChange"});
-    const memberId = 1;
     const navigate = useNavigate();
     const [post, setPost] = useState({});
 
@@ -46,8 +45,7 @@ const NoticeUpdate = () => {
               },
               body: JSON.stringify({
                   noticeTitle: data.noticeTitle,
-                  noticeContent: data.noticeContent,
-                  memberId: memberId
+                  noticeContent: data.noticeContent
               })
           })
               .then((res) => res.json())
@@ -63,7 +61,7 @@ const NoticeUpdate = () => {
               <label>
                   <S.TextInputBox>
                       <S.TitleText>제목</S.TitleText>
-                      <S.TextInput><input type={"text"} placeholder='제목을 입력해주세요' defaultValue={noticeTitle}
+                      <S.TextInput><input type={"text"} defaultValue={noticeTitle}
                                           {...register("noticeTitle", {
                                               required: true,
                                           })}
@@ -73,7 +71,7 @@ const NoticeUpdate = () => {
               <label>
                   <S.InputBox>
                       <S.ContentText>내용</S.ContentText>
-                      <S.ContentInput><textarea type={"text"} placeholder='내용을 입력해주세요' defaultValue={noticeContent}
+                      <S.ContentInput><textarea type={"text"}  defaultValue={noticeContent}
                                                 {...register("noticeContent", {
                                                     required: true,
                                                 })}

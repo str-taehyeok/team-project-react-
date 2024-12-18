@@ -18,7 +18,6 @@ import SellerProductList from "../pages/seller/sellerProduct/SellerProductList";
 import SellerProductWrite from "../pages/seller/sellerProduct/SellerProductWrite";
 import SellerProductUpdate from "../pages/seller/sellerProduct/SellerProductUpdate";
 import SellerInfoContainer from "../pages/seller/sellerInfo/SellerInfoContainer";
-import BusinessUpdate from "../pages/seller/sellerInfo/BusinessUpdate";
 import SellerUpdate from "../pages/seller/sellerInfo/SellerUpdate";
 import FindType from "../pages/findAccount/FindType";
 import FindId from "../pages/findAccount/FindId";
@@ -95,6 +94,9 @@ import Treats from "../pages/store/store/dog/Treats";
 import Clothes from "../pages/store/store/dog/Clothes";
 import HealthCare from "../pages/store/store/dog/HealthCare";
 import RecommendPost from "../pages/community/post/RecommendPost";
+import PostTagColor from "../pages/community/post/PostTagColor";
+import SellerRead from "../pages/seller/sellerInfo/SellerRead";
+
 
 const router = createBrowserRouter([
     {
@@ -298,6 +300,10 @@ const router = createBrowserRouter([
                         element: <PostWrite />,
                     },
                     {
+                        path: "tag",
+                        element: <PostTagColor />
+                    },
+                    {
                         path: "update",
                         element: <PostUpdate />,
                     },
@@ -416,16 +422,16 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: 'seller-info/:id',
+                path: 'seller-info',
                 element: <SellerInfoContainer />,
                 children: [
                     {
-                        index: true,
-                        element: <SellerUpdate />,
+                        path: "read/:id",
+                        element: <SellerRead />,
                     },
                     {
-                        path: "business-update",
-                        element: <BusinessUpdate />,
+                        path: "update/:id",
+                        element: <SellerUpdate />,
                     },
                 ]
             },

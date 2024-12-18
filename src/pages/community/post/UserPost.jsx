@@ -15,6 +15,12 @@ const UserPost = () => {
     const { currentUser } = useSelector((state) => state.user);
     const memberId = currentUser.id;
 
+    // 내가 지금 누른 게시글
+    const { communityState } = useContext(CommunityContext);
+    const { communites } = communityState;
+  
+    const foundPost = communites?.find((cm) => String(cm.id) === String(id));
+
     // 댓글 조회
     useEffect(() => {
         const fetchComments = async () => {
@@ -22,14 +28,13 @@ const UserPost = () => {
             if (response.ok) {
                 const data = await response.json();
                 setComments(data);
-                console.log(data)
             } else {
                 console.error('댓글 조회 실패');
             }
         };
 
         fetchComments();
-    }, [id]);
+    }, [id, foundPost]);
 
     // 댓글 추가
     const handleCommentSubmit = async () => {
@@ -107,8 +112,14 @@ const UserPost = () => {
                                 <S.LikeNumber>0</S.LikeNumber>
                                 <S.DotBtn><button><img src="/assets/images/community/dots.png" alt="삼점메뉴" /></button></S.DotBtn>
                             </S.PostUnder>
-                            <S.PostTitle>반려동물 게시물</S.PostTitle> 
-                            <S.PostContent>게시물에 적은 본문 내용이 여기에 적힙니다. # 태그를 이용해서 연관 검색어에 걸리도록 작성가능합니다. 아무거나 적어주세요. 당신의 반려동물에 관한건 뭐든지요. 사진은 필참이기에 게시글만 올라올 가능성은 없습니다.</S.PostContent> {/* 게시물 내용은 더미 데이터로 삽입 */}
+                            {/* foundPost가 존재할 때만 content 출력 */}
+                            {foundPost ? (
+                                <S.PostContent>
+                                    {foundPost.postContent}
+                                </S.PostContent>
+                            ) : (
+                                <S.PostContent>게시글을 찾을 수 없습니다.</S.PostContent> // 로딩 중이거나 없는 경우 메시지 출력
+                            )}
                         </S.MyPostUnderBox>
                     </S.MyPostBox>
 

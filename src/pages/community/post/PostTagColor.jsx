@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import S from "./style";
+import React, { useEffect } from 'react';
+import S from './style';
+import { useNavigate } from 'react-router-dom';
 
-const PostWrite = () => {
+const PostTagColor = () => {
   const navigate = useNavigate();
   const localJwtToken = localStorage.getItem("jwtToken");
 
@@ -13,43 +13,22 @@ const PostWrite = () => {
     }
   }, [navigate, localJwtToken]);
 
-  const handleTagButton = () => {
-    navigate("/post/tag")
-  }
-
   return (
     <S.PostWarpper>
-      {/* 컬러추가가 */}
-      <S.UploadButton onClick={handleTagButton}>
-        컬러 추가
+      <S.UploadButton id="submit-button" type="submit">
+        업로드
       </S.UploadButton>
       <S.PostContents>
         {/* 이미지 업로드 영역 */}
         <div className="image-wrapper">
           <div className="dummy-content-wrap">
-            <S.MainImageDumy>
+            <S.TagColorImage>
               <label htmlFor="file-upload">
                 <div className="main-img-dummy">
                   <input type="file" id="file-upload" accept="image/*" />
-                  <span className="h5">
-                    화면을 눌러 이미지를 추가하세요
-                    <br />
-                    (최대 5장까지 가능합니다)
-                  </span>
                 </div>
               </label>
-            </S.MainImageDumy>
-            <S.SubImagesWrap>
-              <S.SubImg>
-                <img
-                  src="/assets/images/community/plus.png"
-                  alt="플러스아이콘"
-                />
-              </S.SubImg>
-              <S.SubImg></S.SubImg>
-              <S.SubImg></S.SubImg>
-              <S.SubImg></S.SubImg>
-            </S.SubImagesWrap>
+            </S.TagColorImage>
           </div>
         </div>
 
@@ -68,4 +47,4 @@ const PostWrite = () => {
   );
 };
 
-export default PostWrite;
+export default PostTagColor;
