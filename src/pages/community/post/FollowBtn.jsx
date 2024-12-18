@@ -1,43 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const FollowBtn = ({ targetUserId }) => {
   const navigate = useNavigate();
-
+  
   // 리덕스에서 로그인한 유저의 id
   const { currentUser } = useSelector((state) => state.user);
-  const memberId = currentUser?.id || 0;
+  const memberId = currentUser?.id ? currentUser?.id : 0;
 
-  const [isFollowing, setIsFollowing] = useState(false);
+  // 팔로우 상태
+  const [isFollowing, setIsFollowing] = useState(false); 
 
   useEffect(() => {
-    if (memberId && targetUserId) {
-      checkFollowStatus();
-    }
-  }, [memberId, targetUserId]);
+    if (!targetUserId || !memberId) return;
 
-  // 팔로우 상태 확인
-  const checkFollowStatus = async () => {
-    try {
-      const response = await fetch(`http://localhost:10000/follows/following/${memberId}`);
-      
-      if (!response.ok) {
-        console.error("팔로우 상태 조회 실패");
-        return;
+    const checkFollowStatus = async () => {
+      try {
+        const response = await fetch(`http://localhost:10000/follows/status/${memberId}/${targetUserId}`);
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error("팔로우 상태 확인 오류:", errorData);
+          return;
+        }
+        const data = await response.json();
+        setIsFollowing(data.isFollowing); 
+      } catch (error) {
+        console.error("팔로우 상태 확인 오류:", error);
       }
+    };
 
-      const data = await response.json();
+    checkFollowStatus();
+  }, [targetUserId, memberId]);
 
-      // 팔로우 상태 확인: 이미 팔로우한 상태인지 확인
-      const isAlreadyFollowing = data.some(following => following.followedId === targetUserId);
-      setIsFollowing(isAlreadyFollowing);
-    } catch (error) {
-      console.error("팔로우 상태 확인 오류:", error);
-    }
-  };
-
-  // 팔로우/팔로우 취소 처리
   const handleFollow = async () => {
     if (!memberId) {
       alert("로그인 해주세요.");
@@ -45,51 +40,45 @@ const FollowBtn = ({ targetUserId }) => {
       return;
     }
 
-    const fetchPath = isFollowing ? "cancel" : "add";  
-    const fetchMethod = isFollowing ? "DELETE" : "POST"; 
+    if (!targetUserId) {
+      alert("잘못된 유저 정보입니다.");
+      return;
+    }
 
-    // 팔로우 상태 ('1' = 팔로우, '0' = 팔로우 취소)
-    const followsFollowState = isFollowing ? "0" : "1";  
-
-    const fetchData = {
-      followerId: memberId,
-      followedId: targetUserId,
-      followsFollowState: followsFollowState, // 팔로우 상태 추가
+    const fetchPath = isFollowing ? "cancel" : "add"; 
+    const fetchMethod = isFollowing ? "DELETE" : "POST";  
+    const fetchData = { 
+      followerMemberId: memberId,
+      followingMemberId: targetUserId,
     };
 
     try {
-      // 팔로우 상태 업데이트 요청
       const response = await fetch(`http://localhost:10000/follows/${fetchPath}`, {
         method: fetchMethod,
         headers: {
-          "Content-Type": "application/json", 
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(fetchData),  
+        body: JSON.stringify(fetchData),
       });
 
-      if (response.ok) {
-        setIsFollowing(!isFollowing);
-      } else {
-        const errorData = await response.json(); 
+      if (!response.ok) {
+        const errorData = await response.json();
         console.error("팔로우 상태 업데이트 실패:", errorData);
+        alert(`팔로우 상태 업데이트 실패: ${errorData.message || "알 수 없는 오류"}`);
+        return;
       }
+
+      setIsFollowing(!isFollowing); 
     } catch (error) {
       console.error("팔로우 상태 업데이트 오류:", error);
+      alert("팔로우 상태 업데이트 중 오류가 발생했습니다.");
     }
   };
 
   return (
-    <>
-      {isFollowing ? (
-        <button onClick={handleFollow}>
-          <p>팔로잉</p>
-        </button>
-      ) : (
-        <button onClick={handleFollow}>
-          <p>팔로우</p>
-        </button>
-      )}
-    </>
+    <button onClick={handleFollow}>
+      {isFollowing ? "팔로잉" : "팔로우"}
+    </button>
   );
 };
 
