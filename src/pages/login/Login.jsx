@@ -17,7 +17,7 @@ const Login = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await fetch("http://localhost:10000/member/login", {
+            const response = await fetch("http://localhost:10000/member/login?type=buyer", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -32,17 +32,11 @@ const Login = () => {
             }
     
             const result = await response.json();
-
-            if (result.provider === "판매자") {
-                alert("판매자 로그인 페이지를 이용해주세요.");
-                navigate("/login/seller");
-                return;
-            }
-    
             // 구매자라면 JWT 토큰을 사용하여 다음 화면으로 이동
             if (result && result.jwtToken) {
                 navigate(`/?jwtToken=${result.jwtToken}`);
             }
+            
         } catch (error) {
             console.error("Login error:", error);
             alert("로그인에 실패했습니다. 다시 시도해주세요.");

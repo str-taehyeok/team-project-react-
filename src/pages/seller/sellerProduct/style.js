@@ -115,7 +115,7 @@ const S = {}
             width: 100%;
             justify-content: center;
             padding-bottom: 28px;
-            
+            border-bottom: solid 1px #131313;
         }
     `;
 
@@ -207,7 +207,7 @@ const S = {}
 // `;
 
 S.Popup = styled.div`
-    display: ${props => props.isVisible ? 'flex' : 'none'};
+    display: ${(props) => (props.$isVisible ? "flex" : "none")};
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -223,21 +223,21 @@ S.Popup = styled.div`
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 100;
-    
-    & p {
+
+        & p {
         margin-top: 30px;
-    }
+        }
 `;
 
 S.PopupBackground = styled.div`
-    display: ${props => props.isVisible ? 'block' : 'none'};
-    z-index: 99;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100vw; /* 수정된 부분 */
-    height: 100vh; /* 수정된 부분 */
-    background-color: rgba(0, 0, 0, 0.5);
+  display: ${(props) => (props.$isVisible ? "block" : "none")};
+  z-index: 99;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
 `;
 
 // S.PopupBackground = styled.div`

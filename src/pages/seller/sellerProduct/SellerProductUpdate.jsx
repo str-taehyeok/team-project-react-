@@ -1,199 +1,212 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {useForm} from "react-hook-form";
 import {useNavigate, useParams} from "react-router-dom";
 import S from "./style";
+import {useSelector} from "react-redux";
 
 const SellerProductUpdate = () => {
+    const { id } = useParams();
+    const { currentProduct } = useSelector((state) => state.product);
 
-    const { register, handleSubmit, formState: { isSubmitting }} = useForm({ mode: 'onChange' });
+
     const [productName, setProductName] = useState("");
-    // const [productPrice, setProductPrice] = useState("");
-    // const [productCode, setProductCode] = useState("");
-    // const [productDate, setProductDate] = useState("");
-    // const [productStock, setProductStock] = useState("");
-    // const [productEditDate, setProductEditDate] = useState("");
-    // const [productDetail, setProductDetail] = useState("");
-    // const [productImage1, setProductImage1] = useState("");
-    // const [productImage2, setProductImage2] = useState("");
-    // const [productImage3, setProductImage3] = useState("");
-    // const [productImage4, setProductImage4] = useState("");
-    const [ setProductAnimal] = useState("");
-    // const [productCategory, setProductCategory] = useState("");
-    // const [productColor, setProductColor] = useState("");
-    // const [productSize, setProductSize] = useState("");
-    // const [deliveryFee, setDeliveryFee] = useState("");
-    const [ setDeliveryFeeKind] = useState("");
-    // const [deliveryFeeFree, setDeliveryFeeFree] = useState("");
-    const [setDeliveryHow] = useState("");
-    const [ setDeliveryPayWhen] = useState("");
-    // const [deliveryCompany, setDeliveryCompany] = useState("");
-    const memberId = 1;
-
-    const handleChange = (e) => {
-        const value = e.target.value;
-        setProductName(value);
-    };
-
-    // const handleNextClick = (e) => {
-    //
-    //     if (!productName) {
-    //         e.preventDefault();
-    //         return alert("상품명을 입력해주세요.");
-    //     }
-    //     if (!productPrice) {
-    //         e.preventDefault();
-    //         return alert("가격을 입력해주세요.");
-    //     }
-    //     if (!productCode) {
-    //         e.preventDefault();
-    //         return alert("제품 코드를 입력해주세요.");
-    //     }
-    //     if (!productStock) {
-    //         e.preventDefault();
-    //         return alert("재고를 입력해주세요.");
-    //     }
-    //     if (!productImage1) {
-    //         e.preventDefault();
-    //         return alert("상품의 이미지를 등록해주세요.");
-    //     }
-    //     if (!productAnimal) {
-    //         e.preventDefault();
-    //         return alert("제품을 사용할 수 있는 종을 선택해주세요.");
-    //     }
-    //     if (!productCategory) {
-    //         e.preventDefault();
-    //         return alert("카테고리를 선택해주세요.");
-    //     }
-    //     if (!productColor) {
-    //         e.preventDefault();
-    //         return alert("펫스널컬러로 구분할 색상을 선택해주세요.");
-    //     }
-    //     if (!productSize) {
-    //         e.preventDefault();
-    //         return alert("사이즈를 선택해주세요.");
-    //     }
-    // };
-
-
+    const [productPrice, setProductPrice] = useState("");
+    const [productCode, setProductCode] = useState("");
+    const [productDate, setProductDate] = useState("");
+    const [productStock, setProductStock] = useState("");
+    const [productEditDate, setProductEditDate] = useState("");
+    const [ productAnimal, setProductAnimal] = useState("");
+    const [productCategory, setProductCategory] = useState("");
+    const [productColor, setProductColor] = useState("");
+    const [productSize, setProductSize] = useState("");
+    const [deliveryFee, setDeliveryFee] = useState("");
+    const [deliveryFeeKind, setDeliveryFeeKind] = useState("");
+    const [deliveryFeeFree, setDeliveryFeeFree] = useState("");
+    const [deliveryHow, setDeliveryHow] = useState("");
+    const [deliveryPayWhen, setDeliveryPayWhen] = useState("");
+    const [deliveryCompany, setDeliveryCompany] = useState("");
+    const [productFileName, setProductFileName] = useState("");
+    const [productFilePath, setProductFilePath] = useState("");
+    const [productRealPrice, setProductRealPrice] = useState("");
+    const { register, handleSubmit, setValue, formState: { isSubmitting } } = useForm({ mode: 'onChange' });
     const navigate = useNavigate();
 
-    const {id} = useParams();
-    const [mainImage, setMainImage] = useState(null);
-    const [subImages, setSubImages] = useState([null, null, null]);
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const response = await fetch(`http://localhost:10000/products/product/${id}`);
+                if (!response.ok) return console.error('데이터가 없습니다');
+                const productData = await response.json();
 
-    const mainImageRef = useRef(null);
-    const subImageRefs = [useRef(null), useRef(null), useRef(null)];
+            // //     day format
+            //     const editedDate = new Date(productData.productEditDate).toISOString().split('T')[0];
 
-    const handleImagePreview = (e, type, index = 0) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
+            //     초기
+                setProductName(productData.productName);
+                setProductCode(productData.productCode);
+                setProductAnimal(productData.productAnimal);
+                setProductSize(productData.productSize);
+                setProductColor(productData.productColor);
+                setProductStock(productData.productStock);
+                setProductCategory(productData.productCategory);
+                setProductDate(productData.productDate);
+                setProductEditDate(productData.productEditDate);
+                setProductFileName(productData.productFileName);
+                setProductFilePath(productData.productFilePath);
+                setProductPrice(productData.productPrice);
+                setProductRealPrice(productData.productRealPrice);
+                setDeliveryFeeKind(productData.deliveryFeeKind);
+                setDeliveryPayWhen(productData.deliveryPayWhen);
+                setDeliveryHow(productData.deliveryHow);
+                setDeliveryFee(productData.deliveryFee);
+                setDeliveryCompany(productData.deliveryCompany);
+                setDeliveryFeeFree(productData.deliveryFeeFree);
 
-        reader.onload = (event) => {
-            if (type === 'main') {
-                setMainImage(event.target.result);
-            } else {
-                const newSubImages = [...subImages];
-                newSubImages[index] = event.target.result;
-                setSubImages(newSubImages);
+                setValue("productName", productData.productName);
+                setValue("productCode", productData.productCode);
+                setValue("productAnimal", productData.productAnimal);
+                setValue("productSize", productData.productSize);
+                setValue("productColor", productData.productColor);
+                setValue("productStock", productData.productStock);
+                setValue("productCategory", productData.productCategory);
+                setValue("productDate", productData.productDate);
+                setValue("productEditDate", productData.productEditDate);
+                setValue("productFileName", productData.productFileName);
+                setValue("productFilePath", productData.productFilePath);
+                setValue("productPrice", productData.productPrice);
+                setValue("productRealPrice", productData.productRealPrice);
+                setValue("deliveryFeeKind", productData.deliveryFeeKind);
+                setValue("deliveryPayWhen", productData.deliveryPayWhen);
+                setValue("deliveryHow", productData.deliveryHow);
+                setValue("deliveryFee", productData.deliveryFee);
+                setValue("deliveryCompany", productData.deliveryCompany);
+                setValue("deliveryFeeFree", productData.deliveryFeeFree);
+
+            } catch (error){
+                console.error('데이터 로드 중 오류 발생 : ', error);
             }
         };
+        getProduct();
 
-        if (file) {
-            reader.readAsDataURL(file);
+    }, [id, setValue]);
+
+    const handleFormSubmit = async (data) => {
+        try{
+            const formData = new FormData();
+            const { productName, productCode, productAnimal, productSize, productColor, productStock, productCategory, productDate, productEditDate,
+            productFileName, productFilePath, productPrice, productRealPrice, deliveryFeeKind, deliveryPayWhen, deliveryHow, deliveryFee, deliveryCompany, deliveryFeeFree } = data;
+
+            formData.append("productId", currentProduct.id);
+            formData.append("productName", productName);
+            formData.append("productCode", productCode);
+            formData.append("productAnimal", productAnimal);
+            formData.append("productSize", productSize);
+            formData.append("productColor", productColor);
+            formData.append("productStock", productStock);
+            formData.append("productCategory", productCategory);
+            formData.append("productDate", productDate);
+            formData.append("productEditDate", productEditDate);
+            formData.append("productFileName", productFileName);
+            formData.append("productFilePath", productFilePath);
+            formData.append("productPrice", productPrice);
+            formData.append("productRealPrice", productRealPrice)
+            formData.append("deliveryFeeKind", deliveryFeeKind);
+            formData.append("deliveryPayWhen", deliveryPayWhen);
+            formData.append("deliveryHow", deliveryHow);
+            formData.append("deliveryFee", deliveryFee);
+            formData.append("deliveryCompany", deliveryCompany);
+            formData.append("deliveryFeeFree", deliveryFeeFree);
+
+            if (productFileName && productFileName[0]){
+                formData.append("uploadFile", productFileName[0]);
+            }
+            const response = await fetch("http://localhost:10000/products/image-upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            const resData = await response.json();
+            formData.append("uuid", resData.uuid);
+
+            const updateProductResponse = await  fetch(`http://localhost:10000/products/seller-product/${id}`, {
+                method: "PUT",
+                body: formData,
+            });
+
+            const deliveryResponse = await fetch("http://localhost:10000/deliveries/seller-product/{id}", {
+                method: "PUT",
+                body: formData,
+        });
+
+            const updateProductData = await updateProductResponse.json();
+            const updateDeliveryData = await deliveryResponse.json();
+            alert(updateProductResponse.message);
+            navigate("/seller")
+    } catch (error) {
+        console.error("폼 제출 중 오류 발생:", error);
         }
     };
 
+    // const handleChange = (e) => {
+    //     const value = e.target.value;
+    //     setProductName(value);
+    // };
+
+    // const handleNextClick = (e) => {
+    //     if (!productFileName || productFilePath) {
+    //         e.preventDefault();
+    //         return alert("상품의 이미지를 등록해주세요.");
+    //     }
+    // };
+    //
+    // const {id} = useParams();
+    // const [mainImage, setMainImage] = useState(null);
+    // const [subImages, setSubImages] = useState([null, null, null]);
+    //
+    // const mainImageRef = useRef(null);
+    // const subImageRefs = [useRef(null), useRef(null), useRef(null)];
+    //
+    // const handleImagePreview = (e, type, index = 0) => {
+    //     const file = e.target.files[0];
+    //     const reader = new FileReader();
+    //
+    //     reader.onload = (event) => {
+    //         if (type === 'main') {
+    //             setMainImage(event.target.result);
+    //         } else {
+    //             const newSubImages = [...subImages];
+    //             newSubImages[index] = event.target.result;
+    //             setSubImages(newSubImages);
+    //         }
+    //     };
+    //
+    //     if (file) {
+    //         reader.readAsDataURL(file);
+    //     }
+    // };
+
     return (
         <div>
-            <form onSubmit={handleSubmit(async (data) => {
-                console.log(data)
-                await fetch(`http://localhost:10000/product/product/${id}`, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        productName: data.productName,
-                        productPrice: data.productPrice,
-                        productCode: new Date().getTime().toString(),
-                        productDate: new Date().toISOString(),
-                        productStock: data.productStock,
-                        productEditDate: new Date().toISOString(),
-                        productImage1: data.productImage1,
-                        productImage2: data.productImage2,
-                        productImage3: data.productImage3,
-                        productImage4: data.productImage4,
-                        productDetail: data.productDetail,
-                        productAnimal: data.productAnimal,
-                        productRealPrice:data.productRealPrice,
-                        productCategory: data.productCategory,
-                        productColor: data.productColor,
-                        productSize: data.productSize,
-                        deliveryFeeKind: data.deliveryFeeKind,
-                        deliveryFee: data.deliveryFee,
-                        deliveryFeeFree: data.deliveryFeeFree,
-                        deliveryHow: data.deliveryHow,
-                        deliveryPayHow: data.deliveryPayHow,
-                        deliveryCompany: data.deliveryCompany,
-                        memberId: memberId
-                    })
-                })
-                    .then((res) => res.json())
-                    .then((res) => {
-                        alert('데이터가 성공적으로 전송되었습니다!');
-                        navigate(`/seller`)
-                    })
-                    .catch((error) => {
-                        console.error('에러발생 :', error);
-                        alert('데이터 저장중 오류가 발생하였습니다.');
-                    })
-            })}>
-
-                <form onSubmit={handleSubmit(async (data) => {
-                    console.log(data)
-                    await fetch(`http://localhost:10000/deliveries/seller-product/${id}`, {
-                        method: "PUT",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            deliveryFeeKind: data.deliveryFeeKind,
-                            deliveryFee: data.deliveryFee,
-                            deliveryFeeFree: data.deliveryFeeFree,
-                            deliveryHow: data.deliveryHow,
-                            deliveryPayHow: data.deliveryPayHow,
-                            deliveryCompany: data.deliveryCompany,
-                            memberId: memberId
-                        })
-                    })
-                        .then((res) => res.json())
-                        .then((res) => {
-                            alert('데이터가 성공적으로 전송되었습니다!');
-                            navigate(`/seller`)
-                        })
-                        .catch((error) => {
-                            console.error('에러발생 :', error);
-                            alert('데이터 저장중 오류가 발생하였습니다.');
-                        })
-                })}>
-
+            <form encType="multipart/form-data" onSubmit={handleFormSubmit}>
                 <S.ProductInsert>
                     <p>상품 정보 입력</p>
                     <div>
                         <S.ListWrap>
                             <S.Division>상품명</S.Division>
-                            <input className="require-value" type="text"
+                            <input type="text"
                                    name="productName" {...register("productName", {required: "상품명은 필수 입력 항목입니다."})}
                                    value={productName}
-                                   onChange={handleChange}/>
+                                   onChange={(e) => setProductName(e.target.value)}/>
                         </S.ListWrap>
                         <S.ListWrap>
                             <S.Division>소비자가</S.Division>
-                            <input className="require-value" type="text" name="productRealPrice" placeholder="원(원)"/>
+                            <input type="text" name="productRealPrice" placeholder="원(원)" {...register("productRealPrice", {required: "상품명은 필수 입력 항목입니다."})}
+                                   value={productRealPrice}
+                                   onChange={(e) => setProductRealPrice(e.target.value)}/>
                         </S.ListWrap>
                         <S.ListWrap>
                             <S.Division>상품가격</S.Division>
-                            <input className="require-value" type="text" name="productPrice" placeholder="원(원)"/>
+                            <input type="text" name="productPrice" placeholder="원(원)" />
                         </S.ListWrap>
                         <S.ListWrap>
                             <S.Division>상품재고</S.Division>
@@ -347,14 +360,14 @@ const SellerProductUpdate = () => {
                                 <S.Division>메인 이미지</S.Division>
                                 <label htmlFor="main" style={{cursor: 'pointer'}}>
                                     <S.MainImage>
-                                        <img src={mainImage || "/assets/images/seller/sub-default-plus.png"}
-                                             alt="메인 이미지"/>
+                                        {/*<img src={mainImage || "/assets/images/seller/sub-default-plus.png"}*/}
+                                        {/*     alt="메인 이미지"/>*/}
                                     </S.MainImage>
                                 </label>
-                                <input type="file"
-                                       id="main"{...register('productImage', {required: '메인 이미지는 필수입니다.'})}
-                                       ref={mainImageRef} accept="image/*" style={{display: 'none'}}
-                                       onChange={(e) => handleImagePreview(e, 'main')}/>
+                                {/*<input type="file"*/}
+                                {/*       id="main"{...register('productImage', {required: '메인 이미지는 필수입니다.'})}*/}
+                                {/*       ref={mainImageRef} accept="image/*" style={{display: 'none'}}*/}
+                                {/*       onChange={(e) => handleImagePreview(e, 'main')}/>*/}
                             </S.Main>
                             {/* 서브 이미지들 */}
                             <S.SubWrap>
@@ -364,26 +377,25 @@ const SellerProductUpdate = () => {
                                         <label htmlFor={`sub${index + 1}`} style={{cursor: 'pointer'}}>
                                             <S.SubImage>
                                                 <img
-                                                    src={subImages[index] || "/assets/images/seller/sub-default-plus.png"}
+                                                    // src={subImages[index] || "/assets/images/seller/sub-default-plus.png"}
                                                     alt={`서브 이미지 ${index + 1}`}/>
                                             </S.SubImage>
                                         </label>
-                                        <input type="file" id={`sub${index + 1}`} ref={subImageRefs[index]}
-                                               accept="image/*" style={{display: 'none'}}
-                                               onChange={(e) => handleImagePreview(e, 'sub', index)}
-                                        />
+                                        {/*<input type="file" id={`sub${index + 1}`} ref={subImageRefs[index]}*/}
+                                        {/*       accept="image/*" style={{display: 'none'}}*/}
+                                        {/*       onChange={(e) => handleImagePreview(e, 'sub', index)}*/}
+                                        {/*/>*/}
                                     </S.Subs>
                                 ))}
                             </S.SubWrap>
                         </S.imageContent>
                     </S.ImageWrap>
                     <S.ButtonWrap>
-                        <button id="submit-button" type="submit" disabled={isSubmitting}>상품 등록</button>
+                        <button id="submit-button" type="submit" disabled={isSubmitting}>수정 완료</button>
                         <button type="button" onClick={() => navigate('/seller')}>취소
                         </button>
                     </S.ButtonWrap>
                 </S.ProductInsert>
-            </form>
             </form>
         </div>
     );

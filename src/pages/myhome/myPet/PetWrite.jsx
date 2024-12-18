@@ -6,8 +6,7 @@ import S from './style';
 
 const PetWrite = () => {
   const { currentUser } = useSelector((state) => state.user)
-  console.log("멤버아이디", currentUser && currentUser.id)
-  console.log(currentUser)
+  // console.log("멤버아이디", currentUser && currentUser.id)
 
   const { register, handleSubmit, formState: { isSubmitting } } = useForm({ mode: 'onChange' });
   const [petName, setPetName] = useState(""); // 마이펫 이름
@@ -15,6 +14,7 @@ const PetWrite = () => {
   const [petGender, setPetGender] = useState(""); // 마이펫 성별
   const [petBreed, setPetBreed] = useState(""); // 마이펫 품종
   const [petNeuter, setPetNeuter] = useState(""); // 마이펫 중성화
+  const [petImagePreview, setPetImagePreview] = useState(null);
   const navigate = useNavigate();
   const localJwtToken = localStorage.getItem("jwtToken");
 
@@ -38,40 +38,50 @@ const PetWrite = () => {
     }
   };
 
+  
 
   return (
-    <form onSubmit={handleSubmit(async (data) => {
-      console.log(data)
-      await fetch(`http://localhost:10000/my-pet/write`, {
+    <form encType="multipart/form-data" onSubmit={handleSubmit(async (data) => {
+      console.log("Selected file in handleSubmit:", data.petImage);
+      const formData = new FormData();
+
+      const { petName, petKind, petGender, petBreed, petBirth, petWeight, petNeuter, petVet, petImage } = data;
+      console.log(data.petImage[0])
+
+      // formData에 PetVO 데이터 추가
+      formData.append("memberId", currentUser.id);
+      formData.append("petName", petName);
+      formData.append("petKind", petKind);
+      formData.append("petGender", petGender);
+      formData.append("petBreed", petBreed);
+      formData.append("petBirth", petBirth);
+      formData.append("petVet", petVet);
+      formData.append("petWeight", petWeight);
+      formData.append("petNeuter", petNeuter);
+      formData.append("uploadFile", data.petImage[0]);
+
+      
+      // 서버로 데이터 전송
+      await fetch("http://localhost:10000/my-pet/upload", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          memberId: currentUser.id,
-          petName: data.petName,
-          petKind: data.petKind,
-          petImage: "pet.png",
-          petGender: data.petGender,
-          petBreed: data.petBreed,
-          petBirth: data.petBirth,
-          petWeight: data.petWeight,
-          petNeuter: data.petNeuter,
-          petVet: data.petVet,
-        })
+        body: formData,
       })
-        .then((res) => res.json())
-        .then((res) => {
-          alert('데이터가 성공적으로 전송되었습니다!');
-          navigate(`/my-pet`)
-        })
-        .catch((error) => {
-          console.error('에러발생 :', error);
-          alert('데이터 전송 중 오류가 발생하였습니다.');
-        })
-
-    })}>
-
+      .then((res) => res.json())
+      .then(async (res) => {
+          formData.append("uuid", res.uuid);
+          await fetch("http://localhost:10000/my-pet/write", {
+            method: "POST",
+            body: formData,
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              alert(res.message);
+              navigate("/my-pet");
+              return;
+            })
+          })
+          .catch(console.error)
+      })}>
 
       {/* 완료 버튼 */}
       <S.PetWapper>
@@ -83,10 +93,36 @@ const PetWrite = () => {
         <S.Mydog>
           <S.PetCard>
             <S.Profilepic>
-              <img src="/assets/images/layout/petimg.png" alt="펫 이미지" />
+              {/* 이미지 미리보기 */}
+              {petImagePreview ? (
+                <img src={petImagePreview} alt="펫 이미지" />
+              ) : (
+                <img src="/assets/images/layout/petimg.png" alt="펫 이미지" />
+              )}
             </S.Profilepic>
             <S.Name>{petName || "이름"}</S.Name>
-            <S.EditButton>이미지 편집</S.EditButton>
+            <S.EditButton as="label" htmlFor="petImageInput">
+              이미지 편집
+              </S.EditButton>
+            <input
+              id="petImageInput"
+              type="file"
+              style={{ display: 'none' }} // 숨겨진 파일 입력
+              {...register("petImage", { 
+                required: true,
+                validate : (e) => {
+                  console.log("validate", e[0])
+                  const file = e[0];
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setPetImagePreview(reader.result);
+                      };
+                      reader.readAsDataURL(file);
+                    }
+                }
+               })}
+            />
           </S.PetCard>
           <S.Title as="h5">
             {/* 이름 입력 */}

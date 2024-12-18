@@ -14,7 +14,7 @@ const Login = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await fetch("http://localhost:10000/member/login", {
+            const response = await fetch("http://localhost:10000/member/login?type=seller", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -27,19 +27,12 @@ const Login = () => {
                 alert(errorData.message || "아이디 또는 비밀번호가 잘못되었습니다.");
                 return;
             }
-    
             const result = await response.json();
 
-            if (result.provider !== "판매자") {
-                alert("구매자 로그인 페이지를 이용해주세요.");
-                navigate("/login");
-                return;
-            }
-    
-            // 구매자라면 JWT 토큰을 사용하여 다음 화면으로 이동
             if (result && result.jwtToken) {
-                navigate(`/?jwtToken=${result.jwtToken}`);
+                navigate(`/seller?jwtToken=${result.jwtToken}`);
             }
+            
         } catch (error) {
             console.error("Login error:", error);
             alert("로그인에 실패했습니다. 다시 시도해주세요.");
@@ -80,14 +73,6 @@ const Login = () => {
                     })}
                 />
                 {errors.memberPassword && <S.P>{errors.memberPassword.message}</S.P>}
-            </label>
-
-            <label>
-                <S.Input
-                    type="hidden"
-                    {...register("memberProvider")}
-                    value="판매자"
-                />
             </label>
 
             <S.LoginButton disabled={isSubmitting}>로그인</S.LoginButton>

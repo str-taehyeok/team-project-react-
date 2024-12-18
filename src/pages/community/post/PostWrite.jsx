@@ -22,7 +22,7 @@ const PostWrite = () => {
             const formData = new FormData();
             formData.append("memberId", currentUser.id);
             formData.append("postContent", data.postContent || "내용 없음");
-            formData.append("postImage1", data.postImage?.[0] || null);
+            formData.append("postImage1", data.postImage1?.[0] || null);
             formData.append("postColor", "Gold");
 
             try {
