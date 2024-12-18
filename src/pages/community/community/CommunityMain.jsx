@@ -55,9 +55,7 @@ const CommunityMain = () => {
 
     }, [])
 
-    console.log("popularCommunites", popularCommunites)
-
-    const myPosts = popularCommunites.slice(0, 4).map(({id, imageName1}) => (
+    const myPosts = popularCommunites.slice(0, 5).map(({id, imageName1}) => (
         <S.MyPost key={id} >
             <S.Heart>
                  <HeartBtn id={id} type={"community"} />
@@ -68,7 +66,6 @@ const CommunityMain = () => {
         </S.MyPost>
     ))
     
-
     const orangePosts = orangePostList.map(({id, postImage1, memberImage, memberNickname}, i) => (
         <S.OrangePostBox key={i}>
             <S.OrangePost>
