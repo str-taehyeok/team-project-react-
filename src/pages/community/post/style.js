@@ -287,7 +287,6 @@ S.PostContent = styled.div`
 S.MyPostBox = styled.div`
   display:flex;
   flex-direction: column;
-  justify-content:center;
   align-items:center;
   width:586px;
 
@@ -297,6 +296,21 @@ S.MyPostBox = styled.div`
   border-radius:20px;
  }
 `
+
+S.Scroll = styled.div`
+  position: relative;
+  height: 550px;
+  overflow-y: auto;
+
+  /* 모든 브라우저에서 스크롤바 숨기기 */
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+
+  &::-webkit-scrollbar {
+    display: none; 
+  }
+`;
+
 S.MyPostPage = styled.div`
   margin-top: 152px;
 `
@@ -714,6 +728,61 @@ S.PimageWarpper = styled.div`
     width: 40px;
     height: 40px;
   }
+`
+S.DotButton = styled.div`
+    position: absolute;
+    top: 8px;
+    left: 170px;
+    z-index: 100;
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  img {
+    width: 5px;
+    height: 16px;
+  }
+`;
+
+S.PopupBtn = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  z-index: 100;
+`
+
+S.PoputBtnType = styled.div`
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+    &:first-child {width: 60px;
+      height: 30px;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+      background-color: white;
+    }
+    &:nth-child(2) {
+        width: 60px;
+        height: 30px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background-color: white;
+    }
+
+    & p{
+      color: red;
+      font-size: 12px;
+    }
+`
+S.BtnLine = styled.div`
+    border: solid 1px rgba(0, 0, 0, 0.2);
 `
 
 export default S;
