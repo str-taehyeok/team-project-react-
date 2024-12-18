@@ -282,7 +282,6 @@ S.PetProfile = styled.div`
 
   & p{
     font-size: 40px;
-    color: white;
     font-weight: bold;
   }
 `;
@@ -323,6 +322,7 @@ S.ResultCategory = styled.div`
 
   &span {
     ${h6Medium}
+    color: white;
   }
 `;
 
