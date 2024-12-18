@@ -128,6 +128,7 @@ const UserPost = () => {
                                 <button onClick={handleCommentSubmit}>완료</button>
                             </S.InputContainer>
                         </S.MyComment>
+                        <S.Scroll>
                         {comments.map((comment) => (
                             <S.CommentBox key={comment.id}>
                                 <Link to={`/post/list?postId=${id}`}>
@@ -144,6 +145,7 @@ const UserPost = () => {
                                 </S.DotBtn>
                             </S.CommentBox>
                         ))}
+                        </S.Scroll>
                     </S.CommentDiv>
                 </S.MyPostPageBox>
                 <S.BestText>유저들의 비슷한 공감 베스트</S.BestText>
