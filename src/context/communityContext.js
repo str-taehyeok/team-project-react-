@@ -20,7 +20,7 @@ const CommunityProvider = ({children}) => {
 
     // 판매중인 상품을 전체 조회
     const getCommunity = async () => {
-      const response = await fetch(`http://localhost:10000/posts/posts`);
+      const response = await fetch(`http://localhost:10000/posts/list`);
       const data = await response.json();
       return data;
     };
