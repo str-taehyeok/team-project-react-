@@ -21,11 +21,11 @@ const HeartBtn = ({ id, type }) => {
   const { setIsUpdate } = useContext(HeartContext).action;
 
   // 좋아요인지 아닌지 비교
-  const isCommunityLike = commLikes.some((comm) => comm.id === id);
+  const isCommunityLike = commLikes.some((comm) => {
+    console.log(comm.id, id)
+    comm.id === id
+  });
   const isProductLike = productLikes.some((product) => product.productId === id);
-
-  console.log(commLikes)
-  console.log(isCommunityLike)
 
   // 타입 비교
   let fetchType = type === "community" ? "commLikes" : "productLikes";
