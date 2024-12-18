@@ -1,19 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CommunityContext } from "../../../context/communityContext";
+import FollowBtn from "./FollowBtn";
 
 const UserList = () => {
     const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
     const [popupType, setPopupType] = useState(null);
-    const [activePostId, setActivePostId] = useState(null); // 각 게시물의 팝업 상태를 관리
+    const [activePostId, setActivePostId] = useState(null);
+    const [followerList, setFollowerList] = useState([]);
+    const [followingList, setFollowingList] = useState([]);
     const localJwtToken = localStorage.getItem("jwtToken");
     const { communityState } = useContext(CommunityContext);
     const { communites } = communityState;
 
-    // 로그인 상태 확인
     useEffect(() => {
         if (!localJwtToken) {
             alert("로그인 후 이용해 주세요.");
@@ -24,41 +26,53 @@ const UserList = () => {
     const imgPosts = communites.slice(0, 8);
     const imgPostCount = imgPosts.filter(({ imageName1 }) => imageName1).length;
 
-    // 팝업 열기/닫기 함수
-    const openPopup = (type) => setPopupType(type);
-    const closePopup = () => setPopupType(null);
+    // 팔로워/팔로잉 데이터 가져오기
+    useEffect(() => {
+        if (popupType === "follower" && currentUser?.id) {
+            fetchFollowerList(currentUser.id);
+        } else if (popupType === "following" && currentUser?.id) {
+            fetchFollowingList(currentUser.id);
+        }
+    }, [popupType, currentUser?.id]);
 
-    // DotButton 클릭 시 해당 게시물 팝업 열기/닫기
-    const togglePopup = (postId) => {
-        // 이미 열려 있는 게시물을 다시 클릭하면 팝업을 닫음
-        if (activePostId === postId) {
-            setActivePostId(null); // 팝업 닫기
-        } else {
-            setActivePostId(postId); // 팝업 열기
+    const fetchFollowerList = async (memberId) => {
+        try {
+            const response = await fetch(`http://localhost:10000/follows/followers/${memberId}`);
+            if (response.ok) {
+                const data = await response.json();
+                setFollowerList(data);
+            } else {
+                console.error("팔로워 목록을 불러오는 데 실패했습니다.");
+            }
+        } catch (error) {
+            console.error("팔로워 목록 조회 중 오류 발생:", error);
         }
     };
 
+    const fetchFollowingList = async (memberId) => {
+        try {
+            const response = await fetch(`http://localhost:10000/follows/following/${memberId}`);
+            if (response.ok) {
+                const data = await response.json();
+                setFollowingList(data);
+            } else {
+                console.error("팔로잉 목록을 불러오는 데 실패했습니다.");
+            }
+        } catch (error) {
+            console.error("팔로잉 목록 조회 중 오류 발생:", error);
+        }
+    };
 
-    // const handleDelete = async () => {
-        
-    //     await fetch(`http://localhost:10000/posts/post/$`)
-    //     {
-    //         method: 'DELETE',
-    //       }
-    //     );
+    const openPopup = (type) => setPopupType(type);
+    const closePopup = () => setPopupType(null);
 
-    // const handleUpdate = async () => {
-        
-    //     await fetch(`http://localhost:10000/posts/post/$`,{
-    //         method: "PUT",
-    //         headers: {
-    //             "Content-Type" : "application/json",
-    //         },
-    //         body : JSON.stringify({
-
-    //         })
-    //     })
-    // }
+    const togglePopup = (postId) => {
+        if (activePostId === postId) {
+            setActivePostId(null);
+        } else {
+            setActivePostId(postId);
+        }
+    };
 
     return (
         <div>
@@ -74,7 +88,7 @@ const UserList = () => {
                     </S.MyProfileCard>
                     <S.MyProfilelineStyle />
                     <S.ButtonCenter>
-                        <S.MyProfileButton>팔로우</S.MyProfileButton>
+                        <FollowBtn targetUserId={currentUser.id} />
                     </S.ButtonCenter>
                     <S.MyprofileCardInformation>
                         <S.MyFollwer>
@@ -101,7 +115,6 @@ const UserList = () => {
                                     </button>
                                 </S.DotButton>
 
-                                {/* 게시물 ID가 activePostId와 일치하는 경우 팝업을 표시 */}
                                 {activePostId === id && (
                                     <S.PopupBtn>
                                         <S.PoputBtnType><p>삭제하기</p></S.PoputBtnType>
@@ -125,7 +138,6 @@ const UserList = () => {
                 </S.MyPost>
             </S.UserCommunity>
 
-            {/* 팝업 */}
             {popupType && (
                 <S.PopupAreaFollowing>
                     <S.PopupFollowingClose
@@ -141,20 +153,35 @@ const UserList = () => {
                         </S.MenuFollowing>
                         <S.myFollowingList>
                             <ul>
-                                <li>
-                                    <S.Following1>
-                                        <S.PimageWarpper>
-                                            <img
-                                                src="/assets/images/community/userprofile.png"
-                                                alt="프로필 사진"
-                                            />
-                                            <p>{popupType === "follower" ? "아이디1" : "아이디2"}</p>
-                                        </S.PimageWarpper>
-                                        <button className="following-button">
-                                            {popupType === "follower" ? "팔로우" : "팔로잉"}
-                                        </button>
-                                    </S.Following1>
-                                </li>
+                                {popupType === "follower"
+                                    ? followerList.map((follower) => (
+                                          <li key={follower.id}>
+                                              <S.Following1>
+                                                  <S.PimageWarpper>
+                                                      <img
+                                                          src="/assets/images/community/userprofile.png"
+                                                          alt="프로필 사진"
+                                                      />
+                                                      <p>{follower.username}</p>
+                                                  </S.PimageWarpper>
+                                                  <FollowBtn targetUserId={follower.id} />
+                                              </S.Following1>
+                                          </li>
+                                      ))
+                                    : followingList.map((following) => (
+                                          <li key={following.id}>
+                                              <S.Following1>
+                                                  <S.PimageWarpper>
+                                                      <img
+                                                          src="/assets/images/community/userprofile.png"
+                                                          alt="프로필 사진"
+                                                      />
+                                                      <p>{following.username}</p>
+                                                  </S.PimageWarpper>
+                                                  <FollowBtn targetUserId={following.id} />
+                                              </S.Following1>
+                                          </li>
+                                      ))}
                             </ul>
                         </S.myFollowingList>
                     </div>
