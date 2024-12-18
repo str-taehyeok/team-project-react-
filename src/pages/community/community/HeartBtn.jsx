@@ -22,12 +22,10 @@ const HeartBtn = ({ id, type }) => {
 
   // 좋아요인지 아닌지 비교
   const isCommunityLike = commLikes.some((comm) => {
-    console.log("comm.id:", comm.id, "id:", id);
     return comm.id === Number(id);  // id를 숫자로 변환하여 비교
   });
 
   const isProductLike = productLikes.some((product) => {
-    console.log("product.productId:", product.productId, "id:", id);
     return product.productId === Number(id);  // id를 숫자로 변환하여 비교
   });
 
