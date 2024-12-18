@@ -58,7 +58,7 @@ const Main = () => {
       <S.SmallPost>
         {communites.slice(1, 7).map(({id, imageName1, memberNickName}) => (
           <S.Post key={id}>
-            <Link to={`/post/read?postId=${id}`}>
+            <Link to={`/post/read/${id}`}>
               <S.SmallPostImage
                 src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
                 alt={`게시물-${id + 1}`}

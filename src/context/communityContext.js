@@ -40,8 +40,6 @@ const CommunityProvider = ({children}) => {
     }
   }
 
-  console.log(communites)
-
   return (
     <CommunityContext.Provider value={value}>
       {children}
