@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useForm} from "react-hook-form";
-import S from "../../admin/banner/style";
+import S from "./style";
 
 
 const SellerUpdate = () => {
@@ -22,7 +22,7 @@ const SellerUpdate = () => {
     }, [id]);
 
     console.log(post)
-    const {memberName} = post;
+    const {memberName, memberEmail, memberPhone, memberBank, memberBankAccount, memberPassword,memberBusinessNumber } = post;
 
     return (
         <form onSubmit={handleSubmit(async (data) => {
@@ -54,15 +54,60 @@ const SellerUpdate = () => {
                 />
             </label>
             <label>
-                <S.LinkInputBox>
-                    <S.LinkText>배너링크</S.LinkText>
-                    <S.LinkInput><input  defaultValue={memberName}
-                                        {...register("memberName", {
-                                            required: true,
-                                        })}
-                    /></S.LinkInput>
-                </S.LinkInputBox>
+                <p>로그인 ID(이메일)</p>
+                <input type={"text"} defaultValue={memberEmail}
+                       {...register("memberEmail", {
+                           required: true,
+                       })}
+                />
             </label>
+            <label>
+                <p>정산 계좌 정보</p>
+                <input type={"text"} defaultValue={memberBank}
+                       {...register("memberBank", {
+                           required: true,
+                       })}
+                />
+                <input type={"text"} defaultValue={memberBankAccount}
+                       {...register("memberBankAccount", {
+                           required: true,
+                       })}
+                />
+            </label>
+            <label>
+                <p>휴대폰 번호</p>
+                <input type={"text"} defaultValue={memberPhone}
+                       {...register("memberPhone", {
+                           required: true,
+                       })}
+                />
+            </label>
+            <label>
+                <p>비밀번호</p>
+                <input type={"text"} defaultValue={memberPassword}
+                       {...register("memberPassword", {
+                           required: true,
+                       })}
+                />
+            </label>
+            <label>
+                <p>사업자 번호</p>
+                <input value={memberBusinessNumber}
+                       {...register("memberBusinessNumber", {
+                           required: true,
+                       })}
+                />
+            </label>
+            {/*<label>*/}
+            {/*    <S.LinkInputBox>*/}
+            {/*        <S.LinkText>배너링크</S.LinkText>*/}
+            {/*        <S.LinkInput><input  defaultValue={memberName}*/}
+            {/*                            {...register("memberName", {*/}
+            {/*                                required: true,*/}
+            {/*                            })}*/}
+            {/*        /></S.LinkInput>*/}
+            {/*    </S.LinkInputBox>*/}
+            {/*</label>*/}
             <button disabled={isSubmitting}>수정하기</button>
         </form>
     );
