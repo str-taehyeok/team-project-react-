@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import S from "./style";
 import FlushieColor from './flushies/FlushieColor';
 import FlushieBest from './flushies/FlushieBest';
@@ -6,28 +6,23 @@ import FlushieSpecial from './flushies/FlushieSpecial';
 import FlushieRecommend from './flushies/FlushieRecommend';
 import { Link } from "react-router-dom";
 import HeartBtn from '../../../community/community/HeartBtn';
+import { ProductContext } from '../../../../context/productContext';
 
 
 const Flushies = () => {
 
-    const [products, setProducts] = useState([]);
+    const { productState } = useContext(ProductContext);
+    const { products } = productState;
+    const dogProduts = products.filter((pr) => pr.productAnimal === "dog");
+    console.log(dogProduts)
 
-    // fetch 를 통해서 products 를 모두 가져와야한다.
-    useEffect(() => {
-//     fetch products
-        const getProducts = async () => {
-            const response = await fetch("http://localhost:10000/products/products")
-            const products = await response.json()
-            return products
-        }
-        getProducts().then(setProducts).catch(console.error)
-    }, []);
-
-    const bestProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
+    const bestProducts = dogProduts.length > 0 ? dogProduts.map(({
+        productName, productPrice, productFileName, productDiscount
+    }, i) => (
         <S.BestProduct key={i}>
             <HeartBtn/>
             <Link to={"/product/:id"}>
-                <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)}/>
+                <img src={`${process.env.PUBLIC_URL}/assets/images/products/${productFileName}`} alt={"상품" + (i + 1)}/>
                 <span>{productName}</span>
             </Link>
             <S.NormalPrice>
