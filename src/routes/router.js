@@ -282,7 +282,7 @@ const router = createBrowserRouter([
                 element: <PostContainer />,
                 children: [
                     {
-                        path: ":postColor",
+                        path: "recommend/:postColor",
                         element: <RecommendPost />,
                     },
                     {
