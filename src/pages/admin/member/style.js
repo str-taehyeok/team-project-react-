@@ -361,14 +361,14 @@ const S = {}
         & tr > td:nth-child(2) {
             width: 188px;
             flex-shrink: 0;
-            display: flex;
+            display: block;
             align-items: center;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 188px;
             text-align: center;
-            margin-left: 50px;
+            margin-left: 49px;
         }
         
         & tr > th:nth-child(3){
@@ -437,7 +437,7 @@ const S = {}
         & tr > td:nth-child(5) {
             width: 100px;
             flex-shrink: 0;
-            display: flex;
+            display: block;
             align-items: center;
             white-space: nowrap;
             overflow: hidden;
