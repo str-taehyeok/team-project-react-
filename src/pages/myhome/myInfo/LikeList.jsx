@@ -7,8 +7,18 @@ import { HeartContext } from "../../../context/heartContext";
 
 const LikeList = () => {
 
-    const {list} = useContext(HeartContext);
+    // 좋아요 리스트 heartContext에서 가져와 뿌리기
+    const { state } = useContext(HeartContext);
+    const { productLikes } = state;
 
+    const productLikeList = productLikes.map((like, i) => (
+        <div key={i}>
+            <p>{like.productName}</p>
+            <p>{like.productPrice}</p>
+        </div>
+    ))
+
+    console.log({productLikeList})
     return (
 
             <S.LikesAll>
@@ -20,7 +30,8 @@ const LikeList = () => {
                 </S.LikeStoreTItleWrap>
                 <LikeListNone/>
                 <div>
-                    {list}
+                    {productLikeList}
+                    {/*{commLikes}*/}
                 </div>
                 <div>
 
