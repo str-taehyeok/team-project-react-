@@ -70,7 +70,7 @@ const RecommendPost = () => {
     ({ id, imageName1, memberNickName, memberFileName, memberFilePath }) => (
       <S.CommunityPost key={id}>
         <HeartBtn id={id} type={"community"} />
-        <Link to={`/post/read?postId=${id}`}>
+        <Link to={`/post/read/${id}`}>
           <S.PostImage
             src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
             alt="게시물"

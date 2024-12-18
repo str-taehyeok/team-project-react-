@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import S from './style.js';
 import Slide from './Slide.jsx';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import FollowBtn from './FollowBtn.jsx';
 import HeartBlackBtn from './HeartBlacktBtn.jsx';
 import { useSelector } from 'react-redux';
+import { CommunityContext } from '../../../context/communityContext.js';
+import HeartBtn from '../community/HeartBtn.jsx';
 
 const UserPost = () => {
-    const [searchParams] = useSearchParams();
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const { id } = useParams();
@@ -102,7 +103,7 @@ const UserPost = () => {
                         <Slide />
                         <S.MyPostUnderBox>
                             <S.PostUnder>
-                                <HeartBlackBtn />
+                                <HeartBtn id={id} type={"community"} />
                                 <S.LikeNumber>0</S.LikeNumber>
                                 <S.DotBtn><button><img src="/assets/images/community/dots.png" alt="삼점메뉴" /></button></S.DotBtn>
                             </S.PostUnder>
