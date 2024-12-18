@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import S from "./style";
 import { useForm } from "react-hook-form";
+import S from "./style"; 
 
 const FindPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -10,6 +10,8 @@ const FindPassword = () => {
   const [authNumber, setAuthNumber] = useState(""); 
   const [mark, setMark] = useState(false);
   const [authVerified, setAuthVerified] = useState(false); 
+  const [code, setCode] = useState(0);
+  const [errorCount, setErrorCount] = useState(0);
 
   const {
     register,
@@ -17,15 +19,16 @@ const FindPassword = () => {
     formState: { errors },
   } = useForm({ mode: "onChange" });
 
+  // 비밀번호 변경 처리
   const handlePasswordChange = async () => {
     if (!authNumber || !newPassword || !confirmNewPassword) {
       return alert("인증번호와 새로운 비밀번호를 모두 입력해주세요.");
     }
-  
+
     if (newPassword !== confirmNewPassword) {
       return alert("새로운 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
     }
-  
+
     try {
       const response = await fetch(`http://localhost:10000/member/change-password`, {
         method: "POST",
@@ -34,9 +37,9 @@ const FindPassword = () => {
         },
         body: JSON.stringify({ memberEmail: email, authCode: authNumber, newPassword }),
       });
-  
+
       const result = await response.json();
-  
+
       if (response.ok) {
         alert("비밀번호가 변경되었습니다.");
       } else {
@@ -47,12 +50,13 @@ const FindPassword = () => {
       alert("서버와의 통신에 실패했습니다.");
     }
   };
-  
+
+  // 인증번호 요청 처리
   const handleAuthRequest = async () => {
     if (!email) {
       return alert("이메일을 입력해주세요.");
     }
-  
+
     try {
       const response = await fetch(`http://localhost:10000/member/find-password`, {
         method: "POST",
@@ -61,11 +65,13 @@ const FindPassword = () => {
         },
         body: JSON.stringify({ memberEmail: email }),
       });
-  
+
       const result = await response.json();
-  
+
       if (response.ok) {
-        alert("인증번호가 이메일로 전송되었습니다.");
+        alert(result.message);
+        setCode(result.code);
+       
       } else {
         alert(result.message || "인증번호 전송에 실패했습니다.");
       }
@@ -74,37 +80,27 @@ const FindPassword = () => {
       alert("서버와의 통신에 실패했습니다.");
     }
   };
-  
-  const handleAuthVerify = async () => {
-    if (!authNumber) {
-      return alert("인증번호를 입력해주세요.");
-    }
-  
-    try {
-      const response = await fetch(`http://localhost:10000/member/verify-password-auth`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ memberEmail: email, authCode: authNumber }),
-      });
-  
-      const result = await response.json();
-  
-      if (response.ok) {
-        alert("인증번호가 확인되었습니다.");
-        setAuthVerified(true);
-      } else {
-        alert(result.message || "인증번호 확인에 실패했습니다.");
-        setAuthVerified(false);
-      }
-    } catch (error) {
-      console.error("Error verifying auth code:", error);
-      alert("서버와의 통신에 실패했습니다.");
-    }
-  };
-  
 
+  console.log(code)
+
+  // 인증번호 확인 처리
+  const handleVerifyPassword = () => {
+    if(authNumber !== code){
+      if(errorCount < 2){
+        setErrorCount(errorCount + 1)
+        return alert(`인증번호가 ${errorCount + 1}회 틀렸습니다`)
+      }
+      setErrorCount(0)
+      setCode(0)
+      return alert("인증번호를 다시 요청해주세요.")
+    }
+
+    // 인증완료료
+    setAuthVerified(true)
+    return alert("인증이 완료되었습니다.")
+  }
+
+  // 비밀번호 유효성 검사 정규식
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
   return (
@@ -125,6 +121,7 @@ const FindPassword = () => {
           <p>✔ 계정에 등록된 이메일로 전송된 인증번호와 새 비밀번호를 입력해주세요.</p>
         </S.NewPasswordMessage>
 
+        {/* 이메일 입력 및 인증번호 요청 */}
         <S.AuthNumberContainer>
           <S.InputWrapper>
             <S.Label htmlFor="email">이메일</S.Label>
@@ -142,6 +139,7 @@ const FindPassword = () => {
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
+        {/* 인증번호 입력 및 인증 확인 */}
         <S.AuthNumberContainer>
           <S.InputWrapper>
             <S.Label htmlFor="authNumber">인증번호</S.Label>
@@ -153,12 +151,13 @@ const FindPassword = () => {
               value={authNumber}
               onChange={(e) => setAuthNumber(e.target.value)}
             />
-            <S.AuthButton type="button" onClick={handleAuthVerify}>
+            <S.AuthButton type="button" onClick={handleVerifyPassword}>
               확인
             </S.AuthButton>
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
+        {/* 새로운 비밀번호 입력 */}
         <S.AuthNumberContainer>
           <S.InputWrapper>
             <S.Label htmlFor="newPassword">새로운 비밀번호</S.Label>
@@ -196,6 +195,7 @@ const FindPassword = () => {
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
+        {/* 비밀번호 확인 */}
         <S.AuthNumberContainer>
           <S.InputWrapper>
             <S.Label htmlFor="confirmNewPassword">새로운 비밀번호 확인</S.Label>
@@ -224,6 +224,7 @@ const FindPassword = () => {
           </S.InputWrapper>
         </S.AuthNumberContainer>
 
+        {/* 비밀번호 변경 버튼 */}
         <Link to="/find/find-password-complete">
           <S.NextButton
             type="button"
