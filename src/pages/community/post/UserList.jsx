@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { CommunityContext } from "../../../context/communityContext";
 
 const UserList = () => {
     const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
-    const [posts, setPosts] = useState([]);
     const [popupType, setPopupType] = useState(null);
     const localJwtToken = localStorage.getItem("jwtToken");
+    const { communityState } = useContext(CommunityContext);
+    const { communites } = communityState;
 
     // 로그인 상태 확인
     useEffect(() => {
@@ -18,27 +20,9 @@ const UserList = () => {
         }
     }, [localJwtToken, navigate]);
 
-    // 게시물 데이터 가져오기
-    useEffect(() => {
-        const getPosts = async () => {
-            try {
-                const response = await fetch("http://localhost:10000/posts/list");
-                if (!response.ok) {
-                    console.error("데이터를 가져오는데 실패했습니다.");
-                    return;
-                }
-                const data = await response.json();
-                setPosts(data);
-                console.log(data)
-            } catch (error) {
-                console.error(error);
-                alert("게시글 데이터를 가져오는 중 오류가 발생했습니다.");
-            }
-        };
-
-        getPosts();
-    }, [currentUser.id]);
-
+    const imgPosts = communites.slice(0, 8);
+    const imgPostCount = imgPosts.filter(({ imageName1 }) => imageName1).length;
+    
     // 팝업 열기/닫기 함수
     const openPopup = (type) => setPopupType(type);
     const closePopup = () => setPopupType(null);
@@ -55,18 +39,18 @@ const UserList = () => {
                             </S.MyProfileImage>
                         </div>
                     </S.MyProfileCard>
-                    <S.MyProfilelineStyle></S.MyProfilelineStyle>
+                    <S.MyProfilelineStyle />
                     <S.ButtonCenter>
                         <S.MyProfileButton>팔로우</S.MyProfileButton>
                     </S.ButtonCenter>
                     <S.MyprofileCardInformation>
                         <S.MyFollwer>
-                            <button>게시물 {posts.length}</button>
+                            <button>게시물 {imgPostCount}</button>
                             <button type="button" onClick={() => openPopup("follower")}>
-                                팔로워 304
+                                팔로워 1
                             </button>
                             <button type="button" onClick={() => openPopup("following")}>
-                                팔로잉 40
+                                팔로잉 1
                             </button>
                         </S.MyFollwer>
                     </S.MyprofileCardInformation>
@@ -76,12 +60,20 @@ const UserList = () => {
                         <p>My 게시물</p>
                     </S.Title>
                     <S.MyPostList>
-                        {Array.isArray(posts) && posts.map((post) => (
-                            <S.MyPostItem key={post.id}>
-                                <img
-                                    src={post.image || `http://localhost:10000/posts/display?fileName=${post.filePath}/${post.fileName}`}
-                                    alt={post.alt || "게시물 이미지"}
-                                />
+                        {communites.slice(0, 8).map(({ id, imageName1 }, index) => (
+                            <S.MyPostItem key={index}>
+                                <Link to={`/post/read?postId=${id}`}>
+                                    <img
+                                        src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
+                                        alt="게시물 이미지"
+                                        style={{
+                                            width: "190px",
+                                            height: "190px",
+                                            borderRadius: "20px",
+                                            objectFit: "cover",
+                                        }}
+                                    />
+                                </Link>
                             </S.MyPostItem>
                         ))}
                     </S.MyPostList>
