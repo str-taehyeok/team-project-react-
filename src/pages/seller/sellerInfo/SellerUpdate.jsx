@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useForm} from "react-hook-form";
-import S from "../../admin/banner/style";
+import S from "./style";
 
 
 const SellerUpdate = () => {
@@ -53,16 +53,16 @@ const SellerUpdate = () => {
                        })}
                 />
             </label>
-            <label>
-                <S.LinkInputBox>
-                    <S.LinkText>배너링크</S.LinkText>
-                    <S.LinkInput><input  defaultValue={memberName}
-                                        {...register("memberName", {
-                                            required: true,
-                                        })}
-                    /></S.LinkInput>
-                </S.LinkInputBox>
-            </label>
+            {/*<label>*/}
+            {/*    <S.LinkInputBox>*/}
+            {/*        <S.LinkText>배너링크</S.LinkText>*/}
+            {/*        <S.LinkInput><input  defaultValue={memberName}*/}
+            {/*                            {...register("memberName", {*/}
+            {/*                                required: true,*/}
+            {/*                            })}*/}
+            {/*        /></S.LinkInput>*/}
+            {/*    </S.LinkInputBox>*/}
+            {/*</label>*/}
             <button disabled={isSubmitting}>수정하기</button>
         </form>
     );
