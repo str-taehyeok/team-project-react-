@@ -62,7 +62,7 @@ const CommunityMain = () => {
             <S.Heart>
                  <HeartBtn id={id} type={"community"} />
             </S.Heart>
-            <Link to={`/post/read?postId=${id}`}>
+            <Link to={`/post/read/${id}`}>
             <img src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`} />
             </Link>
         </S.MyPost>
@@ -76,7 +76,7 @@ const CommunityMain = () => {
                     <S.Heart>
                         <HeartBtn id={id} type={"community"} />
                     </S.Heart>
-                    <Link to={`/post/read?postId=${id}`}>
+                    <Link to={`/post/read/${id}`}>
                         <img src={postImage1} alt={"게시글" + (i + 1)} />
                     </Link>
                 </S.PostImage>
