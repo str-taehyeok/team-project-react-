@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { ProductContext } from "../../../context/productContext";
 
 const SellerProductList = () => {
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [ setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [deleteProductId, setDeleteProductId] = useState(null);
@@ -14,16 +14,59 @@ const SellerProductList = () => {
   const navigate = useNavigate();
   const { productState } = useContext(ProductContext);
   const { products, setProducts } = productState;
+  const id = currentUser.memberId;
 
-  // // 로그인 상태 확인
+
+  // 로그인 상태 확인
+  useEffect(() => {
+    if (!localJwtToken) {
+      alert("로그인 후 이용해 주세요.");
+      navigate("/login");
+    }
+  }, [localJwtToken, navigate]);
+
+  useEffect(() => {
+    const getPets = async () => {
+      try {
+        const response = await fetch(`http://localhost:10000/products/seller-all-list/${id}`);
+        if (!response.ok) {
+          console.error("데이터가 없습니다.");
+          return;
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error(error);
+        alert("상품 데이터를 가져오는 중 오류가 발생했습니다.");
+      }
+    };
+    getPets();
+  }, [id]);
+
   // useEffect(() => {
-  //   // console.log(productState)
-  //   if (!localJwtToken) {
-  //     alert("로그인 후 이용해 주세요.");
-  //     navigate("/login");
-  //   }
-  // }, [localJwtToken, navigate]);
-
+  //   const fetchProductData = async () => {
+  //     try {
+  //       const response = await fetch(`http://localhost:10000/products/seller-all-list/${memberId}`,);
+  //       if (!response.ok) {
+  //         throw new Error('상품 정보를 가져오지 못했습니다.');
+  //       }
+  //       const productData = await response.json();
+  //
+  //       setProductData(productData);
+  //
+  //       // react-hook-form의 setValue로 폼 초기화
+  //       Object.keys(productData).forEach(key => {
+  //         setValue(key, productData[key]);
+  //       });
+  //
+  //     } catch (error) {
+  //       console.error('상품 데이터 로딩 중 오류:', error);
+  //       alert('상품 정보를 불러오는 데 실패했습니다.');
+  //     }
+  //   };
+  //
+  //   fetchProductData();
+  // }, [memberId, setValue]);
 
   // 삭제 팝업 열기
   const openDeletePopup = (productId) => {
