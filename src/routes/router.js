@@ -51,15 +51,6 @@ import Cart from "../pages/store/cart/Cart";
 import CommunityContainer from "../pages/community/community/CommunityContainer";
 import CommunityMain from "../pages/community/community/CommunityMain";
 import PostContainer from "../pages/community/post/PostContainer";
-import PostList from "../pages/community/post/PostList";
-import PostOrangeList from "../pages/community/post/PostOrangeList";
-import PostGoldList from "../pages/community/post/PostGoldList";
-import PostGradationList from "../pages/community/post/PostGradationList";
-import PostLightPurpleList from "../pages/community/post/PostLightPurpleList";
-import PostSkyBlueList from "../pages/community/post/PostSkyBlueList";
-import PostSageGreenList from "../pages/community/post/PostSageGreenList";
-import PostIceBlueList from "../pages/community/post/PostIceBlueList";
-import PostDustySilverList from "../pages/community/post/PostDustySilverList";
 import UserPost from "../pages/community/post/UserPost";
 import UserList from "../pages/community/post/UserList";
 import PostUpdate from "../pages/community/post/PostUpdate";
@@ -103,6 +94,7 @@ import Flushies from "../pages/store/store/dog/Flushies";
 import Treats from "../pages/store/store/dog/Treats";
 import Clothes from "../pages/store/store/dog/Clothes";
 import HealthCare from "../pages/store/store/dog/HealthCare";
+import RecommendPost from "../pages/community/post/RecommendPost";
 
 const router = createBrowserRouter([
     {
@@ -290,40 +282,8 @@ const router = createBrowserRouter([
                 element: <PostContainer />,
                 children: [
                     {
-                        path: "all",
-                        element: <PostList />,
-                    },
-                    {
-                        path: "orange",
-                        element: <PostOrangeList />,
-                    },
-                    {
-                        path: "gold",
-                        element: <PostGoldList />,
-                    },
-                    {
-                        path: "gradation",
-                        element: <PostGradationList />,
-                    },
-                    {
-                        path: "light-purple",
-                        element: <PostLightPurpleList />,
-                    },
-                    {
-                        path: "sky-blue",
-                        element: <PostSkyBlueList />,
-                    },
-                    {
-                        path: "sage-green",
-                        element: <PostSageGreenList />,
-                    },
-                    {
-                        path: "ice-blue",
-                        element: <PostIceBlueList />,
-                    },
-                    {
-                        path: "dusty-silver",
-                        element: <PostDustySilverList />,
+                        path: ":postColor",
+                        element: <RecommendPost />,
                     },
                     {
                         path: "read/:id",

@@ -5,7 +5,7 @@ import TreatsBest from './treats/TreatsBest';
 import TreatsSpecial from './treats/TreatsSpecial';
 import TreatsRecommend from './treats/TreatsRecommend';
 import {Link} from "react-router-dom";
-import HeartBtn from "../HeartBtn";
+import HeartBtn from '../../../community/community/HeartBtn';
 
 
 const Treats = () => {

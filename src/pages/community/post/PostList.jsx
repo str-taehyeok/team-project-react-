@@ -1,7 +1,7 @@
 import React from 'react';
 import S from './style.js';
 import HeartBtn from './HeartBtn.jsx';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const datas = [
     {
@@ -57,6 +57,7 @@ const datas = [
 ]
 
 export const PostList = () => {
+    console.log(useParams())
     const id = 1;
 
     const postList = datas.map((post, i) => (

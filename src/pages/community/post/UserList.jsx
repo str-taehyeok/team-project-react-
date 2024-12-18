@@ -1,44 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { CommunityContext } from "../../../context/communityContext";
 
 const UserList = () => {
-
-    const { isLogin } = useSelector((state) => state.user);
+    const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
+    const [popupType, setPopupType] = useState(null);
+    const localJwtToken = localStorage.getItem("jwtToken");
+    const { communityState } = useContext(CommunityContext);
+    const { communites } = communityState;
 
+    // 로그인 상태 확인
     useEffect(() => {
-        if(!isLogin){
-            alert("로그인 후 이용해 주세요.")
-            navigate("/login")
+        if (!localJwtToken) {
+            alert("로그인 후 이용해 주세요.");
+            navigate("/login");
         }
-    }, [])
+    }, [localJwtToken, navigate]);
 
-
-
-    const [isFollowerPopupOpen, setIsFollowerPopupOpen] = useState(false);
-    const [isFollowingPopupOpen, setIsFollowingPopupOpen] = useState(false);
-
-    const followerPopupOpen = () => {
-        setIsFollowerPopupOpen(true)
-        setIsFollowingPopupOpen(false)
-    }
-    const followingPopupOpen = () => {
-        setIsFollowerPopupOpen(false)
-        setIsFollowingPopupOpen(true)
-    }
-
-    const posts = [
-        { id: 1, image: "/assets/images/community/mycat1.png", alt: "고양이 사진1" },
-        { id: 2, image: "/assets/images/community/mycat3.png", alt: "고양이 사진2" },
-        { id: 3, image: "/assets/images/community/mycat4.png", alt: "고양이 사진3" },
-        { id: 4, image: "/assets/images/community/mycat5.png", alt: "고양이 사진4" },
-        { id: 5, image: "/assets/images/community/mycat6.png", alt: "고양이 사진5" },
-        { id: 6, image: "/assets/images/community/mycat2.png", alt: "고양이 사진6" },
-        { id: 7, image: "/assets/images/community/mycat7.png", alt: "고양이 사진7" },
-        { id: 8, image: "/assets/images/community/mycat4.png", alt: "고양이 사진8" },
-    ];
+    const imgPosts = communites.slice(0, 8);
+    const imgPostCount = imgPosts.filter(({ imageName1 }) => imageName1).length;
+    
+    // 팝업 열기/닫기 함수
+    const openPopup = (type) => setPopupType(type);
+    const closePopup = () => setPopupType(null);
 
     return (
         <div>
@@ -48,24 +35,22 @@ const UserList = () => {
                         <div className="MYProfile-img-wrapper">
                             <S.MyProfileImage>
                                 <img src="/assets/images/community/userimg.png" alt="유저이미지" />
-                                <p>찹쌀징어</p>
+                                <p>{currentUser.username || "유저"}</p>
                             </S.MyProfileImage>
                         </div>
                     </S.MyProfileCard>
-                    <S.MyProfilelineStyle></S.MyProfilelineStyle>
+                    <S.MyProfilelineStyle />
                     <S.ButtonCenter>
                         <S.MyProfileButton>팔로우</S.MyProfileButton>
                     </S.ButtonCenter>
                     <S.MyprofileCardInformation>
                         <S.MyFollwer>
-                            <button>
-                                게시물 8
+                            <button>게시물 {imgPostCount}</button>
+                            <button type="button" onClick={() => openPopup("follower")}>
+                                팔로워 1
                             </button>
-                            <button type="button" onClick={followerPopupOpen}>
-                                팔로워 304
-                            </button>
-                            <button type="button" onClick={followingPopupOpen}>
-                                팔로잉 40
+                            <button type="button" onClick={() => openPopup("following")}>
+                                팔로잉 1
                             </button>
                         </S.MyFollwer>
                     </S.MyprofileCardInformation>
@@ -75,63 +60,54 @@ const UserList = () => {
                         <p>My 게시물</p>
                     </S.Title>
                     <S.MyPostList>
-                        <S.MyPostList>
-                            {posts.map((post) => (
-                                <S.MyPostItem key={post.id}>
-                                    <Link to={`/post/list?postId=${post.id}`}>
-                                        <img src={post.image} alt={post.alt} />
-                                    </Link>
-                                </S.MyPostItem>
-                            ))}
-                        </S.MyPostList>
+                        {communites.slice(0, 8).map(({ id, imageName1 }, index) => (
+                            <S.MyPostItem key={index}>
+                                <Link to={`/post/read?postId=${id}`}>
+                                    <img
+                                        src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
+                                        alt="게시물 이미지"
+                                        style={{
+                                            width: "190px",
+                                            height: "190px",
+                                            borderRadius: "20px",
+                                            objectFit: "cover",
+                                        }}
+                                    />
+                                </Link>
+                            </S.MyPostItem>
+                        ))}
                     </S.MyPostList>
                 </S.MyPost>
             </S.UserCommunity>
 
-            {/* 팔로워 팝업 */}
-            {isFollowerPopupOpen && (
+            {/* 팝업 */}
+            {popupType && (
                 <S.PopupAreaFollowing>
-                    <S.PopupFollowingClose src="/assets/images/community/cancel.png" alt="팝업 닫기"
-                        onClick={() => setIsFollowerPopupOpen(false)} />
+                    <S.PopupFollowingClose
+                        src="/assets/images/community/cancel.png"
+                        alt="팝업 닫기"
+                        onClick={closePopup}
+                    />
                     <div className="following-popup">
                         <S.MenuFollowing>
-                            <p>내 팔로워</p>
+                            <p>
+                                {popupType === "follower" ? "내 팔로워" : "내가 팔로우한 사람들"}
+                            </p>
                         </S.MenuFollowing>
                         <S.myFollowingList>
                             <ul>
                                 <li>
                                     <S.Following1>
                                         <S.PimageWarpper>
-                                            <img src="/assets/images/community/userprofile.png" alt="프로필 사진" />
-                                            <p>아이디1</p>
+                                            <img
+                                                src="/assets/images/community/userprofile.png"
+                                                alt="프로필 사진"
+                                            />
+                                            <p>{popupType === "follower" ? "아이디1" : "아이디2"}</p>
                                         </S.PimageWarpper>
-                                        <button className="following-button">팔로우</button>
-                                    </S.Following1>
-                                </li>
-                            </ul>
-                        </S.myFollowingList>
-                    </div>
-                </S.PopupAreaFollowing>
-            )}
-
-            {/* 팔로잉 팝업 */}
-            {isFollowingPopupOpen && (
-                <S.PopupAreaFollowing>
-                    <S.PopupFollowingClose src="/assets/images/community/cancel.png" alt="팝업 닫기"
-                        onClick={() => setIsFollowingPopupOpen(false)}/>
-                    <div className="following-popup">
-                        <S.MenuFollowing>
-                            <p>내가 팔로우한 사람들</p>
-                        </S.MenuFollowing>
-                        <S.myFollowingList>
-                            <ul>
-                                <li>
-                                    <S.Following1>
-                                        <S.PimageWarpper>
-                                            <img src="/assets/images/community/userprofile.png" alt="프로필 사진" />
-                                            <p>아이디2</p>
-                                        </S.PimageWarpper>
-                                        <button className="following-button">팔로잉</button>
+                                        <button className="following-button">
+                                            {popupType === "follower" ? "팔로우" : "팔로잉"}
+                                        </button>
                                     </S.Following1>
                                 </li>
                             </ul>

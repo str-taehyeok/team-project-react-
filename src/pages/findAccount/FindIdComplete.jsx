@@ -11,6 +11,8 @@ const FindIdComplete = () => {
   useEffect(() => {
     if (state.memberEmail) {
       setMessage(state.memberEmail); 
+    } else {
+      setMessage("회원 확인 실패");
     }
   }, [state.memberEmail]);
 
@@ -36,8 +38,8 @@ const FindIdComplete = () => {
             alt="체크"
           />
           <S.BoldText>{message}</S.BoldText>
-          <Link to={"/login"}>
-            <S.GoToLoginButton>로그인</S.GoToLoginButton>
+          <Link to={"/find"}>
+            <S.GoToLoginButton>뒤로 가기</S.GoToLoginButton>
           </Link>
         </S.Box>
       </S.CompletionMain>
