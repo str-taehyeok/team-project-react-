@@ -1,88 +1,87 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import S from "./style";
 
 const SellerProductWrite = () => {
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({ mode: "onChange" });
+    const { register, handleSubmit, formState: {  isSubmitting } } = useForm({ mode: "onChange" });
     const navigate = useNavigate();
-    const { id } = useSelector(state => state.admin.currentUser);
-
-    // 이미지 상태 관리
-    const [mainImage, setMainImage] = useState(null);
-    const [subImages, setSubImages] = useState([null, null, null]);
-    const mainImageRef = useRef(null);
-    const subImageRefs = [useRef(null), useRef(null), useRef(null)];
+    // const { id } = useSelector(state => state.admin.currentUser);
+    // 이미지
+    const [mainImagePreview, setMainImagePreview] = useState(null);
+    const [subImagePreview1, setSubImagePreview1] = useState(null);
+    const [subImagePreview2, setSubImagePreview2] = useState(null);
+    const [subImagePreview3, setSubImagePreview3] = useState(null);
 
     // 이미지 미리보기 핸들러
-    const handleImagePreview = (e, type, index = 0) => {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            if (type === 'main') {
-                setMainImage(reader.result);
-            } else {
-                const newSubImages = [...subImages];
-                newSubImages[index] = reader.result;
-                setSubImages(newSubImages);
-            }
-        };
-        reader.readAsDataURL(file);
-    };
+    // const handleImagePreview = (e, type, index = 0) => {
+    //     const file = e.target.files[0];
+    //     if (!file) return;
+    //
+    //     const reader = new FileReader();
+    //     reader.onloadend = () => {
+    //         if (type === 'main') {
+    //             setMainImage(reader.result);
+    //         } else {
+    //             const newSubImages = [...subImages];
+    //             newSubImages[index] = reader.result;
+    //             setSubImages(newSubImages);
+    //         }
+    //     };
+    //     reader.readAsDataURL(file);
+    // };
 
     const onSubmit = async (data) => {
-        try {
             const formData = new FormData();
+            const {
+                deliveryCompany, deliveryFee, deliveryFeeFree, deliveryFeeKind, deliveryHow,
+                deliveryPayWhen, productAnimal, productCategory, productColor, productDetail,
+                productName, productPrice, productRealPrice, productSize, productStock,
+                mainImage, subImage1, subImage2, subImage3
+            } = data;
+            formData.append("deliveryCompany", deliveryCompany)
+            formData.append("deliveryFee", deliveryFee)
+            formData.append("deliveryFeeFree", deliveryFeeFree)
+            formData.append("deliveryFeeKind", deliveryFeeKind)
+            formData.append("deliveryHow", deliveryHow)
+            formData.append("deliveryPayWhen", deliveryPayWhen)
+            formData.append("productAnimal", productAnimal)
+            formData.append("productCategory", productCategory)
+            formData.append("productColor", productColor)
+            formData.append("productDetail", productDetail)
+            formData.append("productName", productName)
+            formData.append("productPrice", productPrice)
+            formData.append("productRealPrice", productRealPrice)
+            formData.append("productSize", productSize)
+            formData.append("productStock", productStock)
+            formData.append("uploadFile", mainImage[0])
+            formData.append("uploadFile", subImage1[0])
+            formData.append("uploadFile", subImage2[0])
+            formData.append("uploadFile", subImage3[0])
 
-            // 이미지 파일 추가
-            const mainImageFile = mainImageRef.current?.files[0];
-            const subImageFiles = subImageRefs.map(ref => ref.current?.files[0]);
+            console.log(data)
 
-            if (mainImageFile) {
-                formData.append('mainImage', mainImageFile);
-            }
-            subImageFiles.forEach((file, index) => {
-                if (file) {
-                    formData.append(`subImage${index + 1}`, file);
-                }
-            });
-
-            // 나머지 폼 데이터 추가
-            Object.keys(data).forEach(key => {
-                formData.append(key, data[key]);
-            });
-
-            // 이미지 업로드
-            const imageResponse = await fetch("http://localhost:10000/image-upload", {
+        // 서버로 데이터 전송
+        await fetch("http://localhost:10000/files/upload", {
+            method: "POST",
+            body: formData,
+        })
+        .then((res) => res.json())
+        .then(async (res) => {
+            console.log(res)
+            formData.append("uuids", res);
+            await fetch("http://localhost:10000/my-pet/write", {
                 method: "POST",
-                body: formData
-            });
-            const imageResult = await imageResponse.json();
+                body: formData,
+            })
+                .then((res) => res.json())
+                .then((res) => {
+                    console.log(res)
+                })
+        })
+        .catch(console.error)
 
-            // 상품 정보 저장
-            const productResponse = await fetch("http://localhost:10000/product/write", {
-                method: "POST",
-                body: formData
-            });
-            const productResult = await productResponse.json();
-
-            // 배송 정보 저장
-            const deliveryResponse = await fetch("http://localhost:10000/delivery/write", {
-                method: "POST",
-                body: formData
-            });
-            const deliveryResult = await deliveryResponse.json();
-
-            alert("상품이 성공적으로 등록되었습니다.");
-            navigate("/seller");
-
-        } catch (error) {
-            console.error("상품 등록 중 오류 발생:", error);
-            alert("상품 등록에 실패했습니다. 다시 시도해주세요.");
-        }
     };
 
     return (
@@ -265,19 +264,26 @@ const SellerProductWrite = () => {
                                 <S.Division>메인 이미지</S.Division>
                                 <label htmlFor="mainImage" style={{cursor: 'pointer'}}>
                                     <S.MainImage>
-                                        <img
-                                            src={mainImage || "/assets/images/seller/sub-default-plus.png"}
-                                            alt="메인 이미지"
-                                        />
+                                        <img src={mainImagePreview || "/assets/images/seller/sub-default-plus.png"} alt="메인 이미지" />
                                     </S.MainImage>
                                 </label>
                                 <input
+                                    id={"mainImage"}
                                     type="file"
-                                    id="mainImage"
-                                    ref={mainImageRef}
-                                    onChange={(e) => handleImagePreview(e, 'main')}
-                                    accept="image/*"
-                                    style={{display: 'none'}}
+                                    {...register("mainImage", {
+                                        required: true,
+                                        validate : (e) => {
+                                            console.log("validate", e[0])
+                                            const file = e[0];
+                                            if (file) {
+                                                const reader = new FileReader();
+                                                reader.onloadend = () => {
+                                                    setMainImagePreview(reader.result);
+                                                };
+                                                reader.readAsDataURL(file);
+                                            }
+                                        }
+                                    })}
                                 />
                             </S.Main>
                             <S.SubWrap>
@@ -286,19 +292,44 @@ const SellerProductWrite = () => {
                                         <S.Division>서브이미지{index + 1}</S.Division>
                                         <label htmlFor={`subImage${index + 1}`} style={{cursor: 'pointer'}}>
                                             <S.SubImage>
-                                                <img
-                                                    src={subImages[index] || "/assets/images/seller/sub-default-plus.png"}
-                                                    alt={`서브 이미지 ${index + 1}`}
-                                                />
+                                                {
+                                                    index === 0 ? (
+                                                        <img src={subImagePreview1 || "/assets/images/seller/sub-default-plus.png"} alt="펫 이미지" />
+                                                    ) : (
+                                                        index === 1 ? (
+                                                            <img src={subImagePreview2 || "/assets/images/seller/sub-default-plus.png"} alt="펫 이미지" />
+                                                        ) : (
+                                                            <img
+                                                                src={subImagePreview3 || "/assets/images/seller/sub-default-plus.png"}
+                                                                alt="펫 이미지"/>
+                                                        )
+                                                    )
+                                                }
                                             </S.SubImage>
                                         </label>
                                         <input
                                             type="file"
                                             id={`subImage${index + 1}`}
-                                            ref={subImageRefs[index]}
-                                            onChange={(e) => handleImagePreview(e, 'sub', index)}
-                                            accept="image/*"
-                                            style={{display: 'none'}}
+                                            {...register(`subImage${index + 1}`, {
+                                                required: true,
+                                                validate : (e) => {
+                                                    console.log("validate", e[0])
+                                                    const file = e[0];
+                                                    if (file) {
+                                                        const reader = new FileReader();
+                                                        reader.onloadend = () => {
+                                                            if(index === 0){
+                                                                setSubImagePreview1(reader.result);
+                                                            }else if(index === 1){
+                                                                setSubImagePreview2(reader.result);
+                                                            }else{
+                                                                setSubImagePreview3(reader.result);
+                                                            }
+                                                        };
+                                                        reader.readAsDataURL(file);
+                                                    }
+                                                }
+                                            })}
                                         />
                                     </S.Subs>
                                 ))}
@@ -306,7 +337,7 @@ const SellerProductWrite = () => {
                         </S.imageContent>
                     </S.ImageWrap>
                     <S.ButtonWrap>
-                        <button type="submit" disabled={isSubmitting}>상품 등록</button>
+                        <button disabled={isSubmitting}>상품 등록</button>
                         <button type="button" onClick={() => navigate('/seller')}>취소</button>
                     </S.ButtonWrap>
                 </S.ProductInsert>
