@@ -22,7 +22,7 @@ const SellerUpdate = () => {
     }, [id]);
 
     console.log(post)
-    const {memberName} = post;
+    const {memberName, memberEmail, memberPhone, memberBank, memberBankAccount, memberPassword,memberBusinessNumber } = post;
 
     return (
         <form onSubmit={handleSubmit(async (data) => {
@@ -49,6 +49,51 @@ const SellerUpdate = () => {
                 <p>회원 이름</p>
                 <input type={"text"} defaultValue={memberName}
                        {...register("memberName", {
+                           required: true,
+                       })}
+                />
+            </label>
+            <label>
+                <p>로그인 ID(이메일)</p>
+                <input type={"text"} defaultValue={memberEmail}
+                       {...register("memberEmail", {
+                           required: true,
+                       })}
+                />
+            </label>
+            <label>
+                <p>정산 계좌 정보</p>
+                <input type={"text"} defaultValue={memberBank}
+                       {...register("memberBank", {
+                           required: true,
+                       })}
+                />
+                <input type={"text"} defaultValue={memberBankAccount}
+                       {...register("memberBankAccount", {
+                           required: true,
+                       })}
+                />
+            </label>
+            <label>
+                <p>휴대폰 번호</p>
+                <input type={"text"} defaultValue={memberPhone}
+                       {...register("memberPhone", {
+                           required: true,
+                       })}
+                />
+            </label>
+            <label>
+                <p>비밀번호</p>
+                <input type={"text"} defaultValue={memberPassword}
+                       {...register("memberPassword", {
+                           required: true,
+                       })}
+                />
+            </label>
+            <label>
+                <p>사업자 번호</p>
+                <input value={memberBusinessNumber}
+                       {...register("memberBusinessNumber", {
                            required: true,
                        })}
                 />
