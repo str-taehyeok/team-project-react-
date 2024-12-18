@@ -4,77 +4,16 @@ import ProductCount from './ProductCount';
 import Coupon from './Coupon';
 import CartBtn from './CartBtn';
 import {Link} from "react-router-dom";
+import CartProducts from "./CartProducts";
 
-const products = [
-    {
-        productImage: "/assets/images/cart/cart-product.png",
-        productName: "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
-        productStock: 1,
-        productPrice: 4_500,
-        productDiscountPrice: 4_050,
-        productCoupon: 0,
-        reviewStar: "⭐⭐⭐⭐⭐",
-        reviewCount: 25,
-        productCount: 1,
-        deliveryFee: 0
-    },
-    {
-        productImage: "/assets/images/cart/cart-product-2.png",
-        productName: "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
-        productStock: 1,
-        productPrice: 4_500,
-        productDiscountPrice: 4_050,
-        productCoupon: 0,
-        reviewStar: "⭐⭐⭐⭐⭐",
-        reviewCount: 25,
-        productCount: 13,
-        deliveryFee: 0
-    },
-    {
-        productImage: "/assets/images/cart/cart-product-3.png",
-        productName: "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
-        productStock: 1,
-        productPrice: 4_500,
-        productDiscountPrice: 4_050,
-        productCoupon: 0,
-        reviewStar: "⭐⭐⭐⭐⭐",
-        reviewCount: 25,
-        productCount: 17,
-        deliveryFee: 0
-    },
-    {
-        productImage: "/assets/images/cart/cart-product-4.png",
-        productName: "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
-        productStock: 1,
-        productPrice: 4_500,
-        productDiscountPrice: 4_050,
-        productCoupon: 0,
-        reviewStar: "⭐⭐⭐⭐⭐",
-        reviewCount: 25,
-        productCount: 11,
-        deliveryFee: 0
-    },
-    {
-        productImage: "/assets/images/cart/cart-product-5.png",
-        productName: "오쥬 바이 로우즈 독 치킨가슴살&호박 파우치 강아지 간식 69g (유통기한 2025-02225까지)",
-        productStock: 1,
-        productPrice: 4_500,
-        productDiscountPrice: 4_050,
-        productCoupon: 0,
-        reviewStar: "⭐⭐⭐⭐⭐",
-        reviewCount: 25,
-        productCount: 5,
-        deliveryFee: 0
-    }
-];
 
-const CartProduct = () => {
+const CartProduct = ({product}) => {
     const [, setCheckedAll] = useState(false);
-    const [checked, setChecked] = useState(new Array(products.length).fill(false));
+    const [checked, setChecked] = useState(new Array(product.length).fill(false));
 
     const onChangeCheckedAll = (e) => {
         setCheckedAll(e.target.checked);
-        setChecked(new Array(products.length).fill(e.target.checked));
+        setChecked(new Array(product.length).fill(e.target.checked));
     };
 
     const onChangeChecked = (e) => {
@@ -89,7 +28,7 @@ const CartProduct = () => {
         }
     };
 
-    const productList = products.map((product, i) => (
+    const productList = product.map((product, i) => (
         <S.CartProductBox key={i}>
             <input
                 type="checkbox"
@@ -97,20 +36,7 @@ const CartProduct = () => {
                 value={i}
                 checked={checked[i]}
             />
-            <S.CartProductInfo>
-                <img
-                    className="thumb"
-                    src={`${process.env.PUBLIC_URL}${product.productImage}`}
-                    alt={"상품" + (i + 1)}
-                />
-                <S.ProductName>{product.productName}</S.ProductName>
-                <ProductCount key={i} product={product} />
-                <S.productPrice>
-                    <p>{product.productDiscountPrice} 원</p>
-                    <p>{product.productPrice} 원</p>
-                </S.productPrice>
-                <Coupon />
-            </S.CartProductInfo>
+            <CartProducts/>
         </S.CartProductBox>
     ));
 
@@ -119,26 +45,28 @@ const CartProduct = () => {
             <S.AllDeliveryBox>
                 <S.AllDeliveryFee>
                     <p>총 배송비</p>
-                    <p>{products.deliveryFee}</p>
+                    <p>{product.deliveryFee}</p>
                 </S.AllDeliveryFee>
                 <S.PurchasePrice>
                     <p>결제금액</p>
-                    <p>{products.productPrice}</p>
+                    <p>{product.productPrice}</p>
                 </S.PurchasePrice>
                 <S.DiscountPrice>
                     <p>할인</p>
-                    <p>{products.productDiscountPrice}</p>
+                    <p>{product.productDiscountPrice}</p>
                 </S.DiscountPrice>
                 <S.AllPurchaseFee>
                     <p>총 주문금액</p>
-                    <p>{products.deliveryFee}</p>
+                    <p>{product.deliveryFee}</p>
                 </S.AllPurchaseFee>
             </S.AllDeliveryBox>
         </S.CartPay>
     );
 
     return (
+
         <S.CartBox>
+
             <form>
                 <S.CartWrap>
                     <S.Cart>
