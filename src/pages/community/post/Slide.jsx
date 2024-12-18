@@ -1,38 +1,69 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
-
-
-const datas = [
-  {
-      postImage1 : "/assets/images/community/myPostImage1.png",
-      postImage2 : "/assets/images/community/myPostImage2.png",
-      postImage3 : "/assets/images/community/myPostImage3.png",
-      postImage4 : "/assets/images/community/myPostImage4.png",
-      postImage5 : "/assets/images/community/myPostImage5.png"
-  }, 
-]
+import { useParams } from 'react-router-dom';
+import { CommunityContext } from '../../../context/communityContext';
 
 export default function Slide() {
+  const { id } = useParams();
+  const { communityState } = useContext(CommunityContext);
+  const { communites } = communityState;
 
-  const postImage = datas.map((post, i) => (
-    <Swiper pagination={true} modules={[Pagination]} className="mySwiper" key={i}>
-      <SwiperSlide><img src={`${process.env.PUBLIC_URL}${post.postImage1}`} alt="내 이미지1" /></SwiperSlide>
-      <SwiperSlide><img src={`${process.env.PUBLIC_URL}${post.postImage2}`} alt="내 이미지1" /></SwiperSlide>
-      <SwiperSlide><img src={`${process.env.PUBLIC_URL}${post.postImage3}`} alt="내 이미지1" /></SwiperSlide>
-      <SwiperSlide><img src={`${process.env.PUBLIC_URL}${post.postImage4}`} alt="내 이미지1" /></SwiperSlide>
-      <SwiperSlide><img src={`${process.env.PUBLIC_URL}${post.postImage5}`} alt="내 이미지1" /></SwiperSlide>
-    </Swiper>
-  ))
+  const foundPost = communites?.find((cm) => String(cm.id) === String(id));
 
+  if (!foundPost) {
+    return <div>게시물을 찾을 수 없습니다.</div>;
+  }
 
+  const { 
+    imageName1, imageName2, imageName3, imageName4, imageName5, 
+    imagePath1, imagePath2, imagePath3, imagePath4, imagePath5 
+  } = foundPost;
 
   return (
-    <>
-    {postImage}
-    </>
-  
+    <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+      {imageName1 && (
+        <SwiperSlide>
+          <img 
+            src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`} 
+            alt="내 이미지1" 
+          />
+        </SwiperSlide>
+      )}
+      {imageName2 && (
+        <SwiperSlide>
+          <img 
+            src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName2}`} 
+            alt="내 이미지2" 
+          />
+        </SwiperSlide>
+      )}
+      {imageName3 && (
+        <SwiperSlide>
+          <img 
+            src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName3}`} 
+            alt="내 이미지3" 
+          />
+        </SwiperSlide>
+      )}
+      {imageName4 && (
+        <SwiperSlide>
+          <img 
+            src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName4}`} 
+            alt="내 이미지4" 
+          />
+        </SwiperSlide>
+      )}
+      {imageName5 && (
+        <SwiperSlide>
+          <img 
+            src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName5}`} 
+            alt="내 이미지5" 
+          />
+        </SwiperSlide>
+      )}
+    </Swiper>
   );
 }

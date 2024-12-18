@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 // postid 또는 productId
 const HeartBtn = ({ id, type }) => {
-
   // 방어 코드
   const navigate = useNavigate();
   
@@ -24,6 +23,9 @@ const HeartBtn = ({ id, type }) => {
   // 좋아요인지 아닌지 비교
   const isCommunityLike = commLikes.some((comm) => comm.id === id);
   const isProductLike = productLikes.some((product) => product.productId === id);
+
+  console.log(commLikes)
+  console.log(isCommunityLike)
 
   // 타입 비교
   let fetchType = type === "community" ? "commLikes" : "productLikes";
