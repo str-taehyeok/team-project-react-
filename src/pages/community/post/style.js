@@ -642,6 +642,7 @@ S.PopupAreaFollowing = styled.div`
   width: 400px;
   height: 534px;
   border-radius: 20px;
+  z-index: 10000;
   border: solid 1px #828282;
   box-shadow: 2px 4px 4px rgb(0, 0, 0, 0.2);
   display: flex;
@@ -768,7 +769,7 @@ S.PoputBtnType = styled.div`
       border-top-left-radius: 20px;
       background-color: white;
     }
-    &:nth-child(2) {
+    &:nth-child(3) {
         width: 60px;
         height: 30px;
         border-bottom-right-radius: 20px;

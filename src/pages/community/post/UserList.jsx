@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CommunityContext } from "../../../context/communityContext";
 
