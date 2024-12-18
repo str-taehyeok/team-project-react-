@@ -3,8 +3,6 @@ import S from "./style";
 import {StarRating} from "../../../context/starContext";
 
 
-
-
 const ProductReview = () => {
 
     // 더미 리뷰

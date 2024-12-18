@@ -285,6 +285,7 @@ const S = {}
     width:220px;
     height:300px;
     border-radius: 20px; 
+    overflow: hidden;
     position: relative;
     .like-icon{
       position: absolute;
@@ -292,6 +293,10 @@ const S = {}
       height:20px;
       right: 20px;
       top : 20px;
+    }
+
+    & img {
+      width: 100%;
     }
   `
   S.ProfileBox = styled.div`
@@ -304,6 +309,10 @@ const S = {}
     width:40px;
     height:40px;
     margin-right: 10px;
+
+    & img {
+      width: 100%;
+    }
   `
   S.PostBox = styled.div`
     display:flex;
