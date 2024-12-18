@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import S from "../style";
 import { Link } from "react-router-dom";
-import HeartBtn from "../../HeartBtn";
+import HeartBtn from '../../../../community/community/HeartBtn'; 
 import {Grid, Pagination} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/grid";

@@ -51,7 +51,7 @@ const HeartBtn = ({ id, type }) => {
    
     if(!memberId){
       alert("로그인 해주세요.")
-      navigate("login")
+      navigate("/login")
       return;
     }
     await fetch(`http://localhost:10000/${fetchType}/${fetchPath}`, {
@@ -71,12 +71,14 @@ const HeartBtn = ({ id, type }) => {
       <>
         {isCommunityLike ? (
           <img
+            className='heart'
             onClick={handleLike}
             src={process.env.PUBLIC_URL + "/assets/images/store/heart-click.png"}
             alt="Liked"
           />
         ) : (
           <img
+             className='heart'
             onClick={handleLike}
             src={process.env.PUBLIC_URL + "/assets/images/store/heart-not-click.png"}
             alt="Not Liked"
@@ -91,12 +93,14 @@ const HeartBtn = ({ id, type }) => {
       <>
         {isProductLike ? (
           <img
+            className='heart'
             onClick={handleLike}
             src={process.env.PUBLIC_URL + "/assets/images/store/heart-click.png"}
             alt="Liked"
           />
         ) : (
           <img
+            className='heart'
             onClick={handleLike}
             src={process.env.PUBLIC_URL + "/assets/images/store/heart-not-click.png"}
             alt="Not Liked"
