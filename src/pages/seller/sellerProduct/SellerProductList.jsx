@@ -1,36 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ProductContext } from "../../../context/productContext";
 
 const SellerProductList = () => {
-  const [products, setProducts] = useState([]); // 전체 상품 목록
-  const [filteredProducts, setFilteredProducts] = useState([]); // 검색 결과 목록
-  const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태
-  const [isPopupVisible, setIsPopupVisible] = useState(false); // 팝업 표시 여부
-  const [deleteProductId, setDeleteProductId] = useState(null); // 삭제할 상품 ID 상태
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [deleteProductId, setDeleteProductId] = useState(null);
   const { currentUser } = useSelector((state) => state.user);
-  const sellerId = currentUser.id;
+  const localJwtToken = localStorage.getItem("jwtToken");
+  const navigate = useNavigate();
+  const { productState } = useContext(ProductContext);
+  const { products, setProducts } = productState;
 
-  
-  // 상품 목록 가져오기
-  useEffect(() => {
-    const getProducts = async () => {
-      const response = await fetch(
-        `http://localhost:10000/products/seller-all-list/${sellerId}`
-      );
-      if (!response.ok) return console.error("데이터가 없습니다.");
-      const data = await response.json();
-      setProducts(data); // 전체 상품 목록 저장
-      setFilteredProducts(data); // 초기 검색 결과 설정
-    };
-    getProducts().catch(console.error);
-  }, [sellerId]);
+  // // 로그인 상태 확인
+  // useEffect(() => {
+  //   // console.log(productState)
+  //   if (!localJwtToken) {
+  //     alert("로그인 후 이용해 주세요.");
+  //     navigate("/login");
+  //   }
+  // }, [localJwtToken, navigate]);
 
 
   // 삭제 팝업 열기
-  const openDeletePopup = (id) => {
-    setDeleteProductId(id);
+  const openDeletePopup = (productId) => {
+    setDeleteProductId(productId);
     setIsPopupVisible(true);
   };
 
@@ -41,33 +38,38 @@ const SellerProductList = () => {
   };
 
   const handleDelete = async () => {
-    // 상품 삭제 요청
-    console.log(deleteProductId); // 삭제할 상품 ID가 제대로 설정되었는지 확인
-    const response = await fetch(
-      `http://localhost:10000/products/seller-product/${deleteProductId}`,
-      {
-        method: 'DELETE',
-      }
-    );
-  
-    if (response.ok) {
-      const updatedProducts = products.filter(
-        (product) => product.id !== deleteProductId
+    try {
+      const response = await fetch(
+          `http://localhost:10000/products/seller-product/${deleteProductId}`,
+          {
+            method: 'DELETE',
+            headers: {
+              'Authorization': `Bearer ${localJwtToken}`
+            }
+          }
       );
-      setProducts(updatedProducts); // 전체 상품 목록에서 삭제
-      setFilteredProducts(updatedProducts); // 필터링된 상품 목록에서도 삭제
-      setIsPopupVisible(false); // 팝업 닫기
-      alert('상품이 삭제되었습니다.');
-    } else {
-      console.error("상품 삭제에 실패했습니다.");
-      alert('상품 삭제에 실패했습니다.');
+
+      if (response.ok) {
+        const updatedProducts = products.filter(
+            (product) => product.id !== deleteProductId
+        );
+        setProducts(updatedProducts);
+        setFilteredProducts(updatedProducts);
+        setIsPopupVisible(false);
+        alert('상품이 삭제되었습니다.');
+      } else {
+        throw new Error('상품 삭제에 실패했습니다.');
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
     }
   };
 
   // 검색 기능
   const handleSearch = () => {
     const filtered = products.filter((product) =>
-      product.productName.includes(searchTerm)
+        product.productName.includes(searchTerm)
     );
     setFilteredProducts(filtered);
   };
@@ -75,68 +77,32 @@ const SellerProductList = () => {
   // 검색 초기화
   const resetSearch = () => {
     setSearchTerm("");
-    setFilteredProducts(products); // 전체 상품으로 초기화
+    setFilteredProducts(products);
   };
 
-  // 상품 테이블 렌더링
-  const productRows =
-    filteredProducts.length === 0 ? (
-      <tr>
-        <td colSpan="8">상품이 없습니다.</td>
-      </tr>
-    ) : (
-      filteredProducts.map((product, index) => (
-        <tr key={product.id}>
-          <td>{index + 1}</td>
-          <td>
-            <S.Image>
-              <img src={product.productFileName} alt={`상품 ${index + 1}`} />
-            </S.Image>
-          </td>
-          <td>
-            <S.Name>{product.productName}</S.Name>
-          </td>
-          <td>{product.productPrice.toLocaleString()}원</td>
-          <td>{product.productCategory}</td>
-          <td>{product.productStock}</td>
-          <td>{product.productDate}</td>
-          <td>
-            <S.ManageButtons>
-              <S.EditButton>
-                <Link to={`/seller/product-update/${product.id}`}>수정</Link>
-              </S.EditButton>
-              <S.DeleteButton onClick={()=>openDeletePopup(product.id)}>
-                삭제
-              </S.DeleteButton>
-            </S.ManageButtons>
-          </td>
-        </tr>
-      ))
-    );
-
   return (
-    <div>
-      <Outlet />
-      <S.NoticeSearch>
-        <S.Search>
-          <input
-            type="text"
-            placeholder="상품명을 입력하세요"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </S.Search>
-        <S.Buttons>
-          <S.SearchButton onClick={handleSearch}>검색</S.SearchButton>
-          <S.ResetButton onClick={resetSearch}>초기화</S.ResetButton>
-          <Link to="/seller/product-write">
-            <S.NewButton>상품등록</S.NewButton>
-          </Link>
-        </S.Buttons>
-      </S.NoticeSearch>
+      <div>
+        <Outlet/>
+        <S.NoticeSearch>
+          <S.Search>
+            <input
+                type="text"
+                placeholder="상품명을 입력하세요"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </S.Search>
+          <S.Buttons>
+            <S.SearchButton onClick={handleSearch}>검색</S.SearchButton>
+            <S.ResetButton onClick={resetSearch}>초기화</S.ResetButton>
+            <Link to="/seller/product-write">
+              <S.NewButton>상품등록</S.NewButton>
+            </Link>
+          </S.Buttons>
+        </S.NoticeSearch>
 
-      <S.Table>
-        <thead>
+        <S.Table>
+          <thead>
           <tr>
             <th>No</th>
             <th>이미지</th>
@@ -147,21 +113,52 @@ const SellerProductList = () => {
             <th>등록일</th>
             <th>관리</th>
           </tr>
-        </thead>
-        <tbody>{productRows}</tbody>
-      </S.Table>
+          </thead>
+          <tbody>
+          {products.map(({id, productFileName,productName, productPrice, productCategory, productStock, productDate}, index) => (
+              <tr key={id}>
+                <td>{index + 1}</td>
+                <td>
+                  <S.Image>
+                    <img
+                        alt="제품 사진"
+                        src={`${process.env.PUBLIC_URL}/assets/images/products/${productFileName}`}
+                    />
+                  </S.Image>
+                </td>
+                <td>
+                  <S.Name>{productName}</S.Name>
+                </td>
+                <td>{productPrice.toLocaleString()} 원</td>
+                <td>{productCategory}</td>
+                <td>{productStock}</td>
+                <td>{productDate}</td>
+                <td>
+                  <S.ManageButtons>
+                    <S.EditButton>
+                      <Link to={`/seller/product-update/${id}`}>수정</Link>
+                    </S.EditButton>
+                    <S.DeleteButton onClick={() => openDeletePopup(id)}>
+                      삭제
+                    </S.DeleteButton>
+                  </S.ManageButtons>
+                </td>
+              </tr>
+          ))}
+          </tbody>
+        </S.Table>
 
-      {/* 삭제 확인 팝업 */}
-      <S.Popup $isVisible={isPopupVisible}>
-        <p>삭제하시겠습니까?</p>
-        <S.CheckButton>
-          <S.DeleteButton onClick={handleDelete}>삭제</S.DeleteButton>
-          <S.CancelButton onClick={cancelDelete}>취소</S.CancelButton>
-        </S.CheckButton>
-      </S.Popup>
+        {/* 삭제 확인 팝업 */}
+        <S.Popup $isVisible={isPopupVisible}>
+          <p>삭제하시겠습니까?</p>
+          <S.CheckButton>
+            <S.DeleteButton onClick={handleDelete}>삭제</S.DeleteButton>
+            <S.CancelButton onClick={cancelDelete}>취소</S.CancelButton>
+          </S.CheckButton>
+        </S.Popup>
 
-      <S.PopupBackground $isVisible={isPopupVisible} />
-    </div>
+        <S.PopupBackground $isVisible={isPopupVisible}/>
+      </div>
   );
 };
 
