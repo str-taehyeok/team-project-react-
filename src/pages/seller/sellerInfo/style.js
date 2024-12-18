@@ -3,411 +3,266 @@ import { h1Bold, h6Regular, h8Regular } from "../../../global/common";
 
 const S = {}
 
-S.SellerUpdateWrap = styled.div`
-  width: 1920px;
-  margin: 0 auto;
-`
-S.SellerUpdate = styled.div`
-  width: 1440px;
-  margin: 0 auto;
-`
-
-S.SellerTitleWrap = styled.div`
-  width: 1062px; 
-  height: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 60px;
-
-`
-
-
-S.SellerTitle = styled.div`
-  width: 267px;
-  height: 50px;
-  ${h1Bold}
-`
-
-S.SellterBtn = styled.div`
-  width: 195px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
-S.SellerBox = styled.div`
-  width: 638px;
-  height: 500px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin-top: 122px;
-  margin-left: 268px;
-`
-
-
-S.SellerName = styled.div`
-  width: 637px;
-  height: 55px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-
-  & > p {
-    ${h6Regular}
-  }
-
-  & input {
-    width: 464px;
-    height: 55px;
-    box-sizing: border-box;
-    border-radius: 20px;
-    border: solid 0.5px #828282;
-    padding-left: 26px;
-  }
- 
-
-`
-
-S.SellerId = styled.div`
-width: 637px;
-height: 55px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center; 
-margin-bottom: 20px;
-
-& > p {
-  ${h6Regular}
-}
-
-& input {
-  width: 464px;
-  height: 55px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 0.5px #828282;
-  padding-left: 26px;
-}
-`
-
-S.SellerEmail = styled.div`
-width: 637px;
-height: 55px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center; 
-margin-bottom: 20px;
-
-& > p {
-  ${h6Regular}
-}
-
-& input {
-  width: 464px;
-  height: 55px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 0.5px #828282;
-  padding-left: 26px;
-}
-`
-S.SellerBank = styled.div`
-width: 637px;
-height: 55px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center; 
-margin-bottom: 20px;
-
-& > p {
-  ${h6Regular}
-}
-
-& input {
-  width: 464px;
-  height: 55px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 0.5px #828282;
-  padding-left: 26px;
-}
-`
-
-S.SellerAccount = styled.div`
-width: 637px;
-height: 55px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center; 
-margin-bottom: 20px;
-
-& input {
-  width: 464px;
-  height: 55px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 0.5px #828282;
-  padding-left: 26px;
-  margin-left: 172px;
-}
-`
-S.SellerPhone = styled.div`
-width: 637px;
-height: 55px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center; 
-margin-bottom: 20px;
-
-& > p {
-  ${h6Regular}
-}
-
-& input {
-  width: 464px;
-  height: 55px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 0.5px #828282;
-  padding-left: 26px;
-}
-`
-
-S.SellerPassword = styled.div`
-    width: 637px;
-    height: 30px;
+  S.UpdateBox = styled.div`
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  `
+  S.Title = styled.div`
+    font-size: 40px;
+    line-height: 54px;
+    font-weight: bold;
+    margin-right: 600px;
+  `
+  S.ListButton = styled.div`
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center; 
-    margin-bottom: 20px;
-
-    & > p {
-      ${h6Regular}
+    flex-direction: row;
+    width: 1100px;
+    justify-content: right;
+    margin: 0 auto;
+    margin-top: 60px;
+    align-items: center;
+   
+    & button.delete {
+      width: 90px;
+      height: 30px;
+      color: #ffffff;
+      background-color: #113F8A;
+      border-radius: 20px;
+      font-size: 14px;
+      line-height: 22px;
+      margin-left: 5px;
+      cursor: pointer;
+      
     }
+    & button.update {
+      width: 90px;
+      height: 30px;
+      border-radius: 20px;
+      background-color: #ffffff;
+      border:1px solid #828282;
+      color: #828282;
+      font-size: 14px;
+      line-height: 22px;
+      cursor: pointer;
+    }
+  `
+  S.NameText = styled.div`
+    width: 145px;
+    font-size: 20px;
+    line-height: 30px;
+  `
+  S.NameInput = styled.div`
+    & input {
+      border-radius: 20px;
+      border-style: none;
+      border: solid 1px #828282;
+      width: 464px;
+      height: 55px;
+      padding: 19px 26px;
+      font-size: 14px;
+      line-height: 22px;
+      color:#828282;
+      outline:none;
+      margin-left: 27px;
+    }   
+  `
+  S.NameInputBox = styled.div`
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 100px;
+  `
 
-`
-// 사업자 정보 관리
-
-S.BusinessUpdateWrap = styled.div`
-  width: 1920px;
-  margin: 0 auto;
-
-`
-S.BusinessUpdate = styled.div`
-  width: 1440px;
-  margin: 0 auto;
-  margin-top: 60px;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 307px;
-
-`
-S.BusinessUpdateTitleWrap = styled.div`
-  width: 1062px;
-  height: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-
-`
-
-S.BusinessUpdateTitle = styled.div`
- ${h1Bold}
-`
-
-S.BusinessUpdateBtn = styled.div`
-  width: 190px;
-  height: 30px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-
-`
-
-S.BusinessBox = styled.div`
-    margin-top: 68px;
-    width: 950px;
-    height: 660px;
-    box-sizing: border-box;
-    border: solid 0.5px #828282;
-    border-radius: 20px;
-    padding: 53px 191px 53px 191px;
-
-`
-
-
-S.BusinessName = styled.div`
-width: 637px;
-height: 55px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-
-& > p {
-  ${h6Regular}
-}
-
-& input {
-  width: 464px;
-  height: 55px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 0.5px #828282;
-  padding-left: 26px;
-}
+  S.IdText = styled.div  `
+      width: 145px;
+      font-size: 20px;
+      line-height: 30px;
+  `
+  S.IdInput = styled.div`
+      & input {
+        border-radius: 20px;
+        border-style: none;
+        border: solid 1px #828282;
+        width: 464px;
+        height: 55px;
+        padding: 19px 26px;
+        font-size: 14px;
+        line-height: 22px;
+        color:#828282;
+        outline:none;
+        margin-left: 27px;
+      }   
+  `
+  S.IdInputBox = styled.div`
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+  `
 
 
-`
+  S.PayText = styled.div  `
+        width: 145px;
+        font-size: 20px;
+        line-height: 30px;
+    `
+  S.BankInput = styled.div`
+        & input {
+          border-radius: 20px;
+          border-style: none;
+          border: solid 1px #828282;
+          width: 464px;
+          height: 55px;
+          padding: 19px 26px;
+          font-size: 14px;
+          line-height: 22px;
+          color:#828282;
+          outline:none;
+          margin-left: 27px;
+        }
+    & select {
+      border-radius: 20px;
+      border-style: none;
+      border: solid 1px #828282;
+      width: 464px;
+      height: 55px;
+      padding: 19px 26px;
+      font-size: 14px;
+      line-height: 22px;
+      color:#828282;
+      outline:none;
+      margin-left: 27px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    `
+  S.BankAccInput = styled.div`
+        & input {
+          border-radius: 20px;
+          border-style: none;
+          border: solid 1px #828282;
+          width: 464px;
+          height: 55px;
+          padding: 19px 26px;
+          font-size: 14px;
+          line-height: 22px;
+          color:#828282;
+          outline:none;
+          margin-left: 172px;
+          margin-top: 20px;
+        }
+  `
+  S.PayInputBox = styled.div`
+      display:flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 20px;
+    `
 
-S.BusinessMemberName = styled.div`
-width: 637px;
-height: 55px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-
-& > p {
-  ${h6Regular}
-}
-
-& input {
-  width: 464px;
-  height: 55px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 0.5px #828282;
-  padding-left: 26px;
-}
-
-
-`
-S.InternetBusinessNumber = styled.div`
-width: 637px;
-height: 55px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-
-& > p {
-  ${h6Regular}
-}
-
-& input {
-  width: 464px;
-  height: 55px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 0.5px #828282;
-  padding-left: 26px;
-}
-
-
-`
-S.BusinessCategory = styled.div`
-width: 637px;
-height: 55px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-
-& > p {
-  ${h6Regular}
-}
-
-& input {
-  width: 464px;
-  height: 55px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 0.5px #828282;
-  padding-left: 26px;
-}
-
-
-`
-S.memberAdress= styled.div`
-width: 637px;
-height: 55px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-
-& > p {
-  ${h6Regular}
-}
-
-& input {
-  width: 464px;
-  height: 55px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 0.5px #828282;
-  padding-left: 26px;
-}
+  S.PhoneText = styled.div  `
+        width: 145px;
+        font-size: 20px;
+        line-height: 30px;
+    `
+  S.PhoneInput = styled.div`
+        & input {
+          border-radius: 20px;
+          border-style: none;
+          border: solid 1px #828282;
+          width: 464px;
+          height: 55px;
+          padding: 19px 26px;
+          font-size: 14px;
+          line-height: 22px;
+          color:#828282;
+          outline:none;
+          margin-left: 27px;
+        }   
+    `
+  S.PhoneInputBox = styled.div`
+      display:flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 20px;
+    `
 
 
-`
-S.memberAdress= styled.div`
-width: 637px;
-height: 55px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
+S.PwText = styled.div  `
+        width: 145px;
+        font-size: 20px;
+        line-height: 30px;
+    `
+S.PwInput = styled.div`
+        & input {
+          border-radius: 20px;
+          border-style: none;
+          border: solid 1px #828282;
+          width: 464px;
+          height: 55px;
+          padding: 19px 26px;
+          font-size: 14px;
+          line-height: 22px;
+          color:#828282;
+          outline:none;
+          margin-left: 27px;
+        }   
+    `
+S.PwInputBox = styled.div`
+      display:flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 20px;
+    `
 
-& > p {
-  ${h6Regular}
-}
 
-& input {
-  width: 464px;
-  height: 55px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: solid 0.5px #828282;
-  padding-left: 26px;
-}
+  S.BussinessText = styled.div  `
+          width: 145px;
+          font-size: 20px;
+          line-height: 30px;
+      `
+  S.BussinessInput = styled.div`
+          & input {
+            border-radius: 20px;
+            border-style: none;
+            border: solid 1px #828282;
+            width: 464px;
+            height: 55px;
+            padding: 19px 26px;
+            font-size: 14px;
+            line-height: 22px;
+            color:#828282;
+            outline:none;
+            margin-left: 27px;
+          }   
+      `
+  S.BussinessInputBox = styled.div`
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 20px;
+  `
+  S.Delete = styled.div`
+    display:flex;
+    flex-direction: row;
+    margin-top: 20px;
+    align-items: center;
+    
+      & div.delete-button {
+        width: 464px;
+        margin-left: 27px;
+        height: 55px;
+      }
+      & button.delete {
+        width: 90px;
+        height: 30px;
+        color: #ffffff;
+        background-color: #113F8A;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top:14px;
+      }
+  `
 
-
-`
-S.BusinessInfoBox = styled.div`
-  width: 590px;
-  height: 88px;
-  ${h8Regular}
-
-  & > Link {
-    ${h8Regular}
-    color: #113F8A;
-  }
-`
-
-S.Phone = styled.div`
- margin-top: 20px;
-  ${h8Regular}
-  color: #AAAAAA;
-`
 export default S;
