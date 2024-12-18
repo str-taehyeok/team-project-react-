@@ -41,7 +41,8 @@ const PetsonalResult = () => {
     getPetsonalResult().catch(console.error);
   }, [id, navigate, result]);
   
-  const { petName, petImage, petsonalCute, petsonalChic, petsonalCalm, petsonalActive, petsonalLazy, petsonalDiligent, petsonalCoward, petsonalBrave, petKind, petFilePath, petFileName } = petsonalResult;
+  const { petName, petImage, petsonalCute, petsonalChic, petsonalCalm, petsonalActive, petsonalLazy, petsonalDiligent,
+         petsonalCoward, petsonalBrave, petKind, petFilePath, petFileName } = petsonalResult;
   const { imageSrc, message, boxColor, title } = colorResult;
 
   
