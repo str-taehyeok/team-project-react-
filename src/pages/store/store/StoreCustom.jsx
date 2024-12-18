@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import S from "./style";
 import { Link } from 'react-router-dom'
-import HeartBtn from './HeartBtn';
+import HeartBtn from '../../community/community/HeartBtn';
 import theme from '../../../global/theme';
 
 

@@ -5,7 +5,7 @@ import FlushieBest from './flushies/FlushieBest';
 import FlushieSpecial from './flushies/FlushieSpecial';
 import FlushieRecommend from './flushies/FlushieRecommend';
 import { Link } from "react-router-dom";
-import HeartBtn from "../HeartBtn";
+import HeartBtn from '../../../community/community/HeartBtn';
 
 
 const Flushies = () => {

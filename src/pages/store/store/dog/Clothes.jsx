@@ -5,7 +5,7 @@ import ClothesBest from './clothes/ClothesBest';
 import ClothesSpecial from './clothes/ClothesSpecial';
 import ClothesRecommend from './clothes/ClothesRecommend';
 import { Link } from "react-router-dom";
-import HeartBtn from "../HeartBtn";
+import HeartBtn from '../../../community/community/HeartBtn';
 
 const Clothes = () => {
 
