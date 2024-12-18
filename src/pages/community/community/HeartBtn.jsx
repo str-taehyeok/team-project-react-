@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 // postid 또는 productId
 const HeartBtn = ({ id, type }) => {
-
   // 방어 코드
   const navigate = useNavigate();
   
@@ -22,8 +21,15 @@ const HeartBtn = ({ id, type }) => {
   const { setIsUpdate } = useContext(HeartContext).action;
 
   // 좋아요인지 아닌지 비교
-  const isCommunityLike = commLikes.some((comm) => comm.id === id);
-  const isProductLike = productLikes.some((product) => product.productId === id);
+  const isCommunityLike = commLikes.some((comm) => {
+    console.log("comm.id:", comm.id, "id:", id);
+    return comm.id === Number(id);  // id를 숫자로 변환하여 비교
+  });
+
+  const isProductLike = productLikes.some((product) => {
+    console.log("product.productId:", product.productId, "id:", id);
+    return product.productId === Number(id);  // id를 숫자로 변환하여 비교
+  });
 
   // 타입 비교
   let fetchType = type === "community" ? "commLikes" : "productLikes";
@@ -48,7 +54,6 @@ const HeartBtn = ({ id, type }) => {
   }
   
   const handleLike = async () => {
-   
     if(!memberId){
       alert("로그인 해주세요.")
       navigate("/login")
@@ -63,7 +68,6 @@ const HeartBtn = ({ id, type }) => {
     })
     .then((res) => { setIsUpdate(!isUpdate) })
     .catch(console.error);
-
   };
 
   if(type === "community"){
@@ -86,7 +90,6 @@ const HeartBtn = ({ id, type }) => {
         )}
       </>
     );
-
   }else{
     // product
     return (
@@ -109,7 +112,6 @@ const HeartBtn = ({ id, type }) => {
       </>
     );
   }
-  
 };
 
 export default HeartBtn;

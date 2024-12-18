@@ -40,7 +40,7 @@ const Layout = () => {
                     dispatch(setUser({}));
                     dispatch(setUserStatus(false));
                     localStorage.removeItem("jwtToken");
-                    return alert(datas.message);
+                    return;
                 }
 
                 // 정상 응답
