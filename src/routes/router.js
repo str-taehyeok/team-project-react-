@@ -95,6 +95,7 @@ import Treats from "../pages/store/store/dog/Treats";
 import Clothes from "../pages/store/store/dog/Clothes";
 import HealthCare from "../pages/store/store/dog/HealthCare";
 import RecommendPost from "../pages/community/post/RecommendPost";
+import PostTagColor from "../pages/community/post/PostTagColor";
 
 const router = createBrowserRouter([
     {
@@ -296,6 +297,10 @@ const router = createBrowserRouter([
                     {
                         path: "write",
                         element: <PostWrite />,
+                    },
+                    {
+                        path: "tag",
+                        element: <PostTagColor />
                     },
                     {
                         path: "update",
