@@ -262,12 +262,12 @@ S.Message = styled.p`
 `;
 
 S.NewPasswordMessage = styled.div`
-  font-size: 11px;  
-  color: #828282; 
+  font-size: 12px;  
+  color:#ff0000;
   text-align: left;
-  line-height: 1; 
+  line-height: 1.5; 
   margin-bottom: 10px; 
-  margin-right: 140px;
+  margin-right: 50px;
 `;
 
 S.Mark = styled.div`
