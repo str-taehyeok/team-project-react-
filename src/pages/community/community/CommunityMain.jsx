@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Banner from "./Banner.jsx";
 import S from './style.js';
 import Slide from './Slide.jsx';
 import { Link } from 'react-router-dom';
 import HeartBtn from './HeartBtn.jsx';
+import { CommunityContext } from '../../../context/communityContext.js';
+import CommunityComponent from './CommunityComponent.jsx';
 
 
 const orangePostList = [
@@ -66,31 +68,6 @@ const CommunityMain = () => {
         </S.MyPost>
     ))
     
-    const orangePosts = orangePostList.map(({id, postImage1, memberImage, memberNickname}, i) => (
-        <S.OrangePostBox key={i}>
-            <S.OrangePost>
-                <S.PostImage>
-                    <S.Heart>
-                        <HeartBtn id={id} type={"community"} />
-                    </S.Heart>
-                    <Link to={`/post/read/${id}`}>
-                        <img src={postImage1} alt={"게시글" + (i + 1)} />
-                    </Link>
-                </S.PostImage>
-                <S.ProfileBox>
-                    <S.Profile>
-                        <Link to={`/post/list?postId=${id}`}>
-                            <img src={memberImage} alt={"게시글 리스트" + (i + 1)} />
-                        </Link>
-                    </S.Profile>
-                    <S.NickName>{memberNickname}</S.NickName>
-                </S.ProfileBox>
-            </S.OrangePost>
-        </S.OrangePostBox>
-    ))  
-
-
-
     return (
         <div>
             {/* 커뮤니티 메인 배너 */}
@@ -130,11 +107,8 @@ const CommunityMain = () => {
                                 </div>
                             </Link>
                         </S.AddPost>
-
                 {/* 커뮤니티 나의 게시글 */}
-                    
                         {myPosts}
-                    
                     </S.MyCommunityPost>
                 </S.MyPostBox>
 
@@ -148,7 +122,7 @@ const CommunityMain = () => {
                         <S.ColorName>ORANGE</S.ColorName>
                         <Link to={"/post/orange"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
-                            {orangePosts}
+                            <CommunityComponent postColor={"Orange"}/>
                         </S.PostBox>
                     </S.OrangeBox>
 
@@ -156,7 +130,7 @@ const CommunityMain = () => {
                         <S.ColorName>GOLD</S.ColorName>
                         <Link to={"/post/gold"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
-                            {orangePosts}
+                            <CommunityComponent postColor={"Gold"}/>
                         </S.PostBox>
                     </S.GoldBox>
 
@@ -164,7 +138,7 @@ const CommunityMain = () => {
                         <S.ColorName>GRADATION</S.ColorName>
                         <Link to={"/post/gradation"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
-                            {orangePosts}
+                            <CommunityComponent postColor={"Gradation"}/>
                         </S.PostBox>
                     </S.GradationBox>
 
@@ -172,7 +146,7 @@ const CommunityMain = () => {
                         <S.ColorName>LIGHT PURPLE</S.ColorName>
                         <Link to={"/post/light-purple"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
-                            {orangePosts}
+                            <CommunityComponent postColor={"LightPurple"}/>
                         </S.PostBox>
                     </S.LightPurpleBox>
 
@@ -180,7 +154,7 @@ const CommunityMain = () => {
                         <S.ColorName>SKY BLUE</S.ColorName>
                         <Link to={"/post/sky-blue"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
-                            {orangePosts}
+                            <CommunityComponent postColor={"SkyBlue"}/>
                         </S.PostBox>
                     </S.SkyBlueBox>
 
@@ -188,7 +162,7 @@ const CommunityMain = () => {
                         <S.ColorName>SAGE GREEN</S.ColorName>
                         <Link to={"/post/sage-green"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
-                            {orangePosts}
+                            <CommunityComponent postColor={"SageGreen"}/>
                         </S.PostBox>
                     </S.SageGreenBox>
 
@@ -196,7 +170,7 @@ const CommunityMain = () => {
                         <S.ColorName>ICE BLUE</S.ColorName>
                         <Link to={"/post/ice-blue"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
-                            {orangePosts}
+                            <CommunityComponent postColor={"IceBlue"}/>
                         </S.PostBox>
                     </S.IceBlueBox>
 
@@ -204,7 +178,7 @@ const CommunityMain = () => {
                         <S.ColorName>DUSTY SILVER</S.ColorName>
                         <Link to={"/post/dusty-silver"}><S.AllToGo>전체보기</S.AllToGo></Link>
                         <S.PostBox>
-                            {orangePosts}
+                            <CommunityComponent postColor={"DustySilver"}/>
                         </S.PostBox>
                     </S.DustySilverBox>
 

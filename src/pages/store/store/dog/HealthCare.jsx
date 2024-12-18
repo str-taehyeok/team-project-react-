@@ -5,7 +5,7 @@ import HealthCareBest from './healthCare/HealthCareBest';
 import HealthCareSpecial from './healthCare/HealthCareSpecial';
 import HealthCareRecommend from './healthCare/HealthCareRecommend';
 import { Link } from "react-router-dom";
-import HeartBtn from "../HeartBtn";
+import HeartBtn from '../../../community/community/HeartBtn';
 
 
 const HealthCare = () => {
