@@ -15,6 +15,7 @@ const UserList = () => {
       navigate("/login");
     }
 
+    // 예시 데이터
     setCommunites([
       { id: 1, imageName1: "image1.jpg" },
       { id: 2, imageName1: "image2.jpg" },
