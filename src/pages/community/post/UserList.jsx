@@ -8,6 +8,7 @@ const UserList = () => {
     const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
     const [popupType, setPopupType] = useState(null);
+    const [activePostId, setActivePostId] = useState(null); // 각 게시물의 팝업 상태를 관리
     const localJwtToken = localStorage.getItem("jwtToken");
     const { communityState } = useContext(CommunityContext);
     const { communites } = communityState;
@@ -22,10 +23,42 @@ const UserList = () => {
 
     const imgPosts = communites.slice(0, 8);
     const imgPostCount = imgPosts.filter(({ imageName1 }) => imageName1).length;
-    
+
     // 팝업 열기/닫기 함수
     const openPopup = (type) => setPopupType(type);
     const closePopup = () => setPopupType(null);
+
+    // DotButton 클릭 시 해당 게시물 팝업 열기/닫기
+    const togglePopup = (postId) => {
+        // 이미 열려 있는 게시물을 다시 클릭하면 팝업을 닫음
+        if (activePostId === postId) {
+            setActivePostId(null); // 팝업 닫기
+        } else {
+            setActivePostId(postId); // 팝업 열기
+        }
+    };
+
+
+    // const handleDelete = async () => {
+        
+    //     await fetch(`http://localhost:10000/posts/post/$`)
+    //     {
+    //         method: 'DELETE',
+    //       }
+    //     );
+
+    // const handleUpdate = async () => {
+        
+    //     await fetch(`http://localhost:10000/posts/post/$`,{
+    //         method: "PUT",
+    //         headers: {
+    //             "Content-Type" : "application/json",
+    //         },
+    //         body : JSON.stringify({
+
+    //         })
+    //     })
+    // }
 
     return (
         <div>
@@ -61,19 +94,31 @@ const UserList = () => {
                     </S.Title>
                     <S.MyPostList>
                         {communites.slice(0, 8).map(({ id, imageName1 }, index) => (
-                            <S.MyPostItem key={index}>
-                                <Link to={`/post/read?postId=${id}`}>
-                                    <img
-                                        src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
-                                        alt="게시물 이미지"
-                                        style={{
-                                            width: "190px",
-                                            height: "190px",
-                                            borderRadius: "20px",
-                                            objectFit: "cover",
-                                        }}
-                                    />
-                                </Link>
+                            <S.MyPostItem key={index} style={{ position: "relative" }}>
+                                <S.DotButton onClick={() => togglePopup(id)}>
+                                    <button>
+                                        <img src="/assets/images/community/white.jpg" alt="삼점메뉴" />
+                                    </button>
+                                </S.DotButton>
+
+                                {/* 게시물 ID가 activePostId와 일치하는 경우 팝업을 표시 */}
+                                {activePostId === id && (
+                                    <S.PopupBtn>
+                                        <S.PoputBtnType><p>삭제하기</p></S.PoputBtnType>
+                                        <S.BtnLine></S.BtnLine>
+                                        <S.PoputBtnType><p>수정하기</p></S.PoputBtnType>
+                                    </S.PopupBtn>
+                                )}
+                                <img
+                                    src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
+                                    alt="게시물 이미지"
+                                    style={{
+                                        width: "190px",
+                                        height: "190px",
+                                        borderRadius: "20px",
+                                        objectFit: "cover",
+                                    }}
+                                />
                             </S.MyPostItem>
                         ))}
                     </S.MyPostList>
