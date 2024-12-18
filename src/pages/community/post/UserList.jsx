@@ -76,12 +76,14 @@ const UserList = () => {
                         <p>My 게시물</p>
                     </S.Title>
                     <S.MyPostList>
-                        {Array.isArray(posts) && posts.map((post) => (
-                            <S.MyPostItem key={post.id}>
-                                <img
-                                    src={post.image || `http://localhost:10000/posts/display?fileName=${post.filePath}/${post.fileName}`}
-                                    alt={post.alt || "게시물 이미지"}
-                                />
+                        {Array.isArray(posts) && posts.slice(0, 8).map((id, post, postFileName, index) => (
+                            <S.MyPostItem key={index}>
+                                <Link to={`/post/${id}`}>
+                                    <img
+                                        src={`${process.env.PUBLIC_URL}/assets/images/community/${postFileName}`}
+                                        alt={post.alt || "게시물 이미지"}
+                                    />
+                                </Link>
                             </S.MyPostItem>
                         ))}
                     </S.MyPostList>
