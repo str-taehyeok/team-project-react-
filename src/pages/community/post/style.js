@@ -449,10 +449,8 @@ S.MainImageDumy = styled.div`
 S.PostContents = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 19px;
   width: 900px;
-  flex-wrap: wrap;
 `
 
 
@@ -783,6 +781,19 @@ S.PoputBtnType = styled.div`
 `
 S.BtnLine = styled.div`
     border: solid 1px rgba(0, 0, 0, 0.2);
+`
+
+S.TagColorImage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 380px;
+  height: 427px;
+  border-radius: 20px;
+  background-color: #d9d9d9;
+  background-size: cover;
+  cursor: pointer;
+  text-align: center;
 `
 
 export default S;
