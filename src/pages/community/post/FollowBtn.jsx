@@ -1,14 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { CommunityContext } from "../../../context/communityContext";
+import S from "./style";
 
 const FollowBtn = ({ targetUserId }) => {
   const navigate = useNavigate();
 
   // 리덕스에 로그인한 유저의 id
   const { currentUser } = useSelector((state) => state.user);
-  const memberId = currentUser?.id ? currentUser?.id : 0;
   const [isFollowing, setIsFollowing] = useState(false);
+  const { communityState, communityAction } = useContext(CommunityContext);
+  const { communites } = communityState;
+  const { id : postId } = useParams();
+  const [follwerMemberId, setFollwerMemberId] = useState(null);
+  const memberId = currentUser?.id ? currentUser?.id : 0;
+
+  useEffect(() => {
+    if (communites.length > 0 && postId) {
+      const matchedPost = communites.find((cm) => cm.id === Number(postId));
+      if (matchedPost) {
+        setFollwerMemberId(matchedPost.memberId);
+      }
+    }
+  }, [communites, postId]);
+
 
   useEffect(() => {
     if (!targetUserId || !memberId) return;
@@ -40,8 +56,8 @@ const FollowBtn = ({ targetUserId }) => {
     const fetchPath = isFollowing ? "cancel" : "add";
     const fetchMethod = isFollowing ? "DELETE" : "POST";
     const fetchData = {
-      followerMemberId: memberId,
-      followingMemberId: targetUserId,
+      followerMemberId: follwerMemberId,
+      followingMemberId: memberId,
     };
 
     try {
@@ -52,7 +68,6 @@ const FollowBtn = ({ targetUserId }) => {
         },
         body: JSON.stringify(fetchData),
       });
-
       if (response.ok) {
         setIsFollowing(!isFollowing); 
       } else {
@@ -64,9 +79,9 @@ const FollowBtn = ({ targetUserId }) => {
   };
 
   return (
-    <button onClick={handleFollow}>
+    <S.Follow isFollowing={isFollowing} onClick={handleFollow}>
       {isFollowing ? "팔로잉" : "팔로우"}
-    </button>
+    </S.Follow>
   );
 };
 

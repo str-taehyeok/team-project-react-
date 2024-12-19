@@ -2,11 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import S from './style.js';
 import Slide from './Slide.jsx';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import FollowBtn from './FollowBtn.jsx';
-import HeartBlackBtn from './HeartBlacktBtn.jsx';
 import { useSelector } from 'react-redux';
 import { CommunityContext } from '../../../context/communityContext.js';
 import HeartBtn from '../community/HeartBtn.jsx';
+import FollowBtn from './FollowBtn';
 
 const UserPost = () => {
     const [comments, setComments] = useState([]);
@@ -112,7 +111,6 @@ const UserPost = () => {
                                 <S.LikeNumber>0</S.LikeNumber>
                                 <S.DotBtn><button><img src="/assets/images/community/dots.png" alt="삼점메뉴" /></button></S.DotBtn>
                             </S.PostUnder>
-                            {/* foundPost가 존재할 때만 content 출력 */}
                             {foundPost ? (
                                 <S.PostContent>
                                     {foundPost.postContent}
