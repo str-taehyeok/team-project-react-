@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setPreviousUrl, setUser, setUserStatus } from '../../modules/user';
 import S from "./style";
 import Header from "./Header";
@@ -12,7 +12,7 @@ const Layout = () => {
     const [searchParams] = useSearchParams();
     const jwtToken = searchParams.get("jwtToken");
     const localJwtToken = localStorage.getItem("jwtToken");
-
+    const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
     useEffect(() => {
 
