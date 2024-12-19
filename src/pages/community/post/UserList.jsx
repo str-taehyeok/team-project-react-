@@ -9,6 +9,7 @@ const UserList = () => {
     const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
     const [popupType, setPopupType] = useState(null);
+    const [activePostId, setActivePostId] = useState(null); 
     const [followersCount, setFollowersCount] = useState(0);
     const [followingCount, setFollowingCount] = useState(0);
     const [followersList, setFollowersList] = useState([]);
@@ -24,6 +25,17 @@ const UserList = () => {
             navigate("/login");
         }
     }, [localJwtToken, navigate]);
+
+      // DotButton 클릭 시 해당 게시물 팝업 열기/닫기
+      const togglePopup = (postId) => {
+        // 이미 열려 있는 게시물을 다시 클릭하면 팝업을 닫음
+        if (activePostId === postId) {
+            setActivePostId(null); // 팝업 닫기
+        } else {
+            setActivePostId(postId); // 팝업 열기
+        }
+    };
+
 
     // 팔로워와 팔로잉 수를 가져오는 함수
     const fetchFollowData = async () => {
@@ -45,6 +57,8 @@ const UserList = () => {
             console.error("팔로우 데이터 가져오기 실패", error);
         }
     };
+
+    
 
     useEffect(() => {
         fetchFollowData();
@@ -95,11 +109,20 @@ const UserList = () => {
                     <S.MyPostList>
                         {communites.slice(0, 8).map(({ id, imageName1 }, index) => (
                             <S.MyPostItem key={index} style={{ position: "relative" }}>
-                                <S.DotButton onClick={() => {}}>
+                                <S.DotButton onClick={() => togglePopup(id)}>
                                     <button>
                                         <img src="/assets/images/community/white.jpg" alt="삼점메뉴" />
                                     </button>
                                 </S.DotButton>
+                                  {/* 게시물 ID가 activePostId와 일치하는 경우 팝업을 표시 */}
+                                  {activePostId === id && (
+                                    <S.PopupBtn>
+                                        <S.PoputBtnType><p>삭제하기</p></S.PoputBtnType>
+                                        <S.BtnLine></S.BtnLine>
+                                        <S.PoputBtnType><p>수정하기</p></S.PoputBtnType>
+                                    </S.PopupBtn>
+                                )}
+
                                 <img
                                     src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
                                     alt="게시물 이미지"

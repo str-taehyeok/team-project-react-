@@ -771,7 +771,6 @@ S.PopupBtn = styled.div`
 `
 
 S.PoputBtnType = styled.div`
-
   display: flex;
   justify-content: center;
   align-items: center;
