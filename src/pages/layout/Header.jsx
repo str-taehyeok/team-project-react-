@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import S from "./style";
-import { Link } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, setUserStatus } from '../../modules/user';
 
@@ -9,6 +9,8 @@ const Header = () => {
     const [isHover, setIsHover] = useState(false);
     const [isSearch, setIsSearch] = useState(false);
     const dispatch = useDispatch();
+    const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 관리
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.removeItem("jwtToken");
@@ -30,6 +32,17 @@ const Header = () => {
     useEffect(() => {
 
     }, [])
+    // 검색어 입력 핸들러
+    const handleSearchInput = (e) => setSearchTerm(e.target.value);
+
+    // 검색 실행 핸들러
+    const handleSearchSubmit = () => {
+        if (searchTerm.trim() === "") return; // 빈 입력 방지
+
+        // 예시: 검색한 상품 이름을 기준으로 검색 처리
+        // 서버로 API 요청을 보내거나, 로컬 상태에 있는 데이터를 탐색합니다.
+        navigate(`/store/search?productName=${encodeURIComponent(searchTerm)}`);
+    };
 
     return (
         <S.HeaderWrap className={isHover ? "active" : ""} onMouseOut={handleMouseOut}>
