@@ -119,6 +119,15 @@ const S = {}
     flex-direction: row;
     align-items: center;
     margin-top: 20px;
+    & p.email {
+      width: 464px;
+      height: 55px;
+      font-size: 16px;
+      line-height: 55px;
+      color:#000000;
+      margin-left: 27px;
+    }
+    
   `
 
 
@@ -163,6 +172,7 @@ const S = {}
       color:#000000;
       margin-left: 53px;
     }
+
     `
   S.BankAccInput = styled.div`
         & input {
@@ -264,6 +274,21 @@ S.PwInputBox = styled.div`
       flex-direction: row;
       align-items: center;
       margin-top: 20px;
+  & div.update-button {
+    width: 464px;
+    margin-left: 27px;
+    height: 55px;
+  }
+  & button.update {
+    width: 90px;
+    height: 30px;
+    color: #ffffff;
+    background-color: #113F8A;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top:14px;
+    border: none;
+  }
     `
 
 
@@ -294,6 +319,14 @@ S.PwInputBox = styled.div`
       color:#000000;
       margin-left: 53px;
     }
+    & p.number {
+      width: 464px;
+      height: 55px;
+      font-size: 16px;
+      line-height: 55px;
+      color:#000000;
+      margin-left: 27px;
+    }
       `
   S.BussinessInputBox = styled.div`
         display:flex;
@@ -320,6 +353,7 @@ S.PwInputBox = styled.div`
         border-radius: 20px;
         cursor: pointer;
         margin-top:14px;
+        border: none;
       }
   `
 
@@ -344,19 +378,68 @@ S.Update = styled.div`
   }
   `
 S.PwChangeBox = styled.div`
-    width: 700px;
-   height: 500px;
-  border: 1px solid #000000;
-  & button.update {
-    width: 90px;
-    height: 30px;
-    color: #ffffff;
-    background-color: #113F8A;
+
+`
+// x아이콘
+S.CardPopUpBtn = styled.div`
+    width: 600px;
+    height: 450px;
+    border: 1px solid #828282;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 20px;
-    cursor: pointer;
-    margin-top:14px;
-  }
+    background-color: #ffffff;
+    
+  
+    & button.x {
+        margin-left: 550px;
+        background-color: #ffffff;
+        border: none;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
 `
 
+S.CardPop = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  
+  & p {
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 20px;
+  }
+  & input {
+      border-radius: 20px;
+      border: solid 1px #828282;
+      width: 464px;
+      height: 55px;
+      padding: 19px 26px;
+      font-size: 14px;
+      line-height: 22px;
+      color: #828282;
+      outline: none;
+  }
+  & button.change {
+    width: 100px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #828282;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top:35px;
+    border: none;
+  }
+`
 
 export default S;
