@@ -1,19 +1,21 @@
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ProductContext } from '../../../../context/productContext';
 import S from './style';
 import Footer from '../../../layout/Footer';
-import { ProductContext } from '../../../../context/productContext';
-import { Link } from 'react-router-dom';
 import HeartBtn from '../../../community/community/HeartBtn';
+import { Link } from 'react-router-dom';
 
 const Result = () => {
+    const { productName } = useParams(); 
     const { productState } = useContext(ProductContext);
     const { products } = productState;
-
-    // 검색 상태
-    const [searchTerm, setSearchTerm] = useState('');
     const [filteredProducts, setFilteredProducts] = useState(products);
+    const [searchTerm, setSearchTerm] = useState(productName || '');
 
-    // 페이징
+    const navigate = useNavigate();
+
+    // 페이지 처리 관련 상태
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 8;
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
@@ -25,26 +27,30 @@ const Result = () => {
     const startPage = Math.floor((currentPage - 1) / maxPageButtons) * maxPageButtons + 1;
     const endPage = Math.min(startPage + maxPageButtons - 1, totalPages);
 
+    useEffect(() => {
+        const filtered = products.filter((product) =>
+            product.productName.toLowerCase().includes(productName.toLowerCase())
+        );
+        setFilteredProducts(filtered);
+        setCurrentPage(1);
+    }, [productName, products]); 
+
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
 
-    // 검색 핸들러
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
     };
 
     const handleSearchSubmit = (e) => {
         if (e.key === 'Enter') {
-            const filtered = products.filter((product) =>
-                product.productName.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-            setFilteredProducts(filtered);
-            setCurrentPage(1); // 검색 후 첫 페이지로 이동
+            if (searchTerm.trim()) {
+                navigate(`/search/${encodeURIComponent(searchTerm.trim())}`);
+            }
         }
     };
 
-    // 상품 반복문
     const productList =
         currentProducts.length !== 0 ? (
             currentProducts.map(
@@ -87,7 +93,6 @@ const Result = () => {
             <S.CustomProductMessage>검색된 상품이 없습니다.</S.CustomProductMessage>
         );
 
-    // 페이징 버튼
     const pagination = (
         <S.Pagination>
             <button disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>
@@ -102,10 +107,7 @@ const Result = () => {
                     {startPage + index}
                 </button>
             ))}
-            <button
-                disabled={currentPage === totalPages}
-                onClick={() => handlePageChange(currentPage + 1)}
-            >
+            <button disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>
                 다음
             </button>
         </S.Pagination>
@@ -114,7 +116,8 @@ const Result = () => {
     return (
         <div>
             <S.Body>
-                <span>상품 검색</span><input
+                <span>상품 검색</span>
+                <input
                     type="text"
                     placeholder="검색하실 상품의 이름을 입력하세요"
                     value={searchTerm}
