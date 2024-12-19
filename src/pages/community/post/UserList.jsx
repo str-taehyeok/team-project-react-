@@ -9,7 +9,7 @@ const UserList = () => {
     const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
     const [popupType, setPopupType] = useState(null);
-    const [activePostId, setActivePostId] = useState(null); // 각 게시물의 팝업 상태를 관리
+    const [activePostId, setActivePostId] = useState(null);
     const localJwtToken = localStorage.getItem("jwtToken");
     const { communityState } = useContext(CommunityContext);
     const { communites } = communityState;
