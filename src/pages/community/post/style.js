@@ -272,14 +272,17 @@ S.PropileBox = styled.div`
 S.Follow = styled.button`
   width: 65px;
   height: 30px;
-  border-radius: 20px;
-  background-color: ${(props) => (props.isFollowing ? '#113F8A' : '#D9D9D9')};
-  color: ${(props) => (props.isFollowing ? '#ffffff' : '#000000')};
+  border-radius: 15px;
+  background-color: ${({ isFollowing }) => (isFollowing ? '#113F8A' : '#828282')};
+  color: #fff;
   border: none;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   line-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 
