@@ -8,7 +8,7 @@ S.Body = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 100px 0;
+    margin: 150px 0;
     
     
     & span{

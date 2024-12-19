@@ -114,21 +114,21 @@ const Result = () => {
     );
 
     return (
-        <div>
+        <>
             <S.Body>
                 <span>상품 검색</span>
-                <input
+                {/* <input
                     type="text"
                     placeholder="검색하실 상품의 이름을 입력하세요"
                     value={searchTerm}
                     onChange={handleSearchChange}
                     onKeyDown={handleSearchSubmit}
-                />
+                /> */}
                 <S.ProductsContainer>{productList}</S.ProductsContainer>
                 {pagination}
             </S.Body>
             <Footer />
-        </div>
+        </>
     );
 };
 
