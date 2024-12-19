@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CommunityContext } from "../../../context/communityContext";
+import FollowBtn from './FollowBtn';
 
 const UserList = () => {
     const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
     const [popupType, setPopupType] = useState(null);
-    const [activePostId, setActivePostId] = useState(null); // 각 게시물의 팝업 상태를 관리
+    const [activePostId, setActivePostId] = useState(null);
     const localJwtToken = localStorage.getItem("jwtToken");
     const { communityState } = useContext(CommunityContext);
     const { communites } = communityState;
@@ -38,28 +39,6 @@ const UserList = () => {
         }
     };
 
-
-    // const handleDelete = async () => {
-        
-    //     await fetch(`http://localhost:10000/posts/post/$`)
-    //     {
-    //         method: 'DELETE',
-    //       }
-    //     );
-
-    // const handleUpdate = async () => {
-        
-    //     await fetch(`http://localhost:10000/posts/post/$`,{
-    //         method: "PUT",
-    //         headers: {
-    //             "Content-Type" : "application/json",
-    //         },
-    //         body : JSON.stringify({
-
-    //         })
-    //     })
-    // }
-
     return (
         <div>
             <S.UserCommunity>
@@ -74,16 +53,16 @@ const UserList = () => {
                     </S.MyProfileCard>
                     <S.MyProfilelineStyle />
                     <S.ButtonCenter>
-                        <S.MyProfileButton>팔로우</S.MyProfileButton>
+                      <FollowBtn />
                     </S.ButtonCenter>
                     <S.MyprofileCardInformation>
                         <S.MyFollwer>
                             <button>게시물 {imgPostCount}</button>
                             <button type="button" onClick={() => openPopup("follower")}>
-                                팔로워 1
+                                팔로워 0
                             </button>
                             <button type="button" onClick={() => openPopup("following")}>
-                                팔로잉 1
+                                팔로잉 0
                             </button>
                         </S.MyFollwer>
                     </S.MyprofileCardInformation>
@@ -118,6 +97,7 @@ const UserList = () => {
                                         borderRadius: "20px",
                                         objectFit: "cover",
                                     }}
+                                    onClick={() => navigate(`/read/${id}`)}
                                 />
                             </S.MyPostItem>
                         ))}
