@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import S from "./style";
 
 const SellerProductWrite = () => {
-    const { register, handleSubmit, formState: {  isSubmitting } } = useForm({ mode: "onChange" });
+    const {register, handleSubmit, formState: {isSubmitting}} = useForm({mode: "onChange"});
     const navigate = useNavigate();
     // const { id } = useSelector(state => state.admin.currentUser);
     // 이미지
@@ -14,74 +14,78 @@ const SellerProductWrite = () => {
     const [subImagePreview2, setSubImagePreview2] = useState(null);
     const [subImagePreview3, setSubImagePreview3] = useState(null);
 
-    // 이미지 미리보기 핸들러
-    // const handleImagePreview = (e, type, index = 0) => {
-    //     const file = e.target.files[0];
-    //     if (!file) return;
-    //
-    //     const reader = new FileReader();
-    //     reader.onloadend = () => {
-    //         if (type === 'main') {
-    //             setMainImage(reader.result);
-    //         } else {
-    //             const newSubImages = [...subImages];
-    //             newSubImages[index] = reader.result;
-    //             setSubImages(newSubImages);
-    //         }
-    //     };
-    //     reader.readAsDataURL(file);
-    // };
-
     const onSubmit = async (data) => {
-            const formData = new FormData();
-            const {
-                deliveryCompany, deliveryFee, deliveryFeeFree, deliveryFeeKind, deliveryHow,
-                deliveryPayWhen, productAnimal, productCategory, productColor, productDetail,
-                productName, productPrice, productRealPrice, productSize, productStock,
-                mainImage, subImage1, subImage2, subImage3
-            } = data;
-            formData.append("deliveryCompany", deliveryCompany)
-            formData.append("deliveryFee", deliveryFee)
-            formData.append("deliveryFeeFree", deliveryFeeFree)
-            formData.append("deliveryFeeKind", deliveryFeeKind)
-            formData.append("deliveryHow", deliveryHow)
-            formData.append("deliveryPayWhen", deliveryPayWhen)
-            formData.append("productAnimal", productAnimal)
-            formData.append("productCategory", productCategory)
-            formData.append("productColor", productColor)
-            formData.append("productDetail", productDetail)
-            formData.append("productName", productName)
-            formData.append("productPrice", productPrice)
-            formData.append("productRealPrice", productRealPrice)
-            formData.append("productSize", productSize)
-            formData.append("productStock", productStock)
-            formData.append("uploadFile", mainImage[0])
-            formData.append("uploadFile", subImage1[0])
-            formData.append("uploadFile", subImage2[0])
-            formData.append("uploadFile", subImage3[0])
+        const formData = new FormData();
+        const {
+            deliveryCompany, deliveryFee, deliveryFeeFree, deliveryFeeKind, deliveryHow,
+            deliveryPayWhen, productAnimal, productCategory, productColor, productDetail,
+            productName, productPrice, productRealPrice, productSize, productStock,
+            mainImage, subImage1, subImage2, subImage3
+        } = data;
+        formData.append("deliveryCompany", deliveryCompany)
+        formData.append("deliveryFee", deliveryFee)
+        formData.append("deliveryFeeFree", deliveryFeeFree)
+        formData.append("deliveryFeeKind", deliveryFeeKind)
+        formData.append("deliveryHow", deliveryHow)
+        formData.append("deliveryPayWhen", deliveryPayWhen)
+        formData.append("productAnimal", productAnimal)
+        formData.append("productCategory", productCategory)
+        formData.append("productColor", productColor)
+        formData.append("productDetail", productDetail)
+        formData.append("productName", productName)
+        formData.append("productPrice", productPrice)
+        formData.append("productRealPrice", productRealPrice)
+        formData.append("productSize", productSize)
+        formData.append("productStock", productStock)
+        formData.append("uploadFile", mainImage[0])
+        formData.append("uploadFile", subImage1[0])
+        formData.append("uploadFile", subImage2[0])
+        formData.append("uploadFile", subImage3[0])
 
-            console.log(data)
+        console.log(data)
 
         // 서버로 데이터 전송
+        // await fetch("http://localhost:10000/files/upload", {
+        //     method: "POST",
+        //     body: formData,
+        // })
+        // .then((res) => res.json())
+        // .then(async (res) => {
+        //     console.log(res)
+        //     formData.append("uuids", res);
+        //     await fetch("http://localhost:10000/products/write", {
+        //         method: "POST",
+        //         body: formData,
+        //     })
+        //         .then((res) => res.json())
+        //         .then((res) => {
+        //             console.log(res)
+        //             navigate("/seller");
+        //             return;
+        //         })
+        // })
+        // .catch(console.error)
+
+
         await fetch("http://localhost:10000/files/upload", {
             method: "POST",
             body: formData,
         })
-        .then((res) => res.json())
-        .then(async (res) => {
-            console.log(res)
-            formData.append("uuids", res);
-            await fetch("http://localhost:10000/my-pet/write", {
-                method: "POST",
-                body: formData,
-            })
-                .then((res) => res.json())
-                .then((res) => {
-                    console.log(res)
+            .then((res) => res.json())
+            .then(async (res) => {
+                // console.log(res)
+                formData.append("uuids", res);
+                await fetch("http://localhost:10000/products/write", {
+                    method: "POST",
+                    body: formData,
                 })
-        })
-        .catch(console.error)
-
+                    .then((res) => res.json())
+                    .then((res) => {
+                        // console.log(res)
+                        console.log(formData)
+                        navigate("/seller");
+                    })
+            });
     };
 
     return (
