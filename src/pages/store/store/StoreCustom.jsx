@@ -83,13 +83,7 @@ const StoreCustom = () => {
   const { productState } = useContext(ProductContext);
   const { products } = productState;
 
-  const productList = products.map((product, i) => (
-      <div key={i}>
-        <p>{product.productName}</p>
-      </div>
-  ))
 
-  console.log(productList)
 
   // 해당 모달창을 나오게 하기
   const [isActive, setIsActive] = useState(10);
@@ -213,23 +207,26 @@ const StoreCustom = () => {
     }
   })
 
-  // 상품 반복문
-  // const productList = sortedProductList.length !== 0 ? sortedProductList.map((product, i) => (
-  //   <S.CustomProduct key={i}>
-  //     <HeartBtn />
-  //     <Link to={`read/${i}`}>
-  //       <img className='thumb' src={`${process.env.PUBLIC_URL}${product.productImage1}`} alt={"상품" + (i + 1)} />
-  //       <S.CustomProductInfo>
-  //       <div>{product.productDate}</div>
-  //         <p>{product.productName}</p>
-  //         <p>{product.productPrice}</p>
-  //         <p>{product.productSoldCount}</p>
-  //         <span>{product.productDiscount}% </span><span>{product.productPrice * ((100 - product.productDiscount) / 100)}</span>
-  //         <span>★{product.productReviewStart}(8) </span><span>♥5,069</span>
-  //       </S.CustomProductInfo>
-  //     </Link>
-  //    </S.CustomProduct>
-  // )) : <S.CustomProductMessage>검색된 상품이 없습니다.</S.CustomProductMessage>
+  //상품 반복문
+  const productList = products.length !== 0 ? products.map(({
+  id, productName, productFilePath, productFileName, productPrice, productDiscount, productDate
+  }, index) => (
+    <S.CustomProduct key={index}>
+      <HeartBtn />
+      <Link to={`read/${index}`}>
+        <img className='thumb' src={`${process.env.PUBLIC_URL}/assets/images/products/${productFileName}`} alt={"상품" + (index + 1)} />
+        <S.CustomProductInfo>
+        <div>{productDate}</div>
+          <p>{productName}</p>
+          <p>{productPrice}</p>
+          {/*<p>{productSoldCount}</p>*/}
+          <span>{productDiscount}% </span><span>{productPrice * ((100 - productDiscount) / 100)}</span>
+          {/*<span>★{productReviewStar}(8) </span>*/}
+          <span>♥5,069</span>
+        </S.CustomProductInfo>
+      </Link>
+     </S.CustomProduct>
+  )) : <S.CustomProductMessage>검색된 상품이 없습니다.</S.CustomProductMessage>
   
   return (
       <>
