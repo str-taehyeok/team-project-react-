@@ -96,6 +96,7 @@ import HealthCare from "../pages/store/store/dog/HealthCare";
 import RecommendPost from "../pages/community/post/RecommendPost";
 import PostTagColor from "../pages/community/post/PostTagColor";
 import SellerRead from "../pages/seller/sellerInfo/SellerRead";
+import Result from "../pages/store/store/search/result";
 
 
 const router = createBrowserRouter([
@@ -214,6 +215,10 @@ const router = createBrowserRouter([
                         element: <StoreMain />
                     },
                 ]
+            },
+            {
+                path: 'search/:productName',
+                element: <Result />
             },
             {
                 path: '/store-dog',
