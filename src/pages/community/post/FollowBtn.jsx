@@ -76,8 +76,8 @@ const FollowBtn = ({ targetUserId }) => {
       });
 
       if (response.ok) {
-        const newFollowStatus = !isFollowing; // 새로운 팔로우 상태
-        setIsFollowing(newFollowStatus);  // 팔로우 상태를 반영
+        const newFollowStatus = !isFollowing; 
+        setIsFollowing(newFollowStatus);  
         // 로컬 스토리지에 상태 저장
         localStorage.setItem(`follow_${memberId}_${targetUserId}`, JSON.stringify(newFollowStatus));
       } else {
@@ -88,10 +88,13 @@ const FollowBtn = ({ targetUserId }) => {
     }
   };
 
+  // 여기서 콘솔 오류가 뜨는데 왜 dom 형식의 내용으로 뜨는지 모르겠어요
   return (
-    <S.Follow isFollowing={isFollowing} onClick={handleFollow}>
-      {isFollowing ? "팔로잉" : "팔로우"}
-    </S.Follow>
+    <div>
+      <S.Follow isFollowing={isFollowing} onClick={handleFollow}>
+        {isFollowing ? "팔로잉" : "팔로우"}
+      </S.Follow>
+    </div>
   );
 };
 
