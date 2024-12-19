@@ -584,6 +584,33 @@ S.ToggleCircle = styled.div`
 
 
 
+// ----------------
+
+
+
+
+
+S.EditButton = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border: solid 1px #888888;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 96px;
+  height: 32px;
+`
+
+
+
+
+
+
+
+
+
 
 
 
