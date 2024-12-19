@@ -1,20 +1,20 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import S from "./style"
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {Outlet, useLocation} from "react-router-dom";
+// import {useSelector} from "react-redux";
 
 
 const SellerProductContainer = () => {
     const location = useLocation();
-    const { isLogin } = useSelector((state) => state.user);
-    const navigate = useNavigate();
+    // const { isLogin } = useSelector((state) => state.user);
+    // const navigate = useNavigate();
 
-    useEffect(() => {
-        if(!isLogin){
-            alert("로그인 후 이용해 주세요.")
-            navigate("/login")
-        }
-    }, [])
+    // useEffect(() => {
+    //     if(!isLogin){
+    //         alert("로그인 후 이용해 주세요.")
+    //         navigate("/login")
+    //     }
+    // }, [])
 
     const pageTitle = () => {
         switch (location.pathname) {

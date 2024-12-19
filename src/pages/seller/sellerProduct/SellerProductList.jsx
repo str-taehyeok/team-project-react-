@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import S from "./style";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ProductContext } from "../../../context/productContext";
 
@@ -11,19 +11,19 @@ const SellerProductList = () => {
   const [deleteProductId, setDeleteProductId] = useState(null);
   const { currentUser } = useSelector((state) => state.user);
   const localJwtToken = localStorage.getItem("jwtToken");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { productState, productAction } = useContext(ProductContext);
   const { products } = productState;
-  const { setProducts, setIsUpdate } = productAction;
+  const { setIsUpdate } = productAction;
   const memberId = currentUser.id;
 
-  // 로그인 상태 확인
-  useEffect(() => {
-    if (!localJwtToken) {
-      alert("로그인 후 이용해 주세요.");
-      navigate("/login");
-    }
-  }, [localJwtToken, navigate]);
+  // // 로그인 상태 확인
+  // useEffect(() => {
+  //   if (!localJwtToken) {
+  //     alert("로그인 후 이용해 주세요.");
+  //     navigate("/login");
+  //   }
+  // }, [localJwtToken, navigate]);
 
   useEffect(() => {
     if (products && memberId) {

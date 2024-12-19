@@ -12,15 +12,15 @@ const SellerOrderList = () => {
 
   const sellerId = currentUser.id;
 
-  const { isLogin } = useSelector((state) => state.user);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if(!isLogin){
-      alert("로그인 후 이용해 주세요.")
-      navigate("/login")
-    }
-  }, [])
+  // const { isLogin } = useSelector((state) => state.user);
+  // const navigate = useNavigate();
+  //
+  // useEffect(() => {
+  //   if(!isLogin){
+  //     alert("로그인 후 이용해 주세요.")
+  //     navigate("/login")
+  //   }
+  // }, [])
 
   useEffect(() => {
     if (!sellerId) return; // sellerId가 없으면 실행하지 않음

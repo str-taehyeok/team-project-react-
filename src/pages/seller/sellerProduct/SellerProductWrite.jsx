@@ -3,10 +3,13 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 // import { useSelector } from "react-redux";
 import S from "./style";
+import {useSelector} from "react-redux";
 
 const SellerProductWrite = () => {
-    const {register, handleSubmit, formState: {isSubmitting}} = useForm({mode: "onChange"});
+    const { register, handleSubmit, formState: {  isSubmitting } } = useForm({ mode: "onChange" });
     const navigate = useNavigate();
+    const { currentUser } = useSelector((state) => state.user);
+    const id = currentUser.id;
     // const { id } = useSelector(state => state.admin.currentUser);
     // 이미지
     const [mainImagePreview, setMainImagePreview] = useState(null);
@@ -14,14 +17,33 @@ const SellerProductWrite = () => {
     const [subImagePreview2, setSubImagePreview2] = useState(null);
     const [subImagePreview3, setSubImagePreview3] = useState(null);
 
+    // 이미지 미리보기 핸들러
+    // const handleImagePreview = (e, type, index = 0) => {
+    //     const file = e.target.files[0];
+    //     if (!file) return;
+    //
+    //     const reader = new FileReader();
+    //     reader.onloadend = () => {
+    //         if (type === 'main') {
+    //             setMainImage(reader.result);
+    //         } else {
+    //             const newSubImages = [...subImages];
+    //             newSubImages[index] = reader.result;
+    //             setSubImages(newSubImages);
+    //         }
+    //     };
+    //     reader.readAsDataURL(file);
+    // };
+
     const onSubmit = async (data) => {
         const formData = new FormData();
         const {
-            deliveryCompany, deliveryFee, deliveryFeeFree, deliveryFeeKind, deliveryHow,
+            productCode, deliveryCompany, deliveryFee, deliveryFeeFree, deliveryFeeKind, deliveryHow,
             deliveryPayWhen, productAnimal, productCategory, productColor, productDetail,
             productName, productPrice, productRealPrice, productSize, productStock,
             mainImage, subImage1, subImage2, subImage3
         } = data;
+        formData.append("memberId", id)
         formData.append("deliveryCompany", deliveryCompany)
         formData.append("deliveryFee", deliveryFee)
         formData.append("deliveryFeeFree", deliveryFeeFree)
@@ -32,6 +54,7 @@ const SellerProductWrite = () => {
         formData.append("productCategory", productCategory)
         formData.append("productColor", productColor)
         formData.append("productDetail", productDetail)
+        formData.append("productCode", productCode)
         formData.append("productName", productName)
         formData.append("productPrice", productPrice)
         formData.append("productRealPrice", productRealPrice)
@@ -45,35 +68,13 @@ const SellerProductWrite = () => {
         console.log(data)
 
         // 서버로 데이터 전송
-        // await fetch("http://localhost:10000/files/upload", {
-        //     method: "POST",
-        //     body: formData,
-        // })
-        // .then((res) => res.json())
-        // .then(async (res) => {
-        //     console.log(res)
-        //     formData.append("uuids", res);
-        //     await fetch("http://localhost:10000/products/write", {
-        //         method: "POST",
-        //         body: formData,
-        //     })
-        //         .then((res) => res.json())
-        //         .then((res) => {
-        //             console.log(res)
-        //             navigate("/seller");
-        //             return;
-        //         })
-        // })
-        // .catch(console.error)
-
-
         await fetch("http://localhost:10000/files/upload", {
             method: "POST",
             body: formData,
         })
             .then((res) => res.json())
             .then(async (res) => {
-                // console.log(res)
+                console.log(res)
                 formData.append("uuids", res);
                 await fetch("http://localhost:10000/products/write", {
                     method: "POST",
@@ -81,11 +82,11 @@ const SellerProductWrite = () => {
                 })
                     .then((res) => res.json())
                     .then((res) => {
-                        // console.log(res)
-                        console.log(formData)
-                        navigate("/seller");
+                        console.log(res)
+                        navigate("/seller")
                     })
-            });
+            })
+            .catch(console.error)
     };
 
     return (
@@ -99,6 +100,13 @@ const SellerProductWrite = () => {
                             <input className="require-value" type="text"
                                    {...register("productName", {
                                        required: "상품명은 필수 입력 항목입니다.",
+                                   })}/>
+                        </S.ListWrap>
+                        <S.ListWrap>
+                            <S.Division>상품코드</S.Division>
+                            <input className="require-value" type="text"
+                                   {...register("productCode", {
+                                       required: true,
                                    })}/>
                         </S.ListWrap>
                         <S.ListWrap>
@@ -141,10 +149,10 @@ const SellerProductWrite = () => {
                             <select {...register("productCategory", {
                                 required: true,
                             })}>
-                                <option value="healthCare">헬스케어</option>
-                                <option value="treats">사료/간식</option>
-                                <option value="clothes">의류</option>
-                                <option value="flushies">장난감</option>
+                                <option value="헬스케어">헬스케어</option>
+                                <option value="사료/간식">사료/간식</option>
+                                <option value="의류">의류</option>
+                                <option value="장난감">장난감</option>
                             </select>
                         </S.ListWrap>
                         <S.ListWrap>
@@ -191,17 +199,17 @@ const SellerProductWrite = () => {
                             <S.RatioWrap>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryFeeKind"
-                                           value="free" {...register("deliveryFeeKind")}/>
+                                           value="무료" {...register("deliveryFeeKind")}/>
                                     <span>무료</span>
                                 </S.Ratio>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryFeeKind"
-                                           value="paid" {...register("deliveryFeeKind")}/>
+                                           value="유료" {...register("deliveryFeeKind")}/>
                                     <span>유료</span>
                                 </S.Ratio>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryFeeKind"
-                                           value="freeCondition" {...register("deliveryFeeKind")}/>
+                                           value="조건부 무료" {...register("deliveryFeeKind")}/>
                                     <span>조건부 무료</span>
                                 </S.Ratio>
                             </S.RatioWrap>
@@ -219,12 +227,12 @@ const SellerProductWrite = () => {
                             <S.RatioWrap>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryHow"
-                                           value="normalDelivery" {...register("deliveryHow")}/>
+                                           value="일반택배배송" {...register("deliveryHow")}/>
                                     <span>일반택배배송</span>
                                 </S.Ratio>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryHow"
-                                           value="ownDelivery" {...register("deliveryHow")}/>
+                                           value="자체배송" {...register("deliveryHow")}/>
                                     <span>자체배송</span>
                                 </S.Ratio>
                             </S.RatioWrap>
@@ -234,12 +242,12 @@ const SellerProductWrite = () => {
                             <S.RatioWrap>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryPayWhen"
-                                           value="prePay" {...register("deliveryPayWhen")}/>
+                                           value="선결제" {...register("deliveryPayWhen")}/>
                                     <span>선결제</span>
                                 </S.Ratio>
                                 <S.Ratio>
                                     <input type="radio" name="deliveryPayWhen"
-                                           value="payLater" {...register("deliveryPayWhen")}/>
+                                           value="착불" {...register("deliveryPayWhen")}/>
                                     <span>착불</span>
                                 </S.Ratio>
                             </S.RatioWrap>
@@ -248,9 +256,9 @@ const SellerProductWrite = () => {
                             <S.Division>택배사 선택</S.Division>
                             <S.Shipping>
                                 <select {...register("deliveryCompany")}>
-                                    <option value="post">우체국 택배</option>
-                                    <option value="cj">CJ 택배</option>
-                                    <option value="lotte">롯데 택배</option>
+                                    <option value="우체국 택배">우체국 택배</option>
+                                    <option value="CJ 택배">CJ 택배</option>
+                                    <option value="롯데 택배">롯데 택배</option>
                                 </select>
                             </S.Shipping>
                         </S.ListWrap>
@@ -277,7 +285,7 @@ const SellerProductWrite = () => {
                                     {...register("mainImage", {
                                         required: true,
                                         validate : (e) => {
-                                            console.log("validate", e[0])
+                                            // console.log("validate", e[0])
                                             const file = e[0];
                                             if (file) {
                                                 const reader = new FileReader();
@@ -298,14 +306,14 @@ const SellerProductWrite = () => {
                                             <S.SubImage>
                                                 {
                                                     index === 0 ? (
-                                                        <img src={subImagePreview1 || "/assets/images/seller/sub-default-plus.png"} alt="펫 이미지" />
+                                                        <img src={subImagePreview1 || "/assets/images/seller/sub-default-plus.png"} alt="상품 이미지" />
                                                     ) : (
                                                         index === 1 ? (
-                                                            <img src={subImagePreview2 || "/assets/images/seller/sub-default-plus.png"} alt="펫 이미지" />
+                                                            <img src={subImagePreview2 || "/assets/images/seller/sub-default-plus.png"} alt="상품 이미지" />
                                                         ) : (
                                                             <img
                                                                 src={subImagePreview3 || "/assets/images/seller/sub-default-plus.png"}
-                                                                alt="펫 이미지"/>
+                                                                alt="상품 이미지"/>
                                                         )
                                                     )
                                                 }
@@ -347,7 +355,7 @@ const SellerProductWrite = () => {
                 </S.ProductInsert>
             </form>
         </div>
-);
+    );
 };
 
 export default SellerProductWrite;
