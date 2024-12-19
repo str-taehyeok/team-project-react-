@@ -109,7 +109,7 @@ const UserPost = () => {
                         <S.MyPostUnderBox>
                             <S.PostUnder>
                                 <HeartBtn id={id} type={"community"} />
-                                <S.LikeNumber>0</S.LikeNumber>
+                                <S.LikeNumber></S.LikeNumber>
                                 <S.DotBtn><button><img src="/assets/images/community/dots.png" alt="삼점메뉴" /></button></S.DotBtn>
                             </S.PostUnder>
                             {foundPost ? (
@@ -117,7 +117,7 @@ const UserPost = () => {
                                     {foundPost.postContent}
                                 </S.PostContent>
                             ) : (
-                                <S.PostContent>게시글을 찾을 수 없습니다.</S.PostContent> // 로딩 중이거나 없는 경우 메시지 출력
+                                <S.PostContent>게시글을 찾을 수 없습니다.</S.PostContent> 
                             )}
                         </S.MyPostUnderBox>
                     </S.MyPostBox>
@@ -159,7 +159,6 @@ const UserPost = () => {
                         </S.Scroll>
                     </S.CommentDiv>
                 </S.MyPostPageBox>
-                <S.BestText>유저들의 비슷한 공감 베스트</S.BestText>
             </S.MyPostPage>
         </div>
     );
