@@ -525,6 +525,7 @@ S.UploadButton = styled.button`
 `
 
 S.PostWarpper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -657,6 +658,7 @@ S.PopupAreaFollowing = styled.div`
   width: 400px;
   height: 534px;
   border-radius: 20px;
+  z-index: 10000;
   border: solid 1px #828282;
   box-shadow: 2px 4px 4px rgb(0, 0, 0, 0.2);
   display: flex;
@@ -772,7 +774,6 @@ S.PopupBtn = styled.div`
 `
 
 S.PoputBtnType = styled.div`
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -783,7 +784,7 @@ S.PoputBtnType = styled.div`
       border-top-left-radius: 20px;
       background-color: white;
     }
-    &:nth-child(2) {
+    &:nth-child(3) {
         width: 60px;
         height: 30px;
         border-bottom-right-radius: 20px;
@@ -812,5 +813,60 @@ S.TagColorImage = styled.div`
   cursor: pointer;
   text-align: center;
 `
+
+S.TagWrapper = styled.div`
+  margin-bottom: 20px;
+`;
+
+S.TagInputWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+
+  input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+`;
+
+S.TagList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+`;
+
+S.TagItem = styled.div`
+  padding: 8px 12px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  button {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 16px;
+  }
+`;
+
 
 export default S;
