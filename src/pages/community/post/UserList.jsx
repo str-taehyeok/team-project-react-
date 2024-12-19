@@ -132,7 +132,7 @@ const UserList = () => {
             </div>
           </S.MyProfileCard>
           <S.MyProfilelineStyle />
-          {/* FollowBtn을 한 번만 렌더링하도록 수정 */}
+
           <S.ButtonCenter>
             <FollowBtn targetUserId={currentUser.id} />
           </S.ButtonCenter>
