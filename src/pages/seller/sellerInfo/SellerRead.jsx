@@ -77,7 +77,7 @@ const SellerRead = () => {
                     <S.PhoneText>휴대폰 번호</S.PhoneText>
                     <span>|</span>
                     <S.PhoneInput>
-                        <p>{memberPhone}</p>
+                        <p className={"number1"}>{memberPhone}</p>
                     </S.PhoneInput>
                 </S.PhoneInputBox>
             </label>

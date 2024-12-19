@@ -97,19 +97,18 @@ const S = {}
       line-height: 30px;
   `
   S.IdInput = styled.div`
-      & input {
-        border-radius: 20px;
-        border-style: none;
-        border: solid 1px #828282;
-        width: 464px;
-        height: 55px;
-        padding: 19px 26px;
-        font-size: 14px;
-        line-height: 22px;
-        color:#828282;
-        outline:none;
-        margin-left: 27px;
-      }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+        & button {
+          border: none;
+          background-color: #113F8A;
+          width: 100px;
+          color: #ffffff;
+          height: 24px;
+          border-radius: 20px;
+          
+        }
   
     & p {
       width: 464px;
@@ -119,20 +118,20 @@ const S = {}
       color:#000000;
       margin-left: 53px;
     }
-  `
-  S.IdInputBox = styled.div`
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 20px;
     & p.email {
-      width: 464px;
+      width: 364px;
       height: 55px;
       font-size: 16px;
       line-height: 55px;
       color:#000000;
       margin-left: 27px;
     }
+  `
+  S.IdInputBox = styled.div`
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
     
   `
 
@@ -230,7 +229,15 @@ const S = {}
           outline:none;
           margin-left: 27px;
         }
-    & p {
+    & p.number {
+      width: 464px;
+      height: 55px;
+      line-height: 55px;
+      font-size: 16px;
+      color:#000000;
+      margin-left: 27px;
+    }
+    & p.number1 {
       width: 464px;
       height: 55px;
       line-height: 55px;
@@ -284,6 +291,9 @@ S.PwInputBox = styled.div`
     width: 464px;
     margin-left: 27px;
     height: 55px;
+  }
+  & p {
+    line-height: 55px;
   }
   & button.update {
     width: 90px;
@@ -446,7 +456,7 @@ S.PhoneContainer = styled.div`
 // 비번
 S.CardPopUpBtn = styled.div`
     width: 600px;
-    height: 450px;
+    height: 700px;
     border: 1px solid #828282;
     position: absolute;
     z-index: 2;
@@ -455,17 +465,17 @@ S.CardPopUpBtn = styled.div`
     transform: translate(-50%, -50%);
     border-radius: 20px;
     background-color: #ffffff;
-    
   
     & button.x {
-        margin-left: 550px;
+        margin-left: 520px;
         background-color: #ffffff;
         border: none;
         cursor: pointer;
-        width: 40px;
-        height: 40px;
+        width: 60px;
+        height: 60px;
         border-radius: 20px;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
+      margin-top: 10px;
     }
 `
 
@@ -543,16 +553,23 @@ S.AuthNumberContainer = styled.div`
 
 // noinspection CssInvalidPropertyValue
 S.InputContainer = styled.div`
-  width: 550px;
-  height: 700px;
-  border: 1px solid #828282;
-  border-radius: 20px;
-  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 15px;
+  
+  & button.x {
+    margin-left: 550px;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  
 `;
 
 S.InputWrapper = styled.div`

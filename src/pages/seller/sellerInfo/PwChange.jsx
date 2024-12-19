@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import S from "./style";
 
-const PwChange = () => {
+const PwChange = ({ handleShowPopup }) => {
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -106,7 +106,8 @@ const PwChange = () => {
     };
 
     return (
-        <>
+        <S.CardPopUpBtn>
+                <button className={"x"} onClick={handleShowPopup}>X</button>
             <S.InputContainer>
                 <S.NewPasswordMessage>
                     <p>✔ 계정에 등록된 이메일로 전송된 인증번호를 입력해주세요.</p>
@@ -224,7 +225,7 @@ const PwChange = () => {
                         onClick={handlePasswordChange}
                         disabled={
 
-                            newPassword !== confirmNewPassword 
+                            newPassword !== confirmNewPassword
 
                         }
                     >
@@ -232,7 +233,7 @@ const PwChange = () => {
                     </S.NextButton>
                 </Link>
             </S.InputContainer>
-        </>
+        </S.CardPopUpBtn>
     );
 };
 

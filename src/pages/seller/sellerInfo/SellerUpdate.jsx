@@ -90,6 +90,7 @@ const SellerUpdate = () => {
                         <S.IdText>로그인 ID</S.IdText>
                         <S.IdInput>
                             <p className={"email"}>{memberEmail}</p>
+                            <button type="button" className={"update"} onClick={handleShowPopup}>이메일 인증</button>
                         </S.IdInput>
                     </S.IdInputBox>
                 </label>
@@ -122,22 +123,16 @@ const SellerUpdate = () => {
                 <label>
                     <S.PhoneInputBox>
                         <S.PhoneText>휴대폰 번호</S.PhoneText>
-                        <S.PhoneContainer>
                             <S.PhoneInput>
                                 <p className={"number"}>{memberPhone}</p>
                             </S.PhoneInput>
-                            <div>
-                                <button type="button" className={"check"} onClick={handleShowPopup}>핸드폰 인증</button>
-                            </div>
-
-                        </S.PhoneContainer>
                     </S.PhoneInputBox>
                 </label>
                 <label>
                     <S.PwInputBox>
                         <S.PwText>비밀번호</S.PwText>
                         <div className={'update-button'}>
-                            <p>비밀번호 변경 시 핸드폰 인증을 해주세요</p>
+                            <p>이메일 인증을 해주세요.(비밀번호 변경 시 다시 로그인 됩니다)</p>
                         </div>
                     </S.PwInputBox>
                 </label>
