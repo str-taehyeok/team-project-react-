@@ -9,8 +9,8 @@ const ProfileList = () => {
     const [loading, setLoading] = useState(true); // 로딩 상태 추가
     const [couponData, setCouponData] = useState([]);
     const { currentUser } = useSelector((state) => state.user);
-
     const id = currentUser.id; // 사용자 ID
+    console.log(currentUser)
 
     // 쿠폰 데이터 가져오기
     useEffect(() => {
@@ -18,13 +18,13 @@ const ProfileList = () => {
             try {
                 const response = await fetch(`http://localhost:10000/coupons/member/${id}`);
                 if (!response.ok) {
-                    console.error("쿠폰 데이터를 가져오는 데 실패했습니다.");
+                    // console.error("쿠폰 데이터를 가져오는 데 실패했습니다.");
                     return;
                 }
                 const data = await response.json();
                 setCouponData(data);
             } catch (error) {
-                console.error(error);
+                // console.error(error);
                 alert("쿠폰 데이터를 가져오는 중 오류가 발생했습니다.");
             } finally {
                 setLoading(false);
@@ -54,8 +54,8 @@ const ProfileList = () => {
                                 {/* 프로필 이미지 렌더링 */}
                                 <img
                                     src={
-                                        currentUser.memberImage ||
-                                        `http://localhost:10000/member/display?fileName=${currentUser.memberFilePath}/${currentUser.memberFileName}`
+                                        currentUser.memberImage || 
+                                        `http://localhost:10000/member/display?fileName=${currentUser.memberFilePath}/${currentUser.memberFileName}` 
                                     }
                                     alt="프로필 사진"
                                 />

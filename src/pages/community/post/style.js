@@ -227,47 +227,61 @@ S.PropileBox = styled.div`
     height:44px;
     margin-right: 10px;
   `
-  // 팔로우 버튼튼
-S.FollowBtn = styled.div`
-& button {
-  border-radius: 20px;
-  width:65px;
-  height:30px;
-  background-color:#113F8A;
-  border:none;
-}
-& p {
-  font-size: 12px;
-  line-height: 18px;
-  color: #ffffff;
-  font-weight: bold;
-}
-  display:flex;
-  width:582px;
-  justify-content: right;
-  margin-top: 9px;
-`
-// 팔로잉 버튼
-S.FollowingBtn = styled.div`
-& button {
-  border-radius: 20px;
-  width:65px;
-  height:30px;
-  background-color:#ffffff;
-  border:solid 1px #828282;
-}
-  display:flex;
-  width:582px;
-  justify-content: right;
-  margin-top: 9px;
+//   // 팔로우 버튼튼
+// S.FollowBtn = styled.div`
+// & button {
+//   border-radius: 20px;
+//   width:65px;
+//   height:30px;
+//   background-color:#113F8A;
+//   border:none;
+// }
+// & p {
+//   font-size: 12px;
+//   line-height: 18px;
+//   color: #ffffff;
+//   font-weight: bold;
+// }
+//   display:flex;
+//   width:582px;
+//   justify-content: right;
+//   margin-top: 9px;
+// `
+// // 팔로잉 버튼
+// S.FollowingBtn = styled.div`
+// & button {
+//   border-radius: 20px;
+//   width:65px;
+//   height:30px;
+//   background-color:#ffffff;
+//   border:solid 1px #828282;
+// }
+//   display:flex;
+//   width:582px;
+//   justify-content: right;
+//   margin-top: 9px;
 
-  & p {
+//   & p {
+//   font-size: 12px;
+//   line-height: 18px;
+//   color: #828282;
+//   font-weight: bold;
+// }
+// `
+
+S.Follow = styled.button`
+  width: 65px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: ${(props) => (props.isFollowing ? '#113F8A' : '#D9D9D9')};
+  color: ${(props) => (props.isFollowing ? '#ffffff' : '#000000')};
+  border: none;
+  cursor: pointer;
   font-size: 12px;
-  line-height: 18px;
-  color: #828282;
-  font-weight: bold;
-}
-`
+  font-weight: 600;
+  line-height: 30px;
+`;
+
 
 // 게시물 제목
 S.PostTitle = styled.div`

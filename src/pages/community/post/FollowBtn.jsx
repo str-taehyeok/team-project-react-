@@ -1,49 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { CommunityContext } from "../../../context/communityContext";
+import S from "./style";
 
 const FollowBtn = ({ targetUserId }) => {
   const navigate = useNavigate();
 
   // 리덕스에 로그인한 유저의 id
   const { currentUser } = useSelector((state) => state.user);
-  const memberId = currentUser?.id ? currentUser.id : 0;
-
   const [isFollowing, setIsFollowing] = useState(false);
+  const { communityState, communityAction } = useContext(CommunityContext);
+  const { communites } = communityState;
+  const { id: postId } = useParams();
   
+  const [follwerMemberId, setFollwerMemberId] = useState(targetUserId);
+  const memberId = currentUser?.id ? currentUser?.id : 0;
 
-  // 팔로우 상태를 확인하는 함수
   useEffect(() => {
-    if (memberId && targetUserId) {
+    if (postId && currentUser?.id) {
+      setFollwerMemberId(targetUserId);
+    }
+  }, [postId, targetUserId, currentUser?.id]);
+
+  // 로컬 스토리지에서 팔로우 상태 불러오기
+  useEffect(() => {
+    const storedFollowStatus = localStorage.getItem(`follow_${memberId}_${targetUserId}`);
+    if (storedFollowStatus !== null) {
+      setIsFollowing(JSON.parse(storedFollowStatus)); 
+    } else {
+      if (!targetUserId || !memberId) return;
+
+      const checkFollowStatus = async () => {
+        try {
+          const response = await fetch(`http://localhost:10000/follows/following/${memberId}`);
+          if (response.ok) {
+            const data = await response.json();
+            const isFollowingUser = data.some((follow) => follow.followingMemberId === targetUserId);
+            setIsFollowing(isFollowingUser);
+           
+            // 서버에서 팔로우 상태를 가져온 후 로컬 스토리지에 저장
+            localStorage.setItem(`follow_${memberId}_${targetUserId}`, JSON.stringify(isFollowingUser));
+          } else {
+            console.error("팔로우 상태 조회 오류");
+          }
+        } catch (error) {
+          console.error("팔로우 상태 확인 오류:", error);
+        }
+      };
+
       checkFollowStatus();
     }
-  }, [memberId, targetUserId]);
-
-  const checkFollowStatus = async () => {
-    try {
-      const response = await fetch(`http://localhost:10000/follows/following/${memberId}`);
-      const data = await response.json();
-
-      const isAlreadyFollowing = data.some(following => following.followedId === targetUserId);
-      setIsFollowing(isAlreadyFollowing);
-    } catch (error) {
-      console.error("팔로우 상태 확인 오류:", error);
-    }
-  };
+  }, [memberId, targetUserId]); 
 
   const handleFollow = async () => {
     if (!memberId) {
-      alert("로그인 해주세요.");
       navigate("/login");
       return;
     }
 
     const fetchPath = isFollowing ? "cancel" : "add"; 
     const fetchMethod = isFollowing ? "DELETE" : "POST"; 
-
     const fetchData = {
-      followerId: memberId,
-      followedId: targetUserId,
+      followerMemberId: targetUserId, 
+      followingMemberId: memberId,
     };
 
     try {
@@ -56,7 +76,10 @@ const FollowBtn = ({ targetUserId }) => {
       });
 
       if (response.ok) {
-        setIsFollowing(!isFollowing);
+        const newFollowStatus = !isFollowing; // 새로운 팔로우 상태
+        setIsFollowing(newFollowStatus);  // 팔로우 상태를 반영
+        // 로컬 스토리지에 상태 저장
+        localStorage.setItem(`follow_${memberId}_${targetUserId}`, JSON.stringify(newFollowStatus));
       } else {
         console.error("팔로우 상태 업데이트 실패");
       }
@@ -66,17 +89,9 @@ const FollowBtn = ({ targetUserId }) => {
   };
 
   return (
-    <>
-      {isFollowing ? (
-        <button onClick={handleFollow}>
-          <p>팔로잉</p> 
-        </button>
-      ) : (
-        <button onClick={handleFollow}>
-          <p>팔로우</p> 
-        </button>
-      )}
-    </>
+    <S.Follow isFollowing={isFollowing} onClick={handleFollow}>
+      {isFollowing ? "팔로잉" : "팔로우"}
+    </S.Follow>
   );
 };
 

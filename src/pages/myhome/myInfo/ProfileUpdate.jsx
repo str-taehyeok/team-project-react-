@@ -17,16 +17,16 @@ const ProfileUpdate = () => {
     const [isVisible, setIsVisible] = useState(false); // 인증번호 입력창 표시 여부
 
     const navigate = useNavigate();
-    const localJwtToken = localStorage.getItem("jwtToken");
-    const { register, formState: { isSubmitting } } = useForm({ mode: "onChange" });
+    // const localJwtToken = localStorage.getItem("jwtToken");
+    const { register, handleSubmit, formState: { isSubmitting } } = useForm({ mode: "onChange" });
 
-    // 초기화 및 인증 체크
-    useEffect(() => {
-        if (!localJwtToken) {
-            alert("로그인 후 이용해주시길 바랍니다.");
-            navigate("/login");
-        }
-    }, [navigate, localJwtToken]);
+    // // 초기화 및 인증 체크
+    // useEffect(() => {
+    //     if (!localJwtToken) {
+    //         alert("로그인 후 이용해주시길 바랍니다.");
+    //         navigate("/login");
+    //     }
+    // }, [navigate, localJwtToken]);
 
     // 인증번호 발송
     const transferSms = async () => {
@@ -74,38 +74,79 @@ const ProfileUpdate = () => {
     };
 
     // 폼 제출 핸들러
-    const handleFormSubmit = async (data) => {
+    const handleFormSubmit = handleSubmit(async (data) => {
+
         try {
             const formData = new FormData();
+
+            // 수정 완료
+            console.log("userData", userData)
+            console.log("data", data)
+
+            // 이미지 등록 및 수정된 데이터를 userData에 반영시킨다.
             Object.entries(data).forEach(([key, value]) => {
-                formData.append(key, value);
+                setUserData({ ...userData, [key]: value })
+                if(key === 'memberImage'){
+                    formData.append("uploadFile", value[0])
+                }else{
+                    const emptyImage = new Blob([], { type: 'image/png'})
+                    formData.append("uploadFile", emptyImage)
+                }
             });
 
-            if (data.memberImage && data.memberImage[0]) {
-                console.log("FormData uploaded file: ", data.memberImage[0]);
-                formData.append("uploadFile", data.memberImage[0]);
+            const { 
+                memberName, memberNickname, memberEmail, memberPhone, memberZipcode,
+                memberAddress, memberAddressDetail
+            } = userData;
+
+            const uploadData = {
+                memberName : memberName,
+                memberNickname : memberNickname,
+                memberEmail : memberEmail,
+                memberPhone : memberPhone,
+                memberZipcode : memberZipcode,
+                memberAddress : memberAddress,
+                memberAddressDetail : memberAddressDetail
             }
+
+            console.log("uploadData", uploadData)
+
+            // 나머지 데이터를 모두 append한다.
+            Object.entries(uploadData).forEach(([key, value]) => {
+                formData.append(key, value)
+            });
 
             const uploadResponse = await fetch("http://localhost:10000/member/upload", {
                 method: "POST",
                 body: formData,
             });
-            const uploadData = await uploadResponse.json();
-            console.log("Update response: ", updateData);
-            formData.append("uuid", uploadData.uuid);
+            
+            const updatedResponse = await uploadResponse.json();
+            console.log("Update response: ", updatedResponse);
 
+            if(updatedResponse?.uuid){
+                // uuid를 append해서 보낸다
+                formData.append("uuid", updatedResponse.uuid);
+                
+            }else{
+                // 아니면 그냥 보낸다. uuid없이 보낸다.
+                formData.append("uuid", "");
+            }
+            
             const updateResponse = await fetch("http://localhost:10000/member/profileEdit", {
                 method: "PUT",
                 body: formData,
             });
-            const updateData = await updateResponse.json();
 
+            const updateData = await updateResponse.json();
+            console.log(updateData)
             alert(updateData.message);
             navigate("/myhome");
+
         } catch (error) {
             console.error("폼 제출 오류:", error);
         }
-    };
+    });
 
     // 사용자 데이터 업데이트 핸들러
     const handleChange = (e) => {
@@ -114,13 +155,11 @@ const ProfileUpdate = () => {
     };
 
     return (
-        <S.MyHomeContainer>
+        <S.MyHomeContainer encType="multipart/form-data" onSubmit={handleFormSubmit}>
             <S.MyHomeWrap>
                 {/* 완료 버튼 */}
                 <S.UpdateButtonWrap>
-                    <button disabled={isSubmitting}>
-                        <Link to="/myhome">완료</Link>
-                    </button>
+                    <button disabled={isSubmitting}>완료</button>
                 </S.UpdateButtonWrap>
 
                 {/* 프로필 박스 */}
@@ -129,7 +168,7 @@ const ProfileUpdate = () => {
                         {/* 프로필 이미지 */}
                         <S.ProfileImage>
                             <img
-                                src={petImagePreview || `${process.env.PUBLIC_URL}/assets/images/myhome/default-userImg.png`}
+                                src={petImagePreview || `http://localhost:10000/member/display?fileName=${currentUser.memberFilePath}/${currentUser.memberFileName}`}
                                 alt="프로필사진"
                             />
                             <p>{currentUser.memberNickname}</p>
