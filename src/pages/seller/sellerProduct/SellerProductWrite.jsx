@@ -10,30 +10,11 @@ const SellerProductWrite = () => {
     const navigate = useNavigate();
     const { currentUser } = useSelector((state) => state.user);
     const id = currentUser.id;
-    // const { id } = useSelector(state => state.admin.currentUser);
-    // 이미지
+    
     const [mainImagePreview, setMainImagePreview] = useState(null);
     const [subImagePreview1, setSubImagePreview1] = useState(null);
     const [subImagePreview2, setSubImagePreview2] = useState(null);
     const [subImagePreview3, setSubImagePreview3] = useState(null);
-
-    // 이미지 미리보기 핸들러
-    // const handleImagePreview = (e, type, index = 0) => {
-    //     const file = e.target.files[0];
-    //     if (!file) return;
-    //
-    //     const reader = new FileReader();
-    //     reader.onloadend = () => {
-    //         if (type === 'main') {
-    //             setMainImage(reader.result);
-    //         } else {
-    //             const newSubImages = [...subImages];
-    //             newSubImages[index] = reader.result;
-    //             setSubImages(newSubImages);
-    //         }
-    //     };
-    //     reader.readAsDataURL(file);
-    // };
 
     const onSubmit = async (data) => {
         const formData = new FormData();
@@ -65,8 +46,6 @@ const SellerProductWrite = () => {
         formData.append("uploadFile", subImage2[0])
         formData.append("uploadFile", subImage3[0])
 
-        console.log(data)
-
         // 서버로 데이터 전송
         await fetch("http://localhost:10000/files/upload", {
             method: "POST",
@@ -83,7 +62,8 @@ const SellerProductWrite = () => {
                     .then((res) => res.json())
                     .then((res) => {
                         console.log(res)
-                        navigate("/seller")
+                        
+                        // navigate("/seller")
                     })
             })
             .catch(console.error)
@@ -285,7 +265,6 @@ const SellerProductWrite = () => {
                                     {...register("mainImage", {
                                         required: true,
                                         validate : (e) => {
-                                            // console.log("validate", e[0])
                                             const file = e[0];
                                             if (file) {
                                                 const reader = new FileReader();
@@ -323,7 +302,6 @@ const SellerProductWrite = () => {
                                             type="file"
                                             id={`subImage${index + 1}`}
                                             {...register(`subImage${index + 1}`, {
-                                                required: true,
                                                 validate : (e) => {
                                                     console.log("validate", e[0])
                                                     const file = e[0];
