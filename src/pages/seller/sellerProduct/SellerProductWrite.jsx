@@ -204,7 +204,7 @@ const SellerProductWrite = () => {
                         </S.ListWrap>
                         <S.ListWrap>
                             <S.Division>배송비 금액</S.Division>
-                            <input name="deliveryFee" type="text" placeholder="원(원)" {...register("deliveryFee")}/>
+                             <input name="deliveryFee" type="text" placeholder="원(원)" {...register("deliveryFee")}/>
                         </S.ListWrap>
                         <S.ListWrap>
                             <S.Division>무료배송 금액</S.Division>

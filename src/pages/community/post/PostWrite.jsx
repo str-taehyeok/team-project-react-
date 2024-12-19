@@ -4,11 +4,12 @@ import S from "./style";
 
 const PostWrite = () => {
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state.user)
   const [colorTags, setColorTags] = useState([]);
   const [colorInput, setColorInput] = useState('');
   const [isColorModalOpen, setIsColorModalOpen] = useState(false);
   const [images, setImages] = useState([]);
+  const [content, setContent] = useState('');
+  const [imageFiles, setImageFiles] = useState([]); // 실제 파일 저장용
   const localJwtToken = localStorage.getItem("jwtToken");
 
   // 로그인 상태 확인
@@ -32,7 +33,6 @@ const PostWrite = () => {
   // 컬러 태그 추가
   const applyColor = () => {
     try {
-      // 선택된 색상을 가져와 태그로 추가
       const selectedColorName = colorInput;
       const selectedColorValue = colorOptions[selectedColorName];
 
@@ -56,9 +56,12 @@ const PostWrite = () => {
   // 이미지 업로드
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
-    const newImages = files.slice(0, 5 - images.length);
+    const newFiles = files.slice(0, 5 - images.length);
 
-    const imagePromises = newImages.map((file) => {
+    // 실제 파일 저장
+    setImageFiles(prev => [...prev, ...newFiles]);
+
+    const imagePromises = newFiles.map((file) => {
       return new Promise((resolve) => {
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -81,13 +84,78 @@ const PostWrite = () => {
   // 이미지 삭제
   const removeImage = (index) => {
     setImages((prev) => prev.filter((_, i) => i !== index));
+    setImageFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
-  // 업로드 처리
-  const handleUpload = () => {
-    console.log("업로드 처리:", { colorTags, images });
+  // 서버로 데이터 전송하는 함수
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      console.log('Submit 시작');
+      console.log('이미지 파일:', imageFiles);
+      console.log('컨텐츠:', content);
+      console.log('컬러태그:', colorTags);
+  
+      // 이미지 파일 업로드를 위한 FormData
+      console.log('업로드할 파일들:', imageFiles);
+      const formData = new FormData();
+      
+      // 먼저 이미지 파일들을 formData에 추가
+      imageFiles.forEach((file) => {
+        formData.append("files", file);
+      });
+  
+      // 이미지 먼저 업로드
+      const imageUploadResponse = await fetch("http://localhost:10000/postFiles/upload", {
+        method: "POST",
+        body: formData,
+      });
+  
+      if (!imageUploadResponse.ok) {
+        throw new Error("이미지 업로드에 실패했습니다.");
+      }
+  
+      const imageResult = await imageUploadResponse.json();
+      console.log('이미지 업로드 결과:', imageResult);
+  
+      // 새로운 FormData 생성
+      const postFormData = new FormData();
+      
+      // 게시글 데이터 추가
+      postFormData.append("content", content);
+      postFormData.append("uuids", imageResult);
+  
+      // 컬러 태그 추가
+      colorTags.forEach((tag, index) => {
+        postFormData.append(`colorTags[${index}]`, JSON.stringify({
+          name: tag.name,
+          value: tag.value
+        }));
+      });
+  
+      console.log('게시글 작성 요청 시작');
+      // 게시글 작성 요청
+      const postResponse = await fetch("http://localhost:10000/posts/write", {
+        method: "POST",
+        body: postFormData,
+      });
+  
+      if (!postResponse.ok) {
+        throw new Error("게시글 작성에 실패했습니다.");
+      }
+  
+      const postResult = await postResponse.json();
+      console.log("게시글 작성 완료:", postResult);
+      
+      // 작성 완료 후 리디렉션
+      navigate("/post/list");
+    } catch (error) {
+      console.error("Error 상세:", error);
+      alert("게시글 작성 중 오류가 발생했습니다.");
+    }
   };
-
+  
   // 색상 옵션 목록
   const colorOptions = {
     Orange: "#FF7F17",
@@ -101,13 +169,7 @@ const PostWrite = () => {
   };
 
   return (
-    <form encType="multipart/form-data" onSubmit={handleSubmit(async (data) => {
-        const formData = new FormData();
-
-        formData.append("memberId", currentUser.id);
-        formData.append()
-  
-    <>
+    <form onSubmit={handleSubmit}>
       <S.PostWarpper>
         {/* 컬러 태그 영역 */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '10px' }}>
@@ -116,6 +178,9 @@ const PostWrite = () => {
               key={index}
               style={{
                 display: 'flex',
+                position: 'absolute',
+                left: '177px',
+                top: '39px',
                 alignItems: 'center',
                 padding: '5px 10px',
                 borderRadius: '15px',
@@ -142,9 +207,9 @@ const PostWrite = () => {
 
         {/* 컬러 태그 유무에 따른 버튼 */}
         {colorTags.length > 0 ? (
-          <S.UploadButton onClick={handleUpload}>업로드</S.UploadButton>
+          <S.UploadButton type="submit">업로드</S.UploadButton>
         ) : (
-          <S.UploadButton onClick={handleTagButton}>컬러 추가</S.UploadButton>
+          <S.UploadButton type="button" onClick={handleTagButton}>컬러 추가</S.UploadButton>
         )}
 
         {/* 이미지 업로드 영역 */}
@@ -160,6 +225,7 @@ const PostWrite = () => {
                     multiple
                     onChange={handleImageUpload}
                     disabled={images.length >= 5}
+                    accept="image/*"
                   />
                   {images.length === 0 ? (
                     <span className="h5">
@@ -199,8 +265,7 @@ const PostWrite = () => {
                     onClick={() => removeImage(index + 1)}
                     style={{
                       position: 'absolute',
-                      top: '5px',
-                      right: '5px',
+                      top: '505px',
                       background: 'rgba(0,0,0,0.5)',
                       color: 'white',
                       border: 'none',
@@ -242,6 +307,8 @@ const PostWrite = () => {
           {/* 글 작성 영역 */}
           <S.WriterBox>
             <S.Textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
               placeholder={
                 "오늘 당신의 반려동물은 무엇을 했나요?\n" +
                 "당신이 바라보는 모습을 수백만 포포인들과 나눠보세요!"
@@ -251,7 +318,7 @@ const PostWrite = () => {
         </S.PostContents>
       </S.PostWarpper>
 
-      {/* 컬러 추가 모달 */}
+      {/* 컬러 추가 */}
       {isColorModalOpen && (
         <div
           style={{
@@ -320,7 +387,7 @@ const PostWrite = () => {
           </div>
         </div>
       )}
-    </>
+    </form>
   );
 };
 

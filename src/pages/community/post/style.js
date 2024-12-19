@@ -508,6 +508,7 @@ S.UploadButton = styled.button`
 `
 
 S.PostWarpper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
