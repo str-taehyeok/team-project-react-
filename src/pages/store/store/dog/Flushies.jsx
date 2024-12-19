@@ -1,85 +1,119 @@
-import React, {useContext, useEffect, useState} from 'react';
-import S from "./style";
-import FlushieColor from './flushies/FlushieColor';
-import FlushieBest from './flushies/FlushieBest';
-import FlushieSpecial from './flushies/FlushieSpecial';
-import FlushieRecommend from './flushies/FlushieRecommend';
-import { Link } from "react-router-dom";
-import HeartBtn from '../../../community/community/HeartBtn';
+import React, { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '../../../../context/productContext';
-
+import HeartBtn from '../../../community/community/HeartBtn';
+import S from './style';
+import {Grid, Pagination} from "swiper/modules";
+import "swiper/css";
+import "swiper/css/grid";
+import "swiper/css/pagination";
+import {Swiper, SwiperSlide} from "swiper/react";
 
 const Flushies = () => {
-
     const { productState } = useContext(ProductContext);
     const { products } = productState;
-    const dogProduts = products.filter((pr) => pr.productAnimal === "dog");
-    console.log(dogProduts)
 
-    const bestProducts = dogProduts.length > 0 ? dogProduts.map(({
-        productName, productPrice, productFileName, productDiscount
-    }, i) => (
-        <S.BestProduct key={i}>
-            <HeartBtn/>
-            <Link to={"/product/:id"}>
-                <img src={`${process.env.PUBLIC_URL}/assets/images/products/${productFileName}`} alt={"상품" + (i + 1)}/>
-                <span>{productName}</span>
-            </Link>
-            <S.NormalPrice>
-                <p style={{color: "#C83F3F", fontWeight: "bold"}}>{productDiscount}%</p>
-                <p style={{fontWeight: 700}}>{productPrice}&nbsp;원</p>
-            </S.NormalPrice>
-            <button>담기</button>
-        </S.BestProduct>
-    )) : [];
+    // 장난감만
+    const [filteredProducts, setFilteredProducts] = useState([]);
+ 
+    useEffect(() => {
+        if (products && products.length > 0) {
+            const filtered = products.filter((product) => product.productCategory === "장난감");
+            setFilteredProducts(filtered);
+        }
+    }, [products]); 
 
-    const specialProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
-        <S.SpecialProduct key={i} className={i === 0 ? 'first-product' : 'rest'}>
-            <HeartBtn />
-            <Link to={"/product/:id"}>
-                <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)}/>
-                <span className={i === 0 ? 'first-product-name' : 'rest'}>{productName}</span>
-            </Link>
-            <S.Price>
-                <p style={{color: "#C83F3F", fontWeight: "bold", marginRight: "10px"}} className={i === 0 ? 'first-product-discount' : 'rest'}>{productDiscount}%</p>
-                <p className={i === 0 ? 'first-product-price' : 'rest'}>{productPrice}&nbsp;원</p>
-            </S.Price>
-            <button>담기</button>
-        </S.SpecialProduct>
-    )) : [];
+    const AllProducts = filteredProducts.map(({
+        id, productName, productFileName, productPrice, productRealPrice, productDiscount
+    }) => (
+        <S.ProductWrap key={id}>
+            <SwiperSlide key={id}>
+                <S.imageWrap>
+                    <HeartBtn className="heart" id={id} type={"product"} />
+                    <img className='thumb' src={`${process.env.PUBLIC_URL}/assets/images/products/${productFileName}`} alt="" />
+                </S.imageWrap>
+                <div className='title-wrap'>
+                    <S.ProductTitle>{productName}</S.ProductTitle>
+                    <S.ProductPriceWrap>
+                        { productDiscount === 0 ? (
+                            <span>{productPrice}</span>
+                        ) : (
+                            <>
+                                <span className='discount'>{productDiscount}%</span>
+                                {/* <span>{productRealPrice}</span> */}
+                                <span>{productPrice.toLocaleString('ko-KR')} 원</span>
+                            </>
+                        ) }
+                    </S.ProductPriceWrap>
+                </div>
+                <S.ButtonWrap >
+                    <img
+                        src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
+                        alt="장바구니아이콘"
+                    />
+                    <p>담기</p>
+                </S.ButtonWrap>
+            </SwiperSlide>
+        </S.ProductWrap>
+    ))
 
-    const recommendProducts = products.length > 0 ? products.map(({productName, productPrice, productImage1, productDiscount}, i) => (
-        <S.Product key={i} >
-            <HeartBtn />
-            <Link to={"/product/:id"}>
-                <img src={`${process.env.PUBLIC_URL}/assets/images/store/${productImage1}`} alt={"상품" + (i + 1)} />
-                <span>{productName}</span>
-            </Link>
-            <S.RecommendedPrice>
-                <p style={{color: "#C83F3F", fontWeight: "bold"}}>{productDiscount}%</p>
-                <p style={{fontWeight: 700}}>{productPrice}&nbsp;원</p>
-            </S.RecommendedPrice>
-            <button>담기</button>
-        </S.Product>
-    )) : [];
+    const bestProducts = filteredProducts.sort((a, b) => a.reviewStar - b.reviewStar).map(({
+        id, productName, productFileName, productPrice, productRealPrice, productDiscount
+    }) => (
+        <S.ProductWrap key={id}>
+            <SwiperSlide key={id}>
+                <S.imageWrap>
+                    <HeartBtn className="heart" id={id} type={"product"} />
+                    <img className='thumb' src={`${process.env.PUBLIC_URL}/assets/images/products/${productFileName}`} alt="" />
+                </S.imageWrap>
+                <div className='title-wrap'>
+                    <S.ProductTitle>{productName}</S.ProductTitle>
+                    <S.ProductPriceWrap>
+                        { productDiscount === 0 ? (
+                            <span>{productPrice}</span>
+                        ) : (
+                            <>
+                                <span className='discount'>{productDiscount}%</span>
+                                {/* <span>{productRealPrice}</span> */}
+                                <span>{productPrice.toLocaleString('ko-KR')} 원</span>
+                            </>
+                        ) }
+                    </S.ProductPriceWrap>
+                </div>
+                <S.ButtonWrap >
+                    <img
+                        src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
+                        alt="장바구니아이콘"
+                    />
+                    <p>담기</p>
+                </S.ButtonWrap>
+            </SwiperSlide>
+        </S.ProductWrap>
+    ))
 
     return (
-        <div>
-            <S.Content>
-                {/* 컬러 추천 상품 */}
-                <FlushieColor productList={products} />
-
-                {/* 베스트상품 */}
-                <FlushieBest bestProducts={bestProducts} />
-                
-                {/* 스페셜 상품 */}
-                <FlushieSpecial specialProducts={specialProducts}/>
-
-                {/* 강아지 추천 상품 */}
-                <FlushieRecommend recommendProducts={recommendProducts} />
-
-            </S.Content>
-        </div>
+        <>
+          <S.ProductWraper>
+            <Swiper
+                slidesPerView={4}
+                grid={{ rows: 2 }}
+                spaceBetween={30}
+                pagination={{ clickable: true }}
+                modules={[Grid, Pagination]}
+                className="mySwiper"
+            >
+                    {AllProducts}
+                </Swiper>
+            </S.ProductWraper>
+            <Swiper
+                    slidesPerView={4}
+                    spaceBetween={30}
+                    pagination={{ clickable: true }}
+                    modules={[Grid, Pagination]}
+                    className="mySwiper"
+                >
+                {bestProducts}
+            </Swiper>
+        </>
     );
 };
 
