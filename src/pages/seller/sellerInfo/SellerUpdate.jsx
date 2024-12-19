@@ -8,17 +8,17 @@ import S from './style'; // 스타일 import
 
 const SellerUpdate = () => {
     const { id } = useParams();
-    const memberId = 12;
     const { register, handleSubmit, formState: { isSubmitting } } = useForm({ mode: "onChange" });
     const navigate = useNavigate();
     const { currentUser } = useSelector((state) => state.user);
     const [post, setPost] = useState({});
     const [isOpenPopup, setIsOpenPopup] = useState(false); // 팝업 상태
 
-    // 팝업 열기/닫기 함수
+    /*팝업 열기/닫기 함수*/
     const handleShowPopup = () => {
         setIsOpenPopup(!isOpenPopup);
     };
+
 
     // 데이터 fetching
     useEffect(() => {
@@ -56,15 +56,12 @@ const SellerUpdate = () => {
                     memberName: data.memberName,
                     memberPhone: data.memberPhone,
                     memberBank: data.memberBank,
-                    memberBankAccount: data.memberBankAccount,
-                    memberId: memberId
+                    memberBankAccount: data.memberBankAccount
                 })
             })
                 .then((res) => res.json())
                 .then((res) => {
-                    const {id} = res;
                     navigate(`/seller/seller-info/${id}`);
-                    console.log("아이디 풋 : {}", id);
                 })
 
 
@@ -87,14 +84,16 @@ const SellerUpdate = () => {
                             />
                         </S.NameInput>
                     </S.NameInputBox>
-
+                </label>
+                <label>
                     <S.IdInputBox>
                         <S.IdText>로그인 ID</S.IdText>
                         <S.IdInput>
                             <p className={"email"}>{memberEmail}</p>
                         </S.IdInput>
                     </S.IdInputBox>
-
+                </label>
+                <label>
                     <S.PayInputBox>
                         <S.PayText>정산 계좌 정보</S.PayText>
                         <S.BankInput>
@@ -114,12 +113,13 @@ const SellerUpdate = () => {
                     </S.PayInputBox>
                     <S.BankAccInput>
                         <input placeholder={"계좌번호를 입력해주세요"}
-                            type="text"
-                            defaultValue={memberBankAccount}
-                            {...register("memberBankAccount")}
+                               type="text"
+                               defaultValue={memberBankAccount}
+                               {...register("memberBankAccount")}
                         />
                     </S.BankAccInput>
-
+                </label>
+                <label>
                     <S.PhoneInputBox>
                         <S.PhoneText>휴대폰 번호</S.PhoneText>
                         <S.PhoneInput>
@@ -130,14 +130,16 @@ const SellerUpdate = () => {
                             />
                         </S.PhoneInput>
                     </S.PhoneInputBox>
-
+                </label>
+                <label>
                     <S.PwInputBox>
                         <S.PwText>비밀번호</S.PwText>
                         <div className={'update-button'}>
                             <button type="button" className={"update"} onClick={handleShowPopup}>비밀번호 변경</button>
                         </div>
                     </S.PwInputBox>
-
+                </label>
+                <label>
                     <S.BussinessInputBox>
                         <S.BussinessText>사업자 번호</S.BussinessText>
                         <S.BussinessInput>
