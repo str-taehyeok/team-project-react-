@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import S from "./style";
-import { Link } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, setUserStatus } from '../../modules/user';
 
 const Header = () => {
     const { isLogin } = useSelector((state) => state.user);
     const [isHover, setIsHover] = useState(false);
-    const [isSearch, setIsSearch] = useState(false);
     const dispatch = useDispatch();
+    const [searchTerm, setSearchTerm] = useState(""); 
+    const [isSearch, setIsSearch] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.removeItem("jwtToken");
@@ -23,13 +25,31 @@ const Header = () => {
     const handleMouseOut = () => {
         setIsHover(false);
     }
+
+    const handleSearchInput = (e) => {
+        setSearchTerm(e.target.value); 
+    };
+
+    const handleSearchSubmit = () => {
+        if (searchTerm.trim() === "") return;  
+        navigate(`/search/${encodeURIComponent(searchTerm.trim())}`);  
+        setSearchTerm("");  
+        setIsSearch(false);  
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearchSubmit(); 
+        }
+    };
+
     const handleShowSearch = () => {
-        setIsSearch(!isSearch)
-    }
+        setIsSearch(!isSearch); 
+        if (!isSearch) {
+            setSearchTerm(""); 
+        }
+    };
 
-    useEffect(() => {
-
-    }, [])
 
     return (
         <S.HeaderWrap className={isHover ? "active" : ""} onMouseOut={handleMouseOut}>
@@ -68,9 +88,15 @@ const Header = () => {
                     </S.SubMenuWrap>
                 </S.MenuWrap>
                 <S.IconWrap>
-                    {isSearch ? (
+                {isSearch ? (
                         <S.SearchWrap>
-                            <input type="text" />
+                            <input
+                                type="text"
+                                value={searchTerm}
+                                onChange={handleSearchInput}
+                                onKeyPress={handleKeyPress} 
+                                autoFocus
+                            />
                             <img
                                 className='icon'
                                 src={`${process.env.PUBLIC_URL}/assets/images/layout/search.png`} alt="로고"
