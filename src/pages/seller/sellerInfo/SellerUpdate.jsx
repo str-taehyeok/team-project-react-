@@ -3,6 +3,8 @@ import {Link, useNavigate, useParams} from 'react-router-dom';
 import {useForm} from "react-hook-form";
 import S from "./style";
 import {useSelector} from "react-redux";
+import PwChange from "./PwChange";
+import Password from "./Password";
 
 
 const SellerUpdate = () => {
@@ -12,6 +14,12 @@ const SellerUpdate = () => {
     const [post, setPost] = useState({});
     const { currentUser } = useSelector((state) => state.user);
     const sellerId = currentUser.id;
+
+    const [isOpenPopup, setIsOpenPopup] = useState(false);
+
+    const handleShowPopup = () => {
+        setIsOpenPopup(!isOpenPopup)
+    }
 
     const onDelete = () => {
         if (window.confirm("정말 취소하시나요??")) {
@@ -35,14 +43,6 @@ const SellerUpdate = () => {
     console.log(post)
     const {memberName, memberEmail, memberPhone, memberBank, memberBankAccount, memberPassword, memberBusinessNumber } = post;
 
-    const onClickDeleteNotice = async () => {
-        await fetch(`http://localhost:10000/member/seller/${id}`, {
-            method : "DELETE"
-        })
-            .then((res) => {
-                // navigate("/login")
-            })
-    }
     return (
         <form onSubmit={handleSubmit(async (data) => {
 
@@ -64,7 +64,7 @@ const SellerUpdate = () => {
                 .then((res) => res.json())
                 .then((res) => {
                     const {id} = res;
-                    navigate(`/seller/seller-info/read/${id}`)
+                    navigate(`/seller/seller-info/${id}`)
                 })
         })}>
             <S.UpdateBox>
@@ -78,7 +78,7 @@ const SellerUpdate = () => {
                         <S.NameText>이름</S.NameText>
                         <S.NameInput><input type={"text"} defaultValue={memberName}
                                {...register("memberName", {
-                                   required: true,
+
                                })}
                         /></S.NameInput>
                     </S.NameInputBox>
@@ -86,11 +86,7 @@ const SellerUpdate = () => {
                 <label>
                     <S.IdInputBox>
                         <S.IdText>로그인 ID</S.IdText>
-                        <S.IdInput><input type={"text"} defaultValue={memberEmail}
-                                            {...register("memberEmail", {
-                                                required: true,
-                                            })}
-                        /></S.IdInput>
+                        <S.IdInput><p>{memberEmail}</p></S.IdInput>
                     </S.IdInputBox>
                 </label>
                 <label>
@@ -111,7 +107,6 @@ const SellerUpdate = () => {
                     </S.PayInputBox>
                     <S.BankAccInput><input type={"text"} defaultValue={memberBankAccount}
                                            {...register("memberBankAccount", {
-                                               required: true,
                                            })}
                     /></S.BankAccInput>
                 </label>
@@ -120,7 +115,6 @@ const SellerUpdate = () => {
                         <S.PhoneText>휴대폰 번호</S.PhoneText>
                         <S.PhoneInput><input type={"text"} defaultValue={memberPhone}
                                             {...register("memberPhone", {
-                                                required: true,
                                             })}
                         /></S.PhoneInput>
                     </S.PhoneInputBox>
@@ -129,29 +123,20 @@ const SellerUpdate = () => {
                 <label>
                     <S.PwInputBox>
                         <S.PwText>비밀번호</S.PwText>
-                        <S.PwInput><input type={"text"} defaultValue={memberPassword}
-                                             {...register("memberPassword", {
-                                                 required: true,
-                                             })}
-                        /></S.PwInput>
+                        <S.PwInput>
+                            <Password />
+                        </S.PwInput>
                     </S.PwInputBox>
                 </label>
                 <label>
-                    <S.BussinessInputBox>
+                <S.BussinessInputBox>
                         <S.BussinessText>사업자 번호</S.BussinessText>
                         <S.BussinessInput><input type={"text"} value={memberBusinessNumber}
                                           {...register("memberBusinessNumber", {
-                                              required: true,
                                           })}
                         /></S.BussinessInput>
                     </S.BussinessInputBox>
                 </label>
-                <S.Delete>
-                    <S.BussinessText>탈퇴하기</S.BussinessText>
-                    <div className={"delete-button"}>
-                        <button className={"delete"} onClick={onClickDeleteNotice}>탈퇴하기</button>
-                    </div>
-                </S.Delete>
 
             </S.UpdateBox>
 
