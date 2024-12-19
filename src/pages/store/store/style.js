@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { h1Bold, h7Bold, h7Medium, h6Bold, h6Medium, flexRowCenter } from "../../../global/common";
+import {h1Bold, h7Bold, h7Medium, h6Bold, h6Medium, flexRowCenter, h7Regular} from "../../../global/common";
 import { Link } from "react-router-dom";
 import theme from "../../../global/theme";
 
@@ -67,24 +67,8 @@ S.CustomProductInfo = styled.div`
   margin-top: 21px;
 
   ${h7Medium};
-
-  & p:nth-child(2) {
-    color: #565555;
-    text-decoration: line-through;
-  }
-
-  & span:nth-child(3) {
-    ${h7Bold};
-    color: #c83f3f;
-  }
-
-  & span:nth-child(5) {
-    ${h7Bold};
-  }
-
-  & span:nth-child(7){
-    color: #565555;
-  }
+    
+    
 
   & span:nth-child(9){
     color: #565555;
@@ -92,9 +76,57 @@ S.CustomProductInfo = styled.div`
 
 `
 
+S.ProductName = styled.div`
+    ${h7Regular};
+
+
+`
+
+S.ProductRealPrice = styled.div`
+    ${h7Regular};
+    color: #565555;
+    text-decoration: line-through;
+
+`
+S.ProductDiscount = styled.div`
+    ${h7Bold};
+    color: #D20000;
+    margin-right: 4px;
+
+`
+
+S.ProductPrice = styled.div`
+    ${h7Bold};
+    
+
+`
+
+S.ReviewStar = styled.div`
+    color: #565555;
+    margin-right: 4px;
+`
+S.ReviewHeart = styled.div`
+    color: #565555;
+
+`
+
+S.ProductReviewWrap = styled.div`
+    width: 200px;
+    height: 16px;
+    display: flex;
+    flex-wrap: wrap;
+
+`
 S.CustomProductMessage = styled.p`
   width: 100%;
   text-align: center;
+`
+
+S.ProductDiscountWrap = styled.div`
+    width: 200px;
+    height: 20px;
+    display: flex;
+    flex-wrap: wrap;
 `
 
 
@@ -539,7 +571,27 @@ S.ProductWrap = styled.div`
             gap: 24px;
     `;
 
+S.CustomImage = styled.div`
+        & > img {
 
+            border-radius: 20px;          
+        }
+  
+
+ 
+`
+
+S.Heart = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+
+  & > img {
+    width: 100%;
+  }
+`
 
 
 export default S;

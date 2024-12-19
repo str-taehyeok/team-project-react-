@@ -209,20 +209,32 @@ const StoreCustom = () => {
 
   //상품 반복문
   const productList = products.length !== 0 ? products.map(({
-  id, productName, productFilePath, productFileName, productPrice, productDiscount, productDate
+  id, productName, productFilePath, productFileName, productRealPrice, productDiscount, productDate
   }, index) => (
     <S.CustomProduct key={index}>
-      <HeartBtn />
+      <S.Heart>
+        <HeartBtn id = {index} type={"product"}/>
+      </S.Heart>
       <Link to={`read/${index}`}>
-        <img className='thumb' src={`${process.env.PUBLIC_URL}/assets/images/products/${productFileName}`} alt={"상품" + (index + 1)} />
+        <S.CustomImage>
+          <img className='thumb' src={`${process.env.PUBLIC_URL}/assets/images/products/${productFileName}`}
+               alt={"상품" + (index + 1)}/>
+        </S.CustomImage>
         <S.CustomProductInfo>
-        <div>{productDate}</div>
-          <p>{productName}</p>
-          <p>{productPrice}</p>
+          <div>{productDate}</div>
+          <S.ProductName>{productName}</S.ProductName>
+          <S.ProductRealPrice>{productRealPrice}</S.ProductRealPrice>
           {/*<p>{productSoldCount}</p>*/}
-          <span>{productDiscount}% </span><span>{productPrice * ((100 - productDiscount) / 100)}</span>
-          {/*<span>★{productReviewStar}(8) </span>*/}
-          <span>♥5,069</span>
+          <S.ProductDiscountWrap>
+            <S.ProductDiscount>{productDiscount}% </S.ProductDiscount>
+            <S.ProductPrice>{productRealPrice * ((100 - productDiscount) / 100)}</S.ProductPrice>
+          </S.ProductDiscountWrap>
+          <S.ProductReviewWrap>
+            <S.ReviewStar>★
+              {/*{productReviewStar}(8)*/}
+            </S.ReviewStar>
+            <S.ReviewHeart>♥5,069</S.ReviewHeart>
+          </S.ProductReviewWrap>
         </S.CustomProductInfo>
       </Link>
      </S.CustomProduct>
