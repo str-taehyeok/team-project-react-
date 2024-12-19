@@ -300,10 +300,6 @@ const router = createBrowserRouter([
                         element: <PostWrite />,
                     },
                     {
-                        path: "tag",
-                        element: <PostTagColor />
-                    },
-                    {
                         path: "update",
                         element: <PostUpdate />,
                     },
@@ -422,7 +418,7 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: '/seller-info',
+                path: 'seller-info/:id',
                 element: <SellerInfoContainer />,
                 children: [
                     {

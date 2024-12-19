@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { h1Bold, h6Regular, h8Regular } from "../../../global/common";
 
 const S = {}
 
@@ -12,6 +11,7 @@ const S = {}
           caret-color: transparent;
         }
   `
+
   S.Title = styled.div`
     font-size: 40px;
     line-height: 54px;
@@ -21,7 +21,6 @@ const S = {}
   S.ListButton = styled.div`
     display: flex;
     flex-direction: row;
-    width: 1100px;
     justify-content: right;
     margin: 0 auto;
     margin-top: 60px;
@@ -69,7 +68,15 @@ const S = {}
       color:#828282;
       outline:none;
       margin-left: 27px;
-    }   
+    }
+    & p {
+      width: 464px;
+      height: 55px;
+      font-size: 16px;
+      line-height: 55px;
+      color:#000000;
+      margin-left: 53px;
+    }
   `
   S.NameInputBox = styled.div`
     display:flex;
@@ -96,7 +103,16 @@ const S = {}
         color:#828282;
         outline:none;
         margin-left: 27px;
-      }   
+      }
+  
+    & p {
+      width: 464px;
+      height: 55px;
+      font-size: 16px;
+      line-height: 55px;
+      color:#000000;
+      margin-left: 53px;
+    }
   `
   S.IdInputBox = styled.div`
     display:flex;
@@ -139,6 +155,14 @@ const S = {}
       margin-left: 27px;
       cursor: pointer;
     }
+    & p {
+      width: 464px;
+      height: 55px;
+      font-size: 16px;
+      line-height: 55px;
+      color:#000000;
+      margin-left: 53px;
+    }
     `
   S.BankAccInput = styled.div`
         & input {
@@ -155,6 +179,14 @@ const S = {}
           margin-left: 172px;
           margin-top: 20px;
         }
+    & p {
+      width: 464px;
+      height: 55px;
+      font-size: 16px;
+      line-height: 55px;
+      color:#000000;
+      margin-left: 200px;
+    }
   `
   S.PayInputBox = styled.div`
       display:flex;
@@ -181,7 +213,15 @@ const S = {}
           color:#828282;
           outline:none;
           margin-left: 27px;
-        }   
+        }
+    & p {
+      width: 464px;
+      height: 55px;
+      line-height: 55px;
+      font-size: 16px;
+      color:#000000;
+      margin-left: 53px;
+    }
     `
   S.PhoneInputBox = styled.div`
       display:flex;
@@ -209,7 +249,15 @@ S.PwInput = styled.div`
           color:#828282;
           outline:none;
           margin-left: 27px;
-        }   
+        }
+  & p {
+    width: 464px;
+    height: 55px;
+    font-size: 16px;
+    line-height: 55px;
+    color:#000000;
+    margin-left: 53px;
+  }
     `
 S.PwInputBox = styled.div`
       display:flex;
@@ -237,7 +285,15 @@ S.PwInputBox = styled.div`
             color:#828282;
             outline:none;
             margin-left: 27px;
-          }   
+          }
+    & p {
+      width: 464px;
+      height: 55px;
+      font-size: 16px;
+      line-height: 55px;
+      color:#000000;
+      margin-left: 53px;
+    }
       `
   S.BussinessInputBox = styled.div`
         display:flex;
@@ -253,7 +309,7 @@ S.PwInputBox = styled.div`
     
       & div.delete-button {
         width: 464px;
-        margin-left: 27px;
+        margin-left: 53px;
         height: 55px;
       }
       & button.delete {
@@ -275,18 +331,32 @@ S.Update = styled.div`
     
       & div.update-button {
         width: 464px;
-        margin-left: 27px;
+        margin-left: 53px;
         height: 55px;
       }
-      & button.update {
-        width: 90px;
-        height: 30px;
-        color: #ffffff;
-        background-color: #113F8A;
-        border-radius: 20px;
-        cursor: pointer;
-        margin-top:14px;
-      }
+  & p {
+    width: 464px;
+    height: 55px;
+    font-size: 16px;
+    line-height: 55px;
+    color:#000000;
+    margin-left: 53px;
+  }
   `
+S.PwChangeBox = styled.div`
+    width: 700px;
+   height: 500px;
+  border: 1px solid #000000;
+  & button.update {
+    width: 90px;
+    height: 30px;
+    color: #ffffff;
+    background-color: #113F8A;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top:14px;
+  }
+`
+
 
 export default S;
