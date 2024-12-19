@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import S from "./style";
 import { useSelector } from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 const SellerOrderList = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -10,6 +11,16 @@ const SellerOrderList = () => {
   const [allCheck, setAllCheck] = useState(false);
 
   const sellerId = currentUser.id;
+
+  // const { isLogin } = useSelector((state) => state.user);
+  // const navigate = useNavigate();
+  //
+  // useEffect(() => {
+  //   if(!isLogin){
+  //     alert("로그인 후 이용해 주세요.")
+  //     navigate("/login")
+  //   }
+  // }, [])
 
   useEffect(() => {
     if (!sellerId) return; // sellerId가 없으면 실행하지 않음
