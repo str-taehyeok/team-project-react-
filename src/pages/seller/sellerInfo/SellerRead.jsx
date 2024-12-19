@@ -28,14 +28,14 @@ const SellerRead = () => {
     console.log(post)
     const {memberName, memberEmail, memberPhone, memberBank, memberBankAccount, memberBusinessNumber } = post;
 
-    // const onClickDeleteNotice = async () => {
-    //     await fetch(`http://localhost:10000/member/seller/${id}`, {
-    //         method : "DELETE"
-    //     })
-    //         .then((res) => {
-    //             // navigate("/login")
-    //         })
-    // }
+    const onClickDeleteNotice = async () => {
+        await fetch(`http://localhost:10000/member/seller/${id}`, {
+            method : "DELETE"
+        })
+            .then((res) => {
+                // navigate("/login")
+            })
+    }
     return (
             <S.UpdateBox>
                 <S.ListButton>
@@ -97,7 +97,7 @@ const SellerRead = () => {
                 <S.Delete>
                     <S.BussinessText>탈퇴하기</S.BussinessText>
                     <div className={"delete-button"}>
-                        {/*<button className={"delete"} onClick={onClickDeleteNotice}>탈퇴하기</button>*/}
+                        <button className={"delete"} onClick={onClickDeleteNotice}>탈퇴하기</button>
                     </div>
                 </S.Delete>
             </S.UpdateBox>

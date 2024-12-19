@@ -78,7 +78,7 @@ const SellerUpdate = () => {
                         <S.NameText>이름</S.NameText>
                         <S.NameInput><input type={"text"} defaultValue={memberName}
                                {...register("memberName", {
-                                   required: true,
+
                                })}
                         /></S.NameInput>
                     </S.NameInputBox>
@@ -88,7 +88,7 @@ const SellerUpdate = () => {
                         <S.IdText>로그인 ID</S.IdText>
                         <S.IdInput><input type={"text"} defaultValue={memberEmail}
                                             {...register("memberEmail", {
-                                                required: true,
+
                                             })}
                         /></S.IdInput>
                     </S.IdInputBox>
