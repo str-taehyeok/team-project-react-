@@ -797,4 +797,59 @@ S.TagColorImage = styled.div`
   text-align: center;
 `
 
+S.TagWrapper = styled.div`
+  margin-bottom: 20px;
+`;
+
+S.TagInputWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+
+  input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+`;
+
+S.TagList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+`;
+
+S.TagItem = styled.div`
+  padding: 8px 12px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  button {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 16px;
+  }
+`;
+
+
 export default S;

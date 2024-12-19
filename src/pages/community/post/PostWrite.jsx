@@ -1,11 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import S from "./style";
 
 const PostWrite = () => {
   const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user)
+  const [colorTags, setColorTags] = useState([]);
+  const [colorInput, setColorInput] = useState('');
+  const [isColorModalOpen, setIsColorModalOpen] = useState(false);
+  const [images, setImages] = useState([]);
   const localJwtToken = localStorage.getItem("jwtToken");
 
+  // 로그인 상태 확인
   useEffect(() => {
     if (!localJwtToken) {
       alert("로그인 후 이용해주시길 바랍니다.");
@@ -13,58 +19,308 @@ const PostWrite = () => {
     }
   }, [navigate, localJwtToken]);
 
+  // 컬러 추가 모달 열기
   const handleTagButton = () => {
-    navigate("/post/tag")
-  }
+    setIsColorModalOpen(true);
+  };
+
+  // 컬러 선택 시 값 변경
+  const handleColorChange = (e) => {
+    setColorInput(e.target.value);
+  };
+
+  // 컬러 태그 추가
+  const applyColor = () => {
+    try {
+      // 선택된 색상을 가져와 태그로 추가
+      const selectedColorName = colorInput;
+      const selectedColorValue = colorOptions[selectedColorName];
+
+      if (!selectedColorValue) {
+        throw new Error("Invalid color selected");
+      }
+
+      setColorTags((prev) => [...prev, { name: selectedColorName, value: selectedColorValue }]);
+      setColorInput('');
+      setIsColorModalOpen(false);
+    } catch (error) {
+      alert('유효하지 않은 색상입니다. 옵션에서 색상을 선택해주세요.');
+    }
+  };
+
+  // 컬러 모달 닫기
+  const closeColorModal = () => {
+    setIsColorModalOpen(false);
+  };
+
+  // 이미지 업로드
+  const handleImageUpload = (e) => {
+    const files = Array.from(e.target.files);
+    const newImages = files.slice(0, 5 - images.length);
+
+    const imagePromises = newImages.map((file) => {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          resolve(reader.result);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+
+    Promise.all(imagePromises).then((base64Images) => {
+      setImages((prev) => [...prev, ...base64Images]);
+    });
+  };
+
+  // 컬러 태그 삭제
+  const removeColorTag = (index) => {
+    setColorTags((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  // 이미지 삭제
+  const removeImage = (index) => {
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  // 업로드 처리
+  const handleUpload = () => {
+    console.log("업로드 처리:", { colorTags, images });
+  };
+
+  // 색상 옵션 목록
+  const colorOptions = {
+    Orange: "#FF7F17",
+    Gold: "#EDC66E",
+    Gradation: "linear-gradient(to bottom, rgba(255, 195, 3, 0.2) 0%, rgba(213, 185, 178, 0.2) 49%, rgba(109, 7, 255, 0.3) 100%)",
+    "Light Purple": "#A990DD",
+    "Sky Blue": "#1EA5FC",
+    "Sage Green": "#91CEC2",
+    "Ice Blue": "#87B9E7",
+    "Dusty Silver": "linear-gradient(to bottom, #C8D9E1 0%, #788991 100%)",
+  };
 
   return (
-    <S.PostWarpper>
-      {/* 컬러추가가 */}
-      <S.UploadButton onClick={handleTagButton}>
-        컬러 추가
-      </S.UploadButton>
-      <S.PostContents>
+    <form encType="multipart/form-data" onSubmit={handleSubmit(async (data) => {
+        const formData = new FormData();
+
+        formData.append("memberId", currentUser.id);
+        formData.append()
+  
+    <>
+      <S.PostWarpper>
+        {/* 컬러 태그 영역 */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '10px' }}>
+          {colorTags.map((color, index) => (
+            <div
+              key={index}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                padding: '5px 10px',
+                borderRadius: '15px',
+                color: 'white',
+                background: color.value.includes("gradient") ? color.value : color.value, 
+              }}
+            >
+              {color.name}
+              <button
+                onClick={() => removeColorTag(index)}
+                style={{
+                  marginLeft: '5px',
+                  background: 'none',
+                  border: 'none',
+                  color: 'white',
+                  cursor: 'pointer'
+                }}
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* 컬러 태그 유무에 따른 버튼 */}
+        {colorTags.length > 0 ? (
+          <S.UploadButton onClick={handleUpload}>업로드</S.UploadButton>
+        ) : (
+          <S.UploadButton onClick={handleTagButton}>컬러 추가</S.UploadButton>
+        )}
+
         {/* 이미지 업로드 영역 */}
-        <div className="image-wrapper">
-          <div className="dummy-content-wrap">
+        <S.PostContents>
+          <div className="image-wrapper">
             <S.MainImageDumy>
               <label htmlFor="file-upload">
                 <div className="main-img-dummy">
-                  <input type="file" id="file-upload" accept="image/*" />
-                  <span className="h5">
-                    화면을 눌러 이미지를 추가하세요
-                    <br />
-                    (최대 5장까지 가능합니다)
-                  </span>
+                  <input
+                    id="file-upload"
+                    type="file"
+                    style={{ display: "none" }}
+                    multiple
+                    onChange={handleImageUpload}
+                    disabled={images.length >= 5}
+                  />
+                  {images.length === 0 ? (
+                    <span className="h5">
+                      화면을 눌러 이미지를 추가하세요 <br />
+                      (최대 5장까지 가능합니다)
+                    </span>
+                  ) : (
+                    <img
+                      src={images[0]}
+                      alt="메인 이미지"
+                      style={{
+                        width: '366px',
+                        height: '345px',
+                        borderRadius: '20px',
+                        objectFit: 'cover'
+                      }}
+                    />
+                  )}
                 </div>
               </label>
             </S.MainImageDumy>
+
             <S.SubImagesWrap>
-              <S.SubImg>
-                <img
-                  src="/assets/images/community/plus.png"
-                  alt="플러스아이콘"
-                />
-              </S.SubImg>
-              <S.SubImg></S.SubImg>
-              <S.SubImg></S.SubImg>
-              <S.SubImg></S.SubImg>
+              {images.slice(1, 5).map((image, index) => (
+                <S.SubImg key={index}>
+                  <img
+                    src={image}
+                    alt={`서브 이미지 ${index + 1}`}
+                    style={{
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '10px',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <button
+                    onClick={() => removeImage(index + 1)}
+                    style={{
+                      position: 'absolute',
+                      top: '5px',
+                      right: '5px',
+                      background: 'rgba(0,0,0,0.5)',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '20px',
+                      height: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    ✕
+                  </button>
+                </S.SubImg>
+              ))}
+
+              {images.length < 5 && (
+                <S.SubImg>
+                  <label htmlFor="file-upload-additional">
+                    <img
+                      src="/assets/images/community/plus.png"
+                      alt="플러스 아이콘"
+                    />
+                  </label>
+                  <input
+                    type="file"
+                    id="file-upload-additional"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageUpload}
+                    style={{ display: 'none' }}
+                  />
+                </S.SubImg>
+              )}
             </S.SubImagesWrap>
           </div>
-        </div>
 
-        {/* 글 작성 영역 */}
-        <div>
+          {/* 글 작성 영역 */}
           <S.WriterBox>
             <S.Textarea
               placeholder={
-                "오늘 당신의 반려동물은 무엇을 했나요?\n당신이 바라보는 모습을 수백만 포포인들과 나눠보세요!"
+                "오늘 당신의 반려동물은 무엇을 했나요?\n" +
+                "당신이 바라보는 모습을 수백만 포포인들과 나눠보세요!"
               }
             />
           </S.WriterBox>
+        </S.PostContents>
+      </S.PostWarpper>
+
+      {/* 컬러 추가 모달 */}
+      {isColorModalOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000
+          }}
+          onClick={closeColorModal}
+        >
+          <div
+            style={{
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '10px',
+              width: '300px'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3>컬러 추가</h3>
+            <div style={{ display: 'flex', marginBottom: '10px' }}>
+              <select
+                value={colorInput}
+                onChange={handleColorChange}
+                style={{ flex: 1, marginRight: '10px' }}
+              >
+                <option value="">색상을 선택하세요</option>
+                {Object.keys(colorOptions).map((color, index) => (
+                  <option key={index} value={color}>
+                    {color}
+                  </option>
+                ))}
+              </select>
+              <button
+                onClick={applyColor}
+                style={{
+                  padding: '5px 10px',
+                  backgroundColor: '#4CAF50',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px'
+                }}
+              >
+                적용
+              </button>
+            </div>
+            <button
+              onClick={closeColorModal}
+              style={{
+                width: '100%',
+                padding: '10px',
+                backgroundColor: '#f44336',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px'
+              }}
+            >
+              취소
+            </button>
+          </div>
         </div>
-      </S.PostContents>
-    </S.PostWarpper>
+      )}
+    </>
   );
 };
 
