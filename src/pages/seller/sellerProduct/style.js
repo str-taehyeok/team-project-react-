@@ -96,12 +96,13 @@ const S = {}
     S.Table = styled.table`
         width: 1440px;
         text-align: center;
+        margin-bottom: 300px;
         
         & tr{
             display: flex;
             justify-content: space-between;
             align-items: center;
-        },
+        }
 
         & td{
         width: 100%;
@@ -109,7 +110,7 @@ const S = {}
         justify-content: center;
         padding: 20px 0;
         align-items: center;
-        },
+        }
         
         & th{
             width: 100%;

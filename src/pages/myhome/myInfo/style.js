@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 const S = {}
 
-S.MyHomeContainer = styled.div`
+S.MyHomeContainer = styled.form`
     display: flex;
     width: 100vwh;
     margin-bottom: 409px;
@@ -579,6 +579,33 @@ S.ToggleCircle = styled.div`
   transition: transform 0.3s;
   transform: ${(props) => (props.$isOn ? "translateX(24px)" : "translateX(0)")};
 `;
+
+
+
+
+
+// ----------------
+
+
+
+
+
+S.EditButton = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border: solid 1px #888888;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 96px;
+  height: 32px;
+`
+
+
+
+
 
 
 
