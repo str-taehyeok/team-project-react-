@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 const S = {}
 
-S.MyHomeContainer = styled.div`
+S.MyHomeContainer = styled.form`
     display: flex;
     width: 100vwh;
     margin-bottom: 409px;
