@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import S from './style.js';
 import Slide from './Slide.jsx';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { CommunityContext } from '../../../context/communityContext.js';
 import HeartBtn from '../community/HeartBtn.jsx';
@@ -102,7 +102,8 @@ const UserPost = () => {
                                     <img src="/assets/images/community/default-myProfile.png" alt="프로필" />
                                 </Link>
                             </S.MyProfile>
-                            <FollowBtn />
+                            {/* 팔로우 버튼에 targetUserId 전달 */}
+                            {foundPost && <FollowBtn targetUserId={foundPost.memberId} />}
                         </S.ProfileBox>
                         <Slide />
                         <S.MyPostUnderBox>
