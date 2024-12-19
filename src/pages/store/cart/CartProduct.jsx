@@ -6,6 +6,8 @@ import CartBtn from './CartBtn';
 import {Link, useNavigate} from "react-router-dom";
 import CartProducts from "./CartProducts";
 import {useSelector} from "react-redux";
+import ProductPay from "./ProductPay";
+import NoCart from "./NoCart";
 
 
 const CartProduct = () => {
@@ -18,7 +20,7 @@ const CartProduct = () => {
     const memberId = 1;
 
     // useState로 product의 상태를 변경
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState([] || {});
     const navigate = useNavigate();
 
     // useEffect 함수 안에 getProduct함수를 선언,
@@ -43,14 +45,21 @@ const CartProduct = () => {
 
             console.log(response);
             if (!response.ok) return console.error(`데이터가 없어요 ㅠㅠ`)
-            const product = await response.json();
-            return product;
+            const products = await response.json();
+            return products;
         }
         getProduct().then(setProduct).catch(console.error);
     }, []);
 
-
     console.log(product)
+    const products = {...product};
+
+
+    const productList = product.map(({id, productName, productPrice}) => {
+        <p>{productName}</p>
+    })
+
+    console.log(productList)
 
     // 체크박스 상태를 관리해주는 함수 만들기
     const [checkedAll, setCheckedAll] = useState(false);
@@ -75,71 +84,54 @@ const CartProduct = () => {
 
 
 
-    // const productPay = (
-    //     <S.CartPay>
-    //         <S.AllDeliveryBox>
-    //             <S.AllDeliveryFee>
-    //                 <p>총 배송비</p>
-    //                 <p>{product.deliveryFee}</p>
-    //             </S.AllDeliveryFee>
-    //             <S.PurchasePrice>
-    //                 <p>결제금액</p>
-    //                 <p>{product.productPrice}</p>
-    //             </S.PurchasePrice>
-    //             <S.DiscountPrice>
-    //                 <p>할인</p>
-    //                 <p>{product.productDiscountPrice}</p>
-    //             </S.DiscountPrice>
-    //             <S.AllPurchaseFee>
-    //                 <p>총 주문금액</p>
-    //                 <p>{product.deliveryFee}</p>
-    //             </S.AllPurchaseFee>
-    //         </S.AllDeliveryBox>
-    //     </S.CartPay>
-    // );
-
     return (
+        // {products.length === 0 ? (
+        //     <NoCart/>
+        //     ) : (
+                <S.CartBox>
+                    <form>
+                        <S.CartWrap>
+                            <S.Cart>
+                                <S.CartTitle>장바구니</S.CartTitle>
+                                <S.CartAllCheck>
+                                    <input
+                                        type="checkbox"
+                                        onChange={onChangeCheckedAll}
+                                        value="all"
+                                        checked={checked.filter((c) => c).length === checked.length}
+                                    />
+                                    <S.CartAllNames>
+                                        <p>상품정보</p>
+                                        <p>상품수량</p>
+                                        <p>판매가격</p>
+                                        <p>적용할 쿠폰</p>
+                                    </S.CartAllNames>
+                                </S.CartAllCheck>
+                                <CartProducts
+                                    product = {product}
+                                    checked = {checked}
+                                    onChangeChecked = {onChangeChecked}
+                                />
+                                {/*{productList}*/}
+                                <ProductPay product = {product}/>
+                                <S.CartPayWrap>
+                                    <S.CartPayTitle>결제정보</S.CartPayTitle>
+                                    <ProductPay/>
+                                    <S.Link>
+                                        <Link to={`/pay`}>
+                                            <S.All>
+                                                구매하기
+                                            </S.All>
+                                        </Link>
+                                    </S.Link>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </S.CartPayWrap>
+                            </S.Cart>
+                        </S.CartWrap>
+                    </form>
+                </S.CartBox>
 
-        <S.CartBox>
-            <form>
-                <S.CartWrap>
-                    <S.Cart>
-                        <S.CartTitle>장바구니</S.CartTitle>
-                        <S.CartAllCheck>
-                            <input
-                                type="checkbox"
-                                onChange={onChangeCheckedAll}
-                                value="all"
-                                checked={checked.filter((c) => c).length === checked.length}
-                            />
-                            <S.CartAllNames>
-                                <p>상품정보</p>
-                                <p>상품수량</p>
-                                <p>판매가격</p>
-                                <p>적용할 쿠폰</p>
-                            </S.CartAllNames>
-                        </S.CartAllCheck>
-                        <CartProducts
-                            product = {product}
-                            checked = {checked}
-                            onChangeChecked = {onChangeChecked}
-                        />
-                        {/*{productList}*/}
+            // )}
 
-                        <S.CartPayWrap>
-                            <S.CartPayTitle>결제정보</S.CartPayTitle>
-                            <S.Link>
-                                <Link to={`/pay`}>
-                                    <S.All>
-                                        구매하기
-                                    </S.All>
-                                </Link>
-                            </S.Link>
-                        </S.CartPayWrap>
-                    </S.Cart>
-                </S.CartWrap>
-            </form>
-        </S.CartBox>
     );
 };
 
