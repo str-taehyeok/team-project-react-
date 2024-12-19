@@ -123,7 +123,7 @@ const Pay = () => {
 
   )
 
-
+  const productPrice = 20000;
   return (
     <S.DeliveryWrap>
       <S.Delivery>
@@ -131,7 +131,13 @@ const Pay = () => {
         {order}
         {paymentBox}
       </S.Delivery>
-      <PayBtn />
+      {/*
+        productPrice : 결제 가격
+        orderName : 결제 목록
+        customerName : 결제자
+        customerEmail : 결제 이메일
+       */}
+      <PayBtn productPrice={productPrice}/>
     </S.DeliveryWrap>
   );
 };

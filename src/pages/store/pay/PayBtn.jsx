@@ -1,11 +1,16 @@
-import React from 'react';
-import S from './style';
+import React, { useState } from 'react';
+import TossPayment from './TossPayment';
 
-const PayBtn = () => {
+const PayBtn = ({...rest}) => {
+  const [isTossPayment, setIsTossPayment ] = useState(false);
+  const toggleTossPayment = () => {
+    setIsTossPayment(!isTossPayment);
+  }
   return (
-    <S.Link to={"/store"}>
-      결제하기
-    </S.Link>
+    <div>
+      { isTossPayment && <TossPayment {...rest} /> }
+      <button onClick={toggleTossPayment}>결제하기</button>
+    </div>
   );
 };
 
