@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { setPreviousUrl, setUser, setUserStatus } from '../../modules/user';
 import S from "./style";
 import SellerHeader from './SellerHeader';
 
-const AdminLayout = () => {
+
+const SellerLayout = () => {
     const dispatch = useDispatch();
+    const localJwtToken = localStorage.getItem("jwtToken");
+    const navigate = useNavigate();
     const uri = useLocation().pathname;
     const [searchParams] = useSearchParams();
     const jwtToken = searchParams.get("jwtToken");
-    const localJwtToken = localStorage.getItem("jwtToken");
-
-    const navigate = useNavigate();
+    // const { currentUser } = useSelector((state) => state.user);
     useEffect(() => {
 
         // 쿼리스트링 토큰이 있으면
@@ -39,7 +40,9 @@ const AdminLayout = () => {
                     dispatch(setUser({}));
                     dispatch(setUserStatus(false));
                     localStorage.removeItem("jwtToken");
-                    return alert(datas.message);
+                    alert(datas.message);
+                    navigate("/seller")
+                    return;
                 }
 
                 // 정상 응답
@@ -47,16 +50,17 @@ const AdminLayout = () => {
                 dispatch(setUser(datas.currentUser));
                 dispatch(setUserStatus(true));
             };
-
             getUserDatas();
         }else{
             dispatch(setUser({}));
             dispatch(setUserStatus(false));
+            navigate("/login/seller")
         }
 
         dispatch(setPreviousUrl(uri));
-    }, [dispatch, uri, jwtToken, localJwtToken, navigate]);
 
+    }, [dispatch, uri, jwtToken, localJwtToken, navigate]);
+    // }, [dispatch, localJwtToken, navigate]);
 
 
 
@@ -70,6 +74,6 @@ const AdminLayout = () => {
     );
 };
 
-export default AdminLayout;
+export default SellerLayout;
 
 

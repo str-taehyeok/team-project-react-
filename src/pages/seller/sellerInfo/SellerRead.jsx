@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import S from './style';
-import PwChange from "./PwChange";
 
 const SellerRead = () => {
     const { id } = useParams();
@@ -29,7 +28,7 @@ const SellerRead = () => {
         await fetch(`http://localhost:10000/seller/seller-info/${id}`, {
             method: 'DELETE',
         }).then((res) => {
-            // navigate('/login');
+            navigate('/login');
             console.log(res) //500번대 에러..?
         });
     };
