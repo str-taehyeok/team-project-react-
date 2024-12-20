@@ -97,16 +97,11 @@ const PostWrite = () => {
    e.preventDefault();
    
    try {
-     console.log('Submit 시작');
-     console.log('이미지 파일:', imageFiles);
-     console.log('컨텐츠:', content);
-     console.log('컬러태그:', colorTags);
-
-     // 이미지 파일 업로드를 위한 FormData
+         // 이미지 파일 업로드를 위한 FormData
      const formData = new FormData();
      formData.append("memberId", currentUser.id);
      formData.append("postContent", content);
-     
+    
      const colorNames = colorTags.map(tag => tag.name).join(',');
      formData.append("postColor", colorNames);
 
@@ -119,38 +114,34 @@ const PostWrite = () => {
      const imageUploadResponse = await fetch("http://localhost:10000/postFiles/upload", {
        method: "POST",
        body: formData,
-     });
+     })
+     .then((res) => res.json())
+     .then(async (res) => {
 
-     if (!imageUploadResponse.ok) {
-       throw new Error("이미지 업로드에 실패했습니다.");
-     }
-   
-     const imageResult = await imageUploadResponse.json();
-     console.log('이미지 업로드 결과:', imageResult);
-   
-     // 게시글 작성용 FormData에 이미지 UUID 추가
-     formData.append("uuids", imageResult);
+        formData.append("uuids", res)
+        const postResponse = await fetch("http://localhost:10000/posts/write", {
+          method: "POST",
+          body: formData,
+        })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res)
+        })
+     })
      
-     console.log('게시글 작성 요청 시작');
-     // 게시글 작성 요청
-     const postResponse = await fetch("http://localhost:10000/posts/write", {
-       method: "POST",
-       body: formData,
-     });
-
-     if (!postResponse.ok) {
-       throw new Error("게시글 작성에 실패했습니다.");
-     }
-
-     const postResult = await postResponse.json();
-     console.log("게시글 작성 완료:", postResult);
-     navigate("/post/list");
+    //  navigate("/post/list");
      // 작성 완료 후 리디렉션
    } catch (error) {
      console.error("Error 상세:", error);
      alert("게시글 작성 중 오류가 발생했습니다.");
    }
  };
+
+
+
+
+
+
 
  // 색상 옵션 목록
  const colorOptions = {

@@ -246,64 +246,8 @@ S.DropdownContainer = styled.div`
         height: 1070px;
         overflow: hidden;
         background: #fff;
-        //height: calc((100% - 30px) / 2) !important;
-
-        ///* Center slide text vertically */
-        //display: flex;
-        //justify-content: center;
-        //align-items: center;
     `;
 
-
-    // S.Product = styled.div`
-    //         width: 342px;
-    //         height: 480px;
-    //         position: relative;
-    //     box-sizing: border-box;
-    //     text-align: center;
-    //     margin: 0;
-    //     padding: 10px;
-    //
-    //         & span{
-    //             display: inline-block;
-    //             width: 342px;
-    //             margin-top: 15px;
-    //             flex-shrink: 0;
-    //             white-space: nowrap;
-    //             overflow: hidden;
-    //             text-overflow: ellipsis;
-    //             //text-align: center;
-    //         }
-    //
-    //     //& p{
-    //     //    display: flex;
-    //     //    width: 342px;
-    //     //    margin-top: 5px;
-    //     //}
-    //
-    //         & button{
-    //             width: 342px;
-    //             min-height: 42px;
-    //             margin-top: 14px;
-    //             border-radius: 5px;
-    //             background-color: #fff;
-    //             border: 1px solid #D9D9D9;
-    //         }
-    //
-    //         & img{
-    //             width: 342px;
-    //             height: 341px;
-    //             border-radius: 10px;
-    //         }
-    //     .like-icon {
-    //         width: 40px;
-    //         height: 40px;
-    //         position: absolute;
-    //         top: 10px;
-    //         right: 10px;
-    //     }
-    //
-    // `;
 
 S.SwiperDirection = styled.div`
     display: flex;
@@ -367,20 +311,7 @@ S.RecommendedPrice = styled.div`
        
     `;
 
-    //
-    // S.Cart = styled.img`
-    //         width: 40px;
-    //         height: 40px;
-    //    
-    // `;
-    
     S.ColorProducts = styled.div`
-        // //     margin: 0 auto;
-        // //     ${flexRowCenter};
-        // // width: 1440px;
-        // max-width: 1440px;
-        // display: flex;
-        // flex-direction: row;
         margin: 0 auto;
         width: 100%;
         max-width: 1440px;
@@ -388,11 +319,7 @@ S.RecommendedPrice = styled.div`
         flex-wrap: wrap; 
         justify-content: center;
         align-items: flex-start; 
-        //gap: 24px; 
     `;
-
-
-
 
     // 컬러 제품들 타이틀부터 제품까지 묶임
     S.Box = styled.div`
@@ -664,5 +591,90 @@ S.RecommendedPrice = styled.div`
     S.SpecialWrap = styled.div`
         margin-top: 150px;
     `;
+
+// 스타일 추가
+    S.ProductWraper = styled.div`
+        width: 1440px;
+        margin: 0 auto;
+        row-gap: 48px;
+        column-gap: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        
+        & .swiper-wrapper {
+            height: 1000px;
+        }
+
+        & .swiper-slide {
+            margin: 0 !important;
+        }
+    `
+
+    S.ProductWrap = styled.div`
+        display: flex;
+        flex-direction: column;
+    `
+
+    S.imageWrap = styled.div`
+        position: relative;
+        width: 342px;
+        height: 342px;
+        border-radius: 20px;
+        overflow: hidden;
+        margin: 0 0 16px 0;
+        & .thumb {
+            width: 100%;
+        }
+
+        & .heart {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            width: 40px;
+        }
+    `
+
+    S.ProductTitle = styled.p`
+        font-size: 18px;
+        width: 342px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: 500;
+        margin: 0 0 6px 0;
+    `
+
+    S.ProductPriceWrap = styled.div`
+        display: flex;
+        margin : 0 0 20px 0;
+        & span {
+            display: block;
+            font-size: 18px;
+            font-weight: 700;
+            margin-right: 4px;
+        }
+
+        & .discount {
+            color: rgb(200, 63, 63);
+        }
+    `
+
+    S.ButtonWrap = styled.div`
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        border: solid 1px #bebebe;
+        border-radius: 5px;
+        width: 100%;
+        height: 40px;
+        & img {
+            margin: 0 4px 0 0;
+        }
+        & p {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    `
 
 export default S;
