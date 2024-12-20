@@ -54,7 +54,7 @@ const SellerLayout = () => {
         }else{
             dispatch(setUser({}));
             dispatch(setUserStatus(false));
-            navigate("/login/seller")
+            navigate("/login")
         }
 
         dispatch(setPreviousUrl(uri));
