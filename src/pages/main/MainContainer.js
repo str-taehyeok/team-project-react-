@@ -87,7 +87,7 @@ const Main = () => {
     const isDiscount = productDiscount !== 0;
     return (
       <S.ProductCard key={index}>
-        <Link to={`/product/${id}`}>
+        <Link to={`store/read/${index}`}>
           <img
             src={`${process.env.PUBLIC_URL}/assets/images/products/${productFileName}`}
             alt={productName}
