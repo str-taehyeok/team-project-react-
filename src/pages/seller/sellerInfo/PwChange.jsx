@@ -94,8 +94,7 @@ const PwChange = ({ handleShowPopup }) => {
 
             if (response.ok) {
                 alert(result.message);
-                // 임시로 인증번호를 123456으로 설정
-                setCode(123456); // 임시 인증번호 설정
+                setCode(result.code);
             } else {
                 alert(result.message || "인증번호 전송에 실패했습니다.");
             }
@@ -104,6 +103,7 @@ const PwChange = ({ handleShowPopup }) => {
             alert("서버와의 통신에 실패했습니다.");
         }
     };
+
 
     return (
         <S.CardPopUpBtn>
@@ -224,9 +224,12 @@ const PwChange = ({ handleShowPopup }) => {
                         type="button"
                         onClick={handlePasswordChange}
                         disabled={
-
-                            newPassword !== confirmNewPassword
-
+                            !authNumber ||
+                            !newPassword ||
+                            !confirmNewPassword ||
+                            newPassword !== confirmNewPassword ||
+                            !authVerified ||
+                            !passwordRegex.test(newPassword)
                         }
                     >
                         확인
