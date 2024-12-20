@@ -1,15 +1,20 @@
 import styled from "styled-components";
+import theme from "../../../global/theme";
+import { flexRowCenter, flexColumnCenter, h7Bold, h4Bold, h8Bold } from "../../../global/common";
 
 const S = {}
 
   S.UpdateBox = styled.div`
+    width: 1440px;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
         & input.none {
           caret-color: transparent;
         }
+    
   `
 
   S.Title = styled.div`
@@ -35,6 +40,7 @@ const S = {}
       font-size: 14px;
       line-height: 22px;
       margin-left: 5px;
+      border: none;
       cursor: pointer;
       
     }
@@ -91,19 +97,18 @@ const S = {}
       line-height: 30px;
   `
   S.IdInput = styled.div`
-      & input {
-        border-radius: 20px;
-        border-style: none;
-        border: solid 1px #828282;
-        width: 464px;
-        height: 55px;
-        padding: 19px 26px;
-        font-size: 14px;
-        line-height: 22px;
-        color:#828282;
-        outline:none;
-        margin-left: 27px;
-      }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+        & button {
+          border: none;
+          background-color: #113F8A;
+          width: 100px;
+          color: #ffffff;
+          height: 24px;
+          border-radius: 20px;
+          
+        }
   
     & p {
       width: 464px;
@@ -113,20 +118,20 @@ const S = {}
       color:#000000;
       margin-left: 53px;
     }
-  `
-  S.IdInputBox = styled.div`
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 20px;
     & p.email {
-      width: 464px;
+      width: 364px;
       height: 55px;
       font-size: 16px;
       line-height: 55px;
       color:#000000;
       margin-left: 27px;
     }
+  `
+  S.IdInputBox = styled.div`
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
     
   `
 
@@ -156,7 +161,7 @@ const S = {}
       border: solid 1px #828282;
       width: 464px;
       height: 55px;
-      padding: 19px 26px;
+      padding: 15px 26px;
       font-size: 14px;
       line-height: 22px;
       color:#828282;
@@ -224,7 +229,15 @@ const S = {}
           outline:none;
           margin-left: 27px;
         }
-    & p {
+    & p.number {
+      width: 464px;
+      height: 55px;
+      line-height: 55px;
+      font-size: 16px;
+      color:#000000;
+      margin-left: 27px;
+    }
+    & p.number1 {
       width: 464px;
       height: 55px;
       line-height: 55px;
@@ -278,6 +291,9 @@ S.PwInputBox = styled.div`
     width: 464px;
     margin-left: 27px;
     height: 55px;
+  }
+  & p {
+    line-height: 55px;
   }
   & button.update {
     width: 90px;
@@ -381,30 +397,7 @@ S.PwChangeBox = styled.div`
 
 `
 // x아이콘
-S.CardPopUpBtn = styled.div`
-    width: 600px;
-    height: 450px;
-    border: 1px solid #828282;
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 20px;
-    background-color: #ffffff;
-    
-  
-    & button.x {
-        margin-left: 550px;
-        background-color: #ffffff;
-        border: none;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
-        margin-bottom: 10px;
-    }
-`
+
 
 S.CardPop = styled.div`
   display: flex;
@@ -441,5 +434,202 @@ S.CardPop = styled.div`
     border: none;
   }
 `
+S.PhoneContainer = styled.div`
+  width: 635px;
+  position: relative;
+
+  & button.check {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    color: #113F8A;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute; 
+    right: 26px; 
+    top: 19px;
+  }
+
+`
+
+
+// 비번
+S.CardPopUpBtn = styled.div`
+    width: 600px;
+    height: 700px;
+    border: 1px solid #828282;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    background-color: #ffffff;
+  
+    & button.x {
+        margin-left: 520px;
+        background-color: #ffffff;
+        border: none;
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+      margin-top: 10px;
+    }
+`
+
+
+
+S.NextButton = styled.button`
+  width: 100px;
+  height: 40px;
+  background-color: #828282;
+  ${h7Bold};
+  color: #ffffff;
+  border-style: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin-top: 20px;
+  ${flexRowCenter};
+`;
+
+
+
+S.InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+`;
+
+S.Input = styled.input`
+  background-color: #ffffff;
+  width: 464px;
+  height: 60px;
+  border: 0.5px solid #828282;
+  font-size: 14px;
+  color: #828282;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 19px 26px;
+  outline: none;
+  padding-right: 50px; 
+`;
+
+S.AuthButton = styled.button`
+  font-size: 14px;
+  font-weight: bold;
+  color: #113F8A;
+  cursor: pointer;
+  position: absolute;
+  right: 26px; 
+  top: 60%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+`;
+
+
+S.AuthNumberContainer = styled.div`
+  position: relative;
+  width: 464px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+
+
+
+// noinspection CssInvalidPropertyValue
+S.InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  
+  & button.x {
+    margin-left: 550px;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  
+`;
+
+S.InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
+S.Input = styled.input`
+  background-color: #ffffff;
+  width: 464px;
+  height: 60px;
+  border: 0.5px solid #828282;
+  font-size: 14px;
+  color: #828282;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 19px 26px;
+  outline: none;
+  margin-bottom: 5px;
+`;
+
+
+
+S.Label = styled.label`
+  font-weight: 500;
+`;
+
+
+
+S.NewPasswordMessage = styled.div`
+  font-size: 12px;  
+  color:#828282;
+  text-align: left;
+  line-height: 1.5; 
+  margin-bottom: 10px; 
+  margin-right: 50px;
+`;
+
+S.Mark = styled.div`
+  width: 22px;
+  height: 22px;
+  background-image: url(${process.env.PUBLIC_URL}/assets/images/join/eye-off.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  position: absolute;
+  right: 29px;
+  top: 50px;
+  transform: translateY(-50%);
+`;
+
+S.P = styled.p`
+  color: red;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 5px;
+`;
+
+
 
 export default S;
