@@ -26,7 +26,9 @@ const UserPost = () => {
             const response = await fetch(`http://localhost:10000/comments/list/${id}`);
             if (response.ok) {
                 const data = await response.json();
-                setComments(data);
+                // 댓글을 최신순으로 정렬 (createdAt을 기준으로 내림차순)
+                const sortedComments = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                setComments(sortedComments);
             } else {
                 console.error('댓글 조회 실패');
             }
@@ -61,8 +63,10 @@ const UserPost = () => {
             const updatedComments = await fetch(`http://localhost:10000/comments/list/${id}`);
             if (updatedComments.ok) {
                 const data = await updatedComments.json();
-                setComments(data);
-                setNewComment('');
+                // 댓글을 최신순으로 정렬
+                const sortedComments = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                setComments(sortedComments);
+                setNewComment(''); // 댓글 입력란 초기화
             } else {
                 alert('댓글 조회 실패');
             }
