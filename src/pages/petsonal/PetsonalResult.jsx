@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { PetsonalContext } from "../../context/petsonalContext";
 import ProductResult from "./ProductResult";
 import CatProductResult from "./CatProductResult";
+import { yellow200 } from "../../global/common";
 
 const PetsonalResult = () => {
   const { id } = useParams();
@@ -20,17 +21,18 @@ const PetsonalResult = () => {
 
   useEffect(() => {
     const getPetsonalResult = async () => {
-      const response = await fetch(`http://localhost:10000/petsonal/result/${id}`);
+      const response = await fetch(
+        `http://localhost:10000/petsonal/result/${id}`
+      );
       if (!response.ok) return console.error(`데이터가 없습니다.`);
       const petsonalResult = await response.json();
 
       if (petsonalResult.id === null) {
-        
         navigate(`/petsonal/test/${id}`);
         return alert("진행하신 테스트 결과가 없습니다.");
       } else {
         setpetsonalResult(petsonalResult);
-        
+
         const color = petsonalResult.petColor;
         if (result[color]) {
           setColorResult(result[color]);
@@ -40,12 +42,24 @@ const PetsonalResult = () => {
 
     getPetsonalResult().catch(console.error);
   }, [id, navigate, result]);
-  
-  const { petName, petImage, petsonalCute, petsonalChic, petsonalCalm, petsonalActive, petsonalLazy, petsonalDiligent,
-         petsonalCoward, petsonalBrave, petKind, petFilePath, petFileName } = petsonalResult;
+
+  const {
+    petName,
+    petImage,
+    petsonalCute,
+    petsonalChic,
+    petsonalCalm,
+    petsonalActive,
+    petsonalLazy,
+    petsonalDiligent,
+    petsonalCoward,
+    petsonalBrave,
+    petKind,
+    petFilePath,
+    petFileName,
+  } = petsonalResult;
   const { imageSrc, message, boxColor, title } = colorResult;
 
-  
   return (
     <div>
       <S.Frame>
@@ -63,7 +77,10 @@ const PetsonalResult = () => {
           <S.ResultBox color={boxColor}>
             <S.PetProfile>
               <S.PetImage
-                src={ petImage || `http://localhost:10000/my-pet/display?fileName=${petFilePath}/${petFileName}`}
+                src={
+                  petImage ||
+                  `http://localhost:10000/my-pet/display?fileName=${petFilePath}/${petFileName}`
+                }
                 alt={`${petName} 이미지`}
               />
               <p>{petName}</p>
@@ -82,9 +99,15 @@ const PetsonalResult = () => {
                       <S.Percentage>(%)</S.Percentage>
                     </span>
                     <S.Percent>
-                      <S.CuteAndChicGage
-                        style={{ width: `${petsonalCute}%` }}
-                      ></S.CuteAndChicGage>
+                      {petsonalCute > petsonalChic ? (
+                        <S.CuteAndChicGage
+                          style={{ width: `${petsonalCute}%` }}
+                        ></S.CuteAndChicGage>
+                      ) : (
+                        <S.CuteAndChicGage
+                          style={{ width: `${petsonalChic}%` }}
+                        ></S.CuteAndChicGage>
+                      )}
                     </S.Percent>
                     <span>
                       {petsonalCute}
@@ -103,9 +126,11 @@ const PetsonalResult = () => {
                       <S.Percentage>(%)</S.Percentage>
                     </span>
                     <S.Percent>
-                      <S.CalmAndActive
-                        style={{ width: `${petsonalActive}%` }}
-                      ></S.CalmAndActive>
+                      {petsonalActive > petsonalCalm ? (
+                        <S.CalmAndActive style={{ width: `${petsonalActive}%` }}></S.CalmAndActive>
+                      ) : (
+                        <S.CalmAndActive style={{ width: `${petsonalCalm}%` }}></S.CalmAndActive>
+                      )}
                     </S.Percent>
                     <span>
                       {petsonalActive}
@@ -124,9 +149,11 @@ const PetsonalResult = () => {
                       <S.Percentage>(%)</S.Percentage>
                     </span>
                     <S.Percent>
-                      <S.LazyAndDilight
-                        style={{ width: `${petsonalDiligent}%` }}
-                      ></S.LazyAndDilight>
+                      {petsonalDiligent > petsonalLazy ? (
+                        <S.CalmAndActive style={{ width: `${petsonalDiligent}%` }}></S.CalmAndActive>
+                      ) : (
+                        <S.CalmAndActive style={{ width: `${petsonalLazy}%` }}></S.CalmAndActive>
+                      )}
                     </S.Percent>
                     <span>
                       {petsonalDiligent}
@@ -145,9 +172,11 @@ const PetsonalResult = () => {
                       <S.Percentage>(%)</S.Percentage>
                     </span>
                     <S.Percent>
-                      <S.CowardAndBrave
-                        style={{ width: `${petsonalBrave}%` }}
-                      ></S.CowardAndBrave>
+                      {petsonalBrave > petsonalCoward ? (
+                        <S.CalmAndActive style={{ width: `${petsonalBrave}%`}}></S.CalmAndActive>
+                      ) : (
+                        <S.CalmAndActive style={{ width: `${petsonalCoward}%`}}></S.CalmAndActive>
+                      )}
                     </S.Percent>
                     <span>
                       {petsonalBrave}
@@ -159,9 +188,8 @@ const PetsonalResult = () => {
             </S.RateWrap>
           </S.ResultBox>
 
-             {/* 강아지일 때 강아지 상품 아닐때 고양이 상품 (이런 문법안되나?)*/}
-            {petKind === "강아지" ? (<ProductResult />) : (<CatProductResult />)}
-
+          {/* 강아지일 때 강아지 상품 아닐때 고양이 상품 (이런 문법안되나?)*/}
+          {petKind === "강아지" ? <ProductResult /> : <CatProductResult />}
         </S.ResultContainer>
       </S.Frame>
     </div>
