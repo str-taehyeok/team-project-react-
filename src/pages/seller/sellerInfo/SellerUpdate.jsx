@@ -1,4 +1,3 @@
-// SellerUpdate.jsx
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -8,7 +7,7 @@ import S from './style'; // 스타일 import
 
 const SellerUpdate = () => {
     const { id } = useParams();
-    const { register, handleSubmit, formState: { isSubmitting } } = useForm({ mode: "onChange" });
+    const { register, handleSubmit, setValue, formState: { isSubmitting } } = useForm({ mode: "onChange" });
     const navigate = useNavigate();
     const { currentUser } = useSelector((state) => state.user);
     const [post, setPost] = useState({});
@@ -20,20 +19,24 @@ const SellerUpdate = () => {
     };
 
 
-    // 데이터 fetching
     useEffect(() => {
         const getPost = async () => {
             const response = await fetch(`http://localhost:10000/seller/seller-info/${id}`);
             if (!response.ok) return console.error(`데이터가 없습니다.`);
             const post = await response.json();
             setPost(post);
+
+            // `setValue`로 `react-hook-form`의 필드 값을 갱신
+            setValue("memberName", post.memberName || '');
+            setValue("memberPhone", post.memberPhone || '');
+            setValue("memberBank", post.memberBank || '');
+            setValue("memberBankAccount", post.memberBankAccount || '');
+            setValue("memberPassword", post.memberPassword || '');
         };
         getPost().catch(console.error);
-    }, [id]);
+    }, [id, setValue]);
 
     const { memberName, memberEmail, memberPhone, memberBank, memberBankAccount, memberBusinessNumber } = post;
-
-    console.log("가져오기 결과 :", post);
 
     const onDelete = () => {
         if (window.confirm("정말 취소하시나요??")) {
@@ -43,10 +46,8 @@ const SellerUpdate = () => {
         }
     };
 
-
     return (
         <form onSubmit={handleSubmit(async (data) => {
-
             await fetch(`http://localhost:10000/seller/update/${id}`, {
                 method: "PUT",
                 headers: {
@@ -56,6 +57,7 @@ const SellerUpdate = () => {
                     memberName: data.memberName,
                     memberPhone: data.memberPhone,
                     memberBank: data.memberBank,
+                    memberPassword: data.memberPassword,
                     memberBankAccount: data.memberBankAccount
                 })
             })
@@ -63,8 +65,6 @@ const SellerUpdate = () => {
                 .then((res) => {
                     navigate(`/seller/seller-info/${id}`);
                 })
-
-
         })}>
 
             <S.UpdateBox>
@@ -90,6 +90,7 @@ const SellerUpdate = () => {
                         <S.IdText>로그인 ID</S.IdText>
                         <S.IdInput>
                             <p className={"email"}>{memberEmail}</p>
+                            <button type="button" className={"update"} onClick={handleShowPopup}>이메일 인증</button>
                         </S.IdInput>
                     </S.IdInputBox>
                 </label>
@@ -122,20 +123,16 @@ const SellerUpdate = () => {
                 <label>
                     <S.PhoneInputBox>
                         <S.PhoneText>휴대폰 번호</S.PhoneText>
-                        <S.PhoneInput>
-                            <input
-                                type="text"
-                                defaultValue={memberPhone}
-                                {...register("memberPhone")}
-                            />
-                        </S.PhoneInput>
+                            <S.PhoneInput>
+                                <p className={"number"}>{memberPhone}</p>
+                            </S.PhoneInput>
                     </S.PhoneInputBox>
                 </label>
                 <label>
                     <S.PwInputBox>
                         <S.PwText>비밀번호</S.PwText>
                         <div className={'update-button'}>
-                            <button type="button" className={"update"} onClick={handleShowPopup}>비밀번호 변경</button>
+                            <p>이메일 인증을 해주세요.(비밀번호 변경 시 다시 로그인 됩니다)</p>
                         </div>
                     </S.PwInputBox>
                 </label>
@@ -151,6 +148,7 @@ const SellerUpdate = () => {
 
             {/* 비밀번호 변경 팝업 모달 */}
             {isOpenPopup && <PwChange handleShowPopup={handleShowPopup}/>}
+
         </form>
     );
 };

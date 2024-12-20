@@ -26,7 +26,7 @@ const SellerRead = () => {
     console.log(post)
 
     const onClickDeleteNotice = async () => {
-        await fetch(`http://localhost:10000/member/seller/${id}`, {
+        await fetch(`http://localhost:10000/seller/seller-info/${id}`, {
             method: 'DELETE',
         }).then((res) => {
             // navigate('/login');
@@ -77,7 +77,7 @@ const SellerRead = () => {
                     <S.PhoneText>휴대폰 번호</S.PhoneText>
                     <span>|</span>
                     <S.PhoneInput>
-                        <p>{memberPhone}</p>
+                        <p className={"number1"}>{memberPhone}</p>
                     </S.PhoneInput>
                 </S.PhoneInputBox>
             </label>
