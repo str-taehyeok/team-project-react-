@@ -654,74 +654,80 @@ S.Title = styled.div`
   margin-bottom: 17px;
 `
 
+// 팝업 외부 스타일
 S.PopupAreaFollowing = styled.div`
   width: 400px;
   height: 534px;
   border-radius: 20px;
   z-index: 10000;
-  border: solid 1px #828282;
-  box-shadow: 2px 4px 4px rgb(0, 0, 0, 0.2);
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column; /* 세로로 정렬 */
   position: relative;
   bottom: 473px;
   right: 54px;
   margin: 0 auto;
   background-color: #FFFFFF;
-`
+  overflow-y: auto; /* 세로 스크롤 추가 */
+  overflow-x: hidden; /* 가로 스크롤 제거 */
+  /* padding: 10px; 여백 추가 (원하는 경우) */
+`;
 
+// 닫기 버튼
 S.PopupFollowingClose = styled.img`
-  position: relative;
+  position: absolute;
   width: 30px;
   height: 30px;
-  left: 171px;
   top: 13px;
-`
+  right: 10px;
+  cursor: pointer; /* 클릭 가능한 느낌 */
+`;
 
+// 메뉴 바 스타일
 S.MenuFollowing = styled.div`
-  width: 200px;
+  width: 100%;
   height: 50px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   background-color: #d9d9d9;
+  border: solid 1px #888888;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-`
+`;
+
+// 팔로잉 리스트 스타일
 S.myFollowingList = styled.div`
-  width: 400px;
+  width: 100%;
   height: 453px;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
   box-sizing: border-box;
+  overflow-y: auto; /* 리스트 영역 세로 스크롤 */
+  padding: 25px;
   border: solid 1px #888888;
-  >ul>li{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  }
-  `
-
-S.Following1 = styled.div`
-    width: 350px;
-    height: 70px;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-  >img{
-    width: 40px;
-  }
-  >p{
+  > ul > li {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  >button{
+`;
+
+// 개별 팔로잉 항목 스타일
+S.Following1 = styled.div`
+  width: 100%;
+  height: 70px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  > img {
+    width: 40px;
+  }
+  > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  > button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -733,7 +739,15 @@ S.Following1 = styled.div`
     cursor: pointer;
     background-color: #FFFFFF;
   }
-`
+`;
+
+
+
+
+
+
+
+
 
 S.PimageWarpper = styled.div`
     display: flex;
@@ -867,6 +881,8 @@ S.TagItem = styled.div`
     font-size: 16px;
   }
 `;
+
+
 
 
 export default S;

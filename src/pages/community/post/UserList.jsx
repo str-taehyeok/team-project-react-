@@ -14,31 +14,20 @@ const UserList = () => {
   const [followingList, setFollowingList] = useState([]);
   const [isFollowerPopupOpen, setIsFollowerPopupOpen] = useState(false);
   const [isFollowingPopupOpen, setIsFollowingPopupOpen] = useState(false);
+  const [activePostId, setActivePostId] = useState(null); 
+  
   const localJwtToken = localStorage.getItem("jwtToken");
   const { communityState } = useContext(CommunityContext);
-  const [activePostId, setActivePostId] = useState(null); 
-  const [popupType, setPopupType] = useState(null);
-
   const { communites } = communityState;
   const memberId = currentUser.id;
 
   // 로그인 상태 확인
   useEffect(() => {
     if (!localJwtToken) {
-        alert("로그인 후 이용해 주세요.");
-        navigate("/login");
+      alert("로그인 후 이용해 주세요.");
+      navigate("/login");
     }
-   }, [localJwtToken, navigate]);
-
-  // DotButton 클릭 시 해당 게시물 팝업 열기/닫기
-  const togglePopup = (postId) => {
-    // 이미 열려 있는 게시물을 다시 클릭하면 팝업을 닫음
-    if (activePostId === postId) {
-        setActivePostId(null); // 팝업 닫기
-    } else {
-        setActivePostId(postId); // 팝업 열기
-    }
-  };
+  }, [localJwtToken, navigate]);
 
   // 팔로워와 팔로잉 데이터를 가져오는 함수들
   const fetchFollowerData = async () => {
@@ -71,18 +60,21 @@ const UserList = () => {
     }
   };
 
+  useEffect(() => {
+    fetchFollowerData();
+    fetchFollowingData();
+  }, [memberId]);
+
   // 팔로워 팝업 열기
   const openFollowerPopup = () => {
     setIsFollowerPopupOpen(true);
     setIsFollowingPopupOpen(false);
-    setPopupType("followers"); // 팔로워 데이터 로드
   };
 
   // 팔로잉 팝업 열기
   const openFollowingPopup = () => {
     setIsFollowingPopupOpen(true);
     setIsFollowerPopupOpen(false);
-    setPopupType("following"); // 팔로잉 데이터 로드
   };
 
   // 팝업 닫기
@@ -116,7 +108,7 @@ const UserList = () => {
     }
   };
 
-  // 팝업에서 취소 버튼 눌렀을때
+  // 팔로우 취소 버튼 클릭 시 처리
   const handleUnfollowClick = async (targetUserId) => {
     try {
       const response = await fetch(`http://localhost:10000/follows/cancel`, {
@@ -133,10 +125,7 @@ const UserList = () => {
 
       if (response.ok) {
         console.log("팔로우 취소 성공");
-
-        setFollowersList(
-          followersList.filter((user) => user.id !== targetUserId)
-        );
+        setFollowersList(followersList.filter((user) => user.id !== targetUserId));
         setFollowersCount(followersList.length - 1);
       } else {
         console.error("팔로우 취소 실패");
@@ -146,14 +135,14 @@ const UserList = () => {
     }
   };
 
-  // 팝업 타입에 따라 데이터 가져오기
-  useEffect(() => {
-    if (popupType === "followers") {
-      fetchFollowerData();
-    } else if (popupType === "following") {
-      fetchFollowingData();
+  // 게시물 팝업 열기/닫기
+  const togglePopup = (postId) => {
+    if (activePostId === postId) {
+      setActivePostId(null); // 팝업 닫기
+    } else {
+      setActivePostId(postId); // 팝업 열기
     }
-  }, [popupType]); // popupType 변경 시 데이터 갱신
+  };
 
   return (
     <div>
@@ -167,7 +156,6 @@ const UserList = () => {
             </div>
           </S.MyProfileCard>
           <S.MyProfilelineStyle />
-
           <S.ButtonCenter>
             <FollowBtn targetUserId={currentUser.id} />
           </S.ButtonCenter>
@@ -190,7 +178,7 @@ const UserList = () => {
           <S.MyPostList>
             {communites.slice(0, 8).map(({ id, imageName1 }, index) => (
               <S.MyPostItem key={index} style={{ position: "relative" }}>
-                <S.DotButton onClick={() => {}}>
+                <S.DotButton onClick={() => togglePopup(id)}>
                   <button>
                     <img
                       src="/assets/images/community/white.jpg"
@@ -198,7 +186,6 @@ const UserList = () => {
                     />
                   </button>
                 </S.DotButton>
-                {console.log("activePostId:", activePostId, "id:", id)}  {/* 디버깅 */}
                 {activePostId === id && (
                   <S.PopupBtn>
                     <S.PoputBtnType>
@@ -210,7 +197,6 @@ const UserList = () => {
                     </S.PoputBtnType>
                   </S.PopupBtn>
                 )}
-
                 <img
                   src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
                   alt="게시물 이미지"
