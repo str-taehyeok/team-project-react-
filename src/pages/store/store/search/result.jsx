@@ -69,7 +69,7 @@ const Result = () => {
                         <S.Heart>
                             <HeartBtn id={index} type={'product'} />
                         </S.Heart>
-                        <Link to={`product/${id}`}>
+                        <Link to={`store/read/${index}`}>
                             <S.CustomImage>
                                 <img
                                     className="thumb"
