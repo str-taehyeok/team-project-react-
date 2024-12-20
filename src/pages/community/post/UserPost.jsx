@@ -26,7 +26,10 @@ const UserPost = () => {
             const response = await fetch(`http://localhost:10000/comments/list/${id}`);
             if (response.ok) {
                 const data = await response.json();
-                setComments(data);
+
+                // 댓글을 ID 기준 내림차순으로 정렬
+                const sortedComments = data.sort((a, b) => b.id - a.id); // ID가 큰 순서대로 정렬
+                setComments(sortedComments);
             } else {
                 console.error('댓글 조회 실패');
             }
@@ -41,7 +44,7 @@ const UserPost = () => {
 
         const token = localStorage.getItem('jwtToken'); 
         if(!token){
-            return alert("로그인 후 이용해주세요.")
+            return alert("로그인 후 이용해주세요.");
         }
 
         const response = await fetch(`http://localhost:10000/comments/add`, {
@@ -61,7 +64,10 @@ const UserPost = () => {
             const updatedComments = await fetch(`http://localhost:10000/comments/list/${id}`);
             if (updatedComments.ok) {
                 const data = await updatedComments.json();
-                setComments(data);
+
+                // 댓글을 ID 기준 내림차순으로 정렬 후 상태 업데이트
+                const sortedComments = data.sort((a, b) => b.id - a.id);
+                setComments(sortedComments);
                 setNewComment('');
             } else {
                 alert('댓글 조회 실패');

@@ -16,13 +16,36 @@ const UserList = () => {
   const [isFollowingPopupOpen, setIsFollowingPopupOpen] = useState(false);
   const localJwtToken = localStorage.getItem("jwtToken");
   const { communityState } = useContext(CommunityContext);
+  const [activePostId, setActivePostId] = useState(null); 
+  const [popupType, setPopupType] = useState(null);
+
   const { communites } = communityState;
   const memberId = currentUser.id;
+
+  // 로그인 상태 확인
+  useEffect(() => {
+    if (!localJwtToken) {
+        alert("로그인 후 이용해 주세요.");
+        navigate("/login");
+    }
+   }, [localJwtToken, navigate]);
+
+  // DotButton 클릭 시 해당 게시물 팝업 열기/닫기
+  const togglePopup = (postId) => {
+    // 이미 열려 있는 게시물을 다시 클릭하면 팝업을 닫음
+    if (activePostId === postId) {
+        setActivePostId(null); // 팝업 닫기
+    } else {
+        setActivePostId(postId); // 팝업 열기
+    }
+  };
 
   // 팔로워와 팔로잉 데이터를 가져오는 함수들
   const fetchFollowerData = async () => {
     try {
-      const followersResponse = await fetch(`http://localhost:10000/follows/followers/${memberId}`);
+      const followersResponse = await fetch(
+        `http://localhost:10000/follows/followers/${memberId}`
+      );
       if (followersResponse.ok) {
         const followersData = await followersResponse.json();
         setFollowersList(followersData);
@@ -35,7 +58,9 @@ const UserList = () => {
 
   const fetchFollowingData = async () => {
     try {
-      const followingResponse = await fetch(`http://localhost:10000/follows/following/${memberId}`);
+      const followingResponse = await fetch(
+        `http://localhost:10000/follows/following/${memberId}`
+      );
       if (followingResponse.ok) {
         const followingData = await followingResponse.json();
         setFollowingCount(followingData.length);
@@ -46,22 +71,18 @@ const UserList = () => {
     }
   };
 
-
-  useEffect(() => {
-    fetchFollowerData(); 
-    fetchFollowingData(); 
-  }, [memberId]); 
-
   // 팔로워 팝업 열기
   const openFollowerPopup = () => {
     setIsFollowerPopupOpen(true);
     setIsFollowingPopupOpen(false);
+    setPopupType("followers"); // 팔로워 데이터 로드
   };
 
   // 팔로잉 팝업 열기
   const openFollowingPopup = () => {
     setIsFollowingPopupOpen(true);
     setIsFollowerPopupOpen(false);
+    setPopupType("following"); // 팔로잉 데이터 로드
   };
 
   // 팝업 닫기
@@ -73,52 +94,66 @@ const UserList = () => {
   // 팔로우 버튼 클릭 시 처리
   const handleFollowClick = async (targetUserId) => {
     try {
-      const response = await fetch(`http://localhost:10000/follows/${targetUserId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localJwtToken}`,
-        },
-        body: JSON.stringify({ followerId : memberId }),  
-      });
+      const response = await fetch(
+        `http://localhost:10000/follows/${targetUserId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localJwtToken}`,
+          },
+          body: JSON.stringify({ followerId: memberId }),
+        }
+      );
       if (response.ok) {
         fetchFollowerData();
         fetchFollowingData();
       } else {
-        console.error('팔로우 처리 실패');
+        console.error("팔로우 처리 실패");
       }
     } catch (error) {
-      console.error('팔로우 요청 실패', error);
+      console.error("팔로우 요청 실패", error);
     }
   };
 
-  // 팝업에서 취소 버튼 눌렀을떄
+  // 팝업에서 취소 버튼 눌렀을때
   const handleUnfollowClick = async (targetUserId) => {
     try {
-        const response = await fetch(`http://localhost:10000/follows/cancel`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localJwtToken}`,
-          },
-          body: JSON.stringify({
-            followerId: currentUser.id, 
-            followingId: targetUserId,  
-          }),
-        });
-    
-        if (response.ok) {
-          console.log("팔로우 취소 성공");
-    
-          setFollowersList(followersList.filter((user) => user.id !== targetUserId));
-          setFollowersCount(followersList.length - 1);
-        } else {
-          console.error("팔로우 취소 실패");
-        }
-      } catch (error) {
-        console.error("팔로우 취소 요청 실패", error);
+      const response = await fetch(`http://localhost:10000/follows/cancel`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localJwtToken}`,
+        },
+        body: JSON.stringify({
+          followerId: currentUser.id,
+          followingId: targetUserId,
+        }),
+      });
+
+      if (response.ok) {
+        console.log("팔로우 취소 성공");
+
+        setFollowersList(
+          followersList.filter((user) => user.id !== targetUserId)
+        );
+        setFollowersCount(followersList.length - 1);
+      } else {
+        console.error("팔로우 취소 실패");
       }
-    };
+    } catch (error) {
+      console.error("팔로우 취소 요청 실패", error);
+    }
+  };
+
+  // 팝업 타입에 따라 데이터 가져오기
+  useEffect(() => {
+    if (popupType === "followers") {
+      fetchFollowerData();
+    } else if (popupType === "following") {
+      fetchFollowingData();
+    }
+  }, [popupType]); // popupType 변경 시 데이터 갱신
 
   return (
     <div>
@@ -139,8 +174,12 @@ const UserList = () => {
           <S.MyprofileCardInformation>
             <S.MyFollwer>
               <button>게시물 {communites.slice(0, 8).length}</button>
-              <button type="button" onClick={openFollowerPopup}>팔로워 {followersCount}</button>
-              <button type="button" onClick={openFollowingPopup}>팔로잉 {followingCount}</button>
+              <button type="button" onClick={openFollowerPopup}>
+                팔로워 {followersCount}
+              </button>
+              <button type="button" onClick={openFollowingPopup}>
+                팔로잉 {followingCount}
+              </button>
             </S.MyFollwer>
           </S.MyprofileCardInformation>
         </S.MyProfileCardWapper>
@@ -159,6 +198,19 @@ const UserList = () => {
                     />
                   </button>
                 </S.DotButton>
+                {console.log("activePostId:", activePostId, "id:", id)}  {/* 디버깅 */}
+                {activePostId === id && (
+                  <S.PopupBtn>
+                    <S.PoputBtnType>
+                      <p>삭제하기</p>
+                    </S.PoputBtnType>
+                    <S.BtnLine></S.BtnLine>
+                    <S.PoputBtnType>
+                      <p>수정하기</p>
+                    </S.PoputBtnType>
+                  </S.PopupBtn>
+                )}
+
                 <img
                   src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
                   alt="게시물 이미지"
@@ -200,7 +252,12 @@ const UserList = () => {
                         />
                         <p>{user.memberNickname}</p>
                       </S.PimageWarpper>
-                      <button className="following-button" onClick={() => handleUnfollowClick(user.id)}>취소</button>
+                      <button
+                        className="following-button"
+                        onClick={() => handleUnfollowClick(user.id)}
+                      >
+                        취소
+                      </button>
                     </S.Following1>
                   </li>
                 ))}
@@ -228,10 +285,18 @@ const UserList = () => {
                   <li key={user.id}>
                     <S.Following1>
                       <S.PimageWarpper>
-                        <img src="/assets/images/community/userprofile.png" alt="프로필 사진" />
+                        <img
+                          src="/assets/images/community/userprofile.png"
+                          alt="프로필 사진"
+                        />
                         <p>{user.memberNickname}</p>
                       </S.PimageWarpper>
-                      <button className="following-button" onClick={() => handleFollowClick(user.id)}>팔로잉</button>
+                      <button
+                        className="following-button"
+                        onClick={() => handleFollowClick(user.id)}
+                      >
+                        팔로잉
+                      </button>
                     </S.Following1>
                   </li>
                 ))}
