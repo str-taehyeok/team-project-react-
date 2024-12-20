@@ -9,7 +9,7 @@ import {
     h9Medium,
     h8Regular,
     h6Bold,
-    h6Regular, h10Regular, h8Bold, h7Regular
+    h6Regular, h10Regular, h8Bold, h7Regular, h4Bold
 } from "../../../global/common";
 
 const S = {}
@@ -39,15 +39,15 @@ const S = {}
         height: 464px;
         justify-content: center;
         align-items: center;
-        padding-bottom: 25px;
+        margin-bottom: 25px;
     `;
 
     S.SubImgWrap = styled.div`
         width: 464px;
         display: flex;
-        gap : 31px;
+        gap : 20px;
         justify-content: left;
-        padding-bottom: 50px;
+        margin-bottom: 20px;
         
         & img{
             display: flex;
@@ -118,8 +118,19 @@ S.InfoSeller = styled.div`
         ${h4Medium}
     `;
 
+    S.ProductNamein = styled.span`
+        display: flex;
+        width: 100%;
+        height: 72px;
+        font-weight: 500;
+        //margin-bottom: 64px;
+        margin-top: 13px;
+        margin-left: 115px;
+        ${h4Medium}
+    `;
+
     S.Coupon = styled.p`
-        ${h5Medium}
+        ${h4Medium}
     `;
 
     S.ProductPriceWrap = styled.div`
@@ -132,12 +143,12 @@ S.InfoSeller = styled.div`
     S.Percent = styled.p`
         color: #C83F3F;
         padding-right: 32px;
-        ${h4Medium}
+        ${h4Bold}
     `;
 
     S.RealPrice = styled.p`
         padding-right: 17px;
-        ${h4Medium}
+        ${h4Bold}
     `;
 
     S.Price = styled.p`
@@ -149,6 +160,7 @@ S.InfoSeller = styled.div`
     S.PriceCheck = styled.div`
         display: flex;
         //position: relative;
+        flex-direction: row;
         margin-bottom: 50px;
         width: 303px;
     `;
@@ -160,11 +172,10 @@ S.InfoSeller = styled.div`
         margin-right: 42px;
         width: 60px;
         height: 20px;
-        ${h7Bold}
+        ${h7Regular}
         
         & P{
             display: flex;
-            flex-direction: column;
             //margin-bottom: 126px;
             width: 59px;
         }
@@ -180,11 +191,9 @@ S.InfoSeller = styled.div`
     S.DeliveryInfo = styled.div`
         display: flex;
         flex-direction: column;
-        gap : 16px;
-        margin-bottom: 10px;
-        height: 50px;
+        gap : 5px;
+        justify-content: space-between;
         width: 200px;
- 
     `;
 
     S.ProductBox = styled.div`
@@ -197,7 +206,6 @@ S.InfoSeller = styled.div`
         height: 228px;
         justify-content: center;
         align-items: center;
-        padding: 42px 60px 42px 60px;
         margin-bottom: 20px;
         
         & p{
@@ -254,12 +262,12 @@ S.InfoSeller = styled.div`
     `;
 
     S.BtnMinus = styled.button `
-        left: 17px;
+        left: 70px;
         top: 4px;
     `;
 
     S.BtnPlus = styled.button`
-        right: 360px;
+        right: 420px;
         top: 4px;
     `;
 
@@ -336,18 +344,24 @@ S.InfoSeller = styled.div`
         position: relative;
 
         .like-icon {
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             position: absolute;
-            top: 7px;
-            left: 210px;
+            top: 100px;
+            left: 50px;
         }
+
         
-        & img{
+    `;
+
+    S.Images = styled.img`
         width: 250px;
         height: 250px;
-        }
-    `;
+        border-radius: 20px;
+        
+        
+        
+    `
 
     S.ProductInfo = styled.div`
         display: flex;
