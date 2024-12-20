@@ -69,6 +69,7 @@ S.CustomProductMessage = styled.p`
             margin-bottom: 100px;
             ${flexColumnCenter};
         width: 100%;
+        overflow: hidden;
     `;
 
     S.Banner = styled.img`
@@ -99,7 +100,7 @@ S.SortButtonWrapper = styled.div`
   display: flex;
   width: 500px;
   justify-content: space-between;
-  margin: 176px 0 60px auto;
+  margin: 0 0 60px auto;
   
   & > div {
     position: relative;
@@ -236,16 +237,6 @@ S.DropdownContainer = styled.div`
         & :hover{
             background-color: ${yellow200};
         }
-    `;
-
-
-    S.ProductWrap = styled.div`
-        display: flex;
-        flex-direction: row;
-        width: 1440px;
-        height: 1070px;
-        overflow: hidden;
-        background: #fff;
     `;
 
 
@@ -601,6 +592,10 @@ S.RecommendedPrice = styled.div`
         display: flex;
         flex-wrap: wrap;
         
+        & .swiper {
+            margin: 0 0 120px 0;
+        }
+
         & .swiper-wrapper {
             height: 1000px;
         }
@@ -622,6 +617,12 @@ S.RecommendedPrice = styled.div`
         border-radius: 20px;
         overflow: hidden;
         margin: 0 0 16px 0;
+
+        &.small {
+            width: 264px;
+            height: 264px;
+        }
+
         & .thumb {
             width: 100%;
         }
@@ -668,12 +669,91 @@ S.RecommendedPrice = styled.div`
         border-radius: 5px;
         width: 100%;
         height: 40px;
+
         & img {
             margin: 0 4px 0 0;
         }
+        
         & p {
             font-size: 16px;
             font-weight: 600;
+        }
+    `
+
+    S.BestProductWraper = styled.div`
+        width: 1440px;
+        row-gap: 48px;
+        column-gap: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto 120px auto;
+
+        & .swiper {
+            margin: 0 0 120px 0;
+        }
+
+        & .swiper-wrapper {
+            height: 440px;
+            gap: 30px;
+        }
+
+        & .thumb {
+            width: 100%;
+        }
+        & .swiper-slide {
+            margin: 0 !important;
+        }
+    `
+
+    S.MainTextWrap = styled.div`
+        display: flex;
+        justify-content: space-between;
+        margin: 0 0 40px 0;
+    `
+
+    S.MainTitle = styled.p`
+        font-size: 40px;
+        font-weight: 900;
+    `
+
+    // 스타일 추가
+
+    S.SpecialLayout = styled.div`
+        width: 1440px;
+        display: flex;
+        flex-direction: row;
+        gap: 72px;
+        & .big {
+            width: 537px;
+            flex-shrink: 0;
+
+            .image-wrap {
+                width: 537px;
+                height: 537px;
+            }
+
+        }
+    `
+
+    S.SpecialProductWraper = styled.div`
+        
+        column-gap: 49px;
+        row-gap: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 0 120px 0;
+
+        & .item{
+            width: 244px;
+        }
+
+        & .image-wrap {
+            width: 244px;
+            height: 244px;
+        }
+        
+        & .thumb {
+            width: 100%;
         }
     `
 
