@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {
     h4Medium,
     h5Bold,
-    h5Medium,
     h6Medium,
     h7Bold,
     h7Medium,
@@ -328,6 +327,7 @@ S.InfoSeller = styled.div`
             border: 1px solid #d9d9d9;
             border-radius: 5px;
             height: 36px;
+            width: 250px;
             background-color: #fff;
         }
     `;
@@ -509,9 +509,25 @@ S.InfoSeller = styled.div`
         }
     `;
 
+    S.WithButton = styled.div`
+        display: flex;
+        flex-direction: row;
+        & button{
+            background:#fff;
+            border: none;
+        }
+
+        & img{
+            width: 20px;
+            height: 20px;
+        }
+    `
+
     S.ReviewContent = styled.div`
         margin-left: 100px;
         margin-right: 50px;
+
+       
     `;
 
     S.HugReview = styled.div`
@@ -543,6 +559,7 @@ S.InfoSeller = styled.div`
             ${h7Regular};
             margin-bottom: 24px;
         }
+        
     `;
 
     S.ReviewTitle = styled.div`

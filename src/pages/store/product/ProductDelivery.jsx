@@ -1,18 +1,6 @@
 import React from 'react';
 import S from "./style";
 
-
-// const products = productList.map(({productName, productPrice, src}, i) => (
-//     <div key={i} >
-//         <Link to={"/product"}>
-//             <img src={src} alt={"상품" + (i + 1)} />
-//             <span>{productName}</span>
-//         </Link>
-//         <span style={{ fontWeight: 700 }}>{productPrice}<br/>원</span>
-//         <button>담기</button>
-//     </div>
-// ))
-
 const ProductDelivery = () => {
     return (
                 <S.Btn3>
