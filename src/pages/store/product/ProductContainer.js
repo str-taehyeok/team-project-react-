@@ -14,9 +14,9 @@ import { ProductContext } from "../../../context/productContext";
 import { StarRating } from "../../../context/starContext";
 
 const ProductContainer = () => {
+    const { id } = useParams();
     const { productState } = useContext(ProductContext);
     const { products } = productState;
-    const { id } = useParams();
     const [count, setCount] = useState(1);
     const [activeTab, setActiveTab] = useState('info');
     const [relatedProducts, setRelatedProducts] = useState([]);
@@ -24,7 +24,7 @@ const ProductContainer = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const foundProduct = products?.find(product => String(product.id) === String(id));
+    const foundProduct = products?.find((pr) => String((pr).id) === String(id));
 
     // const {
     //     imageName1, imageName2, imageName3, imageName4,
@@ -72,7 +72,6 @@ const ProductContainer = () => {
         return <div>상품을 찾을 수 없습니다</div>;
     }
 
-    // Handle quantity changes
     const handleMinus = () => {
         setCount(prev => Math.max(1, prev - 1));
     };
@@ -136,7 +135,9 @@ const ProductContainer = () => {
                             </Link>
                             <S.ProductPrice>{product.productPrice.toLocaleString()} 원</S.ProductPrice>
                         </S.ProductInfo>
+                        <Link to="/cart">
                         <button>담기</button>
+                        </Link>
                     </S.Product>
                 </SwiperSlide>
             ))}
