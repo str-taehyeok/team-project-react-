@@ -296,8 +296,9 @@ S.PostTitle = styled.div`
 // 게시물 내용용
 S.PostContent = styled.div`
   margin-top: 5px;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
 `
 
 // 게시물 전체 박스
@@ -356,7 +357,7 @@ S.LikeNumber = styled.div`
 `
 S.MyPostUnderBox = styled.div`
   width:586px;
-  padding: 19px 26px;
+  padding: 19px 5px;
 `
 
 S.Comment = styled.div`
@@ -378,12 +379,12 @@ S.CommentNumber = styled.div`
 
 S.InputContainer = styled.div`
   position: relative; 
-  width: 469px;
+  width: 510px;
   & input {
     border-radius: 20px;
     border-style: none;
     border: solid 1px #828282;
-    width:469px;
+    width:510px;
     height:56px;
     padding: 19px 59px 19px 26px;
     font-size: 12px;
