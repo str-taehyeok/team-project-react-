@@ -65,11 +65,11 @@ const Result = () => {
                     },
                     index
                 ) => (
-                    <S.Products key={id}>
+                    <S.Products key={index}>
                         <S.Heart>
                             <HeartBtn id={index} type={'product'} />
                         </S.Heart>
-                        <Link to={`store/read/${index}`}>
+                        <Link to={`/store/read/${id}`}>
                             <S.CustomImage>
                                 <img
                                     className="thumb"
