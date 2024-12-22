@@ -35,6 +35,7 @@ const PetUpdate = () => {
         setPetKind(petData.petKind);
         setPetGender(petData.petGender);
         setPetBreed(petData.petBreed);
+        setPetBreed(petData.petWeight);
         setPetNeuter(petData.petNeuter);
         setPetFilePath(petData.petFilePath);
         setPetFileName(petData.petFileName);
@@ -48,6 +49,7 @@ const PetUpdate = () => {
         setValue("petWeight", petData.petWeight);
         setValue("petNeuter", petData.petNeuter);
         setValue("petVet", petData.petVet);
+        setValue("uploadFile", petData.petImage[0]);
 
       } catch (error) {
         console.error('데이터 로드 중 오류 발생:', error);
@@ -59,6 +61,8 @@ const PetUpdate = () => {
   const handleFormSubmit = async (data) => {
     try {
       const formData = new FormData();
+
+      
       const { petName, petKind, petGender, petBreed, petBirth, petWeight, petNeuter, petVet, petImage } = data;
 
       formData.append("memberId", currentUser.id);
@@ -82,15 +86,19 @@ const PetUpdate = () => {
 
       const resData = await response.json();
       formData.append("uuid", resData.uuid);
+      formData.append("petFilePath", petFilePath);
+      formData.append("petFileName", petFileName);
 
-      const updateResponse = await fetch(`http://localhost:10000/my-pet/${id}`, {
+     
+      const updateResponse = await fetch("http://localhost:10000/my-pet/petEdit", {
         method: "PUT",
         body: formData,
       });
 
       const updateResData = await updateResponse.json();
+      console.log(data)
       alert(updateResData.message);
-      navigate("/my-pet");
+      // navigate("/my-pet");
 
     } catch (error) {
       console.error('폼 제출 중 오류 발생:', error);
