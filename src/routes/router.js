@@ -197,7 +197,7 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: '/product/:id',
+                path: 'store/read/:id',
                 element: <ProductContainer />,
                 children: [
                     {
@@ -423,7 +423,7 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: 'seller-info/:id',
+                path: 'seller-info',
                 element: <SellerInfoContainer />,
                 children: [
                     {
