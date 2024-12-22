@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import { setPreviousUrl, setUser, setUserStatus } from '../../modules/user';
+import { setPreviousUrl, setUser, setUserStatus } from '../../modules/seller';
 import S from "./style";
 import SellerHeader from './SellerHeader';
 
 
 const SellerLayout = () => {
     const dispatch = useDispatch();
-    const localJwtToken = localStorage.getItem("jwtToken");
-    const navigate = useNavigate();
     const uri = useLocation().pathname;
     const [searchParams] = useSearchParams();
     const jwtToken = searchParams.get("jwtToken");
-    // const { currentUser } = useSelector((state) => state.user);
+    const localJwtToken = localStorage.getItem("jwtToken");
+    const { currentUser } = useSelector((state) => state.seller);
+    const navigate = useNavigate();
     useEffect(() => {
 
         // 쿼리스트링 토큰이 있으면
@@ -60,8 +60,8 @@ const SellerLayout = () => {
         dispatch(setPreviousUrl(uri));
 
     }, [dispatch, uri, jwtToken, localJwtToken, navigate]);
-    // }, [dispatch, localJwtToken, navigate]);
 
+    console.log(localJwtToken);
 
 
     return (

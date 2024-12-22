@@ -1,15 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useNavigate , useParams } from 'react-router-dom';
 import S from "./style";
-import {useDispatch, useSelector} from "react-redux";
-import {setUser, setUserStatus} from "../../modules/user";
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, setUserStatus } from '../../modules/seller';
+// import seller from "../../modules/seller";
 
 const SellerHeader = () => {
-  const { currentUser, isLogin } = useSelector((state) => state.user)
+  const { currentUser, isLogin } = useSelector((state) => state.seller)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useDispatch();
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const [currentTitle, setCurrentTitle] = useState("상품 관리");
-  const { id } = useParams();
+  const { memberId , id} = useParams();
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+    dispatch(setUser({}));
+    dispatch(setUserStatus(false));
+    window.location.href = "http://localhost:10000/logout";
+  };
 
   const menuItems = [
     {
@@ -39,10 +48,10 @@ const SellerHeader = () => {
     },
     {
       title: [
-        {name: "판매자 관리", path: `/seller/seller-info/${id}`}
+        {name: "판매자 관리", path: `/seller/seller-info`}
       ],
       submenu: [
-        { name: "판매자정보 관리", path: `/seller/seller-info/${id}` }
+        { name: "판매자정보 관리", path: `/seller/seller-info` }
       ]
     },
     {
@@ -99,25 +108,14 @@ const SellerHeader = () => {
 
   const[posts, setPosts] = useState([])
 
-  useEffect(() => {
-    const getPosts = async() => {
-      console.log(`Requesting posts for seller with ID: ${id}`);  // ID 로그 출력
-      const response = await fetch(`http://localhost:10000/products/seller-all-list/${id}`);
-      if(!response.ok) return console.error(`데이터가 없습니다`)
-      const posts = await response.json();
-      return posts;
-    }
 
-    getPosts().then(setPosts).catch(console.error);
-  }, []);
-
-  console.log(id)
-  // 로그아웃
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.removeItem('jwtToken');
-    navigate('/login/seller');
-  };
+  console.log(memberId)
+  // // 로그아웃
+  // const navigate = useNavigate();
+  // const handleLogout = () => {
+  //   localStorage.removeItem('jwtToken');
+  //   navigate('/login');
+  // };
 
   return (
       <S.Header>
