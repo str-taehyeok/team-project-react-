@@ -51,7 +51,10 @@ const HeartBtn = ({ id, type }) => {
     }
   }
   
-  const handleLike = async () => {
+  const handleLike = async (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    
     if(!memberId){
       alert("로그인 해주세요.")
       navigate("/login")
