@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setPreviousUrl, setUser, setUserStatus } from '../../modules/user';
+import {useDispatch, useSelector} from 'react-redux';
+import { setPreviousUrl, setUser, setUserStatus } from '../../modules/seller';
 import S from "./style";
 import SellerHeader from './SellerHeader';
 
-const AdminLayout = () => {
+
+const SellerLayout = () => {
     const dispatch = useDispatch();
     const uri = useLocation().pathname;
     const [searchParams] = useSearchParams();
     const jwtToken = searchParams.get("jwtToken");
     const localJwtToken = localStorage.getItem("jwtToken");
-
+    const { currentUser } = useSelector((state) => state.seller);
     const navigate = useNavigate();
     useEffect(() => {
 
@@ -39,7 +40,9 @@ const AdminLayout = () => {
                     dispatch(setUser({}));
                     dispatch(setUserStatus(false));
                     localStorage.removeItem("jwtToken");
-                    return alert(datas.message);
+                    alert(datas.message);
+                    navigate("/seller")
+                    return;
                 }
 
                 // 정상 응답
@@ -47,17 +50,18 @@ const AdminLayout = () => {
                 dispatch(setUser(datas.currentUser));
                 dispatch(setUserStatus(true));
             };
-
             getUserDatas();
         }else{
             dispatch(setUser({}));
             dispatch(setUserStatus(false));
+            navigate("/login")
         }
 
         dispatch(setPreviousUrl(uri));
+
     }, [dispatch, uri, jwtToken, localJwtToken, navigate]);
 
-
+    console.log(localJwtToken);
 
 
     return (
@@ -70,6 +74,6 @@ const AdminLayout = () => {
     );
 };
 
-export default AdminLayout;
+export default SellerLayout;
 
 

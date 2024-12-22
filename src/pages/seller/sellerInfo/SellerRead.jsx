@@ -1,44 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import S from './style';
-import PwChange from "./PwChange";
+import {useSelector} from "react-redux";
 
 const SellerRead = () => {
     const { id } = useParams();
     const [post, setPost] = useState({});
-    const navigate = useNavigate();
-
-
+    const { currentUser } = useSelector((state => state.seller))
+    const memberId = currentUser.id;
 
     useEffect(() => {
         const getPost = async () => {
-            const response = await fetch(`http://localhost:10000/seller/seller-info/${id}`);
+            const response = await fetch(`http://localhost:10000/seller/seller-info/${memberId}`);
             if (!response.ok) return console.error('데이터가 없습니다.');
             const post = await response.json();
             setPost(post);
         };
 
         getPost().catch(console.error);
-    }, [id]);
+    }, [memberId]);
 
     const { memberName, memberEmail, memberPhone, memberBank, memberBankAccount, memberBusinessNumber } = post;
 
     console.log(post)
 
-    const onClickDeleteNotice = async () => {
-        await fetch(`http://localhost:10000/seller/seller-info/${id}`, {
-            method: 'DELETE',
-        }).then((res) => {
-            // navigate('/login');
-            console.log(res) //500번대 에러..?
-        });
-    };
 
     return (
         <S.UpdateBox>
             <S.ListButton>
                 <S.Title>판매자정보</S.Title>
-                <Link to={`/seller/seller-info/${id}/update/${id}`}>
+                <Link to={`/seller/seller-info/update/${id}`}>
                     <button className={'update'}>수정하기</button>
                 </Link>
             </S.ListButton>
@@ -100,7 +91,7 @@ const SellerRead = () => {
             <S.Delete>
                 <S.BussinessText>탈퇴하기</S.BussinessText>
                 <div className={'delete-button'}>
-                    <button className={'delete'} onClick={onClickDeleteNotice}>
+                    <button className={'delete'} >
                         탈퇴하기
                     </button>
                 </div>

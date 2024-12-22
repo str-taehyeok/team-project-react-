@@ -9,9 +9,10 @@ const SellerUpdate = () => {
     const { id } = useParams();
     const { register, handleSubmit, setValue, formState: { isSubmitting } } = useForm({ mode: "onChange" });
     const navigate = useNavigate();
-    const { currentUser } = useSelector((state) => state.user);
     const [post, setPost] = useState({});
     const [isOpenPopup, setIsOpenPopup] = useState(false); // 팝업 상태
+    const { currentUser } = useSelector((state => state.seller))
+    const memberId = currentUser.id;
 
     /*팝업 열기/닫기 함수*/
     const handleShowPopup = () => {
@@ -21,34 +22,30 @@ const SellerUpdate = () => {
 
     useEffect(() => {
         const getPost = async () => {
-            const response = await fetch(`http://localhost:10000/seller/seller-info/${id}`);
-            if (!response.ok) return console.error(`데이터가 없습니다.`);
+            const response = await fetch(`http://localhost:10000/seller/seller-info/${memberId}`);
+            if (!response.ok) return console.error('데이터가 없습니다.');
             const post = await response.json();
             setPost(post);
-
-            // `setValue`로 `react-hook-form`의 필드 값을 갱신
-            setValue("memberName", post.memberName || '');
-            setValue("memberPhone", post.memberPhone || '');
-            setValue("memberBank", post.memberBank || '');
-            setValue("memberBankAccount", post.memberBankAccount || '');
-            setValue("memberPassword", post.memberPassword || '');
         };
+
         getPost().catch(console.error);
-    }, [id, setValue]);
+    }, [memberId]);
 
     const { memberName, memberEmail, memberPhone, memberBank, memberBankAccount, memberBusinessNumber } = post;
+
+    console.log(post)
 
     const onDelete = () => {
         if (window.confirm("정말 취소하시나요??")) {
             window.location.href = `/seller/seller-info/${id}`;
         } else {
-            window.location.href = `/seller/seller-info/${id}/update/${id}`;
+            window.location.href = `/seller/seller-info/update/${id}`;
         }
     };
 
     return (
         <form onSubmit={handleSubmit(async (data) => {
-            await fetch(`http://localhost:10000/seller/update/${id}`, {
+            await fetch(`http://localhost:10000/seller/update/${memberId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -63,7 +60,7 @@ const SellerUpdate = () => {
             })
                 .then((res) => res.json())
                 .then((res) => {
-                    navigate(`/seller/seller-info/${id}`);
+                    navigate(`/seller/seller-info`);
                 })
         })}>
 
@@ -99,7 +96,6 @@ const SellerUpdate = () => {
                         <S.PayText>정산 계좌 정보</S.PayText>
                         <S.BankInput>
                             <select
-                                defaultValue={memberBank}
                                 {...register("memberBank")}
                             >
                                 <option value="농협은행">농협은행</option>
@@ -115,7 +111,6 @@ const SellerUpdate = () => {
                     <S.BankAccInput>
                         <input placeholder={"계좌번호를 입력해주세요"}
                                type="text"
-                               defaultValue={memberBankAccount}
                                {...register("memberBankAccount")}
                         />
                     </S.BankAccInput>
