@@ -29,7 +29,7 @@ const SellerRead = () => {
         <S.UpdateBox>
             <S.ListButton>
                 <S.Title>판매자정보</S.Title>
-                <Link to={`/seller/seller-info/${id}/update/${id}`}>
+                <Link to={`/seller/seller-info/update/${id}`}>
                     <button className={'update'}>수정하기</button>
                 </Link>
             </S.ListButton>
