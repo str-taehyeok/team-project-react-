@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react';
 import { Link, useParams } from "react-router-dom";
+import React, {useContext, useEffect, useState} from 'react';
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
@@ -81,6 +81,19 @@ const ProductContainer = () => {
     };
 
 
+    const renderStars = (rating) => {
+        return [...Array(5)].map((_, index) => (
+            <span
+                key={index}
+                style={{
+                    color: index < rating ? 'gold' : 'gray',
+                    marginRight: '2px'
+                }}
+            >
+                ★
+            </span>
+        ));
+    };
 
     const renderTabContent = () => {
         switch(activeTab) {
@@ -144,6 +157,10 @@ const ProductContainer = () => {
         </Swiper>
     );
 
+    const averageRating = reviews.length > 0
+        ? (reviews.reduce((sum, review) => sum + review.reviewStar, 0) / reviews.length)
+        : 0;
+
     return (
         <div>
             <div className="body-container">
@@ -152,17 +169,24 @@ const ProductContainer = () => {
                         <S.MainImg
                             src={`${process.env.PUBLIC_URL}/assets/images/products/${foundProduct.productFileName}`}
                             alt={foundProduct.productName}
-                            style={{borderRadius : "20px"}}
+                            style={{borderRadius: "20px"}}
                         />
                         <S.SubImgWrap>
-                            {[1, 2, 3].map((_, index) => (
-                                <img
-                                    key={index}
-                                    src={`${process.env.PUBLIC_URL}/assets/images/products/${foundProduct.productFileName}`}
-                                    alt={`${foundProduct.productName} view ${index + 1}`}
-                                    style={{borderRadius : "20px"}}
-                                />
-                            ))}
+                            {[
+                                foundProduct.productFileName,
+                                foundProduct.productFileName2,
+                                foundProduct.productFileName3,
+                                foundProduct.productFileName4
+                            ]
+                                .filter(fileName => fileName) // 값이 있는 파일명만 필터링
+                                .map((fileName, index) => (
+                                    <img
+                                        key={index}
+                                        src={`${process.env.PUBLIC_URL}/assets/images/products/${fileName}`}
+                                        alt={`${foundProduct.productName} view ${index + 1}`}
+                                        style={{borderRadius: "20px"}}
+                                    />
+                                ))}
                         </S.SubImgWrap>
                         <S.InfoSeller>
                             <p>상품코드: {foundProduct.productCode} | 원산지: 상품설명 참조</p>
@@ -170,12 +194,13 @@ const ProductContainer = () => {
                     </S.ProductInfoLeft>
                     <S.ProductInfoRight>
                         <S.star>
-                            <StarRating rating={foundProduct.reviewStar} size={24} />
-                            <span>| 리뷰 {reviews.reviewCount || 0} 개</span>
+                            {renderStars(Math.round(averageRating))}
+                            <span>평균 {averageRating.toFixed(1)}</span>
+                            <span>| 리뷰 {reviews.length || 0} 개</span>
                         </S.star>
 
                         <S.IconsWrap>
-                            <HeartBtn />
+                            <HeartBtn/>
                         </S.IconsWrap>
 
                         <S.ProductName>{foundProduct.productName}</S.ProductName>
@@ -208,7 +233,7 @@ const ProductContainer = () => {
                             <S.Box>
                                 <S.Select>
                                     <S.BtnMinus type="button" onClick={handleMinus}>-</S.BtnMinus>
-                                    <input value={count} readOnly name="countProduct" />
+                                    <input value={count} readOnly name="countProduct"/>
                                     <S.BtnPlus type="button" onClick={handlePlus}>+</S.BtnPlus>
                                 </S.Select>
                                 <S.Stock>재고 현황: {foundProduct.productStock}개</S.Stock>
@@ -229,7 +254,7 @@ const ProductContainer = () => {
 
                 <S.Together>함께보면 좋은 상품</S.Together>
                 <S.ProductWrap>
-                    <RelatedProducts />
+                    <RelatedProducts/>
                 </S.ProductWrap>
             </div>
 

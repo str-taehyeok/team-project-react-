@@ -505,13 +505,26 @@ S.InfoSeller = styled.div`
         & img{
             width: 70px;
             height: 70px;
-            margin-top: 45px;
+            margin-top: 10px;
         }
     `;
 
     S.WithButton = styled.div`
         display: flex;
         flex-direction: row;
+        
+    `
+
+    S.ReviewContent = styled.div`
+        margin-left: 100px;
+        margin-right: 50px;
+        width: 500px;
+    `;
+
+    S.HugReview = styled.div`
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 20px;
         & button{
             background:#fff;
             border: none;
@@ -520,20 +533,8 @@ S.InfoSeller = styled.div`
         & img{
             width: 20px;
             height: 20px;
+            justify-content: space-between;
         }
-    `
-
-    S.ReviewContent = styled.div`
-        margin-left: 100px;
-        margin-right: 50px;
-
-       
-    `;
-
-    S.HugReview = styled.div`
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 20px;
     `;
 
 
