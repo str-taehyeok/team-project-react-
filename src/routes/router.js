@@ -423,7 +423,7 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: 'seller-info/:id',
+                path: 'seller-info',
                 element: <SellerInfoContainer />,
                 children: [
                     {
