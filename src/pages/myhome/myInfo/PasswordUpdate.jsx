@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import S from "./style";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-    import { Link } from "react-router-dom";
+    import { Link, useNavigate } from "react-router-dom";
 
 const PasswordUpdate = () => {
     const { currentUser } = useSelector((state) => state.user);
@@ -16,6 +16,7 @@ const PasswordUpdate = () => {
         formState: { errors },
     } = useForm({ mode: "onChange" });
 
+    const navigate = useNavigate();
 
 
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
@@ -39,6 +40,7 @@ const PasswordUpdate = () => {
 
             if (response.ok) {
                 setMessage("비밀번호가 성공적으로 변경되었습니다.");
+                navigate("/password-update-complete")
             } else {
                 setMessage(result.message || "비밀번호 변경에 실패했습니다.");
             }
@@ -109,10 +111,8 @@ const PasswordUpdate = () => {
                         cursor: "pointer",
                     }}
                 ></S.Mark>
-                <Link to ="/myhome">
-                    <S.PasswordUpdateButton type="submit">완료</S.PasswordUpdateButton>
-                    {/*alert({message && <S.Message>{message}</S.Message>})*/}
-                </Link>
+                <S.PasswordUpdateButton type="submit">완료</S.PasswordUpdateButton>
+                {/*alert({message && <S.Message>{message}</S.Message>})*/}
             </S.PasswordUpdateForm>
         </S.PasswordUpdateFormContainer>
     );

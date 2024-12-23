@@ -310,7 +310,7 @@ const router = createBrowserRouter([
                         element: <UserPost />,
                     },
                     {
-                        path: "list",
+                        path: "list/:memberid",
                         element: <UserList />,
                     },
                     {

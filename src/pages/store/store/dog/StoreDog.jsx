@@ -132,7 +132,6 @@ const StoreDog = () => {
                     if (productSort.sort) {
                         if (productSort.price === "DESC") {
                             // 높은 가격 순
-                            console.log("여기 로직")
                             sortfiltered.sort((a, b) => b.productPrice - a.productPrice);
                         } else if (productSort.price === "ASC") {
                             // 낮은 가격 순
@@ -178,8 +177,6 @@ const StoreDog = () => {
             }
         }, [products, locationPath, productSort]); 
         
-        console.log("products", products)
-        console.log("sort", productSort)
 
     // 상품 
     const AllProducts = sortFilteredProducts.map(({
@@ -207,13 +204,15 @@ const StoreDog = () => {
                         </S.ProductPriceWrap>
                     </div>
                 </Link>
-                <S.ButtonWrap >
-                    <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
-                        alt="장바구니아이콘"
-                    />
-                    <p>담기</p>
-                </S.ButtonWrap>
+                <Link to={`/store/read/${id}`}>
+                    <S.ButtonWrap >
+                        {/* <img
+                            src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
+                            alt="장바구니아이콘"
+                        /> */}
+                        <p>상세보기</p>
+                    </S.ButtonWrap>
+                </Link>
             </SwiperSlide>
         </S.ProductWrap>
     ))
@@ -243,13 +242,15 @@ const StoreDog = () => {
                         </S.ProductPriceWrap>
                     </div>
                 </Link>
-                <S.ButtonWrap >
-                    <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
-                        alt="장바구니아이콘"
-                    />
-                    <p>담기</p>
-                </S.ButtonWrap>
+                <Link to={`/store/read/${id}`}>
+                    <S.ButtonWrap >
+                        {/* <img
+                            src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
+                            alt="장바구니아이콘"
+                        /> */}
+                        <p>상세보기</p>
+                    </S.ButtonWrap>
+                </Link>
             </SwiperSlide>
         </S.ProductWrap>
     ))
@@ -279,13 +280,15 @@ const StoreDog = () => {
                     </S.ProductPriceWrap>
                 </div>
             </Link>
-            <S.ButtonWrap >
-                <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
-                    alt="장바구니아이콘"
-                />
-                <p>담기</p>
-            </S.ButtonWrap>
+            <Link to={`/store/read/${id}`}>
+                <S.ButtonWrap >
+                    {/* <img
+                        src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
+                        alt="장바구니아이콘"
+                    /> */}
+                    <p>상세보기</p>
+                </S.ButtonWrap>
+            </Link>
         </S.ProductWrap>
     ))
 
@@ -313,13 +316,15 @@ const StoreDog = () => {
                     </S.ProductPriceWrap>
                 </div>
             </Link>
-            <S.ButtonWrap >
-                <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
-                    alt="장바구니아이콘"
-                />
-                <p>담기</p>
-            </S.ButtonWrap>
+            <Link to={`/store/read/${id}`}>
+                    <S.ButtonWrap >
+                        {/* <img
+                            src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
+                            alt="장바구니아이콘"
+                        /> */}
+                        <p>상세보기</p>
+                    </S.ButtonWrap>
+                </Link>
         </S.ProductWrap>
     ))
 
@@ -348,13 +353,15 @@ const StoreDog = () => {
                         </S.ProductPriceWrap>
                     </div>
                 </Link>
-                <S.ButtonWrap >
-                    <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
-                        alt="장바구니아이콘"
-                    />
-                    <p>담기</p>
-                </S.ButtonWrap>
+                <Link to={`/store/read/${id}`}>
+                    <S.ButtonWrap >
+                        {/* <img
+                            src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
+                            alt="장바구니아이콘"
+                        /> */}
+                        <p>상세보기</p>
+                    </S.ButtonWrap>
+                </Link>
             </SwiperSlide>
         </S.ProductWrap>
     ))

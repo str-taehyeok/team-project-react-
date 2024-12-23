@@ -459,6 +459,14 @@ S.CompletionMain = styled.div`
     justify-content: center;
     margin: 0 auto;
     height: 80vh;
+
+    p {
+        margin : 0 0 6px 0;
+    }
+    button {
+        margin: 40px 0 0 0;
+        font-size: 16px;
+    }
 `;
 
 S.LogoBox = styled.div`
@@ -512,12 +520,12 @@ S.NextButton = styled.button`
 S.Text1 = styled.p`
     font-size: 28px;
     line-height: 40px;
-    font-weight: bold;
+    font-weight: 600;
 `
 S.Text = styled.p`
     font-size: 28px;
     line-height: 40px;
-    font-weight: bold;
+    font-weight: 600;
 `
 
 S.Notification = styled.div`

@@ -157,4 +157,30 @@ const S = {}
       }
     `
 
+    S.NoneWrap = styled.div`
+      width: 600px;
+      height: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction:column;
+      justify-content: center;
+      align-items: center;
+
+      p {
+        font-size: 24px;
+        margin: 0 0 24px 0;
+      }
+
+      & a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        border-radius: 20px;
+        width: 200px;
+        height: 40px;
+        background-color : #113f8a;
+      }
+    `
+
 export default S;

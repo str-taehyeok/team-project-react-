@@ -47,12 +47,11 @@ const Pay = () => {
       return deliveryDate.toLocaleDateString('ko-KR', options);
     };
 
-
     const totals = products.reduce(
       (acc, item) => {
-          acc.totalDeliveryFee += item.deliveryFee;
-          acc.totalRealPrice += item.productRealPrice;
-          acc.totalDiscountedPrice += item.productPrice;
+          acc.totalDeliveryFee += (item.deliveryFee * item.quantity);
+          acc.totalRealPrice += (item.productRealPrice * item.quantity);
+          acc.totalDiscountedPrice += (item.productPrice * item.quantity);
           acc.totalDiscountPrice = acc.totalRealPrice - acc.totalDiscountedPrice
           return acc;
       },

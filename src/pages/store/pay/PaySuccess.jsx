@@ -6,8 +6,6 @@ const PaySuccess = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState(null);
-  
-  console.log(responseData);
 
   useEffect(() => {
     async function confirm() {
