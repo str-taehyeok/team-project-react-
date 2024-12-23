@@ -20,6 +20,7 @@ const UserList = () => {
   const { communityState } = useContext(CommunityContext);
   const { communites } = communityState;
   const memberId = currentUser.id;
+  const [posts, setPosts] = useState([]);
 
   // 로그인 상태 확인
   useEffect(() => {
@@ -144,6 +145,22 @@ const UserList = () => {
     }
   };
 
+  const getDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:10000/posts/post/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("삭제 실패");
+      }
+      setPosts(posts.filter(post => post.id !== id)); 
+      alert("게시물이 삭제되었습니다.");
+    } catch (error) {
+      console.error(error.message);
+      alert("삭제 중 오류가 발생했습니다.");
+    }
+  };
+  
   return (
     <div>
       <S.UserCommunity>
@@ -188,13 +205,7 @@ const UserList = () => {
                 </S.DotButton>
                 {activePostId === id && (
                   <S.PopupBtn>
-                    <S.PoputBtnType>
-                      <p>삭제하기</p>
-                    </S.PoputBtnType>
-                    <S.BtnLine></S.BtnLine>
-                    <S.PoputBtnType>
-                      <p>수정하기</p>
-                    </S.PoputBtnType>
+                    <button type="button" onClick={() => getDelete(id)}> 삭제하기 </button>
                   </S.PopupBtn>
                 )}
                 <img
