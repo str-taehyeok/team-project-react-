@@ -4,7 +4,6 @@ import Slide from './Slide.jsx';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { CommunityContext } from '../../../context/communityContext.js';
-import HeartBtn from '../community/HeartBtn.jsx';
 import FollowBtn from './FollowBtn';
 
 const UserPost = () => {
@@ -102,7 +101,7 @@ const UserPost = () => {
                     <S.MyPostBox>
                         <S.ProfileBox>
                             <S.MyProfile>
-                                <Link to={`/post/list?postId=${id}`}>
+                                <Link to={`/post/list/${id}`}>
                                     <img src="/assets/images/community/default-myProfile.png" alt="프로필" />
                                 </Link>
                             </S.MyProfile>
@@ -149,7 +148,7 @@ const UserPost = () => {
                         <S.Scroll>
                             {comments.map((comment) => (
                                 <S.CommentBox key={comment.id}>
-                                    <Link to={`/post/list?postId=${id}`}>
+                                    <Link to={`/post/list/${id}`}>
                                         <img src="/assets/images/community/default-profile.png" alt="프로필" />
                                     </Link>
                                     <S.CommentText>

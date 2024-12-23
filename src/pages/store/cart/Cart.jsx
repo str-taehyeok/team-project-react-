@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CartProduct from "./CartProduct";
 import S from "./style";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const { currentUser } = useSelector((state) => state.user);
@@ -72,9 +72,9 @@ const Cart = () => {
 
     const totals = cartProducts.reduce(
         (acc, item) => {
-            acc.totalDeliveryFee += item.deliveryFee;
-            acc.totalRealPrice += item.productRealPrice;
-            acc.totalDiscountedPrice += item.productPrice;
+            acc.totalDeliveryFee += (item.deliveryFee * item.quantity);
+            acc.totalRealPrice += (item.productRealPrice * item.quantity);
+            acc.totalDiscountedPrice += (item.productPrice * item.quantity);
             acc.totalDiscountPrice = acc.totalRealPrice - acc.totalDiscountedPrice
             return acc;
         },
@@ -105,6 +105,16 @@ const Cart = () => {
         });
     };
     
+    if(cartProducts.length === 0){
+        return (
+            <S.NoneWrap>
+                <p>장바구니가 비어있습니다.</p>
+                <Link to={"/"}>쇼핑하러 가기</Link>
+            </S.NoneWrap>
+        );
+    }  
+
+
     return (
         <S.CartWrapper>
             <S.Title className="main-title">장바구니</S.Title>

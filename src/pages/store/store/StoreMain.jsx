@@ -20,13 +20,11 @@ const StoreMain = () => {
 
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [sortFilteredProducts, setSortFilteredProducts] = useState([]);
-
     const [displayedProducts, setDisplayedProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
 
     const itemsPerPage = 10;
-
     // 카테고리
     // 해당 모달창을 나오게 하기
     const [isActive, setIsActive] = useState(10);
@@ -164,13 +162,15 @@ const StoreMain = () => {
                         </S.ProductPriceWrap>
                     </div>
                 </Link>
-                <S.ButtonWrap >
-                    <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
-                        alt="장바구니아이콘"
-                    />
-                    <p>담기</p>
-                </S.ButtonWrap>
+                <Link to={`/store/read/${id}`}>
+                    <S.ButtonWrap >
+                        {/* <img
+                            src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
+                            alt="장바구니아이콘"
+                        /> */}
+                        <p>상세보기</p>
+                    </S.ButtonWrap>
+                </Link>
             </SwiperSlide>
         </S.ProductWrap>
     ))
@@ -200,13 +200,15 @@ const StoreMain = () => {
                         </S.ProductPriceWrap>
                     </div>
                 </Link>
-                <S.ButtonWrap >
-                    <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
-                        alt="장바구니아이콘"
-                    />
-                    <p>담기</p>
-                </S.ButtonWrap>
+                <Link to={`/store/read/${id}`}>
+                    <S.ButtonWrap >
+                        {/* <img
+                            src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
+                            alt="장바구니아이콘"
+                        /> */}
+                        <p>상세보기</p>
+                    </S.ButtonWrap>
+                </Link>
             </SwiperSlide>
         </S.ProductWrap>
     ))
@@ -237,13 +239,15 @@ const StoreMain = () => {
                             </S.ProductPriceWrap>
                         </div>
                     </Link>
-                <S.ButtonWrap >
-                    <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
-                        alt="장바구니아이콘"
-                    />
-                    <p>담기</p>
-                </S.ButtonWrap>
+                    <Link to={`/store/read/${id}`}>
+                        <S.ButtonWrap >
+                            {/* <img
+                                src={`${process.env.PUBLIC_URL}/assets/images/layout/shopping_cart_icon.png`}
+                                alt="장바구니아이콘"
+                            /> */}
+                            <p>상세보기</p>
+                        </S.ButtonWrap>
+                    </Link>
             </SwiperSlide>
         </S.ProductWrap>
     ))
@@ -334,11 +338,6 @@ const StoreMain = () => {
                         next={fetchMoreProducts}
                         hasMore={hasMore}
                         loader={<p>Loading...</p>}
-                        endMessage={
-                            <S.EndMessage>
-                            모든 게시물을 불러왔습니다.
-                            </S.EndMessage>
-                        }
                     >
                     <S.ProductWraper $length={sortFilteredProducts.length}>{AllProducts}</S.ProductWraper>
                     </InfiniteScroll>

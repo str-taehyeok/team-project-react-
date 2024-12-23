@@ -49,7 +49,7 @@ S.LayoutButton = styled.div`
   }
 
   .active .orange{
-    background-color: #FFC303;
+    background-color: #FD820B;
   }
 
   .gold{
@@ -60,7 +60,7 @@ S.LayoutButton = styled.div`
     height: 30px;
   }
   .active .gold{
-    background-color: #FFE599;
+    background-color: #FFDA3A;
   }
 
   .gradation{
@@ -72,7 +72,7 @@ S.LayoutButton = styled.div`
   }
 
   .active .gradation{
-    background-image:linear-gradient(rgba(218, 199, 138, 0.5),rgba(207, 165, 203, 0.5));
+    background-image:linear-gradient(0,  #C9B6E4, #FFDD88);
   }
 
   .lightPurple{
@@ -84,7 +84,7 @@ S.LayoutButton = styled.div`
   }
 
   .active .lightPurple{
-    background-color: #C9B6E4;
+    background-color: #A990DD;
   }
 
   .skyBlue{
@@ -95,7 +95,7 @@ S.LayoutButton = styled.div`
     height: 30px;
   }
   .active .skyBlue{
-    background-color: #87CEEB;
+    background-color: #1EA5FC;
   }
 
   .dageGreen{
@@ -106,7 +106,7 @@ S.LayoutButton = styled.div`
     height: 30px;
   }
   .active .dageGreen{
-    background-color: #BCE2D6;
+    background-color: #91CEC2;
   }
 
   .iceBlue{
@@ -117,7 +117,7 @@ S.LayoutButton = styled.div`
     height: 30px;
   }
   .active .iceBlue{
-    background-color: #D1F2F2;
+    background-color: #87B9E7;
   }
 
   .dustySilver{
@@ -128,7 +128,7 @@ S.LayoutButton = styled.div`
     height: 30px;
   }
   .active .dustySilver{
-    background-image:linear-gradient(rgba(137, 169, 196, 0.5),rgba(66, 85, 94, 0.5));
+    background-image:linear-gradient(0,  #788991, #C8D9E1);
   }
 
   .all{
@@ -138,10 +138,13 @@ S.LayoutButton = styled.div`
     width:30px;
     height: 30px;
     color: #ffffff;
+    display: flex;
+    align-items : center;
   }
 
+  
   .active .all{
-    background-color: #000000;
+    background-color: #113f8a;
   }
 
   .button{
@@ -151,6 +154,30 @@ S.LayoutButton = styled.div`
     margin-top: 120px;
   }
 `;
+
+S.ProfileImage = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & > img {
+        display: flex;
+        width: 120px;
+        height: 120px;
+        border-radius: 60px;
+        margin-bottom: 25px;
+    }
+    & > p {
+      display: flex;
+      margin-bottom: 38px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+`;
+
+
 
 // 각각 리스트로 구현되는 이미지
 S.Profile = styled.img`

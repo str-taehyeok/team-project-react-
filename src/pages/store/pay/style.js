@@ -874,6 +874,9 @@ S.OrderSuccess = styled.div`
   }
   
   a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     width: 200px;
     height : 40px;
