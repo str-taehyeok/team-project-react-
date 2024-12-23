@@ -666,7 +666,7 @@ S.P = styled.p`
 S.AuthButton = styled.button`
   position: absolute;
   right: 14px;
-  top: 31px;
+  top: 16px;
   transform: translateY(-50%);
   background-color: transparent;
   padding: 8px 15px;
@@ -722,6 +722,31 @@ S.CloseAddressBtn = styled.button`
   float: right;
   margin-bottom: 10px;
 `
+
+S.Mark = styled.div`
+  width: 22px;
+  height: 22px;
+  background-image: url(${process.env.PUBLIC_URL}/assets/images/join/eye-off.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  position: absolute;
+  right: 29px;
+  top: 50px;
+  transform: translateY(-50%);
+`;
+
+S.Message = styled.p`
+  font-size: 14px;  
+  color: #828282; 
+  text-align: left;
+  line-height: 1; 
+  margin-bottom: 10px; 
+  margin-right: 35px;
+`;
+
+
 
 
 

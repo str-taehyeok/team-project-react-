@@ -123,8 +123,8 @@ const ProfileUpdate = () => {
                 memberNickname : memberNickname,
                 memberEmail : memberEmail,
                 memberPhone : memberPhone,
-                memberZipcode : memberZipcode,
-                memberAddress : memberAddress,
+                memberZipcode : address.postcode,
+                memberAddress : address.baseAddress,
                 memberAddressDetail : memberAddressDetail
             }
 
@@ -234,6 +234,7 @@ const ProfileUpdate = () => {
                                 <S.h7>닉네임</S.h7>
                                 <input
                                     placeholder="닉네임을 입력하세요"
+                                    {...register("memberNickname")}
                                     value={userData.memberNickname}
                                     onChange={handleChange}
                                 />
@@ -252,7 +253,7 @@ const ProfileUpdate = () => {
                                         value={userData.memberPhone}
                                         onChange={handleChange}
                                     />
-                                    <S.AuthButton onClick={() => setIsVisible(true)}>인증번호</S.AuthButton>
+                                    <S.AuthButton type = "button" onClick={() => setIsVisible(true)}>인증번호</S.AuthButton>
                                 </S.MemberCertification>
                             </S.MemberInputBox>
 
@@ -271,77 +272,7 @@ const ProfileUpdate = () => {
                                 </S.MemberInput2Box>
                             )}
 
-                            {/*------------------------------*/}
 
-                            {/*<S.InputText>*/}
-                            {/*    <S.TextBox>*/}
-                            {/*        <S.Red>주소</S.Red>*/}
-                            {/*        <S.Red>*</S.Red>*/}
-                            {/*    </S.TextBox>*/}
-                            {/*    <S.InputContainer>*/}
-                            {/*        <S.InputField*/}
-                            {/*            placeholder="우편번호"*/}
-                            {/*            {...register("memberZipcode")}*/}
-                            {/*            value={address.postcode} // 상태값을 반영*/}
-                            {/*            onChange={*/}
-                            {/*                (e) =>*/}
-                            {/*                    setAddress((prev) => ({*/}
-                            {/*                        ...prev,*/}
-                            {/*                        postcode: e.target.value,*/}
-                            {/*                    })) // postcode만 업데이트*/}
-                            {/*            }*/}
-                            {/*            readOnly*/}
-                            {/*        />*/}
-                            {/*        <S.AuthButton*/}
-                            {/*            type="button"*/}
-                            {/*            onClick={() => setIsPostcodeOpen(true)}*/}
-                            {/*        >*/}
-                            {/*            우편번호*/}
-                            {/*        </S.AuthButton>*/}
-                            {/*        {isPostcodeOpen && (*/}
-                            {/*            <S.ModalBackground>*/}
-                            {/*                <S.ModalContent>*/}
-                            {/*                    <S.CloseAddressBtn*/}
-                            {/*                        type="button"*/}
-                            {/*                        onClick={() => setIsPostcodeOpen(false)}*/}
-                            {/*                    >*/}
-                            {/*                        닫기*/}
-                            {/*                    </S.CloseAddressBtn>*/}
-                            {/*                    <DaumPostcode*/}
-                            {/*                        onComplete={handleComplete}*/}
-                            {/*                        style={{ width: "100%", height: "400px" }}*/}
-                            {/*                    />*/}
-                            {/*                </S.ModalContent>*/}
-                            {/*            </S.ModalBackground>*/}
-                            {/*        )}*/}
-                            {/*        <S.InputField1*/}
-                            {/*            placeholder="기본주소"*/}
-                            {/*            id="Sample6Address"*/}
-                            {/*            {...register("memberAddress")}*/}
-                            {/*            value={address.baseAddress} // 상태값을 반영*/}
-                            {/*            onChange={*/}
-                            {/*                (e) =>*/}
-                            {/*                    setAddress((prev) => ({*/}
-                            {/*                        ...prev,*/}
-                            {/*                        baseAddress: e.target.value,*/}
-                            {/*                    })) // baseAddress만 업데이트*/}
-                            {/*            }*/}
-                            {/*            readOnly*/}
-                            {/*        />*/}
-                            {/*        <S.InputField1*/}
-                            {/*            placeholder="상세주소"*/}
-                            {/*            id="Sample6DetailAddress"*/}
-                            {/*            {...register("memberAddressDetail")}*/}
-                            {/*        />*/}
-                            {/*    </S.InputContainer>*/}
-                            {/*</S.InputText>*/}
-
-
-
-
-
-
-                            {/*-----------------------------*/}
                             <S.MemberInputBox>
                                 <S.h7Address>주소</S.h7Address>
                                 <S.MemberInputAddress>
@@ -397,9 +328,11 @@ const ProfileUpdate = () => {
                                         readOnly
                                     />
                                     <input
-                                        placeholder="상세주소"
                                         id="Sample6DetailAddress"
+                                        placeholder="상세주소"
                                         {...register("memberAddressDetail")}
+                                        value={userData.memberAddressDetail}
+                                        onChange={handleChange}
                                     />
                                 </S.MemberInputAddress>
                             </S.MemberInputBox>
