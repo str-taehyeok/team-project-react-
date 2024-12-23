@@ -22,12 +22,12 @@ const FindId = () => {
       return alert("휴대폰 번호를 입력해주세요.");
     }
 
-    await fetch("http://localhost:10000/member/sms/find-id", {
+    await fetch("http://localhost:10000/member/sms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ memberPhone: phoneNumber })
+      body: JSON.stringify( phoneNumber )
     })
       .then((res) => res.json())
       .then((data) => setVerificationCode(data.verificationCode))
@@ -91,7 +91,7 @@ const FindId = () => {
   };
 
 
-  
+
   return (
     <>
       <S.InputContainer>
