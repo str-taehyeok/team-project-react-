@@ -296,7 +296,10 @@ S.PropileBox = styled.div`
 // }
 // `
 
-S.Follow = styled.button`
+S.Follow = styled.button.attrs(props => ({
+  // `isFollowing`을 DOM에 전달하지 않도록 설정
+  type: 'button', 
+}))`
   width: 65px;
   height: 30px;
   border-radius: 15px;
@@ -310,8 +313,8 @@ S.Follow = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 0.3s ease;  /* 부드러운 색상 전환을 추가 */
 `;
-
 
 // 게시물 제목
 S.PostTitle = styled.div`
@@ -730,8 +733,7 @@ S.myFollowingList = styled.div`
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
   box-sizing: border-box;
-  overflow-y: auto; /* 리스트 영역 세로 스크롤 */
-  padding: 25px;
+  overflow-y: auto; 
   border: solid 1px #888888;
   > ul > li {
     display: flex;
@@ -745,8 +747,8 @@ S.Following1 = styled.div`
   width: 100%;
   height: 70px;
   display: flex;
-  gap: 8px;
   align-items: center;
+  justify-content: center;
   > img {
     width: 40px;
   }

@@ -13,6 +13,7 @@ const PostWrite = () => {
  const [content, setContent] = useState("");
  const [imageFiles, setImageFiles] = useState([]); // 실제 파일 저장용
  const localJwtToken = localStorage.getItem("jwtToken");
+ const id = currentUser.id;
 
  // 로그인 상태 확인
  useEffect(() => {
@@ -94,49 +95,50 @@ const PostWrite = () => {
 
  // 서버로 데이터 전송하는 함수
  const handleSubmit = async (e) => {
-   e.preventDefault();
-   
-   try {
-         // 이미지 파일 업로드를 위한 FormData
-     const formData = new FormData();
-     formData.append("memberId", currentUser.id);
-     formData.append("postContent", content);
-    
-     const colorNames = colorTags.map(tag => tag.name).join(',');
-     formData.append("postColor", colorNames);
+  e.preventDefault();
 
-     // 이미지 파일 추가
-     imageFiles.forEach((file) => {
-       formData.append("uploadFile", file);
-     });
+  try {
+    const formData = new FormData();
+    formData.append("memberId", currentUser.id);
+    formData.append("postContent", content);
 
-     // 이미지 먼저 업로드
-     const imageUploadResponse = await fetch("http://localhost:10000/postFiles/upload", {
-       method: "POST",
-       body: formData,
-     })
-     .then((res) => res.json())
-     .then(async (res) => {
+    const colorNames = colorTags.map((tag) => tag.name).join(",");
+    formData.append("postColor", colorNames);
 
-        formData.append("uuids", res)
-        const postResponse = await fetch("http://localhost:10000/posts/write", {
-          method: "POST",
-          body: formData,
-        })
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res)
-        })
-     })
-     
-    //  navigate("/post/list");
-     // 작성 완료 후 리디렉션
-   } catch (error) {
-     console.error("Error 상세:", error);
-     alert("게시글 작성 중 오류가 발생했습니다.");
-   }
- };
+    imageFiles.forEach((file) => {
+      formData.append("uploadFile", file);
+    });
 
+    const imageUploadResponse = await fetch("http://localhost:10000/postFiles/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!imageUploadResponse.ok) {
+      throw new Error("이미지 업로드 실패");
+    }
+
+    const uploadedUuids = await imageUploadResponse.json();
+
+    formData.append("uuids", uploadedUuids);
+    const postResponse = await fetch("http://localhost:10000/posts/write", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!postResponse.ok) {
+      throw new Error("게시글 작성 실패");
+    }
+
+    const postResult = await postResponse.json();
+    console.log("게시글 작성 성공:", postResult);
+
+    navigate(`/post/list/${id}`);
+  } catch (error) {
+    console.error("에러 발생:", error);
+    alert("게시글 작성 중 오류가 발생했습니다.");
+  }
+};
 
 
 

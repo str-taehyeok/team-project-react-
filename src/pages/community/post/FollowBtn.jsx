@@ -88,14 +88,17 @@ const FollowBtn = ({ targetUserId }) => {
     }
   };
 
-  // 여기서 콘솔 오류가 뜨는데 왜 dom 형식의 내용으로 뜨는지 모르겠어요
   return (
     <div>
-      <S.Follow isFollowing={isFollowing} onClick={handleFollow}>
+      <S.Follow
+        onClick={handleFollow} // isFollowing을 버튼에 직접 전달하지 않음
+        isFollowing={isFollowing} // 이 값은 스타일링을 위해서만 사용됨
+      >
         {isFollowing ? "팔로잉" : "팔로우"}
       </S.Follow>
     </div>
   );
+  
 };
 
 export default FollowBtn;

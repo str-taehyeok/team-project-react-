@@ -2,6 +2,7 @@ import React from 'react';
 import S from './style.js';
 import HeartBtn from './HeartBtn.jsx';
 import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const datas = [
     {
@@ -67,7 +68,7 @@ export const PostList = () => {
                 <S.PostImage src={`${process.env.PUBLIC_URL}${post.postImage1}`} alt="게시물10" />
             </Link>
             <S.PropileBox>
-                <Link to={`/post/list?postId=${id}`}>
+                <Link to={`/post/list/${post.memberId}`}>
                     <S.Profile><img src={`${process.env.PUBLIC_URL}${post.memberImage}`} alt="프로필" /></S.Profile>
                 </Link>
                 <S.NickName>{post.memberNickName}</S.NickName>

@@ -60,7 +60,7 @@ const CommunityMain = () => {
                             <p className='text3'>게시물 작성하기</p>
                             <p className='text4'>지금 나만의 반려동물 일기를 작성해보세요!</p>
                         </div>
-                        <Link to={`/post/list?postId=${1}`}>
+                        <Link to={`/post/list/postId=${1}`}>
                             <p className='text5'>전체보기</p>
                         </Link>
                     </S.MyTitle>
