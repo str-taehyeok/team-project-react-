@@ -104,6 +104,7 @@ const PetWrite = () => {
             <S.EditButton as="label" htmlFor="petImageInput">
               이미지 편집
               </S.EditButton>
+              <S.NoticeText>jpg, png파일 가능</S.NoticeText>
             <input
               id="petImageInput"
               type="file"

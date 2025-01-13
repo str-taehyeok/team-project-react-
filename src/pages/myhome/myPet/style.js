@@ -43,6 +43,7 @@ S.PetCard = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px;
+  position: relative;
 `
 S.Profilepic = styled.div`
   border-radius: 50%;
@@ -72,6 +73,13 @@ S.EditButton = styled.label`
   width: 96px;
   height: 32px;
 `
+S.NoticeText = styled.p`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 12px;
+`
+
 S.Title = styled.div`
 	font-weight: bold;
   margin-bottom: 432px;

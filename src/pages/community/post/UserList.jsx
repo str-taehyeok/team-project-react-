@@ -23,14 +23,7 @@ const UserList = () => {
   const [isUpdate, setIsUpdate] = useState(false)
   const [posts, setPosts] = useState([]);
 
-  // 로그인 상태 확인
-  useEffect(() => {
-    if (!localJwtToken) {
-      alert("로그인 후 이용해 주세요.");
-      navigate("/login");
-    }
-  }, [localJwtToken, navigate]);
-
+  console.log(communites)
   // 팔로워와 팔로잉 데이터를 가져오는 함수들
   const fetchFollowerData = async () => {
     try {
@@ -175,11 +168,13 @@ const UserList = () => {
                     {/* 프로필 이미지 렌더링 */}
                     <img
                         src={
-                            currentUser.memberImage ||
-                            currentUser.memberFilePath && currentUser.memberFileName
-                                ? `http://localhost:10000/member/display?fileName=${currentUser.memberFilePath}/${currentUser.memberFileName}`
-                                : `${process.env.PUBLIC_URL}/assets/images/default-profile-image.jpg`
-                        }
+                          currentUser.memberImage 
+                              ? currentUser.memberImage 
+                              : (currentUser.memberFilePath && currentUser.memberFileName 
+                                  ? `http://localhost:10000/member/display?fileName=${currentUser.memberFilePath}/${currentUser.memberFileName}` 
+                                  : `${process.env.PUBLIC_URL}/assets/images/default-profile-image.jpg`
+                                )
+                      }
                         alt="프로필 사진"
                     />
                     <p>{currentUser.memberNickname}</p>
@@ -208,7 +203,7 @@ const UserList = () => {
             <p>My 게시물</p>
           </S.Title>
           <S.MyPostList>
-            {communites.slice(0, 8).map(({ id, imageName1 }, index) => (
+            {communites.filter(({memberId}) => memberId === currentUser.id).slice(0, 8).map(({ id, imageName1, postFilePath, postFileName}, index) => (
               <S.MyPostItem key={index} style={{ position: "relative" }}>
                 <S.DotButton onClick={() => togglePopup(id)}>
                   <button>
@@ -224,7 +219,14 @@ const UserList = () => {
                   </S.PopupBtn>
                 )}
                 <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/community/${imageName1}`}
+                  src={
+                    imageName1
+                        ? imageName1
+                        : (postFilePath && postFileName
+                            ? `http://localhost:10000/post/display?fileName=${postFilePath}/${postFileName}` 
+                            : `${process.env.PUBLIC_URL}/assets/images/default-profile-image.jpg`
+                          )
+                }
                   alt="게시물 이미지"
                   style={{
                     width: "190px",

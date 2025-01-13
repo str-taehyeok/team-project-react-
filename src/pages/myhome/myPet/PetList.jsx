@@ -11,6 +11,8 @@ const PetList = () => {
   const { currentUser } = useSelector((state) => state.user);
   const id = currentUser.id;
   
+  console.log(pets)
+
   useEffect(() => {
     const getPets = async () => {
       try {
@@ -24,8 +26,8 @@ const PetList = () => {
       } catch (error) {
         console.error(error);
         alert("펫 데이터를 가져오는 중 오류가 발생했습니다.");
-      }finally{
-        setLoading(false); 
+      } finally {
+        setLoading(false); // 로딩 상태 false로 설정
       }
     };
 
@@ -41,6 +43,7 @@ const PetList = () => {
         throw new Error("삭제 실패");
       }
       setPets(pets.filter(pet => pet.id !== id));
+      localStorage.removeItem('pets');
       alert("삭제되었습니다.");
     } catch (error) {
       console.error(error.message);
@@ -50,12 +53,20 @@ const PetList = () => {
   
 
   useEffect(() => {
-    console.log("Pets updated:", pets);
-    if (!loading && pets.length === 0) {
+    const savedPets = localStorage.getItem('pets');
+    if (savedPets) {
+      setPets(JSON.parse(savedPets));
+    } 
+  }, [id]);
+  
+  useEffect(() => {
+    if (loading) return;  // 로딩 중에는 리디렉션을 하지 않음
+    if (pets.length === 0) {
       navigate("/my-pet/pet-not");
+    } else {
+      localStorage.setItem('pets', JSON.stringify(pets));
     }
   }, [pets, navigate, loading]);
-
 
   return (
     <div>
@@ -69,15 +80,15 @@ const PetList = () => {
           <S.PetCard2 key={id}>
             <S.Profilepic>
               <img
-                src={ petImage || `http://localhost:10000/my-pet/display?fileName=${petFilePath}/${petFileName}`}
+                src={petImage || `http://localhost:10000/my-pet/display?fileName=${petFilePath}/${petFileName}`}
                 alt={`${petName} 이미지`}
               />
             </S.Profilepic>
             <S.Name>{petName}</S.Name>
             <span>{petBirth}</span>
-            {/* <Link to={`/my-pet/pet-update/${id}`}>
+            <Link to={`/my-pet/pet-update/${id}`}>
               <S.EditButton2 type="button">편집</S.EditButton2>
-            </Link> */}
+            </Link>
             <S.DeleteButton type="button" onClick={() => getDelete(id)}>삭제</S.DeleteButton>
           </S.PetCard2>
         ))}
