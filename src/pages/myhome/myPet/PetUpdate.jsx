@@ -117,7 +117,8 @@ const PetUpdate = () => {
                 // 아니면 그냥 보낸다. uuid없이 보낸다.
                 formData.append("uuid", "");
             }
-  
+            console.log("여기 로직 실행행")
+
       const updateResponse = await fetch("http://localhost:10000/my-pet/petEdit", {
         method: "PUT",
         body: formData,
